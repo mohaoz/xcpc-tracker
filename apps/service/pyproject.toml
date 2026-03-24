@@ -1,0 +1,32 @@
+[project]
+name = "xcpc-vp-gather-service"
+version = "0.1.0"
+description = "Localhost service for xcpc-vp-gather"
+requires-python = ">=3.11"
+dependencies = [
+  "fastapi>=0.115,<1.0",
+  "httpx>=0.28,<0.29",
+  "pydantic>=2.10,<3.0",
+  "uvicorn>=0.34,<0.35",
+]
+
+[project.scripts]
+xvg = "xcpc_vp_gather.cli:main"
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.3,<9.0",
+]
+
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
