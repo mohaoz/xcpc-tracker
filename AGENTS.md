@@ -27,6 +27,7 @@
 ## Unified Schema Principles
 - If data enters the system, then map it into the canonical entities: `contest`, `problem`, `artifact`, `submission`, `identity_binding`; if MVP needs a team/member problem-state cache, then add a focused supporting table instead of overloading `submission`.
 - If the product question is "has this member solved/tried this problem before VP", then model that state directly.
+- If UI or API lists tracked members, then default to grouping by `local_member_key`; treat provider bindings as secondary detail for the same local person.
 - If upstream fields are ambiguous, then preserve raw source payload alongside normalized columns.
 - If an entity cannot be made stable across providers, then define provider-scoped external IDs plus internal UUIDs.
 - If schema adds a new table, then document ownership, lifecycle, and relation to the five canonical entities.
@@ -66,5 +67,7 @@
 - If starting work, then design first, code second.
 - If building a new area, then create skeletons and contracts before detailed implementation.
 - If v1 behavior is uncertain, then choose the smallest MVP that preserves future extensibility.
+- If CLI already proves the service logic, then shift next work to local API and frontend integration instead of continuing CLI productization.
+- If a capability is only useful as terminal UX polish, then defer it until API and SPA foundations are complete.
 - If a decision belongs in this file, then update `AGENTS.md` immediately.
 - If unrelated code or speculative polish appears, then stop and cut scope back.

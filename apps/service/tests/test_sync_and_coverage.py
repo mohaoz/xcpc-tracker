@@ -9,6 +9,7 @@ from xcpc_vp_gather.config import load_config
 from xcpc_vp_gather.core.time import now_iso
 from xcpc_vp_gather.db.connection import connect_db
 from xcpc_vp_gather.providers.codeforces.provider import CodeforcesProvider
+from xcpc_vp_gather.services.config_io import import_contests
 from xcpc_vp_gather.services.repository import Repository
 
 
@@ -130,3 +131,120 @@ def test_sync_endpoints_and_coverage(tmp_path: Path, monkeypatch) -> None:
     assert payload["problems"][0]["members"][0]["status"] == "solved"
     assert payload["problems"][1]["members"][0]["status"] == "solved"
     assert payload["problems"][1]["members"][1]["status"] == "tried"
+
+    contests_response = client.get("/api/contests", params={"with_coverage": "true"})
+    assert contests_response.status_code == 200
+    contests_payload = contests_response.json()
+    assert contests_payload["contests"][0]["contest_id"] == contest_id
+    assert contests_payload["contests"][0]["problem_count"] == 2
+    assert contests_payload["contests"][0]["fresh_problem_count"] == 0
+
+    contest_detail_response = client.get(f"/api/contests/{contest_id}")
+    assert contest_detail_response.status_code == 200
+    contest_detail_payload = contest_detail_response.json()
+    assert contest_detail_payload["contest_id"] == contest_id
+    assert contest_detail_payload["provider_contest_id"] == "615540"
+    assert contest_detail_payload["problem_count"] == 2
+
+    annotate_response = client.post(
+        "/api/contests/annotate",
+        json={
+            "contest_ref": contest_id,
+            "alias": "sample-gym",
+            "tags": ["2026", "demo"],
+        },
+    )
+    assert annotate_response.status_code == 200
+    annotate_payload = annotate_response.json()
+    assert annotate_payload["alias"] == "sample-gym"
+    assert annotate_payload["tags"] == ["2026", "demo"]
+
+    members_response = client.get("/api/members")
+    assert members_response.status_code == 200
+    members_payload = members_response.json()
+    assert len(members_payload["members"]) == 3
+    assert members_payload["members"][0]["local_member_key"] == "alice"
+    assert len(members_payload["people"]) == 2
+    assert members_payload["people"][0]["local_member_key"] == "alice"
+    assert members_payload["people"][0]["binding_count"] == 2
+    assert members_payload["people"][0]["solved_count"] == 2
+
+    contest_export_response = client.get("/api/contests/export")
+    assert contest_export_response.status_code == 200
+    contest_export_payload = contest_export_response.json()
+    assert contest_export_payload["export_kind"] == "contest_config_only"
+    assert contest_export_payload["contests"][0]["alias"] == "sample-gym"
+
+    config_export_response = client.get("/api/config/export")
+    assert config_export_response.status_code == 200
+    config_export_payload = config_export_response.json()
+    assert config_export_payload["export_kind"] == "config_only"
+    assert len(config_export_payload["members"]) == 3
+
+    import_target = load_config(tmp_path / "api-import-target")
+    import_app = create_app(import_target)
+    import_client = TestClient(import_app)
+
+    contest_import_response = import_client.post(
+        "/api/contests/import",
+        json={"payload": contest_export_payload, "sync": False},
+    )
+    assert contest_import_response.status_code == 200
+    contest_import_payload = contest_import_response.json()
+    assert contest_import_payload["imported_contest_count"] == 2
+
+    config_import_response = import_client.post(
+        "/api/config/import",
+        json={"payload": config_export_payload},
+    )
+    assert config_import_response.status_code == 200
+    config_import_payload = config_import_response.json()
+    assert config_import_payload["imported_member_count"] == 3
+
+
+def test_import_contests_collects_failures(tmp_path: Path, monkeypatch) -> None:
+    config = load_config(tmp_path)
+
+    async def fake_sync_contest(config, *, provider_key, provider_contest_id=None, contest_url=None, alias=None, tags=None):
+        if provider_contest_id == "bad":
+            raise RuntimeError("boom")
+        return type(
+            "Summary",
+            (),
+            {
+                "contest_id": f"contest-{provider_contest_id}",
+                "problem_count": 2,
+                "provider_key": provider_key,
+                "provider_contest_id": provider_contest_id,
+            },
+        )()
+
+    monkeypatch.setattr("xcpc_vp_gather.services.config_io.sync_contest", fake_sync_contest)
+
+    payload = {
+        "contests": [
+            {
+                "provider_key": "codeforces",
+                "provider_contest_id": "1000",
+                "title": "Good Contest",
+                "official_url": "https://codeforces.com/gym/1000",
+                "alias": None,
+                "tags": ["demo"],
+            },
+            {
+                "provider_key": "codeforces",
+                "provider_contest_id": "bad",
+                "title": "Bad Contest",
+                "official_url": "https://codeforces.com/gym/bad",
+                "alias": None,
+                "tags": [],
+            },
+        ]
+    }
+
+    result = import_contests(config, payload, sync=True)
+    assert result["imported_contest_count"] == 2
+    assert result["synced_contest_count"] == 1
+    assert result["failed_contest_count"] == 1
+    assert result["failed_contests"][0]["provider_contest_id"] == "bad"
+    assert result["failed_contests"][0]["error"] == "boom"

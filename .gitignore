@@ -16,7 +16,6 @@ dist/
 var/
 tmp/
 artifacts/
-*.json
 
 # OS / editors
 .DS_Store

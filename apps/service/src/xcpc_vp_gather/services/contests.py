@@ -35,6 +35,29 @@ def list_contests(config: ServiceConfig, provider_key: str | None = None) -> lis
         return contests
 
 
+def get_contest_detail(config: ServiceConfig, contest_id: str) -> dict:
+    with connect_db(config) as conn:
+        repo = Repository(conn)
+        row = repo.get_contest(contest_id)
+        if row is None:
+            raise LookupError(f"Unknown contest: {contest_id}")
+        problems = repo.list_contest_problems(contest_id)
+        return {
+            "contest_id": str(row["id"]),
+            "provider_key": str(row["provider_key"]),
+            "provider_contest_id": str(row["provider_contest_id"]),
+            "alias": row["alias"],
+            "tags": _parse_tags(row["tags_json"]),
+            "title": str(row["title"]),
+            "official_url": row["official_url"],
+            "start_time": row["start_time"],
+            "end_time": row["end_time"],
+            "timezone": row["timezone"],
+            "problem_count": len(problems),
+            "updated_at": str(row["updated_at"]),
+        }
+
+
 def list_contests_filtered(
     config: ServiceConfig,
     *,

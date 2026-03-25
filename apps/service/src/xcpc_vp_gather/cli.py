@@ -238,13 +238,53 @@ def command_contest_export(args: argparse.Namespace) -> int:
 def command_contest_import(args: argparse.Namespace) -> int:
     config = load_config(resolve_project_root())
     payload = read_import_file(Path(args.input_path))
+    if args.sync_after_import and not args.as_json:
+        contests = payload.get("contests", [])
+        print(
+            f"importing {len(contests)} contests from {args.input_path} and syncing one by one..."
+        )
+        updated_payload = {
+            **payload,
+            "contests": [],
+        }
+        imported = 0
+        synced = []
+        failed = []
+        for index, contest in enumerate(contests, start=1):
+            provider_key = str(contest["provider_key"])
+            provider_contest_id = str(contest["provider_contest_id"])
+            title = str(contest.get("title", ""))
+            print(f"[{index}/{len(contests)}] syncing {provider_key}:{provider_contest_id} {title}")
+            partial_payload = {"contests": [contest]}
+            partial_result = import_contests(config, partial_payload, sync=True)
+            imported += partial_result["imported_contest_count"]
+            synced.extend(partial_result.get("synced_contests", []))
+            failed.extend(partial_result.get("failed_contests", []))
+
+        print(
+            f"imported {imported} contests from {args.input_path}; "
+            f"synced {len(synced)} contests; failed {len(failed)} contests"
+        )
+        if failed:
+            print("")
+            print("failed contests:")
+            for item in failed:
+                print(
+                    f"- {item['provider_key']}:{item['provider_contest_id']} "
+                    f"{item['title']} -> {item['error']}"
+                )
+        return 0
+
     result = import_contests(config, payload, sync=args.sync_after_import)
     if args.as_json:
         print_json(result)
     else:
         message = f"imported {result['imported_contest_count']} contests from {args.input_path}"
         if args.sync_after_import:
-            message += f"; synced {result['synced_contest_count']} contests"
+            message += (
+                f"; synced {result['synced_contest_count']} contests"
+                f"; failed {result['failed_contest_count']} contests"
+            )
         print(message)
     return 0
 

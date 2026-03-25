@@ -1,13 +1,20 @@
 from __future__ import annotations
 
-from typing import Annotated
-
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
 from ..config import ServiceConfig
 from ..db.init_db import ensure_database
+from ..services.config_io import export_config, export_contests, import_config, import_contests_async
+from ..services.contests import (
+    add_coverage_summaries,
+    annotate_contest,
+    get_contest_detail,
+    list_contests_filtered,
+)
 from ..services.coverage import get_contest_coverage
+from ..services.members import list_member_people, list_members
 from ..services.sync import sync_contest, sync_member_problem_status
 
 
@@ -24,14 +31,92 @@ class MemberSyncRequest(BaseModel):
     display_name: str | None = None
 
 
+class ContestAnnotateRequest(BaseModel):
+    contest_ref: str
+    provider_key: str | None = None
+    alias: str | None = None
+    tags: list[str] | None = None
+
+
+class ContestImportRequest(BaseModel):
+    payload: dict
+    sync: bool = False
+
+
+class ConfigImportRequest(BaseModel):
+    payload: dict
+
+
 def create_app(config: ServiceConfig) -> FastAPI:
     ensure_database(config)
     app = FastAPI(title="xcpc-vp-gather local API", version="0.1.0")
     app.state.config = config
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=[
+            "http://127.0.0.1:5173",
+            "http://localhost:5173",
+        ],
+        allow_credentials=False,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
 
     @app.get("/api/health")
     def health() -> dict[str, str]:
         return {"status": "ok"}
+
+    @app.get("/api/contests")
+    def list_contests_endpoint(
+        provider: str | None = None,
+        tag: list[str] | None = None,
+        with_coverage: bool = False,
+    ) -> dict:
+        contests = list_contests_filtered(
+            config,
+            provider_key=provider,
+            tags=tag,
+        )
+        if with_coverage:
+            contests = add_coverage_summaries(config, contests)
+        return {"contests": contests}
+
+    @app.post("/api/contests/annotate")
+    def annotate_contest_endpoint(payload: ContestAnnotateRequest) -> dict:
+        return annotate_contest(
+            config,
+            payload.contest_ref,
+            provider_key=payload.provider_key,
+            alias=payload.alias,
+            tags=payload.tags,
+        )
+
+    @app.get("/api/contests/export")
+    def export_contests_endpoint() -> dict:
+        return export_contests(config)
+
+    @app.post("/api/contests/import")
+    async def import_contests_endpoint(payload: ContestImportRequest) -> dict:
+        return await import_contests_async(config, payload.payload, sync=payload.sync)
+
+    @app.get("/api/contests/{contest_id}")
+    def get_contest_detail_endpoint(contest_id: str) -> dict:
+        return get_contest_detail(config, contest_id)
+
+    @app.get("/api/members")
+    def list_members_endpoint(provider: str | None = None) -> dict:
+        return {
+            "members": list_members(config, provider_key=provider),
+            "people": list_member_people(config, provider_key=provider),
+        }
+
+    @app.get("/api/config/export")
+    def export_config_endpoint() -> dict:
+        return export_config(config)
+
+    @app.post("/api/config/import")
+    def import_config_endpoint(payload: ConfigImportRequest) -> dict:
+        return import_config(config, payload.payload)
 
     @app.post("/api/contests/sync")
     async def sync_contest_endpoint(payload: ContestSyncRequest) -> dict:

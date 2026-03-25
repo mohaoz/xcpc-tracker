@@ -262,6 +262,35 @@ class Repository:
         )
         return cursor.fetchall()
 
+    def list_member_status_counts(self, provider_key: str | None = None) -> list[sqlite3.Row]:
+        if provider_key is None:
+            cursor = self.conn.execute(
+                """
+                SELECT
+                  local_member_key,
+                  SUM(CASE WHEN status = 'solved' THEN 1 ELSE 0 END) AS solved_count,
+                  SUM(CASE WHEN status = 'tried' THEN 1 ELSE 0 END) AS tried_count
+                FROM member_problem_status
+                GROUP BY local_member_key
+                ORDER BY local_member_key ASC
+                """
+            )
+            return cursor.fetchall()
+        cursor = self.conn.execute(
+            """
+            SELECT
+              local_member_key,
+              SUM(CASE WHEN status = 'solved' THEN 1 ELSE 0 END) AS solved_count,
+              SUM(CASE WHEN status = 'tried' THEN 1 ELSE 0 END) AS tried_count
+            FROM member_problem_status
+            WHERE provider_key = ?
+            GROUP BY local_member_key
+            ORDER BY local_member_key ASC
+            """,
+            (provider_key,),
+        )
+        return cursor.fetchall()
+
     def get_contest(self, contest_id: str) -> sqlite3.Row | None:
         return self.conn.execute("SELECT * FROM contest WHERE id = ?", (contest_id,)).fetchone()
 

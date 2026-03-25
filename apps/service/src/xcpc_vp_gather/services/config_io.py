@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from pathlib import Path
 import asyncio
+from pathlib import Path
 
 from ..config import ServiceConfig
 from ..core.time import now_iso
@@ -99,7 +99,7 @@ def import_config(config: ServiceConfig, payload: dict) -> dict:
     }
 
 
-def import_contests(config: ServiceConfig, payload: dict, *, sync: bool = False) -> dict:
+async def import_contests_async(config: ServiceConfig, payload: dict, *, sync: bool = False) -> dict:
     contests = payload.get("contests", [])
     updated_at = now_iso()
 
@@ -124,17 +124,30 @@ def import_contests(config: ServiceConfig, payload: dict, *, sync: bool = False)
         conn.commit()
 
     synced = []
+    failed = []
     if sync:
         for contest in contests:
-            summary = asyncio.run(
-                sync_contest(
+            provider_key = str(contest["provider_key"])
+            provider_contest_id = str(contest["provider_contest_id"])
+            try:
+                summary = await sync_contest(
                     config,
-                    provider_key=str(contest["provider_key"]),
-                    provider_contest_id=str(contest["provider_contest_id"]),
+                    provider_key=provider_key,
+                    provider_contest_id=provider_contest_id,
                     alias=contest.get("alias"),
                     tags=contest.get("tags"),
                 )
-            )
+            except Exception as exc:
+                failed.append(
+                    {
+                        "provider_key": provider_key,
+                        "provider_contest_id": provider_contest_id,
+                        "title": str(contest.get("title", "")),
+                        "error": str(exc),
+                    }
+                )
+                continue
+
             synced.append(
                 {
                     "provider_key": summary.provider_key,
@@ -150,7 +163,13 @@ def import_contests(config: ServiceConfig, payload: dict, *, sync: bool = False)
     if sync:
         result["synced_contest_count"] = len(synced)
         result["synced_contests"] = synced
+        result["failed_contest_count"] = len(failed)
+        result["failed_contests"] = failed
     return result
+
+
+def import_contests(config: ServiceConfig, payload: dict, *, sync: bool = False) -> dict:
+    return asyncio.run(import_contests_async(config, payload, sync=sync))
 
 
 def write_export_file(path: Path, payload: dict) -> None:
