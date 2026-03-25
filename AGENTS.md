@@ -4,7 +4,8 @@
 - If scope is unclear, then optimize for a local-first XCPC/ACM VP gather MVP.
 - If choosing the first OJ provider, then use Codeforces Gym.
 - If defining MVP outcomes, then prioritize: `VP before` identify contests/problems nobody on the tracked team has solved or tried, and `VP after` identify problems still needing upsolve.
-- If describing current shipped UI, then note the main views are Contest Pool, Contest Intake, Contest Detail, and Members.
+- If describing current shipped UI, then note the main views are Contest Pool, Members, Manage, and Contest Detail.
+- If planning the next phase after `0.1.1`, then prioritize sync observability, sync provenance, failure recovery, and detail-page completeness before any new provider or analytics scope.
 - If a feature does not directly help contest sync, member history sync, problem/resource gathering, VP-before coverage checks, VP-after upsolve checks, or local VP console, then exclude it from v1.
 - If a design choice conflicts with "local web app + localhost service", then keep the localhost service model.
 
@@ -69,6 +70,7 @@
 - If building a new area, then create skeletons and contracts before detailed implementation.
 - If v1 behavior is uncertain, then choose the smallest MVP that preserves future extensibility.
 - If CLI already proves the service logic, then shift next work to local API and frontend integration instead of continuing CLI productization.
+- If the current MVP already covers the main read/write loop, then prefer strengthening reliability, observability, and data clarity over adding brand-new surfaces.
 - If a capability is only useful as terminal UX polish, then defer it until API and SPA foundations are complete.
 - If a decision belongs in this file, then update `AGENTS.md` immediately.
 - If unrelated code or speculative polish appears, then stop and cut scope back.

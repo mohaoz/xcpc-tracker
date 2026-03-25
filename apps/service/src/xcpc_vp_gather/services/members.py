@@ -17,6 +17,7 @@ def list_members(config: ServiceConfig, provider_key: str | None = None) -> list
                 "provider_handle": str(row["provider_handle"]),
                 "display_name": row["display_name"],
                 "binding_status": str(row["binding_status"]),
+                "updated_at": str(row["updated_at"]),
             }
             for row in rows
         ]
@@ -46,11 +47,15 @@ def list_member_people(config: ServiceConfig, provider_key: str | None = None) -
                 "display_name": row["display_name"] or local_member_key,
                 "providers": set(),
                 "binding_status": str(row["binding_status"]),
+                "last_synced_at": str(row["updated_at"]),
                 "handles": [],
                 "solved_count": counts_by_local_key.get(local_member_key, {}).get("solved_count", 0),
                 "tried_count": counts_by_local_key.get(local_member_key, {}).get("tried_count", 0),
             },
         )
+        current_last_synced_at = str(row["updated_at"])
+        if current_last_synced_at > entry["last_synced_at"]:
+            entry["last_synced_at"] = current_last_synced_at
         entry["providers"].add(str(row["provider_key"]))
         entry["handles"].append(
             {
@@ -59,6 +64,7 @@ def list_member_people(config: ServiceConfig, provider_key: str | None = None) -
                 "provider_handle": str(row["provider_handle"]),
                 "display_name": row["display_name"],
                 "binding_status": str(row["binding_status"]),
+                "updated_at": str(row["updated_at"]),
             }
         )
 
@@ -74,6 +80,7 @@ def list_member_people(config: ServiceConfig, provider_key: str | None = None) -
                 "binding_status": item["binding_status"],
                 "solved_count": item["solved_count"],
                 "tried_count": item["tried_count"],
+                "last_synced_at": item["last_synced_at"],
                 "handles": sorted(
                     item["handles"],
                     key=lambda handle: (handle["provider_key"], handle["provider_handle"]),

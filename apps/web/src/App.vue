@@ -5,8 +5,8 @@ const route = useRoute();
 
 const navItems = [
   { to: "/contests", label: "Contests", activeWhen: (path: string) => path === "/contests" || path.startsWith("/contests/") && !path.startsWith("/contests/intake") },
-  { to: "/contests/intake", label: "Add Contest", activeWhen: (path: string) => path.startsWith("/contests/intake") },
   { to: "/members", label: "Members", activeWhen: (path: string) => path.startsWith("/members") },
+  { to: "/manage", label: "Manage", activeWhen: (path: string) => path.startsWith("/manage") || path.startsWith("/contests/intake") },
 ];
 </script>
 

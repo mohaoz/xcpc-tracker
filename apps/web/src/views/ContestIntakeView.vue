@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import { exportContests, importContests, syncContest, syncMissingContests } from "../lib/api";
+import {
+  exportConfig,
+  exportContests,
+  importConfig,
+  importContests,
+  syncContest,
+  syncMember,
+  syncMissingContests,
+} from "../lib/api";
 
 type IntakeLogLevel = "info" | "success" | "error";
 
@@ -16,13 +24,18 @@ type IntakeLogEntry = {
 const submitting = ref(false);
 const error = ref("");
 const feedback = ref("");
-const importSync = ref(true);
 const importFileInput = ref<HTMLInputElement | null>(null);
+const importMemberFileInput = ref<HTMLInputElement | null>(null);
 const logs = ref<IntakeLogEntry[]>([]);
 let nextLogId = 1;
 
 const syncForm = ref({
   contestUrl: "",
+});
+const memberForm = ref({
+  localMemberKey: "",
+  providerHandle: "",
+  displayName: "",
 });
 
 function nowLabel() {
@@ -101,6 +114,25 @@ async function handleExportContests() {
   }
 }
 
+async function handleExportMembers() {
+  clearStatus();
+  pushLog("info", "Export Members started");
+  try {
+    const payload = await exportConfig();
+    downloadJson("xvg-members.json", {
+      schema_version: payload.schema_version,
+      export_kind: "member_config_only",
+      exported_at: payload.exported_at,
+      members: payload.members,
+    });
+    feedback.value = `exported ${payload.members.length} members`;
+    pushLog("success", "Export Members finished", [`exported ${payload.members.length} members`]);
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to export members";
+    pushLog("error", "Export Members failed", [error.value]);
+  }
+}
+
 async function handleSyncMissingContests() {
   submitting.value = true;
   clearStatus();
@@ -138,23 +170,24 @@ async function handleImportContests(event: Event) {
   if (!file) {
     return;
   }
+  const syncAfterImport = window.confirm("导入比赛后，是否立即同步这些比赛？");
 
   submitting.value = true;
   clearStatus();
-  pushLog("info", "Import Contests started", [file.name, importSync.value ? "sync after import: yes" : "sync after import: no"]);
+  pushLog("info", "Import Contests started", [file.name, syncAfterImport ? "sync after import: yes" : "sync after import: no"]);
   try {
     const text = await file.text();
     const payload = JSON.parse(text) as Record<string, unknown>;
     const result = await importContests({
       payload,
-      sync: importSync.value,
+      sync: syncAfterImport,
     });
     feedback.value =
       `imported ${String(result.imported_contest_count ?? 0)} contests` +
-      (importSync.value ? `, synced ${String(result.synced_contest_count ?? 0)}` : "");
+      (syncAfterImport ? `, synced ${String(result.synced_contest_count ?? 0)}` : "");
     const details = [
       `imported ${String(result.imported_contest_count ?? 0)} contests`,
-      ...(importSync.value ? [`synced ${String(result.synced_contest_count ?? 0)}`, `failed ${String(result.failed_contest_count ?? 0)}`] : []),
+      ...(syncAfterImport ? [`synced ${String(result.synced_contest_count ?? 0)}`, `failed ${String(result.failed_contest_count ?? 0)}`] : []),
       ...(((result.failed_contests as Array<Record<string, unknown>> | undefined) ?? []).map((item) =>
         `${String(item.provider_key)}:${String(item.provider_contest_id)} ${String(item.error)}`,
       )),
@@ -174,6 +207,77 @@ async function handleImportContests(event: Event) {
     }
   }
 }
+
+async function handleImportMembers(event: Event) {
+  const target = event.target as HTMLInputElement;
+  const file = target.files?.[0];
+  if (!file) {
+    return;
+  }
+
+  submitting.value = true;
+  clearStatus();
+  pushLog("info", "Import Members started", [file.name]);
+  try {
+    const text = await file.text();
+    const payload = JSON.parse(text) as Record<string, unknown>;
+    const result = await importConfig({
+      payload: {
+        members: Array.isArray(payload.members) ? payload.members : [],
+      },
+    });
+    feedback.value = `imported ${String(result.imported_member_count ?? 0)} members`;
+    pushLog("success", "Import Members finished", [
+      `imported ${String(result.imported_member_count ?? 0)} members`,
+    ]);
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to import members";
+    pushLog("error", "Import Members failed", [error.value]);
+  } finally {
+    submitting.value = false;
+    if (importMemberFileInput.value) {
+      importMemberFileInput.value.value = "";
+    }
+  }
+}
+
+async function submitSyncMember() {
+  if (!memberForm.value.localMemberKey.trim() || !memberForm.value.providerHandle.trim()) {
+    error.value = "local member key and provider handle are required";
+    pushLog("error", "Sync Member failed", ["local member key and provider handle are required"]);
+    return;
+  }
+
+  submitting.value = true;
+  clearStatus();
+  pushLog("info", "Sync Member started", [
+    memberForm.value.localMemberKey.trim(),
+    memberForm.value.providerHandle.trim(),
+  ]);
+  try {
+    const payload = await syncMember({
+      provider_key: "codeforces",
+      local_member_key: memberForm.value.localMemberKey.trim(),
+      provider_handle: memberForm.value.providerHandle.trim(),
+      display_name: memberForm.value.displayName.trim() || undefined,
+    });
+    feedback.value = `synced ${String(payload.local_member_key)} with ${String(payload.status_count)} problem states`;
+    pushLog("success", "Sync Member finished", [
+      `${String(payload.local_member_key)} / ${String(payload.provider_handle)}`,
+      `${String(payload.status_count)} problem states`,
+    ]);
+    memberForm.value = {
+      localMemberKey: "",
+      providerHandle: "",
+      displayName: "",
+    };
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to sync member";
+    pushLog("error", "Sync Member failed", [error.value]);
+  } finally {
+    submitting.value = false;
+  }
+}
 </script>
 
 <template>
@@ -182,14 +286,18 @@ async function handleImportContests(event: Event) {
       <div class="panel__body">
         <div class="panel__header">
           <div class="panel__title">
-            <p class="eyebrow">Contest Intake</p>
-            <h2>把比赛拉进本地池子</h2>
+            <p class="eyebrow">Manage</p>
+            <h2>本地数据管理台</h2>
             <p class="muted">
-              添加、导入和导出都放到这里，首页只保留 contest pool 决策视图。
+              添加、导入、导出和补同步都放到这里，列表页尽量只负责浏览和决策。
             </p>
           </div>
         </div>
 
+        <div class="panel__title" style="margin-bottom: 12px">
+          <p class="eyebrow">Contest</p>
+          <h3>添加和维护比赛池</h3>
+        </div>
         <div class="form-grid">
           <div class="field">
             <label for="contest-url">Codeforces Gym URL</label>
@@ -223,10 +331,43 @@ async function handleImportContests(event: Event) {
           </label>
         </div>
 
-        <label class="inline-meta tiny muted" style="margin-top: 12px; display: inline-flex; gap: 8px; align-items: center">
-          <input v-model="importSync" type="checkbox" />
-          sync imported contests immediately
-        </label>
+        <div class="panel__title" style="margin-top: 28px; margin-bottom: 12px">
+          <p class="eyebrow">Member</p>
+          <h3>添加和同步队员</h3>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="intake-local-member-key">Local Member Key</label>
+            <input id="intake-local-member-key" v-model="memberForm.localMemberKey" placeholder="alice" />
+          </div>
+          <div class="field">
+            <label for="intake-provider-handle">Codeforces Handle</label>
+            <input id="intake-provider-handle" v-model="memberForm.providerHandle" placeholder="tourist" />
+          </div>
+          <div class="field">
+            <label for="intake-display-name">Display Name</label>
+            <input id="intake-display-name" v-model="memberForm.displayName" placeholder="Alice" />
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="button" :disabled="submitting" @click="submitSyncMember">
+            {{ submitting ? "Syncing..." : "Sync Member" }}
+          </button>
+          <button class="button button--ghost" @click="handleExportMembers">
+            Export Members
+          </button>
+          <label class="button button--ghost" style="cursor: pointer">
+            Import Members
+            <input
+              ref="importMemberFileInput"
+              type="file"
+              accept="application/json"
+              style="display: none"
+              @change="handleImportMembers"
+            />
+          </label>
+        </div>
 
         <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
         <p v-if="error" class="error-box" style="margin-top: 16px">{{ error }}</p>

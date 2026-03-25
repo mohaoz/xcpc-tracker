@@ -47,6 +47,7 @@ export type MemberListItem = {
   provider_handle: string;
   display_name: string | null;
   binding_status: string;
+  updated_at: string;
 };
 
 export type MemberPerson = {
@@ -57,12 +58,14 @@ export type MemberPerson = {
   binding_status: string;
   solved_count: number;
   tried_count: number;
+  last_synced_at: string;
   handles: Array<{
     identity_binding_id: string;
     provider_key: string;
     provider_handle: string;
     display_name: string | null;
     binding_status: string;
+    updated_at: string;
   }>;
 };
 
@@ -218,6 +221,25 @@ export async function importContests(payload: {
   sync: boolean;
 }): Promise<Record<string, unknown>> {
   return request("/api/contests/import", {
+    method: "POST",
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function exportConfig(): Promise<{
+  schema_version: number;
+  export_kind: string;
+  exported_at: string;
+  contests: Array<Record<string, unknown>>;
+  members: Array<Record<string, unknown>>;
+}> {
+  return request("/api/config/export");
+}
+
+export async function importConfig(payload: {
+  payload: Record<string, unknown>;
+}): Promise<Record<string, unknown>> {
+  return request("/api/config/import", {
     method: "POST",
     body: JSON.stringify(payload),
   });

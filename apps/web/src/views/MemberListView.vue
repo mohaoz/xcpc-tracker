@@ -5,15 +5,23 @@ import { fetchMemberPeople, syncMember, type MemberPerson } from "../lib/api";
 
 const people = ref<MemberPerson[]>([]);
 const loading = ref(false);
-const submitting = ref(false);
+const syncingPersonKey = ref("");
 const error = ref("");
 const feedback = ref("");
 
-const form = ref({
-  localMemberKey: "",
-  providerHandle: "",
-  displayName: "",
-});
+function formatDateTime(value: string) {
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+  return new Intl.DateTimeFormat("zh-CN", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(parsed);
+}
 
 async function loadMembers() {
   loading.value = true;
@@ -27,33 +35,27 @@ async function loadMembers() {
   }
 }
 
-async function submitMember() {
-  if (!form.value.localMemberKey.trim() || !form.value.providerHandle.trim()) {
-    error.value = "local member key and provider handle are required";
-    return;
-  }
-
-  submitting.value = true;
+async function syncPerson(person: MemberPerson) {
+  syncingPersonKey.value = person.local_member_key;
   error.value = "";
   feedback.value = "";
   try {
-    const payload = await syncMember({
-      provider_key: "codeforces",
-      local_member_key: form.value.localMemberKey.trim(),
-      provider_handle: form.value.providerHandle.trim(),
-      display_name: form.value.displayName.trim() || undefined,
-    });
-    feedback.value = `synced ${String(payload.local_member_key)} with ${String(payload.status_count)} problem states`;
-    form.value = {
-      localMemberKey: "",
-      providerHandle: "",
-      displayName: "",
-    };
+    let totalStatusCount = 0;
+    for (const handle of person.handles) {
+      const payload = await syncMember({
+        provider_key: handle.provider_key,
+        local_member_key: person.local_member_key,
+        provider_handle: handle.provider_handle,
+        display_name: person.display_name ?? undefined,
+      });
+      totalStatusCount += Number(payload.status_count ?? 0);
+    }
+    feedback.value = `synced ${person.local_member_key} across ${person.handles.length} handles with ${totalStatusCount} problem states`;
     await loadMembers();
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "failed to sync member";
   } finally {
-    submitting.value = false;
+    syncingPersonKey.value = "";
   }
 }
 
@@ -73,26 +75,7 @@ onMounted(loadMembers);
             </p>
           </div>
         </div>
-
-        <div class="form-grid">
-          <div class="field">
-            <label for="local-member-key">Local Member Key</label>
-            <input id="local-member-key" v-model="form.localMemberKey" placeholder="alice" />
-          </div>
-          <div class="field">
-            <label for="provider-handle">Codeforces Handle</label>
-            <input id="provider-handle" v-model="form.providerHandle" placeholder="tourist" />
-          </div>
-          <div class="field">
-            <label for="display-name">Display Name</label>
-            <input id="display-name" v-model="form.displayName" placeholder="Alice" />
-          </div>
-        </div>
-
         <div class="actions">
-          <button class="button" :disabled="submitting" @click="submitMember">
-            {{ submitting ? "Syncing..." : "Sync Member" }}
-          </button>
           <button class="button button--ghost" :disabled="loading" @click="loadMembers">
             {{ loading ? "Refreshing..." : "Refresh List" }}
           </button>
@@ -100,21 +83,10 @@ onMounted(loadMembers);
 
         <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
         <p v-if="error" class="error-box" style="margin-top: 16px">{{ error }}</p>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="panel__body">
-        <div class="panel__header">
-          <div class="panel__title">
-            <p class="eyebrow">Current People</p>
-            <h2>{{ people.length }} tracked members</h2>
-          </div>
-        </div>
 
         <div v-if="loading" class="notice">loading members...</div>
         <div v-else-if="!people.length" class="notice">
-          还没有 tracked member，先同步一个 Codeforces handle。
+          还没有 tracked member，先去 Manage 页面添加一个 Codeforces handle。
         </div>
         <div v-else class="list-grid">
           <article
@@ -130,19 +102,30 @@ onMounted(loadMembers);
                   <span>local: {{ person.local_member_key }}</span>
                   <span>{{ person.solved_count }} solved</span>
                   <span>{{ person.tried_count }} tried-only</span>
+                  <span>last sync {{ formatDateTime(person.last_synced_at) }}</span>
                 </div>
               </div>
-              <span class="tag tag--neutral">{{ person.binding_status }}</span>
+              <div class="member-card__actions">
+                <span class="tag tag--neutral">{{ person.binding_status }}</span>
+                <button
+                  type="button"
+                  class="button button--ghost"
+                  :disabled="syncingPersonKey === person.local_member_key"
+                  @click="syncPerson(person)"
+                >
+                  {{ syncingPersonKey === person.local_member_key ? "Syncing..." : "Sync" }}
+                </button>
+              </div>
             </div>
 
             <div class="inline-tags" style="margin-top: 16px">
-              <span
+              <div
                 v-for="handle in person.handles"
                 :key="handle.identity_binding_id"
-                class="tag"
+                class="tag member-handle-tag"
               >
-                {{ handle.provider_key }} / {{ handle.provider_handle }}
-              </span>
+                <span>{{ handle.provider_key }} / {{ handle.provider_handle }}</span>
+              </div>
             </div>
           </article>
         </div>

@@ -18,9 +18,13 @@ export const router = createRouter({
       component: ContestListView,
     },
     {
-      path: "/contests/intake",
-      name: "contest-intake",
+      path: "/manage",
+      name: "manage",
       component: ContestIntakeView,
+    },
+    {
+      path: "/contests/intake",
+      redirect: "/manage",
     },
     {
       path: "/contests/:contestId",

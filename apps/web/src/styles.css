@@ -374,6 +374,27 @@ h1 {
   font-weight: 600;
 }
 
+.member-handle-tag {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.member-handle-tag__time {
+  font-size: 0.74rem;
+  font-weight: 500;
+  opacity: 0.78;
+}
+
+.member-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 .tag--warm {
   background: rgba(217, 119, 6, 0.12);
   color: #9a5b03;

@@ -378,9 +378,9 @@ watch(
           </div>
 
           <div class="contest-toolbar__actions">
-            <RouterLink to="/contests/intake" class="button contest-toolbar__primary-action">
+            <RouterLink to="/manage" class="button contest-toolbar__primary-action">
               <span class="button__eyebrow">Manage</span>
-              <span>Add Contest</span>
+              <span>Open Manage</span>
             </RouterLink>
             <button class="button button--ghost contest-toolbar__secondary-action" :disabled="loading" @click="loadContests">
               <span class="button__eyebrow">Sync</span>
@@ -397,7 +397,7 @@ watch(
           当前筛选下没有“队内做过至少一题”的比赛。
         </div>
         <div v-else-if="!contests.length" class="notice">
-          还没有比赛，先从 Add Contest 把一场 Gym 拉进来。
+          还没有比赛，先去 Manage 页面把一场 Gym 拉进来。
         </div>
         <div v-else class="list-grid">
           <RouterLink

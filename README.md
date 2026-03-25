@@ -87,20 +87,24 @@ npm run dev
 ## Main Views
 
 - `/contests`: contest pool with pagination, tag filtering, pool scope, and per-problem status strips
-- `/contests/intake`: add contest, import/export, sync missing contests, operation logs
+- `/manage`: add contest, add member, import/export, sync missing contests, and operation logs
 - `/contests/:contestId`: contest detail and coverage matrix
 - `/members`: tracked member overview
 
 ## Typical Workflow
 
-1. Add or import contests in Intake.
-2. Sync tracked members.
+1. Add or import contests and members in Manage.
+2. Sync tracked members when needed.
 3. Use Contest Pool to scan which contests are fresh or already touched.
 4. Open a contest detail page to inspect per-member coverage.
 
 ## Import And Missing Sync
 
-If a contest card shows `0 problems`, it usually means the contest record exists locally but the contest itself was not fully synced yet. Use `Sync Missing Contests` in the Intake page to sync only contests that still have no problem rows.
+If a contest card shows `0 problems`, it usually means the contest record exists locally but the contest itself was not fully synced yet. Use `Sync Missing Contests` in the Manage page to sync only contests that still have no problem rows.
+
+## Suggested Next Phase
+
+After `0.1.1`, the recommended next phase is not a new provider or more analytics. The highest-value work is improving sync observability and provenance: make long-running syncs show progress, clearly distinguish imported-only versus fully synced data, and surface why a contest or member view is incomplete.
 
 ## Testing
 
