@@ -6,6 +6,7 @@
 - v1 focuses on contest sync, tracked-member history sync, problem/resource gathering, VP-before coverage checks, VP-after upsolve checks, and local VP console.
 - Provider automation reads content the user can already access; it does not bypass permissions.
 - Codeforces official API is the primary acquisition path for contest, standings, and submission data; browser automation supplements resource acquisition.
+- The current shipped UI includes a contest pool, intake page, contest detail page, and member page.
 
 ## Non-Goals
 - Online judge, remote backend, SaaS, multi-user collaboration.
@@ -22,6 +23,8 @@
 ### 2. Normalization
 - Maps provider DTOs into canonical entities: `contest`, `problem`, `artifact`, `submission`, `identity_binding`.
 - Maintains a provider-agnostic member-problem history cache for fast VP eligibility checks.
+- Maintains `contest_coverage_summary` as a focused read-model table owned by the service layer.
+- `contest_coverage_summary` lifecycle: recomputed after contest sync and member-history sync; it derives from `contest`, `problem`, and `member_problem_status`, and is not a source-of-truth replacement for those canonical entities.
 - Preserves `provider_key`, upstream external IDs, and raw payload snapshots.
 - Enforces canonical enums and relationship rules.
 
@@ -29,16 +32,19 @@
 - Schedules sync jobs and step-level tasks.
 - Coordinates provider calls, normalization, persistence, file cache, and retries.
 - Tracks task runs and exposes progress to local API.
+- Maintains contest summary backfills for imported-but-unsynced contests and old summary rows missing problem-state strips.
 
 ### 4. Local API
 - Serves SPA-friendly read models and task-trigger endpoints over localhost.
 - Hides provider details behind stable DTOs.
 - Returns task state, contest summaries, member-problem coverage, VP-before freshness, and artifact availability.
+- Exposes targeted actions such as contest sync, missing-contest sync, and member-history sync.
 
 ### 5. SPA
 - Displays local dashboard, contest pages, problem/resource views, and sync controls.
 - Uses browser storage as cache only.
 - Never performs cross-site scraping.
+- Contest cards are intentionally summary-first: title, tags, problem count, solved count, and per-problem status strips.
 
 ## Technology Choices
 
@@ -78,3 +84,4 @@
 - One machine, one user.
 - Read-only sync of contests, problems, artifacts, tracked-member problem history, and optional submission enrichment.
 - No judge, no remote accounts, no collaboration.
+- Current web workflow centers on Intake for mutation and Contest Pool for read-only VP decisions.

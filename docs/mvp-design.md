@@ -49,14 +49,18 @@
 
 #### service / task orchestration
 - Runs jobs, de-duplicates work, persists task state, manages retries and file cache.
+- Maintains contest summary caches used by the contest list page.
+- Supports backfilling imported contests that still have no problem data.
 
 #### local API
 - Exposes localhost endpoints for UI reads and task triggers.
 - Returns stable DTOs independent of provider internals, including contest coverage matrices and freshness summaries.
+- Returns list-page summary DTOs with `problem_states` for direct contest-card rendering.
 
 #### SPA
 - Displays dashboards and details, triggers sync, polls task status.
 - Browser storage caches only UI/session state.
+- Splits write-heavy actions into Intake and keeps Contest Pool focused on scanning and decision-making.
 
 ### Boundaries And Tradeoffs
 - For the VP tool, member-history sync is the primary model because the core question is whether tracked members solved or tried a problem before VP.
@@ -231,6 +235,11 @@ xcpc-vp-gather/
 
 ### Supporting Tables
 
+#### `contest_coverage_summary`
+- Read-model table for contest pool rendering.
+- Stores aggregate counts and compact per-problem state strips.
+- Recomputed after contest sync, member sync, and summary backfill.
+
 #### `task_run`
 - Tracks local job execution, state, step, error, and timestamps.
 
@@ -249,6 +258,7 @@ xcpc-vp-gather/
 - No source-code blob table.
 - No generalized search index table in v1.
 - No full contest replay model as a primary product requirement.
+- No remote queue or distributed task runner.
 
 ## 4. Provider Interface
 

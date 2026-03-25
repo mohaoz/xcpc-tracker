@@ -17,6 +17,24 @@ def _ensure_contest_columns(conn: sqlite3.Connection) -> None:
         conn.execute("ALTER TABLE contest ADD COLUMN tags_json TEXT")
 
 
+def _ensure_contest_coverage_summary_columns(conn: sqlite3.Connection) -> None:
+    tables = {
+        row[0]
+        for row in conn.execute(
+            "SELECT name FROM sqlite_master WHERE type = 'table'"
+        ).fetchall()
+    }
+    if "contest_coverage_summary" not in tables:
+        return
+
+    columns = {
+        row[1]
+        for row in conn.execute("PRAGMA table_info(contest_coverage_summary)").fetchall()
+    }
+    if "problem_states_json" not in columns:
+        conn.execute("ALTER TABLE contest_coverage_summary ADD COLUMN problem_states_json TEXT")
+
+
 def ensure_database(config: ServiceConfig) -> None:
     for path in (
         config.db_path.parent,
@@ -30,4 +48,5 @@ def ensure_database(config: ServiceConfig) -> None:
     with sqlite3.connect(config.db_path) as conn:
         conn.executescript(schema_path.read_text(encoding="utf-8"))
         _ensure_contest_columns(conn)
+        _ensure_contest_coverage_summary_columns(conn)
         conn.commit()

@@ -11,6 +11,18 @@ export type ContestListItem = {
   fresh_problem_count?: number;
   tried_problem_count?: number;
   solved_problem_count?: number;
+  problem_states?: Array<{
+    ordinal: string;
+    status: "solved" | "tried" | "unseen";
+  }>;
+};
+
+export type ContestListPage = {
+  contests: ContestListItem[];
+  page: number;
+  page_size: number;
+  total_count: number;
+  total_pages: number;
 };
 
 export type ContestDetail = {
@@ -100,10 +112,26 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
 export async function fetchContests(options?: {
   tags?: string[];
   withCoverage?: boolean;
-}): Promise<ContestListItem[]> {
+  wholeContestFreshOnly?: boolean;
+  noFreshOnly?: boolean;
+  page?: number;
+  pageSize?: number;
+}): Promise<ContestListPage> {
   const params = new URLSearchParams();
   if (options?.withCoverage) {
     params.set("with_coverage", "true");
+  }
+  if (options?.wholeContestFreshOnly) {
+    params.set("whole_contest_fresh_only", "true");
+  }
+  if (options?.noFreshOnly) {
+    params.set("no_fresh_only", "true");
+  }
+  if (options?.page) {
+    params.set("page", String(options.page));
+  }
+  if (options?.pageSize) {
+    params.set("page_size", String(options.pageSize));
   }
   for (const tag of options?.tags ?? []) {
     if (tag.trim()) {
@@ -111,10 +139,10 @@ export async function fetchContests(options?: {
     }
   }
   const query = params.toString();
-  const payload = await request<{ contests: ContestListItem[] }>(
+  const payload = await request<ContestListPage>(
     `/api/contests${query ? `?${query}` : ""}`,
   );
-  return payload.contests;
+  return payload;
 }
 
 export async function fetchContestDetail(contestId: string): Promise<ContestDetail> {
@@ -143,6 +171,12 @@ export async function syncContest(payload: {
   return request<JsonValue>("/api/contests/sync", {
     method: "POST",
     body: JSON.stringify(payload),
+  });
+}
+
+export async function syncMissingContests(): Promise<JsonValue> {
+  return request<JsonValue>("/api/contests/sync-missing", {
+    method: "POST",
   });
 }
 

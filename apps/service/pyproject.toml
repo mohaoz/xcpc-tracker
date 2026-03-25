@@ -1,6 +1,6 @@
 [project]
 name = "xcpc-vp-gather-service"
-version = "0.1.0"
+version = "0.1.1"
 description = "Localhost service for xcpc-vp-gather"
 requires-python = ">=3.11"
 dependencies = [

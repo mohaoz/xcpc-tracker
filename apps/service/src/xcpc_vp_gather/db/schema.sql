@@ -109,6 +109,17 @@ CREATE TABLE IF NOT EXISTS member_problem_status (
   FOREIGN KEY (problem_id) REFERENCES problem(id)
 );
 
+CREATE TABLE IF NOT EXISTS contest_coverage_summary (
+  contest_id TEXT PRIMARY KEY,
+  problem_count INTEGER NOT NULL DEFAULT 0,
+  fresh_problem_count INTEGER NOT NULL DEFAULT 0,
+  tried_problem_count INTEGER NOT NULL DEFAULT 0,
+  solved_problem_count INTEGER NOT NULL DEFAULT 0,
+  problem_states_json TEXT,
+  updated_at TEXT NOT NULL,
+  FOREIGN KEY (contest_id) REFERENCES contest(id)
+);
+
 CREATE TABLE IF NOT EXISTS task_run (
   id TEXT PRIMARY KEY,
   task_kind TEXT NOT NULL,
@@ -140,3 +151,11 @@ CREATE TABLE IF NOT EXISTS sync_cursor (
   updated_at TEXT NOT NULL,
   UNIQUE (provider_key, cursor_kind, cursor_key)
 );
+
+CREATE INDEX IF NOT EXISTS idx_problem_contest_id ON problem(contest_id);
+CREATE INDEX IF NOT EXISTS idx_identity_binding_status_member
+  ON identity_binding(binding_status, local_member_key);
+CREATE INDEX IF NOT EXISTS idx_member_problem_status_member_provider_problem
+  ON member_problem_status(local_member_key, provider_problem_id);
+CREATE INDEX IF NOT EXISTS idx_member_problem_status_member_problem
+  ON member_problem_status(local_member_key, problem_id);

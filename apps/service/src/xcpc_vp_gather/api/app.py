@@ -1,6 +1,8 @@
 from __future__ import annotations
 
-from fastapi import FastAPI
+from typing import Annotated
+
+from fastapi import FastAPI, Query
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 
@@ -12,10 +14,11 @@ from ..services.contests import (
     annotate_contest,
     get_contest_detail,
     list_contests_filtered,
+    paginate_contests,
 )
 from ..services.coverage import get_contest_coverage
 from ..services.members import list_member_people, list_members
-from ..services.sync import sync_contest, sync_member_problem_status
+from ..services.sync import sync_contest, sync_member_problem_status, sync_missing_contests
 
 
 class ContestSyncRequest(BaseModel):
@@ -49,7 +52,7 @@ class ConfigImportRequest(BaseModel):
 
 def create_app(config: ServiceConfig) -> FastAPI:
     ensure_database(config)
-    app = FastAPI(title="xcpc-vp-gather local API", version="0.1.0")
+    app = FastAPI(title="xcpc-vp-gather local API", version="0.1.1")
     app.state.config = config
     app.add_middleware(
         CORSMiddleware,
@@ -69,8 +72,12 @@ def create_app(config: ServiceConfig) -> FastAPI:
     @app.get("/api/contests")
     def list_contests_endpoint(
         provider: str | None = None,
-        tag: list[str] | None = None,
+        tag: Annotated[list[str] | None, Query()] = None,
         with_coverage: bool = False,
+        whole_contest_fresh_only: bool = False,
+        no_fresh_only: bool = False,
+        page: int = 1,
+        page_size: int = 20,
     ) -> dict:
         contests = list_contests_filtered(
             config,
@@ -79,7 +86,22 @@ def create_app(config: ServiceConfig) -> FastAPI:
         )
         if with_coverage:
             contests = add_coverage_summaries(config, contests)
-        return {"contests": contests}
+        if whole_contest_fresh_only:
+            contests = [
+                contest
+                for contest in contests
+                if (contest.get("problem_count") or 0) > 0
+                and contest.get("fresh_problem_count") == contest.get("problem_count")
+            ]
+        if no_fresh_only:
+            contests = [
+                contest
+                for contest in contests
+                if (contest.get("problem_count") or 0) > 0
+                and (contest.get("fresh_problem_count") or 0) < (contest.get("problem_count") or 0)
+            ]
+        paged = paginate_contests(contests, page=page, page_size=min(max(page_size, 1), 100))
+        return paged
 
     @app.post("/api/contests/annotate")
     def annotate_contest_endpoint(payload: ContestAnnotateRequest) -> dict:
@@ -134,6 +156,10 @@ def create_app(config: ServiceConfig) -> FastAPI:
             "provider_contest_id": result.provider_contest_id,
             "problem_count": result.problem_count,
         }
+
+    @app.post("/api/contests/sync-missing")
+    async def sync_missing_contests_endpoint() -> dict:
+        return await sync_missing_contests(config)
 
     @app.post("/api/members/problem-status/sync")
     async def sync_member_problem_status_endpoint(payload: MemberSyncRequest) -> dict:

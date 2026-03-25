@@ -8,8 +8,10 @@ from xcpc_vp_gather.api.app import create_app
 from xcpc_vp_gather.config import load_config
 from xcpc_vp_gather.core.time import now_iso
 from xcpc_vp_gather.db.connection import connect_db
+from xcpc_vp_gather.main import build_app
 from xcpc_vp_gather.providers.codeforces.provider import CodeforcesProvider
 from xcpc_vp_gather.services.config_io import import_contests
+from xcpc_vp_gather.services.contest_summaries import refresh_all_contest_summaries
 from xcpc_vp_gather.services.repository import Repository
 
 
@@ -121,6 +123,7 @@ def test_sync_endpoints_and_coverage(tmp_path: Path, monkeypatch) -> None:
             updated_at=updated_at,
         )
         conn.commit()
+    refresh_all_contest_summaries(config)
 
     coverage = client.get(f"/api/contests/{contest_id}/coverage")
     assert coverage.status_code == 200
@@ -135,9 +138,48 @@ def test_sync_endpoints_and_coverage(tmp_path: Path, monkeypatch) -> None:
     contests_response = client.get("/api/contests", params={"with_coverage": "true"})
     assert contests_response.status_code == 200
     contests_payload = contests_response.json()
+    assert contests_payload["page"] == 1
+    assert contests_payload["page_size"] == 20
+    assert contests_payload["total_count"] == 2
+    assert contests_payload["total_pages"] == 1
     assert contests_payload["contests"][0]["contest_id"] == contest_id
     assert contests_payload["contests"][0]["problem_count"] == 2
     assert contests_payload["contests"][0]["fresh_problem_count"] == 0
+    assert contests_payload["contests"][0]["problem_states"] == [
+        {"ordinal": "A", "status": "solved"},
+        {"ordinal": "B", "status": "solved"},
+    ]
+
+    paged_response = client.get(
+        "/api/contests",
+        params={"with_coverage": "true", "page": 1, "page_size": 1},
+    )
+    assert paged_response.status_code == 200
+    paged_payload = paged_response.json()
+    assert len(paged_payload["contests"]) == 1
+    assert paged_payload["total_count"] == 2
+    assert paged_payload["total_pages"] == 2
+
+    fresh_only_response = client.get(
+        "/api/contests",
+        params={"with_coverage": "true", "whole_contest_fresh_only": "true"},
+    )
+    assert fresh_only_response.status_code == 200
+    fresh_only_payload = fresh_only_response.json()
+    assert fresh_only_payload["total_count"] == 0
+    assert fresh_only_payload["contests"] == []
+
+    no_fresh_only_response = client.get(
+        "/api/contests",
+        params={"with_coverage": "true", "no_fresh_only": "true"},
+    )
+    assert no_fresh_only_response.status_code == 200
+    no_fresh_only_payload = no_fresh_only_response.json()
+    assert no_fresh_only_payload["total_count"] == 2
+    assert {contest["contest_id"] for contest in no_fresh_only_payload["contests"]} == {
+        contest_id,
+        qoj_contest_id,
+    }
 
     contest_detail_response = client.get(f"/api/contests/{contest_id}")
     assert contest_detail_response.status_code == 200
@@ -158,6 +200,15 @@ def test_sync_endpoints_and_coverage(tmp_path: Path, monkeypatch) -> None:
     annotate_payload = annotate_response.json()
     assert annotate_payload["alias"] == "sample-gym"
     assert annotate_payload["tags"] == ["2026", "demo"]
+
+    tagged_response = client.get(
+        "/api/contests",
+        params=[("tag", "2026"), ("tag", "demo"), ("with_coverage", "true")],
+    )
+    assert tagged_response.status_code == 200
+    tagged_payload = tagged_response.json()
+    assert tagged_payload["total_count"] == 1
+    assert tagged_payload["contests"][0]["contest_id"] == contest_id
 
     members_response = client.get("/api/members")
     assert members_response.status_code == 200
@@ -200,6 +251,14 @@ def test_sync_endpoints_and_coverage(tmp_path: Path, monkeypatch) -> None:
     assert config_import_response.status_code == 200
     config_import_payload = config_import_response.json()
     assert config_import_payload["imported_member_count"] == 3
+
+    sync_missing_response = import_client.post("/api/contests/sync-missing")
+    assert sync_missing_response.status_code == 200
+    sync_missing_payload = sync_missing_response.json()
+    assert sync_missing_payload["missing_contest_count"] == 2
+    assert sync_missing_payload["synced_contest_count"] == 1
+    assert sync_missing_payload["failed_contest_count"] == 1
+    assert sync_missing_payload["failed_contests"][0]["provider_key"] == "qoj"
 
 
 def test_import_contests_collects_failures(tmp_path: Path, monkeypatch) -> None:
@@ -248,3 +307,132 @@ def test_import_contests_collects_failures(tmp_path: Path, monkeypatch) -> None:
     assert result["failed_contest_count"] == 1
     assert result["failed_contests"][0]["provider_contest_id"] == "bad"
     assert result["failed_contests"][0]["error"] == "boom"
+
+
+def test_build_app_backfills_missing_contest_summaries(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setenv("XVG_PROJECT_ROOT", str(tmp_path))
+    config = load_config(tmp_path)
+    updated_at = now_iso()
+
+    with connect_db(config) as conn:
+        repo = Repository(conn)
+        contest_id = repo.upsert_contest(
+            provider_key="codeforces",
+            provider_contest_id="615540",
+            title="Sample Gym",
+            official_url="https://codeforces.com/gym/615540",
+            start_time=None,
+            end_time=None,
+            timezone="UTC",
+            source_payload={},
+            updated_at=updated_at,
+        )
+        repo.upsert_problem(
+            provider_key="codeforces",
+            provider_problem_id="615540:A",
+            contest_id=contest_id,
+            problem_code="A",
+            ordinal="A",
+            title="Alpha",
+            official_url="https://codeforces.com/gym/615540/problem/A",
+            statement_url=None,
+            source_payload={},
+            updated_at=updated_at,
+        )
+        binding_id = repo.upsert_identity_binding(
+            provider_key="codeforces",
+            local_member_key="alice",
+            provider_handle="tourist",
+            display_name="alice",
+            updated_at=updated_at,
+        )
+        repo.upsert_member_problem_status(
+            provider_key="codeforces",
+            local_member_key="alice",
+            identity_binding_id=binding_id,
+            provider_problem_id="615540:A",
+            status="solved",
+            source_url="https://codeforces.com/submission/1",
+            source_payload={},
+            first_seen_at=updated_at,
+            updated_at=updated_at,
+        )
+        conn.commit()
+
+    build_app()
+
+    with connect_db(config) as conn:
+        repo = Repository(conn)
+        contests = repo.list_contests()
+
+    assert contests[0]["summary_problem_count"] == 1
+    assert contests[0]["summary_fresh_problem_count"] == 0
+    assert contests[0]["summary_solved_problem_count"] == 1
+    assert contests[0]["summary_problem_states_json"] == '[{"ordinal": "A", "status": "solved"}]'
+
+
+def test_build_app_backfills_missing_problem_states_on_existing_summary(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setenv("XVG_PROJECT_ROOT", str(tmp_path))
+    config = load_config(tmp_path)
+    updated_at = now_iso()
+
+    with connect_db(config) as conn:
+        repo = Repository(conn)
+        contest_id = repo.upsert_contest(
+            provider_key="codeforces",
+            provider_contest_id="615540",
+            title="Sample Gym",
+            official_url="https://codeforces.com/gym/615540",
+            start_time=None,
+            end_time=None,
+            timezone="UTC",
+            source_payload={},
+            updated_at=updated_at,
+        )
+        repo.upsert_problem(
+            provider_key="codeforces",
+            provider_problem_id="615540:A",
+            contest_id=contest_id,
+            problem_code="A",
+            ordinal="A",
+            title="Alpha",
+            official_url="https://codeforces.com/gym/615540/problem/A",
+            statement_url=None,
+            source_payload={},
+            updated_at=updated_at,
+        )
+        binding_id = repo.upsert_identity_binding(
+            provider_key="codeforces",
+            local_member_key="alice",
+            provider_handle="tourist",
+            display_name="alice",
+            updated_at=updated_at,
+        )
+        repo.upsert_member_problem_status(
+            provider_key="codeforces",
+            local_member_key="alice",
+            identity_binding_id=binding_id,
+            provider_problem_id="615540:A",
+            status="solved",
+            source_url="https://codeforces.com/submission/1",
+            source_payload={},
+            first_seen_at=updated_at,
+            updated_at=updated_at,
+        )
+        conn.execute(
+            """
+            INSERT INTO contest_coverage_summary (
+              contest_id, problem_count, fresh_problem_count, tried_problem_count, solved_problem_count, updated_at
+            ) VALUES (?, ?, ?, ?, ?, ?)
+            """,
+            (contest_id, 1, 0, 0, 1, updated_at),
+        )
+        conn.commit()
+
+    build_app()
+
+    with connect_db(config) as conn:
+        repo = Repository(conn)
+        contests = repo.list_contests()
+
+    assert contests[0]["summary_problem_states_json"] == '[{"ordinal": "A", "status": "solved"}]'

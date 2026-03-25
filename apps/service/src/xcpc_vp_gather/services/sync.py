@@ -8,6 +8,7 @@ from ..core.time import now_iso
 from ..db.connection import connect_db
 from ..models import IdentityBindingRef, ProviderContestRef, ProviderContext
 from ..providers.registry import build_provider_registry
+from .contest_summaries import refresh_all_contest_summaries_in_conn, refresh_contest_summary_in_conn
 from .repository import Repository
 
 
@@ -43,6 +44,53 @@ class MemberSyncSummary:
     local_member_key: str
     provider_handle: str
     status_count: int
+
+
+async def sync_missing_contests(config: ServiceConfig) -> dict:
+    with connect_db(config) as conn:
+        repo = Repository(conn)
+        contests = repo.list_contests_missing_problem_sync()
+
+    synced = []
+    failed = []
+    for contest in contests:
+        provider_key = str(contest["provider_key"])
+        provider_contest_id = str(contest["provider_contest_id"])
+        try:
+            summary = await sync_contest(
+                config,
+                provider_key=provider_key,
+                provider_contest_id=provider_contest_id,
+                alias=contest["alias"],
+                tags=None,
+            )
+        except Exception as exc:
+            failed.append(
+                {
+                    "provider_key": provider_key,
+                    "provider_contest_id": provider_contest_id,
+                    "title": str(contest["title"]),
+                    "error": str(exc),
+                }
+            )
+            continue
+
+        synced.append(
+            {
+                "provider_key": summary.provider_key,
+                "provider_contest_id": summary.provider_contest_id,
+                "contest_id": summary.contest_id,
+                "problem_count": summary.problem_count,
+            }
+        )
+
+    return {
+        "missing_contest_count": len(contests),
+        "synced_contest_count": len(synced),
+        "synced_contests": synced,
+        "failed_contest_count": len(failed),
+        "failed_contests": failed,
+    }
 
 
 async def sync_contest(
@@ -99,6 +147,7 @@ async def sync_contest(
                 source_payload=problem.source_payload,
                 updated_at=updated_at,
             )
+        refresh_contest_summary_in_conn(conn, contest_id)
         conn.commit()
 
     return ContestSyncSummary(
@@ -147,6 +196,7 @@ async def sync_member_problem_status(
                 first_seen_at=updated_at,
                 updated_at=updated_at,
             )
+        refresh_all_contest_summaries_in_conn(conn)
         conn.commit()
 
     return MemberSyncSummary(

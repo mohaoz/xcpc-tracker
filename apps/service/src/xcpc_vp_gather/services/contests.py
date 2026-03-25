@@ -5,11 +5,16 @@ import json
 from ..config import ServiceConfig
 from ..core.time import now_iso
 from ..db.connection import connect_db
-from .coverage import get_contest_coverage
 from .repository import Repository
 
 
 def _parse_tags(value: str | None) -> list[str]:
+    if not value:
+        return []
+    return list(json.loads(value))
+
+
+def _parse_problem_states(value: str | None) -> list[dict[str, str]]:
     if not value:
         return []
     return list(json.loads(value))
@@ -29,6 +34,12 @@ def list_contests(config: ServiceConfig, provider_key: str | None = None) -> lis
                 "title": str(row["title"]),
                 "official_url": row["official_url"],
                 "updated_at": str(row["updated_at"]),
+                "problem_count": row["summary_problem_count"],
+                "fresh_problem_count": row["summary_fresh_problem_count"],
+                "tried_problem_count": row["summary_tried_problem_count"],
+                "solved_problem_count": row["summary_solved_problem_count"],
+                "problem_states": _parse_problem_states(row["summary_problem_states_json"]),
+                "summary_updated_at": row["summary_updated_at"],
             }
             for row in rows
         ]
@@ -76,31 +87,30 @@ def list_contests_filtered(
     ]
 
 
+def paginate_contests(
+    contests: list[dict],
+    *,
+    page: int,
+    page_size: int,
+) -> dict:
+    normalized_page = max(page, 1)
+    normalized_page_size = max(1, page_size)
+    total_count = len(contests)
+    total_pages = max(1, (total_count + normalized_page_size - 1) // normalized_page_size)
+    current_page = min(normalized_page, total_pages)
+    start = (current_page - 1) * normalized_page_size
+    end = start + normalized_page_size
+    return {
+        "contests": contests[start:end],
+        "page": current_page,
+        "page_size": normalized_page_size,
+        "total_count": total_count,
+        "total_pages": total_pages,
+    }
+
+
 def add_coverage_summaries(config: ServiceConfig, contests: list[dict]) -> list[dict]:
-    enriched = []
-    for contest in contests:
-        coverage = get_contest_coverage(config, contest["contest_id"])
-        solved_problem_count = 0
-        tried_problem_count = 0
-        fresh_problem_count = coverage["fresh_problem_count"]
-
-        for problem in coverage["problems"]:
-            statuses = [member["status"] for member in problem["members"]]
-            if any(status == "solved" for status in statuses):
-                solved_problem_count += 1
-            elif any(status == "tried" for status in statuses):
-                tried_problem_count += 1
-
-        enriched.append(
-            {
-                **contest,
-                "problem_count": coverage["problem_count"],
-                "fresh_problem_count": fresh_problem_count,
-                "tried_problem_count": tried_problem_count,
-                "solved_problem_count": solved_problem_count,
-            }
-        )
-    return enriched
+    return contests
 
 
 def resolve_contest_id(

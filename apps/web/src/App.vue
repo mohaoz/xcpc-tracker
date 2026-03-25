@@ -4,8 +4,9 @@ import { RouterLink, RouterView, useRoute } from "vue-router";
 const route = useRoute();
 
 const navItems = [
-  { to: "/contests", label: "Contests" },
-  { to: "/members", label: "Members" },
+  { to: "/contests", label: "Contests", activeWhen: (path: string) => path === "/contests" || path.startsWith("/contests/") && !path.startsWith("/contests/intake") },
+  { to: "/contests/intake", label: "Add Contest", activeWhen: (path: string) => path.startsWith("/contests/intake") },
+  { to: "/members", label: "Members", activeWhen: (path: string) => path.startsWith("/members") },
 ];
 </script>
 
@@ -27,7 +28,7 @@ const navItems = [
             :key="item.to"
             :to="item.to"
             class="nav-pill"
-            :class="{ 'nav-pill--active': route.path.startsWith(item.to) }"
+            :class="{ 'nav-pill--active': item.activeWhen(route.path) }"
           >
             {{ item.label }}
           </RouterLink>

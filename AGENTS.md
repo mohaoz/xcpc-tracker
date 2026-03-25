@@ -4,6 +4,7 @@
 - If scope is unclear, then optimize for a local-first XCPC/ACM VP gather MVP.
 - If choosing the first OJ provider, then use Codeforces Gym.
 - If defining MVP outcomes, then prioritize: `VP before` identify contests/problems nobody on the tracked team has solved or tried, and `VP after` identify problems still needing upsolve.
+- If describing current shipped UI, then note the main views are Contest Pool, Contest Intake, Contest Detail, and Members.
 - If a feature does not directly help contest sync, member history sync, problem/resource gathering, VP-before coverage checks, VP-after upsolve checks, or local VP console, then exclude it from v1.
 - If a design choice conflicts with "local web app + localhost service", then keep the localhost service model.
 

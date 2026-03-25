@@ -375,22 +375,74 @@ class Repository:
         if provider_key is None:
             cursor = self.conn.execute(
                 """
-                SELECT *
+                SELECT
+                  contest.*,
+                  summary.problem_count AS summary_problem_count,
+                  summary.fresh_problem_count AS summary_fresh_problem_count,
+                  summary.tried_problem_count AS summary_tried_problem_count,
+                  summary.solved_problem_count AS summary_solved_problem_count,
+                  summary.problem_states_json AS summary_problem_states_json,
+                  summary.updated_at AS summary_updated_at
                 FROM contest
+                LEFT JOIN contest_coverage_summary AS summary ON summary.contest_id = contest.id
                 ORDER BY updated_at DESC, provider_key ASC, provider_contest_id ASC
                 """
             )
             return cursor.fetchall()
         cursor = self.conn.execute(
             """
-            SELECT *
+            SELECT
+              contest.*,
+              summary.problem_count AS summary_problem_count,
+              summary.fresh_problem_count AS summary_fresh_problem_count,
+              summary.tried_problem_count AS summary_tried_problem_count,
+              summary.solved_problem_count AS summary_solved_problem_count,
+              summary.problem_states_json AS summary_problem_states_json,
+              summary.updated_at AS summary_updated_at
             FROM contest
+            LEFT JOIN contest_coverage_summary AS summary ON summary.contest_id = contest.id
             WHERE provider_key = ?
             ORDER BY updated_at DESC, provider_contest_id ASC
             """,
             (provider_key,),
         )
         return cursor.fetchall()
+
+    def list_contest_ids(self) -> list[str]:
+        cursor = self.conn.execute(
+            """
+            SELECT id
+            FROM contest
+            ORDER BY updated_at DESC, provider_key ASC, provider_contest_id ASC
+            """
+        )
+        return [str(row["id"]) for row in cursor.fetchall()]
+
+    def list_contests_missing_problem_sync(self) -> list[sqlite3.Row]:
+        cursor = self.conn.execute(
+            """
+            SELECT contest.*
+            FROM contest
+            LEFT JOIN problem ON problem.contest_id = contest.id
+            GROUP BY contest.id
+            HAVING COUNT(problem.id) = 0
+            ORDER BY contest.updated_at DESC, contest.provider_key ASC, contest.provider_contest_id ASC
+            """
+        )
+        return cursor.fetchall()
+
+    def list_contest_ids_missing_summary(self) -> list[str]:
+        cursor = self.conn.execute(
+            """
+            SELECT contest.id
+            FROM contest
+            LEFT JOIN contest_coverage_summary AS summary ON summary.contest_id = contest.id
+            WHERE summary.contest_id IS NULL
+               OR summary.problem_states_json IS NULL
+            ORDER BY contest.updated_at DESC, contest.provider_key ASC, contest.provider_contest_id ASC
+            """
+        )
+        return [str(row["id"]) for row in cursor.fetchall()]
 
     def list_contest_problems(self, contest_id: str) -> list[sqlite3.Row]:
         cursor = self.conn.execute(
@@ -446,3 +498,44 @@ class Repository:
             (local_member_key,),
         )
         return cursor.fetchall()
+
+    def replace_contest_coverage_summary(
+        self,
+        *,
+        contest_id: str,
+        problem_count: int,
+        fresh_problem_count: int,
+        tried_problem_count: int,
+        solved_problem_count: int,
+        problem_states: list[dict[str, str]] | None,
+        updated_at: str,
+    ) -> None:
+        self.conn.execute(
+            """
+            INSERT INTO contest_coverage_summary (
+              contest_id,
+              problem_count,
+              fresh_problem_count,
+              tried_problem_count,
+              solved_problem_count,
+              problem_states_json,
+              updated_at
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(contest_id) DO UPDATE SET
+              problem_count = excluded.problem_count,
+              fresh_problem_count = excluded.fresh_problem_count,
+              tried_problem_count = excluded.tried_problem_count,
+              solved_problem_count = excluded.solved_problem_count,
+              problem_states_json = excluded.problem_states_json,
+              updated_at = excluded.updated_at
+            """,
+            (
+                contest_id,
+                problem_count,
+                fresh_problem_count,
+                tried_problem_count,
+                solved_problem_count,
+                None if problem_states is None else json.dumps(problem_states, ensure_ascii=False),
+                updated_at,
+            ),
+        )
