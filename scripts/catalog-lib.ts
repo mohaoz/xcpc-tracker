@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-import { readFile, mkdir, rm, writeFile } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -16,10 +16,6 @@ export function getRepoRoot(): string {
 
 export function getCatalogBundlePath(): string {
   return join(getRepoRoot(), "catalog", "default-catalog.min.json");
-}
-
-export function getGeneratedDir(): string {
-  return join(getRepoRoot(), "generated");
 }
 
 type CatalogSource = {
@@ -265,38 +261,4 @@ export async function loadCatalogContests(): Promise<CatalogContest[]> {
   }
 
   return contests;
-}
-
-export function buildContestIndex(contests: CatalogContest[]) {
-  return {
-    generated_at: new Date().toISOString(),
-    source: "catalog",
-    contest_count: contests.length,
-    contests: contests.map((contest) => ({
-      id: contest.id,
-      title: contest.title,
-      aliases: contest.aliases,
-      tags: contest.tags,
-      curation_status: contest.curation_status,
-      problem_count: contest.problems.length,
-    })),
-  };
-}
-
-export async function writeGeneratedCatalog(contests: CatalogContest[]) {
-  const generatedDir = getGeneratedDir();
-  await mkdir(generatedDir, { recursive: true });
-  await rm(join(generatedDir, "contests"), { recursive: true, force: true });
-  await rm(join(generatedDir, "contests.index.json"), { force: true });
-
-  const indexPayload = buildContestIndex(contests);
-  const bundlePayload = {
-    ...indexPayload,
-    contests: contests.map((contest) => ({
-      ...contest,
-      generated_from: "catalog",
-      problem_count: contest.problems.length,
-    })),
-  };
-  await writeFile(join(generatedDir, "catalog.json"), `${JSON.stringify(bundlePayload)}\n`, "utf8");
 }

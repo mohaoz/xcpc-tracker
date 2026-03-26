@@ -1,9 +1,9 @@
-# xcpc-vp-gather Architecture
+# XCPC-Tracker Architecture
 
 ## Assumptions
 
 - The target product is a static, frontend-first XCPC tracker.
-- The normal user flow must not require a running localhost backend.
+- The normal user flow must not require any backend service.
 - Curated contest metadata lives in Git-managed JSON files.
 - Codeforces member status comes from public API access in the frontend.
 - QOJ member status comes from userscript-exported JSON imports.
@@ -11,7 +11,7 @@
 
 ## Non-Goals
 
-- Rebuilding a localhost service as the core runtime.
+- Rebuilding a backend service as the core runtime.
 - Remote multi-user backend, auth platform, or cloud sync.
 - Server-side scraping for QOJ.
 - Contest replay timelines, judge features, or ranking-heavy analytics before import and coverage are stable.
@@ -20,14 +20,13 @@
 
 ### 1. Catalog Source
 - Human-edited curated contest JSON in `catalog/`.
-- One contest per file for reviewable changes.
+- The built-in default catalog lives in a single bundled JSON file.
 - Stores stable IDs, tags, aliases, problem definitions, and external source links.
 - This is the canonical product dataset.
 
-### 2. Validation And Generation
+### 2. Validation
 - Scripts validate curated JSON against JSON Schema in `schemas/`.
-- Generation scripts build derived indexes in `generated/` for efficient frontend loading.
-- CI runs validation and generation before frontend build and deployment.
+- CI runs validation before frontend build and deployment.
 
 ### 3. Import Inputs
 - Imported data can come from Codeforces API sessions, QOJ userscript exports, or one-time tooling.
@@ -38,7 +37,7 @@
 - Codeforces adapter fetches member submissions/status from the public API.
 - Codeforces contest adapter fetches contest problem lists from the public API.
 - QOJ adapter imports userscript-exported JSON snapshots.
-- Catalog adapter loads curated dataset indexes and per-contest detail JSON.
+- Catalog adapter loads the bundled default catalog JSON.
 - Adapters preserve raw import metadata and provenance alongside normalized records.
 
 ### 5. Browser-Local Data Layer
@@ -56,9 +55,9 @@
 
 1. Curated contests are authored in `catalog/`.
 2. Optional import flows produce runtime data and, when needed, draft metadata for review.
-3. Scripts validate the catalog and generate aggregated indexes in `generated/`.
-4. The static site ships with generated JSON assets.
-5. The browser loads catalog indexes and stores catalog snapshots in Dexie.
+3. Scripts validate the catalog bundle against repo rules and schema.
+4. The static site ships with the bundled default catalog as a static asset.
+5. The browser loads the default catalog and stores catalog snapshots in Dexie.
 6. Codeforces API imports refresh local member-problem status and can also refresh contest problem snapshots.
 7. QOJ userscript JSON imports will refresh additional member-problem status records.
 8. Coverage views join locally cached contest problems with local member status records.
@@ -97,9 +96,9 @@
 - QOJ userscript import avoids a backend scraper, but the workflow is intentionally semi-manual.
 - Generated indexes improve load performance, but introduce a build step that must stay deterministic.
 
-## Transition Notes
+## Current State
 
-- The current Python service remains in the repository only as a migration artifact and possible tooling source during the transition.
-- Existing Vue views and coverage concepts have been partially rewired away from localhost API assumptions.
-- Contest list, contest detail, member list, and manage workspace now run on the frontend-first path.
-- Existing provider abstractions and SQLite-first design should not remain the dominant architecture.
+- Contest list, contest detail, member list, and manage tools run on the frontend-first path.
+- Catalog validation and generation are handled by repo-level scripts.
+- Codeforces contest and member sync run directly in the browser.
+- Contest list filters are stored locally in app state rather than in URL query parameters.

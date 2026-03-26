@@ -1,11 +1,10 @@
 {
-  "name": "xcpc-vp-gather-tools",
+  "name": "xcpc-tracker",
   "private": true,
   "version": "0.2.0-planning",
   "type": "module",
   "scripts": {
-    "catalog:build-tools": "./apps/web/node_modules/.bin/tsc -p scripts/tsconfig.catalog.json",
-    "catalog:validate": "npm run catalog:build-tools && node .catalog-tools-build/validate-catalog.js",
-    "catalog:generate": "npm run catalog:build-tools && node .catalog-tools-build/generate-catalog.js"
+    "catalog:build-tools": "./web/node_modules/.bin/tsc -p scripts/tsconfig.catalog.json",
+    "catalog:validate": "npm run catalog:build-tools && node .catalog-tools-build/validate-catalog.js"
   }
 }

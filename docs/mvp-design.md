@@ -1,4 +1,4 @@
-# xcpc-vp-gather MVP Design
+# XCPC-Tracker MVP Design
 
 ## New MVP Shape
 
@@ -20,7 +20,7 @@ The next MVP is no longer a localhost-service-led gather tool. It is a static XC
 ## Core Product Loop
 
 1. Maintainer curates contest metadata in Git.
-2. CI validates catalog files and generates indexes.
+2. CI validates catalog files.
 3. User opens the static app and loads curated contests.
 4. User imports member status from Codeforces and QOJ.
 5. App computes coverage and freshness locally in the browser.

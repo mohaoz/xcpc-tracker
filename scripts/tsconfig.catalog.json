@@ -13,7 +13,6 @@
   },
   "include": [
     "./catalog-lib.ts",
-    "./validate-catalog.ts",
-    "./generate-catalog.ts"
+    "./validate-catalog.ts"
   ]
 }

@@ -1,8 +1,8 @@
-# xcpc-vp-gather Project Plan
+# XCPC-Tracker Project Plan
 
 ## Goal
 
-Move the repository from a localhost-service-first VP gather MVP to a static, frontend-first XCPC tracker with curated Git data and browser-local persistence.
+Keep the repository aligned with a static, frontend-first XCPC tracker with curated Git data and browser-local persistence.
 
 ## Current Repo Audit
 
@@ -15,7 +15,6 @@ Move the repository from a localhost-service-first VP gather MVP to a static, fr
 - The idea that some data may be seeded by import and then maintained manually.
 
 ### Remove
-- Python localhost service as the primary runtime architecture.
 - SQLite as the canonical runtime store for normal usage.
 - Service-driven API contracts as the default data path for the SPA.
 - CLI-first workflows that only make sense for backend orchestration.
@@ -31,28 +30,27 @@ Move the repository from a localhost-service-first VP gather MVP to a static, fr
 - Existing Vue pages and their information architecture.
 - Coverage list/detail semantics and freshness calculations.
 - Useful Codeforces matching heuristics where they still apply to curated problem mapping.
-- Legacy backend code that may help bootstrap fixtures, exports, or one-time migration scripts.
 
 ## Recommended Order
 
 1. Freeze the new architecture in repo docs and directory conventions.
-2. Add catalog/schema/generated/script scaffolding with explicit ownership.
+2. Add catalog/schema/script scaffolding with explicit ownership.
 3. Design frontend local data model and import-versus-curation boundaries.
 4. Add CI checks for catalog validation, generation, and static frontend build.
-5. Rewire the SPA to consume generated catalog JSON and IndexedDB.
+5. Rewire the SPA to consume the bundled catalog JSON and IndexedDB.
 6. Add Codeforces frontend import flow.
 7. Add QOJ userscript-assisted import flow.
-8. Remove or archive the Python backend from normal development workflows.
+8. Keep the repository structure aligned with the shipped frontend-first product.
 
 ## Current Progress
 
 Completed:
 
 - architecture docs and repo direction have been rewritten
-- curated catalog, schema, generated, and script directories exist
-- catalog validation and generation scripts exist
+- curated catalog, schema, and script directories exist
+- catalog validation scripts exist
 - CI validates catalog data and builds the static frontend
-- frontend now reads generated contest data directly
+- frontend now reads bundled catalog data directly
 - Dexie-backed local storage is in place
 - contest list and contest detail run on the frontend-first path
 - local member view runs on the frontend-first path
@@ -64,7 +62,6 @@ Remaining high-priority work:
 
 - QOJ userscript-assisted import flow
 - clearer provider/problem provenance and unresolved mapping handling
-- cleanup or archival of the old Python service path
 - documentation refresh for the current implemented UI and workflows
 
 ## Near-Term Non-Goals

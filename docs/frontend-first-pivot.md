@@ -3,7 +3,7 @@
 ## Current repo audit
 
 ### Keep
-- `apps/web` Vue 3 SPA shell, router, and current page-level information architecture.
+- `web` Vue 3 SPA shell, router, and current page-level information architecture.
 - Coverage concepts already present in contest list and contest detail views.
 - Local member grouping concepts from the current member list.
 - Existing fixtures and deterministic-testing mindset.
@@ -17,7 +17,7 @@
 
 ### Rewrite
 - Architecture docs and contributor instructions.
-- Frontend data access layer so it reads generated catalog assets and IndexedDB instead of localhost API endpoints.
+- Frontend data access layer so it reads the bundled default catalog and IndexedDB instead of localhost API endpoints.
 - Runtime data model around browser-local entities and import provenance.
 - Build and release workflow around dataset validation and static deployment.
 
@@ -55,20 +55,19 @@
 
 ### Runtime
 - Static Vue 3 + TypeScript app.
-- Generated catalog JSON served as static assets.
+- Bundled default catalog JSON served as a static asset.
 - IndexedDB for local members, status, sync history, and provenance.
 - Direct Codeforces public API access from the browser.
 - QOJ userscript JSON import through explicit user action.
 
 ### Build-time
 - JSON Schema validation for curated catalog files.
-- Deterministic generation of aggregated indexes.
-- Frontend build using generated assets.
+- Frontend build using the bundled default catalog asset.
 - Static deployment through GitHub Actions or similar CI.
 
-### Legacy during transition
-- `apps/service` remains temporarily for reference, possible migration exports, or extraction of useful logic.
-- Legacy runtime docs and commands should be de-emphasized immediately.
+### Current repository shape
+- The shipped product lives in `web` plus repo-level catalog, schema, and script directories.
+- Old backend-runtime code is not part of the active architecture.
 
 ## New data layout
 
@@ -76,8 +75,6 @@
 
 ```text
 catalog/default-catalog.min.json
-generated/
-  catalog.json
 schemas/
   contest.schema.json
   qoj-import.schema.json
@@ -94,7 +91,6 @@ scripts/
 ### Ownership rules
 
 - `catalog/` is the canonical hand-edited source of truth.
-- `generated/` is fully derived and reproducible.
 - imported payloads belong in runtime storage or fixture/sample areas, not in `catalog/` unless they are manually normalized first.
 - import flows may generate reviewable drafts, but they should not silently overwrite curated files.
 
@@ -131,8 +127,7 @@ Rules:
 
 - The built-in default catalog is stored as a single bundled JSON file.
 - Human-edited files stay under `catalog/`.
-- Generated aggregated/index files stay under `generated/`.
-- Frontend should consume generated indexes for list views and per-contest generated detail files for detail views.
+- Frontend should consume the bundled default catalog directly for built-in data.
 - `curation_status` allows us to carry partial curated contests during migration, for example contest metadata present but problem list not finished yet.
 - `aliases` should store normal alternative titles or well-known formal names, not old console-oriented short codes.
 - provider-only shorthand should stay in `sources` metadata rather than becoming the primary human-facing alias model.
@@ -231,7 +226,7 @@ Indexes to prioritize:
 ## Import pipeline design
 
 ### Catalog importer
-- Loads generated contest index and per-contest detail JSON.
+- Loads the bundled default catalog JSON.
 - Refreshes `catalog_contests` and `catalog_problems` stores.
 - Writes a catalog provenance/import record with version or commit metadata.
 
@@ -291,7 +286,7 @@ Order of confidence:
 ### Phase 2: Catalog foundation
 - Add first curated contest JSON files.
 - Implement schema validation and index generation scripts.
-- Serve generated catalog assets from the frontend.
+- Serve the bundled default catalog asset from the frontend.
 
 ### Phase 3: Frontend local store
 - Introduce IndexedDB data layer and repository helpers.
@@ -305,13 +300,13 @@ Order of confidence:
 
 ### Phase 5: Remove legacy runtime assumptions
 - Stop documenting `make dev` as the main product path.
-- Archive or narrow `apps/service` to migration/tooling use only.
+- Remove legacy backend code once the frontend-only path is stable.
 - Delete backend-only abstractions that no longer serve build-time needs.
 
 ## Recommended first patch set
 
 - Rewrite `AGENTS.md` around the new product direction.
 - Rewrite repo-level architecture docs and plan docs.
-- Add `catalog/`, `generated/`, `schemas/`, and `scripts/` directory placeholders.
+- Keep `catalog/`, `schemas/`, and `scripts/` focused on the shipped frontend.
 - Document curated file shape, IndexedDB schema, importer boundaries, and CI/CD flow.
 - Leave application runtime code unchanged in this first pass.

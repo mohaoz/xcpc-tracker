@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://xcpc-vp-gather.local/schemas/catalog-bundle.schema.json",
+  "$id": "https://xcpc-tracker.local/schemas/catalog-bundle.schema.json",
   "title": "CuratedContestBundle",
   "type": "object",
   "required": [

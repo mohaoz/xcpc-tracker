@@ -14,13 +14,12 @@
 - If data is curated and versioned, then keep it in Git as JSON files; do not treat IndexedDB as the source for curated catalog data.
 - If a feature requires a running localhost backend in normal usage, then reject it by default.
 - If a backend/tooling task is still useful, then keep it as build-time or migration-time tooling only, not as the primary runtime architecture.
-- If content is large or generated, then commit only curated source files and regenerate derived indexes in CI or scripts.
+- If content is large or derived, then commit only the single bundled default catalog and keep runtime-only copies out of the repo.
 
 ## Data And Catalog Rules
-- If adding curated contest metadata, then keep the built-in default catalog in a single bundled JSON file under `catalog/`, and keep import/generated artifacts clearly separate.
+- If adding curated contest metadata, then keep the built-in default catalog in a single bundled JSON file under `catalog/`.
 - If data is intended to be canonical and reviewable, then it must live under `catalog/` and be editable by hand.
 - If data comes from import flows, then treat it as candidate or draft input until it is normalized into curated catalog files.
-- If adding generated frontend consumption files, then place them under `generated/` and treat them as derived artifacts.
 - If adding schema validation, then validate curated files against JSON Schema before build or deploy.
 - If adding canonical catalog fields, then prefer `id`, `title`, `aliases`, `tags`, `problems`, `sources`, and optional provenance notes; do not duplicate obvious tag semantics into separate fields without a concrete product need.
 - If storing external links, then use a `sources` array with objects shaped like `provider`, `kind`, and `url`.
@@ -47,7 +46,6 @@
 - If code belongs to the shipped product, then prefer TypeScript modules under the frontend app and repo-level data/tooling directories.
 - If code is only for migration or validation, then place it under `scripts/`.
 - If adding curated source data, then place it under `catalog/`.
-- If adding generated dataset artifacts, then place them under `generated/`.
 - If adding schemas, then place them under `schemas/`.
 - If naming JSON fields, TypeScript types, or generated file keys, then prefer `snake_case` for persisted JSON and `camelCase` / `PascalCase` for TypeScript code.
 

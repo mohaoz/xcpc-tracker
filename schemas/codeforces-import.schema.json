@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://xcpc-vp-gather.local/schemas/codeforces-import.schema.json",
+  "$id": "https://xcpc-tracker.local/schemas/codeforces-import.schema.json",
   "title": "CodeforcesImportRecord",
   "type": "object",
   "required": ["provider", "handle", "fetched_at"],

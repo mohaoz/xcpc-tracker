@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://xcpc-vp-gather.local/schemas/qoj-import.schema.json",
+  "$id": "https://xcpc-tracker.local/schemas/qoj-import.schema.json",
   "title": "QOJUserscriptImport",
   "type": "object",
   "required": ["provider", "exported_at", "members"],
