@@ -1,7 +1,6 @@
 [build]
 command = "npm ci --prefix web && npm run catalog:validate && npm run build --prefix web"
 publish = "web/dist"
-ignore = "exit 0"
 
 [[redirects]]
 from = "/*"
