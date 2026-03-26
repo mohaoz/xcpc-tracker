@@ -41,6 +41,20 @@ const contestEyebrow = computed(() => {
   }
   return "CURATED CONTEST";
 });
+const contestEditorInitialValue = computed(() => {
+  if (!contest.value) {
+    return undefined;
+  }
+
+  return {
+    contestId: contest.value.id,
+    title: contest.value.title,
+    aliases: contest.value.aliases,
+    tags: contest.value.tags,
+    sources: contest.value.sources,
+    notes: contest.value.notes ?? null,
+  };
+});
 
 function mapLocalContestRecordToDetail(
   contestRecord: LocalCatalogContestRecord,
@@ -260,14 +274,7 @@ onMounted(loadContestPage);
                 <div v-if="editing" class="panel" style="box-shadow: none; margin-bottom: 18px">
                   <div class="panel__body">
                     <ContestCatalogEditor
-                      :initial-value="{
-                        contestId: contest.id,
-                        title: contest.title,
-                        aliases: contest.aliases,
-                        tags: contest.tags,
-                        sources: contest.sources,
-                        notes: contest.notes ?? null,
-                      }"
+                      :initial-value="contestEditorInitialValue"
                       :existing-tags="existingTags"
                       :busy="saving"
                       submit-label="Save Contest"

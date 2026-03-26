@@ -32,7 +32,7 @@ async function submitCodeforcesImport() {
       displayName: memberForm.value.displayName.trim() || undefined,
     });
     emitMemberMutated();
-    await router.push("/members");
+    await router.replace({ name: "members" });
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "failed to import Codeforces member";
   } finally {
@@ -54,22 +54,22 @@ async function submitCodeforcesImport() {
 
         <div class="form-grid">
           <div class="field">
-            <label for="add-member-id">Member ID</label>
+            <label for="add-member-id">成员名</label>
             <input id="add-member-id" v-model="memberForm.memberId" placeholder="alice" />
           </div>
           <div class="field">
-            <label for="add-member-handle">Codeforces Handle</label>
+            <label for="add-member-handle">Codeforces 账户名</label>
             <input id="add-member-handle" v-model="memberForm.providerHandle" placeholder="tourist" />
           </div>
           <div class="field">
-            <label for="add-member-name">Display Name</label>
+            <label for="add-member-name">显示名称（可选）</label>
             <input id="add-member-name" v-model="memberForm.displayName" placeholder="Alice" />
           </div>
         </div>
 
         <div class="actions">
           <button class="button" :disabled="submitting" @click="submitCodeforcesImport">
-            {{ submitting ? "Importing..." : "Import Codeforces Member" }}
+            {{ submitting ? "导入中..." : "导入 Codeforces 成员" }}
           </button>
         </div>
 
