@@ -6,7 +6,7 @@ const route = useRoute();
 const navItems = [
   { to: "/contests", label: "Contests", activeWhen: (path: string) => path === "/contests" || path.startsWith("/contests/") && !path.startsWith("/contests/intake") },
   { to: "/members", label: "Members", activeWhen: (path: string) => path.startsWith("/members") },
-  { to: "/manage", label: "Manage", activeWhen: (path: string) => path.startsWith("/manage") || path.startsWith("/contests/intake") },
+  { to: "/manage", label: "Manage", activeWhen: (path: string) => path.startsWith("/manage") || path.startsWith("/contests/intake") || path === "/contests/new" },
 ];
 </script>
 
@@ -16,10 +16,10 @@ const navItems = [
       <div class="shell__hero-bg"></div>
       <div class="shell__hero-inner">
         <div>
-          <p class="eyebrow">Local VP Console</p>
-          <h1>xcpc-vp-gather</h1>
+          <p class="eyebrow">Static XCPC Tracker</p>
+          <h1>XCPC Tracker</h1>
           <p class="hero-copy">
-            先看整场比赛值不值得 VP，再看队内谁碰过哪些题。
+            整理比赛目录、同步成员状态，并在本地直接判断哪些题还值得做。
           </p>
         </div>
         <nav class="shell__nav" aria-label="Primary">

@@ -1,9 +1,11 @@
 # packages/api-contract
 
-Local API contract definitions shared between SPA and service.
+Legacy placeholder from the localhost API architecture.
 
-Current project status:
+The target product no longer treats a local API as the primary runtime contract. The new contract surface is:
 
-- the runtime contract is implemented directly in the Python service and consumed by the Vue SPA
-- this package remains a documentation placeholder for future extracted DTO or schema artifacts
-- when contracts stabilize further, this directory should hold generated or hand-maintained API examples
+- curated catalog JSON under `catalog/`
+- generated frontend dataset artifacts under `generated/`
+- local import/export JSON formats validated by root-level `schemas/`
+
+Retain this directory only if we later need extracted TypeScript contract artifacts for generated data or import payloads.

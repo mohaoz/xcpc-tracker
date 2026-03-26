@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+import AddContestView from "./views/AddContestView.vue";
+import AddMemberView from "./views/AddMemberView.vue";
 import ContestDetailView from "./views/ContestDetailView.vue";
 import ContestIntakeView from "./views/ContestIntakeView.vue";
 import ContestListView from "./views/ContestListView.vue";
@@ -23,6 +25,11 @@ export const router = createRouter({
       component: ContestIntakeView,
     },
     {
+      path: "/contests/new",
+      name: "contest-add",
+      component: AddContestView,
+    },
+    {
       path: "/contests/intake",
       redirect: "/manage",
     },
@@ -36,6 +43,11 @@ export const router = createRouter({
       path: "/members",
       name: "members",
       component: MemberListView,
+    },
+    {
+      path: "/members/new",
+      name: "member-add",
+      component: AddMemberView,
     },
   ],
 });

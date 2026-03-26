@@ -1,15 +1,31 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
+import { RouterLink } from "vue-router";
 
-import { fetchMemberPeople, syncMember, type MemberPerson } from "../lib/api";
+import { syncAllCodeforcesMembers } from "../lib/codeforces";
+import { getCatalogDbStatus, listMemberPeopleFromDb } from "../lib/local-db";
+import { subscribeMemberMutated } from "../lib/member-events";
+import type { LocalDbStatus, LocalMemberPerson } from "../lib/local-model";
 
-const people = ref<MemberPerson[]>([]);
+const people = ref<LocalMemberPerson[]>([]);
+const dbStatus = ref<LocalDbStatus | null>(null);
 const loading = ref(false);
-const syncingPersonKey = ref("");
 const error = ref("");
-const feedback = ref("");
+const syncing = ref(false);
+const syncProgress = ref<{
+  currentIndex: number;
+  totalMemberCount: number;
+  displayName: string;
+  handle: string;
+} | null>(null);
+let syncAbortController: AbortController | null = null;
+let unsubscribeMemberMutated: (() => void) | null = null;
 
-function formatDateTime(value: string) {
+function formatDateTime(value: string | null) {
+  if (!value) {
+    return "未同步";
+  }
+
   const parsed = new Date(value);
   if (Number.isNaN(parsed.getTime())) {
     return value;
@@ -27,7 +43,12 @@ async function loadMembers() {
   loading.value = true;
   error.value = "";
   try {
-    people.value = await fetchMemberPeople();
+    const [peoplePayload, statusPayload] = await Promise.all([
+      listMemberPeopleFromDb(),
+      getCatalogDbStatus(),
+    ]);
+    people.value = peoplePayload;
+    dbStatus.value = statusPayload;
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "failed to load members";
   } finally {
@@ -35,98 +56,160 @@ async function loadMembers() {
   }
 }
 
-async function syncPerson(person: MemberPerson) {
-  syncingPersonKey.value = person.local_member_key;
+async function handleSyncMembers() {
+  syncing.value = true;
   error.value = "";
-  feedback.value = "";
+  syncAbortController = new AbortController();
+  syncProgress.value = {
+    currentIndex: 0,
+    totalMemberCount: people.value.length,
+    displayName: "准备同步",
+    handle: "",
+  };
   try {
-    let totalStatusCount = 0;
-    for (const handle of person.handles) {
-      const payload = await syncMember({
-        provider_key: handle.provider_key,
-        local_member_key: person.local_member_key,
-        provider_handle: handle.provider_handle,
-        display_name: person.display_name ?? undefined,
-      });
-      totalStatusCount += Number(payload.status_count ?? 0);
-    }
-    feedback.value = `synced ${person.local_member_key} across ${person.handles.length} handles with ${totalStatusCount} problem states`;
+    const result = await syncAllCodeforcesMembers({
+      signal: syncAbortController.signal,
+      onProgress: ({ currentIndex, totalMemberCount, displayName, handle }) => {
+        syncProgress.value = {
+          currentIndex,
+          totalMemberCount,
+          displayName,
+          handle,
+        };
+      },
+    });
     await loadMembers();
+    syncProgress.value = {
+      currentIndex: result.syncedMemberCount,
+      totalMemberCount: result.totalMemberCount,
+      displayName: result.cancelled ? "同步已中断" : "同步完成",
+      handle: "",
+    };
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to sync member";
+    error.value = caught instanceof Error ? caught.message : "failed to sync members";
   } finally {
-    syncingPersonKey.value = "";
+    syncing.value = false;
+    syncAbortController = null;
   }
 }
 
-onMounted(loadMembers);
+function handleInterruptSync() {
+  syncAbortController?.abort();
+}
+
+onMounted(() => {
+  unsubscribeMemberMutated = subscribeMemberMutated(() => {
+    void loadMembers();
+  });
+  void loadMembers();
+});
+
+onUnmounted(() => {
+  unsubscribeMemberMutated?.();
+  unsubscribeMemberMutated = null;
+});
 </script>
 
 <template>
   <div class="view-stack">
     <section class="panel">
       <div class="panel__body">
-        <div class="panel__header">
-          <div class="panel__title">
-            <p class="eyebrow">Tracked Members</p>
-            <h2>队员历史题目状态</h2>
-            <p class="muted">
-              同一个 local member key 代表同一个本地队员；以后接多 provider 时，会按这个 key 合并成同一个人。
-            </p>
+        <div v-if="dbStatus" class="member-overview-grid">
+          <div class="stat-card">
+            <p class="stat-card__label">Members</p>
+            <div class="stat-card__value">{{ dbStatus.memberCount }}</div>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card__label">Handles</p>
+            <div class="stat-card__value">{{ dbStatus.handleCount }}</div>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card__label">Problem Status</p>
+            <div class="stat-card__value">{{ dbStatus.statusCount }}</div>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card__label">Catalog Imported</p>
+            <div class="stat-card__value" style="font-size: 1rem">
+              {{ formatDateTime(dbStatus.lastCatalogImportAt) }}
+            </div>
           </div>
         </div>
-        <div class="actions">
-          <button class="button button--ghost" :disabled="loading" @click="loadMembers">
-            {{ loading ? "Refreshing..." : "Refresh List" }}
-          </button>
+
+        <div class="member-toolbar">
+          <div class="member-toolbar__actions">
+            <button class="button button--ghost" :disabled="loading" @click="syncing ? handleInterruptSync() : handleSyncMembers()">
+              {{ syncing ? "Interrupt Sync" : "One-Click Sync" }}
+            </button>
+            <RouterLink to="/members/new" class="button">
+              Add Member
+            </RouterLink>
+          </div>
+          <p v-if="dbStatus" class="muted tiny">
+            上次 catalog 更新：{{ formatDateTime(dbStatus.lastCatalogImportAt) }}
+          </p>
         </div>
 
-        <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
         <p v-if="error" class="error-box" style="margin-top: 16px">{{ error }}</p>
 
-        <div v-if="loading" class="notice">loading members...</div>
-        <div v-else-if="!people.length" class="notice">
-          还没有 tracked member，先去 Manage 页面添加一个 Codeforces handle。
+        <div v-if="loading" class="notice">loading local members...</div>
+        <div v-else-if="syncProgress" class="notice" style="margin-bottom: 16px">
+          <strong>{{ syncProgress.currentIndex }}/{{ syncProgress.totalMemberCount }}</strong>
+          <span style="margin-left: 8px">
+            {{ syncProgress.displayName }}<template v-if="syncProgress.handle"> / {{ syncProgress.handle }}</template>
+          </span>
         </div>
-        <div v-else class="list-grid">
+        <div v-if="!loading && !people.length" class="notice">
+          本地数据库里还没有成员。下一步接入 Codeforces / QOJ 导入后，这里会显示本地 member、handle 和题目状态。
+        </div>
+        <div v-else-if="people.length" class="list-grid">
           <article
             v-for="person in people"
-            :key="person.local_member_key"
+            :key="person.memberId"
             class="member-card"
           >
             <div class="member-card__top">
               <div>
-                <p class="eyebrow">{{ person.provider_count }} providers / {{ person.binding_count }} handles</p>
-                <h3>{{ person.display_name || person.local_member_key }}</h3>
-                <div class="inline-meta tiny muted">
-                  <span>local: {{ person.local_member_key }}</span>
-                  <span>{{ person.solved_count }} solved</span>
-                  <span>{{ person.tried_count }} tried-only</span>
-                  <span>last sync {{ formatDateTime(person.last_synced_at) }}</span>
+                <p class="eyebrow">Member</p>
+                <h3>{{ person.displayName }}</h3>
+                <div class="inline-tags" style="margin-top: 10px">
+                  <span class="tag tag--neutral">{{ person.providerCount }} providers</span>
+                  <span class="tag tag--neutral">{{ person.handleCount }} handles</span>
+                  <span class="tag tag--neutral">{{ person.totalProblemCount }} total</span>
                 </div>
               </div>
               <div class="member-card__actions">
-                <span class="tag tag--neutral">{{ person.binding_status }}</span>
-                <button
-                  type="button"
-                  class="button button--ghost"
-                  :disabled="syncingPersonKey === person.local_member_key"
-                  @click="syncPerson(person)"
-                >
-                  {{ syncingPersonKey === person.local_member_key ? "Syncing..." : "Sync" }}
-                </button>
+                <span class="tag tag--neutral">local</span>
+              </div>
+            </div>
+
+            <div class="member-card__stats">
+              <div class="member-card__stat">
+                <span class="member-card__stat-label">Solved</span>
+                <strong>{{ person.solvedCount }}</strong>
+              </div>
+              <div class="member-card__stat">
+                <span class="member-card__stat-label">Attempted</span>
+                <strong>{{ person.attemptedCount }}</strong>
+              </div>
+              <div class="member-card__stat">
+                <span class="member-card__stat-label">Last Sync</span>
+                <strong>{{ formatDateTime(person.lastSyncedAt) }}</strong>
               </div>
             </div>
 
             <div class="inline-tags" style="margin-top: 16px">
               <div
                 v-for="handle in person.handles"
-                :key="handle.identity_binding_id"
+                :key="handle.handleId"
                 class="tag member-handle-tag"
               >
-                <span>{{ handle.provider_key }} / {{ handle.provider_handle }}</span>
+                <span>{{ handle.provider }} / {{ handle.handle }}</span>
               </div>
             </div>
+
+            <p class="muted tiny">
+              member id: {{ person.memberId }}
+            </p>
           </article>
         </div>
       </div>

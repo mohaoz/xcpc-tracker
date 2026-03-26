@@ -1,60 +1,48 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 
+import { syncAllCodeforcesContests, syncAllCodeforcesMembers } from "../lib/codeforces";
+import { refreshCatalogCache, seedCatalogCache } from "../lib/catalog-cache";
+import { emitCatalogMutated } from "../lib/catalog-events";
+import { emitMemberMutated } from "../lib/member-events";
 import {
-  exportConfig,
-  exportContests,
-  importConfig,
-  importContests,
-  syncContest,
-  syncMember,
-  syncMissingContests,
-} from "../lib/api";
-
-type IntakeLogLevel = "info" | "success" | "error";
-
-type IntakeLogEntry = {
-  id: number;
-  timestamp: string;
-  level: IntakeLogLevel;
-  message: string;
-  details?: string[];
-};
+  clearLocalContestData,
+  clearLocalMemberData,
+  importLocalCatalogContestsOnlySnapshot,
+  exportLocalCatalogSnapshot,
+  exportLocalRuntimeSnapshot,
+  getCatalogDbStatus,
+  importLocalCatalogSnapshot,
+  importLocalRuntimeMembersOnlySnapshot,
+  importLocalRuntimeSnapshot,
+  mergeLocalCatalogContestsOnlySnapshot,
+  mergeLocalCatalogSnapshot,
+  mergeLocalRuntimeMembersOnlySnapshot,
+  mergeLocalRuntimeSnapshot,
+} from "../lib/local-db";
+import type { LocalCatalogSnapshot, LocalDbStatus, LocalRuntimeSnapshot } from "../lib/local-model";
 
 const submitting = ref(false);
+const loadingStats = ref(false);
 const error = ref("");
 const feedback = ref("");
 const importFileInput = ref<HTMLInputElement | null>(null);
-const importMemberFileInput = ref<HTMLInputElement | null>(null);
-const logs = ref<IntakeLogEntry[]>([]);
-let nextLogId = 1;
+const dbStatus = ref<LocalDbStatus | null>(null);
+const syncProgress = ref<{
+  totalContestCount: number;
+  syncedContestCount: number;
+  currentContestTitle: string;
+} | null>(null);
+const refreshingCatalog = ref(false);
+const importingDefaultData = ref(false);
+const syncingContests = ref(false);
+let syncAbortController: AbortController | null = null;
 
-const syncForm = ref({
-  contestUrl: "",
-});
-const memberForm = ref({
-  localMemberKey: "",
-  providerHandle: "",
-  displayName: "",
-});
-
-function nowLabel() {
-  return new Intl.DateTimeFormat("zh-CN", {
-    hour: "2-digit",
-    minute: "2-digit",
-    second: "2-digit",
-  }).format(new Date());
-}
-
-function pushLog(level: IntakeLogLevel, message: string, details?: string[]) {
-  logs.value.unshift({
-    id: nextLogId++,
-    timestamp: nowLabel(),
-    level,
-    message,
-    details,
-  });
-}
+const exportTarget = ref<"contest" | "member">("contest");
+const exportIncludeProblems = ref(true);
+const importTarget = ref<"contest" | "member">("contest");
+const importMode = ref<"merge" | "replace">("merge");
+const importIncludeProblems = ref(true);
 
 function clearStatus() {
   error.value = "";
@@ -62,7 +50,7 @@ function clearStatus() {
 }
 
 function downloadJson(filename: string, payload: unknown) {
-  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const blob = new Blob([JSON.stringify(payload)], { type: "application/json" });
   const url = URL.createObjectURL(blob);
   const anchor = document.createElement("a");
   anchor.href = url;
@@ -71,135 +59,279 @@ function downloadJson(filename: string, payload: unknown) {
   URL.revokeObjectURL(url);
 }
 
-async function submitSyncContest() {
-  if (!syncForm.value.contestUrl.trim()) {
-    error.value = "contest url is required";
-    pushLog("error", "Sync Contest failed", ["contest url is required"]);
+function formatDateTime(value: string | null) {
+  if (!value) {
+    return "not imported yet";
+  }
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) {
+    return value;
+  }
+  return new Intl.DateTimeFormat("zh-CN", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(parsed);
+}
+
+async function refreshStats() {
+  loadingStats.value = true;
+  try {
+    dbStatus.value = await getCatalogDbStatus();
+  } finally {
+    loadingStats.value = false;
+  }
+}
+
+async function handleRefreshCatalog() {
+  submitting.value = true;
+  refreshingCatalog.value = true;
+  clearStatus();
+  try {
+    await refreshCatalogCache();
+    await refreshStats();
+    emitCatalogMutated();
+    feedback.value = "catalog cache refreshed";
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to refresh catalog cache";
+  } finally {
+    refreshingCatalog.value = false;
+    submitting.value = false;
+  }
+}
+
+async function handleImportDefaultData() {
+  submitting.value = true;
+  importingDefaultData.value = true;
+  clearStatus();
+  try {
+    await seedCatalogCache();
+    await refreshStats();
+    emitCatalogMutated();
+    feedback.value = "default catalog imported";
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to import default catalog";
+  } finally {
+    importingDefaultData.value = false;
+    submitting.value = false;
+  }
+}
+
+async function handleOneClickSync() {
+  submitting.value = true;
+  syncingContests.value = true;
+  syncAbortController = new AbortController();
+  clearStatus();
+  syncProgress.value = {
+    totalContestCount: dbStatus.value?.contestCount ?? 0,
+    syncedContestCount: dbStatus.value?.syncedContestCount ?? 0,
+    currentContestTitle: "checking unsynced contests",
+  };
+  try {
+    const result = await syncAllCodeforcesContests({
+      signal: syncAbortController.signal,
+      onProgress: ({ currentIndex, pendingContestCount, alreadySyncedCount, contestTitle }) => {
+        syncProgress.value = {
+          totalContestCount: dbStatus.value?.contestCount ?? (alreadySyncedCount + pendingContestCount),
+          syncedContestCount: alreadySyncedCount + currentIndex - 1,
+          currentContestTitle: contestTitle,
+        };
+      },
+    });
+    await refreshStats();
+    syncProgress.value = {
+      totalContestCount: dbStatus.value?.contestCount ?? result.totalContestCount,
+      syncedContestCount: dbStatus.value?.syncedContestCount ?? result.syncedContestCount,
+      currentContestTitle: result.cancelled ? "sync interrupted" : "sync finished",
+    };
+    feedback.value = result.cancelled
+      ? `sync interrupted, now ${result.syncedContestCount}/${result.totalContestCount} ready`
+      : `synced ${result.synced.length} new contests, now ${result.syncedContestCount}/${result.totalContestCount} ready`;
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to run full sync";
+  } finally {
+    syncAbortController = null;
+    syncingContests.value = false;
+    submitting.value = false;
+  }
+}
+
+function handleInterruptSync() {
+  syncAbortController?.abort();
+}
+
+async function handleDeleteLocalContests() {
+  const confirmed = window.confirm("Delete all local contest data? This clears contests, problems, and contest-side cache.");
+  if (!confirmed) {
+    return;
+  }
+  submitting.value = true;
+  clearStatus();
+  try {
+    await clearLocalContestData();
+    await refreshStats();
+    emitCatalogMutated();
+    feedback.value = "local contest data deleted";
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to delete local contest data";
+  } finally {
+    submitting.value = false;
+  }
+}
+
+async function handleDeleteLocalMembers() {
+  const confirmed = window.confirm("Delete all local member data? This clears members, handles, statuses, and sync metadata.");
+  if (!confirmed) {
+    return;
+  }
+  submitting.value = true;
+  clearStatus();
+  try {
+    await clearLocalMemberData();
+    await refreshStats();
+    emitMemberMutated();
+    feedback.value = "local member data deleted";
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to delete local member data";
+  } finally {
+    submitting.value = false;
+  }
+}
+
+async function handleExportData() {
+  clearStatus();
+  try {
+    if (exportTarget.value === "contest") {
+      const payload = await exportLocalCatalogSnapshot({
+        includeProblems: exportIncludeProblems.value,
+      });
+      downloadJson("contest-export.min.json", payload);
+      feedback.value = `exported ${payload.contests.length} contests`;
+      return;
+    }
+
+    const payload = await exportLocalRuntimeSnapshot({
+      includeProblemStatus: exportIncludeProblems.value,
+    });
+    downloadJson("member-export.min.json", payload);
+    feedback.value = `exported ${payload.members.length} members`;
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to export data";
+  }
+}
+
+function handleOpenImport() {
+  importFileInput.value?.click();
+}
+
+async function maybeAutoSyncImportedContests(payload: LocalCatalogSnapshot) {
+  const shouldPrompt = !importIncludeProblems.value || payload.problems.length === 0;
+  if (!shouldPrompt) {
     return;
   }
 
-  submitting.value = true;
-  clearStatus();
-  pushLog("info", "Sync Contest started", [syncForm.value.contestUrl.trim()]);
-  try {
-    const payload = await syncContest({
-      provider_key: "codeforces",
-      contest_url: syncForm.value.contestUrl.trim(),
-    });
-    feedback.value = `synced contest ${String(payload.provider_contest_id)} with ${String(payload.problem_count)} problems`;
-    pushLog("success", "Sync Contest finished", [
-      `contest ${String(payload.provider_key)}:${String(payload.provider_contest_id)}`,
-      `${String(payload.problem_count)} problems`,
-    ]);
-    syncForm.value.contestUrl = "";
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to sync contest";
-    pushLog("error", "Sync Contest failed", [error.value]);
-  } finally {
-    submitting.value = false;
+  const confirmed = window.confirm("导入内容未包含题目，是否现在自动同步比赛题目？");
+  if (!confirmed) {
+    return;
   }
+
+  syncProgress.value = {
+    totalContestCount: dbStatus.value?.contestCount ?? payload.contests.length,
+    syncedContestCount: dbStatus.value?.syncedContestCount ?? 0,
+    currentContestTitle: "checking unsynced contests",
+  };
+
+  const result = await syncAllCodeforcesContests({
+    onProgress: ({ currentIndex, pendingContestCount, alreadySyncedCount, contestTitle }) => {
+      syncProgress.value = {
+        totalContestCount: dbStatus.value?.contestCount ?? (alreadySyncedCount + pendingContestCount),
+        syncedContestCount: alreadySyncedCount + currentIndex - 1,
+        currentContestTitle: contestTitle,
+      };
+    },
+  });
+
+  await refreshStats();
+  emitCatalogMutated();
+  syncProgress.value = {
+    totalContestCount: dbStatus.value?.contestCount ?? result.totalContestCount,
+    syncedContestCount: dbStatus.value?.syncedContestCount ?? result.syncedContestCount,
+    currentContestTitle: result.cancelled ? "sync interrupted" : "sync finished",
+  };
+  feedback.value = `imported contest data: ${payload.contests.length} contests, ${payload.problems.length} problems; auto-synced ${result.synced.length} contests`;
 }
 
-async function handleExportContests() {
-  clearStatus();
-  pushLog("info", "Export Contests started");
-  try {
-    const payload = await exportContests();
-    downloadJson("xvg-contests.json", payload);
-    feedback.value = `exported ${payload.contests.length} contests`;
-    pushLog("success", "Export Contests finished", [`exported ${payload.contests.length} contests`]);
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to export contests";
-    pushLog("error", "Export Contests failed", [error.value]);
+async function maybeAutoSyncImportedMembers(payload: LocalRuntimeSnapshot) {
+  const shouldPrompt = !importIncludeProblems.value || payload.memberProblemStatus.length === 0;
+  if (!shouldPrompt) {
+    return;
   }
+
+  const confirmed = window.confirm("导入内容未包含题目状态，是否现在自动同步成员题目状态？");
+  if (!confirmed) {
+    return;
+  }
+
+  const result = await syncAllCodeforcesMembers();
+  emitMemberMutated();
+  feedback.value = `imported member data: ${payload.members.length} members, ${payload.memberProblemStatus.length} statuses; auto-synced ${result.syncedMemberCount} members`;
 }
 
-async function handleExportMembers() {
-  clearStatus();
-  pushLog("info", "Export Members started");
-  try {
-    const payload = await exportConfig();
-    downloadJson("xvg-members.json", {
-      schema_version: payload.schema_version,
-      export_kind: "member_config_only",
-      exported_at: payload.exported_at,
-      members: payload.members,
-    });
-    feedback.value = `exported ${payload.members.length} members`;
-    pushLog("success", "Export Members finished", [`exported ${payload.members.length} members`]);
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to export members";
-    pushLog("error", "Export Members failed", [error.value]);
-  }
-}
-
-async function handleSyncMissingContests() {
-  submitting.value = true;
-  clearStatus();
-  pushLog("info", "Sync Missing Contests started");
-  try {
-    const result = await syncMissingContests();
-    feedback.value =
-      `checked ${String(result.missing_contest_count ?? 0)} unsynced contests` +
-      `, synced ${String(result.synced_contest_count ?? 0)}` +
-      `, failed ${String(result.failed_contest_count ?? 0)}`;
-    const details = [
-      `checked ${String(result.missing_contest_count ?? 0)} unsynced contests`,
-      `synced ${String(result.synced_contest_count ?? 0)}`,
-      `failed ${String(result.failed_contest_count ?? 0)}`,
-      ...(((result.failed_contests as Array<Record<string, unknown>> | undefined) ?? []).map((item) =>
-        `${String(item.provider_key)}:${String(item.provider_contest_id)} ${String(item.error)}`,
-      )),
-    ];
-    pushLog(
-      (Number(result.failed_contest_count ?? 0) > 0 ? "error" : "success"),
-      "Sync Missing Contests finished",
-      details,
-    );
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to sync missing contests";
-    pushLog("error", "Sync Missing Contests failed", [error.value]);
-  } finally {
-    submitting.value = false;
-  }
-}
-
-async function handleImportContests(event: Event) {
+async function handleImportData(event: Event) {
   const target = event.target as HTMLInputElement;
   const file = target.files?.[0];
   if (!file) {
     return;
   }
-  const syncAfterImport = window.confirm("导入比赛后，是否立即同步这些比赛？");
 
   submitting.value = true;
   clearStatus();
-  pushLog("info", "Import Contests started", [file.name, syncAfterImport ? "sync after import: yes" : "sync after import: no"]);
   try {
     const text = await file.text();
-    const payload = JSON.parse(text) as Record<string, unknown>;
-    const result = await importContests({
-      payload,
-      sync: syncAfterImport,
-    });
-    feedback.value =
-      `imported ${String(result.imported_contest_count ?? 0)} contests` +
-      (syncAfterImport ? `, synced ${String(result.synced_contest_count ?? 0)}` : "");
-    const details = [
-      `imported ${String(result.imported_contest_count ?? 0)} contests`,
-      ...(syncAfterImport ? [`synced ${String(result.synced_contest_count ?? 0)}`, `failed ${String(result.failed_contest_count ?? 0)}`] : []),
-      ...(((result.failed_contests as Array<Record<string, unknown>> | undefined) ?? []).map((item) =>
-        `${String(item.provider_key)}:${String(item.provider_contest_id)} ${String(item.error)}`,
-      )),
-    ];
-    pushLog(
-      (Number(result.failed_contest_count ?? 0) > 0 ? "error" : "success"),
-      "Import Contests finished",
-      details,
-    );
+
+    if (importTarget.value === "contest") {
+      const payload = JSON.parse(text) as LocalCatalogSnapshot;
+      if (importMode.value === "replace") {
+        if (importIncludeProblems.value) {
+          await importLocalCatalogSnapshot(payload);
+        } else {
+          await importLocalCatalogContestsOnlySnapshot(payload);
+        }
+      } else {
+        if (importIncludeProblems.value) {
+          await mergeLocalCatalogSnapshot(payload);
+        } else {
+          await mergeLocalCatalogContestsOnlySnapshot(payload);
+        }
+      }
+      feedback.value = `imported contest data: ${payload.contests.length} contests, ${payload.problems.length} problems`;
+      emitCatalogMutated();
+      await refreshStats();
+      await maybeAutoSyncImportedContests(payload);
+    } else {
+      const payload = JSON.parse(text) as LocalRuntimeSnapshot;
+      if (importMode.value === "replace") {
+        if (importIncludeProblems.value) {
+          await importLocalRuntimeSnapshot(payload);
+        } else {
+          await importLocalRuntimeMembersOnlySnapshot(payload);
+        }
+      } else {
+        if (importIncludeProblems.value) {
+          await mergeLocalRuntimeSnapshot(payload);
+        } else {
+          await mergeLocalRuntimeMembersOnlySnapshot(payload);
+        }
+      }
+      feedback.value = `imported member data: ${payload.members.length} members, ${payload.memberProblemStatus.length} statuses`;
+      emitMemberMutated();
+      await refreshStats();
+      await maybeAutoSyncImportedMembers(payload);
+    }
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to import contests";
-    pushLog("error", "Import Contests failed", [error.value]);
+    error.value = caught instanceof Error ? caught.message : "failed to import data";
   } finally {
     submitting.value = false;
     if (importFileInput.value) {
@@ -208,195 +340,169 @@ async function handleImportContests(event: Event) {
   }
 }
 
-async function handleImportMembers(event: Event) {
-  const target = event.target as HTMLInputElement;
-  const file = target.files?.[0];
-  if (!file) {
-    return;
-  }
-
-  submitting.value = true;
-  clearStatus();
-  pushLog("info", "Import Members started", [file.name]);
-  try {
-    const text = await file.text();
-    const payload = JSON.parse(text) as Record<string, unknown>;
-    const result = await importConfig({
-      payload: {
-        members: Array.isArray(payload.members) ? payload.members : [],
-      },
-    });
-    feedback.value = `imported ${String(result.imported_member_count ?? 0)} members`;
-    pushLog("success", "Import Members finished", [
-      `imported ${String(result.imported_member_count ?? 0)} members`,
-    ]);
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to import members";
-    pushLog("error", "Import Members failed", [error.value]);
-  } finally {
-    submitting.value = false;
-    if (importMemberFileInput.value) {
-      importMemberFileInput.value.value = "";
-    }
-  }
-}
-
-async function submitSyncMember() {
-  if (!memberForm.value.localMemberKey.trim() || !memberForm.value.providerHandle.trim()) {
-    error.value = "local member key and provider handle are required";
-    pushLog("error", "Sync Member failed", ["local member key and provider handle are required"]);
-    return;
-  }
-
-  submitting.value = true;
-  clearStatus();
-  pushLog("info", "Sync Member started", [
-    memberForm.value.localMemberKey.trim(),
-    memberForm.value.providerHandle.trim(),
-  ]);
-  try {
-    const payload = await syncMember({
-      provider_key: "codeforces",
-      local_member_key: memberForm.value.localMemberKey.trim(),
-      provider_handle: memberForm.value.providerHandle.trim(),
-      display_name: memberForm.value.displayName.trim() || undefined,
-    });
-    feedback.value = `synced ${String(payload.local_member_key)} with ${String(payload.status_count)} problem states`;
-    pushLog("success", "Sync Member finished", [
-      `${String(payload.local_member_key)} / ${String(payload.provider_handle)}`,
-      `${String(payload.status_count)} problem states`,
-    ]);
-    memberForm.value = {
-      localMemberKey: "",
-      providerHandle: "",
-      displayName: "",
-    };
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to sync member";
-    pushLog("error", "Sync Member failed", [error.value]);
-  } finally {
-    submitting.value = false;
-  }
-}
+onMounted(refreshStats);
 </script>
 
 <template>
   <div class="view-stack">
     <section class="panel">
       <div class="panel__body">
-        <div class="panel__header">
-          <div class="panel__title">
-            <p class="eyebrow">Manage</p>
-            <h2>本地数据管理台</h2>
-            <p class="muted">
-              添加、导入、导出和补同步都放到这里，列表页尽量只负责浏览和决策。
-            </p>
+        <div class="stat-grid" style="margin-bottom: 20px">
+          <div class="stat-card">
+            <p class="stat-card__label">Catalog Contests</p>
+            <div class="stat-card__value">{{ dbStatus?.syncedContestCount ?? 0 }}/{{ dbStatus?.contestCount ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card__label">Catalog Problems</p>
+            <div class="stat-card__value">{{ dbStatus?.problemCount ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card__label">Members</p>
+            <div class="stat-card__value">{{ dbStatus?.memberCount ?? 0 }}</div>
+          </div>
+          <div class="stat-card">
+            <p class="stat-card__label">Problem Status</p>
+            <div class="stat-card__value">{{ dbStatus?.statusCount ?? 0 }}</div>
           </div>
         </div>
 
-        <div class="panel__title" style="margin-bottom: 12px">
-          <p class="eyebrow">Contest</p>
-          <h3>添加和维护比赛池</h3>
-        </div>
-        <div class="form-grid">
-          <div class="field">
-            <label for="contest-url">Codeforces Gym URL</label>
-            <input
-              id="contest-url"
-              v-model="syncForm.contestUrl"
-              placeholder="https://codeforces.com/gym/615540"
-            />
-          </div>
-        </div>
+        <div class="list-grid">
+          <section class="panel" style="box-shadow: none">
+            <div class="panel__body">
+              <div class="panel__title" style="margin-bottom: 14px">
+                <p class="eyebrow">Operations</p>
+                <h3>本地操作</h3>
+              </div>
+              <p class="muted">
+                上次 catalog 更新：{{ formatDateTime(dbStatus?.lastCatalogImportAt ?? null) }}
+              </p>
+              <div v-if="syncProgress" class="notice" style="margin-top: 14px">
+                <strong>{{ syncProgress.syncedContestCount }}/{{ syncProgress.totalContestCount }}</strong>
+                <span style="margin-left: 8px">正在同步：{{ syncProgress.currentContestTitle }}</span>
+              </div>
+              <div class="actions">
+                <button class="button" :disabled="loadingStats" @click="syncingContests ? handleInterruptSync() : handleOneClickSync()">
+                  {{ syncingContests ? "Interrupt Sync" : "全量同步" }}
+                </button>
+                <button class="button" :disabled="submitting || loadingStats" @click="handleImportDefaultData">
+                  {{ importingDefaultData ? "Importing..." : "导入默认数据" }}
+                </button>
+                <button class="button" :disabled="submitting || loadingStats" @click="handleRefreshCatalog">
+                  {{ refreshingCatalog ? "Refreshing..." : "刷新缓存" }}
+                </button>
+                <button class="button button--ghost" :disabled="submitting" @click="handleDeleteLocalContests">
+                  删除本地比赛
+                </button>
+                <button class="button button--ghost" :disabled="submitting" @click="handleDeleteLocalMembers">
+                  删除本地成员
+                </button>
+              </div>
+            </div>
+          </section>
 
-        <div class="actions">
-          <button class="button" :disabled="submitting" @click="submitSyncContest">
-            {{ submitting ? "Syncing..." : "Sync Contest" }}
-          </button>
-          <button class="button button--ghost" :disabled="submitting" @click="handleSyncMissingContests">
-            Sync Missing Contests
-          </button>
-          <button class="button button--ghost" @click="handleExportContests">
-            Export Contests
-          </button>
-          <label class="button button--ghost" style="cursor: pointer">
-            Import Contests
-            <input
-              ref="importFileInput"
-              type="file"
-              accept="application/json"
-              style="display: none"
-              @change="handleImportContests"
-            />
-          </label>
-        </div>
+          <section class="panel" style="box-shadow: none">
+            <div class="panel__body">
+              <div class="panel__title" style="margin-bottom: 14px">
+                <p class="eyebrow">Import</p>
+                <h3>导入</h3>
+              </div>
 
-        <div class="panel__title" style="margin-top: 28px; margin-bottom: 12px">
-          <p class="eyebrow">Member</p>
-          <h3>添加和同步队员</h3>
-        </div>
-        <div class="form-grid">
-          <div class="field">
-            <label for="intake-local-member-key">Local Member Key</label>
-            <input id="intake-local-member-key" v-model="memberForm.localMemberKey" placeholder="alice" />
-          </div>
-          <div class="field">
-            <label for="intake-provider-handle">Codeforces Handle</label>
-            <input id="intake-provider-handle" v-model="memberForm.providerHandle" placeholder="tourist" />
-          </div>
-          <div class="field">
-            <label for="intake-display-name">Display Name</label>
-            <input id="intake-display-name" v-model="memberForm.displayName" placeholder="Alice" />
-          </div>
-        </div>
+              <div class="manage-io-grid">
+                <div class="field">
+                  <label>导入对象</label>
+                  <div class="choice-grid">
+                    <label class="choice-card" :class="{ 'choice-card--active': importTarget === 'contest' }">
+                      <input v-model="importTarget" class="choice-card__input" type="radio" value="contest" />
+                      <span class="choice-card__title">比赛</span>
+                    </label>
+                    <label class="choice-card" :class="{ 'choice-card--active': importTarget === 'member' }">
+                      <input v-model="importTarget" class="choice-card__input" type="radio" value="member" />
+                      <span class="choice-card__title">成员</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>导入模式</label>
+                  <div class="choice-grid">
+                    <label class="choice-card" :class="{ 'choice-card--active': importMode === 'merge' }">
+                      <input v-model="importMode" class="choice-card__input" type="radio" value="merge" />
+                      <span class="choice-card__title">新增</span>
+                    </label>
+                    <label class="choice-card" :class="{ 'choice-card--active': importMode === 'replace' }">
+                      <input v-model="importMode" class="choice-card__input" type="radio" value="replace" />
+                      <span class="choice-card__title">覆盖</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>导入内容</label>
+                  <div class="choice-grid choice-grid--single">
+                    <label class="choice-card" :class="{ 'choice-card--active': importIncludeProblems }">
+                      <input v-model="importIncludeProblems" class="choice-card__input" type="checkbox" />
+                      <span class="choice-card__title">{{ importTarget === "contest" ? "导入题目" : "导入题目状态" }}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
 
-        <div class="actions">
-          <button class="button" :disabled="submitting" @click="submitSyncMember">
-            {{ submitting ? "Syncing..." : "Sync Member" }}
-          </button>
-          <button class="button button--ghost" @click="handleExportMembers">
-            Export Members
-          </button>
-          <label class="button button--ghost" style="cursor: pointer">
-            Import Members
-            <input
-              ref="importMemberFileInput"
-              type="file"
-              accept="application/json"
-              style="display: none"
-              @change="handleImportMembers"
-            />
-          </label>
+              <div class="actions">
+                <input
+                  ref="importFileInput"
+                  type="file"
+                  accept="application/json"
+                  style="display: none"
+                  @change="handleImportData"
+                />
+                <button class="button button--ghost" :disabled="submitting" @click="handleOpenImport">
+                  导入
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel" style="box-shadow: none">
+            <div class="panel__body">
+              <div class="panel__title" style="margin-bottom: 14px">
+                <p class="eyebrow">Export</p>
+                <h3>导出</h3>
+              </div>
+
+              <div class="manage-io-grid">
+                <div class="field">
+                  <label>导出对象</label>
+                  <div class="choice-grid">
+                    <label class="choice-card" :class="{ 'choice-card--active': exportTarget === 'contest' }">
+                      <input v-model="exportTarget" class="choice-card__input" type="radio" value="contest" />
+                      <span class="choice-card__title">比赛</span>
+                    </label>
+                    <label class="choice-card" :class="{ 'choice-card--active': exportTarget === 'member' }">
+                      <input v-model="exportTarget" class="choice-card__input" type="radio" value="member" />
+                      <span class="choice-card__title">成员</span>
+                    </label>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>导出内容</label>
+                  <div class="choice-grid choice-grid--single">
+                    <label class="choice-card" :class="{ 'choice-card--active': exportIncludeProblems }">
+                      <input v-model="exportIncludeProblems" class="choice-card__input" type="checkbox" />
+                      <span class="choice-card__title">{{ exportTarget === "contest" ? "包含题目" : "包含题目状态" }}</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="actions">
+                <button class="button button--ghost" :disabled="submitting" @click="handleExportData">
+                  导出
+                </button>
+              </div>
+            </div>
+          </section>
         </div>
 
         <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
         <p v-if="error" class="error-box" style="margin-top: 16px">{{ error }}</p>
-
-        <div class="intake-log-panel">
-          <div class="panel__header" style="margin-bottom: 12px">
-            <div class="panel__title">
-              <p class="eyebrow">Logs</p>
-              <h3>操作日志</h3>
-            </div>
-          </div>
-          <div v-if="!logs.length" class="notice">还没有操作日志，执行一次 sync 或 import 之后会显示在这里。</div>
-          <div v-else class="intake-log-list">
-            <article
-              v-for="entry in logs"
-              :key="entry.id"
-              class="intake-log-entry"
-              :class="`intake-log-entry--${entry.level}`"
-            >
-              <div class="intake-log-entry__header">
-                <strong>{{ entry.message }}</strong>
-                <span class="tiny muted">{{ entry.timestamp }}</span>
-              </div>
-              <div v-if="entry.details?.length" class="intake-log-entry__details">
-                <div v-for="detail in entry.details" :key="detail">{{ detail }}</div>
-              </div>
-            </article>
-          </div>
-        </div>
       </div>
     </section>
   </div>

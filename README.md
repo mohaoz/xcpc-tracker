@@ -1,133 +1,114 @@
 # xcpc-vp-gather
 
-Local-first XCPC/ACM VP gather tool for building a contest pool, syncing tracked member history, and deciding which contests or problems are worth a virtual participation.
+This repository is pivoting from a localhost-service-first VP gather tool into a static, frontend-first XCPC tracker.
 
-Version: `0.1.1`
+Version: `0.2.0-planning`
 
-中文说明见 [README.zh-CN.md](./README.zh-CN.md).
+中文说明后续会按新方向更新；当前以仓库内架构文档为准。
 
-## What It Does
+## Product Direction
 
-- Sync Codeforces Gym contests into a local SQLite-backed pool.
-- Sync tracked member problem history from Codeforces.
-- Show contest-level coverage summaries for VP decisions.
-- Show per-problem status strips directly in the contest list.
-- Filter the contest pool by tags and pool scope.
-- Re-sync contests that were imported but never fully synced.
-- Keep a lightweight operation log in the Intake view.
+The target product is an `xcpc-tracker`-style site that:
 
-## Current MVP Scope
+- browses a curated subset of XCPC-like contests
+- shows contest/problem coverage for selected members
+- imports Codeforces member status through public API access in the frontend
+- imports QOJ member status through userscript-exported JSON snapshots
+- consumes curated contest and artifact metadata from Git-managed JSON files
+- deploys as a static site on GitHub Pages, Netlify, or similar
 
-- One provider: Codeforces Gym.
-- One machine, one local user.
-- Local web app plus localhost Python service.
-- SQLite as the durable source of truth.
-- Contest sync, member-history sync, coverage summary, import/export, and local browsing.
+The curated dataset is expected to support two inputs:
 
-## Repo Layout
+- hand-edited canonical catalog files
+- imported raw or semi-normalized data that helps produce reviewable catalog drafts
+
+## Current Transition Status
+
+This repository still contains the old Python localhost service and service-oriented docs from `0.1.1`, but the repo direction has changed.
+
+The current migration priorities are:
+
+- move architecture docs to frontend-first and static-data-first assumptions
+- introduce curated dataset directories and schemas
+- design IndexedDB as the main runtime store
+- replace localhost API assumptions with frontend adapters/importers
+- phase out the Python backend from normal usage
+
+## Target Repo Shape
 
 ```text
 xcpc-vp-gather/
   apps/
-    service/   Python localhost service and CLI
-    web/       Vue 3 SPA
-  docs/        Architecture and design notes
-  fixtures/    Provider fixtures
-  packages/    Shared docs placeholders
+    web/          Vue 3 + TypeScript static app
+    service/      legacy migration/tooling code only during transition
+  catalog/        human-edited curated contest metadata
+  generated/      derived indexes and aggregated JSON for frontend consumption
+  schemas/        JSON Schema files for catalog/import validation
+  scripts/        validation, generation, and migration scripts
+  docs/           architecture, migration plan, and product notes
+  fixtures/       provider/import fixtures and sample payloads
 ```
 
-## Quick Start
+## New Runtime Model
 
-From the repo root:
+- Frontend: Vue 3 + TypeScript
+- Persistence: Dexie-backed IndexedDB in the browser
+- Curated data: versioned JSON files in Git
+- Canonical source of truth: hand-edited `catalog/`
+- Live imports: Codeforces public API and QOJ userscript JSON
+- Imported data: candidate input for local runtime state or curated draft generation
+- Deployment: static hosting
+- Backend: not required for normal usage
+
+## Current Implemented Path
+
+The current frontend-first path is already working for the main loop:
+
+- curated contests load from generated static JSON
+- catalog snapshots are cached into Dexie
+- Codeforces member status imports run directly in the frontend
+- Codeforces contest problem lists can be synced directly in the frontend
+- contest coverage is computed locally from contest problems plus imported member statuses
+- contest list and contest detail pages no longer require the localhost API
+
+The remaining legacy area is mostly the old Python service code that still lives in the repository during transition.
+
+## Immediate Plan
+
+1. Finalize architecture and migration docs.
+2. Introduce catalog/schema/generated/script directory conventions.
+3. Build frontend data adapters around curated JSON and IndexedDB.
+4. Remove or reduce the localhost backend once the frontend import loop is in place.
+
+## Current Tooling Commands
+
+Catalog:
 
 ```bash
-make dev
+npm run catalog:validate
+npm run catalog:generate
 ```
 
-This will:
-
-- create `apps/service/.venv` if needed
-- install Python dependencies for the localhost service
-- install web dependencies if `apps/web/node_modules` is missing
-- start the FastAPI service on `http://127.0.0.1:8000`
-- start the Vue app on `http://127.0.0.1:5173`
-- open the web UI when possible
-
-## Bootstrap Only
-
-```bash
-make bootstrap
-```
-
-Force dependency refresh:
-
-```bash
-XVG_BOOTSTRAP_FORCE=1 make bootstrap
-```
-
-## Manual Development
-
-Service:
-
-```bash
-cd apps/service
-python3 -m venv .venv
-.venv/bin/python -m pip install -e '.[dev]'
-.venv/bin/python -m uvicorn xcpc_vp_gather.main:app --reload
-```
-
-Web:
-
-```bash
-cd apps/web
-npm install
-npm run dev
-```
-
-## Main Views
-
-- `/contests`: contest pool with pagination, tag filtering, pool scope, and per-problem status strips
-- `/manage`: add contest, add member, import/export, sync missing contests, and operation logs
-- `/contests/:contestId`: contest detail and coverage matrix
-- `/members`: tracked member overview
-
-## Typical Workflow
-
-1. Add or import contests and members in Manage.
-2. Sync tracked members when needed.
-3. Use Contest Pool to scan which contests are fresh or already touched.
-4. Open a contest detail page to inspect per-member coverage.
-
-## Import And Missing Sync
-
-If a contest card shows `0 problems`, it usually means the contest record exists locally but the contest itself was not fully synced yet. Use `Sync Missing Contests` in the Manage page to sync only contests that still have no problem rows.
-
-## Suggested Next Phase
-
-After `0.1.1`, the recommended next phase is not a new provider or more analytics. The highest-value work is improving sync observability and provenance: make long-running syncs show progress, clearly distinguish imported-only versus fully synced data, and surface why a contest or member view is incomplete.
-
-## Testing
-
-Service tests:
-
-```bash
-cd apps/service
-./.venv/bin/pytest tests/test_sync_and_coverage.py tests/test_schema_init.py
-```
-
-Web build check:
+Frontend:
 
 ```bash
 cd apps/web
 npm run build
 ```
 
+Current CI validates catalog JSON, regenerates derived catalog artifacts, and then builds the frontend.
+
+Current frontend runtime pages:
+
+- `/contests`: static catalog list plus local coverage summary strips
+- `/contests/:id`: local contest coverage matrix with Codeforces problem sync
+- `/members`: local Dexie-backed member view
+- `/manage`: local workspace for catalog refresh, Codeforces import, and runtime backup
+
 ## Related Docs
 
-- [CHANGELOG.md](./CHANGELOG.md)
-- [README.zh-CN.md](./README.zh-CN.md)
 - [AGENTS.md](./AGENTS.md)
-- [apps/service/README.md](./apps/service/README.md)
-- [apps/web/README.md](./apps/web/README.md)
 - [docs/architecture.md](./docs/architecture.md)
+- [docs/project-plan.md](./docs/project-plan.md)
 - [docs/mvp-design.md](./docs/mvp-design.md)
+- [docs/frontend-first-pivot.md](./docs/frontend-first-pivot.md)

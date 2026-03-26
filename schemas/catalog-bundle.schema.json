@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xcpc-vp-gather.local/schemas/catalog-bundle.schema.json",
+  "title": "CuratedContestBundle",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "catalog_id",
+    "title",
+    "exported_at",
+    "contests"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "catalog_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "exported_at": {
+      "type": "string",
+      "minLength": 1
+    },
+    "contests": {
+      "type": "array",
+      "items": {
+        "$ref": "./contest.schema.json"
+      }
+    }
+  }
+}
