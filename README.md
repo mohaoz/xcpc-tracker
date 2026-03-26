@@ -52,6 +52,8 @@ npm run build
 - Build command: `npm ci --prefix web && npm run catalog:validate && npm run build --prefix web`
 - Publish directory: `web/dist`
 - Repo-level `netlify.toml` is included, so Netlify can use the default settings directly
+- Git-triggered Netlify builds are ignored by default; publish a GitHub Release to trigger deployment through `.github/workflows/release-netlify.yml`
+- Configure a GitHub Actions secret named `NETLIFY_BUILD_HOOK_URL` with your Netlify site build hook URL
 
 ## App Routes
 

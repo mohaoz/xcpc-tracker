@@ -1,0 +1,21 @@
+name: release-netlify
+
+on:
+  release:
+    types:
+      - published
+
+jobs:
+  trigger-netlify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Netlify production deploy
+        env:
+          NETLIFY_BUILD_HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
+        run: |
+          if [ -z "$NETLIFY_BUILD_HOOK_URL" ]; then
+            echo "NETLIFY_BUILD_HOOK_URL is not configured." >&2
+            exit 1
+          fi
+
+          curl -X POST -d '{}' "$NETLIFY_BUILD_HOOK_URL"
