@@ -47,7 +47,9 @@ a {
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
 
@@ -227,11 +229,78 @@ h1 {
   color: var(--ink);
 }
 
+.field select,
+.field textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(41, 55, 81, 0.12);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+}
+
+.field textarea {
+  min-height: 112px;
+  resize: vertical;
+  line-height: 1.5;
+}
+
 .actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 16px;
+}
+
+.manage-io-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.choice-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.choice-grid--single {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.choice-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 56px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(41, 55, 81, 0.12);
+  background: rgba(255, 255, 255, 0.86);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: border-color 120ms ease, background 120ms ease, transform 120ms ease;
+}
+
+.choice-card:hover {
+  transform: translateY(-1px);
+  border-color: rgba(15, 118, 110, 0.22);
+}
+
+.choice-card--active {
+  border-color: rgba(15, 118, 110, 0.32);
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.1), rgba(21, 94, 117, 0.08));
+  color: var(--brand-strong);
+}
+
+.choice-card__input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choice-card__title {
+  font-weight: 700;
+  letter-spacing: 0.02em;
 }
 
 .intake-log-panel {
@@ -289,7 +358,7 @@ h1 {
   display: grid;
   grid-template-columns: minmax(0, 1.65fr) minmax(240px, 0.9fr);
   gap: 18px;
-  align-items: start;
+  align-items: stretch;
   margin-bottom: 18px;
 }
 
@@ -308,7 +377,17 @@ h1 {
 
 .contest-toolbar__actions {
   display: grid;
+  align-content: start;
   gap: 12px;
+}
+
+.contest-toolbar__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 8px 4px 0;
 }
 
 .button {
@@ -395,6 +474,28 @@ h1 {
   gap: 10px;
 }
 
+.member-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.member-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px 18px;
+  margin-bottom: 18px;
+}
+
+.member-toolbar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
 .tag--warm {
   background: rgba(217, 119, 6, 0.12);
   color: #9a5b03;
@@ -455,6 +556,68 @@ h1 {
   color: var(--brand-strong);
 }
 
+.member-filter-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 12px 14px;
+  border: 1px solid rgba(41, 55, 81, 0.1);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.member-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 7px 12px;
+  border: 1px solid rgba(41, 55, 81, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 120ms ease, border-color 120ms ease, background 120ms ease, color 120ms ease, box-shadow 120ms ease;
+}
+
+.member-filter-chip:hover {
+  transform: translateY(-1px);
+  border-color: rgba(15, 118, 110, 0.22);
+}
+
+.member-filter-chip--action {
+  background: rgba(241, 245, 249, 0.96);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.member-filter-chip--selected {
+  border-color: rgba(15, 118, 110, 0.24);
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.1), rgba(21, 94, 117, 0.08));
+  color: var(--brand-strong);
+  box-shadow: inset 0 0 0 1px rgba(15, 118, 110, 0.08);
+}
+
+.member-filter-chip--action-active {
+  border-color: rgba(15, 118, 110, 0.46);
+  background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+  color: #f8fafc;
+  box-shadow: 0 10px 24px rgba(21, 94, 117, 0.18);
+}
+
+.member-filter-chip--action-empty {
+  border-color: rgba(217, 119, 6, 0.22);
+  background: rgba(217, 119, 6, 0.1);
+  color: #9a5b03;
+}
+
+.member-filter-chip--hint {
+  border-style: dashed;
+  background: rgba(148, 163, 184, 0.08);
+  color: var(--ink-soft);
+}
+
 .filter-suggestions,
 .filter-toggle-row {
   display: flex;
@@ -512,6 +675,33 @@ h1 {
   gap: 14px;
 }
 
+.contest-editor {
+  display: grid;
+  gap: 14px;
+}
+
+.contest-source-list {
+  display: grid;
+  gap: 12px;
+}
+
+.contest-source-card {
+  padding: 16px;
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(41, 55, 81, 0.1);
+}
+
+.editor-validation {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(185, 28, 28, 0.08);
+  color: var(--danger);
+  font-weight: 600;
+}
+
 .contest-card,
 .member-card {
   padding: 18px;
@@ -531,6 +721,11 @@ h1 {
   position: relative;
 }
 
+.member-card {
+  display: grid;
+  gap: 16px;
+}
+
 .contest-card__top,
 .member-card__top {
   display: flex;
@@ -543,7 +738,35 @@ h1 {
 .contest-card h3,
 .member-card h3 {
   font-size: 1.08rem;
-  margin-bottom: 8px;
+  margin-bottom: 0;
+}
+
+.member-card__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.member-card__stat {
+  padding: 12px 14px;
+  border-radius: 14px;
+  background: rgba(245, 247, 250, 0.95);
+  border: 1px solid rgba(41, 55, 81, 0.08);
+}
+
+.member-card__stat strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 1.05rem;
+  color: var(--ink);
+}
+
+.member-card__stat-label {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 700;
 }
 
 .contest-card__cta {
@@ -608,7 +831,7 @@ h1 {
   color: #f8fafc;
 }
 
-.contest-problem-state--tried {
+.contest-problem-state--attempted {
   background: #dc2626;
   color: #fef2f2;
 }
@@ -742,6 +965,11 @@ h1 {
 
 @media (max-width: 900px) {
   .contest-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .member-overview-grid,
+  .member-card__stats {
     grid-template-columns: 1fr;
   }
 

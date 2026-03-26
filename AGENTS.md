@@ -1,76 +1,74 @@
-# xcpc-vp-gather AGENTS
+# xcpc-tracker Pivot AGENTS
 
-## Project Summary
-- If scope is unclear, then optimize for a local-first XCPC/ACM VP gather MVP.
-- If choosing the first OJ provider, then use Codeforces Gym.
-- If defining MVP outcomes, then prioritize: `VP before` identify contests/problems nobody on the tracked team has solved or tried, and `VP after` identify problems still needing upsolve.
-- If describing current shipped UI, then note the main views are Contest Pool, Members, Manage, and Contest Detail.
-- If planning the next phase after `0.1.1`, then prioritize sync observability, sync provenance, failure recovery, and detail-page completeness before any new provider or analytics scope.
-- If a feature does not directly help contest sync, member history sync, problem/resource gathering, VP-before coverage checks, VP-after upsolve checks, or local VP console, then exclude it from v1.
-- If a design choice conflicts with "local web app + localhost service", then keep the localhost service model.
+## Product Summary
+- If scope is unclear, then optimize for an XCPC tracker that ships as a static frontend-first site.
+- If choosing the first live sync source, then use Codeforces public API directly from the frontend.
+- If choosing the second source, then use QOJ userscript-assisted JSON import; do not build a Python scraper for it.
+- If choosing the curated data source, then keep contest and artifact metadata in Git-managed JSON files.
+- If describing the main user value, then prioritize: browse curated contests, inspect member coverage, import member status, and answer VP-before freshness questions.
+- If a feature does not directly help curated contest browsing, member coverage tracking, Codeforces import, QOJ import, or static deployment, then cut it from the near-term plan.
 
 ## Architecture Boundaries
-- If code runs in browser, then it may render UI, cache view state, and trigger tasks; it must not crawl OJ pages directly.
-- If code needs network, browser automation, filesystem writes, or DB writes, then it belongs to the Python localhost service.
-- If a feature implies remote multi-user backend, cloud sync, judge, or auth platform, then reject it.
-- If data is durable, then SQLite is the source of truth; browser storage is cache only.
-- If content is large or binary, then store file on disk and metadata in SQLite.
+- If code runs in the browser, then it may fetch public APIs, read curated JSON, persist to IndexedDB, and compute local coverage views.
+- If durable runtime state is needed, then IndexedDB is the primary application store.
+- If data is curated and versioned, then keep it in Git as JSON files; do not treat IndexedDB as the source for curated catalog data.
+- If a feature requires a running localhost backend in normal usage, then reject it by default.
+- If a backend/tooling task is still useful, then keep it as build-time or migration-time tooling only, not as the primary runtime architecture.
+- If content is large or generated, then commit only curated source files and regenerate derived indexes in CI or scripts.
 
-## Provider Rules
-- If integrating any OJ, then implement it behind `Provider` interfaces only.
-- If the provider is Codeforces, then prefer official API for contest, standings, submission, and public metadata acquisition.
-- If Codeforces API does not expose required resource metadata or files, then use browser automation as a supplement, not the default path.
-- If a provider can expose per-member solved/tried problem history more cheaply than per-contest submissions, then make member-history sync the primary path.
-- If logic is site-specific, then keep it inside provider modules; do not leak site branches into service/core layers.
-- If provider returns data, then return raw payload plus minimally normalized records.
-- If behavior requires existing user permissions, then reuse local browser state when possible; do not design bypass flows.
-- If v1 supports one OJ only, then still require `provider_key` on provider-facing contracts and persisted records.
+## Data And Catalog Rules
+- If adding curated contest metadata, then keep the built-in default catalog in a single bundled JSON file under `catalog/`, and keep import/generated artifacts clearly separate.
+- If data is intended to be canonical and reviewable, then it must live under `catalog/` and be editable by hand.
+- If data comes from import flows, then treat it as candidate or draft input until it is normalized into curated catalog files.
+- If adding generated frontend consumption files, then place them under `generated/` and treat them as derived artifacts.
+- If adding schema validation, then validate curated files against JSON Schema before build or deploy.
+- If adding canonical catalog fields, then prefer `id`, `title`, `aliases`, `tags`, `problems`, `sources`, and optional provenance notes; do not duplicate obvious tag semantics into separate fields without a concrete product need.
+- If storing external links, then use a `sources` array with objects shaped like `provider`, `kind`, and `url`.
+- If contest/problem IDs are needed, then use stable internal IDs in curated data and keep provider-scoped IDs inside source mappings.
 
-## Unified Schema Principles
-- If data enters the system, then map it into the canonical entities: `contest`, `problem`, `artifact`, `submission`, `identity_binding`; if MVP needs a team/member problem-state cache, then add a focused supporting table instead of overloading `submission`.
-- If the product question is "has this member solved/tried this problem before VP", then model that state directly.
-- If UI or API lists tracked members, then default to grouping by `local_member_key`; treat provider bindings as secondary detail for the same local person.
-- If upstream fields are ambiguous, then preserve raw source payload alongside normalized columns.
-- If an entity cannot be made stable across providers, then define provider-scoped external IDs plus internal UUIDs.
-- If schema adds a new table, then document ownership, lifecycle, and relation to the five canonical entities.
+## Import Rules
+- If the source is Codeforces, then use official public API access from the frontend.
+- If the source is QOJ, then use userscript-exported JSON snapshots imported into the app.
+- If import data is stored in the repository, then keep it as fixture or draft material, not as the canonical curated dataset.
+- If import logic is provider-specific, then keep it in frontend adapters/importers, not in a server-provider abstraction.
+- If import output is ambiguous, then preserve raw import payload metadata and provenance alongside normalized local records.
+- If matching imported member status to curated problems is imperfect, then keep explicit match evidence and unresolved records rather than silently dropping them.
+- If an import suggests new contest metadata, then generate a reviewable draft or patch instead of mutating curated source of truth silently.
+- If a workflow depends on user login state or browser-local permissions, then design it around the user's own browser environment instead of service-side automation.
 
-## Frontend / Acquisition Decoupling
-- If UI needs data, then request it from local API; never scrape from frontend.
-- If UI triggers a sync, then call task endpoints and poll/read task state.
-- If acquisition shape changes, then keep SPA contracts stable through service-layer DTOs.
+## Frontend Data Model
+- If modeling runtime entities, then define frontend-oriented records for `contest`, `problem`, `member`, `member_problem_status`, `sync_record`, and `import_source`.
+- If the product question is "has this member solved or tried this curated problem", then model that directly in IndexedDB.
+- If UI lists tracked people, then group by stable local member identity and treat provider handles as linked sources.
+- If upstream fields differ across providers, then keep normalized columns plus raw payload metadata.
+- If schema changes, then document IndexedDB version upgrades and migration intent before implementation.
 
 ## Directory And Naming
-- If code is shared across providers, then place it in core/service modules, not provider folders.
-- If module is provider-specific, then name paths with provider key and keep tests beside fixtures.
-- If naming DB tables, API fields, or Python modules, then prefer `snake_case`.
-- If naming TypeScript/Vue components or types, then prefer `PascalCase` for components and `camelCase` for variables.
-- If creating new top-level directories, then justify them in architecture docs first.
+- If code belongs to the shipped product, then prefer TypeScript modules under the frontend app and repo-level data/tooling directories.
+- If code is only for migration or validation, then place it under `scripts/`.
+- If adding curated source data, then place it under `catalog/`.
+- If adding generated dataset artifacts, then place them under `generated/`.
+- If adding schemas, then place them under `schemas/`.
+- If naming JSON fields, TypeScript types, or generated file keys, then prefer `snake_case` for persisted JSON and `camelCase` / `PascalCase` for TypeScript code.
 
-## Testing And Fixtures
-- If adding provider logic, then include deterministic fixtures for HTML/JSON/PDF metadata and normalized outputs.
-- If adding Codeforces coverage, then separate API fixtures from HTML fixtures.
-- If a test needs live network or real login, then it is not a default CI test.
-- If browser automation is added, then keep replayable fixtures or captured pages for parser coverage.
-- If changing schema or contracts, then add migration tests or contract snapshots.
+## Testing And Validation
+- If adding catalog data, then add schema validation and deterministic generation checks.
+- If adding provider import logic, then include fixtures for raw payloads and normalized mapping outputs.
+- If a test requires live network, browser login, or manual userscript interaction, then it is not a default CI test.
+- If CI runs, then it should validate catalog JSON, generate indexes, run frontend checks, and build the static app.
+- If changing import contracts, then add snapshot examples for accepted JSON payload shapes.
 
-## When To Add A Skill
-- If a workflow is repeated across tasks and needs stable steps, then promote it to a skill.
-- If a workflow needs provider onboarding, fixture capture, schema migration, or release checklist reuse, then consider a skill.
-- If a workflow is still volatile or one-off, then do not create a skill yet.
-
-## When Not To Expand Scope
-- If a request adds accounts, cloud sync, judge, remote collaboration, push notifications, mobile app, or full-text search, then defer it.
-- If a request adds complex ranking analytics or recommendation systems before MVP sync works, then defer it.
-- If a request increases supported OJs before provider abstraction and first provider are stable, then defer it.
-- If Codeforces Gym data is already available from official API, then do not scrape the same field from pages without a concrete gap.
-- If a feature is about reconstructing full contest-time submission timelines, then defer it unless it directly improves VP-before or upsolve decisions.
+## Scope Cuts
+- If a request reintroduces the Python localhost service as the core runtime, then reject it.
+- If a request adds multi-user backend, cloud sync, push notifications, mobile app, or full-text search, then defer it.
+- If a request adds heavy analytics before the import and coverage loop is stable, then defer it.
+- If a request adds new OJs before the Codeforces and QOJ flows are solid, then defer it.
+- If a request adds backend scraping for QOJ, then reject it in favor of the userscript bridge.
 
 ## Codex Execution Rules
-- If starting work, then design first, code second.
-- If building a new area, then create skeletons and contracts before detailed implementation.
-- If v1 behavior is uncertain, then choose the smallest MVP that preserves future extensibility.
-- If CLI already proves the service logic, then shift next work to local API and frontend integration instead of continuing CLI productization.
-- If the current MVP already covers the main read/write loop, then prefer strengthening reliability, observability, and data clarity over adding brand-new surfaces.
-- If a capability is only useful as terminal UX polish, then defer it until API and SPA foundations are complete.
-- If a decision belongs in this file, then update `AGENTS.md` immediately.
-- If unrelated code or speculative polish appears, then stop and cut scope back.
+- If starting work, then audit first, document second, code third.
+- If the product direction changes, then update `AGENTS.md` and architecture docs before touching implementation.
+- If preserving useful existing code is possible, then migrate it deliberately instead of rewriting by reflex.
+- If a current module encodes a useful domain concept such as coverage or local member identity, then preserve the concept even if the implementation moves layers.
+- If a runtime subsystem no longer matches the product direction, then de-emphasize it quickly and plan its removal explicitly.
+- If a decision belongs in this file, then update `AGENTS.md` in the same patch.

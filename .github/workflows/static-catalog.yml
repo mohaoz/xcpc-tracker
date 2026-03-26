@@ -1,0 +1,38 @@
+name: static-catalog
+
+on:
+  push:
+    branches:
+      - main
+      - codex-frontend-first-pivot
+  pull_request:
+
+jobs:
+  validate-and-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: |
+            apps/web/package-lock.json
+
+      - name: Install web dependencies
+        run: npm ci
+        working-directory: apps/web
+
+      - name: Validate curated catalog
+        run: npm run catalog:validate
+
+      - name: Generate catalog artifacts
+        run: npm run catalog:generate
+
+      - name: Build frontend
+        run: npm run build
+        working-directory: apps/web

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xcpc-vp-gather.local/schemas/qoj-import.schema.json",
+  "title": "QOJUserscriptImport",
+  "type": "object",
+  "required": ["provider", "exported_at", "members"],
+  "properties": {
+    "provider": {
+      "const": "qoj"
+    },
+    "exported_at": {
+      "type": "string"
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["handle"],
+        "properties": {
+          "handle": {
+            "type": "string"
+          },
+          "solved": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "attempted": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,8 +1,6 @@
 # apps/web
 
-Vue 3 SPA for the local VP console.
-
-Version: `0.1.1`
+Vue 3 SPA for the static, local-first XCPC tracker.
 
 ## Setup
 
@@ -22,29 +20,23 @@ npm run dev
 npm run build
 ```
 
-## API Base
-
-The SPA reads `VITE_API_BASE`.
-
-Default:
-
-```text
-http://127.0.0.1:8000
-```
-
 ## Current Views
 
 - `/contests`
-  contest pool with tag filters, pool scope, pagination, and per-problem status strips
-- `/contests/intake`
-  contest intake, import/export, sync missing contests, and operation logs
+  contest pool with unified search, member filter, pagination, and per-problem status strips
+- `/manage`
+  local workspace for catalog import/export, default catalog import, and one-click sync
+- `/contests/new`
+  add a contest into local catalog
 - `/contests/:contestId`
   contest detail and coverage matrix
 - `/members`
   tracked member overview
+- `/members/new`
+  import a member from Codeforces
 
 ## Notes
 
-- the frontend never scrapes OJ pages directly
-- durable data stays in the Python service and SQLite
-- browser-side state is UI cache only
+- the frontend consumes a generated static catalog bundle from `generated/catalog.json`
+- runtime state lives in Dexie / IndexedDB
+- the frontend talks to Codeforces public API directly for member and contest sync

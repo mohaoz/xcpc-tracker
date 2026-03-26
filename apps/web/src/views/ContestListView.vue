@@ -1,68 +1,126 @@
 <script setup lang="ts">
-import { computed, onMounted, ref, watch } from "vue";
-import { RouterLink, useRoute, useRouter } from "vue-router";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { RouterLink } from "vue-router";
 
+import type { CatalogContestIndexItem } from "../lib/catalog";
+import { seedCatalogCache } from "../lib/catalog-cache";
+import { subscribeCatalogMutated } from "../lib/catalog-events";
 import {
-  fetchContests,
-  type ContestListItem,
-} from "../lib/api";
+  getCatalogDbStatus,
+  listDeletedCatalogContestIdsFromDb,
+  listCatalogContestsFromDb,
+  listContestCoverageSummariesFromDb,
+  listMemberPeopleFromDb,
+} from "../lib/local-db";
+import type {
+  LocalCatalogContestRecord,
+  LocalContestCoverageSummary,
+  LocalMemberPerson,
+} from "../lib/local-model";
+import { useContestListStore } from "../stores/contest-list";
 
-type PoolScope = "all" | "whole-contest-fresh" | "no-fresh-only";
-
-const contests = ref<ContestListItem[]>([]);
+const contests = ref<CatalogContestIndexItem[]>([]);
+const localContestMap = ref(new Map<string, LocalCatalogContestRecord>());
+const coverageSummaryMap = ref(new Map<string, LocalContestCoverageSummary>());
 const loading = ref(false);
+const importingDefaultData = ref(false);
 const error = ref("");
-const poolScope = ref<PoolScope>("all");
+const generatedAt = ref("");
+const memberOptions = ref<LocalMemberPerson[]>([]);
 let latestLoadRequestId = 0;
-const page = ref(1);
 const pageSize = 12;
-const totalCount = ref(0);
-const totalPages = ref(1);
-const route = useRoute();
-const router = useRouter();
-let syncingFromRoute = false;
-const tagDraft = ref("");
+let unsubscribeCatalogMutated: (() => void) | null = null;
+const contestListStore = useContestListStore();
 
-const filterForm = ref({
-  tags: "",
+function extractContestYear(contest: Pick<CatalogContestIndexItem, "title" | "tags">) {
+  for (const tag of contest.tags) {
+    const match = tag.match(/^(19|20)\d{2}$/);
+    if (match) {
+      return Number.parseInt(match[0], 10);
+    }
+  }
+
+  const titleMatch = contest.title.match(/\b(19|20)\d{2}\b/);
+  if (titleMatch) {
+    return Number.parseInt(titleMatch[0], 10);
+  }
+
+  return -1;
+}
+
+function compareContestsByTime(left: CatalogContestIndexItem, right: CatalogContestIndexItem) {
+  const yearDiff = extractContestYear(right) - extractContestYear(left);
+  if (yearDiff !== 0) {
+    return yearDiff;
+  }
+  return left.title.localeCompare(right.title);
+}
+
+const queryTokens = computed(() =>
+  contestListStore.query
+    .split(/\s+/)
+    .map((token) => token.trim().toLocaleLowerCase())
+    .filter(Boolean),
+);
+const includeQueryTokens = computed(() =>
+  queryTokens.value.filter((token) => token !== "-" && !token.startsWith("-")),
+);
+const excludeQueryTokens = computed(() =>
+  queryTokens.value
+    .filter((token) => token.startsWith("-") && token.length > 1)
+    .map((token) => token.slice(1)),
+);
+const allMembersSelected = computed(() => {
+  if (!memberOptions.value.length) {
+    return true;
+  }
+  return contestListStore.selectedMemberIds.length === memberOptions.value.length;
 });
+const filteredContests = computed(() => {
+  return contests.value.filter((contest) => {
+    if (queryTokens.value.length) {
+      const haystacks = [contest.title, ...contest.aliases, ...contest.tags]
+        .map((value) => value.toLocaleLowerCase());
 
-function dedupeTags(tags: string[]) {
-  const seen = new Set<string>();
-  return tags.filter((tag) => {
-    const normalized = tag.trim();
-    if (!normalized) {
-      return false;
+      const includeMatch = includeQueryTokens.value.every((token) =>
+        haystacks.some((value) => value.includes(token)),
+      );
+      if (!includeMatch) {
+        return false;
+      }
+
+      const excludeMatch = excludeQueryTokens.value.some((token) =>
+        haystacks.some((value) => value.includes(token)),
+      );
+      if (excludeMatch) {
+        return false;
+      }
     }
-    const key = normalized.toLocaleLowerCase();
-    if (seen.has(key)) {
-      return false;
+
+    const summary = coverageSummaryMap.value.get(contest.id);
+    const hasSnapshot = !!summary && summary.problemCount > 0;
+    const hasTouchedProblems =
+      hasSnapshot &&
+      ((summary.solvedProblemCount ?? 0) > 0 || (summary.attemptedProblemCount ?? 0) > 0);
+    const hasUntouchedProblems = hasSnapshot && !hasTouchedProblems;
+
+    if (contestListStore.mode === "fresh-only") {
+      return hasUntouchedProblems;
     }
-    seen.add(key);
+    if (contestListStore.mode === "non-fresh-only") {
+      return hasTouchedProblems;
+    }
     return true;
   });
-}
-
-function serializeTags(tags: string[]) {
-  return dedupeTags(tags).join(", ");
-}
-
-function parseTags(value: string) {
-  return dedupeTags(
-    value
-      .split(",")
-      .map((tag) => tag.trim())
-      .filter(Boolean),
-  );
-}
-
-const activeTags = computed(() => parseTags(filterForm.value.tags));
+});
+const totalCount = computed(() => filteredContests.value.length);
+const totalPages = computed(() => Math.max(1, Math.ceil(totalCount.value / pageSize)));
 const pageButtons = computed<(number | string)[]>(() => {
   const total = totalPages.value;
   if (total <= 7) {
     return Array.from({ length: total }, (_, index) => index + 1);
   }
-  const current = page.value;
+  const current = contestListStore.page;
   const pages = new Set<number>([1, total, current, current - 1, current + 1]);
   if (current <= 3) {
     pages.add(2);
@@ -89,22 +147,23 @@ const pageButtons = computed<(number | string)[]>(() => {
 });
 
 const visibleContests = computed(() => {
-  return contests.value;
+  const start = (contestListStore.page - 1) * pageSize;
+  return filteredContests.value.slice(start, start + pageSize);
 });
 
 const pageLabel = computed(() => {
   if (!totalCount.value) {
     return "0 of 0";
   }
-  const start = (page.value - 1) * pageSize + 1;
-  const end = Math.min(page.value * pageSize, totalCount.value);
+  const start = (contestListStore.page - 1) * pageSize + 1;
+  const end = Math.min(contestListStore.page * pageSize, totalCount.value);
   return `${start}-${end} of ${totalCount.value}`;
 });
 
 const latestSyncLabel = computed(() => {
-  const latest = contests.value[0]?.updated_at;
+  const latest = generatedAt.value;
   if (!latest) {
-    return "还没有同步记录";
+    return "还没有 catalog 生成记录";
   }
 
   const parsed = new Date(latest);
@@ -121,79 +180,55 @@ const latestSyncLabel = computed(() => {
   }).format(parsed);
 });
 
-function parsePositiveInt(value: unknown, fallback: number): number {
-  const raw = Array.isArray(value) ? value[0] : value;
-  const parsed = Number.parseInt(String(raw ?? ""), 10);
-  return Number.isFinite(parsed) && parsed > 0 ? parsed : fallback;
-}
-
-function applyRouteQuery() {
-  syncingFromRoute = true;
-  const tags = route.query.tags;
-  filterForm.value.tags = Array.isArray(tags) ? tags[0] ?? "" : String(tags ?? "");
-  tagDraft.value = "";
-  const scope = Array.isArray(route.query.scope) ? route.query.scope[0] ?? "" : String(route.query.scope ?? "");
-  poolScope.value =
-    scope === "whole-contest-fresh" || scope === "no-fresh-only" ? scope : "all";
-  page.value = parsePositiveInt(route.query.page, 1);
-  syncingFromRoute = false;
-}
-
-function syncRouteQuery() {
-  if (syncingFromRoute) {
-    return;
-  }
-
-  const nextQuery: Record<string, string> = {};
-  const normalizedTags = filterForm.value.tags.trim();
-  if (normalizedTags) {
-    nextQuery.tags = normalizedTags;
-  }
-  if (poolScope.value !== "all") {
-    nextQuery.scope = poolScope.value;
-  }
-  if (page.value > 1) {
-    nextQuery.page = String(page.value);
-  }
-
-  const currentQuery = route.query;
-  const currentTags = Array.isArray(currentQuery.tags) ? currentQuery.tags[0] ?? "" : String(currentQuery.tags ?? "");
-  const currentScope = Array.isArray(currentQuery.scope) ? currentQuery.scope[0] ?? "" : String(currentQuery.scope ?? "");
-  const currentPage = Array.isArray(currentQuery.page) ? currentQuery.page[0] ?? "" : String(currentQuery.page ?? "");
-
-  if (
-    currentTags === (nextQuery.tags ?? "") &&
-    currentScope === (nextQuery.scope ?? "") &&
-    currentPage === (nextQuery.page ?? "")
-  ) {
-    return;
-  }
-
-  router.replace({
-    query: nextQuery,
-  });
-}
-
 async function loadContests() {
   const requestId = ++latestLoadRequestId;
   loading.value = true;
   error.value = "";
   try {
-    const payload = await fetchContests({
-      tags: activeTags.value,
-      withCoverage: true,
-      wholeContestFreshOnly: poolScope.value === "whole-contest-fresh",
-      noFreshOnly: poolScope.value === "no-fresh-only",
-      page: page.value,
-      pageSize,
-    });
+    const localMembers = await listMemberPeopleFromDb();
     if (requestId !== latestLoadRequestId) {
       return;
     }
-    contests.value = payload.contests;
-    page.value = payload.page;
-    totalCount.value = payload.total_count;
-    totalPages.value = payload.total_pages;
+    memberOptions.value = localMembers;
+    const availableMemberIds = new Set(localMembers.map((member) => member.memberId));
+    const hasInvalidSelection = contestListStore.selectedMemberIds.some((memberId) => !availableMemberIds.has(memberId));
+    const shouldInitializeSelection =
+      !contestListStore.memberSelectionInitialized && memberOptions.value.length > 0;
+    if (shouldInitializeSelection || hasInvalidSelection) {
+      contestListStore.selectedMemberIds = localMembers.map((member) => member.memberId);
+      contestListStore.memberSelectionInitialized = true;
+    }
+    const [localContests, deletedContestIds, coverageSummaries, dbStatus] = await Promise.all([
+      listCatalogContestsFromDb(),
+      listDeletedCatalogContestIdsFromDb(),
+      listContestCoverageSummariesFromDb({ memberIds: contestListStore.selectedMemberIds }),
+      getCatalogDbStatus(),
+    ]);
+    if (requestId !== latestLoadRequestId) {
+      return;
+    }
+    const localContestById = new Map(localContests.map((contest) => [contest.contestId, contest]));
+    const localItems: CatalogContestIndexItem[] = localContests
+      .filter((contest) => !deletedContestIds.has(contest.contestId))
+      .map((contest) => ({
+        id: contest.contestId,
+        title: contest.title,
+        aliases: contest.aliases,
+        tags: contest.tags,
+        curation_status: contest.curationStatus,
+        problem_count:
+          coverageSummaries.find((summary) => summary.contestId === contest.contestId)?.problemCount ??
+          contest.problemIds.length,
+      }));
+    contests.value = localItems.sort(compareContestsByTime);
+    localContestMap.value = localContestById;
+    coverageSummaryMap.value = new Map(
+      coverageSummaries.map((summary) => [summary.contestId, summary]),
+    );
+    generatedAt.value = dbStatus.lastCatalogImportAt ?? "";
+    if (contestListStore.page > totalPages.value) {
+      contestListStore.page = totalPages.value;
+    }
   } catch (caught) {
     if (requestId !== latestLoadRequestId) {
       return;
@@ -206,89 +241,100 @@ async function loadContests() {
   }
 }
 
-function goToPage(nextPage: number) {
-  if (nextPage < 1 || nextPage > totalPages.value || nextPage === page.value) {
+function toggleMember(memberId: string) {
+  if (contestListStore.selectedMemberIds.includes(memberId)) {
+    contestListStore.selectedMemberIds = contestListStore.selectedMemberIds.filter((id) => id !== memberId);
     return;
   }
-  page.value = nextPage;
+  contestListStore.selectedMemberIds = [...contestListStore.selectedMemberIds, memberId];
 }
 
-function setPoolScope(nextScope: PoolScope) {
-  if (poolScope.value === nextScope) {
+function toggleAllMembers() {
+  if (allMembersSelected.value) {
+    contestListStore.selectedMemberIds = [];
     return;
   }
-  poolScope.value = nextScope;
+  contestListStore.selectedMemberIds = memberOptions.value.map((member) => member.memberId);
 }
 
-function problemStateClass(status: string) {
+async function handleImportDefaultData() {
+  importingDefaultData.value = true;
+  error.value = "";
+  try {
+    await seedCatalogCache();
+    await loadContests();
+    window.dispatchEvent(new CustomEvent("xvg:catalog-mutated"));
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to import default catalog";
+  } finally {
+    importingDefaultData.value = false;
+  }
+}
+
+function problemStateClass(status: "solved" | "attempted" | "unseen") {
   return `contest-problem-state--${status}`;
 }
 
-function addTag(rawTag: string) {
-  const normalized = rawTag.trim().replace(/,+$/g, "").trim();
+function contestCodeforcesLabel(contestId: string) {
+  const contest = localContestMap.value.get(contestId);
+  const source = contest?.sources.find(
+    (item) => item.provider === "codeforces" && item.provider_contest_id,
+  );
+  if (source?.provider_contest_id) {
+    return `CODEFORCES / ${source.provider_contest_id}`;
+  }
+  return "CURATED CONTEST";
+}
+
+function goToPage(nextPage: number) {
+  if (nextPage < 1 || nextPage > totalPages.value || nextPage === contestListStore.page) {
+    return;
+  }
+  contestListStore.page = nextPage;
+}
+
+function clearQuery() {
+  contestListStore.query = "";
+}
+
+function appendSearchToken(rawToken: string) {
+  const normalized = rawToken.trim();
   if (!normalized) {
     return;
   }
-  filterForm.value.tags = serializeTags([...activeTags.value, normalized]);
-  tagDraft.value = "";
-}
-
-function removeTag(tagToRemove: string) {
-  filterForm.value.tags = serializeTags(
-    activeTags.value.filter((tag) => tag.toLocaleLowerCase() !== tagToRemove.toLocaleLowerCase()),
-  );
-}
-
-function clearTags() {
-  filterForm.value.tags = "";
-  tagDraft.value = "";
-}
-
-function commitTagDraft() {
-  addTag(tagDraft.value);
-}
-
-function handleTagKeydown(event: KeyboardEvent) {
-  if (event.key === "Enter" || event.key === ",") {
-    event.preventDefault();
-    commitTagDraft();
+  const existing = new Set(queryTokens.value);
+  if (existing.has(normalized.toLocaleLowerCase())) {
     return;
   }
-  if (event.key === "Backspace" && !tagDraft.value && activeTags.value.length > 0) {
-    removeTag(activeTags.value[activeTags.value.length - 1]);
-  }
+  contestListStore.query = [contestListStore.query.trim(), normalized].filter(Boolean).join(" ");
 }
 
-applyRouteQuery();
-onMounted(loadContests);
-watch(activeTags, () => {
-  if (page.value !== 1) {
-    page.value = 1;
-    return;
-  }
-  loadContests();
+onMounted(() => {
+  unsubscribeCatalogMutated = subscribeCatalogMutated(() => {
+    void loadContests();
+  });
+  void loadContests();
 });
-watch(poolScope, () => {
-  if (page.value !== 1) {
-    page.value = 1;
-    return;
-  }
-  loadContests();
+onUnmounted(() => {
+  unsubscribeCatalogMutated?.();
+  unsubscribeCatalogMutated = null;
 });
-watch(page, loadContests);
-watch(
-  () => route.query,
-  () => {
-    applyRouteQuery();
-    loadContests();
-  },
-);
-watch(
-  [() => filterForm.value.tags, poolScope, page],
-  () => {
-    syncRouteQuery();
-  },
-);
+watch(queryTokens, () => {
+  if (contestListStore.page !== 1) {
+    contestListStore.page = 1;
+  }
+});
+watch(() => contestListStore.selectedMemberIds, () => {
+  if (contestListStore.page !== 1) {
+    contestListStore.page = 1;
+  }
+  void loadContests();
+}, { deep: true });
+watch(() => contestListStore.mode, () => {
+  if (contestListStore.page !== 1) {
+    contestListStore.page = 1;
+  }
+});
 </script>
 
 <template>
@@ -296,119 +342,141 @@ watch(
     <section class="panel">
       <div class="panel__body">
         <div class="panel__header">
-          <div class="panel__title">
-            <p class="eyebrow">Contest Pool</p>
-            <h2>按整场看 VP 价值</h2>
-            <p class="muted">
-              最近同步：{{ latestSyncLabel }}。当前池子共 {{ totalCount }} 场，先按整场 freshness 快速筛一遍。
-            </p>
-          </div>
-          <div class="inline-tags">
-            <span class="tag tag--neutral">{{ visibleContests.length }} shown</span>
-            <span class="tag tag--neutral">{{ pageLabel }}</span>
-            <span v-for="tag in activeTags" :key="tag" class="tag">{{ tag }}</span>
-          </div>
+          <div></div>
+          <div></div>
         </div>
 
         <div class="contest-toolbar">
           <div class="contest-toolbar__filters">
             <div class="filter-toggle-row">
               <div class="mode-switch">
-                <span class="mode-switch__label">Pool Scope</span>
+                <span class="mode-switch__label">List Mode</span>
                 <div class="mode-switch__rail">
                   <button
                     type="button"
                     class="mode-switch__option"
-                    :class="{ 'mode-switch__option--active': poolScope === 'all' }"
-                    @click="setPoolScope('all')"
+                    :class="{ 'mode-switch__option--active': contestListStore.mode === 'all' }"
+                    @click="contestListStore.mode = 'all'"
                   >
-                    All Contests
+                    全部
                   </button>
                   <button
                     type="button"
                     class="mode-switch__option"
-                    :class="{ 'mode-switch__option--active': poolScope === 'whole-contest-fresh' }"
-                    @click="setPoolScope('whole-contest-fresh')"
+                    :class="{ 'mode-switch__option--active': contestListStore.mode === 'fresh-only' }"
+                    @click="contestListStore.mode = 'fresh-only'"
                   >
-                    Whole-Contest Fresh
+                    只看未做
                   </button>
                   <button
                     type="button"
                     class="mode-switch__option"
-                    :class="{ 'mode-switch__option--active': poolScope === 'no-fresh-only' }"
-                    @click="setPoolScope('no-fresh-only')"
+                    :class="{ 'mode-switch__option--active': contestListStore.mode === 'non-fresh-only' }"
+                    @click="contestListStore.mode = 'non-fresh-only'"
                   >
-                    No-Fresh-Only
+                    只看做过
                   </button>
                 </div>
               </div>
               <button
-                v-if="activeTags.length"
+                v-if="contestListStore.query.trim()"
                 class="button button--ghost"
                 type="button"
-                @click="clearTags"
+                @click="clearQuery()"
               >
-                Clear Tags
+                Clear Filters
               </button>
             </div>
 
             <div class="field">
-              <label for="contest-tags">Filter Tags</label>
-              <div class="tag-editor">
+              <label for="contest-query">Search</label>
+              <input
+                id="contest-query"
+                v-model="contestListStore.query"
+                placeholder="搜索标题、alias 或 tags；用 -2025 这类写法排除"
+              />
+            </div>
+
+            <div class="field">
+              <label>Members</label>
+              <div class="member-filter-picker">
                 <button
-                  v-for="tag in activeTags"
-                  :key="tag"
                   type="button"
-                  class="tag-chip tag-chip--active"
-                  @click="removeTag(tag)"
+                  class="member-filter-chip member-filter-chip--action"
+                  :class="{
+                    'member-filter-chip--action-active': allMembersSelected,
+                    'member-filter-chip--action-empty': !allMembersSelected,
+                  }"
+                  @click="toggleAllMembers"
                 >
-                  <span>{{ tag }}</span>
-                  <span aria-hidden="true">×</span>
+                  全选
                 </button>
-                <input
-                  id="contest-tags"
-                  v-model="tagDraft"
-                  class="tag-editor__input"
-                  placeholder="输入 tag 后按回车，或直接点比赛上的标签"
-                  @keydown="handleTagKeydown"
-                  @blur="commitTagDraft"
-                />
+                <button
+                  v-for="member in memberOptions"
+                  :key="member.memberId"
+                  type="button"
+                  class="member-filter-chip"
+                  :class="{ 'member-filter-chip--selected': contestListStore.selectedMemberIds.includes(member.memberId) }"
+                  @click="toggleMember(member.memberId)"
+                  >
+                    {{ member.displayName }}
+                  </button>
+                  <RouterLink
+                    v-if="!memberOptions.length"
+                    to="/members/new"
+                    class="member-filter-chip member-filter-chip--hint"
+                  >
+                    去导入成员
+                  </RouterLink>
               </div>
             </div>
+
           </div>
 
           <div class="contest-toolbar__actions">
             <RouterLink to="/manage" class="button contest-toolbar__primary-action">
-              <span class="button__eyebrow">Manage</span>
-              <span>Open Manage</span>
+              <span class="button__eyebrow">Tools</span>
+              <span>Manage Data</span>
+            </RouterLink>
+            <RouterLink to="/contests/new" class="button button--ghost contest-toolbar__secondary-action">
+              <span class="button__eyebrow">Catalog</span>
+              <span>Add Contest</span>
             </RouterLink>
             <button class="button button--ghost contest-toolbar__secondary-action" :disabled="loading" @click="loadContests">
-              <span class="button__eyebrow">Sync</span>
-              <span>{{ loading ? "Refreshing..." : "Refresh List" }}</span>
+              <span class="button__eyebrow">Catalog</span>
+              <span>{{ loading ? "Refreshing..." : "Reload Catalog" }}</span>
             </button>
+            <p class="muted tiny contest-toolbar__meta">
+              <span>上次更新：{{ latestSyncLabel }}</span>
+              <span>{{ pageLabel }}</span>
+            </p>
           </div>
         </div>
 
-        <div v-if="loading" class="notice">loading contests...</div>
-        <div v-else-if="!visibleContests.length && poolScope === 'whole-contest-fresh'" class="notice">
-          当前筛选下没有“整场 fresh”的比赛。
-        </div>
-        <div v-else-if="!visibleContests.length && poolScope === 'no-fresh-only'" class="notice">
-          当前筛选下没有“队内做过至少一题”的比赛。
-        </div>
+        <p v-if="error" class="error-box" style="margin-bottom: 16px">{{ error }}</p>
+
+        <div v-if="loading" class="notice">loading curated contests...</div>
         <div v-else-if="!contests.length" class="notice">
-          还没有比赛，先去 Manage 页面把一场 Gym 拉进来。
+          <div>当前还没有本地比赛数据。</div>
+          <div class="actions" style="margin-top: 12px; margin-bottom: 0">
+            <button class="button" :disabled="importingDefaultData" @click="handleImportDefaultData">
+              {{ importingDefaultData ? "Importing..." : "导入默认数据" }}
+            </button>
+          </div>
+        </div>
+        <div v-else-if="!visibleContests.length" class="notice">
+          当前标签筛选下没有匹配的比赛。
         </div>
         <div v-else class="list-grid">
           <RouterLink
             v-for="contest in visibleContests"
-            :key="contest.contest_id"
-            :to="`/contests/${contest.contest_id}`"
+            :key="contest.id"
+            :to="`/contests/${contest.id}`"
             class="contest-card"
           >
             <div class="contest-card__top">
               <div>
-                <p class="eyebrow">{{ contest.provider_key }} / {{ contest.provider_contest_id }}</p>
+                <p class="eyebrow">{{ contestCodeforcesLabel(contest.id) }}</p>
                 <h3>{{ contest.title }}</h3>
               </div>
             </div>
@@ -416,13 +484,20 @@ watch(
             <div class="contest-card__meta-row">
               <div class="contest-card__meta-main">
                 <div class="inline-tags">
-                  <span class="tag tag--neutral">{{ contest.problem_count ?? 0 }} problems</span>
-                  <span class="tag tag--neutral">solved {{ contest.solved_problem_count ?? 0 }}</span>
+                  <span class="tag tag--neutral">
+                    {{ coverageSummaryMap.get(contest.id)?.problemCount ?? contest.problem_count }} problems
+                  </span>
+                  <span class="tag tag--neutral">
+                    solved {{ coverageSummaryMap.get(contest.id)?.solvedProblemCount ?? 0 }}
+                  </span>
                 </div>
-                <div v-if="contest.problem_states?.length" class="contest-problem-strip">
+                <div
+                  v-if="coverageSummaryMap.get(contest.id)?.problemStates.length"
+                  class="contest-problem-strip"
+                >
                   <span
-                    v-for="problem in contest.problem_states"
-                    :key="`${contest.contest_id}-${problem.ordinal}`"
+                    v-for="problem in coverageSummaryMap.get(contest.id)?.problemStates ?? []"
+                    :key="`${contest.id}-${problem.ordinal}`"
                     class="contest-problem-state"
                     :class="problemStateClass(problem.status)"
                     :title="`${problem.ordinal}: ${problem.status}`"
@@ -440,7 +515,7 @@ watch(
                 :key="tag"
                 type="button"
                 class="tag-chip tag-chip--card"
-                @click.prevent.stop="addTag(tag)"
+                @click.prevent.stop="appendSearchToken(tag)"
               >
                 {{ tag }}
               </button>
@@ -449,7 +524,7 @@ watch(
         </div>
 
         <div v-if="totalPages > 1" class="pagination-bar">
-          <button class="button button--ghost" :disabled="loading || page <= 1" @click="goToPage(page - 1)">
+          <button class="button button--ghost" :disabled="loading || contestListStore.page <= 1" @click="goToPage(contestListStore.page - 1)">
             Previous
           </button>
           <div class="pagination-pages">
@@ -457,14 +532,14 @@ watch(
               v-for="(item, index) in pageButtons"
               :key="`${item}-${index}`"
               class="pagination-page"
-              :class="{ 'pagination-page--active': item === page, 'pagination-page--ellipsis': item === '...' }"
+              :class="{ 'pagination-page--active': item === contestListStore.page, 'pagination-page--ellipsis': item === '...' }"
               :disabled="loading || item === '...'"
               @click="typeof item === 'number' && goToPage(item)"
             >
               {{ item }}
             </button>
           </div>
-          <button class="button button--ghost" :disabled="loading || page >= totalPages" @click="goToPage(page + 1)">
+          <button class="button button--ghost" :disabled="loading || contestListStore.page >= totalPages" @click="goToPage(contestListStore.page + 1)">
             Next
           </button>
         </div>
