@@ -54,7 +54,7 @@ export function getCatalogSourceIdentity(source: CatalogSource): string {
   const providerScopedId = source.provider_problem_id ?? source.provider_contest_id ?? "";
   const fallbackLocator = providerScopedId.trim()
     ? providerScopedId.trim().toLocaleLowerCase()
-    : source.url.trim().toLocaleLowerCase();
+    : (source.url ?? "").trim().toLocaleLowerCase();
   return [
     source.provider.trim().toLocaleLowerCase(),
     source.kind.trim().toLocaleLowerCase(),
@@ -76,7 +76,6 @@ export function mergeCatalogSources(existingSources: CatalogSource[], nextSource
   const merged = {
     ...current,
     ...nextSource,
-    variant: nextSource.variant ?? current.variant,
     source_title: nextSource.source_title ?? current.source_title,
     label: nextSource.label ?? current.label,
   } satisfies CatalogSource;

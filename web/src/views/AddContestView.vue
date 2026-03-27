@@ -28,8 +28,7 @@ async function handleAddManualContest(payload: {
   sources: Array<{
     provider: string;
     kind: string;
-    variant?: string;
-    url: string;
+    url?: string;
     provider_contest_id?: string;
     provider_problem_id?: string;
     source_title?: string;
@@ -43,8 +42,7 @@ async function handleAddManualContest(payload: {
     sources: Array<{
       provider: string;
       kind: string;
-      variant?: string;
-      url: string;
+      url?: string;
       provider_contest_id?: string;
       provider_problem_id?: string;
       source_title?: string;
@@ -56,11 +54,6 @@ async function handleAddManualContest(payload: {
     error.value = "contest title is required";
     return;
   }
-  if (!payload.sources.length) {
-    error.value = "at least one source is required";
-    return;
-  }
-
   submitting.value = true;
   error.value = "";
   feedback.value = "";
@@ -73,7 +66,7 @@ async function handleAddManualContest(payload: {
       title: problem.title,
       aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources),
       sources: problem.sources,
-      sourceKind: "runtime_codeforces",
+      sourceKind: "catalog",
     }));
     const contestTitle = payload.title.trim();
     const contest: LocalCatalogContestRecord = {

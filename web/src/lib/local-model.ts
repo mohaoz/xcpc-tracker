@@ -57,7 +57,7 @@ export type LocalMemberProblemStatusRecord = {
 
 export type LocalImportSourceRecord = {
   sourceRecordId: string;
-  kind: "catalog" | "codeforces_api" | "qoj_userscript_json";
+  kind: "catalog" | "codeforces_api" | "qoj_userscript_json" | "manual_entry";
   label: string;
   importedAt: string;
   rawMetaJson: Record<string, unknown>;
@@ -66,7 +66,7 @@ export type LocalImportSourceRecord = {
 export type LocalSyncRecord = {
   syncId: string;
   sourceRecordId: string;
-  adapter: "catalog" | "codeforces_api" | "qoj_userscript";
+  adapter: "catalog" | "codeforces_api" | "qoj_userscript" | "manual";
   startedAt: string;
   finishedAt: string | null;
   status: "running" | "succeeded" | "failed";

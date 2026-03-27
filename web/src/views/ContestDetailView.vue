@@ -11,13 +11,16 @@ import {
 import { aggregateAliasesFromSources } from "../lib/catalog-sources";
 import { emitCatalogMutated } from "../lib/catalog-events";
 import { syncCodeforcesContestProblems } from "../lib/codeforces";
+import { emitMemberMutated } from "../lib/member-events";
 import {
   deleteCatalogContestRecord,
   getCatalogContestDetailFromDb,
   getContestCoverageFromDb,
+  getManualMemberProblemStatusFromDb,
   hasDeletedCatalogContestId,
   listCatalogContestsFromDb,
   replaceManualCatalogContest,
+  upsertManualMemberProblemStatus,
 } from "../lib/local-db";
 import type { LocalCatalogContestRecord, LocalCatalogProblemRecord, LocalContestCoverage } from "../lib/local-model";
 
@@ -34,8 +37,14 @@ const editing = ref(false);
 const saving = ref(false);
 const deleting = ref(false);
 const existingTags = ref<string[]>([]);
+const markMode = ref(false);
+const markSavingCellKey = ref("");
 
 const contestId = computed(() => String(route.params.contestId ?? ""));
+const hasCodeforcesContestSource = computed(() =>
+  contest.value?.sources.some((source) => source.provider === "codeforces" && source.kind === "contest") ?? false,
+);
+const trackedMembers = computed(() => coverage.value?.trackedMembers ?? []);
 const contestEyebrow = computed(() => {
   const source = contest.value?.sources.find((item) => item.provider === "codeforces" && item.kind === "contest" && item.provider_contest_id);
   if (source?.provider && source.provider_contest_id) {
@@ -127,6 +136,13 @@ async function loadContestPage() {
   }
 }
 
+async function refreshCoverageOnly() {
+  if (!contestId.value) {
+    return;
+  }
+  coverage.value = await getContestCoverageFromDb(contestId.value);
+}
+
 async function saveContestMetadata(payload: {
   title: string;
   aliases: string[];
@@ -145,10 +161,6 @@ async function saveContestMetadata(payload: {
   }
   if (!payload.title.trim()) {
     error.value = "contest title is required";
-    return;
-  }
-  if (!payload.sources.length) {
-    error.value = "at least one source is required";
     return;
   }
 
@@ -236,6 +248,71 @@ async function handleDeleteContest() {
   }
 }
 
+function buildCellKey(problemId: string, memberId: string) {
+  return `${problemId}:${memberId}`;
+}
+
+function getNextManualStatus(payload: {
+  currentStatus: "solved" | "attempted" | "unseen";
+  manualStatus: "solved" | "attempted" | null;
+}) {
+  if (payload.manualStatus === "solved") {
+    return null;
+  }
+  if (payload.manualStatus === "attempted") {
+    return payload.currentStatus === "solved" ? null : "solved";
+  }
+  if (payload.currentStatus === "unseen") {
+    return "attempted" as const;
+  }
+  if (payload.currentStatus === "attempted") {
+    return "solved" as const;
+  }
+  return undefined;
+}
+
+async function applyMarkToCell(
+  problemId: string,
+  memberId: string,
+  currentStatus: "solved" | "attempted" | "unseen",
+) {
+  if (!markMode.value || !contest.value) {
+    return;
+  }
+  if (!trackedMembers.value.length || !(coverage.value?.problems.length)) {
+    error.value = "no members or problems available for marking";
+    return;
+  }
+
+  const cellKey = buildCellKey(problemId, memberId);
+  const manualStatus = await getManualMemberProblemStatusFromDb(memberId, problemId);
+  const nextStatus = getNextManualStatus({
+    currentStatus,
+    manualStatus,
+  });
+  if (typeof nextStatus === "undefined") {
+    return;
+  }
+  markSavingCellKey.value = cellKey;
+  error.value = "";
+  feedback.value = "";
+  try {
+    await upsertManualMemberProblemStatus({
+      memberId,
+      problemId,
+      status: nextStatus,
+      note: null,
+    });
+    emitMemberMutated();
+    await refreshCoverageOnly();
+    feedback.value = `manual status set to ${nextStatus}`;
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to apply manual mark";
+  } finally {
+    markSavingCellKey.value = "";
+  }
+}
+
 watch(contestId, loadContestPage);
 onMounted(loadContestPage);
 </script>
@@ -286,8 +363,15 @@ onMounted(loadContestPage);
                 </div>
 
                 <div class="actions" style="margin-top: 0; margin-bottom: 18px">
-                  <button class="button" :disabled="syncing" @click="syncProblemsFromCodeforces">
-                    {{ syncing ? "Syncing..." : "Sync Problems From Codeforces" }}
+                  <button v-if="hasCodeforcesContestSource" class="button" :disabled="syncing" @click="syncProblemsFromCodeforces">
+                    {{ syncing ? "Syncing..." : "Sync" }}
+                  </button>
+                  <button
+                    :class="markMode ? 'button' : 'button button--ghost'"
+                    :disabled="!coverage?.trackedMembers.length || !coverage?.problemCount"
+                    @click="markMode = !markMode"
+                  >
+                    {{ markMode ? "Cancel Mark Mode" : "Enter Mark Mode" }}
                   </button>
                   <button class="button button--ghost" :disabled="saving" @click="editing = !editing">
                     {{ editing ? "Close Editor" : "Edit Contest Metadata" }}
@@ -344,9 +428,21 @@ onMounted(loadContestPage);
                           </span>
                         </td>
                         <td v-for="member in problem.members" :key="`${problem.problemId}-${member.memberId}`">
-                          <span class="status-dot" :class="`status-${member.status}`">
-                            {{ member.status }}
-                          </span>
+                          <button
+                            type="button"
+                            class="coverage-cell-button"
+                            :class="{ 'coverage-cell-button--active': markMode }"
+                            :disabled="!markMode || !!markSavingCellKey"
+                            @click="applyMarkToCell(problem.problemId, member.memberId, member.status)"
+                          >
+                            <span class="status-dot" :class="`status-${member.status}`">
+                              {{
+                                markSavingCellKey === buildCellKey(problem.problemId, member.memberId)
+                                  ? "saving..."
+                                  : member.status
+                              }}
+                            </span>
+                          </button>
                         </td>
                       </tr>
                     </tbody>
@@ -356,7 +452,7 @@ onMounted(loadContestPage);
                 <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
                 <p v-if="syncWarning" class="notice" style="margin-top: 16px">{{ syncWarning }}</p>
                 <p v-if="!(coverage?.problemCount)" class="notice" style="margin-top: 16px">
-                  这场比赛还没有本地 problem snapshot。先点上面的按钮从 Codeforces 拉一次题目列表。
+                  这场比赛还没有题目列表。可以在编辑器里手动补题，或者如果存在 Codeforces source 再同步。
                 </p>
               </div>
             </div>
@@ -385,25 +481,23 @@ onMounted(loadContestPage);
                 <div class="field" style="margin-top: 14px">
                   <label>Source Links</label>
                   <div class="list-grid" style="margin-top: 12px">
-                    <a
+                    <component
                       v-for="source in contest.sources"
                       :key="`${source.provider}-${source.kind}-${source.provider_contest_id || source.provider_problem_id || source.url}`"
+                      :is="source.url ? 'a' : 'div'"
                       class="contest-card"
                       :href="source.url"
-                      target="_blank"
-                      rel="noreferrer"
+                      :target="source.url ? '_blank' : undefined"
+                      :rel="source.url ? 'noreferrer' : undefined"
                     >
                       <div class="contest-card__top">
                         <div>
-                          <p class="eyebrow">
-                            {{ source.provider }} / {{ source.kind }}
-                            <template v-if="source.variant"> / {{ source.variant }}</template>
-                          </p>
-                          <h3>{{ source.label || source.url }}</h3>
+                          <p class="eyebrow">{{ source.provider }} / {{ source.kind }}</p>
+                          <h3>{{ source.label || source.url || "Manual Source" }}</h3>
                           <p v-if="source.source_title" class="muted tiny">{{ source.source_title }}</p>
                         </div>
                       </div>
-                    </a>
+                    </component>
                   </div>
                 </div>
 
@@ -417,3 +511,23 @@ onMounted(loadContestPage);
     </section>
   </div>
 </template>
+
+<style scoped>
+.coverage-cell-button {
+  width: 100%;
+  border: none;
+  background: transparent;
+  padding: 0;
+  text-align: left;
+  cursor: default;
+  font: inherit;
+}
+
+.coverage-cell-button--active {
+  cursor: pointer;
+}
+
+.coverage-cell-button:disabled {
+  opacity: 1;
+}
+</style>

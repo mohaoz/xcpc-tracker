@@ -19,8 +19,7 @@ export type CatalogContestIndex = {
 export type CatalogSource = {
   provider: string;
   kind: string;
-  variant?: string;
-  url: string;
+  url?: string;
   provider_contest_id?: string;
   provider_problem_id?: string;
   source_title?: string;
@@ -59,8 +58,7 @@ export type GeneratedCatalogBundle = {
 type CatalogSnapshotSource = {
   provider: string;
   kind: string;
-  variant?: string;
-  url: string;
+  url?: string;
   provider_contest_id?: string;
   provider_problem_id?: string;
   source_title?: string;

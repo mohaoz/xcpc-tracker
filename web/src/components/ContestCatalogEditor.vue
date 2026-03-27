@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 
 import type { CatalogSource } from "../lib/catalog";
 import { aggregateAliasesFromSources } from "../lib/catalog-sources";
@@ -43,9 +43,13 @@ const tags = ref<string[]>([]);
 const aliases = ref<string[]>([]);
 const sources = ref<CatalogSource[]>([]);
 const problems = ref<ContestEditorProblem[]>([]);
+const manualProblemsJson = ref("");
 const tagDraft = ref("");
 const aliasDraft = ref("");
 const validationErrors = ref<string[]>([]);
+const showManualProblemsEditor = computed(() =>
+  sources.value.some((source) => source.provider.trim() === "manual"),
+);
 
 function dedupe(values: string[]) {
   const seen = new Set<string>();
@@ -63,33 +67,45 @@ function dedupe(values: string[]) {
   });
 }
 
-function normalizeVariant(source: Pick<CatalogSource, "provider" | "variant">) {
-  if (source.provider === "codeforces") {
-    return source.variant === "gym_private" ? "gym_private" : "gym_public";
-  }
-  return source.variant ?? "";
-}
-
-function normalizeSources(value: CatalogSource[]) {
-  return value.map((source) => ({
+function normalizeSource(source: CatalogSource): CatalogSource {
+  return {
     provider: source.provider ?? "",
     kind: source.kind ?? "contest",
-    variant: normalizeVariant(source),
     url: source.url ?? "",
     provider_contest_id: source.provider_contest_id ?? "",
     provider_problem_id: source.provider_problem_id ?? "",
     source_title: source.source_title ?? "",
     label: source.label ?? "",
-  }));
+  };
 }
 
-function normalizeProblems(value: ContestEditorProblem[]) {
-  return value.map((problem) => ({
+function normalizeSources(value: CatalogSource[]) {
+  return value.map(normalizeSource);
+}
+
+function normalizeProblem(problem: ContestEditorProblem): ContestEditorProblem {
+  return {
     ordinal: problem.ordinal ?? "",
     title: problem.title ?? "",
     aliases: dedupe(problem.aliases ?? []),
     sources: normalizeSources(problem.sources ?? []),
-  }));
+  };
+}
+
+function normalizeProblems(value: ContestEditorProblem[]) {
+  return value.map(normalizeProblem);
+}
+
+function serializeProblemsForEditor(value: ContestEditorProblem[]) {
+  return JSON.stringify(
+    value.map((problem) => ({
+      ordinal: problem.ordinal,
+      title: problem.title,
+      aliases: dedupe(problem.aliases ?? []),
+    })),
+    null,
+    2,
+  );
 }
 
 function resetDraft() {
@@ -97,22 +113,12 @@ function resetDraft() {
   notes.value = props.initialValue?.notes ?? "";
   tags.value = dedupe(props.initialValue?.tags ?? []);
   aliases.value = dedupe(props.initialValue?.aliases ?? []);
+  sources.value = normalizeSources(props.initialValue?.sources ?? []);
   problems.value = normalizeProblems(props.initialValue?.problems ?? []);
-  sources.value = normalizeSources(
-    props.initialValue?.sources?.length
-      ? props.initialValue.sources
-      : [{
-          provider: "codeforces",
-          kind: "contest",
-          variant: "gym_public",
-          url: "",
-          provider_contest_id: "",
-          source_title: "",
-          label: "Codeforces Gym",
-        }],
-  );
+  manualProblemsJson.value = serializeProblemsForEditor(problems.value);
   tagDraft.value = "";
   aliasDraft.value = "";
+  validationErrors.value = [];
 }
 
 watch(
@@ -153,7 +159,6 @@ function addSource() {
   sources.value.push({
     provider: "codeforces",
     kind: "contest",
-    variant: "gym_public",
     url: "",
     provider_contest_id: "",
     source_title: "",
@@ -165,19 +170,26 @@ function removeSource(index: number) {
   sources.value.splice(index, 1);
 }
 
-function normalizeUrl(value: string) {
-  return value.trim();
+function buildSourceProviderOptions(currentProvider: string) {
+  const options = ["manual", "codeforces", "qoj", "board_xcpcio", "other"];
+  if (currentProvider && !options.includes(currentProvider)) {
+    return [currentProvider, ...options];
+  }
+  return options;
 }
 
 function buildSourceKindOptions(provider: string) {
+  if (provider === "manual") {
+    return ["contest"];
+  }
   if (provider === "codeforces" || provider === "qoj") {
-    return ["contest", "problem"];
+    return ["contest"];
   }
   if (provider === "board_xcpcio") {
     return ["ranking"];
   }
   if (provider === "other") {
-    return ["contest", "ranking", "writeup", "problem", "other"];
+    return ["contest", "ranking", "writeup", "other"];
   }
   return ["contest"];
 }
@@ -188,7 +200,132 @@ function handleProviderChange(index: number) {
   if (!allowedKinds.includes(source.kind)) {
     source.kind = allowedKinds[0] ?? "contest";
   }
-  source.variant = normalizeVariant(source);
+  if (showManualProblemsEditor.value) {
+    manualProblemsJson.value = serializeProblemsForEditor(problems.value);
+  }
+}
+
+function isPrimaryManualSource(index: number) {
+  return sources.value.findIndex((source) => source.provider.trim() === "manual") === index;
+}
+
+function normalizeUrl(value: string) {
+  return value.trim();
+}
+
+function normalizeProblemSources(problem: ContestEditorProblem): CatalogSource[] {
+  const normalizedSources = (problem.sources ?? [])
+    .map((source) => ({
+      provider: source.provider.trim(),
+      kind: source.kind.trim() || "problem",
+      url: (source.url ?? "").trim() || undefined,
+      provider_contest_id: source.provider_contest_id?.trim() || undefined,
+      provider_problem_id: source.provider_problem_id?.trim() || undefined,
+      source_title: source.source_title?.trim() || undefined,
+      label: source.label?.trim() || undefined,
+    }))
+    .filter((source) => source.provider && source.kind && (source.url || source.provider === "manual"));
+
+  if (normalizedSources.length === 0) {
+    return [{
+      provider: "manual",
+      kind: "problem",
+      source_title: problem.title.trim(),
+      label: "Manual Entry",
+    }];
+  }
+
+  return normalizedSources.map((source) => {
+    if (source.provider !== "manual") {
+      return source;
+    }
+    return {
+      ...source,
+      kind: "problem",
+      url: undefined,
+      source_title: source.source_title || problem.title.trim(),
+      label: source.label || "Manual Entry",
+    };
+  });
+}
+
+function parseManualProblemsJson() {
+  const trimmed = manualProblemsJson.value.trim();
+  if (!trimmed) {
+    return {
+      problems: [] as ContestEditorProblem[],
+      errors: [] as string[],
+    };
+  }
+
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(trimmed);
+  } catch {
+    return {
+      problems: [] as ContestEditorProblem[],
+      errors: ["manual problems JSON is invalid"],
+    };
+  }
+
+  if (!Array.isArray(parsed)) {
+    return {
+      problems: [] as ContestEditorProblem[],
+      errors: ["manual problems JSON must be an array"],
+    };
+  }
+
+  const errors: string[] = [];
+  const problemOrdinals = new Set<string>();
+  const existingProblemByOrdinal = new Map(
+    problems.value.map((problem) => [problem.ordinal.trim().toLocaleLowerCase(), problem] as const),
+  );
+
+  const nextProblems = parsed.map((entry, index) => {
+    if (!entry || typeof entry !== "object") {
+      errors.push(`problem ${index + 1}: must be an object`);
+      return {
+        ordinal: "",
+        title: "",
+        aliases: [],
+        sources: [],
+      } satisfies ContestEditorProblem;
+    }
+
+    const rawOrdinal = "ordinal" in entry && typeof entry.ordinal === "string" ? entry.ordinal.trim() : "";
+    const rawTitle = "title" in entry && typeof entry.title === "string" ? entry.title.trim() : "";
+    const rawAliases =
+      "aliases" in entry && Array.isArray(entry.aliases)
+        ? entry.aliases.filter((alias: unknown): alias is string => typeof alias === "string")
+        : [];
+
+    if (!rawOrdinal) {
+      errors.push(`problem ${index + 1}: ordinal is required`);
+    }
+    if (!rawTitle) {
+      errors.push(`problem ${index + 1}: title is required`);
+    }
+    if (rawOrdinal) {
+      const key = rawOrdinal.toLocaleLowerCase();
+      if (problemOrdinals.has(key)) {
+        errors.push(`problem ${index + 1}: duplicate ordinal ${rawOrdinal}`);
+      }
+      problemOrdinals.add(key);
+    }
+
+    const existingProblem = existingProblemByOrdinal.get(rawOrdinal.toLocaleLowerCase());
+    return {
+      ordinal: rawOrdinal,
+      title: rawTitle,
+      aliases: dedupe(rawAliases),
+      sources: normalizeSources(existingProblem?.sources ?? []),
+    } satisfies ContestEditorProblem;
+  });
+
+  return {
+    problems: nextProblems.filter((problem) => problem.ordinal || problem.title || problem.aliases.length > 0),
+    errors,
+  };
 }
 
 function validate() {
@@ -201,78 +338,27 @@ function validate() {
     .map((source) => ({
       provider: source.provider.trim(),
       kind: source.kind.trim(),
-      variant: normalizeVariant({
-        provider: source.provider.trim(),
-        variant: source.variant?.trim(),
-      }),
-      url: normalizeUrl(source.url),
+      url: normalizeUrl(source.url ?? ""),
       provider_contest_id: source.provider_contest_id?.trim() || "",
       source_title: source.source_title?.trim() || "",
+      label: source.label?.trim() || "",
     }))
-    .filter((source) => source.provider || source.kind || source.url || source.provider_contest_id || source.source_title || source.variant);
-
-  if (!normalizedSources.length) {
-    errors.push("at least one source is required");
-  }
-
-  const hasContestSource = normalizedSources.some((source) => source.kind === "contest");
-  if (!hasContestSource) {
-    errors.push("at least one contest source is required");
-  }
+    .filter((source) => source.provider || source.kind || source.url || source.provider_contest_id || source.source_title || source.label);
 
   normalizedSources.forEach((source, index) => {
     const allowedKinds = buildSourceKindOptions(source.provider);
     if (!allowedKinds.includes(source.kind)) {
       errors.push(`source ${index + 1}: ${source.provider} does not support kind ${source.kind}`);
     }
-    if (!source.url) {
+    if (source.provider !== "manual" && !source.url) {
       errors.push(`source ${index + 1}: url is required`);
     }
   });
 
-  const problemOrdinals = new Set<string>();
-  problems.value.forEach((problem, index) => {
-    const ordinal = problem.ordinal.trim();
-    const titleValue = problem.title.trim();
-    const hasContent = ordinal || titleValue || problem.sources.some((source) =>
-      source.provider.trim() || source.kind.trim() || source.url.trim() || source.provider_problem_id?.trim(),
-    );
-    if (!hasContent) {
-      return;
-    }
-    if (!ordinal) {
-      errors.push(`problem ${index + 1}: ordinal is required`);
-    }
-    if (!titleValue) {
-      errors.push(`problem ${index + 1}: title is required`);
-    }
-    if (ordinal) {
-      if (problemOrdinals.has(ordinal.toLocaleLowerCase())) {
-        errors.push(`problem ${index + 1}: duplicate ordinal ${ordinal}`);
-      }
-      problemOrdinals.add(ordinal.toLocaleLowerCase());
-    }
-    problem.sources.forEach((source, sourceIndex) => {
-      const hasSourceContent = source.provider.trim() || source.kind.trim() || source.url.trim() || source.provider_problem_id?.trim();
-      const normalizedVariant = source.variant?.trim();
-      const normalizedSourceTitle = source.source_title?.trim();
-      const sourceHasExtendedContent = normalizedVariant || normalizedSourceTitle;
-      if (!hasSourceContent) {
-        if (!sourceHasExtendedContent) {
-          return;
-        }
-      }
-      if (!source.provider.trim()) {
-        errors.push(`problem ${index + 1} source ${sourceIndex + 1}: provider is required`);
-      }
-      if (!source.kind.trim()) {
-        errors.push(`problem ${index + 1} source ${sourceIndex + 1}: kind is required`);
-      }
-      if (!source.url.trim()) {
-        errors.push(`problem ${index + 1} source ${sourceIndex + 1}: url is required`);
-      }
-    });
-  });
+  if (showManualProblemsEditor.value) {
+    const parsed = parseManualProblemsJson();
+    errors.push(...parsed.errors);
+  }
 
   validationErrors.value = errors;
   return errors.length === 0;
@@ -282,6 +368,9 @@ function submit() {
   if (!validate()) {
     return;
   }
+
+  const parsedManualProblems = showManualProblemsEditor.value ? parseManualProblemsJson().problems : problems.value;
+
   emit("submit", {
     contestId: props.initialValue?.contestId,
     title: title.value.trim(),
@@ -291,38 +380,30 @@ function submit() {
       .map((source) => ({
         provider: source.provider.trim(),
         kind: source.kind.trim(),
-        variant: normalizeVariant({
-          provider: source.provider.trim(),
-          variant: source.variant?.trim(),
-        }) || undefined,
-        url: source.url.trim(),
+        url: (source.url ?? "").trim() || undefined,
         provider_contest_id: source.provider_contest_id?.trim() || undefined,
         provider_problem_id: source.provider_problem_id?.trim() || undefined,
         source_title: source.source_title?.trim() || undefined,
         label: source.label?.trim() || undefined,
       }))
-      .filter((source) => source.provider && source.kind && source.url),
+      .filter((source) => source.provider && source.kind && (source.url || source.provider === "manual")),
     notes: notes.value.trim() || null,
-    problems: problems.value.map((problem) => ({
-      ordinal: problem.ordinal.trim(),
-      title: problem.title.trim(),
-      aliases: aggregateAliasesFromSources(
-        problem.title.trim(),
-        dedupe(problem.aliases),
-        problem.sources.map((source) => ({
-          ...source,
-          source_title: source.source_title?.trim() || undefined,
-        })),
-      ),
-      sources: problem.sources.map((source) => ({
-        ...source,
-        variant: normalizeVariant({
-          provider: source.provider.trim(),
-          variant: source.variant?.trim(),
-        }) || undefined,
-        source_title: source.source_title?.trim() || undefined,
-      })),
-    })).filter((problem) => problem.ordinal && problem.title),
+    problems: parsedManualProblems
+      .map((problem) => {
+        const problemTitle = problem.title.trim();
+        const nextSources = normalizeProblemSources(problem);
+        return {
+          ordinal: problem.ordinal.trim(),
+          title: problemTitle,
+          aliases: aggregateAliasesFromSources(
+            problemTitle,
+            dedupe(problem.aliases),
+            nextSources,
+          ),
+          sources: nextSources,
+        };
+      })
+      .filter((problem) => problem.ordinal && problem.title),
   });
 }
 </script>
@@ -378,21 +459,23 @@ function submit() {
           />
         </div>
       </div>
-
     </div>
 
     <div class="field" style="margin-top: 16px">
-      <label>Sources</label>
+      <label>Contest Sources</label>
       <div class="contest-source-list">
         <div v-for="(source, index) in sources" :key="index" class="contest-source-card">
           <div class="form-grid">
             <div class="field">
               <label>Provider</label>
               <select v-model="source.provider" class="input-select" @change="handleProviderChange(index)">
-                <option value="codeforces">codeforces</option>
-                <option value="qoj">qoj</option>
-                <option value="board_xcpcio">board_xcpcio</option>
-                <option value="other">other</option>
+                <option
+                  v-for="provider in buildSourceProviderOptions(source.provider)"
+                  :key="provider"
+                  :value="provider"
+                >
+                  {{ provider }}
+                </option>
               </select>
             </div>
             <div class="field">
@@ -412,13 +495,6 @@ function submit() {
               <input v-model="source.provider_contest_id" type="text" placeholder="105922" />
             </div>
             <div class="field">
-              <label>Variant</label>
-              <select v-model="source.variant" class="input-select">
-                <option value="gym_public">gym_public</option>
-                <option value="gym_private">gym_private</option>
-              </select>
-            </div>
-            <div class="field">
               <label>Label</label>
               <input v-model="source.label" type="text" placeholder="Codeforces Gym" />
             </div>
@@ -426,9 +502,25 @@ function submit() {
               <label>Source Title</label>
               <input v-model="source.source_title" type="text" placeholder="Contest title on this source" />
             </div>
-            <div class="field" style="grid-column: 1 / -1">
+            <div v-if="source.provider !== 'manual'" class="field" style="grid-column: 1 / -1">
               <label>URL</label>
               <input v-model="source.url" type="text" placeholder="https://codeforces.com/gym/105922" />
+            </div>
+            <div
+              v-if="source.provider === 'manual' && isPrimaryManualSource(index)"
+              class="field"
+              style="grid-column: 1 / -1"
+            >
+              <label>Manual Problems JSON</label>
+              <textarea
+                v-model="manualProblemsJson"
+                class="input-textarea"
+                rows="14"
+                placeholder='[{"ordinal":"A","title":"Problem A","aliases":["Alias A"]}]'
+              />
+              <p class="muted tiny" style="margin-top: 10px">
+                填 JSON 数组。字段支持 `ordinal`、`title`、可选 `aliases`。保存后没有外部 source 的题目会自动补 `manual / problem` source。
+              </p>
             </div>
           </div>
           <div class="actions" style="margin-top: 12px">
@@ -444,7 +536,7 @@ function submit() {
       </div>
       <div class="actions" style="margin-top: 12px">
         <button type="button" class="button button--ghost" @click="addSource">
-          Add Source
+          Add Contest Source
         </button>
       </div>
     </div>

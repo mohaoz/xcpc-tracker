@@ -21,7 +21,7 @@
 ### 1. Catalog Source
 - Human-edited curated contest JSON in `catalog/`.
 - The built-in default catalog lives in a single bundled JSON file.
-- Stores stable IDs, tags, aliases, problem definitions, and external source links.
+- Stores stable IDs, tags, aliases, problem definitions, and source links.
 - This is the canonical product dataset.
 
 ### 2. Validation
@@ -45,6 +45,7 @@
 - Dexie-backed IndexedDB is the main runtime store.
 - Stores local members, imported handles, problem-status records, sync records, and import provenance.
 - Stores contest problem snapshots, resolved provider-problem mappings, and local coverage inputs.
+- Manual entry provenance is recorded locally for hand-entered problem sources and hand-marked member problem status.
 
 ### 6. Vue SPA
 - Renders curated contest browsing, member coverage, and import workflows.

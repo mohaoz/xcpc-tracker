@@ -723,6 +723,104 @@ export async function replaceManualCatalogContest(payload: {
   );
 }
 
+export async function upsertManualMemberProblemStatus(payload: {
+  memberId: string;
+  problemId: string;
+  status: "solved" | "attempted" | null;
+  note?: string | null;
+}): Promise<void> {
+  const importedAt = new Date().toISOString();
+  const sourceRecordId = `manual-entry:${payload.memberId}:${payload.problemId}:${importedAt}`;
+  const syncId = `manual-sync:${payload.memberId}:${payload.problemId}:${importedAt}`;
+
+  await localDb.transaction(
+    "rw",
+    [
+      localDb.memberProblemStatus,
+      localDb.importSources,
+      localDb.syncRecords,
+    ],
+    async () => {
+      const existingStatuses = await localDb.memberProblemStatus
+        .where("[memberId+problemId]")
+        .equals([payload.memberId, payload.problemId])
+        .toArray();
+      const existingManualStatuses = existingStatuses.filter((status) => status.provider === "manual");
+      const existingManualStatus = existingManualStatuses[0];
+      const nextStatus =
+        existingManualStatus?.status === "solved" || payload.status === "solved"
+          ? "solved"
+          : "attempted";
+
+      await localDb.importSources.put({
+        sourceRecordId,
+        kind: "manual_entry",
+        label: "Manual Member Problem Status",
+        importedAt,
+        rawMetaJson: {
+          member_id: payload.memberId,
+          problem_id: payload.problemId,
+          status: payload.status,
+          applied_status: payload.status === null ? null : nextStatus,
+          action: payload.status === null ? "clear" : "set",
+          note: payload.note?.trim() || null,
+        },
+      });
+
+      await localDb.syncRecords.put({
+        syncId,
+        sourceRecordId,
+        adapter: "manual",
+        startedAt: importedAt,
+        finishedAt: importedAt,
+        status: "succeeded",
+        summaryJson: {
+          member_id: payload.memberId,
+          problem_id: payload.problemId,
+          status: payload.status,
+          applied_status: payload.status === null ? null : nextStatus,
+          action: payload.status === null ? "clear" : "set",
+          note: payload.note?.trim() || null,
+        },
+      });
+
+      if (existingManualStatuses.length > 0) {
+        await localDb.memberProblemStatus.bulkDelete(
+          existingManualStatuses.map((status) => status.statusId),
+        );
+      }
+
+      if (payload.status === null) {
+        return;
+      }
+
+      await localDb.memberProblemStatus.put({
+        statusId: existingManualStatus?.statusId ?? crypto.randomUUID(),
+        memberId: payload.memberId,
+        problemId: payload.problemId,
+        provider: "manual",
+        status: nextStatus,
+        firstSeenAt: existingManualStatus?.firstSeenAt ?? importedAt,
+        lastSeenAt: importedAt,
+        sourceRecordId,
+        matchMethod: "manual",
+      });
+    },
+  );
+}
+
+export async function getManualMemberProblemStatusFromDb(
+  memberId: string,
+  problemId: string,
+): Promise<"solved" | "attempted" | null> {
+  const existingStatuses = await localDb.memberProblemStatus
+    .where("[memberId+problemId]")
+    .equals([memberId, problemId])
+    .toArray();
+  const manualStatus = existingStatuses.find((status) => status.provider === "manual");
+  return manualStatus?.status ?? null;
+}
+
 export async function importLocalRuntimeSnapshot(snapshot: LocalRuntimeSnapshot): Promise<void> {
   await localDb.transaction(
     "rw",

@@ -25,7 +25,7 @@
 - If storing external links, then use a `sources` array with objects shaped like `provider`, `kind`, and `url`.
 - If contest/problem IDs are needed, then use stable internal IDs in curated data and keep provider-scoped IDs inside source mappings.
 - If a contest or problem has multiple upstream titles, then keep curator `title` as the stable primary title and store upstream titles on `sources[*].source_title`, aggregating them into `aliases` without overwriting the primary title.
-- If a source needs to distinguish Codeforces variants, then use `sources[*].variant` with `gym_public` as the default and `gym_private` when explicitly needed; do not keep separate `meshup` variants.
+- If a contest is created manually, then it may have an empty contest-level `sources` array; use `provider = "manual"` primarily for hand-entered problem sources and hand-entered member problem status provenance.
 
 ## Import Rules
 - If the source is Codeforces, then use official public API access from the frontend.

@@ -147,12 +147,8 @@ async function buildAuthorizedCodeforcesParams(
   };
 }
 
-function inferCodeforcesSourceVariant(source: Pick<CatalogSource, "variant" | "url">): "gym_public" | "gym_private" {
-  return source.variant?.trim() === "gym_private" ? "gym_private" : "gym_public";
-}
-
 function buildCodeforcesProblemUrl(contestSource: CatalogSource, ordinal: string): string {
-  const normalizedUrl = contestSource.url.trim().replace(/\/+$/g, "");
+  const normalizedUrl = (contestSource.url ?? "").trim().replace(/\/+$/g, "");
   return `${normalizedUrl}/problem/${ordinal}`;
 }
 
@@ -252,7 +248,6 @@ export async function syncCodeforcesContestProblems(
   const contestSourceTitles: Array<{
     provider_contest_id: string;
     source_title: string;
-    variant: string | null;
   }> = [];
   const problemTitleConflicts: Array<{
     ordinal: string;
@@ -294,17 +289,14 @@ export async function syncCodeforcesContestProblems(
       const message = error instanceof Error ? error.message : String(error);
       throw new Error(`${buildCodeforcesContestAccessHint(providerContestId)} ${message}`);
     }
-    const resolvedVariant = inferCodeforcesSourceVariant(contestSource);
     const normalizedContestSource: CatalogSource = {
       ...contestSource,
-      variant: resolvedVariant,
       source_title: standings.contest.name || contestSource.source_title,
     };
     mergedContestSources = mergeCatalogSources(mergedContestSources, normalizedContestSource);
     contestSourceTitles.push({
       provider_contest_id: providerContestId,
       source_title: standings.contest.name,
-      variant: resolvedVariant ?? null,
     });
 
     for (const problem of standings.problems.filter((item) => item.index)) {
@@ -312,7 +304,6 @@ export async function syncCodeforcesContestProblems(
       const problemSource: CatalogSource = {
         provider: "codeforces",
         kind: "problem",
-        variant: resolvedVariant,
         url: buildCodeforcesProblemUrl(normalizedContestSource, ordinal),
         provider_problem_id: `${providerContestId}:${ordinal}`,
         source_title: problem.name,
