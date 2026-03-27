@@ -2,6 +2,11 @@
 import { onMounted, ref } from "vue";
 
 import { syncAllCodeforcesContests, syncAllCodeforcesMembers } from "../lib/codeforces";
+import {
+  clearCodeforcesApiCredentials,
+  loadCodeforcesApiCredentials,
+  saveCodeforcesApiCredentials,
+} from "../lib/codeforces-auth";
 import { importBundledCatalogSnapshot, refreshCatalogCache } from "../lib/catalog-cache";
 import { emitCatalogMutated } from "../lib/catalog-events";
 import { emitMemberMutated } from "../lib/member-events";
@@ -31,6 +36,10 @@ const refreshingCatalog = ref(false);
 const importingDefaultData = ref(false);
 const syncingContests = ref(false);
 let syncAbortController: AbortController | null = null;
+const codeforcesApiKey = ref("");
+const codeforcesApiSecret = ref("");
+const codeforcesAuthFeedback = ref("");
+const syncFailureSummary = ref("");
 
 const exportTarget = ref<"contest" | "member">("contest");
 const exportIncludeProblems = ref(true);
@@ -41,6 +50,32 @@ const importIncludeProblems = ref(true);
 function clearStatus() {
   error.value = "";
   feedback.value = "";
+  syncFailureSummary.value = "";
+}
+
+function loadCodeforcesSettings() {
+  const credentials = loadCodeforcesApiCredentials();
+  codeforcesApiKey.value = credentials?.apiKey ?? "";
+  codeforcesApiSecret.value = credentials?.apiSecret ?? "";
+}
+
+function saveCodeforcesSettings() {
+  const apiKey = codeforcesApiKey.value.trim();
+  const apiSecret = codeforcesApiSecret.value.trim();
+  if (!apiKey || !apiSecret) {
+    codeforcesAuthFeedback.value = "API key and secret are required";
+    return;
+  }
+
+  saveCodeforcesApiCredentials({ apiKey, apiSecret });
+  codeforcesAuthFeedback.value = "Codeforces API credentials saved in this browser";
+}
+
+function clearCodeforcesSettings() {
+  clearCodeforcesApiCredentials();
+  codeforcesApiKey.value = "";
+  codeforcesApiSecret.value = "";
+  codeforcesAuthFeedback.value = "Saved Codeforces API credentials cleared";
 }
 
 function downloadJson(filename: string, payload: unknown) {
@@ -147,6 +182,12 @@ async function handleOneClickSync() {
     feedback.value = result.cancelled
       ? `sync interrupted, now ${result.syncedContestCount}/${result.totalContestCount} ready`
       : `synced ${result.synced.length} new contests, now ${result.syncedContestCount}/${result.totalContestCount} ready`;
+    if (result.failed.length) {
+      syncFailureSummary.value = [
+        `以下比赛没有同步成功：${result.failed.map((item) => item.contestTitle).join("、")}`,
+        "如果其中有 private Codeforces 比赛，请先在 Manage 页面保存 API 凭据，并确认当前账号本身有访问权限。即使具备权限，返回的数据也可能仍然不完整。",
+      ].join(" ");
+    }
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "failed to run full sync";
   } finally {
@@ -320,7 +361,10 @@ async function handleImportData(event: Event) {
   }
 }
 
-onMounted(refreshStats);
+onMounted(() => {
+  loadCodeforcesSettings();
+  void refreshStats();
+});
 </script>
 
 <template>
@@ -350,6 +394,40 @@ onMounted(refreshStats);
           <section class="panel" style="box-shadow: none">
             <div class="panel__body">
               <div class="panel__title" style="margin-bottom: 14px">
+                <p class="eyebrow">Codeforces</p>
+                <h3>API 凭据</h3>
+              </div>
+              <p class="muted">
+                保存后，比赛一键导入、比赛题目同步、成员做题记录导入和全量成员同步都会自动使用这组凭据。private 比赛通常还要求你的账号本身有访问权限，而且返回的数据仍可能不完整。
+              </p>
+              <div class="form-grid" style="margin-top: 14px">
+                <div class="field">
+                  <label>API Key</label>
+                  <input v-model="codeforcesApiKey" type="text" placeholder="Codeforces API key" />
+                </div>
+                <div class="field">
+                  <label>API Secret</label>
+                  <input v-model="codeforcesApiSecret" type="password" placeholder="Codeforces API secret" />
+                </div>
+              </div>
+              <div class="actions">
+                <button class="button" @click="saveCodeforcesSettings">
+                  保存 Codeforces API
+                </button>
+                <button class="button button--ghost" @click="clearCodeforcesSettings">
+                  清除已保存凭据
+                </button>
+              </div>
+              <p class="muted tiny">
+                凭据仅保存在当前浏览器本地，不会上传到仓库或后端。
+              </p>
+              <p v-if="codeforcesAuthFeedback" class="notice" style="margin-top: 14px">{{ codeforcesAuthFeedback }}</p>
+            </div>
+          </section>
+
+          <section class="panel" style="box-shadow: none">
+            <div class="panel__body">
+              <div class="panel__title" style="margin-bottom: 14px">
                 <p class="eyebrow">Operations</p>
                 <h3>本地操作</h3>
               </div>
@@ -364,6 +442,9 @@ onMounted(refreshStats);
                 <button class="button" :disabled="loadingStats" @click="syncingContests ? handleInterruptSync() : handleOneClickSync()">
                   {{ syncingContests ? "Interrupt Sync" : "全量同步" }}
                 </button>
+                <span v-if="syncFailureSummary" class="editor-validation">
+                  {{ syncFailureSummary }}
+                </span>
                 <button class="button" :disabled="submitting || loadingStats" @click="handleImportDefaultData">
                   {{ importingDefaultData ? "Importing..." : "导入默认数据" }}
                 </button>

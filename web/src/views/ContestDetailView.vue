@@ -8,6 +8,7 @@ import {
   type CatalogSource,
   type CatalogContestDetail,
 } from "../lib/catalog";
+import { aggregateAliasesFromSources } from "../lib/catalog-sources";
 import { emitCatalogMutated } from "../lib/catalog-events";
 import { syncCodeforcesContestProblems } from "../lib/codeforces";
 import {
@@ -16,9 +17,9 @@ import {
   getContestCoverageFromDb,
   hasDeletedCatalogContestId,
   listCatalogContestsFromDb,
-  upsertCatalogContestRecord,
+  replaceManualCatalogContest,
 } from "../lib/local-db";
-import type { LocalCatalogContestRecord, LocalContestCoverage } from "../lib/local-model";
+import type { LocalCatalogContestRecord, LocalCatalogProblemRecord, LocalContestCoverage } from "../lib/local-model";
 
 const route = useRoute();
 const router = useRouter();
@@ -28,6 +29,7 @@ const loading = ref(false);
 const syncing = ref(false);
 const error = ref("");
 const feedback = ref("");
+const syncWarning = ref("");
 const editing = ref(false);
 const saving = ref(false);
 const deleting = ref(false);
@@ -35,7 +37,7 @@ const existingTags = ref<string[]>([]);
 
 const contestId = computed(() => String(route.params.contestId ?? ""));
 const contestEyebrow = computed(() => {
-  const source = contest.value?.sources.find((item) => item.provider_contest_id);
+  const source = contest.value?.sources.find((item) => item.provider === "codeforces" && item.kind === "contest" && item.provider_contest_id);
   if (source?.provider && source.provider_contest_id) {
     return `${source.provider.toUpperCase()} / ${source.provider_contest_id}`;
   }
@@ -53,6 +55,12 @@ const contestEditorInitialValue = computed(() => {
     tags: contest.value.tags,
     sources: contest.value.sources,
     notes: contest.value.notes ?? null,
+    problems: contest.value.problems.map((problem) => ({
+      ordinal: problem.ordinal,
+      title: problem.title,
+      aliases: problem.aliases,
+      sources: problem.sources,
+    })),
   };
 });
 
@@ -62,6 +70,8 @@ function mapLocalContestRecordToDetail(
     problemId: string;
     ordinal: string;
     title: string;
+    aliases?: string[];
+    sources?: CatalogSource[];
   }> = [],
 ): CatalogContestDetail {
   return {
@@ -76,8 +86,8 @@ function mapLocalContestRecordToDetail(
       id: problem.problemId,
       ordinal: problem.ordinal,
       title: problem.title,
-      aliases: [],
-      sources: [],
+      aliases: "aliases" in problem ? (problem.aliases ?? []) : [],
+      sources: "sources" in problem ? (problem.sources ?? []) : [],
     })),
     notes: contestRecord.notes ?? undefined,
     generated_from: contestRecord.generatedFrom ?? undefined,
@@ -103,7 +113,7 @@ async function loadContestPage() {
     if (localDetail) {
       const localCoverage = await getContestCoverageFromDb(contestId.value);
       coverage.value = localCoverage;
-      contest.value = mapLocalContestRecordToDetail(localDetail.contest, localCoverage.problems);
+      contest.value = mapLocalContestRecordToDetail(localDetail.contest, localDetail.problems);
     } else {
       if (await hasDeletedCatalogContestId(contestId.value)) {
         throw new Error("contest deleted");
@@ -123,6 +133,12 @@ async function saveContestMetadata(payload: {
   tags: string[];
   sources: CatalogSource[];
   notes: string | null;
+  problems?: Array<{
+    ordinal: string;
+    title: string;
+    aliases?: string[];
+    sources: CatalogSource[];
+  }>;
 }) {
   if (!contest.value) {
     return;
@@ -140,17 +156,29 @@ async function saveContestMetadata(payload: {
   error.value = "";
   feedback.value = "";
   try {
-    await upsertCatalogContestRecord({
-      contestId: contest.value.id,
-      title: payload.title.trim(),
-      aliases: payload.aliases,
-      tags: payload.tags,
-      startAt: contest.value.start_at ?? null,
-      curationStatus: contest.value.curation_status,
-      problemIds: coverage.value?.problems.map((problem) => problem.problemId) ?? contest.value.problems.map((problem) => problem.id),
-      sources: payload.sources,
-      notes: payload.notes,
-      generatedFrom: "manual",
+    const nextProblems: LocalCatalogProblemRecord[] = (payload.problems ?? contest.value.problems).map((problem) => ({
+      problemId: `${contest.value!.id}:${problem.ordinal}`,
+      contestId: contest.value!.id,
+      ordinal: problem.ordinal,
+      title: problem.title,
+      aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources),
+      sources: problem.sources,
+    }));
+    const contestTitle = payload.title.trim();
+    await replaceManualCatalogContest({
+      contest: {
+        contestId: contest.value.id,
+        title: contestTitle,
+        aliases: aggregateAliasesFromSources(contestTitle, payload.aliases, payload.sources),
+        tags: payload.tags,
+        startAt: contest.value.start_at ?? null,
+        curationStatus: nextProblems.length ? "problem_listed" : contest.value.curation_status,
+        problemIds: nextProblems.map((problem) => problem.problemId),
+        sources: payload.sources,
+        notes: payload.notes,
+        generatedFrom: "manual",
+      },
+      problems: nextProblems,
     });
     emitCatalogMutated();
     await loadContestPage();
@@ -171,14 +199,15 @@ async function syncProblemsFromCodeforces() {
   syncing.value = true;
   error.value = "";
   feedback.value = "";
+  syncWarning.value = "";
   try {
     const result = await syncCodeforcesContestProblems(contestId.value);
     emitCatalogMutated();
-    feedback.value =
-      `synced ${result.problemCount} problems from Codeforces contest ${result.providerContestId}`;
-    coverage.value = await getContestCoverageFromDb(contestId.value);
+    feedback.value = `synced ${result.problemCount} problems from ${result.sourceCount} Codeforces source(s)`;
+    await loadContestPage();
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "failed to sync contest problems";
+    syncWarning.value = "如果这是一个 private Codeforces 比赛，请先在 Manage 页面保存 API 凭据，并确认当前账号本身有访问权限。即使具备权限，返回的数据也可能仍然不完整。";
   } finally {
     syncing.value = false;
   }
@@ -325,6 +354,7 @@ onMounted(loadContestPage);
                 </div>
 
                 <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
+                <p v-if="syncWarning" class="notice" style="margin-top: 16px">{{ syncWarning }}</p>
                 <p v-if="!(coverage?.problemCount)" class="notice" style="margin-top: 16px">
                   这场比赛还没有本地 problem snapshot。先点上面的按钮从 Codeforces 拉一次题目列表。
                 </p>
@@ -339,7 +369,7 @@ onMounted(loadContestPage);
                 </div>
 
                 <div class="field">
-                  <label>Aliases</label>
+                  <label>Aggregated Aliases</label>
                   <div class="inline-tags" style="margin-top: 10px">
                     <span
                       v-for="alias in contest.aliases"
@@ -357,7 +387,7 @@ onMounted(loadContestPage);
                   <div class="list-grid" style="margin-top: 12px">
                     <a
                       v-for="source in contest.sources"
-                      :key="`${source.provider}-${source.kind}-${source.url}`"
+                      :key="`${source.provider}-${source.kind}-${source.provider_contest_id || source.provider_problem_id || source.url}`"
                       class="contest-card"
                       :href="source.url"
                       target="_blank"
@@ -365,8 +395,12 @@ onMounted(loadContestPage);
                     >
                       <div class="contest-card__top">
                         <div>
-                          <p class="eyebrow">{{ source.provider }} / {{ source.kind }}</p>
+                          <p class="eyebrow">
+                            {{ source.provider }} / {{ source.kind }}
+                            <template v-if="source.variant"> / {{ source.variant }}</template>
+                          </p>
                           <h3>{{ source.label || source.url }}</h3>
+                          <p v-if="source.source_title" class="muted tiny">{{ source.source_title }}</p>
                         </div>
                       </div>
                     </a>

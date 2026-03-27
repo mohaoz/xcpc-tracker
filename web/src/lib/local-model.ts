@@ -29,6 +29,7 @@ export type LocalMemberRecord = {
   displayName: string;
   createdAt: string;
   updatedAt: string;
+  deletedAt?: string | null;
 };
 
 export type LocalMemberHandleRecord = {
@@ -39,6 +40,7 @@ export type LocalMemberHandleRecord = {
   displayLabel: string | null;
   createdAt: string;
   updatedAt: string;
+  deletedAt?: string | null;
 };
 
 export type LocalMemberProblemStatusRecord = {

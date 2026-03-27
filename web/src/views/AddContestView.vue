@@ -3,8 +3,10 @@ import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
 
 import ContestCatalogEditor from "../components/ContestCatalogEditor.vue";
+import { aggregateAliasesFromSources } from "../lib/catalog-sources";
+import { emitCatalogMutated } from "../lib/catalog-events";
 import { addManualCatalogContest, listCatalogContestsFromDb } from "../lib/local-db";
-import type { LocalCatalogContestRecord } from "../lib/local-model";
+import type { LocalCatalogContestRecord, LocalCatalogProblemRecord } from "../lib/local-model";
 
 const router = useRouter();
 const submitting = ref(false);
@@ -26,12 +28,29 @@ async function handleAddManualContest(payload: {
   sources: Array<{
     provider: string;
     kind: string;
+    variant?: string;
     url: string;
     provider_contest_id?: string;
     provider_problem_id?: string;
+    source_title?: string;
     label?: string;
   }>;
   notes: string | null;
+  problems?: Array<{
+    ordinal: string;
+    title: string;
+    aliases?: string[];
+    sources: Array<{
+      provider: string;
+      kind: string;
+      variant?: string;
+      url: string;
+      provider_contest_id?: string;
+      provider_problem_id?: string;
+      source_title?: string;
+      label?: string;
+    }>;
+  }>;
 }) {
   if (!payload.title.trim()) {
     error.value = "contest title is required";
@@ -46,21 +65,32 @@ async function handleAddManualContest(payload: {
   error.value = "";
   feedback.value = "";
   try {
-    const contestId = crypto.randomUUID();
+    const targetContestId = crypto.randomUUID();
+    const problems: LocalCatalogProblemRecord[] = (payload.problems ?? []).map((problem) => ({
+      problemId: `${targetContestId}:${problem.ordinal}`,
+      contestId: targetContestId,
+      ordinal: problem.ordinal,
+      title: problem.title,
+      aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources),
+      sources: problem.sources,
+      sourceKind: "runtime_codeforces",
+    }));
+    const contestTitle = payload.title.trim();
     const contest: LocalCatalogContestRecord = {
-      contestId,
-      title: payload.title.trim(),
-      aliases: payload.aliases,
+      contestId: targetContestId,
+      title: contestTitle,
+      aliases: aggregateAliasesFromSources(contestTitle, payload.aliases, payload.sources),
       tags: payload.tags,
       startAt: null,
-      curationStatus: "contest_stub",
-      problemIds: [],
+      curationStatus: problems.length ? "problem_listed" : "contest_stub",
+      problemIds: problems.map((problem) => problem.problemId),
       sources: payload.sources,
       notes: payload.notes,
       generatedFrom: "manual",
     };
-    await addManualCatalogContest({ contest });
-    await router.push(`/contests/${contestId}`);
+    await addManualCatalogContest({ contest, problems });
+    emitCatalogMutated();
+    await router.push(`/contests/${targetContestId}`);
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "failed to add contest";
   } finally {

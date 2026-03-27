@@ -162,9 +162,10 @@ onUnmounted(() => {
           本地数据库里还没有成员。下一步接入 Codeforces / QOJ 导入后，这里会显示本地 member、handle 和题目状态。
         </div>
         <div v-else-if="people.length" class="list-grid">
-          <article
+          <RouterLink
             v-for="person in people"
             :key="person.memberId"
+            :to="`/members/${person.memberId}`"
             class="member-card"
           >
             <div class="member-card__top">
@@ -178,7 +179,7 @@ onUnmounted(() => {
                 </div>
               </div>
               <div class="member-card__actions">
-                <span class="tag tag--neutral">local</span>
+                <span class="button member-card__detail-button">查看详情</span>
               </div>
             </div>
 
@@ -198,19 +199,15 @@ onUnmounted(() => {
             </div>
 
             <div class="inline-tags" style="margin-top: 16px">
-              <div
+              <span
                 v-for="handle in person.handles"
                 :key="handle.handleId"
-                class="tag member-handle-tag"
+                class="tag member-handle-tag tag--neutral"
               >
-                <span>{{ handle.provider }} / {{ handle.handle }}</span>
-              </div>
+                {{ handle.provider }} / {{ handle.handle }}
+              </span>
             </div>
-
-            <p class="muted tiny">
-              member id: {{ person.memberId }}
-            </p>
-          </article>
+          </RouterLink>
         </div>
       </div>
     </section>

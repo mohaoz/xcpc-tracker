@@ -1,7 +1,15 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { ref, watch } from "vue";
 
 import type { CatalogSource } from "../lib/catalog";
+import { aggregateAliasesFromSources } from "../lib/catalog-sources";
+
+type ContestEditorProblem = {
+  ordinal: string;
+  title: string;
+  aliases: string[];
+  sources: CatalogSource[];
+};
 
 type ContestEditorValue = {
   contestId?: string;
@@ -10,6 +18,7 @@ type ContestEditorValue = {
   tags: string[];
   sources: CatalogSource[];
   notes: string | null;
+  problems?: ContestEditorProblem[];
 };
 
 const props = withDefaults(defineProps<{
@@ -33,6 +42,7 @@ const notes = ref("");
 const tags = ref<string[]>([]);
 const aliases = ref<string[]>([]);
 const sources = ref<CatalogSource[]>([]);
+const problems = ref<ContestEditorProblem[]>([]);
 const tagDraft = ref("");
 const aliasDraft = ref("");
 const validationErrors = ref<string[]>([]);
@@ -53,14 +63,32 @@ function dedupe(values: string[]) {
   });
 }
 
+function normalizeVariant(source: Pick<CatalogSource, "provider" | "variant">) {
+  if (source.provider === "codeforces") {
+    return source.variant === "gym_private" ? "gym_private" : "gym_public";
+  }
+  return source.variant ?? "";
+}
+
 function normalizeSources(value: CatalogSource[]) {
   return value.map((source) => ({
     provider: source.provider ?? "",
     kind: source.kind ?? "contest",
+    variant: normalizeVariant(source),
     url: source.url ?? "",
     provider_contest_id: source.provider_contest_id ?? "",
     provider_problem_id: source.provider_problem_id ?? "",
+    source_title: source.source_title ?? "",
     label: source.label ?? "",
+  }));
+}
+
+function normalizeProblems(value: ContestEditorProblem[]) {
+  return value.map((problem) => ({
+    ordinal: problem.ordinal ?? "",
+    title: problem.title ?? "",
+    aliases: dedupe(problem.aliases ?? []),
+    sources: normalizeSources(problem.sources ?? []),
   }));
 }
 
@@ -69,10 +97,19 @@ function resetDraft() {
   notes.value = props.initialValue?.notes ?? "";
   tags.value = dedupe(props.initialValue?.tags ?? []);
   aliases.value = dedupe(props.initialValue?.aliases ?? []);
+  problems.value = normalizeProblems(props.initialValue?.problems ?? []);
   sources.value = normalizeSources(
     props.initialValue?.sources?.length
       ? props.initialValue.sources
-      : [{ provider: "codeforces", kind: "contest", url: "", provider_contest_id: "", label: "Codeforces Gym" }],
+      : [{
+          provider: "codeforces",
+          kind: "contest",
+          variant: "gym_public",
+          url: "",
+          provider_contest_id: "",
+          source_title: "",
+          label: "Codeforces Gym",
+        }],
   );
   tagDraft.value = "";
   aliasDraft.value = "";
@@ -116,8 +153,10 @@ function addSource() {
   sources.value.push({
     provider: "codeforces",
     kind: "contest",
+    variant: "gym_public",
     url: "",
     provider_contest_id: "",
+    source_title: "",
     label: "",
   });
 }
@@ -149,6 +188,7 @@ function handleProviderChange(index: number) {
   if (!allowedKinds.includes(source.kind)) {
     source.kind = allowedKinds[0] ?? "contest";
   }
+  source.variant = normalizeVariant(source);
 }
 
 function validate() {
@@ -161,10 +201,15 @@ function validate() {
     .map((source) => ({
       provider: source.provider.trim(),
       kind: source.kind.trim(),
+      variant: normalizeVariant({
+        provider: source.provider.trim(),
+        variant: source.variant?.trim(),
+      }),
       url: normalizeUrl(source.url),
       provider_contest_id: source.provider_contest_id?.trim() || "",
+      source_title: source.source_title?.trim() || "",
     }))
-    .filter((source) => source.provider || source.kind || source.url || source.provider_contest_id);
+    .filter((source) => source.provider || source.kind || source.url || source.provider_contest_id || source.source_title || source.variant);
 
   if (!normalizedSources.length) {
     errors.push("at least one source is required");
@@ -185,6 +230,50 @@ function validate() {
     }
   });
 
+  const problemOrdinals = new Set<string>();
+  problems.value.forEach((problem, index) => {
+    const ordinal = problem.ordinal.trim();
+    const titleValue = problem.title.trim();
+    const hasContent = ordinal || titleValue || problem.sources.some((source) =>
+      source.provider.trim() || source.kind.trim() || source.url.trim() || source.provider_problem_id?.trim(),
+    );
+    if (!hasContent) {
+      return;
+    }
+    if (!ordinal) {
+      errors.push(`problem ${index + 1}: ordinal is required`);
+    }
+    if (!titleValue) {
+      errors.push(`problem ${index + 1}: title is required`);
+    }
+    if (ordinal) {
+      if (problemOrdinals.has(ordinal.toLocaleLowerCase())) {
+        errors.push(`problem ${index + 1}: duplicate ordinal ${ordinal}`);
+      }
+      problemOrdinals.add(ordinal.toLocaleLowerCase());
+    }
+    problem.sources.forEach((source, sourceIndex) => {
+      const hasSourceContent = source.provider.trim() || source.kind.trim() || source.url.trim() || source.provider_problem_id?.trim();
+      const normalizedVariant = source.variant?.trim();
+      const normalizedSourceTitle = source.source_title?.trim();
+      const sourceHasExtendedContent = normalizedVariant || normalizedSourceTitle;
+      if (!hasSourceContent) {
+        if (!sourceHasExtendedContent) {
+          return;
+        }
+      }
+      if (!source.provider.trim()) {
+        errors.push(`problem ${index + 1} source ${sourceIndex + 1}: provider is required`);
+      }
+      if (!source.kind.trim()) {
+        errors.push(`problem ${index + 1} source ${sourceIndex + 1}: kind is required`);
+      }
+      if (!source.url.trim()) {
+        errors.push(`problem ${index + 1} source ${sourceIndex + 1}: url is required`);
+      }
+    });
+  });
+
   validationErrors.value = errors;
   return errors.length === 0;
 }
@@ -202,13 +291,38 @@ function submit() {
       .map((source) => ({
         provider: source.provider.trim(),
         kind: source.kind.trim(),
+        variant: normalizeVariant({
+          provider: source.provider.trim(),
+          variant: source.variant?.trim(),
+        }) || undefined,
         url: source.url.trim(),
         provider_contest_id: source.provider_contest_id?.trim() || undefined,
         provider_problem_id: source.provider_problem_id?.trim() || undefined,
+        source_title: source.source_title?.trim() || undefined,
         label: source.label?.trim() || undefined,
       }))
       .filter((source) => source.provider && source.kind && source.url),
     notes: notes.value.trim() || null,
+    problems: problems.value.map((problem) => ({
+      ordinal: problem.ordinal.trim(),
+      title: problem.title.trim(),
+      aliases: aggregateAliasesFromSources(
+        problem.title.trim(),
+        dedupe(problem.aliases),
+        problem.sources.map((source) => ({
+          ...source,
+          source_title: source.source_title?.trim() || undefined,
+        })),
+      ),
+      sources: problem.sources.map((source) => ({
+        ...source,
+        variant: normalizeVariant({
+          provider: source.provider.trim(),
+          variant: source.variant?.trim(),
+        }) || undefined,
+        source_title: source.source_title?.trim() || undefined,
+      })),
+    })).filter((problem) => problem.ordinal && problem.title),
   });
 }
 </script>
@@ -298,8 +412,19 @@ function submit() {
               <input v-model="source.provider_contest_id" type="text" placeholder="105922" />
             </div>
             <div class="field">
+              <label>Variant</label>
+              <select v-model="source.variant" class="input-select">
+                <option value="gym_public">gym_public</option>
+                <option value="gym_private">gym_private</option>
+              </select>
+            </div>
+            <div class="field">
               <label>Label</label>
               <input v-model="source.label" type="text" placeholder="Codeforces Gym" />
+            </div>
+            <div class="field">
+              <label>Source Title</label>
+              <input v-model="source.source_title" type="text" placeholder="Contest title on this source" />
             </div>
             <div class="field" style="grid-column: 1 / -1">
               <label>URL</label>

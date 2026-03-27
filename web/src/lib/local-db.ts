@@ -62,10 +62,39 @@ class XcpcTrackerDb extends Dexie {
       syncRecords: "syncId, adapter, startedAt, sourceRecordId",
       problemMatchCache: "cacheKey, [provider+externalRef], updatedAt",
     });
+
+    this.version(4).stores({
+      catalogContests: "contestId, deletedAt",
+      catalogProblems: "problemId, contestId",
+      members: "memberId, updatedAt, deletedAt",
+      memberHandles: "handleId, memberId, [provider+handle], updatedAt, deletedAt",
+      memberProblemStatus: "statusId, memberId, problemId, [memberId+problemId], [provider+problemId], lastSeenAt",
+      importSources: "sourceRecordId, kind, importedAt",
+      syncRecords: "syncId, adapter, startedAt, sourceRecordId",
+      problemMatchCache: "cacheKey, [provider+externalRef], updatedAt",
+    });
   }
 }
 
 export const localDb = new XcpcTrackerDb();
+
+function attachProblemIdsToContests(
+  contests: LocalCatalogContestRecord[],
+  problems: LocalCatalogProblemRecord[],
+): LocalCatalogContestRecord[] {
+  const problemIdsByContestId = new Map<string, string[]>();
+
+  for (const problem of problems) {
+    const bucket = problemIdsByContestId.get(problem.contestId) ?? [];
+    bucket.push(problem.problemId);
+    problemIdsByContestId.set(problem.contestId, bucket);
+  }
+
+  return contests.map((contest) => ({
+    ...contest,
+    problemIds: problemIdsByContestId.get(contest.contestId) ?? contest.problemIds ?? [],
+  }));
+}
 
 export async function replaceCatalogSnapshot(payload: {
   contests: LocalCatalogContestRecord[];
@@ -267,7 +296,10 @@ export async function upsertMemberBundle(payload: {
     ],
     async () => {
       await localDb.members.put(payload.member);
-      await localDb.memberHandles.bulkPut(payload.handles);
+      await localDb.memberHandles.bulkPut(payload.handles.map((handle) => ({
+        ...handle,
+        deletedAt: handle.deletedAt ?? null,
+      })));
 
       for (const status of payload.statuses) {
         await localDb.memberProblemStatus.put(status);
@@ -311,12 +343,16 @@ export async function getCatalogDbStatus(): Promise<LocalDbStatus> {
   const activeProblems = problems.filter((problem) => activeContestIds.has(problem.contestId));
   const syncedContestIds = new Set(activeProblems.map((problem) => problem.contestId));
 
+  const activeMembers = (await localDb.members.toArray()).filter((member) => !member.deletedAt);
+  const activeMemberIds = new Set(activeMembers.map((member) => member.memberId));
+  const activeHandles = (await localDb.memberHandles.toArray()).filter((handle) => !handle.deletedAt && activeMemberIds.has(handle.memberId));
+
   return {
     contestCount: activeContests.length,
     syncedContestCount: activeContests.filter((contest) => syncedContestIds.has(contest.contestId)).length,
     problemCount: activeProblems.length,
-    memberCount,
-    handleCount,
+    memberCount: activeMembers.length,
+    handleCount: activeHandles.length,
     statusCount,
     lastCatalogImportAt,
   };
@@ -330,9 +366,13 @@ export async function listMemberPeopleFromDb(): Promise<LocalMemberPerson[]> {
     localDb.importSources.toArray(),
   ]);
 
-  return members
+  const activeMembers = members.filter((member) => !member.deletedAt);
+  const activeMemberIds = new Set(activeMembers.map((member) => member.memberId));
+  const activeHandles = handles.filter((handle) => !handle.deletedAt && activeMemberIds.has(handle.memberId));
+
+  return activeMembers
     .map((member) => {
-      const memberHandles = handles
+      const memberHandles = activeHandles
         .filter((handle) => handle.memberId === member.memberId)
         .sort((left, right) => left.handle.localeCompare(right.handle));
       const memberStatuses = statuses.filter((status) => status.memberId === member.memberId);
@@ -419,6 +459,11 @@ export async function listMemberPeopleFromDb(): Promise<LocalMemberPerson[]> {
     .sort((left, right) => left.displayName.localeCompare(right.displayName));
 }
 
+export async function getMemberPersonFromDb(memberId: string): Promise<LocalMemberPerson | null> {
+  const people = await listMemberPeopleFromDb();
+  return people.find((person) => person.memberId === memberId) ?? null;
+}
+
 export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatus?: boolean }): Promise<LocalRuntimeSnapshot> {
   const [members, memberHandles, memberProblemStatus, importSources, syncRecords] = await Promise.all([
     localDb.members.toArray(),
@@ -427,16 +472,31 @@ export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatu
     localDb.importSources.toArray(),
     localDb.syncRecords.toArray(),
   ]);
+  const activeMembers = members.filter((member) => !member.deletedAt);
+  const activeMemberIds = new Set(activeMembers.map((member) => member.memberId));
+  const activeHandles = memberHandles.filter((handle) => !handle.deletedAt && activeMemberIds.has(handle.memberId));
+  const activeHandleValues = new Set(activeHandles.map((handle) => handle.handle.toLocaleLowerCase()));
+  const activeStatuses = memberProblemStatus.filter((status) => activeMemberIds.has(status.memberId));
+  const activeSourceRecordIds = new Set(activeStatuses.map((status) => status.sourceRecordId));
+  const filteredImportSources = importSources.filter((source) => {
+    if (activeSourceRecordIds.has(source.sourceRecordId)) {
+      return true;
+    }
+    const importedHandle = source.rawMetaJson.handle;
+    return typeof importedHandle === "string" && activeHandleValues.has(importedHandle.toLocaleLowerCase());
+  });
+  const filteredSourceRecordIds = new Set(filteredImportSources.map((source) => source.sourceRecordId));
+  const filteredSyncRecords = syncRecords.filter((record) => filteredSourceRecordIds.has(record.sourceRecordId));
 
   return {
     schemaVersion: 1,
     exportKind: "local_runtime_snapshot",
     exportedAt: new Date().toISOString(),
-    members,
-    memberHandles,
-    memberProblemStatus: options?.includeProblemStatus === false ? [] : memberProblemStatus,
-    importSources,
-    syncRecords,
+    members: activeMembers,
+    memberHandles: activeHandles,
+    memberProblemStatus: options?.includeProblemStatus === false ? [] : activeStatuses,
+    importSources: filteredImportSources,
+    syncRecords: filteredSyncRecords,
   };
 }
 
@@ -474,8 +534,9 @@ export async function importLocalCatalogSnapshot(snapshot: LocalCatalogSnapshot)
       await localDb.catalogContests.clear();
       await localDb.catalogProblems.clear();
 
+      const contests = attachProblemIdsToContests(snapshot.contests, snapshot.problems);
       if (snapshot.contests.length) {
-        await localDb.catalogContests.bulkPut(snapshot.contests);
+        await localDb.catalogContests.bulkPut(contests);
       }
       if (snapshot.problems.length) {
         await localDb.catalogProblems.bulkPut(snapshot.problems);
@@ -489,8 +550,9 @@ export async function mergeLocalCatalogSnapshot(snapshot: LocalCatalogSnapshot):
     "rw",
     [localDb.catalogContests, localDb.catalogProblems],
     async () => {
+      const contests = attachProblemIdsToContests(snapshot.contests, snapshot.problems);
       if (snapshot.contests.length) {
-        await localDb.catalogContests.bulkPut(snapshot.contests);
+        await localDb.catalogContests.bulkPut(contests);
       }
 
       const touchedContestIds = [...new Set(snapshot.contests.map((contest) => contest.contestId))];
@@ -568,6 +630,15 @@ export async function importLocalCatalogProblemsOnlySnapshot(snapshot: LocalCata
   );
 }
 
+export async function listCatalogContestProblemCountsFromDb(): Promise<Map<string, number>> {
+  const problems = await localDb.catalogProblems.toArray();
+  const counts = new Map<string, number>();
+  for (const problem of problems) {
+    counts.set(problem.contestId, (counts.get(problem.contestId) ?? 0) + 1);
+  }
+  return counts;
+}
+
 export async function applyLocalCatalogSnapshot(
   snapshot: LocalCatalogSnapshot,
   options?: { mode?: "merge" | "replace"; includeProblems?: boolean },
@@ -624,6 +695,28 @@ export async function addManualCatalogContest(payload: {
     async () => {
       await localDb.catalogContests.put(payload.contest);
       if (payload.problems?.length) {
+        await localDb.catalogProblems.bulkPut(payload.problems);
+      }
+    },
+  );
+}
+
+export async function replaceManualCatalogContest(payload: {
+  contest: LocalCatalogContestRecord;
+  problems: LocalCatalogProblemRecord[];
+}): Promise<void> {
+  await localDb.transaction(
+    "rw",
+    [localDb.catalogContests, localDb.catalogProblems],
+    async () => {
+      await localDb.catalogContests.put(payload.contest);
+      const existingProblemIds = (
+        await localDb.catalogProblems.where("contestId").equals(payload.contest.contestId).toArray()
+      ).map((problem) => problem.problemId);
+      if (existingProblemIds.length) {
+        await localDb.catalogProblems.bulkDelete(existingProblemIds);
+      }
+      if (payload.problems.length) {
         await localDb.catalogProblems.bulkPut(payload.problems);
       }
     },
@@ -817,16 +910,53 @@ export async function listCodeforcesMemberSyncTargets(): Promise<Array<{
     localDb.members.toArray(),
     localDb.memberHandles.toArray(),
   ]);
-  const memberNameById = new Map(members.map((member) => [member.memberId, member.displayName]));
+  const activeMembers = members.filter((member) => !member.deletedAt);
+  const activeMemberIds = new Set(activeMembers.map((member) => member.memberId));
+  const memberNameById = new Map(activeMembers.map((member) => [member.memberId, member.displayName]));
 
   return handles
-    .filter((handle) => handle.provider === "codeforces")
+    .filter((handle) => !handle.deletedAt && activeMemberIds.has(handle.memberId) && handle.provider === "codeforces")
     .map((handle) => ({
       memberId: handle.memberId,
       displayName: memberNameById.get(handle.memberId) ?? handle.memberId,
       handle: handle.handle,
     }))
     .sort((left, right) => left.displayName.localeCompare(right.displayName));
+}
+
+export async function softDeleteMemberHandle(handleId: string): Promise<void> {
+  const handle = await localDb.memberHandles.get(handleId);
+  if (!handle) {
+    return;
+  }
+  await localDb.memberHandles.put({
+    ...handle,
+    deletedAt: new Date().toISOString(),
+  });
+}
+
+export async function softDeleteMember(memberId: string): Promise<void> {
+  await localDb.transaction(
+    "rw",
+    [localDb.members, localDb.memberHandles],
+    async () => {
+      const member = await localDb.members.get(memberId);
+      if (member) {
+        await localDb.members.put({
+          ...member,
+          deletedAt: new Date().toISOString(),
+        });
+      }
+
+      const handles = await localDb.memberHandles.where("memberId").equals(memberId).toArray();
+      for (const handle of handles) {
+        await localDb.memberHandles.put({
+          ...handle,
+          deletedAt: new Date().toISOString(),
+        });
+      }
+    },
+  );
 }
 
 function mergeStatus(statuses: Array<"solved" | "attempted" | "unseen">): "solved" | "attempted" | "unseen" {

@@ -1,3 +1,5 @@
+import { aggregateAliasesFromSources } from "./catalog-sources";
+
 export type CatalogContestIndexItem = {
   id: string;
   title: string;
@@ -17,9 +19,11 @@ export type CatalogContestIndex = {
 export type CatalogSource = {
   provider: string;
   kind: string;
+  variant?: string;
   url: string;
   provider_contest_id?: string;
   provider_problem_id?: string;
+  source_title?: string;
   label?: string;
 };
 
@@ -55,9 +59,11 @@ export type GeneratedCatalogBundle = {
 type CatalogSnapshotSource = {
   provider: string;
   kind: string;
+  variant?: string;
   url: string;
   provider_contest_id?: string;
   provider_problem_id?: string;
+  source_title?: string;
   label?: string;
 };
 
@@ -123,7 +129,7 @@ export async function fetchGeneratedCatalogBundle(): Promise<GeneratedCatalogBun
         id: problem.problemId,
         ordinal: problem.ordinal,
         title: problem.title,
-        aliases: problem.aliases ?? [],
+        aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources ?? []),
         sources: problem.sources ?? [],
       });
       problemsByContestId.set(problem.contestId, bucket);
@@ -136,7 +142,7 @@ export async function fetchGeneratedCatalogBundle(): Promise<GeneratedCatalogBun
       contests: snapshot.contests.map((contest) => ({
         id: contest.contestId,
         title: contest.title,
-        aliases: contest.aliases ?? [],
+        aliases: aggregateAliasesFromSources(contest.title, contest.aliases ?? [], contest.sources ?? []),
         tags: contest.tags ?? [],
         start_at: contest.startAt ?? null,
         curation_status: contest.curationStatus,

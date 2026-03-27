@@ -24,13 +24,17 @@
 - If adding canonical catalog fields, then prefer `id`, `title`, `aliases`, `tags`, `problems`, `sources`, and optional provenance notes; do not duplicate obvious tag semantics into separate fields without a concrete product need.
 - If storing external links, then use a `sources` array with objects shaped like `provider`, `kind`, and `url`.
 - If contest/problem IDs are needed, then use stable internal IDs in curated data and keep provider-scoped IDs inside source mappings.
+- If a contest or problem has multiple upstream titles, then keep curator `title` as the stable primary title and store upstream titles on `sources[*].source_title`, aggregating them into `aliases` without overwriting the primary title.
+- If a source needs to distinguish Codeforces variants, then use `sources[*].variant` with `gym_public` as the default and `gym_private` when explicitly needed; do not keep separate `meshup` variants.
 
 ## Import Rules
 - If the source is Codeforces, then use official public API access from the frontend.
+- If a Codeforces contest is private or access-controlled, then prompt the user to save API credentials and ensure their own account has permission before expecting a complete sync.
 - If the source is QOJ, then use userscript-exported JSON snapshots imported into the app.
 - If import data is stored in the repository, then keep it as fixture or draft material, not as the canonical curated dataset.
 - If import logic is provider-specific, then keep it in frontend adapters/importers, not in a server-provider abstraction.
 - If import output is ambiguous, then preserve raw import payload metadata and provenance alongside normalized local records.
+- If Codeforces contest data is missing or partial, then say so explicitly instead of guessing whether the contest is public, private, or partially visible.
 - If matching imported member status to curated problems is imperfect, then keep explicit match evidence and unresolved records rather than silently dropping them.
 - If an import suggests new contest metadata, then generate a reviewable draft or patch instead of mutating curated source of truth silently.
 - If a workflow depends on user login state or browser-local permissions, then design it around the user's own browser environment instead of service-side automation.

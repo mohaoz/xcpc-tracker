@@ -5,6 +5,7 @@ import AddMemberView from "./views/AddMemberView.vue";
 import ContestDetailView from "./views/ContestDetailView.vue";
 import ContestIntakeView from "./views/ContestIntakeView.vue";
 import ContestListView from "./views/ContestListView.vue";
+import MemberDetailView from "./views/MemberDetailView.vue";
 import MemberListView from "./views/MemberListView.vue";
 
 export const router = createRouter({
@@ -43,6 +44,12 @@ export const router = createRouter({
       path: "/members",
       name: "members",
       component: MemberListView,
+    },
+    {
+      path: "/members/:memberId",
+      name: "member-detail",
+      component: MemberDetailView,
+      props: true,
     },
     {
       path: "/members/new",

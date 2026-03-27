@@ -54,11 +54,17 @@
           "kind": {
             "type": "string"
           },
+          "variant": {
+            "type": "string"
+          },
           "url": {
             "type": "string",
             "format": "uri"
           },
           "provider_contest_id": {
+            "type": "string"
+          },
+          "source_title": {
             "type": "string"
           },
           "label": {
@@ -105,11 +111,17 @@
                 "kind": {
                   "type": "string"
                 },
+                "variant": {
+                  "type": "string"
+                },
                 "url": {
                   "type": "string",
                   "format": "uri"
                 },
                 "provider_problem_id": {
+                  "type": "string"
+                },
+                "source_title": {
                   "type": "string"
                 },
                 "label": {

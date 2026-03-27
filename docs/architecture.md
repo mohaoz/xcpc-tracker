@@ -36,6 +36,7 @@
 ### 4. Frontend Import Adapters
 - Codeforces adapter fetches member submissions/status from the public API.
 - Codeforces contest adapter fetches contest problem lists from the public API.
+- Private or access-controlled Codeforces contests may require saved browser-local API credentials and still may expose incomplete data depending on the user's account access.
 - QOJ adapter imports userscript-exported JSON snapshots.
 - Catalog adapter loads the bundled default catalog JSON.
 - Adapters preserve raw import metadata and provenance alongside normalized records.

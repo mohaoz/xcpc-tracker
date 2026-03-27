@@ -1,4 +1,5 @@
 import type { CatalogContestDetail, CatalogContestIndex } from "./catalog";
+import { aggregateAliasesFromSources } from "./catalog-sources";
 import { fetchBundledCatalogSnapshot, fetchGeneratedCatalogBundle } from "./catalog";
 import type {
   LocalCatalogContestRecord,
@@ -44,7 +45,7 @@ function mapContest(detail: CatalogContestDetail): LocalCatalogContestRecord {
   return {
     contestId: detail.id,
     title: detail.title,
-    aliases: detail.aliases,
+    aliases: aggregateAliasesFromSources(detail.title, detail.aliases, detail.sources),
     tags: detail.tags,
     startAt: detail.start_at ?? null,
     curationStatus: detail.curation_status,
@@ -56,20 +57,32 @@ function mapContest(detail: CatalogContestDetail): LocalCatalogContestRecord {
 }
 
 function mapProblems(detail: CatalogContestDetail): LocalCatalogProblemRecord[] {
+  const primaryCodeforcesContestSource = detail.sources.find(
+    (contestSource) => contestSource.provider === "codeforces" && contestSource.kind === "contest" && contestSource.provider_contest_id,
+  );
+
   return detail.problems.map((problem) => ({
     problemId: problem.id,
     contestId: detail.id,
     ordinal: problem.ordinal,
     title: problem.title,
-    aliases: problem.aliases,
-    sources: problem.sources.map((source) => ({
-      ...source,
-      provider_problem_id:
-        source.provider_problem_id ??
-        (source.provider === "codeforces" && source.kind === "problem"
-          ? `${detail.sources.find((contestSource) => contestSource.provider === "codeforces")?.provider_contest_id ?? ""}:${problem.ordinal}`
-          : undefined),
-    })),
+    aliases: aggregateAliasesFromSources(problem.title, problem.aliases, problem.sources),
+    sources: [
+      ...problem.sources.map((source) => ({
+        ...source,
+      })),
+      ...(!problem.sources.some((source) => source.provider === "codeforces" && source.kind === "problem") && primaryCodeforcesContestSource?.provider_contest_id
+        ? [
+            {
+              provider: "codeforces",
+              kind: "problem",
+              url: `https://codeforces.com/gym/${primaryCodeforcesContestSource.provider_contest_id}/problem/${problem.ordinal}`,
+              provider_problem_id: `${primaryCodeforcesContestSource.provider_contest_id}:${problem.ordinal}`,
+              label: `Codeforces ${problem.ordinal}`,
+            },
+          ]
+        : []),
+    ],
   }));
 }
 
@@ -82,7 +95,7 @@ export async function loadBundledCatalogSnapshot(): Promise<LocalCatalogSnapshot
     contests: snapshot.contests.map((contest) => ({
       contestId: contest.contestId,
       title: contest.title,
-      aliases: contest.aliases ?? [],
+      aliases: aggregateAliasesFromSources(contest.title, contest.aliases ?? [], contest.sources ?? []),
       tags: contest.tags ?? [],
       startAt: contest.startAt ?? null,
       curationStatus: contest.curationStatus,
@@ -97,7 +110,7 @@ export async function loadBundledCatalogSnapshot(): Promise<LocalCatalogSnapshot
       contestId: problem.contestId,
       ordinal: problem.ordinal,
       title: problem.title,
-      aliases: problem.aliases ?? [],
+      aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources ?? []),
       sources: problem.sources ?? [],
     })),
   };
