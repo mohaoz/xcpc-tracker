@@ -2,6 +2,7 @@
 import { onMounted, ref } from "vue";
 
 import { syncAllCodeforcesContests, syncAllCodeforcesMembers } from "../lib/codeforces";
+import { importQojUserscriptMembers, type QojUserscriptImport } from "../lib/qoj";
 import {
   clearCodeforcesApiCredentials,
   loadCodeforcesApiCredentials,
@@ -46,6 +47,7 @@ const exportIncludeProblems = ref(true);
 const importTarget = ref<"contest" | "member">("contest");
 const importMode = ref<"merge" | "replace">("merge");
 const importIncludeProblems = ref(true);
+const importText = ref("");
 
 function clearStatus() {
   error.value = "";
@@ -137,7 +139,7 @@ async function handleImportDefaultData() {
   clearStatus();
   try {
     const payload = await importBundledCatalogSnapshot({
-      mode: importMode.value,
+      mode: "replace",
       includeProblems: importIncludeProblems.value,
     });
     await refreshStats();
@@ -318,6 +320,46 @@ async function maybeAutoSyncImportedMembers(payload: LocalRuntimeSnapshot) {
   feedback.value = `imported member data: ${payload.members.length} members, ${payload.memberProblemStatus.length} statuses; auto-synced ${result.syncedMemberCount} members`;
 }
 
+async function importDataFromText(text: string) {
+  const normalizedText = text.trim();
+  if (!normalizedText) {
+    throw new Error("没有可导入的 JSON 内容");
+  }
+
+  if (importTarget.value === "contest") {
+    const payload = JSON.parse(normalizedText) as LocalCatalogSnapshot;
+    await applyLocalCatalogSnapshot(payload, {
+      mode: importMode.value,
+      includeProblems: importIncludeProblems.value,
+    });
+    feedback.value = `imported contest data: ${payload.contests.length} contests, ${payload.problems.length} problems`;
+    emitCatalogMutated();
+    await refreshStats();
+    await maybeAutoSyncImportedContests(payload);
+  } else {
+    const rawPayload = JSON.parse(normalizedText) as LocalRuntimeSnapshot | QojUserscriptImport;
+    if ("provider" in rawPayload && rawPayload.provider === "qoj") {
+      const summary = await importQojUserscriptMembers(rawPayload);
+      feedback.value = `imported QOJ member data: ${summary.memberCount} members, ${summary.matchedStatusCount} matched statuses`;
+      if (summary.unmatchedStatusCount > 0) {
+        feedback.value += `, ${summary.unmatchedStatusCount} unmatched`;
+      }
+      emitMemberMutated();
+      await refreshStats();
+    } else {
+      const payload = rawPayload as LocalRuntimeSnapshot;
+      await applyLocalRuntimeSnapshot(payload, {
+        mode: importMode.value,
+        includeProblemStatus: importIncludeProblems.value,
+      });
+      feedback.value = `imported member data: ${payload.members.length} members, ${payload.memberProblemStatus.length} statuses`;
+      emitMemberMutated();
+      await refreshStats();
+      await maybeAutoSyncImportedMembers(payload);
+    }
+  }
+}
+
 async function handleImportData(event: Event) {
   const target = event.target as HTMLInputElement;
   const file = target.files?.[0];
@@ -328,29 +370,7 @@ async function handleImportData(event: Event) {
   submitting.value = true;
   clearStatus();
   try {
-    const text = await file.text();
-
-    if (importTarget.value === "contest") {
-      const payload = JSON.parse(text) as LocalCatalogSnapshot;
-      await applyLocalCatalogSnapshot(payload, {
-        mode: importMode.value,
-        includeProblems: importIncludeProblems.value,
-      });
-      feedback.value = `imported contest data: ${payload.contests.length} contests, ${payload.problems.length} problems`;
-      emitCatalogMutated();
-      await refreshStats();
-      await maybeAutoSyncImportedContests(payload);
-    } else {
-      const payload = JSON.parse(text) as LocalRuntimeSnapshot;
-      await applyLocalRuntimeSnapshot(payload, {
-        mode: importMode.value,
-        includeProblemStatus: importIncludeProblems.value,
-      });
-      feedback.value = `imported member data: ${payload.members.length} members, ${payload.memberProblemStatus.length} statuses`;
-      emitMemberMutated();
-      await refreshStats();
-      await maybeAutoSyncImportedMembers(payload);
-    }
+    await importDataFromText(await file.text());
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "failed to import data";
   } finally {
@@ -358,6 +378,19 @@ async function handleImportData(event: Event) {
     if (importFileInput.value) {
       importFileInput.value.value = "";
     }
+  }
+}
+
+async function handleImportPastedData() {
+  submitting.value = true;
+  clearStatus();
+  try {
+    await importDataFromText(importText.value);
+    importText.value = "";
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to import data";
+  } finally {
+    submitting.value = false;
   }
 }
 
@@ -517,7 +550,27 @@ onMounted(() => {
                 <button class="button button--ghost" :disabled="submitting" @click="handleOpenImport">
                   导入
                 </button>
+                <button class="button" :disabled="submitting || !importText.trim()" @click="handleImportPastedData">
+                  粘贴内容导入
+                </button>
               </div>
+              <div class="field" style="margin-top: 16px">
+                <label for="import-json-text">直接粘贴 JSON</label>
+                <textarea
+                  id="import-json-text"
+                  v-model="importText"
+                  class="input-textarea"
+                  rows="10"
+                  spellcheck="false"
+                  :placeholder="importTarget === 'member' ? '把 QOJ 浏览器脚本复制到剪贴板的 JSON 直接粘贴到这里' : '把 contest JSON 粘贴到这里'"
+                />
+              </div>
+              <p v-if="importTarget === 'member'" class="muted tiny">
+                成员导入支持 `local_runtime_snapshot`，也支持从 QOJ 用户页控制台脚本复制到剪贴板的 `provider = qoj` JSON。
+              </p>
+              <p v-else class="muted tiny">
+                如果是从比赛详情页复制的 QOJ 单场同步 JSON，这里保持导入模式为 `merge`。
+              </p>
             </div>
           </section>
 

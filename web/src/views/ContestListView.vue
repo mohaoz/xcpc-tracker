@@ -56,6 +56,30 @@ function compareContestsByTime(left: CatalogContestIndexItem, right: CatalogCont
   return left.title.localeCompare(right.title);
 }
 
+function getContestSearchHaystacks(contest: CatalogContestIndexItem) {
+  const sourceTokens: string[] = [];
+  const localContest = localContestMap.value.get(contest.id);
+  for (const source of localContest?.sources ?? []) {
+    sourceTokens.push(source.provider);
+    if (source.provider === "codeforces") {
+      sourceTokens.push("cf");
+      sourceTokens.push("codeforces");
+    }
+    if (source.provider === "qoj") {
+      sourceTokens.push("qoj");
+    }
+    if (source.kind) {
+      sourceTokens.push(source.kind);
+    }
+    if (source.source_title) {
+      sourceTokens.push(source.source_title);
+    }
+  }
+
+  return [contest.title, ...contest.aliases, ...contest.tags, ...sourceTokens]
+    .map((value) => value.toLocaleLowerCase());
+}
+
 const queryTokens = computed(() =>
   contestListStore.query
     .split(/\s+/)
@@ -79,8 +103,7 @@ const allMembersSelected = computed(() => {
 const filteredContests = computed(() => {
   return contests.value.filter((contest) => {
     if (queryTokens.value.length) {
-      const haystacks = [contest.title, ...contest.aliases, ...contest.tags]
-        .map((value) => value.toLocaleLowerCase());
+      const haystacks = getContestSearchHaystacks(contest);
 
       const includeMatch = includeQueryTokens.value.every((token) =>
         haystacks.some((value) => value.includes(token)),
@@ -262,7 +285,7 @@ async function handleImportDefaultData() {
   error.value = "";
   try {
     await importBundledCatalogSnapshot({
-      mode: "merge",
+      mode: "replace",
       includeProblems: true,
     });
     await loadContests();
@@ -396,7 +419,7 @@ watch(() => contestListStore.mode, () => {
               <input
                 id="contest-query"
                 v-model="contestListStore.query"
-                placeholder="搜索标题、alias 或 tags；用 -2025 这类写法排除"
+                placeholder="搜索标题、alias、tags 或平台如 qoj / cf；用 -2025 这类写法排除"
               />
             </div>
 

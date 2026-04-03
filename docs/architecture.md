@@ -7,6 +7,7 @@
 - Curated contest metadata lives in Git-managed JSON files.
 - Codeforces member status comes from public API access in the frontend.
 - QOJ member status comes from userscript-exported JSON imports.
+- The baseline built-in contest catalog may be seeded from a user-saved QOJ contests page export normalized into Git-managed stubs.
 - Browser-local persistence is the primary runtime store.
 
 ## Non-Goals
@@ -30,6 +31,7 @@
 
 ### 3. Import Inputs
 - Imported data can come from Codeforces API sessions, QOJ userscript exports, or one-time tooling.
+- A curator-reviewed QOJ contests page export may be promoted into the bundled default catalog as stub contest metadata.
 - Imported payloads are not automatically canonical source data.
 - Import flows should produce normalized local runtime records and, when useful, reviewable draft catalog material.
 

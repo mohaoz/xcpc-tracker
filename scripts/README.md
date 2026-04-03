@@ -12,6 +12,11 @@ Normal product usage must not depend on these scripts running locally.
 Current commands:
 
 - `npm run catalog:validate`
+- `node scripts/import-qoj-contests-page.mjs /path/to/qoj-contests.md [output.json]`
+- `node scripts/extract-qoj-contests-from-mht.mjs [input.mht] [output.json]`
+- `node scripts/extract-qoj-contests-from-mht.mjs --mode=catalog [input.mht] [output.json]`
+- `node scripts/merge-platform-catalogs.mjs [codeforces-catalog.json] [qoj-catalog.json] [output.json]`
+- `node scripts/convert-qoj-browser-export-to-catalog.mjs [browser-export.json] [output.json]`
 
 Current implementation notes:
 
