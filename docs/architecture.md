@@ -9,6 +9,7 @@
 - QOJ member status comes from userscript-exported JSON imports.
 - The baseline built-in contest catalog may be seeded from a user-saved QOJ contests page export normalized into Git-managed stubs.
 - Browser-local persistence is the primary runtime store.
+- `main` carries the full development and planning context, while `release` only needs deployment-relevant files and minimal release-facing docs.
 
 ## Non-Goals
 

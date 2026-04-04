@@ -67,6 +67,7 @@ npm run build
 - Repo-level `netlify.toml` is included, so Netlify can use the default settings directly
 - Keep day-to-day development on `main`
 - Merge or push to `release` only when you want Netlify to publish a new version
+- Treat `release` as a deploy branch: keep runtime code, build config, bundled catalog data, required schemas/scripts, and only minimal release-facing docs there
 
 ## App Routes
 
