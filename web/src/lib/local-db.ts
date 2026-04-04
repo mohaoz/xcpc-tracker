@@ -513,6 +513,7 @@ export async function exportLocalCatalogSnapshot(options?: { includeProblems?: b
     schemaVersion: 1,
     exportKind: "local_catalog_snapshot",
     exportedAt: new Date().toISOString(),
+    version: undefined,
     contests: includeProblems
       ? activeContests
       : activeContests.map((contest) => ({

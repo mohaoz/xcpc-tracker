@@ -91,6 +91,7 @@ export async function loadBundledCatalogSnapshot(options?: { forceRefresh?: bool
   return {
     schemaVersion: 1,
     exportKind: "local_catalog_snapshot",
+    version: snapshot.version,
     exportedAt: snapshot.exportedAt,
     contests: snapshot.contests.map((contest) => ({
       contestId: contest.contestId,
