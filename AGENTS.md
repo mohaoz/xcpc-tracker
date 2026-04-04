@@ -19,6 +19,7 @@
 
 ## Data And Catalog Rules
 - If adding curated contest metadata, then keep the built-in default catalog in a single bundled JSON file under `catalog/`.
+- If changing the bundled default catalog release, then keep its top-level `version` aligned with the current app release version.
 - If data is intended to be canonical and reviewable, then it must live under `catalog/` and be editable by hand.
 - If data comes from import flows, then treat it as candidate or draft input until it is normalized into curated catalog files.
 - If a curator intentionally promotes a QOJ contests page export into the bundled default catalog, then normalize it into reviewable contest stubs first and keep provider provenance on `sources`.
@@ -31,6 +32,7 @@
 
 ## Import Rules
 - If the source is Codeforces, then use official public API access from the frontend.
+- If describing current frontend import support, then treat Codeforces as member-status import/sync only, not as a runtime contest-side sync button.
 - If a Codeforces contest is private or access-controlled, then prompt the user to save API credentials and ensure their own account has permission before expecting a complete sync.
 - If the source is QOJ, then use userscript-exported JSON snapshots imported into the app.
 - If the source is a baseline QOJ contest catalog seed, then use a user-saved contests page export instead of backend scraping.
@@ -44,6 +46,7 @@
 
 ## Frontend Data Model
 - If modeling runtime entities, then define frontend-oriented records for `contest`, `problem`, `member`, `member_problem_status`, `sync_record`, and `import_source`.
+- If describing catalog bootstrap behavior, then note that the browser may force one-click local initialization when the local bundled-catalog minor version is behind the shipped default catalog version.
 - If the product question is "has this member solved or tried this curated problem", then model that directly in IndexedDB.
 - If UI lists tracked people, then group by stable local member identity and treat provider handles as linked sources.
 - If upstream fields differ across providers, then keep normalized columns plus raw payload metadata.

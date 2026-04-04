@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.3.0
+
+### Added
+
+- browser-local member import and sync through Codeforces handles
+- QOJ browser-script member import flow
+- one-click local initialization from the bundled default catalog
+- automatic forced re-init when the bundled catalog minor version is newer than the locally applied version
+- local contest detail editing and manual metadata updates in the frontend
+
+### Changed
+
+- the product is now documented and shipped as a static, frontend-first XCPC tracker
+- `/manage` now acts as the local workspace for init, import, and export workflows
+- the bundled default catalog carries a release-aligned `version` field
+
+### Notes
+
+- forced local re-init clears browser-local member data and requires member imports to be run again
+- curated contest data remains Git-managed; runtime member state remains browser-local
+
 ## 0.1.1
 
 ### Added

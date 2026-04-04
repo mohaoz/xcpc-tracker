@@ -14,6 +14,8 @@ The next MVP is no longer a localhost-service-led gather tool. It is a static XC
 - Show contest/problem coverage for selected local members.
 - Import or refresh Codeforces member status from the browser.
 - Import QOJ solved/attempted snapshots from userscript JSON.
+- Support one-click local initialization from the bundled default catalog.
+- Allow local contest metadata edits and browser-local import/export workflows.
 - Persist member state, provenance, and mappings in IndexedDB.
 - Deploy the whole app as a static site.
 
@@ -22,7 +24,7 @@ The next MVP is no longer a localhost-service-led gather tool. It is a static XC
 1. Maintainer curates contest metadata in Git.
 2. CI validates catalog files.
 3. User opens the static app and loads curated contests.
-4. User imports member status from Codeforces and QOJ.
+4. User initializes the local workspace, then imports member status from Codeforces and QOJ.
 5. App computes coverage and freshness locally in the browser.
 
 ## Deliberate Scope Cuts

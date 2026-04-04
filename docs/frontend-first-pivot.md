@@ -57,7 +57,7 @@
 - Static Vue 3 + TypeScript app.
 - Bundled default catalog JSON served as a static asset.
 - IndexedDB for local members, status, sync history, and provenance.
-- Direct Codeforces public API access from the browser.
+- Direct Codeforces public API access from the browser for member-side sync only.
 - QOJ userscript JSON import through explicit user action.
 
 ### Build-time
@@ -244,6 +244,11 @@ Indexes to prioritize:
 - Maps provider references to curated contest/problem IDs.
 - Upserts member handles, statuses, source metadata, and sync records.
 - Handles rate limits with local batching and retry-aware UX.
+
+Current product boundary:
+
+- Codeforces API is used for member-side import and sync.
+- Contest-side problem/catalog updates are handled by curated JSON plus build-time scripts, not by runtime browser sync buttons.
 
 ### QOJ userscript adapter
 - Tracker site opens `https://qoj.ac/?xvg_sync=1...`.

@@ -37,8 +37,7 @@
 
 ### 4. Frontend Import Adapters
 - Codeforces adapter fetches member submissions/status from the public API.
-- Codeforces contest adapter fetches contest problem lists from the public API.
-- Private or access-controlled Codeforces contests may require saved browser-local API credentials and still may expose incomplete data depending on the user's account access.
+- Private or access-controlled Codeforces data may require saved browser-local API credentials and still may expose incomplete results depending on the user's account access.
 - QOJ adapter imports userscript-exported JSON snapshots.
 - Catalog adapter loads the bundled default catalog JSON.
 - Adapters preserve raw import metadata and provenance alongside normalized records.
@@ -62,7 +61,7 @@
 3. Scripts validate the catalog bundle against repo rules and schema.
 4. The static site ships with the bundled default catalog as a static asset.
 5. The browser loads the default catalog and stores catalog snapshots in Dexie.
-6. Codeforces API imports refresh local member-problem status and can also refresh contest problem snapshots.
+6. Codeforces API imports refresh local member-problem status.
 7. QOJ userscript JSON imports will refresh additional member-problem status records.
 8. Coverage views join locally cached contest problems with local member status records.
 
@@ -104,5 +103,6 @@
 
 - Contest list, contest detail, member list, and manage tools run on the frontend-first path.
 - Catalog validation and generation are handled by repo-level scripts.
-- Codeforces contest and member sync run directly in the browser.
+- Codeforces member sync runs directly in the browser.
 - Contest list filters are stored locally in app state rather than in URL query parameters.
+- Default catalog upgrades can trigger a forced one-click local re-init when the bundled catalog minor version is newer than the locally applied version.

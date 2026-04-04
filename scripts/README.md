@@ -7,6 +7,7 @@
 - 生成 `data/final.json`
 - 生成 `catalog/default-catalog.min.json`
 - 给无年份的 Codeforces 比赛补 `year` 标签
+- 导入 QOJ / Codeforces 抓到的题目列表
 - 校验内置 catalog
 
 正常产品运行不依赖这些脚本。
@@ -16,6 +17,7 @@
 - `npm run catalog:validate`
 - `npm run catalog:build-final`
 - `npm run catalog:fetch-cf-problems`
+- `npm run catalog:import-cf-problems`
 - `npm run catalog:import-qoj-problems`
 - `npm run catalog:generate-default`
 - `npm run catalog:refresh`
@@ -42,7 +44,7 @@
 - `import-codeforces-problems-export.mjs`
   将 `data/codeforces-problems.json` 并进 `catalog/default-catalog.min.json`
 - `import-qoj-problems-export.mjs`
-  将 `a.json` 这类 QOJ 题目导出并进 `catalog/default-catalog.min.json`
+  将 `data/qoj-problems-a.json` / `data/qoj-problems-b.json` 这类 QOJ 题目导出并进 `catalog/default-catalog.min.json`
 
 保留脚本：
 

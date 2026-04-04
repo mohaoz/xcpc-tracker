@@ -1,28 +1,24 @@
 # catalog
 
-Human-edited curated dataset source files live here.
+The bundled default contest catalog lives here.
 
-Rules:
-
-- keep the built-in default source in a single bundled JSON file
-- avoid repeating fields that can be derived from tags
-- reviewed, versioned data only
-- this directory is the canonical source of truth for curated contest metadata
-- imported data must be normalized and reviewed before entering this directory
-
-Planned layout:
+Current file:
 
 ```text
 default-catalog.min.json
 ```
 
-Recommended contest fields:
+Current bundle shape:
 
-- `id`: stable internal contest id, currently a UUID
-- `title`: primary display title
-- `aliases`: alternative titles or well-known formal names
-- `tags`: browsing and filtering tags
-- `curation_status`: `contest_stub`, `problem_listed`, or `reviewed`
-- `sources`: external source links and provider identifiers
-- `problems`: curated problem list, possibly empty for early stubs
-- `notes`: optional curator notes
+- top-level snapshot metadata such as `schemaVersion`, `exportKind`, `version`, and `exportedAt`
+- `contests[]` records with fields such as `contestId`, `title`, `aliases`, `tags`, `startAt`, `curationStatus`, `problemIds`, `sources`, and optional `notes`
+- `problems[]` records with fields such as `problemId`, `contestId`, `ordinal`, `title`, `aliases`, and `sources`
+
+Rules:
+
+- keep the built-in default catalog in this single bundled JSON file
+- treat this directory as the canonical source of truth for curated contest metadata
+- keep imported data out of `catalog/` until it has been normalized and reviewed
+- preserve upstream provenance on `sources`
+- prefer stable internal contest and problem IDs over provider-scoped IDs
+- keep the bundled catalog `version` aligned with the current release when regenerating the file

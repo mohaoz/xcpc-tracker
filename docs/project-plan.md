@@ -55,14 +55,14 @@ Completed:
 - contest list and contest detail run on the frontend-first path
 - local member view runs on the frontend-first path
 - Codeforces member import runs in the frontend
-- Codeforces contest problem sync runs in the frontend
+- QOJ userscript-assisted member import flow is implemented
 - local contest coverage is computed in the browser
 
 Remaining high-priority work:
 
-- QOJ userscript-assisted import flow
 - clearer provider/problem provenance and unresolved mapping handling
-- documentation refresh for the current implemented UI and workflows
+- tighter schema/documentation alignment around the bundled catalog snapshot format
+- broader fixture coverage for import edge cases and partial matches
 
 ## Near-Term Non-Goals
 

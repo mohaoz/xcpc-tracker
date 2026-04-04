@@ -6,7 +6,9 @@ Static, frontend-first XCPC tracker for curated contest browsing, local member c
 
 - browse a curated XCPC contest pool
 - compute local contest/problem coverage in the browser
-- manage local contest/member data with import and export tools
+- import curated contest/member data and export local browser snapshots
+- import and sync member status from Codeforces handles
+- import QOJ member status through a browser-script flow
 - ship as a static site without any required backend service
 
 ## Current Stack
@@ -70,9 +72,9 @@ npm run build
 
 - `/contests`: contest list with unified search, member filter, pagination, and per-problem status strips
 - `/contests/:contestId`: contest detail, local coverage matrix, and metadata editor
-- `/members`: tracked members and local coverage status
-- `/members/new`: QOJ member import script
-- `/manage`: local data import/export tools
+- `/members`: tracked members, Codeforces sync entry, and local coverage status
+- `/members/new`: add member by Codeforces handle or start the QOJ script flow
+- `/manage`: one-click init plus local contest/member import/export tools
 
 ## Related Docs
 
