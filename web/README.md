@@ -1,6 +1,6 @@
 # web
 
-Vue 3 SPA for the static, local-first XCPC tracker.
+Vue 3 SPA for the static, frontend-first XCPC tracker.
 
 ## Setup
 
@@ -25,15 +25,17 @@ npm run build
 - `/contests`
   contest pool with unified search, member filter, pagination, and per-problem status strips
 - `/manage`
-  local workspace for catalog import/export and default catalog import
+  one-click init plus local contest/member import and export
 - `/contests/:contestId`
-  contest detail and coverage matrix
+  contest detail, coverage matrix, and metadata editor
 - `/members`
-  tracked member overview
+  tracked member overview with Codeforces sync
 - `/members/new`
-  QOJ member import script
+  add member by Codeforces handle or start the QOJ import flow
 
 ## Notes
 
 - the frontend reads the bundled default catalog from `catalog/default-catalog.min.json`
 - runtime state lives in Dexie / IndexedDB
+- contest data is curated/imported locally; the frontend does not provide contest-side online sync
+- member-side Codeforces sync is still available in the browser
