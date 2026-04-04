@@ -4,6 +4,11 @@
 
 Keep the repository aligned with a static, frontend-first XCPC tracker with curated Git data and browser-local persistence.
 
+## Branch Policy
+
+- `main` is the canonical branch for development, scripts, architecture notes, and planning docs.
+- `release` is the Netlify deploy branch and should stay focused on files that affect build output, runtime behavior, bundled data, and minimal release-facing docs.
+
 ## Current Repo Audit
 
 ### Keep

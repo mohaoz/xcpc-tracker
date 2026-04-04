@@ -17,6 +17,13 @@
 - If a backend/tooling task is still useful, then keep it as build-time or migration-time tooling only, not as the primary runtime architecture.
 - If content is large or derived, then commit only the single bundled default catalog and keep runtime-only copies out of the repo.
 
+## Branch Rules
+- If working on everyday development, then treat `main` as the canonical branch for code, docs, scripts, and planning notes.
+- If preparing a Netlify deployment, then treat `release` as a deploy branch rather than the canonical planning branch.
+- If a change affects build output, runtime behavior, bundled catalog data, required schemas, or required scripts, then it must land on `release`.
+- If a document is only release-facing, then `README.md`, `README.zh-CN.md`, and `CHANGELOG.md` are the default minimal set to keep on `release`.
+- If a document only explains internal design, roadmap, or contributor workflow, then it may stay `main`-only unless there is a concrete release need.
+
 ## Data And Catalog Rules
 - If adding curated contest metadata, then keep the built-in default catalog in a single bundled JSON file under `catalog/`.
 - If data is intended to be canonical and reviewable, then it must live under `catalog/` and be editable by hand.
@@ -77,3 +84,4 @@
 - If a current module encodes a useful domain concept such as coverage or local member identity, then preserve the concept even if the implementation moves layers.
 - If a runtime subsystem no longer matches the product direction, then de-emphasize it quickly and plan its removal explicitly.
 - If a decision belongs in this file, then update `AGENTS.md` in the same patch.
+- If branch policy changes, then update `AGENTS.md` and at least one user-facing repo doc in the same patch.
