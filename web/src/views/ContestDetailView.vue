@@ -10,7 +10,6 @@ import {
 } from "../lib/catalog";
 import { aggregateAliasesFromSources } from "../lib/catalog-sources";
 import { emitCatalogMutated } from "../lib/catalog-events";
-import { syncCodeforcesContestProblems } from "../lib/codeforces";
 import { emitMemberMutated } from "../lib/member-events";
 import {
   deleteCatalogContestRecord,
@@ -29,10 +28,8 @@ const router = useRouter();
 const contest = ref<CatalogContestDetail | null>(null);
 const coverage = ref<LocalContestCoverage | null>(null);
 const loading = ref(false);
-const syncing = ref(false);
 const error = ref("");
 const feedback = ref("");
-const syncWarning = ref("");
 const editing = ref(false);
 const saving = ref(false);
 const deleting = ref(false);
@@ -41,14 +38,21 @@ const markMode = ref(false);
 const markSavingCellKey = ref("");
 
 const contestId = computed(() => String(route.params.contestId ?? ""));
-const hasCodeforcesContestSource = computed(() =>
-  contest.value?.sources.some((source) => source.provider === "codeforces" && source.kind === "contest") ?? false,
-);
 const trackedMembers = computed(() => coverage.value?.trackedMembers ?? []);
 const contestEyebrow = computed(() => {
-  const source = contest.value?.sources.find((item) => item.provider === "codeforces" && item.kind === "contest" && item.provider_contest_id);
-  if (source?.provider && source.provider_contest_id) {
-    return `${source.provider.toUpperCase()} / ${source.provider_contest_id}`;
+  const sourceLabels = (contest.value?.sources ?? [])
+    .filter((item) => item.kind === "contest")
+    .map((item) => {
+      const provider = item.provider.trim().toUpperCase();
+      const providerId = (item.provider_contest_id ?? "").trim();
+      if (providerId) {
+        return `${provider} / ${providerId}`;
+      }
+      const sourceTitle = (item.source_title ?? item.label ?? "").trim();
+      return sourceTitle ? `${provider} / ${sourceTitle}` : provider;
+    });
+  if (sourceLabels.length) {
+    return sourceLabels.join(" | ");
   }
   return "CURATED CONTEST";
 });
@@ -130,7 +134,7 @@ async function loadContestPage() {
       throw new Error("contest not found locally");
     }
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to load contest";
+    error.value = caught instanceof Error ? caught.message : "加载比赛失败";
   } finally {
     loading.value = false;
   }
@@ -160,7 +164,7 @@ async function saveContestMetadata(payload: {
     return;
   }
   if (!payload.title.trim()) {
-    error.value = "contest title is required";
+    error.value = "比赛标题不能为空";
     return;
   }
 
@@ -195,33 +199,11 @@ async function saveContestMetadata(payload: {
     emitCatalogMutated();
     await loadContestPage();
     editing.value = false;
-    feedback.value = "contest metadata updated";
+    feedback.value = "比赛信息已更新";
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to save contest metadata";
+    error.value = caught instanceof Error ? caught.message : "保存比赛信息失败";
   } finally {
     saving.value = false;
-  }
-}
-
-async function syncProblemsFromCodeforces() {
-  if (!contestId.value) {
-    return;
-  }
-
-  syncing.value = true;
-  error.value = "";
-  feedback.value = "";
-  syncWarning.value = "";
-  try {
-    const result = await syncCodeforcesContestProblems(contestId.value);
-    emitCatalogMutated();
-    feedback.value = `synced ${result.problemCount} problems from ${result.sourceCount} Codeforces source(s)`;
-    await loadContestPage();
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to sync contest problems";
-    syncWarning.value = "如果这是一个 private Codeforces 比赛，请先在 Manage 页面保存 API 凭据，并确认当前账号本身有访问权限。即使具备权限，返回的数据也可能仍然不完整。";
-  } finally {
-    syncing.value = false;
   }
 }
 
@@ -242,7 +224,7 @@ async function handleDeleteContest() {
     emitCatalogMutated();
     await router.push("/contests");
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to delete contest";
+    error.value = caught instanceof Error ? caught.message : "删除比赛失败";
   } finally {
     deleting.value = false;
   }
@@ -250,6 +232,16 @@ async function handleDeleteContest() {
 
 function buildCellKey(problemId: string, memberId: string) {
   return `${problemId}:${memberId}`;
+}
+
+function getProblemAggregateStatus(problem: LocalContestCoverage["problems"][number]) {
+  if (problem.members.some((member) => member.status === "solved")) {
+    return "solved";
+  }
+  if (problem.members.some((member) => member.status === "attempted")) {
+    return "attempted";
+  }
+  return "unseen";
 }
 
 function getNextManualStatus(payload: {
@@ -280,7 +272,7 @@ async function applyMarkToCell(
     return;
   }
   if (!trackedMembers.value.length || !(coverage.value?.problems.length)) {
-    error.value = "no members or problems available for marking";
+    error.value = "当前没有可标记的成员或题目";
     return;
   }
 
@@ -321,7 +313,7 @@ onMounted(loadContestPage);
   <div class="view-stack">
     <section class="panel">
       <div class="panel__body">
-        <div v-if="loading" class="notice">loading contest...</div>
+        <div v-if="loading" class="notice">正在加载比赛...</div>
         <template v-else-if="contest">
           <div class="panel__header">
             <div class="panel__title">
@@ -347,41 +339,35 @@ onMounted(loadContestPage);
             <div class="panel" style="box-shadow: none">
               <div class="panel__body">
                 <div class="panel__title" style="margin-bottom: 16px">
-                  <p class="eyebrow">Catalog</p>
+                  <p class="eyebrow">目录</p>
                   <h3>比赛元数据与题目列表</h3>
                 </div>
 
                 <div class="stat-grid" style="margin-bottom: 18px">
                   <div class="stat-card">
-                    <p class="stat-card__label">Problems</p>
+                    <p class="stat-card__label">题目数</p>
                     <div class="stat-card__value">{{ coverage?.problemCount ?? contest.problems.length }}</div>
                   </div>
                   <div class="stat-card">
-                    <p class="stat-card__label">Fresh For Team</p>
+                    <p class="stat-card__label">队伍未做</p>
                     <div class="stat-card__value">{{ coverage?.freshProblemCount ?? 0 }}</div>
                   </div>
                 </div>
 
                 <div class="actions" style="margin-top: 0; margin-bottom: 18px">
-                  <button v-if="hasCodeforcesContestSource" class="button" :disabled="syncing" @click="syncProblemsFromCodeforces">
-                    {{ syncing ? "Syncing..." : "Sync" }}
-                  </button>
                   <button
                     :class="markMode ? 'button' : 'button button--ghost'"
                     :disabled="!coverage?.trackedMembers.length || !coverage?.problemCount"
                     @click="markMode = !markMode"
                   >
-                    {{ markMode ? "Cancel Mark Mode" : "Enter Mark Mode" }}
+                    {{ markMode ? "退出标记模式" : "进入标记模式" }}
                   </button>
                   <button class="button button--ghost" :disabled="saving" @click="editing = !editing">
-                    {{ editing ? "Close Editor" : "Edit Contest Metadata" }}
+                    {{ editing ? "关闭编辑器" : "编辑比赛信息" }}
                   </button>
                   <button class="button button--ghost" :disabled="deleting" @click="handleDeleteContest">
-                    {{ deleting ? "Deleting..." : "Delete Contest" }}
+                    {{ deleting ? "删除中..." : "删除比赛" }}
                   </button>
-                  <span v-if="coverage" class="muted tiny">
-                    {{ coverage.trackedMembers.length }} tracked members
-                  </span>
                 </div>
 
                 <div v-if="editing" class="panel" style="box-shadow: none; margin-bottom: 18px">
@@ -390,7 +376,7 @@ onMounted(loadContestPage);
                       :initial-value="contestEditorInitialValue"
                       :existing-tags="existingTags"
                       :busy="saving"
-                      submit-label="Save Contest"
+                      submit-label="保存比赛"
                       @submit="saveContestMetadata"
                     />
                   </div>
@@ -400,9 +386,8 @@ onMounted(loadContestPage);
                   <table class="coverage-table">
                     <thead>
                       <tr>
-                        <th>Problem</th>
-                        <th>Title</th>
-                        <th>Team Fresh</th>
+                        <th>题号</th>
+                        <th class="coverage-table__title-column">标题</th>
                         <th
                           v-for="member in coverage?.trackedMembers ?? []"
                           :key="member.memberId"
@@ -414,18 +399,15 @@ onMounted(loadContestPage);
                     <tbody>
                       <tr v-for="problem in coverage?.problems ?? []" :key="problem.problemId">
                         <td>
-                          <strong>{{ problem.ordinal }}</strong>
-                        </td>
-                        <td>
-                          <div>{{ problem.title }}</div>
-                        </td>
-                        <td>
                           <span
-                            class="tag"
-                            :class="problem.freshForTeam ? 'tag--warm' : 'tag--neutral'"
+                            class="contest-problem-state"
+                            :class="`contest-problem-state--${getProblemAggregateStatus(problem)}`"
                           >
-                            {{ problem.freshForTeam ? "fresh" : "touched" }}
+                            {{ problem.ordinal }}
                           </span>
+                        </td>
+                        <td class="coverage-table__title-column">
+                          <div>{{ problem.title }}</div>
                         </td>
                         <td v-for="member in problem.members" :key="`${problem.problemId}-${member.memberId}`">
                           <button
@@ -438,8 +420,12 @@ onMounted(loadContestPage);
                             <span class="status-dot" :class="`status-${member.status}`">
                               {{
                                 markSavingCellKey === buildCellKey(problem.problemId, member.memberId)
-                                  ? "saving..."
-                                  : member.status
+                                  ? "..."
+                                  : member.status === "solved"
+                                    ? "+"
+                                    : member.status === "attempted"
+                                      ? "-"
+                                      : ""
                               }}
                             </span>
                           </button>
@@ -450,9 +436,8 @@ onMounted(loadContestPage);
                 </div>
 
                 <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
-                <p v-if="syncWarning" class="notice" style="margin-top: 16px">{{ syncWarning }}</p>
                 <p v-if="!(coverage?.problemCount)" class="notice" style="margin-top: 16px">
-                  这场比赛还没有题目列表。可以在编辑器里手动补题，或者如果存在 Codeforces source 再同步。
+                  这场比赛还没有题目列表。可以在编辑器里手动补题，或者回到 Manage 页面导入补丁 JSON。
                 </p>
               </div>
             </div>
@@ -460,12 +445,12 @@ onMounted(loadContestPage);
             <div class="panel" style="box-shadow: none">
               <div class="panel__body">
                 <div class="panel__title" style="margin-bottom: 16px">
-                  <p class="eyebrow">Sources</p>
+                  <p class="eyebrow">来源</p>
                   <h3>来源与整理说明</h3>
                 </div>
 
                 <div class="field">
-                  <label>Aggregated Aliases</label>
+                  <label>别名</label>
                   <div class="inline-tags" style="margin-top: 10px">
                     <span
                       v-for="alias in contest.aliases"
@@ -474,12 +459,12 @@ onMounted(loadContestPage);
                     >
                       {{ alias }}
                     </span>
-                    <span v-if="!contest.aliases.length" class="muted tiny">No aliases</span>
+                    <span v-if="!contest.aliases.length" class="muted tiny">暂无别名</span>
                   </div>
                 </div>
 
                 <div class="field" style="margin-top: 14px">
-                  <label>Source Links</label>
+                  <label>来源链接</label>
                   <div class="list-grid" style="margin-top: 12px">
                     <component
                       v-for="source in contest.sources"
@@ -493,7 +478,7 @@ onMounted(loadContestPage);
                       <div class="contest-card__top">
                         <div>
                           <p class="eyebrow">{{ source.provider }} / {{ source.kind }}</p>
-                          <h3>{{ source.label || source.url || "Manual Source" }}</h3>
+                          <h3>{{ source.label || source.url || "手动来源" }}</h3>
                           <p v-if="source.source_title" class="muted tiny">{{ source.source_title }}</p>
                         </div>
                       </div>

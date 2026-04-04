@@ -4,9 +4,9 @@ import { RouterLink, RouterView, useRoute } from "vue-router";
 const route = useRoute();
 
 const navItems = [
-  { to: "/contests", label: "Contests", activeWhen: (path: string) => path === "/contests" || path.startsWith("/contests/") && !path.startsWith("/contests/intake") },
-  { to: "/members", label: "Members", activeWhen: (path: string) => path.startsWith("/members") },
-  { to: "/manage", label: "Manage", activeWhen: (path: string) => path.startsWith("/manage") || path.startsWith("/contests/intake") || path === "/contests/new" },
+  { to: "/contests", label: "比赛", activeWhen: (path: string) => path === "/contests" || path.startsWith("/contests/") && !path.startsWith("/contests/intake") },
+  { to: "/members", label: "成员", activeWhen: (path: string) => path.startsWith("/members") },
+  { to: "/manage", label: "管理", activeWhen: (path: string) => path.startsWith("/manage") || path.startsWith("/contests/intake") },
 ];
 
 const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
@@ -18,10 +18,10 @@ const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
       <div class="shell__hero-bg"></div>
       <div class="shell__hero-inner">
         <div>
-          <p class="eyebrow">Static XCPC Tracker</p>
+          <p class="eyebrow">XCPC 覆盖追踪器</p>
           <h1>XCPC Tracker</h1>
           <p class="hero-copy">
-            整理比赛目录、同步成员状态，并在本地直接判断哪些题还值得做。
+            整理比赛目录、导入成员状态，并直接查看队伍覆盖与题目新鲜度。
           </p>
         </div>
         <nav class="shell__nav" aria-label="Primary">

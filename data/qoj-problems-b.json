@@ -1,0 +1,2864 @@
+[
+  {
+    "title": "2013 ACM-ICPC China Hunan Invitational Programming Contest",
+    "url": "https://qoj.ac/contest/131",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "So Easy!",
+        "url": "https://qoj.ac/contest/131/problem/4867",
+        "provider_problem_id": "4867"
+      },
+      {
+        "ordinal": "B",
+        "title": "Circle Game",
+        "url": "https://qoj.ac/contest/131/problem/4868",
+        "provider_problem_id": "4868"
+      },
+      {
+        "ordinal": "C",
+        "title": "Brilliant Programmers Show",
+        "url": "https://qoj.ac/contest/131/problem/4869",
+        "provider_problem_id": "4869"
+      },
+      {
+        "ordinal": "D",
+        "title": "Hunter",
+        "url": "https://qoj.ac/contest/131/problem/4870",
+        "provider_problem_id": "4870"
+      },
+      {
+        "ordinal": "E",
+        "title": "Special equations",
+        "url": "https://qoj.ac/contest/131/problem/4871",
+        "provider_problem_id": "4871"
+      },
+      {
+        "ordinal": "F",
+        "title": "Multi-bit Trie",
+        "url": "https://qoj.ac/contest/131/problem/4872",
+        "provider_problem_id": "4872"
+      },
+      {
+        "ordinal": "G",
+        "title": "Travel in time",
+        "url": "https://qoj.ac/contest/131/problem/4873",
+        "provider_problem_id": "4873"
+      },
+      {
+        "ordinal": "H",
+        "title": "Bottles Arrangement",
+        "url": "https://qoj.ac/contest/131/problem/4874",
+        "provider_problem_id": "4874"
+      },
+      {
+        "ordinal": "I",
+        "title": "Throw the Stones",
+        "url": "https://qoj.ac/contest/131/problem/4875",
+        "provider_problem_id": "4875"
+      },
+      {
+        "ordinal": "J",
+        "title": "Bombs",
+        "url": "https://qoj.ac/contest/131/problem/4876",
+        "provider_problem_id": "4876"
+      },
+      {
+        "ordinal": "K",
+        "title": "Changsha Marathon",
+        "url": "https://qoj.ac/contest/131/problem/4877",
+        "provider_problem_id": "4877"
+      }
+    ]
+  },
+  {
+    "title": "The 1st Universal Cup. Stage 15: Hangzhou",
+    "url": "https://qoj.ac/contest/1221",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Turn on the Light",
+        "url": "https://qoj.ac/contest/1221/problem/6394",
+        "provider_problem_id": "6394"
+      },
+      {
+        "ordinal": "B",
+        "title": "Equation Discovering",
+        "url": "https://qoj.ac/contest/1221/problem/6395",
+        "provider_problem_id": "6395"
+      },
+      {
+        "ordinal": "C",
+        "title": "Puzzle: Kusabi",
+        "url": "https://qoj.ac/contest/1221/problem/6396",
+        "provider_problem_id": "6396"
+      },
+      {
+        "ordinal": "D",
+        "title": "Master of Both III",
+        "url": "https://qoj.ac/contest/1221/problem/6397",
+        "provider_problem_id": "6397"
+      },
+      {
+        "ordinal": "E",
+        "title": "Puzzle: Tapa",
+        "url": "https://qoj.ac/contest/1221/problem/6398",
+        "provider_problem_id": "6398"
+      },
+      {
+        "ordinal": "F",
+        "title": "Classic: Classical Problem",
+        "url": "https://qoj.ac/contest/1221/problem/6399",
+        "provider_problem_id": "6399"
+      },
+      {
+        "ordinal": "G",
+        "title": "Game: Celeste",
+        "url": "https://qoj.ac/contest/1221/problem/6400",
+        "provider_problem_id": "6400"
+      },
+      {
+        "ordinal": "H",
+        "title": "Classic: N Real DNA Pots",
+        "url": "https://qoj.ac/contest/1221/problem/6401",
+        "provider_problem_id": "6401"
+      },
+      {
+        "ordinal": "I",
+        "title": "MEXimum Spanning Tree",
+        "url": "https://qoj.ac/contest/1221/problem/6402",
+        "provider_problem_id": "6402"
+      },
+      {
+        "ordinal": "J",
+        "title": "Master of Polygon",
+        "url": "https://qoj.ac/contest/1221/problem/6403",
+        "provider_problem_id": "6403"
+      },
+      {
+        "ordinal": "K",
+        "title": "Shuttle Tour",
+        "url": "https://qoj.ac/contest/1221/problem/6404",
+        "provider_problem_id": "6404"
+      },
+      {
+        "ordinal": "L",
+        "title": "Barkley",
+        "url": "https://qoj.ac/contest/1221/problem/6405",
+        "provider_problem_id": "6405"
+      },
+      {
+        "ordinal": "M",
+        "title": "Stage Clear",
+        "url": "https://qoj.ac/contest/1221/problem/6406",
+        "provider_problem_id": "6406"
+      }
+    ]
+  },
+  {
+    "title": "The 13th Xiangtan Collegiate Programming Contest",
+    "url": "https://qoj.ac/contest/2008?v=2",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Today's Word",
+        "url": "https://qoj.ac/contest/2008/problem/10839",
+        "provider_problem_id": "10839"
+      },
+      {
+        "ordinal": "B",
+        "title": "Honkai in TAIKULA",
+        "url": "https://qoj.ac/contest/2008/problem/10840",
+        "provider_problem_id": "10840"
+      },
+      {
+        "ordinal": "C",
+        "title": "GG and YY's Game",
+        "url": "https://qoj.ac/contest/2008/problem/10841",
+        "provider_problem_id": "10841"
+      },
+      {
+        "ordinal": "D",
+        "title": "Star Rail",
+        "url": "https://qoj.ac/contest/2008/problem/10842",
+        "provider_problem_id": "10842"
+      },
+      {
+        "ordinal": "E",
+        "title": "LCM Plus GCD",
+        "url": "https://qoj.ac/contest/2008/problem/10843",
+        "provider_problem_id": "10843"
+      },
+      {
+        "ordinal": "F",
+        "title": "Timaeus",
+        "url": "https://qoj.ac/contest/2008/problem/10844",
+        "provider_problem_id": "10844"
+      },
+      {
+        "ordinal": "G",
+        "title": "Moving Boxes",
+        "url": "https://qoj.ac/contest/2008/problem/10845",
+        "provider_problem_id": "10845"
+      },
+      {
+        "ordinal": "H",
+        "title": "Neil's Machine",
+        "url": "https://qoj.ac/contest/2008/problem/10846",
+        "provider_problem_id": "10846"
+      },
+      {
+        "ordinal": "I",
+        "title": "Elevator",
+        "url": "https://qoj.ac/contest/2008/problem/10847",
+        "provider_problem_id": "10847"
+      },
+      {
+        "ordinal": "J",
+        "title": "Similarity (Easy Version)",
+        "url": "https://qoj.ac/contest/2008/problem/10848",
+        "provider_problem_id": "10848"
+      },
+      {
+        "ordinal": "K",
+        "title": "Similarity (Hard Version)",
+        "url": "https://qoj.ac/contest/2008/problem/10849",
+        "provider_problem_id": "10849"
+      },
+      {
+        "ordinal": "L",
+        "title": "Architect",
+        "url": "https://qoj.ac/contest/2008/problem/10850",
+        "provider_problem_id": "10850"
+      }
+    ]
+  },
+  {
+    "title": "The 17th Jilin Provincial Collegiate Programming Contest",
+    "url": "https://qoj.ac/contest/1996",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Eminor Array",
+        "url": "https://qoj.ac/contest/1996/problem/10749",
+        "provider_problem_id": "10749"
+      },
+      {
+        "ordinal": "B",
+        "title": "Dfs Order 0.5",
+        "url": "https://qoj.ac/contest/1996/problem/10750",
+        "provider_problem_id": "10750"
+      },
+      {
+        "ordinal": "C",
+        "title": "Fibonacci Sum",
+        "url": "https://qoj.ac/contest/1996/problem/10751",
+        "provider_problem_id": "10751"
+      },
+      {
+        "ordinal": "D",
+        "title": "Parallel Lines",
+        "url": "https://qoj.ac/contest/1996/problem/10752",
+        "provider_problem_id": "10752"
+      },
+      {
+        "ordinal": "E",
+        "title": "Connected Components",
+        "url": "https://qoj.ac/contest/1996/problem/10753",
+        "provider_problem_id": "10753"
+      },
+      {
+        "ordinal": "F",
+        "title": "Best Player",
+        "url": "https://qoj.ac/contest/1996/problem/10754",
+        "provider_problem_id": "10754"
+      },
+      {
+        "ordinal": "G",
+        "title": "Platform Game",
+        "url": "https://qoj.ac/contest/1996/problem/10755",
+        "provider_problem_id": "10755"
+      },
+      {
+        "ordinal": "H",
+        "title": "Games on the Ads 2: Painting",
+        "url": "https://qoj.ac/contest/1996/problem/10756",
+        "provider_problem_id": "10756"
+      },
+      {
+        "ordinal": "I",
+        "title": "The Easiest Problem",
+        "url": "https://qoj.ac/contest/1996/problem/10757",
+        "provider_problem_id": "10757"
+      },
+      {
+        "ordinal": "J",
+        "title": "Lone Trail",
+        "url": "https://qoj.ac/contest/1996/problem/10758",
+        "provider_problem_id": "10758"
+      },
+      {
+        "ordinal": "K",
+        "title": "String Divide II",
+        "url": "https://qoj.ac/contest/1996/problem/10759",
+        "provider_problem_id": "10759"
+      },
+      {
+        "ordinal": "L",
+        "title": "Recharge",
+        "url": "https://qoj.ac/contest/1996/problem/10760",
+        "provider_problem_id": "10760"
+      }
+    ]
+  },
+  {
+    "title": "The 2017 ACM-ICPC China Zhejiang Provincial Programming Contest (14th)",
+    "url": "https://qoj.ac/contest/1301",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Cooking Competition",
+        "url": "https://qoj.ac/contest/1301/problem/6783",
+        "provider_problem_id": "6783"
+      },
+      {
+        "ordinal": "B",
+        "title": "Problem Preparation",
+        "url": "https://qoj.ac/contest/1301/problem/6784",
+        "provider_problem_id": "6784"
+      },
+      {
+        "ordinal": "C",
+        "title": "What Kind of Friends Are You?",
+        "url": "https://qoj.ac/contest/1301/problem/6785",
+        "provider_problem_id": "6785"
+      },
+      {
+        "ordinal": "D",
+        "title": "Let's Chat",
+        "url": "https://qoj.ac/contest/1301/problem/6786",
+        "provider_problem_id": "6786"
+      },
+      {
+        "ordinal": "E",
+        "title": "Seven Segment Display",
+        "url": "https://qoj.ac/contest/1301/problem/6787",
+        "provider_problem_id": "6787"
+      },
+      {
+        "ordinal": "F",
+        "title": "Heap Partition",
+        "url": "https://qoj.ac/contest/1301/problem/6788",
+        "provider_problem_id": "6788"
+      },
+      {
+        "ordinal": "G",
+        "title": "Yet Another Game of Stones",
+        "url": "https://qoj.ac/contest/1301/problem/6789",
+        "provider_problem_id": "6789"
+      },
+      {
+        "ordinal": "H",
+        "title": "Binary Tree Restoring",
+        "url": "https://qoj.ac/contest/1301/problem/6790",
+        "provider_problem_id": "6790"
+      },
+      {
+        "ordinal": "I",
+        "title": "Domino Tiling",
+        "url": "https://qoj.ac/contest/1301/problem/6791",
+        "provider_problem_id": "6791"
+      },
+      {
+        "ordinal": "J",
+        "title": "Card Game",
+        "url": "https://qoj.ac/contest/1301/problem/6792",
+        "provider_problem_id": "6792"
+      },
+      {
+        "ordinal": "K",
+        "title": "Final Defense Line",
+        "url": "https://qoj.ac/contest/1301/problem/6524",
+        "provider_problem_id": "6524"
+      },
+      {
+        "ordinal": "L",
+        "title": "Chiaki Sequence",
+        "url": "https://qoj.ac/contest/1301/problem/6793",
+        "provider_problem_id": "6793"
+      },
+      {
+        "ordinal": "M",
+        "title": "Sequence to Sequence",
+        "url": "https://qoj.ac/contest/1301/problem/6794",
+        "provider_problem_id": "6794"
+      }
+    ]
+  },
+  {
+    "title": "The 2018 ACM-ICPC China Zhejiang Provincial Programming Contest (15th)",
+    "url": "https://qoj.ac/contest/1889",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Peak",
+        "url": "https://qoj.ac/contest/1889/problem/9946",
+        "provider_problem_id": "9946"
+      },
+      {
+        "ordinal": "B",
+        "title": "King of Karaoke",
+        "url": "https://qoj.ac/contest/1889/problem/9947",
+        "provider_problem_id": "9947"
+      },
+      {
+        "ordinal": "C",
+        "title": "Magic 12 Months",
+        "url": "https://qoj.ac/contest/1889/problem/9948",
+        "provider_problem_id": "9948"
+      },
+      {
+        "ordinal": "D",
+        "title": "Sequence Swapping",
+        "url": "https://qoj.ac/contest/1889/problem/9949",
+        "provider_problem_id": "9949"
+      },
+      {
+        "ordinal": "E",
+        "title": "LIS",
+        "url": "https://qoj.ac/contest/1889/problem/9950",
+        "provider_problem_id": "9950"
+      },
+      {
+        "ordinal": "F",
+        "title": "Now Loading!!!",
+        "url": "https://qoj.ac/contest/1889/problem/9951",
+        "provider_problem_id": "9951"
+      },
+      {
+        "ordinal": "G",
+        "title": "JUMPin' JUMP UP!!!",
+        "url": "https://qoj.ac/contest/1889/problem/9952",
+        "provider_problem_id": "9952"
+      },
+      {
+        "ordinal": "H",
+        "title": "Game on a Tree",
+        "url": "https://qoj.ac/contest/1889/problem/9953",
+        "provider_problem_id": "9953"
+      },
+      {
+        "ordinal": "I",
+        "title": "Magic Points",
+        "url": "https://qoj.ac/contest/1889/problem/9954",
+        "provider_problem_id": "9954"
+      },
+      {
+        "ordinal": "J",
+        "title": "CONTINUE...?",
+        "url": "https://qoj.ac/contest/1889/problem/9955",
+        "provider_problem_id": "9955"
+      },
+      {
+        "ordinal": "K",
+        "title": "Mahjong Sorting",
+        "url": "https://qoj.ac/contest/1889/problem/9956",
+        "provider_problem_id": "9956"
+      },
+      {
+        "ordinal": "L",
+        "title": "Doki Doki Literature Club",
+        "url": "https://qoj.ac/contest/1889/problem/9957",
+        "provider_problem_id": "9957"
+      },
+      {
+        "ordinal": "M",
+        "title": "Lucky 7",
+        "url": "https://qoj.ac/contest/1889/problem/9958",
+        "provider_problem_id": "9958"
+      }
+    ]
+  },
+  {
+    "title": "The 2018 ACM-ICPC World Finals Beijing",
+    "url": "https://qoj.ac/contest/425",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Catch the Plane",
+        "url": "https://qoj.ac/contest/425/problem/2427",
+        "provider_problem_id": "2427"
+      },
+      {
+        "ordinal": "B",
+        "title": "Comma Sprinkler",
+        "url": "https://qoj.ac/contest/425/problem/2428",
+        "provider_problem_id": "2428"
+      },
+      {
+        "ordinal": "C",
+        "title": "Conquer The World",
+        "url": "https://qoj.ac/contest/425/problem/2429",
+        "provider_problem_id": "2429"
+      },
+      {
+        "ordinal": "D",
+        "title": "Gem Island",
+        "url": "https://qoj.ac/contest/425/problem/2430",
+        "provider_problem_id": "2430"
+      },
+      {
+        "ordinal": "E",
+        "title": "Getting a Jump on Crime",
+        "url": "https://qoj.ac/contest/425/problem/2431",
+        "provider_problem_id": "2431"
+      },
+      {
+        "ordinal": "F",
+        "title": "Go with the Flow",
+        "url": "https://qoj.ac/contest/425/problem/2432",
+        "provider_problem_id": "2432"
+      },
+      {
+        "ordinal": "G",
+        "title": "Panda Preserve",
+        "url": "https://qoj.ac/contest/425/problem/2433",
+        "provider_problem_id": "2433"
+      },
+      {
+        "ordinal": "H",
+        "title": "Single Cut of Failure",
+        "url": "https://qoj.ac/contest/425/problem/2434",
+        "provider_problem_id": "2434"
+      },
+      {
+        "ordinal": "I",
+        "title": "Triangles",
+        "url": "https://qoj.ac/contest/425/problem/2435",
+        "provider_problem_id": "2435"
+      },
+      {
+        "ordinal": "J",
+        "title": "Uncrossed Knight's Tour",
+        "url": "https://qoj.ac/contest/425/problem/2436",
+        "provider_problem_id": "2436"
+      },
+      {
+        "ordinal": "K",
+        "title": "Wireless is the New Fiber",
+        "url": "https://qoj.ac/contest/425/problem/2437",
+        "provider_problem_id": "2437"
+      }
+    ]
+  },
+  {
+    "title": "The 2019 ACM-ICPC China Zhejiang Provincial Programming Contest (16th)",
+    "url": "https://qoj.ac/contest/1874",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Vertices in the Pocket",
+        "url": "https://qoj.ac/contest/1874/problem/9888",
+        "provider_problem_id": "9888"
+      },
+      {
+        "ordinal": "B",
+        "title": "Element Swapping",
+        "url": "https://qoj.ac/contest/1874/problem/9889",
+        "provider_problem_id": "9889"
+      },
+      {
+        "ordinal": "C",
+        "title": "Array in the Pocket",
+        "url": "https://qoj.ac/contest/1874/problem/9890",
+        "provider_problem_id": "9890"
+      },
+      {
+        "ordinal": "D",
+        "title": "Traveler",
+        "url": "https://qoj.ac/contest/1874/problem/9891",
+        "provider_problem_id": "9891"
+      },
+      {
+        "ordinal": "E",
+        "title": "Sequence in the Pocket",
+        "url": "https://qoj.ac/contest/1874/problem/9892",
+        "provider_problem_id": "9892"
+      },
+      {
+        "ordinal": "F",
+        "title": "Abbreviation",
+        "url": "https://qoj.ac/contest/1874/problem/9893",
+        "provider_problem_id": "9893"
+      },
+      {
+        "ordinal": "G",
+        "title": "Lucky 7 in the Pocket",
+        "url": "https://qoj.ac/contest/1874/problem/9894",
+        "provider_problem_id": "9894"
+      },
+      {
+        "ordinal": "H",
+        "title": "Singing Everywhere",
+        "url": "https://qoj.ac/contest/1874/problem/9895",
+        "provider_problem_id": "9895"
+      },
+      {
+        "ordinal": "I",
+        "title": "Fibonacci in the Pocket",
+        "url": "https://qoj.ac/contest/1874/problem/9896",
+        "provider_problem_id": "9896"
+      },
+      {
+        "ordinal": "J",
+        "title": "Welcome Party",
+        "url": "https://qoj.ac/contest/1874/problem/9897",
+        "provider_problem_id": "9897"
+      },
+      {
+        "ordinal": "K",
+        "title": "Strings in the Pocket",
+        "url": "https://qoj.ac/contest/1874/problem/9898",
+        "provider_problem_id": "9898"
+      },
+      {
+        "ordinal": "L",
+        "title": "Square on the Plane",
+        "url": "https://qoj.ac/contest/1874/problem/9899",
+        "provider_problem_id": "9899"
+      },
+      {
+        "ordinal": "M",
+        "title": "Trees in the Pocket",
+        "url": "https://qoj.ac/contest/1874/problem/9900",
+        "provider_problem_id": "9900"
+      }
+    ]
+  },
+  {
+    "title": "The 2019 ICPC Asia Xuzhou Regional Contest",
+    "url": "https://qoj.ac/contest/1834",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Cat",
+        "url": "https://qoj.ac/contest/1834/problem/9701",
+        "provider_problem_id": "9701"
+      },
+      {
+        "ordinal": "B",
+        "title": "Cats line up",
+        "url": "https://qoj.ac/contest/1834/problem/9702",
+        "provider_problem_id": "9702"
+      },
+      {
+        "ordinal": "C",
+        "title": "<3 numbers",
+        "url": "https://qoj.ac/contest/1834/problem/9703",
+        "provider_problem_id": "9703"
+      },
+      {
+        "ordinal": "D",
+        "title": "Polycut",
+        "url": "https://qoj.ac/contest/1834/problem/9704",
+        "provider_problem_id": "9704"
+      },
+      {
+        "ordinal": "E",
+        "title": "Multiply",
+        "url": "https://qoj.ac/contest/1834/problem/9705",
+        "provider_problem_id": "9705"
+      },
+      {
+        "ordinal": "F",
+        "title": "The Answer to the Ultimate Question of Life, The Universe, and Everything.",
+        "url": "https://qoj.ac/contest/1834/problem/9706",
+        "provider_problem_id": "9706"
+      },
+      {
+        "ordinal": "G",
+        "title": "Factory",
+        "url": "https://qoj.ac/contest/1834/problem/9707",
+        "provider_problem_id": "9707"
+      },
+      {
+        "ordinal": "H",
+        "title": "Yuuki and a problem",
+        "url": "https://qoj.ac/contest/1834/problem/9708",
+        "provider_problem_id": "9708"
+      },
+      {
+        "ordinal": "I",
+        "title": "Interesting game",
+        "url": "https://qoj.ac/contest/1834/problem/9709",
+        "provider_problem_id": "9709"
+      },
+      {
+        "ordinal": "J",
+        "title": "Loli, Yen-Jen, and a graph problem",
+        "url": "https://qoj.ac/contest/1834/problem/9710",
+        "provider_problem_id": "9710"
+      },
+      {
+        "ordinal": "K",
+        "title": "K-rectangle",
+        "url": "https://qoj.ac/contest/1834/problem/9711",
+        "provider_problem_id": "9711"
+      },
+      {
+        "ordinal": "L",
+        "title": "Loli, Yen-Jen, and a cool problem",
+        "url": "https://qoj.ac/contest/1834/problem/9712",
+        "provider_problem_id": "9712"
+      },
+      {
+        "ordinal": "M",
+        "title": "Kill the tree",
+        "url": "https://qoj.ac/contest/1834/problem/9713",
+        "provider_problem_id": "9713"
+      }
+    ]
+  },
+  {
+    "title": "The 2020 ICPC China Zhejiang Provincial Programming Contest (17th)",
+    "url": "https://qoj.ac/contest/2020",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "AD 2020",
+        "url": "https://qoj.ac/contest/2020/problem/10913",
+        "provider_problem_id": "10913"
+      },
+      {
+        "ordinal": "B",
+        "title": "Bin Packing Problem",
+        "url": "https://qoj.ac/contest/2020/problem/10914",
+        "provider_problem_id": "10914"
+      },
+      {
+        "ordinal": "C",
+        "title": "Crossword Validation",
+        "url": "https://qoj.ac/contest/2020/problem/10915",
+        "provider_problem_id": "10915"
+      },
+      {
+        "ordinal": "D",
+        "title": "Dividing the Points",
+        "url": "https://qoj.ac/contest/2020/problem/10916",
+        "provider_problem_id": "10916"
+      },
+      {
+        "ordinal": "E",
+        "title": "Easy DP Problem",
+        "url": "https://qoj.ac/contest/2020/problem/10917",
+        "provider_problem_id": "10917"
+      },
+      {
+        "ordinal": "F",
+        "title": "Finding a Sample",
+        "url": "https://qoj.ac/contest/2020/problem/10918",
+        "provider_problem_id": "10918"
+      },
+      {
+        "ordinal": "G",
+        "title": "Gliding",
+        "url": "https://qoj.ac/contest/2020/problem/10919",
+        "provider_problem_id": "10919"
+      },
+      {
+        "ordinal": "H",
+        "title": "Huge Clouds",
+        "url": "https://qoj.ac/contest/2020/problem/10920",
+        "provider_problem_id": "10920"
+      },
+      {
+        "ordinal": "I",
+        "title": "Invoking the Magic",
+        "url": "https://qoj.ac/contest/2020/problem/10921",
+        "provider_problem_id": "10921"
+      },
+      {
+        "ordinal": "J",
+        "title": "Just an Old Problem",
+        "url": "https://qoj.ac/contest/2020/problem/10922",
+        "provider_problem_id": "10922"
+      },
+      {
+        "ordinal": "K",
+        "title": "Killing the Brute-force",
+        "url": "https://qoj.ac/contest/2020/problem/10923",
+        "provider_problem_id": "10923"
+      },
+      {
+        "ordinal": "L",
+        "title": "List of Products",
+        "url": "https://qoj.ac/contest/2020/problem/10924",
+        "provider_problem_id": "10924"
+      }
+    ]
+  },
+  {
+    "title": "The 2021 ICPC China Zhejiang Provincial Programming Contest (18th)",
+    "url": "https://qoj.ac/contest/2014",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "League of Legends",
+        "url": "https://qoj.ac/contest/2014/problem/10887",
+        "provider_problem_id": "10887"
+      },
+      {
+        "ordinal": "B",
+        "title": "Restore Atlantis",
+        "url": "https://qoj.ac/contest/2014/problem/10888",
+        "provider_problem_id": "10888"
+      },
+      {
+        "ordinal": "C",
+        "title": "Cube",
+        "url": "https://qoj.ac/contest/2014/problem/10889",
+        "provider_problem_id": "10889"
+      },
+      {
+        "ordinal": "D",
+        "title": "Shortest Path Query",
+        "url": "https://qoj.ac/contest/2014/problem/10890",
+        "provider_problem_id": "10890"
+      },
+      {
+        "ordinal": "E",
+        "title": "Specially Super Rare",
+        "url": "https://qoj.ac/contest/2014/problem/10891",
+        "provider_problem_id": "10891"
+      },
+      {
+        "ordinal": "F",
+        "title": "Fair Distribution",
+        "url": "https://qoj.ac/contest/2014/problem/10892",
+        "provider_problem_id": "10892"
+      },
+      {
+        "ordinal": "G",
+        "title": "Wall Game",
+        "url": "https://qoj.ac/contest/2014/problem/10893",
+        "provider_problem_id": "10893"
+      },
+      {
+        "ordinal": "H",
+        "title": "Grammy and HearthStone",
+        "url": "https://qoj.ac/contest/2014/problem/10894",
+        "provider_problem_id": "10894"
+      },
+      {
+        "ordinal": "I",
+        "title": "Grammy and Ropes",
+        "url": "https://qoj.ac/contest/2014/problem/10895",
+        "provider_problem_id": "10895"
+      },
+      {
+        "ordinal": "J",
+        "title": "Grammy and Jewelry",
+        "url": "https://qoj.ac/contest/2014/problem/10896",
+        "provider_problem_id": "10896"
+      },
+      {
+        "ordinal": "K",
+        "title": "Grammy's Kingdom",
+        "url": "https://qoj.ac/contest/2014/problem/10897",
+        "provider_problem_id": "10897"
+      },
+      {
+        "ordinal": "L",
+        "title": "String Freshman",
+        "url": "https://qoj.ac/contest/2014/problem/10898",
+        "provider_problem_id": "10898"
+      },
+      {
+        "ordinal": "M",
+        "title": "Game Theory",
+        "url": "https://qoj.ac/contest/2014/problem/10899",
+        "provider_problem_id": "10899"
+      }
+    ]
+  },
+  {
+    "title": "The 2022 ICPC China Zhejiang Provincial Programming Contest (19th)",
+    "url": "https://qoj.ac/contest/2056",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "JB Loves Math",
+        "url": "https://qoj.ac/contest/2056/problem/11369",
+        "provider_problem_id": "11369"
+      },
+      {
+        "ordinal": "B",
+        "title": "JB Loves Comma",
+        "url": "https://qoj.ac/contest/2056/problem/11370",
+        "provider_problem_id": "11370"
+      },
+      {
+        "ordinal": "C",
+        "title": "JB Wants to Earn Big Money",
+        "url": "https://qoj.ac/contest/2056/problem/11371",
+        "provider_problem_id": "11371"
+      },
+      {
+        "ordinal": "D",
+        "title": "The Profiteer",
+        "url": "https://qoj.ac/contest/2056/problem/3998",
+        "provider_problem_id": "3998"
+      },
+      {
+        "ordinal": "E",
+        "title": "Easy Jump",
+        "url": "https://qoj.ac/contest/2056/problem/3994",
+        "provider_problem_id": "3994"
+      },
+      {
+        "ordinal": "F",
+        "title": "Easy Fix",
+        "url": "https://qoj.ac/contest/2056/problem/4002",
+        "provider_problem_id": "4002"
+      },
+      {
+        "ordinal": "G",
+        "title": "Easy Glide",
+        "url": "https://qoj.ac/contest/2056/problem/11372",
+        "provider_problem_id": "11372"
+      },
+      {
+        "ordinal": "H",
+        "title": "A=B",
+        "url": "https://qoj.ac/contest/2056/problem/4006",
+        "provider_problem_id": "4006"
+      },
+      {
+        "ordinal": "I",
+        "title": "Barbecue",
+        "url": "https://qoj.ac/contest/2056/problem/4001",
+        "provider_problem_id": "4001"
+      },
+      {
+        "ordinal": "J",
+        "title": "Frog",
+        "url": "https://qoj.ac/contest/2056/problem/4005",
+        "provider_problem_id": "4005"
+      },
+      {
+        "ordinal": "K",
+        "title": "Dynamic Reachability",
+        "url": "https://qoj.ac/contest/2056/problem/4000",
+        "provider_problem_id": "4000"
+      },
+      {
+        "ordinal": "L",
+        "title": "Candy Machine",
+        "url": "https://qoj.ac/contest/2056/problem/3997",
+        "provider_problem_id": "3997"
+      },
+      {
+        "ordinal": "M",
+        "title": "BpbBppbpBB",
+        "url": "https://qoj.ac/contest/2056/problem/3999",
+        "provider_problem_id": "3999"
+      }
+    ]
+  },
+  {
+    "title": "The 2023 ICPC Asia East Continent Final Contest (EC-Final 2023)",
+    "url": "https://qoj.ac/contest/1522?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "DFS Order 4",
+        "url": "https://qoj.ac/contest/1522/problem/8047",
+        "provider_problem_id": "8047"
+      },
+      {
+        "ordinal": "B",
+        "title": "Roman Master",
+        "url": "https://qoj.ac/contest/1522/problem/8048",
+        "provider_problem_id": "8048"
+      },
+      {
+        "ordinal": "C",
+        "title": "Equal Sums",
+        "url": "https://qoj.ac/contest/1522/problem/8049",
+        "provider_problem_id": "8049"
+      },
+      {
+        "ordinal": "D",
+        "title": "Random Permutation",
+        "url": "https://qoj.ac/contest/1522/problem/8050",
+        "provider_problem_id": "8050"
+      },
+      {
+        "ordinal": "E",
+        "title": "Colorful Graph",
+        "url": "https://qoj.ac/contest/1522/problem/8051",
+        "provider_problem_id": "8051"
+      },
+      {
+        "ordinal": "F",
+        "title": "Dot Product",
+        "url": "https://qoj.ac/contest/1522/problem/8052",
+        "provider_problem_id": "8052"
+      },
+      {
+        "ordinal": "G",
+        "title": "Flow 2",
+        "url": "https://qoj.ac/contest/1522/problem/8053",
+        "provider_problem_id": "8053"
+      },
+      {
+        "ordinal": "H",
+        "title": "Map 2",
+        "url": "https://qoj.ac/contest/1522/problem/8054",
+        "provider_problem_id": "8054"
+      },
+      {
+        "ordinal": "I",
+        "title": "Balance",
+        "url": "https://qoj.ac/contest/1522/problem/8055",
+        "provider_problem_id": "8055"
+      },
+      {
+        "ordinal": "J",
+        "title": "Travel 2",
+        "url": "https://qoj.ac/contest/1522/problem/8056",
+        "provider_problem_id": "8056"
+      },
+      {
+        "ordinal": "K",
+        "title": "Best Carry Player 4",
+        "url": "https://qoj.ac/contest/1522/problem/8057",
+        "provider_problem_id": "8057"
+      },
+      {
+        "ordinal": "L",
+        "title": "Binary vs Ternary",
+        "url": "https://qoj.ac/contest/1522/problem/8058",
+        "provider_problem_id": "8058"
+      },
+      {
+        "ordinal": "M",
+        "title": "Circular Route",
+        "url": "https://qoj.ac/contest/1522/problem/8059",
+        "provider_problem_id": "8059"
+      }
+    ]
+  },
+  {
+    "title": "The 2023 ICPC Xi'an Invitational Programming Contest",
+    "url": "https://qoj.ac/contest/1291",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Alice and Bob",
+        "url": "https://qoj.ac/contest/1291/problem/6736",
+        "provider_problem_id": "6736"
+      },
+      {
+        "ordinal": "B",
+        "title": "Click the Circle",
+        "url": "https://qoj.ac/contest/1291/problem/6734",
+        "provider_problem_id": "6734"
+      },
+      {
+        "ordinal": "C",
+        "title": "Delete the Tree",
+        "url": "https://qoj.ac/contest/1291/problem/6745",
+        "provider_problem_id": "6745"
+      },
+      {
+        "ordinal": "D",
+        "title": "Leaves",
+        "url": "https://qoj.ac/contest/1291/problem/6742",
+        "provider_problem_id": "6742"
+      },
+      {
+        "ordinal": "E",
+        "title": "Merge the Rectangles",
+        "url": "https://qoj.ac/contest/1291/problem/6746",
+        "provider_problem_id": "6746"
+      },
+      {
+        "ordinal": "F",
+        "title": "Moniphant Sleep",
+        "url": "https://qoj.ac/contest/1291/problem/6733",
+        "provider_problem_id": "6733"
+      },
+      {
+        "ordinal": "G",
+        "title": "Permutation",
+        "url": "https://qoj.ac/contest/1291/problem/6747",
+        "provider_problem_id": "6747"
+      },
+      {
+        "ordinal": "H",
+        "title": "Spin the Wheel",
+        "url": "https://qoj.ac/contest/1291/problem/6748",
+        "provider_problem_id": "6748"
+      },
+      {
+        "ordinal": "I",
+        "title": "Square",
+        "url": "https://qoj.ac/contest/1291/problem/6744",
+        "provider_problem_id": "6744"
+      },
+      {
+        "ordinal": "J",
+        "title": "Target",
+        "url": "https://qoj.ac/contest/1291/problem/6749",
+        "provider_problem_id": "6749"
+      },
+      {
+        "ordinal": "K",
+        "title": "Tree",
+        "url": "https://qoj.ac/contest/1291/problem/6735",
+        "provider_problem_id": "6735"
+      }
+    ]
+  },
+  {
+    "title": "The 2024 ICPC Asia East Continent Final Contest (EC-Final 2024)",
+    "url": "https://qoj.ac/contest/1894?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Hitoshizuku",
+        "url": "https://qoj.ac/contest/1894/problem/9975",
+        "provider_problem_id": "9975"
+      },
+      {
+        "ordinal": "B",
+        "title": "Guess the Polygon 2",
+        "url": "https://qoj.ac/contest/1894/problem/9976",
+        "provider_problem_id": "9976"
+      },
+      {
+        "ordinal": "C",
+        "title": "Norte da Universidade",
+        "url": "https://qoj.ac/contest/1894/problem/9977",
+        "provider_problem_id": "9977"
+      },
+      {
+        "ordinal": "D",
+        "title": "Keystone Correction",
+        "url": "https://qoj.ac/contest/1894/problem/9978",
+        "provider_problem_id": "9978"
+      },
+      {
+        "ordinal": "E",
+        "title": "Corrupted Scoreboard Log",
+        "url": "https://qoj.ac/contest/1894/problem/9979",
+        "provider_problem_id": "9979"
+      },
+      {
+        "ordinal": "F",
+        "title": "Boolean Function Reconstruction",
+        "url": "https://qoj.ac/contest/1894/problem/9980",
+        "provider_problem_id": "9980"
+      },
+      {
+        "ordinal": "G",
+        "title": "Collatz Conjecture",
+        "url": "https://qoj.ac/contest/1894/problem/9981",
+        "provider_problem_id": "9981"
+      },
+      {
+        "ordinal": "H",
+        "title": "Staircase Museum",
+        "url": "https://qoj.ac/contest/1894/problem/9982",
+        "provider_problem_id": "9982"
+      },
+      {
+        "ordinal": "I",
+        "title": "Color-Balanced Tree",
+        "url": "https://qoj.ac/contest/1894/problem/9983",
+        "provider_problem_id": "9983"
+      },
+      {
+        "ordinal": "J",
+        "title": "The Mysterious Shop",
+        "url": "https://qoj.ac/contest/1894/problem/9984",
+        "provider_problem_id": "9984"
+      },
+      {
+        "ordinal": "K",
+        "title": "Exploration Boundary",
+        "url": "https://qoj.ac/contest/1894/problem/9985",
+        "provider_problem_id": "9985"
+      },
+      {
+        "ordinal": "L",
+        "title": "Shiori",
+        "url": "https://qoj.ac/contest/1894/problem/9986",
+        "provider_problem_id": "9986"
+      }
+    ]
+  },
+  {
+    "title": "The 2024 ICPC Asia Hong Kong Regional Contest",
+    "url": "https://qoj.ac/contest/1885?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "General Symmetry",
+        "url": "https://qoj.ac/contest/1885/problem/9915",
+        "provider_problem_id": "9915"
+      },
+      {
+        "ordinal": "B",
+        "title": "Defeat the Enemies",
+        "url": "https://qoj.ac/contest/1885/problem/9916",
+        "provider_problem_id": "9916"
+      },
+      {
+        "ordinal": "C",
+        "title": "The Story of Emperor Bie",
+        "url": "https://qoj.ac/contest/1885/problem/9917",
+        "provider_problem_id": "9917"
+      },
+      {
+        "ordinal": "D",
+        "title": "Master of Both VI",
+        "url": "https://qoj.ac/contest/1885/problem/9918",
+        "provider_problem_id": "9918"
+      },
+      {
+        "ordinal": "E",
+        "title": "Concave Hull",
+        "url": "https://qoj.ac/contest/1885/problem/9919",
+        "provider_problem_id": "9919"
+      },
+      {
+        "ordinal": "F",
+        "title": "Money Game 2",
+        "url": "https://qoj.ac/contest/1885/problem/9920",
+        "provider_problem_id": "9920"
+      },
+      {
+        "ordinal": "G",
+        "title": "Yelkrab",
+        "url": "https://qoj.ac/contest/1885/problem/9921",
+        "provider_problem_id": "9921"
+      },
+      {
+        "ordinal": "H",
+        "title": "Mah-jong",
+        "url": "https://qoj.ac/contest/1885/problem/9922",
+        "provider_problem_id": "9922"
+      },
+      {
+        "ordinal": "I",
+        "title": "Ma Meilleure Ennemie",
+        "url": "https://qoj.ac/contest/1885/problem/9923",
+        "provider_problem_id": "9923"
+      },
+      {
+        "ordinal": "J",
+        "title": "Reconstruction",
+        "url": "https://qoj.ac/contest/1885/problem/9924",
+        "provider_problem_id": "9924"
+      },
+      {
+        "ordinal": "K",
+        "title": "LR String",
+        "url": "https://qoj.ac/contest/1885/problem/9925",
+        "provider_problem_id": "9925"
+      },
+      {
+        "ordinal": "L",
+        "title": "Flipping Paths",
+        "url": "https://qoj.ac/contest/1885/problem/9926",
+        "provider_problem_id": "9926"
+      },
+      {
+        "ordinal": "M",
+        "title": "Godzilla",
+        "url": "https://qoj.ac/contest/1885/problem/9927",
+        "provider_problem_id": "9927"
+      }
+    ]
+  },
+  {
+    "title": "The 2024 ICPC Asia Shanghai Regional Contest",
+    "url": "https://qoj.ac/contest/1913?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Ancient Maps, Hidden Danger",
+        "url": "https://qoj.ac/contest/1913/problem/9037",
+        "provider_problem_id": "9037"
+      },
+      {
+        "ordinal": "B",
+        "title": "Basic Graph Algorithm",
+        "url": "https://qoj.ac/contest/1913/problem/9038",
+        "provider_problem_id": "9038"
+      },
+      {
+        "ordinal": "C",
+        "title": "Conquer the Multiples",
+        "url": "https://qoj.ac/contest/1913/problem/9039",
+        "provider_problem_id": "9039"
+      },
+      {
+        "ordinal": "D",
+        "title": "Decrease and Swap",
+        "url": "https://qoj.ac/contest/1913/problem/9040",
+        "provider_problem_id": "9040"
+      },
+      {
+        "ordinal": "E",
+        "title": "Equal Measure",
+        "url": "https://qoj.ac/contest/1913/problem/9041",
+        "provider_problem_id": "9041"
+      },
+      {
+        "ordinal": "F",
+        "title": "Fast Bogosort",
+        "url": "https://qoj.ac/contest/1913/problem/9042",
+        "provider_problem_id": "9042"
+      },
+      {
+        "ordinal": "G",
+        "title": "Geometry Task",
+        "url": "https://qoj.ac/contest/1913/problem/9043",
+        "provider_problem_id": "9043"
+      },
+      {
+        "ordinal": "H",
+        "title": "Hexagon Puzzle",
+        "url": "https://qoj.ac/contest/1913/problem/9044",
+        "provider_problem_id": "9044"
+      },
+      {
+        "ordinal": "I",
+        "title": "In Search of the Ultimate Artifact",
+        "url": "https://qoj.ac/contest/1913/problem/9045",
+        "provider_problem_id": "9045"
+      },
+      {
+        "ordinal": "J",
+        "title": "Just-in-Time Render Analysis",
+        "url": "https://qoj.ac/contest/1913/problem/9046",
+        "provider_problem_id": "9046"
+      },
+      {
+        "ordinal": "K",
+        "title": "Knights of Night",
+        "url": "https://qoj.ac/contest/1913/problem/9047",
+        "provider_problem_id": "9047"
+      },
+      {
+        "ordinal": "L",
+        "title": "Lazy Susan",
+        "url": "https://qoj.ac/contest/1913/problem/9048",
+        "provider_problem_id": "9048"
+      },
+      {
+        "ordinal": "M",
+        "title": "Machine Learning with Penguins",
+        "url": "https://qoj.ac/contest/1913/problem/9049",
+        "provider_problem_id": "9049"
+      }
+    ]
+  },
+  {
+    "title": "The 2024 ICPC China Zhejiang Province Programming Contest",
+    "url": "https://qoj.ac/contest/1780?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Bingo",
+        "url": "https://qoj.ac/contest/1780/problem/8932",
+        "provider_problem_id": "8932"
+      },
+      {
+        "ordinal": "B",
+        "title": "Simulated Universe",
+        "url": "https://qoj.ac/contest/1780/problem/8933",
+        "provider_problem_id": "8933"
+      },
+      {
+        "ordinal": "C",
+        "title": "Challenge NPC",
+        "url": "https://qoj.ac/contest/1780/problem/8934",
+        "provider_problem_id": "8934"
+      },
+      {
+        "ordinal": "D",
+        "title": "Puzzle: Easy as Scrabble",
+        "url": "https://qoj.ac/contest/1780/problem/8935",
+        "provider_problem_id": "8935"
+      },
+      {
+        "ordinal": "E",
+        "title": "Team Arrangement",
+        "url": "https://qoj.ac/contest/1780/problem/8936",
+        "provider_problem_id": "8936"
+      },
+      {
+        "ordinal": "F",
+        "title": "Stage: Agausscrab",
+        "url": "https://qoj.ac/contest/1780/problem/8937",
+        "provider_problem_id": "8937"
+      },
+      {
+        "ordinal": "G",
+        "title": "Crawling on a Tree",
+        "url": "https://qoj.ac/contest/1780/problem/8938",
+        "provider_problem_id": "8938"
+      },
+      {
+        "ordinal": "H",
+        "title": "Permutation",
+        "url": "https://qoj.ac/contest/1780/problem/8939",
+        "provider_problem_id": "8939"
+      },
+      {
+        "ordinal": "I",
+        "title": "Piggy Sort",
+        "url": "https://qoj.ac/contest/1780/problem/8940",
+        "provider_problem_id": "8940"
+      },
+      {
+        "ordinal": "J",
+        "title": "Even or Odd Spanning Tree",
+        "url": "https://qoj.ac/contest/1780/problem/8941",
+        "provider_problem_id": "8941"
+      },
+      {
+        "ordinal": "K",
+        "title": "Sugar Sweet 3",
+        "url": "https://qoj.ac/contest/1780/problem/8942",
+        "provider_problem_id": "8942"
+      },
+      {
+        "ordinal": "L",
+        "title": "Challenge Matrix Multiplication",
+        "url": "https://qoj.ac/contest/1780/problem/8943",
+        "provider_problem_id": "8943"
+      },
+      {
+        "ordinal": "M",
+        "title": "Triangles",
+        "url": "https://qoj.ac/contest/1780/problem/8944",
+        "provider_problem_id": "8944"
+      }
+    ]
+  },
+  {
+    "title": "The 2025 Guangdong Provincial Collegiate Programming Contest",
+    "url": "https://qoj.ac/contest/2058?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Matrix Game",
+        "url": "https://qoj.ac/contest/2058/problem/11373",
+        "provider_problem_id": "11373"
+      },
+      {
+        "ordinal": "B",
+        "title": "Integer Generator",
+        "url": "https://qoj.ac/contest/2058/problem/11374",
+        "provider_problem_id": "11374"
+      },
+      {
+        "ordinal": "C",
+        "title": "Cutting Cards",
+        "url": "https://qoj.ac/contest/2058/problem/11375",
+        "provider_problem_id": "11375"
+      },
+      {
+        "ordinal": "D",
+        "title": "Spell Generation",
+        "url": "https://qoj.ac/contest/2058/problem/11376",
+        "provider_problem_id": "11376"
+      },
+      {
+        "ordinal": "E",
+        "title": "Grid Coloring",
+        "url": "https://qoj.ac/contest/2058/problem/11377",
+        "provider_problem_id": "11377"
+      },
+      {
+        "ordinal": "F",
+        "title": "Ranking Prediction",
+        "url": "https://qoj.ac/contest/2058/problem/11378",
+        "provider_problem_id": "11378"
+      },
+      {
+        "ordinal": "G",
+        "title": "Monetary System",
+        "url": "https://qoj.ac/contest/2058/problem/11379",
+        "provider_problem_id": "11379"
+      },
+      {
+        "ordinal": "H",
+        "title": "Loose Subsequences",
+        "url": "https://qoj.ac/contest/2058/problem/11380",
+        "provider_problem_id": "11380"
+      },
+      {
+        "ordinal": "I",
+        "title": "Team Naming",
+        "url": "https://qoj.ac/contest/2058/problem/11381",
+        "provider_problem_id": "11381"
+      },
+      {
+        "ordinal": "J",
+        "title": "Puzzle Competition",
+        "url": "https://qoj.ac/contest/2058/problem/11382",
+        "provider_problem_id": "11382"
+      },
+      {
+        "ordinal": "K",
+        "title": "Typewriter",
+        "url": "https://qoj.ac/contest/2058/problem/11383",
+        "provider_problem_id": "11383"
+      },
+      {
+        "ordinal": "L",
+        "title": "Route Selection",
+        "url": "https://qoj.ac/contest/2058/problem/11384",
+        "provider_problem_id": "11384"
+      }
+    ]
+  },
+  {
+    "title": "The 2025 ICPC Asia East Continent Final Contest (EC-Final 2025)",
+    "url": "https://qoj.ac/contest/3295?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Outstanding Outlines",
+        "url": "https://qoj.ac/contest/3295/problem/16328",
+        "provider_problem_id": "16328"
+      },
+      {
+        "ordinal": "B",
+        "title": "Batching Badges",
+        "url": "https://qoj.ac/contest/3295/problem/16329",
+        "provider_problem_id": "16329"
+      },
+      {
+        "ordinal": "C",
+        "title": "Potential Peak",
+        "url": "https://qoj.ac/contest/3295/problem/16330",
+        "provider_problem_id": "16330"
+      },
+      {
+        "ordinal": "D",
+        "title": "Strategic Stones",
+        "url": "https://qoj.ac/contest/3295/problem/16331",
+        "provider_problem_id": "16331"
+      },
+      {
+        "ordinal": "E",
+        "title": "Efficient Express",
+        "url": "https://qoj.ac/contest/3295/problem/16332",
+        "provider_problem_id": "16332"
+      },
+      {
+        "ordinal": "F",
+        "title": "Set of Intervals 2",
+        "url": "https://qoj.ac/contest/3295/problem/16333",
+        "provider_problem_id": "16333"
+      },
+      {
+        "ordinal": "G",
+        "title": "Revolver Roulette",
+        "url": "https://qoj.ac/contest/3295/problem/16334",
+        "provider_problem_id": "16334"
+      },
+      {
+        "ordinal": "H",
+        "title": "Hextech High-roll",
+        "url": "https://qoj.ac/contest/3295/problem/16335",
+        "provider_problem_id": "16335"
+      },
+      {
+        "ordinal": "I",
+        "title": "Redundancy Refrain",
+        "url": "https://qoj.ac/contest/3295/problem/16336",
+        "provider_problem_id": "16336"
+      },
+      {
+        "ordinal": "J",
+        "title": "Tree-mendous Transmission",
+        "url": "https://qoj.ac/contest/3295/problem/16337",
+        "provider_problem_id": "16337"
+      },
+      {
+        "ordinal": "K",
+        "title": "Magically Marked Matching Master",
+        "url": "https://qoj.ac/contest/3295/problem/16338",
+        "provider_problem_id": "16338"
+      },
+      {
+        "ordinal": "L",
+        "title": "Logical Resonance",
+        "url": "https://qoj.ac/contest/3295/problem/16339",
+        "provider_problem_id": "16339"
+      }
+    ]
+  },
+  {
+    "title": "The 2025 ICPC Asia Hong Kong Regional Contest",
+    "url": "https://qoj.ac/contest/3169?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Bipartite Graph Matching Problem",
+        "url": "https://qoj.ac/contest/3169/problem/15432",
+        "provider_problem_id": "15432"
+      },
+      {
+        "ordinal": "B",
+        "title": "Travelling",
+        "url": "https://qoj.ac/contest/3169/problem/15433",
+        "provider_problem_id": "15433"
+      },
+      {
+        "ordinal": "C",
+        "title": "Stonebag",
+        "url": "https://qoj.ac/contest/3169/problem/15434",
+        "provider_problem_id": "15434"
+      },
+      {
+        "ordinal": "D",
+        "title": "Dumb Problem",
+        "url": "https://qoj.ac/contest/3169/problem/15435",
+        "provider_problem_id": "15435"
+      },
+      {
+        "ordinal": "E",
+        "title": "Bipartite Graph Weighting Problem",
+        "url": "https://qoj.ac/contest/3169/problem/15436",
+        "provider_problem_id": "15436"
+      },
+      {
+        "ordinal": "F",
+        "title": "Find the Circuit",
+        "url": "https://qoj.ac/contest/3169/problem/15437",
+        "provider_problem_id": "15437"
+      },
+      {
+        "ordinal": "G",
+        "title": "Watering System",
+        "url": "https://qoj.ac/contest/3169/problem/15438",
+        "provider_problem_id": "15438"
+      },
+      {
+        "ordinal": "H",
+        "title": "Longest Common Prefix",
+        "url": "https://qoj.ac/contest/3169/problem/15439",
+        "provider_problem_id": "15439"
+      },
+      {
+        "ordinal": "I",
+        "title": "DFS Order - Extra Stage",
+        "url": "https://qoj.ac/contest/3169/problem/15440",
+        "provider_problem_id": "15440"
+      },
+      {
+        "ordinal": "J",
+        "title": "Re: Becoming the Programming Champion",
+        "url": "https://qoj.ac/contest/3169/problem/15441",
+        "provider_problem_id": "15441"
+      },
+      {
+        "ordinal": "K",
+        "title": "Cyclic Shift",
+        "url": "https://qoj.ac/contest/3169/problem/15442",
+        "provider_problem_id": "15442"
+      },
+      {
+        "ordinal": "L",
+        "title": "Cyclic Shift II",
+        "url": "https://qoj.ac/contest/3169/problem/15443",
+        "provider_problem_id": "15443"
+      }
+    ]
+  },
+  {
+    "title": "The 2025 ICPC Asia Nanjing Regional Contest",
+    "url": "https://qoj.ac/contest/2581?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Wow, It’s Yesterday Six Times More",
+        "url": "https://qoj.ac/contest/2581/problem/14801",
+        "provider_problem_id": "14801"
+      },
+      {
+        "ordinal": "B",
+        "title": "What, More Kangaroos?",
+        "url": "https://qoj.ac/contest/2581/problem/14802",
+        "provider_problem_id": "14802"
+      },
+      {
+        "ordinal": "C",
+        "title": "Distributing Candies",
+        "url": "https://qoj.ac/contest/2581/problem/14803",
+        "provider_problem_id": "14803"
+      },
+      {
+        "ordinal": "D",
+        "title": "Fallleaves01 and Golf",
+        "url": "https://qoj.ac/contest/2581/problem/14804",
+        "provider_problem_id": "14804"
+      },
+      {
+        "ordinal": "E",
+        "title": "Cyan White Tree",
+        "url": "https://qoj.ac/contest/2581/problem/14805",
+        "provider_problem_id": "14805"
+      },
+      {
+        "ordinal": "F",
+        "title": "Bitwise And Path",
+        "url": "https://qoj.ac/contest/2581/problem/14806",
+        "provider_problem_id": "14806"
+      },
+      {
+        "ordinal": "G",
+        "title": "Bucket Bonanza",
+        "url": "https://qoj.ac/contest/2581/problem/14807",
+        "provider_problem_id": "14807"
+      },
+      {
+        "ordinal": "H",
+        "title": "Pen Pineapple Apple Pen",
+        "url": "https://qoj.ac/contest/2581/problem/14808",
+        "provider_problem_id": "14808"
+      },
+      {
+        "ordinal": "I",
+        "title": "Chi Fan",
+        "url": "https://qoj.ac/contest/2581/problem/14809",
+        "provider_problem_id": "14809"
+      },
+      {
+        "ordinal": "J",
+        "title": "Trajan Algorithm",
+        "url": "https://qoj.ac/contest/2581/problem/14810",
+        "provider_problem_id": "14810"
+      },
+      {
+        "ordinal": "K",
+        "title": "Xiangqi",
+        "url": "https://qoj.ac/contest/2581/problem/14811",
+        "provider_problem_id": "14811"
+      },
+      {
+        "ordinal": "L",
+        "title": "Regional Champion",
+        "url": "https://qoj.ac/contest/2581/problem/14812",
+        "provider_problem_id": "14812"
+      },
+      {
+        "ordinal": "M",
+        "title": "Many Convex Polygons",
+        "url": "https://qoj.ac/contest/2581/problem/14813",
+        "provider_problem_id": "14813"
+      }
+    ]
+  },
+  {
+    "title": "The 2025 ICPC Asia Shanghai Regional Contest",
+    "url": "https://qoj.ac/contest/2908?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Menji, we miss you!",
+        "url": "https://qoj.ac/contest/2908/problem/15314",
+        "provider_problem_id": "15314"
+      },
+      {
+        "ordinal": "B",
+        "title": "Hamu",
+        "url": "https://qoj.ac/contest/2908/problem/15315",
+        "provider_problem_id": "15315"
+      },
+      {
+        "ordinal": "C",
+        "title": "Singularity",
+        "url": "https://qoj.ac/contest/2908/problem/15316",
+        "provider_problem_id": "15316"
+      },
+      {
+        "ordinal": "D",
+        "title": "Not a subset sum",
+        "url": "https://qoj.ac/contest/2908/problem/15317",
+        "provider_problem_id": "15317"
+      },
+      {
+        "ordinal": "E",
+        "title": "Flower's land 3",
+        "url": "https://qoj.ac/contest/2908/problem/15318",
+        "provider_problem_id": "15318"
+      },
+      {
+        "ordinal": "F",
+        "title": "Flower's land 4",
+        "url": "https://qoj.ac/contest/2908/problem/15319",
+        "provider_problem_id": "15319"
+      },
+      {
+        "ordinal": "G",
+        "title": "Gemcrate",
+        "url": "https://qoj.ac/contest/2908/problem/15320",
+        "provider_problem_id": "15320"
+      },
+      {
+        "ordinal": "H",
+        "title": "AGI",
+        "url": "https://qoj.ac/contest/2908/problem/15321",
+        "provider_problem_id": "15321"
+      },
+      {
+        "ordinal": "I",
+        "title": "Round screws",
+        "url": "https://qoj.ac/contest/2908/problem/15322",
+        "provider_problem_id": "15322"
+      },
+      {
+        "ordinal": "J",
+        "title": "Yet another mailbox problem",
+        "url": "https://qoj.ac/contest/2908/problem/15323",
+        "provider_problem_id": "15323"
+      },
+      {
+        "ordinal": "K",
+        "title": "No more regrets",
+        "url": "https://qoj.ac/contest/2908/problem/15324",
+        "provider_problem_id": "15324"
+      },
+      {
+        "ordinal": "L",
+        "title": "Yet another permutation problem",
+        "url": "https://qoj.ac/contest/2908/problem/15325",
+        "provider_problem_id": "15325"
+      },
+      {
+        "ordinal": "M",
+        "title": "Yet another 01 problem",
+        "url": "https://qoj.ac/contest/2908/problem/15326",
+        "provider_problem_id": "15326"
+      }
+    ]
+  },
+  {
+    "title": "The 2025 ICPC Asia Wuhan Regional Contest",
+    "url": "https://qoj.ac/contest/2609?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Planting Trees",
+        "url": "https://qoj.ac/contest/2609/problem/14719",
+        "provider_problem_id": "14719"
+      },
+      {
+        "ordinal": "B",
+        "title": "77G Network",
+        "url": "https://qoj.ac/contest/2609/problem/14720",
+        "provider_problem_id": "14720"
+      },
+      {
+        "ordinal": "C",
+        "title": "Not Aqre",
+        "url": "https://qoj.ac/contest/2609/problem/14721",
+        "provider_problem_id": "14721"
+      },
+      {
+        "ordinal": "D",
+        "title": "Outsmarting",
+        "url": "https://qoj.ac/contest/2609/problem/14722",
+        "provider_problem_id": "14722"
+      },
+      {
+        "ordinal": "E",
+        "title": "Magic Trick",
+        "url": "https://qoj.ac/contest/2609/problem/14723",
+        "provider_problem_id": "14723"
+      },
+      {
+        "ordinal": "F",
+        "title": "Divide and Conquer",
+        "url": "https://qoj.ac/contest/2609/problem/14724",
+        "provider_problem_id": "14724"
+      },
+      {
+        "ordinal": "G",
+        "title": "Projection",
+        "url": "https://qoj.ac/contest/2609/problem/14725",
+        "provider_problem_id": "14725"
+      },
+      {
+        "ordinal": "H",
+        "title": "Restore the Array",
+        "url": "https://qoj.ac/contest/2609/problem/14726",
+        "provider_problem_id": "14726"
+      },
+      {
+        "ordinal": "I",
+        "title": "Dolls 2",
+        "url": "https://qoj.ac/contest/2609/problem/14727",
+        "provider_problem_id": "14727"
+      },
+      {
+        "ordinal": "J",
+        "title": "Circular Matching",
+        "url": "https://qoj.ac/contest/2609/problem/14728",
+        "provider_problem_id": "14728"
+      },
+      {
+        "ordinal": "K",
+        "title": "Organize the Bookshelf",
+        "url": "https://qoj.ac/contest/2609/problem/14729",
+        "provider_problem_id": "14729"
+      },
+      {
+        "ordinal": "L",
+        "title": "ICPC",
+        "url": "https://qoj.ac/contest/2609/problem/14730",
+        "provider_problem_id": "14730"
+      },
+      {
+        "ordinal": "M",
+        "title": "Kingdom of Construction",
+        "url": "https://qoj.ac/contest/2609/problem/14731",
+        "provider_problem_id": "14731"
+      }
+    ]
+  },
+  {
+    "title": "The 2025 ICPC Asia Xi'an Regional Contest",
+    "url": "https://qoj.ac/contest/2562?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Azalea Garden",
+        "url": "https://qoj.ac/contest/2562/problem/14681",
+        "provider_problem_id": "14681"
+      },
+      {
+        "ordinal": "B",
+        "title": "Beautiful Dangos",
+        "url": "https://qoj.ac/contest/2562/problem/14682",
+        "provider_problem_id": "14682"
+      },
+      {
+        "ordinal": "C",
+        "title": "Catch the Monster",
+        "url": "https://qoj.ac/contest/2562/problem/14683",
+        "provider_problem_id": "14683"
+      },
+      {
+        "ordinal": "D",
+        "title": "Directed Acyclic Graph",
+        "url": "https://qoj.ac/contest/2562/problem/14684",
+        "provider_problem_id": "14684"
+      },
+      {
+        "ordinal": "E",
+        "title": "Epilogue of Happiness",
+        "url": "https://qoj.ac/contest/2562/problem/14685",
+        "provider_problem_id": "14685"
+      },
+      {
+        "ordinal": "F",
+        "title": "Follow the Penguins",
+        "url": "https://qoj.ac/contest/2562/problem/14686",
+        "provider_problem_id": "14686"
+      },
+      {
+        "ordinal": "G",
+        "title": "Grand Voting",
+        "url": "https://qoj.ac/contest/2562/problem/14687",
+        "provider_problem_id": "14687"
+      },
+      {
+        "ordinal": "H",
+        "title": "Heart of Darkness",
+        "url": "https://qoj.ac/contest/2562/problem/14688",
+        "provider_problem_id": "14688"
+      },
+      {
+        "ordinal": "I",
+        "title": "Imagined Holly",
+        "url": "https://qoj.ac/contest/2562/problem/14689",
+        "provider_problem_id": "14689"
+      },
+      {
+        "ordinal": "J",
+        "title": "January's Color",
+        "url": "https://qoj.ac/contest/2562/problem/14690",
+        "provider_problem_id": "14690"
+      },
+      {
+        "ordinal": "K",
+        "title": "Killing Bits",
+        "url": "https://qoj.ac/contest/2562/problem/14691",
+        "provider_problem_id": "14691"
+      },
+      {
+        "ordinal": "L",
+        "title": "Let's Make a Convex!",
+        "url": "https://qoj.ac/contest/2562/problem/14692",
+        "provider_problem_id": "14692"
+      },
+      {
+        "ordinal": "M",
+        "title": "Mystique as Iris",
+        "url": "https://qoj.ac/contest/2562/problem/14693",
+        "provider_problem_id": "14693"
+      }
+    ]
+  },
+  {
+    "title": "The 2025 ICPC China Hubei(Wuhan) National Invitational Programming Contest",
+    "url": "https://qoj.ac/contest/2025?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Problem Setting",
+        "url": "https://qoj.ac/contest/2025/problem/10736",
+        "provider_problem_id": "10736"
+      },
+      {
+        "ordinal": "B",
+        "title": "Black Red Tree",
+        "url": "https://qoj.ac/contest/2025/problem/10737",
+        "provider_problem_id": "10737"
+      },
+      {
+        "ordinal": "C",
+        "title": "One Must Imagine Sisyphus Happy",
+        "url": "https://qoj.ac/contest/2025/problem/10738",
+        "provider_problem_id": "10738"
+      },
+      {
+        "ordinal": "D",
+        "title": "Odd and Even",
+        "url": "https://qoj.ac/contest/2025/problem/10739",
+        "provider_problem_id": "10739"
+      },
+      {
+        "ordinal": "E",
+        "title": "Colorful Graph",
+        "url": "https://qoj.ac/contest/2025/problem/10740",
+        "provider_problem_id": "10740"
+      },
+      {
+        "ordinal": "F",
+        "title": "Knapsack",
+        "url": "https://qoj.ac/contest/2025/problem/10741",
+        "provider_problem_id": "10741"
+      },
+      {
+        "ordinal": "G",
+        "title": "Path Summing Problem",
+        "url": "https://qoj.ac/contest/2025/problem/10742",
+        "provider_problem_id": "10742"
+      },
+      {
+        "ordinal": "H",
+        "title": "WildFire, This Is for You!",
+        "url": "https://qoj.ac/contest/2025/problem/10743",
+        "provider_problem_id": "10743"
+      },
+      {
+        "ordinal": "I",
+        "title": "Bingo 3",
+        "url": "https://qoj.ac/contest/2025/problem/10744",
+        "provider_problem_id": "10744"
+      },
+      {
+        "ordinal": "J",
+        "title": "Dictionary",
+        "url": "https://qoj.ac/contest/2025/problem/10745",
+        "provider_problem_id": "10745"
+      },
+      {
+        "ordinal": "K",
+        "title": "Las Vegas",
+        "url": "https://qoj.ac/contest/2025/problem/10746",
+        "provider_problem_id": "10746"
+      },
+      {
+        "ordinal": "L",
+        "title": "Subsequence",
+        "url": "https://qoj.ac/contest/2025/problem/10747",
+        "provider_problem_id": "10747"
+      },
+      {
+        "ordinal": "M",
+        "title": "Flight Tracker",
+        "url": "https://qoj.ac/contest/2025/problem/10748",
+        "provider_problem_id": "10748"
+      }
+    ]
+  },
+  {
+    "title": "The 2025 ICPC China Zhejiang Province Programming Contest (22nd)",
+    "url": "https://qoj.ac/contest/2021?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Outer LIS",
+        "url": "https://qoj.ac/contest/2021/problem/10723",
+        "provider_problem_id": "10723"
+      },
+      {
+        "ordinal": "B",
+        "title": "Turn on the Light 3",
+        "url": "https://qoj.ac/contest/2021/problem/10724",
+        "provider_problem_id": "10724"
+      },
+      {
+        "ordinal": "C",
+        "title": "RDDCCD",
+        "url": "https://qoj.ac/contest/2021/problem/10725",
+        "provider_problem_id": "10725"
+      },
+      {
+        "ordinal": "D",
+        "title": "Too Clever by Half",
+        "url": "https://qoj.ac/contest/2021/problem/10726",
+        "provider_problem_id": "10726"
+      },
+      {
+        "ordinal": "E",
+        "title": "Gold Miner",
+        "url": "https://qoj.ac/contest/2021/problem/10727",
+        "provider_problem_id": "10727"
+      },
+      {
+        "ordinal": "F",
+        "title": "Challenge NPC III",
+        "url": "https://qoj.ac/contest/2021/problem/10728",
+        "provider_problem_id": "10728"
+      },
+      {
+        "ordinal": "G",
+        "title": "Tariff-ied",
+        "url": "https://qoj.ac/contest/2021/problem/10729",
+        "provider_problem_id": "10729"
+      },
+      {
+        "ordinal": "H",
+        "title": "Sweet Sugar IV",
+        "url": "https://qoj.ac/contest/2021/problem/10730",
+        "provider_problem_id": "10730"
+      },
+      {
+        "ordinal": "I",
+        "title": "Version Number",
+        "url": "https://qoj.ac/contest/2021/problem/10731",
+        "provider_problem_id": "10731"
+      },
+      {
+        "ordinal": "J",
+        "title": "Chocolate Sweet",
+        "url": "https://qoj.ac/contest/2021/problem/10732",
+        "provider_problem_id": "10732"
+      },
+      {
+        "ordinal": "K",
+        "title": "Wavelike Finding",
+        "url": "https://qoj.ac/contest/2021/problem/10733",
+        "provider_problem_id": "10733"
+      },
+      {
+        "ordinal": "L",
+        "title": "Nailoongs Always Lie",
+        "url": "https://qoj.ac/contest/2021/problem/10734",
+        "provider_problem_id": "10734"
+      },
+      {
+        "ordinal": "M",
+        "title": "Master of Both VII",
+        "url": "https://qoj.ac/contest/2021/problem/10735",
+        "provider_problem_id": "10735"
+      }
+    ]
+  },
+  {
+    "title": "第三届中国大学生程序设计竞赛 秦皇岛站（CCPC 2017 Qinhuangdao Site）",
+    "url": "https://qoj.ac/contest/1807?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Balloon Robot",
+        "url": "https://qoj.ac/contest/1807/problem/9450",
+        "provider_problem_id": "9450"
+      },
+      {
+        "ordinal": "B",
+        "title": "Expected Waiting Time",
+        "url": "https://qoj.ac/contest/1807/problem/9451",
+        "provider_problem_id": "9451"
+      },
+      {
+        "ordinal": "C",
+        "title": "Crusaders Quest",
+        "url": "https://qoj.ac/contest/1807/problem/9452",
+        "provider_problem_id": "9452"
+      },
+      {
+        "ordinal": "D",
+        "title": "Graph Generator",
+        "url": "https://qoj.ac/contest/1807/problem/9453",
+        "provider_problem_id": "9453"
+      },
+      {
+        "ordinal": "E",
+        "title": "String of CCPC",
+        "url": "https://qoj.ac/contest/1807/problem/9454",
+        "provider_problem_id": "9454"
+      },
+      {
+        "ordinal": "F",
+        "title": "Getting Lost",
+        "url": "https://qoj.ac/contest/1807/problem/9455",
+        "provider_problem_id": "9455"
+      },
+      {
+        "ordinal": "G",
+        "title": "Numbers",
+        "url": "https://qoj.ac/contest/1807/problem/9456",
+        "provider_problem_id": "9456"
+      },
+      {
+        "ordinal": "H",
+        "title": "Prime Set",
+        "url": "https://qoj.ac/contest/1807/problem/9457",
+        "provider_problem_id": "9457"
+      },
+      {
+        "ordinal": "I",
+        "title": "Triangulation",
+        "url": "https://qoj.ac/contest/1807/problem/9458",
+        "provider_problem_id": "9458"
+      },
+      {
+        "ordinal": "J",
+        "title": "Tree Equation",
+        "url": "https://qoj.ac/contest/1807/problem/9459",
+        "provider_problem_id": "9459"
+      },
+      {
+        "ordinal": "K",
+        "title": "Diversity and Variance",
+        "url": "https://qoj.ac/contest/1807/problem/9460",
+        "provider_problem_id": "9460"
+      },
+      {
+        "ordinal": "L",
+        "title": "One-Dimensional Maze",
+        "url": "https://qoj.ac/contest/1807/problem/9461",
+        "provider_problem_id": "9461"
+      },
+      {
+        "ordinal": "M",
+        "title": "Safest Buildings",
+        "url": "https://qoj.ac/contest/1807/problem/9462",
+        "provider_problem_id": "9462"
+      }
+    ]
+  },
+  {
+    "title": "第九届中国大学生程序设计竞赛 深圳站（CCPC 2023 Shenzhen Site）",
+    "url": "https://qoj.ac/contest/1540?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "A Good Problem",
+        "url": "https://qoj.ac/contest/1540/problem/8328",
+        "provider_problem_id": "8328"
+      },
+      {
+        "ordinal": "B",
+        "title": "Excuse",
+        "url": "https://qoj.ac/contest/1540/problem/8329",
+        "provider_problem_id": "8329"
+      },
+      {
+        "ordinal": "C",
+        "title": "Count off 3",
+        "url": "https://qoj.ac/contest/1540/problem/8330",
+        "provider_problem_id": "8330"
+      },
+      {
+        "ordinal": "D",
+        "title": "Bot Brothers",
+        "url": "https://qoj.ac/contest/1540/problem/8331",
+        "provider_problem_id": "8331"
+      },
+      {
+        "ordinal": "E",
+        "title": "Two in One",
+        "url": "https://qoj.ac/contest/1540/problem/8332",
+        "provider_problem_id": "8332"
+      },
+      {
+        "ordinal": "F",
+        "title": "Gift",
+        "url": "https://qoj.ac/contest/1540/problem/8333",
+        "provider_problem_id": "8333"
+      },
+      {
+        "ordinal": "G",
+        "title": "Gene",
+        "url": "https://qoj.ac/contest/1540/problem/8334",
+        "provider_problem_id": "8334"
+      },
+      {
+        "ordinal": "H",
+        "title": "Fast Hash Transform",
+        "url": "https://qoj.ac/contest/1540/problem/8335",
+        "provider_problem_id": "8335"
+      },
+      {
+        "ordinal": "I",
+        "title": "Indeterminate Equation",
+        "url": "https://qoj.ac/contest/1540/problem/8336",
+        "provider_problem_id": "8336"
+      },
+      {
+        "ordinal": "J",
+        "title": "Counter Reset Problem",
+        "url": "https://qoj.ac/contest/1540/problem/8337",
+        "provider_problem_id": "8337"
+      },
+      {
+        "ordinal": "K",
+        "title": "Quad Kingdoms Chess",
+        "url": "https://qoj.ac/contest/1540/problem/8338",
+        "provider_problem_id": "8338"
+      },
+      {
+        "ordinal": "L",
+        "title": "Rooted Tree",
+        "url": "https://qoj.ac/contest/1540/problem/8339",
+        "provider_problem_id": "8339"
+      },
+      {
+        "ordinal": "M",
+        "title": "3 Sum",
+        "url": "https://qoj.ac/contest/1540/problem/8340",
+        "provider_problem_id": "8340"
+      }
+    ]
+  },
+  {
+    "title": "第九届中国大学生程序设计竞赛总决赛（CCPC Final 2023）",
+    "url": "https://qoj.ac/contest/1596?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Add One 2",
+        "url": "https://qoj.ac/contest/1596/problem/8542",
+        "provider_problem_id": "8542"
+      },
+      {
+        "ordinal": "B",
+        "title": "Periodic Sequence",
+        "url": "https://qoj.ac/contest/1596/problem/8543",
+        "provider_problem_id": "8543"
+      },
+      {
+        "ordinal": "C",
+        "title": "Colorful Graph 2",
+        "url": "https://qoj.ac/contest/1596/problem/8544",
+        "provider_problem_id": "8544"
+      },
+      {
+        "ordinal": "D",
+        "title": "Min or Max",
+        "url": "https://qoj.ac/contest/1596/problem/8545",
+        "provider_problem_id": "8545"
+      },
+      {
+        "ordinal": "E",
+        "title": "Min or Max 2",
+        "url": "https://qoj.ac/contest/1596/problem/8546",
+        "provider_problem_id": "8546"
+      },
+      {
+        "ordinal": "F",
+        "title": "Whose Land?",
+        "url": "https://qoj.ac/contest/1596/problem/8547",
+        "provider_problem_id": "8547"
+      },
+      {
+        "ordinal": "G",
+        "title": "China Convex Polygon Contest",
+        "url": "https://qoj.ac/contest/1596/problem/8548",
+        "provider_problem_id": "8548"
+      },
+      {
+        "ordinal": "H",
+        "title": "The Game",
+        "url": "https://qoj.ac/contest/1596/problem/8549",
+        "provider_problem_id": "8549"
+      },
+      {
+        "ordinal": "I",
+        "title": "All the Way Left",
+        "url": "https://qoj.ac/contest/1596/problem/8550",
+        "provider_problem_id": "8550"
+      },
+      {
+        "ordinal": "J",
+        "title": "DFS Order 5",
+        "url": "https://qoj.ac/contest/1596/problem/8551",
+        "provider_problem_id": "8551"
+      },
+      {
+        "ordinal": "K",
+        "title": "Sticks",
+        "url": "https://qoj.ac/contest/1596/problem/8552",
+        "provider_problem_id": "8552"
+      },
+      {
+        "ordinal": "L",
+        "title": "Exchanging Kubic",
+        "url": "https://qoj.ac/contest/1596/problem/8553",
+        "provider_problem_id": "8553"
+      },
+      {
+        "ordinal": "M",
+        "title": "Bot Friends",
+        "url": "https://qoj.ac/contest/1596/problem/8554",
+        "provider_problem_id": "8554"
+      }
+    ]
+  },
+  {
+    "title": "第十一届中国大学生程序设计竞赛 济南站（CCPC 2025 Jinan Site）",
+    "url": "https://qoj.ac/contest/2693?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Cipher",
+        "url": "https://qoj.ac/contest/2693/problem/15032",
+        "provider_problem_id": "15032"
+      },
+      {
+        "ordinal": "B",
+        "title": "Fortress",
+        "url": "https://qoj.ac/contest/2693/problem/15033",
+        "provider_problem_id": "15033"
+      },
+      {
+        "ordinal": "C",
+        "title": "Finding Keywords",
+        "url": "https://qoj.ac/contest/2693/problem/15034",
+        "provider_problem_id": "15034"
+      },
+      {
+        "ordinal": "D",
+        "title": "Lighthouse",
+        "url": "https://qoj.ac/contest/2693/problem/15035",
+        "provider_problem_id": "15035"
+      },
+      {
+        "ordinal": "E",
+        "title": "Tree and Subgraph Problem",
+        "url": "https://qoj.ac/contest/2693/problem/15036",
+        "provider_problem_id": "15036"
+      },
+      {
+        "ordinal": "F",
+        "title": "Grid Filling Game",
+        "url": "https://qoj.ac/contest/2693/problem/15037",
+        "provider_problem_id": "15037"
+      },
+      {
+        "ordinal": "G",
+        "title": "Make SYSU Great Again IV",
+        "url": "https://qoj.ac/contest/2693/problem/15038",
+        "provider_problem_id": "15038"
+      },
+      {
+        "ordinal": "H",
+        "title": "Hashing",
+        "url": "https://qoj.ac/contest/2693/problem/15039",
+        "provider_problem_id": "15039"
+      },
+      {
+        "ordinal": "I",
+        "title": "I Love CCPC",
+        "url": "https://qoj.ac/contest/2693/problem/15040",
+        "provider_problem_id": "15040"
+      },
+      {
+        "ordinal": "J",
+        "title": "Memory, Permutation, and Rooted Tree",
+        "url": "https://qoj.ac/contest/2693/problem/15041",
+        "provider_problem_id": "15041"
+      },
+      {
+        "ordinal": "K",
+        "title": "Card Game",
+        "url": "https://qoj.ac/contest/2693/problem/15042",
+        "provider_problem_id": "15042"
+      },
+      {
+        "ordinal": "L",
+        "title": "Activity Rehearsal",
+        "url": "https://qoj.ac/contest/2693/problem/15043",
+        "provider_problem_id": "15043"
+      },
+      {
+        "ordinal": "M",
+        "title": "MEX Problem",
+        "url": "https://qoj.ac/contest/2693/problem/15044",
+        "provider_problem_id": "15044"
+      }
+    ]
+  },
+  {
+    "title": "第十一届中国大学生程序设计竞赛 郑州站（CCPC 2025 Zhengzhou Site）",
+    "url": "https://qoj.ac/contest/2661?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Challenge Matrix Multiplication II",
+        "url": "https://qoj.ac/contest/2661/problem/15301",
+        "provider_problem_id": "15301"
+      },
+      {
+        "ordinal": "B",
+        "title": "Cutting Chocolate",
+        "url": "https://qoj.ac/contest/2661/problem/15302",
+        "provider_problem_id": "15302"
+      },
+      {
+        "ordinal": "C",
+        "title": "Basic Counting Practice Problems",
+        "url": "https://qoj.ac/contest/2661/problem/15303",
+        "provider_problem_id": "15303"
+      },
+      {
+        "ordinal": "D",
+        "title": "Diameter of a Tree",
+        "url": "https://qoj.ac/contest/2661/problem/15304",
+        "provider_problem_id": "15304"
+      },
+      {
+        "ordinal": "E",
+        "title": "Doo Doo Doo",
+        "url": "https://qoj.ac/contest/2661/problem/15305",
+        "provider_problem_id": "15305"
+      },
+      {
+        "ordinal": "F",
+        "title": "Challenge NPC II",
+        "url": "https://qoj.ac/contest/2661/problem/15306",
+        "provider_problem_id": "15306"
+      },
+      {
+        "ordinal": "G",
+        "title": "Plus Xor",
+        "url": "https://qoj.ac/contest/2661/problem/15307",
+        "provider_problem_id": "15307"
+      },
+      {
+        "ordinal": "H",
+        "title": "Random Shuffle",
+        "url": "https://qoj.ac/contest/2661/problem/15308",
+        "provider_problem_id": "15308"
+      },
+      {
+        "ordinal": "I",
+        "title": "Dumb Problem II",
+        "url": "https://qoj.ac/contest/2661/problem/15309",
+        "provider_problem_id": "15309"
+      },
+      {
+        "ordinal": "J",
+        "title": "Subrectangle Count",
+        "url": "https://qoj.ac/contest/2661/problem/15310",
+        "provider_problem_id": "15310"
+      },
+      {
+        "ordinal": "K",
+        "title": "Parentheses and Swapping",
+        "url": "https://qoj.ac/contest/2661/problem/15311",
+        "provider_problem_id": "15311"
+      },
+      {
+        "ordinal": "L",
+        "title": "Triangle Grid",
+        "url": "https://qoj.ac/contest/2661/problem/15312",
+        "provider_problem_id": "15312"
+      },
+      {
+        "ordinal": "M",
+        "title": "Replacement",
+        "url": "https://qoj.ac/contest/2661/problem/15313",
+        "provider_problem_id": "15313"
+      }
+    ]
+  },
+  {
+    "title": "第十一届中国大学生程序设计竞赛 重庆站（CCPC 2025 Chongqing Site）",
+    "url": "https://qoj.ac/contest/3387?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "New Gomoku",
+        "url": "https://qoj.ac/contest/3387/problem/15419",
+        "provider_problem_id": "15419"
+      },
+      {
+        "ordinal": "B",
+        "title": "Abstract Portal",
+        "url": "https://qoj.ac/contest/3387/problem/15420",
+        "provider_problem_id": "15420"
+      },
+      {
+        "ordinal": "C",
+        "title": "GPA Optimization Plan",
+        "url": "https://qoj.ac/contest/3387/problem/15421",
+        "provider_problem_id": "15421"
+      },
+      {
+        "ordinal": "D",
+        "title": "Route Investigation",
+        "url": "https://qoj.ac/contest/3387/problem/15422",
+        "provider_problem_id": "15422"
+      },
+      {
+        "ordinal": "E",
+        "title": "Dinner Invitation",
+        "url": "https://qoj.ac/contest/3387/problem/15423",
+        "provider_problem_id": "15423"
+      },
+      {
+        "ordinal": "F",
+        "title": "Turtle Soup",
+        "url": "https://qoj.ac/contest/3387/problem/15424",
+        "provider_problem_id": "15424"
+      },
+      {
+        "ordinal": "G",
+        "title": "The Messenger",
+        "url": "https://qoj.ac/contest/3387/problem/15425",
+        "provider_problem_id": "15425"
+      },
+      {
+        "ordinal": "H",
+        "title": "Hot Pot",
+        "url": "https://qoj.ac/contest/3387/problem/15426",
+        "provider_problem_id": "15426"
+      },
+      {
+        "ordinal": "I",
+        "title": "Shit",
+        "url": "https://qoj.ac/contest/3387/problem/15427",
+        "provider_problem_id": "15427"
+      },
+      {
+        "ordinal": "J",
+        "title": "Tetris",
+        "url": "https://qoj.ac/contest/3387/problem/15428",
+        "provider_problem_id": "15428"
+      },
+      {
+        "ordinal": "K",
+        "title": "Reverse KMP",
+        "url": "https://qoj.ac/contest/3387/problem/15429",
+        "provider_problem_id": "15429"
+      },
+      {
+        "ordinal": "L",
+        "title": "Tiling the Floor",
+        "url": "https://qoj.ac/contest/3387/problem/15430",
+        "provider_problem_id": "15430"
+      },
+      {
+        "ordinal": "M",
+        "title": "Reduction and Growth",
+        "url": "https://qoj.ac/contest/3387/problem/15431",
+        "provider_problem_id": "15431"
+      }
+    ]
+  },
+  {
+    "title": "第十届中国大学生程序设计竞赛 济南站（CCPC 2024 Jinan Site）",
+    "url": "https://qoj.ac/contest/1843?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "The Fool",
+        "url": "https://qoj.ac/contest/1843/problem/9548",
+        "provider_problem_id": "9548"
+      },
+      {
+        "ordinal": "B",
+        "title": "The Magician",
+        "url": "https://qoj.ac/contest/1843/problem/9549",
+        "provider_problem_id": "9549"
+      },
+      {
+        "ordinal": "C",
+        "title": "The Empress",
+        "url": "https://qoj.ac/contest/1843/problem/9550",
+        "provider_problem_id": "9550"
+      },
+      {
+        "ordinal": "D",
+        "title": "The Emperor",
+        "url": "https://qoj.ac/contest/1843/problem/9551",
+        "provider_problem_id": "9551"
+      },
+      {
+        "ordinal": "E",
+        "title": "The Chariot",
+        "url": "https://qoj.ac/contest/1843/problem/9552",
+        "provider_problem_id": "9552"
+      },
+      {
+        "ordinal": "F",
+        "title": "The Hermit",
+        "url": "https://qoj.ac/contest/1843/problem/9553",
+        "provider_problem_id": "9553"
+      },
+      {
+        "ordinal": "G",
+        "title": "The Wheel of Fortune",
+        "url": "https://qoj.ac/contest/1843/problem/9554",
+        "provider_problem_id": "9554"
+      },
+      {
+        "ordinal": "H",
+        "title": "Strength",
+        "url": "https://qoj.ac/contest/1843/problem/9555",
+        "provider_problem_id": "9555"
+      },
+      {
+        "ordinal": "I",
+        "title": "The Hanged Man",
+        "url": "https://qoj.ac/contest/1843/problem/9556",
+        "provider_problem_id": "9556"
+      },
+      {
+        "ordinal": "J",
+        "title": "Temperance",
+        "url": "https://qoj.ac/contest/1843/problem/9557",
+        "provider_problem_id": "9557"
+      },
+      {
+        "ordinal": "K",
+        "title": "The Devil",
+        "url": "https://qoj.ac/contest/1843/problem/9558",
+        "provider_problem_id": "9558"
+      },
+      {
+        "ordinal": "L",
+        "title": "The Tower",
+        "url": "https://qoj.ac/contest/1843/problem/9559",
+        "provider_problem_id": "9559"
+      },
+      {
+        "ordinal": "M",
+        "title": "Judgement",
+        "url": "https://qoj.ac/contest/1843/problem/9560",
+        "provider_problem_id": "9560"
+      }
+    ]
+  },
+  {
+    "title": "第十届中国大学生程序设计竞赛总决赛（CCPC Final 2024）",
+    "url": "https://qoj.ac/contest/2036?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Requiem for Qingyu",
+        "url": "https://qoj.ac/contest/2036/problem/11105",
+        "provider_problem_id": "11105"
+      },
+      {
+        "ordinal": "B",
+        "title": "Add One 3",
+        "url": "https://qoj.ac/contest/2036/problem/11106",
+        "provider_problem_id": "11106"
+      },
+      {
+        "ordinal": "C",
+        "title": "Iridescent Universe",
+        "url": "https://qoj.ac/contest/2036/problem/11107",
+        "provider_problem_id": "11107"
+      },
+      {
+        "ordinal": "D",
+        "title": "Nocturne without a Moon",
+        "url": "https://qoj.ac/contest/2036/problem/11108",
+        "provider_problem_id": "11108"
+      },
+      {
+        "ordinal": "E",
+        "title": "Omniscient Artist",
+        "url": "https://qoj.ac/contest/2036/problem/11109",
+        "provider_problem_id": "11109"
+      },
+      {
+        "ordinal": "F",
+        "title": "Witnessing the Miracle",
+        "url": "https://qoj.ac/contest/2036/problem/11110",
+        "provider_problem_id": "11110"
+      },
+      {
+        "ordinal": "G",
+        "title": "$+$ and $\\times$ with a sugar",
+        "url": "https://qoj.ac/contest/2036/problem/11111",
+        "provider_problem_id": "11111"
+      },
+      {
+        "ordinal": "H",
+        "title": "Qingyu's Little Training Center",
+        "url": "https://qoj.ac/contest/2036/problem/11112",
+        "provider_problem_id": "11112"
+      },
+      {
+        "ordinal": "I",
+        "title": "Ineffable Cycle",
+        "url": "https://qoj.ac/contest/2036/problem/11113",
+        "provider_problem_id": "11113"
+      },
+      {
+        "ordinal": "J",
+        "title": "Not a work of Idol",
+        "url": "https://qoj.ac/contest/2036/problem/11114",
+        "provider_problem_id": "11114"
+      },
+      {
+        "ordinal": "K",
+        "title": "Grotesque Team Reconstruction",
+        "url": "https://qoj.ac/contest/2036/problem/11115",
+        "provider_problem_id": "11115"
+      },
+      {
+        "ordinal": "L",
+        "title": "Yearning for Yonder",
+        "url": "https://qoj.ac/contest/2036/problem/11116",
+        "provider_problem_id": "11116"
+      },
+      {
+        "ordinal": "M",
+        "title": "Under the Epilogue",
+        "url": "https://qoj.ac/contest/2036/problem/11117",
+        "provider_problem_id": "11117"
+      }
+    ]
+  }
+]

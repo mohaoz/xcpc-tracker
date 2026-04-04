@@ -95,11 +95,12 @@ export type CatalogSnapshotBundle = {
   problems: CatalogSnapshotProblem[];
 };
 
-async function requestStaticJson<T>(path: string): Promise<T> {
+async function requestStaticJson<T>(path: string, options?: { cacheMode?: RequestCache }): Promise<T> {
   const response = await fetch(path, {
     headers: {
       "Content-Type": "application/json",
     },
+    cache: options?.cacheMode ?? "default",
   });
 
   if (!response.ok) {
@@ -113,13 +114,30 @@ async function requestStaticJson<T>(path: string): Promise<T> {
 let catalogBundlePromise: Promise<GeneratedCatalogBundle> | null = null;
 let catalogSnapshotPromise: Promise<CatalogSnapshotBundle> | null = null;
 
-export async function fetchBundledCatalogSnapshot(): Promise<CatalogSnapshotBundle> {
+export function resetCatalogFetchCache(): void {
+  catalogBundlePromise = null;
+  catalogSnapshotPromise = null;
+}
+
+export async function fetchBundledCatalogSnapshot(options?: { forceRefresh?: boolean }): Promise<CatalogSnapshotBundle> {
+  if (options?.forceRefresh) {
+    resetCatalogFetchCache();
+    catalogSnapshotPromise = requestStaticJson<CatalogSnapshotBundle>("/default-catalog.min.json", {
+      cacheMode: "reload",
+    });
+    return catalogSnapshotPromise;
+  }
+
   catalogSnapshotPromise ??= requestStaticJson<CatalogSnapshotBundle>("/default-catalog.min.json");
   return catalogSnapshotPromise;
 }
 
-export async function fetchGeneratedCatalogBundle(): Promise<GeneratedCatalogBundle> {
-  catalogBundlePromise ??= fetchBundledCatalogSnapshot().then((snapshot) => {
+export async function fetchGeneratedCatalogBundle(options?: { forceRefresh?: boolean }): Promise<GeneratedCatalogBundle> {
+  if (options?.forceRefresh) {
+    resetCatalogFetchCache();
+  }
+
+  catalogBundlePromise ??= fetchBundledCatalogSnapshot(options).then((snapshot) => {
     const problemsByContestId = new Map<string, CatalogProblem[]>();
     for (const problem of snapshot.problems) {
       const bucket = problemsByContestId.get(problem.contestId) ?? [];

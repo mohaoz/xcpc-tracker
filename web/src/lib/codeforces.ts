@@ -1,13 +1,4 @@
 import type {
-  CatalogSource,
-} from "./catalog";
-import {
-  aggregateAliasesFromSources,
-  mergeAliases,
-  mergeCatalogSources,
-} from "./catalog-sources";
-import type {
-  LocalCatalogContestRecord,
   LocalCatalogProblemRecord,
   LocalImportSourceRecord,
   LocalMemberHandleRecord,
@@ -16,12 +7,8 @@ import type {
   LocalSyncRecord,
 } from "./local-model";
 import {
-  getCatalogContestDetailFromDb,
-  listCatalogContestsFromDb,
-  listCatalogContestProblemCountsFromDb,
-  listCodeforcesMemberSyncTargets,
   listCatalogProblemsFromDb,
-  upsertContestProblemSnapshot,
+  listCodeforcesMemberSyncTargets,
   upsertMemberBundle,
 } from "./local-db";
 import { loadCodeforcesApiCredentials, type CodeforcesApiCredentials } from "./codeforces-auth";
@@ -32,20 +19,7 @@ type CodeforcesSubmission = {
   problem?: {
     contestId?: number;
     index?: string;
-    name?: string;
   };
-};
-
-type CodeforcesContestStandings = {
-  contest: {
-    id: number;
-    name: string;
-  };
-  problems: Array<{
-    contestId?: number;
-    index?: string;
-    name: string;
-  }>;
 };
 
 type CodeforcesApiEnvelope<T> = {
@@ -63,41 +37,6 @@ type CodeforcesImportSummary = {
 
 function isAbortError(error: unknown) {
   return error instanceof DOMException && error.name === "AbortError";
-}
-
-async function requestCodeforcesApi<T>(
-  method: string,
-  params: Record<string, string>,
-  auth?: CodeforcesApiCredentials | null,
-  signal?: AbortSignal,
-): Promise<T> {
-  const url = new URL(`https://codeforces.com/api/${method}`);
-  const resolvedAuth = auth === undefined ? loadCodeforcesApiCredentials() : auth;
-  const requestParams = resolvedAuth
-    ? await buildAuthorizedCodeforcesParams(method, params, resolvedAuth)
-    : params;
-  for (const [key, value] of Object.entries(requestParams)) {
-    url.searchParams.set(key, value);
-  }
-
-  const response = await fetch(url.toString(), { signal });
-  if (!response.ok) {
-    throw new Error(`Codeforces API HTTP ${response.status}`);
-  }
-
-  const payload = (await response.json()) as CodeforcesApiEnvelope<T>;
-  if (payload.status !== "OK") {
-    throw new Error(payload.comment || "Unknown Codeforces API error");
-  }
-
-  return payload.result;
-}
-
-function buildCodeforcesContestAccessHint(providerContestId: string) {
-  const hasSavedCredentials = !!loadCodeforcesApiCredentials();
-  return hasSavedCredentials
-    ? `Failed to fetch Codeforces contest ${providerContestId}. Your saved API credentials were used, but your account may still not have permission to view this contest. Private contests can also return incomplete data.`
-    : `Failed to fetch Codeforces contest ${providerContestId}. If this is a private contest, save a Codeforces API key/secret on the Manage page and make sure your account has access. Private contests can also return incomplete data.`;
 }
 
 async function sha512Hex(value: string) {
@@ -147,9 +86,32 @@ async function buildAuthorizedCodeforcesParams(
   };
 }
 
-function buildCodeforcesProblemUrl(contestSource: CatalogSource, ordinal: string): string {
-  const normalizedUrl = (contestSource.url ?? "").trim().replace(/\/+$/g, "");
-  return `${normalizedUrl}/problem/${ordinal}`;
+async function requestCodeforcesApi<T>(
+  method: string,
+  params: Record<string, string>,
+  auth?: CodeforcesApiCredentials | null,
+  signal?: AbortSignal,
+): Promise<T> {
+  const url = new URL(`https://codeforces.com/api/${method}`);
+  const resolvedAuth = auth === undefined ? loadCodeforcesApiCredentials() : auth;
+  const requestParams = resolvedAuth
+    ? await buildAuthorizedCodeforcesParams(method, params, resolvedAuth)
+    : params;
+  for (const [key, value] of Object.entries(requestParams)) {
+    url.searchParams.set(key, value);
+  }
+
+  const response = await fetch(url.toString(), { signal });
+  if (!response.ok) {
+    throw new Error(`Codeforces API HTTP ${response.status}`);
+  }
+
+  const payload = (await response.json()) as CodeforcesApiEnvelope<T>;
+  if (payload.status !== "OK") {
+    throw new Error(payload.comment || "Unknown Codeforces API error");
+  }
+
+  return payload.result;
 }
 
 function normalizeCodeforcesStatus(submissions: CodeforcesSubmission[]) {
@@ -199,318 +161,6 @@ function findProblemByCodeforcesProviderProblemId(
         source.provider_problem_id === providerProblemId,
     ),
   );
-}
-
-function findProblemByOrdinal(
-  catalogProblems: LocalCatalogProblemRecord[],
-  ordinal: string,
-): LocalCatalogProblemRecord | undefined {
-  return catalogProblems.find((problem) => problem.ordinal === ordinal);
-}
-
-function getCodeforcesContestSources(sources: CatalogSource[], providerContestId?: string | null) {
-  return sources.filter(
-    (source) =>
-      source.provider === "codeforces" &&
-      source.kind === "contest" &&
-      !!source.provider_contest_id &&
-      (!providerContestId || source.provider_contest_id === providerContestId),
-  );
-}
-
-export async function syncCodeforcesContestProblems(
-  contestId: string,
-  options?: {
-    providerContestId?: string | null;
-    signal?: AbortSignal;
-  },
-): Promise<{
-  contestId: string;
-  providerContestIds: string[];
-  sourceCount: number;
-  problemCount: number;
-  conflictCount: number;
-}> {
-  const detail = await getCatalogContestDetailFromDb(contestId);
-  if (!detail) {
-    throw new Error(`Unknown contest: ${contestId}`);
-  }
-  const contest = detail.contest;
-
-  const codeforcesSources = getCodeforcesContestSources(contest.sources, options?.providerContestId);
-  if (!codeforcesSources.length) {
-    throw new Error("This contest does not have a Codeforces contest source");
-  }
-
-  const startedAt = new Date().toISOString();
-  const importedAt = new Date().toISOString();
-  const sourceRecordId = `codeforces-contest:${contestId}:${importedAt}`;
-  const contestSourceTitles: Array<{
-    provider_contest_id: string;
-    source_title: string;
-  }> = [];
-  const problemTitleConflicts: Array<{
-    ordinal: string;
-    problem_id: string;
-    primary_title: string;
-    source_title: string;
-    provider_problem_id: string;
-  }> = [];
-  const problemsById = new Map(
-    detail.problems.map((problem) => [
-      problem.problemId,
-      {
-        ...problem,
-        aliases: aggregateAliasesFromSources(problem.title, problem.aliases, problem.sources),
-      },
-    ]),
-  );
-  let mergedContestSources = [...contest.sources];
-
-  for (const contestSource of codeforcesSources) {
-    const providerContestId = contestSource.provider_contest_id;
-    if (!providerContestId) {
-      continue;
-    }
-
-    let standings: CodeforcesContestStandings;
-    try {
-      standings = await requestCodeforcesApi<CodeforcesContestStandings>(
-        "contest.standings",
-        {
-          contestId: providerContestId,
-          from: "1",
-          count: "1",
-        },
-        undefined,
-        options?.signal,
-      );
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      throw new Error(`${buildCodeforcesContestAccessHint(providerContestId)} ${message}`);
-    }
-    const normalizedContestSource: CatalogSource = {
-      ...contestSource,
-      source_title: standings.contest.name || contestSource.source_title,
-    };
-    mergedContestSources = mergeCatalogSources(mergedContestSources, normalizedContestSource);
-    contestSourceTitles.push({
-      provider_contest_id: providerContestId,
-      source_title: standings.contest.name,
-    });
-
-    for (const problem of standings.problems.filter((item) => item.index)) {
-      const ordinal = problem.index as string;
-      const problemSource: CatalogSource = {
-        provider: "codeforces",
-        kind: "problem",
-        url: buildCodeforcesProblemUrl(normalizedContestSource, ordinal),
-        provider_problem_id: `${providerContestId}:${ordinal}`,
-        source_title: problem.name,
-        label: `Codeforces ${ordinal}`,
-      };
-      const currentProblems = [...problemsById.values()];
-      const matchedProblem =
-        findProblemByCodeforcesProviderProblemId(currentProblems, problemSource.provider_problem_id!) ??
-        findProblemByOrdinal(currentProblems, ordinal);
-
-      if (!matchedProblem) {
-        const primaryTitle = problem.name.trim();
-        let problemId = `${contestId}:${ordinal}`;
-        if (problemsById.has(problemId)) {
-          problemId = `${contestId}:${providerContestId}:${ordinal}`;
-        }
-        const createdProblem: LocalCatalogProblemRecord = {
-          problemId,
-          contestId,
-          ordinal,
-          title: primaryTitle,
-          aliases: aggregateAliasesFromSources(primaryTitle, [], [problemSource]),
-          sources: [problemSource],
-          sourceKind: "runtime_codeforces",
-        };
-        problemsById.set(createdProblem.problemId, createdProblem);
-        continue;
-      }
-
-      if (problem.name.trim() && problem.name.trim().toLocaleLowerCase() !== matchedProblem.title.trim().toLocaleLowerCase()) {
-        problemTitleConflicts.push({
-          ordinal,
-          problem_id: matchedProblem.problemId,
-          primary_title: matchedProblem.title,
-          source_title: problem.name.trim(),
-          provider_problem_id: problemSource.provider_problem_id!,
-        });
-      }
-
-      const nextSources = mergeCatalogSources(matchedProblem.sources, problemSource);
-      const nextTitle = matchedProblem.title.trim() || problem.name.trim();
-      problemsById.set(matchedProblem.problemId, {
-        ...matchedProblem,
-        title: nextTitle,
-        aliases: aggregateAliasesFromSources(
-          nextTitle,
-          mergeAliases(nextTitle, matchedProblem.aliases, [problem.name]),
-          nextSources,
-        ),
-        sources: nextSources,
-        sourceKind: matchedProblem.sourceKind ?? "runtime_codeforces",
-      });
-    }
-  }
-
-  const problems = [...problemsById.values()].sort((left, right) =>
-    left.ordinal.localeCompare(right.ordinal),
-  );
-  const nextContestTitle =
-    contest.title.trim() || contestSourceTitles[0]?.source_title?.trim() || contest.title;
-  const nextContest: LocalCatalogContestRecord = {
-    ...contest,
-    title: nextContestTitle,
-    aliases: aggregateAliasesFromSources(nextContestTitle, contest.aliases, mergedContestSources),
-    sources: mergedContestSources,
-    problemIds: problems.map((problem) => problem.problemId),
-  };
-
-  const importSource: LocalImportSourceRecord = {
-    sourceRecordId,
-    kind: "codeforces_api",
-    label: `Codeforces contest import for ${contestId}`,
-    importedAt,
-    rawMetaJson: {
-      contest_id: contestId,
-      provider_contest_ids: contestSourceTitles.map((source) => source.provider_contest_id),
-      source_count: contestSourceTitles.length,
-      source_titles: contestSourceTitles,
-      problem_count: problems.length,
-      problem_title_conflicts: problemTitleConflicts,
-    },
-  };
-
-  const syncRecord: LocalSyncRecord = {
-    syncId: `codeforces-contest-sync:${contestId}:${importedAt}`,
-    sourceRecordId,
-    adapter: "codeforces_api",
-    startedAt,
-    finishedAt: importedAt,
-    status: "succeeded",
-    summaryJson: {
-      contest_id: contestId,
-      provider_contest_ids: contestSourceTitles.map((source) => source.provider_contest_id),
-      source_count: contestSourceTitles.length,
-      problem_count: problems.length,
-      problem_title_conflict_count: problemTitleConflicts.length,
-      problem_title_conflicts: problemTitleConflicts,
-    },
-  };
-
-  await upsertContestProblemSnapshot({
-    contest: nextContest,
-    problems,
-    importSource,
-    syncRecord,
-  });
-
-  return {
-    contestId,
-    providerContestIds: contestSourceTitles.map((source) => source.provider_contest_id),
-    sourceCount: contestSourceTitles.length,
-    problemCount: problems.length,
-    conflictCount: problemTitleConflicts.length,
-  };
-}
-
-export async function syncAllCodeforcesContests(options?: {
-  onProgress?: (payload: {
-    currentIndex: number;
-    pendingContestCount: number;
-    alreadySyncedCount: number;
-    contestId: string;
-    contestTitle: string;
-  }) => void;
-  signal?: AbortSignal;
-}): Promise<{
-  totalContestCount: number;
-  pendingContestCount: number;
-  skippedContestCount: number;
-  syncedContestCount: number;
-  failedContestCount: number;
-  cancelled: boolean;
-  synced: Array<{
-    contestId: string;
-    providerContestIds: string[];
-    sourceCount: number;
-    problemCount: number;
-    conflictCount: number;
-  }>;
-  failed: Array<{
-    contestId: string;
-    contestTitle: string;
-    error: string;
-  }>;
-}> {
-  const contests = await listCatalogContestsFromDb();
-  const problemCountsByContestId = await listCatalogContestProblemCountsFromDb();
-  const codeforcesContests = contests.filter((contest) =>
-    contest.sources.some((source) => source.provider === "codeforces" && source.provider_contest_id),
-  );
-  const pendingContests = codeforcesContests.filter((contest) => (problemCountsByContestId.get(contest.contestId) ?? 0) === 0);
-  const alreadySyncedCount = codeforcesContests.length - pendingContests.length;
-
-  const synced: Array<{
-    contestId: string;
-    providerContestIds: string[];
-    sourceCount: number;
-    problemCount: number;
-    conflictCount: number;
-  }> = [];
-  const failed: Array<{
-    contestId: string;
-    contestTitle: string;
-    error: string;
-  }> = [];
-  let cancelled = false;
-
-  for (const [index, contest] of pendingContests.entries()) {
-    if (options?.signal?.aborted) {
-      cancelled = true;
-      break;
-    }
-    options?.onProgress?.({
-      currentIndex: index + 1,
-      pendingContestCount: pendingContests.length,
-      alreadySyncedCount,
-      contestId: contest.contestId,
-      contestTitle: contest.title,
-    });
-    try {
-      const result = await syncCodeforcesContestProblems(contest.contestId, {
-        signal: options?.signal,
-      });
-      synced.push(result);
-    } catch (error) {
-      if (isAbortError(error) || options?.signal?.aborted) {
-        cancelled = true;
-        break;
-      }
-      failed.push({
-        contestId: contest.contestId,
-        contestTitle: contest.title,
-        error: error instanceof Error ? error.message : String(error),
-      });
-    }
-  }
-
-  return {
-    totalContestCount: codeforcesContests.length,
-    pendingContestCount: pendingContests.length,
-    skippedContestCount: alreadySyncedCount,
-    syncedContestCount: alreadySyncedCount + synced.length,
-    failedContestCount: failed.length,
-    cancelled,
-    synced,
-    failed,
-  };
 }
 
 export async function importCodeforcesMember(payload: {
@@ -567,7 +217,8 @@ export async function importCodeforcesMember(payload: {
         matchMethod: "provider_id",
       };
     });
-  const statuses = candidateStatuses.filter((item): item is LocalMemberProblemStatusRecord => item !== null);
+
+  const statuses = candidateStatuses.filter((item): item is LocalMemberProblemStatusRecord => !!item);
 
   const importSource: LocalImportSourceRecord = {
     sourceRecordId,
@@ -576,14 +227,14 @@ export async function importCodeforcesMember(payload: {
     importedAt,
     rawMetaJson: {
       handle: payload.handle,
+      member_id: payload.memberId,
       submission_count: submissions.length,
-      normalized_problem_status_count: normalizedStatuses.length,
       matched_status_count: statuses.length,
     },
   };
 
   const syncRecord: LocalSyncRecord = {
-    syncId: `codeforces-sync:${payload.handle}:${importedAt}`,
+    syncId: `codeforces-member-sync:${payload.handle}:${importedAt}`,
     sourceRecordId,
     adapter: "codeforces_api",
     startedAt,
@@ -591,8 +242,8 @@ export async function importCodeforcesMember(payload: {
     status: "succeeded",
     summaryJson: {
       handle: payload.handle,
+      member_id: payload.memberId,
       submission_count: submissions.length,
-      normalized_problem_status_count: normalizedStatuses.length,
       matched_status_count: statuses.length,
     },
   };
@@ -630,6 +281,7 @@ export async function syncAllCodeforcesMembers(options?: {
   synced: CodeforcesImportSummary[];
   failed: Array<{
     memberId: string;
+    displayName: string;
     handle: string;
     error: string;
   }>;
@@ -638,6 +290,7 @@ export async function syncAllCodeforcesMembers(options?: {
   const synced: CodeforcesImportSummary[] = [];
   const failed: Array<{
     memberId: string;
+    displayName: string;
     handle: string;
     error: string;
   }> = [];
@@ -671,6 +324,7 @@ export async function syncAllCodeforcesMembers(options?: {
       }
       failed.push({
         memberId: target.memberId,
+        displayName: target.displayName,
         handle: target.handle,
         error: error instanceof Error ? error.message : String(error),
       });

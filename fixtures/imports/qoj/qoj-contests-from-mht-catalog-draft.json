@@ -1,0 +1,4568 @@
+{
+  "schemaVersion": 1,
+  "exportKind": "local_catalog_snapshot",
+  "exportedAt": "2026-04-03T10:52:51.224Z",
+  "contests": [
+    {
+      "contestId": "a195bf54-b7ed-5a8d-8e88-873a7c0a3708",
+      "title": "第十一届中国大学生程序设计竞赛 重庆站（CCPC 2025 Chongqing Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3387?v=1",
+          "provider_contest_id": "3387?v=1",
+          "source_title": "第十一届中国大学生程序设计竞赛 重庆站（CCPC 2025 Chongqing Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "faa148d5-5a00-50b1-b69b-31b7c066a9bd",
+      "title": "The 2025 ICPC Asia East Continent Final Contest (EC-Final 2025)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3295?v=1",
+          "provider_contest_id": "3295?v=1",
+          "source_title": "The 2025 ICPC Asia East Continent Final Contest (EC-Final 2025)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "34575d98-de72-593c-9abd-de838ef533c9",
+      "title": "The 2025 ICPC Asia East Continent Final Contest. Warm up",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": "2026-02-01 10:30:00",
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3294",
+          "provider_contest_id": "3294",
+          "source_title": "The 2025 ICPC Asia East Continent Final Contest. Warm up",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 1 hour 30 minutes.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "2bc3e2a1-af47-5a24-ba35-8a06f611b2ea",
+      "title": "The 2025 ICPC Asia Hong Kong Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3169?v=1",
+          "provider_contest_id": "3169?v=1",
+          "source_title": "The 2025 ICPC Asia Hong Kong Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "69d91b89-6f1b-53e7-bba8-cf7bf608169f",
+      "title": "The 2025 ICPC Asia Shanghai Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2908?v=1",
+          "provider_contest_id": "2908?v=1",
+          "source_title": "The 2025 ICPC Asia Shanghai Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "2ee6f2eb-6db6-561f-a873-ded6ac0d17ad",
+      "title": "第七届中国大学生程序设计竞赛 广州站（CCPC 2021 Guangzhou Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2700",
+          "provider_contest_id": "2700",
+          "source_title": "第七届中国大学生程序设计竞赛 广州站（CCPC 2021 Guangzhou Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "032eb558-7faa-5baf-a137-5811fd6bd5a6",
+      "title": "第十一届中国大学生程序设计竞赛 济南站（CCPC 2025 Jinan Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2693?v=1",
+          "provider_contest_id": "2693?v=1",
+          "source_title": "第十一届中国大学生程序设计竞赛 济南站（CCPC 2025 Jinan Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "f8716eb1-d888-5e0f-9762-223547121c56",
+      "title": "The 2025 ICPC Asia Hong Kong Regional Contest, Warm up",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2665",
+          "provider_contest_id": "2665",
+          "source_title": "The 2025 ICPC Asia Hong Kong Regional Contest, Warm up",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "4782d233-63f3-52d5-b954-52f7ff89999c",
+      "title": "第十一届中国大学生程序设计竞赛 重庆站 热身赛（CCPC 2025 Chongqing, Warm up）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2662",
+          "provider_contest_id": "2662",
+          "source_title": "第十一届中国大学生程序设计竞赛 重庆站 热身赛（CCPC 2025 Chongqing, Warm up）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "873fee3a-b485-58b5-8712-d8e33d496163",
+      "title": "第十一届中国大学生程序设计竞赛 郑州站（CCPC 2025 Zhengzhou Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2661?v=1",
+          "provider_contest_id": "2661?v=1",
+          "source_title": "第十一届中国大学生程序设计竞赛 郑州站（CCPC 2025 Zhengzhou Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "039a0736-009d-58d5-abd6-d365deabfbd3",
+      "title": "第十一届中国大学生程序设计竞赛 郑州站 热身赛（CCPC 2025 Zhengzhou, Warm up）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2644",
+          "provider_contest_id": "2644",
+          "source_title": "第十一届中国大学生程序设计竞赛 郑州站 热身赛（CCPC 2025 Zhengzhou, Warm up）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "47aca524-c5fd-5d16-851f-44fe7517be17",
+      "title": "（2025）第六届辽宁省大学生程序设计竞赛 (沈阳)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2642",
+          "provider_contest_id": "2642",
+          "source_title": "（2025）第六届辽宁省大学生程序设计竞赛 (沈阳)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "0cf98d08-4808-59ea-b1b4-3824a52145d8",
+      "title": "The 2025 ICPC Asia Shenyang Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2641?v=1",
+          "provider_contest_id": "2641?v=1",
+          "source_title": "The 2025 ICPC Asia Shenyang Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "9e86d962-ba58-5614-8fc1-3381440c3f03",
+      "title": "The 9th Hebei Collegiate Programming Contest (CCPC 2025 河北省赛)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2629",
+          "provider_contest_id": "2629",
+          "source_title": "The 9th Hebei Collegiate Programming Contest (CCPC 2025 河北省赛)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "1019643a-d663-5b5f-836e-617e7c8e8fce",
+      "title": "The 8th Hebei Collegiate Programming Contest (CCPC 2024 河北省赛)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2628",
+          "provider_contest_id": "2628",
+          "source_title": "The 8th Hebei Collegiate Programming Contest (CCPC 2024 河北省赛)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "cfb31481-4102-5d6a-934d-b6faa0b939b6",
+      "title": "The 7th Hebei Collegiate Programming Contest (CCPC 2023 河北省赛)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2627",
+          "provider_contest_id": "2627",
+          "source_title": "The 7th Hebei Collegiate Programming Contest (CCPC 2023 河北省赛)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "7c7450bc-bab8-54f7-b68c-5e0c58eec8a2",
+      "title": "The 6th Hebei Collegiate Programming Contest (CCPC 2022 河北省赛)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2626",
+          "provider_contest_id": "2626",
+          "source_title": "The 6th Hebei Collegiate Programming Contest (CCPC 2022 河北省赛)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "834de002-85e3-57b1-adf0-ac787562b27b",
+      "title": "The 5th Hebei Collegiate Programming Contest (CCPC 2021 河北省赛)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2625",
+          "provider_contest_id": "2625",
+          "source_title": "The 5th Hebei Collegiate Programming Contest (CCPC 2021 河北省赛)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "74a037d9-2757-57c9-b12e-8d04d9cae141",
+      "title": "The 4th Hebei Collegiate Programming Contest (CCPC 2020 河北省赛)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2624",
+          "provider_contest_id": "2624",
+          "source_title": "The 4th Hebei Collegiate Programming Contest (CCPC 2020 河北省赛)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "988e2ac2-27e2-516b-829c-ecf7e00c1e7b",
+      "title": "The 2025 ICPC Asia Wuhan Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2609?v=1",
+          "provider_contest_id": "2609?v=1",
+          "source_title": "The 2025 ICPC Asia Wuhan Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "557b3d14-89b1-59b7-96e5-4e5e9be8947b",
+      "title": "The 2025 ICPC Asia Shenyang Regional Contest, Warm up",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": "2025-11-15 20:00:00",
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2585",
+          "provider_contest_id": "2585",
+          "source_title": "The 2025 ICPC Asia Shenyang Regional Contest, Warm up",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "2d8f3751-54d7-51bf-93cf-0c9e7873f5fe",
+      "title": "The 2025 ICPC Asia Nanjing Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2581?v=1",
+          "provider_contest_id": "2581?v=1",
+          "source_title": "The 2025 ICPC Asia Nanjing Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "0c6eebfd-eebb-58b7-b1c4-344fa2539c3a",
+      "title": "第十一届中国大学生程序设计竞赛 哈尔滨站 热身赛（CCPC 2025 Harbin Site, Practice）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2577",
+          "provider_contest_id": "2577",
+          "source_title": "第十一届中国大学生程序设计竞赛 哈尔滨站 热身赛（CCPC 2025 Harbin Site, Practice）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "9561bb91-f665-5e14-a9bc-6fd8f155fd13",
+      "title": "第十一届中国大学生程序设计竞赛 哈尔滨站（CCPC 2025 Harbin Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2575",
+          "provider_contest_id": "2575",
+          "source_title": "第十一届中国大学生程序设计竞赛 哈尔滨站（CCPC 2025 Harbin Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "b7c3cda4-ac88-559f-b13c-2cfd574f0203",
+      "title": "The 2025 ICPC Asia Nanjing Regional Contest. Warm Up",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2573",
+          "provider_contest_id": "2573",
+          "source_title": "The 2025 ICPC Asia Nanjing Regional Contest. Warm Up",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "ff299227-a95f-5648-8dac-11fd01c16601",
+      "title": "The 2025 ICPC Asia Chengdu Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2567?v=1",
+          "provider_contest_id": "2567?v=1",
+          "source_title": "The 2025 ICPC Asia Chengdu Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "4560225e-abd0-5f0b-9cd6-f1fcaebe9e21",
+      "title": "The 2025 Hunan Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2566",
+          "provider_contest_id": "2566",
+          "source_title": "The 2025 Hunan Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "58b69d30-ab76-5f54-885a-0819f9050912",
+      "title": "第十一届中国大学生程序设计竞赛 高职专场（CCPC 2025 Vocational Division）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2565",
+          "provider_contest_id": "2565",
+          "source_title": "第十一届中国大学生程序设计竞赛 高职专场（CCPC 2025 Vocational Division）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "b09791de-7713-5d2b-9599-dc2da3885c94",
+      "title": "第十一届中国大学生程序设计竞赛 女生专场（CCPC 2025 Women's Division）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2564",
+          "provider_contest_id": "2564",
+          "source_title": "第十一届中国大学生程序设计竞赛 女生专场（CCPC 2025 Women's Division）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "b1382486-4494-55bc-8a41-bfd70f4e1b32",
+      "title": "The 2025 ICPC Asia Xi'an Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2562?v=1",
+          "provider_contest_id": "2562?v=1",
+          "source_title": "The 2025 ICPC Asia Xi'an Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "78e37142-7b55-5d06-8480-38c70c5dd0f0",
+      "title": "The 2025 ICPC Asia Xi'an Regional Contest. Warm up",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2556",
+          "provider_contest_id": "2556",
+          "source_title": "The 2025 ICPC Asia Xi'an Regional Contest. Warm up",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "390f90bf-701c-5edd-83f2-58c9185a3989",
+      "title": "The 2016 ACM-ICPC Asia Qingdao Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2549",
+          "provider_contest_id": "2549",
+          "source_title": "The 2016 ACM-ICPC Asia Qingdao Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "e9bc44de-6338-537b-b294-035498abbdb4",
+      "title": "The 2016 ACM-ICPC Asia Shenyang Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2540",
+          "provider_contest_id": "2540",
+          "source_title": "The 2016 ACM-ICPC Asia Shenyang Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "4e3ed8b5-c239-5fdd-af44-5db9e70d20d6",
+      "title": "第十一届中国大学生程序设计竞赛网络预选赛（CCPC Online 2025）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2534",
+          "provider_contest_id": "2534",
+          "source_title": "第十一届中国大学生程序设计竞赛网络预选赛（CCPC Online 2025）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "2ab1e8c1-3d00-558b-b244-b8aed9e0bd1d",
+      "title": "第八届中国大学生程序设计竞赛网络预选赛（CCPC Online 2022）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2531",
+          "provider_contest_id": "2531",
+          "source_title": "第八届中国大学生程序设计竞赛网络预选赛（CCPC Online 2022）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "e9a9cfeb-20c3-51ce-9c7b-7ddf871dad4f",
+      "title": "第十届中国大学生程序设计竞赛网络预选赛（CCPC Online 2024）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2530",
+          "provider_contest_id": "2530",
+          "source_title": "第十届中国大学生程序设计竞赛网络预选赛（CCPC Online 2024）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "31559fa4-1c85-5203-a317-3702ca0156ba",
+      "title": "The 2025 ICPC Asia East Continent Online Contest (II)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2524",
+          "provider_contest_id": "2524",
+          "source_title": "The 2025 ICPC Asia East Continent Online Contest (II)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "f9bb4410-970e-5c56-9e04-aa8d23186e5c",
+      "title": "2025 CCPC 全国邀请赛（南昌）暨第二届江西省赛",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2521",
+          "provider_contest_id": "2521",
+          "source_title": "2025 CCPC 全国邀请赛（南昌）暨第二届江西省赛",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours 10 minutes.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "e184606a-8352-5c83-92f3-17b98740b1e3",
+      "title": "The 2025 ICPC Asia East Continent Online Contest (I)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2513",
+          "provider_contest_id": "2513",
+          "source_title": "The 2025 ICPC Asia East Continent Online Contest (I)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "5757230a-937c-5034-9dad-530d3d131228",
+      "title": "The 2019 ICPC China Shandong Provincial Programming Contest. Warm up",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2486",
+          "provider_contest_id": "2486",
+          "source_title": "The 2019 ICPC China Shandong Provincial Programming Contest. Warm up",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "23543cc4-fa05-5dc3-94e7-3f887b11a15e",
+      "title": "“华为智联杯”无线程序设计大赛暨2025年上海市大学生程序设计竞赛",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2238",
+          "provider_contest_id": "2238",
+          "source_title": "“华为智联杯”无线程序设计大赛暨2025年上海市大学生程序设计竞赛",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "a69a2e17-068a-57a4-9f9e-7afa1d66b384",
+      "title": "The 12th Fujian Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2182",
+          "provider_contest_id": "2182",
+          "source_title": "The 12th Fujian Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "bfd95cc3-4711-5656-987a-50f3c03d1563",
+      "title": "The 2020 ICPC Asia Jinan Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2181",
+          "provider_contest_id": "2181",
+          "source_title": "The 2020 ICPC Asia Jinan Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "375a7277-d66e-5f3c-b020-2db9e437b39d",
+      "title": "The 2025 ICPC China Sichuan Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2152",
+          "provider_contest_id": "2152",
+          "source_title": "The 2025 ICPC China Sichuan Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "ee7ae82e-6703-5683-aa5f-1f7c3e67fec2",
+      "title": "The 2015 ACM-ICPC Asia Changchun Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2116",
+          "provider_contest_id": "2116",
+          "source_title": "The 2015 ACM-ICPC Asia Changchun Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "4c325040-6526-585d-b6a5-211e4b0713b2",
+      "title": "The 2015 ACM-ICPC Asia Shenyang Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2115",
+          "provider_contest_id": "2115",
+          "source_title": "The 2015 ACM-ICPC Asia Shenyang Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "b663b178-f74d-5332-b277-8710dbd27dad",
+      "title": "The 2017 ACM-ICPC Asia Nanning Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2114",
+          "provider_contest_id": "2114",
+          "source_title": "The 2017 ACM-ICPC Asia Nanning Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "24627845-be9f-5dd7-b470-ded2093dec51",
+      "title": "The 2017 ACM-ICPC Asia Ürümqi Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2113",
+          "provider_contest_id": "2113",
+          "source_title": "The 2017 ACM-ICPC Asia Ürümqi Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "c3b8b431-4f3f-51bc-82a1-03c2e3ade918",
+      "title": "The 2017 ACM-ICPC Asia Xi'an Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2112",
+          "provider_contest_id": "2112",
+          "source_title": "The 2017 ACM-ICPC Asia Xi'an Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "f41e1d65-ecc5-52e0-8006-3bf710f9018e",
+      "title": "The 2017 ACM-ICPC Asia Hong Kong Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2111",
+          "provider_contest_id": "2111",
+          "source_title": "The 2017 ACM-ICPC Asia Hong Kong Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "f0ec9ad3-9958-56a7-be62-749a300d9852",
+      "title": "The 2017 ACM-ICPC Asia Shenyang Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2109",
+          "provider_contest_id": "2109",
+          "source_title": "The 2017 ACM-ICPC Asia Shenyang Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "d7846905-2076-5225-8f8b-7b70f703bd27",
+      "title": "The 2017 ACM-ICPC Asia Qingdao Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2108",
+          "provider_contest_id": "2108",
+          "source_title": "The 2017 ACM-ICPC Asia Qingdao Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "5e5f8894-ed00-5426-a2d3-34af4cf8bd9e",
+      "title": "The 2025 Jiangsu Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2058",
+          "provider_contest_id": "2058",
+          "source_title": "The 2025 Jiangsu Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "c2abd755-16ad-5612-95fe-dbf030521fab",
+      "title": "The 2025 Guangdong Provincial Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2058?v=1",
+          "provider_contest_id": "2058?v=1",
+          "source_title": "The 2025 Guangdong Provincial Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "8f081c64-f6a0-5cfa-9c68-451129d4161e",
+      "title": "The 15th Shandong CCPC Provincial Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": "2025-05-25 09:30:00",
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2040",
+          "provider_contest_id": "2040",
+          "source_title": "The 15th Shandong CCPC Provincial Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "194df9d6-6d9f-54e7-a5fe-fd6c77d793b4",
+      "title": "第一届中国大学生程序设计竞赛（CCPC 2015）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2039",
+          "provider_contest_id": "2039",
+          "source_title": "第一届中国大学生程序设计竞赛（CCPC 2015）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "614d2976-4738-523d-a1b2-32b92db14fca",
+      "title": "第二届中国大学生程序设计竞赛总决赛（CCPC Final 2016）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2038",
+          "provider_contest_id": "2038",
+          "source_title": "第二届中国大学生程序设计竞赛总决赛（CCPC Final 2016）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "d6e03c72-6edb-5379-9b3f-2b3102a7bc20",
+      "title": "第三届中国大学生程序设计竞赛总决赛（CCPC Final 2017）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2037",
+          "provider_contest_id": "2037",
+          "source_title": "第三届中国大学生程序设计竞赛总决赛（CCPC Final 2017）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "c18380cf-2ae3-52c5-9b1c-39d0ae5dabf9",
+      "title": "第十届中国大学生程序设计竞赛总决赛（CCPC Final 2024）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2036?v=1",
+          "provider_contest_id": "2036?v=1",
+          "source_title": "第十届中国大学生程序设计竞赛总决赛（CCPC Final 2024）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "0341bf0e-ac2d-5a2d-b42d-3c7fa019ebaa",
+      "title": "第四届中国大学生程序设计竞赛总决赛（CCPC Final 2018）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2035",
+          "provider_contest_id": "2035",
+          "source_title": "第四届中国大学生程序设计竞赛总决赛（CCPC Final 2018）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "9e935649-58ea-5647-add7-5eb713e44f13",
+      "title": "The 18th Jilin Provincial Collegiate Programming Contest (2025)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2033",
+          "provider_contest_id": "2033",
+          "source_title": "The 18th Jilin Provincial Collegiate Programming Contest (2025)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "826e06ac-c07a-533f-b7a0-5960dc3db50a",
+      "title": "The 2015 ACM-ICPC Asia East Continent Final Contest (EC-Final 2015)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2029",
+          "provider_contest_id": "2029",
+          "source_title": "The 2015 ACM-ICPC Asia East Continent Final Contest (EC-Final 2015)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "959e0557-a8d2-553c-8872-673eee9d7bef",
+      "title": "The 2016 ACM-ICPC Asia China-Final Contest (CHINA-Final 2016)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2028",
+          "provider_contest_id": "2028",
+          "source_title": "The 2016 ACM-ICPC Asia China-Final Contest (CHINA-Final 2016)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "d2cb2799-10c9-56a6-a74c-fe176df5b017",
+      "title": "第五届中国大学生程序设计竞赛总决赛（CCPC Final 2019）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2027",
+          "provider_contest_id": "2027",
+          "source_title": "第五届中国大学生程序设计竞赛总决赛（CCPC Final 2019）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "f4d93318-4ba2-5022-8a73-895ed12648e2",
+      "title": "The 2017 ACM-ICPC Asia East Continent League Final (ECL-Final 2017)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2026",
+          "provider_contest_id": "2026",
+          "source_title": "The 2017 ACM-ICPC Asia East Continent League Final (ECL-Final 2017)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "e670a411-5a91-5d61-a2cf-51571777a205",
+      "title": "The 2025 ICPC China Hubei(Wuhan) National Invitational Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2025?v=1",
+          "provider_contest_id": "2025?v=1",
+          "source_title": "The 2025 ICPC China Hubei(Wuhan) National Invitational Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "7946dca6-8955-52a0-87db-e56f52e3c4fe",
+      "title": "第十届中国大学生程序设计竞赛总决赛（热身赛）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2023",
+          "provider_contest_id": "2023",
+          "source_title": "第十届中国大学生程序设计竞赛总决赛（热身赛）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "1bbc2d91-8582-55c2-8e74-c937ac242e08",
+      "title": "The 2021 ICPC Asia Shanghai Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2016",
+          "provider_contest_id": "2016",
+          "source_title": "The 2021 ICPC Asia Shanghai Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "6dd1b65b-2f20-572e-8dc7-6ce9b503034f",
+      "title": "The 2024 Jiangsu Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2009",
+          "provider_contest_id": "2009",
+          "source_title": "The 2024 Jiangsu Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "2b94a032-6f9c-54e3-84c5-22540b126207",
+      "title": "The 2023 Jiangsu Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2008",
+          "provider_contest_id": "2008",
+          "source_title": "The 2023 Jiangsu Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "3ecd724d-e101-5f50-b858-844e0a8788f2",
+      "title": "The 2023 Hunan Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2008?v=1",
+          "provider_contest_id": "2008?v=1",
+          "source_title": "The 2023 Hunan Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "1a9ed490-da73-5499-8422-b07981525877",
+      "title": "The 13th Xiangtan Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2008?v=2",
+          "provider_contest_id": "2008?v=2",
+          "source_title": "The 13th Xiangtan Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "46bf362b-86b2-506c-aca2-e70f4ef8c29a",
+      "title": "The 2022 Jiangsu Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2007",
+          "provider_contest_id": "2007",
+          "source_title": "The 2022 Jiangsu Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "2bcf510d-86c1-5246-b372-b3eb23d4eeb1",
+      "title": "The 2021 Jiangsu Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2006",
+          "provider_contest_id": "2006",
+          "source_title": "The 2021 Jiangsu Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "bc2ec709-f789-5c85-93ad-ac5f89f87bbc",
+      "title": "The 2020 Jiangsu Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2005",
+          "provider_contest_id": "2005",
+          "source_title": "The 2020 Jiangsu Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "6fd3bc90-adfd-514c-9cef-fbab0c4a3f56",
+      "title": "The 2018 ICPC Asia Beijing Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/2004",
+          "provider_contest_id": "2004",
+          "source_title": "The 2018 ICPC Asia Beijing Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "99c2199b-04c1-5fd0-b073-c0aae918f1af",
+      "title": "The 2021 ICPC Asia Jinan Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1997",
+          "provider_contest_id": "1997",
+          "source_title": "The 2021 ICPC Asia Jinan Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "a65e9dcd-97ef-5235-a0e2-965a85352923",
+      "title": "The 17th Jilin Provincial Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1996",
+          "provider_contest_id": "1996",
+          "source_title": "The 17th Jilin Provincial Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "e41415ba-f8b3-51fd-bccb-0a596b18ac37",
+      "title": "The 2024 CCPC National Invitational Contest (Changchun)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1996?v=1",
+          "provider_contest_id": "1996?v=1",
+          "source_title": "The 2024 CCPC National Invitational Contest (Changchun)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "5fa259e0-a1fd-5809-94af-03fa09eee049",
+      "title": "The 2014 ACM-ICPC Asia Xi'an Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1990",
+          "provider_contest_id": "1990",
+          "source_title": "The 2014 ACM-ICPC Asia Xi'an Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "6f988d69-d206-5b63-bb88-be3ed3b59806",
+      "title": "2025 北京市大学生程序设计竞赛暨“小米杯”全国邀请赛",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1986",
+          "provider_contest_id": "1986",
+          "source_title": "2025 北京市大学生程序设计竞赛暨“小米杯”全国邀请赛",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "cd77361b-8445-5bb8-91b6-4bc461d3ebe5",
+      "title": "The 2018 ICPC Asia East Continent Final Contest (EC-Final 2018)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1938",
+          "provider_contest_id": "1938",
+          "source_title": "The 2018 ICPC Asia East Continent Final Contest (EC-Final 2018)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "8a56fb42-514a-58ae-b37e-d806f5f67a63",
+      "title": "The 2024 ICPC Asia Shanghai Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1913?v=1",
+          "provider_contest_id": "1913?v=1",
+          "source_title": "The 2024 ICPC Asia Shanghai Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "a6488ded-a91f-552d-9ca9-afdb3c4e47c5",
+      "title": "The 2024 ICPC Asia East Continent Final Contest (EC-Final 2024)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1894?v=1",
+          "provider_contest_id": "1894?v=1",
+          "source_title": "The 2024 ICPC Asia East Continent Final Contest (EC-Final 2024)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "4677a732-8a91-5380-9b9e-aca2d098eb48",
+      "title": "The 2024 ICPC Asia Hangzhou Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1893?v=1",
+          "provider_contest_id": "1893?v=1",
+          "source_title": "The 2024 ICPC Asia Hangzhou Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "3bbe1954-6a52-5bd3-993a-7a9f1b59c960",
+      "title": "The 2024 ICPC Asia East Continent Final Contest. Warm Up.",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1888",
+          "provider_contest_id": "1888",
+          "source_title": "The 2024 ICPC Asia East Continent Final Contest. Warm Up.",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "059cee2c-7ddc-500a-ae98-e2583d38e106",
+      "title": "The 2024 ICPC Asia Hong Kong Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1885?v=1",
+          "provider_contest_id": "1885?v=1",
+          "source_title": "The 2024 ICPC Asia Hong Kong Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "bba3281f-8c3f-56a3-b1dc-924186424993",
+      "title": "第十届中国大学生程序设计竞赛 郑州站（CCPC 2024 Zhengzhou Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1873?v=1",
+          "provider_contest_id": "1873?v=1",
+          "source_title": "第十届中国大学生程序设计竞赛 郑州站（CCPC 2024 Zhengzhou Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "896936ed-4e55-5b12-a3b9-b49c202516b3",
+      "title": "The 2024 ICPC Asia Kunming Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1871?v=1",
+          "provider_contest_id": "1871?v=1",
+          "source_title": "The 2024 ICPC Asia Kunming Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "87a8e8bf-3622-5022-b408-74dcf75448c4",
+      "title": "The 2021 ICPC Asia Kunming Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1870",
+          "provider_contest_id": "1870",
+          "source_title": "The 2021 ICPC Asia Kunming Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "10190d2f-66ba-5a22-bd69-1d158d99f2c1",
+      "title": "第七届中国大学生程序设计竞赛总决赛（CCPC Final 2021）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1869",
+          "provider_contest_id": "1869",
+          "source_title": "第七届中国大学生程序设计竞赛总决赛（CCPC Final 2021）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "9e693ceb-98ef-5cc0-b6f3-4d5d325cb59d",
+      "title": "第四届中国大学生程序设计竞赛 桂林站（CCPC 2018 Guilin Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1867",
+          "provider_contest_id": "1867",
+          "source_title": "第四届中国大学生程序设计竞赛 桂林站（CCPC 2018 Guilin Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "9d94b945-180f-55f0-ad6d-7f2bd6fb3a32",
+      "title": "The 2019 ICPC Asia Shanghai Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1866",
+          "provider_contest_id": "1866",
+          "source_title": "The 2019 ICPC Asia Shanghai Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "94570b60-464b-5363-92b7-612091d8c9fa",
+      "title": "The 2024 ICPC Asia Shenyang Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1865?v=1",
+          "provider_contest_id": "1865?v=1",
+          "source_title": "The 2024 ICPC Asia Shenyang Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "c45d93cf-0b64-57b5-8642-2188170c3b9c",
+      "title": "The 2024 ICPC China Sichuan Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1862",
+          "provider_contest_id": "1862",
+          "source_title": "The 2024 ICPC China Sichuan Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "f311a76e-049c-5449-a69a-619567d68865",
+      "title": "The 2019 ICPC China Sichuan Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1861",
+          "provider_contest_id": "1861",
+          "source_title": "The 2019 ICPC China Sichuan Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "f8a996fc-b264-53d0-a1d3-d77a98958ede",
+      "title": "The 2024 ICPC Asia Shenyang Regional Contest. Warm up",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1851",
+          "provider_contest_id": "1851",
+          "source_title": "The 2024 ICPC Asia Shenyang Regional Contest. Warm up",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "a305f873-527a-5809-8e56-36b044ac8199",
+      "title": "第十届中国大学生程序设计竞赛 郑州站 热身赛（CCPC 2024 Zhengzhou, Practice）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1845",
+          "provider_contest_id": "1845",
+          "source_title": "第十届中国大学生程序设计竞赛 郑州站 热身赛（CCPC 2024 Zhengzhou, Practice）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "20315775-de17-519e-8557-bf14de42e65f",
+      "title": "第十届中国大学生程序设计竞赛 济南站（CCPC 2024 Jinan Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1843?v=1",
+          "provider_contest_id": "1843?v=1",
+          "source_title": "第十届中国大学生程序设计竞赛 济南站（CCPC 2024 Jinan Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "78cf7ce9-2cfa-5b84-908e-5c147f353705",
+      "title": "第十届中国大学生程序设计竞赛 高职专场（CCPC 2024 Vocational Division）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1842",
+          "provider_contest_id": "1842",
+          "source_title": "第十届中国大学生程序设计竞赛 高职专场（CCPC 2024 Vocational Division）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "27a3f1b7-a961-5e4e-9ce2-2de7fb25810d",
+      "title": "第十届中国大学生程序设计竞赛 女生专场（CCPC 2024 Women's Division）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1841",
+          "provider_contest_id": "1841",
+          "source_title": "第十届中国大学生程序设计竞赛 女生专场（CCPC 2024 Women's Division）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "c6465e7d-08e0-524a-a4ad-3909d96c119d",
+      "title": "第十届中国大学生程序设计竞赛 重庆站（CCPC 2024 Chongqing Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1840",
+          "provider_contest_id": "1840",
+          "source_title": "第十届中国大学生程序设计竞赛 重庆站（CCPC 2024 Chongqing Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "ce75f799-c94a-5a87-94b6-5cbfa4800b3d",
+      "title": "第六届中国大学生程序设计竞赛 绵阳站（CCPC 2020 Mianyang）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1838",
+          "provider_contest_id": "1838",
+          "source_title": "第六届中国大学生程序设计竞赛 绵阳站（CCPC 2020 Mianyang）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "7dd0d854-b3fe-5b2b-ade7-a02ae035d487",
+      "title": "第八届中国大学生程序设计竞赛 威海站（CCPC 2022 Weihai）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1833",
+          "provider_contest_id": "1833",
+          "source_title": "第八届中国大学生程序设计竞赛 威海站（CCPC 2022 Weihai）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "28dc06ab-dbe3-59db-ac54-b5bca8e5172b",
+      "title": "The 2018 ICPC Asia Nanjing Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1832",
+          "provider_contest_id": "1832",
+          "source_title": "The 2018 ICPC Asia Nanjing Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "e9235f57-e32e-54fa-999b-c33f1d77d5d0",
+      "title": "（2024）第五届辽宁省大学生程序设计竞赛 (大连)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1831",
+          "provider_contest_id": "1831",
+          "source_title": "（2024）第五届辽宁省大学生程序设计竞赛 (大连)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "cf0d1780-ac37-5a90-97de-08a7e761d334",
+      "title": "The 2024 ICPC Asia Nanjing Regional Contest, Practice",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1830",
+          "provider_contest_id": "1830",
+          "source_title": "The 2024 ICPC Asia Nanjing Regional Contest, Practice",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "7ed1d4b8-99ec-59f6-9ce3-82a96377f34c",
+      "title": "The 2024 ICPC Asia Nanjing Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1828?v=1",
+          "provider_contest_id": "1828?v=1",
+          "source_title": "The 2024 ICPC Asia Nanjing Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "ee82ad0a-71c0-5425-bf2c-d5382f4e8bd2",
+      "title": "The 2024 ICPC Asia Chengdu Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1821?v=1",
+          "provider_contest_id": "1821?v=1",
+          "source_title": "The 2024 ICPC Asia Chengdu Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "3c7f8f08-3b35-555b-8fc8-a84fdee9310b",
+      "title": "第十届中国大学生程序设计竞赛 哈尔滨站（CCPC 2024 Harbin Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1817?v=1",
+          "provider_contest_id": "1817?v=1",
+          "source_title": "第十届中国大学生程序设计竞赛 哈尔滨站（CCPC 2024 Harbin Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "08f2a77e-790a-53c0-826d-20cf8ce56ce5",
+      "title": "The 2017 ACM-ICPC Asia Beijing Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1809",
+          "provider_contest_id": "1809",
+          "source_title": "The 2017 ACM-ICPC Asia Beijing Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "13a481a2-0ddd-5f48-8e15-1bf6127b4a05",
+      "title": "第三届中国大学生程序设计竞赛 秦皇岛站（CCPC 2017 Qinhuangdao Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1807?v=1",
+          "provider_contest_id": "1807?v=1",
+          "source_title": "第三届中国大学生程序设计竞赛 秦皇岛站（CCPC 2017 Qinhuangdao Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "60c4d978-22b5-5d22-91b1-ef073df33d1f",
+      "title": "The 2024 CCPC Shandong Invitational Contest and Provincial Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1801",
+          "provider_contest_id": "1801",
+          "source_title": "The 2024 CCPC Shandong Invitational Contest and Provincial Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "e489380e-cfb6-583d-b94e-e949a47c7f1e",
+      "title": "The 2024 ICPC Asia East Continent Online Contest (II)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1799",
+          "provider_contest_id": "1799",
+          "source_title": "The 2024 ICPC Asia East Continent Online Contest (II)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "3380eb5f-72bf-502a-a39a-56c88577792d",
+      "title": "第五届中国大学生程序设计竞赛 哈尔滨站（CCPC 2019 Harbin Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1797",
+          "provider_contest_id": "1797",
+          "source_title": "第五届中国大学生程序设计竞赛 哈尔滨站（CCPC 2019 Harbin Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "c76da2ec-4c0a-5a35-a56b-aef4c363d8a1",
+      "title": "The 2024 ICPC Asia East Continent Online Contest (I)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1794",
+          "provider_contest_id": "1794",
+          "source_title": "The 2024 ICPC Asia East Continent Online Contest (I)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "72249fdd-d4dd-5f88-9c92-4e9ae94e18cf",
+      "title": "第六届中国大学生程序设计竞赛 威海站（CCPC 2020 Weihai）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1793",
+          "provider_contest_id": "1793",
+          "source_title": "第六届中国大学生程序设计竞赛 威海站（CCPC 2020 Weihai）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "81223d28-9465-5264-82a1-27eca5cc1341",
+      "title": "The 2023 ICPC Asia Xi'an Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1784?v=1",
+          "provider_contest_id": "1784?v=1",
+          "source_title": "The 2023 ICPC Asia Xi'an Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "a066b5df-2b5d-58dc-bd6a-bf7e284014a5",
+      "title": "第五届中国大学生程序设计竞赛 厦门站（CCPC 2019 Xiamen Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1733",
+          "provider_contest_id": "1733",
+          "source_title": "第五届中国大学生程序设计竞赛 厦门站（CCPC 2019 Xiamen Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "7e8ecdcf-4155-5e81-a8b6-c2041c1cdd72",
+      "title": "The 2024 Guangdong Provincial Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1692",
+          "provider_contest_id": "1692",
+          "source_title": "The 2024 Guangdong Provincial Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "9fe29b5e-d8dc-56af-983a-55acb20d0e4a",
+      "title": "2024 北京市大学生程序设计竞赛",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1668",
+          "provider_contest_id": "1668",
+          "source_title": "2024 北京市大学生程序设计竞赛",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "25bb7432-27c4-529d-8b37-669ad9d0edf4",
+      "title": "第九届中国大学生程序设计竞赛总决赛（CCPC Final 2023）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1596?v=1",
+          "provider_contest_id": "1596?v=1",
+          "source_title": "第九届中国大学生程序设计竞赛总决赛（CCPC Final 2023）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "3adff5c8-0ea7-56c8-9a20-e2d055b4c360",
+      "title": "第九届中国大学生程序设计竞赛 深圳站（CCPC 2023 Shenzhen Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1540?v=1",
+          "provider_contest_id": "1540?v=1",
+          "source_title": "第九届中国大学生程序设计竞赛 深圳站（CCPC 2023 Shenzhen Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "72ed9abb-2017-5530-99d3-74078a366dd0",
+      "title": "The 2020 ICPC Asia Macau Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1538",
+          "provider_contest_id": "1538",
+          "source_title": "The 2020 ICPC Asia Macau Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "7a471023-8210-5d87-9ad2-21bc64cb7fc3",
+      "title": "The 2019 ICPC Asia Hong Kong Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1537",
+          "provider_contest_id": "1537",
+          "source_title": "The 2019 ICPC Asia Hong Kong Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "11def213-6d04-5087-bd77-5ce3dca63e08",
+      "title": "The 2023 ICPC Asia East Continent Final Contest (EC-Final 2023)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1522?v=1",
+          "provider_contest_id": "1522?v=1",
+          "source_title": "The 2023 ICPC Asia East Continent Final Contest (EC-Final 2023)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "72384234-4596-5908-9be7-0c98a47282f1",
+      "title": "The 2023 ICPC Asia Hangzhou Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1516?v=1",
+          "provider_contest_id": "1516?v=1",
+          "source_title": "The 2023 ICPC Asia Hangzhou Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "188e1c80-7344-5185-aa9c-17b1a0e06bdf",
+      "title": "第八届中国大学生程序设计竞赛 广州站（CCPC 2022 Guangzhou Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1493",
+          "provider_contest_id": "1493",
+          "source_title": "第八届中国大学生程序设计竞赛 广州站（CCPC 2022 Guangzhou Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "8dc2f3c1-92c1-59e3-8ad7-7a03071565be",
+      "title": "The 2023 ICPC Asia East Continent Online Contest (I)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1485",
+          "provider_contest_id": "1485",
+          "source_title": "The 2023 ICPC Asia East Continent Online Contest (I)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "36484cd8-81aa-51c7-bd83-1470fc7772d8",
+      "title": "The 2023 ICPC Asia East Continent Final Contest (EC-Final 2023). Warm Up",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1481",
+          "provider_contest_id": "1481",
+          "source_title": "The 2023 ICPC Asia East Continent Final Contest (EC-Final 2023). Warm Up",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 2 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "3f54d8c2-3220-5d9b-871d-e443af53c3e8",
+      "title": "第八届中国大学生程序设计竞赛 绵阳站（CCPC 2022 Mianyang Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1480",
+          "provider_contest_id": "1480",
+          "source_title": "第八届中国大学生程序设计竞赛 绵阳站（CCPC 2022 Mianyang Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "9c18bd7c-e693-5d79-9257-b0531c1478c2",
+      "title": "The 2020 ICPC Asia Shanghai Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1477",
+          "provider_contest_id": "1477",
+          "source_title": "The 2020 ICPC Asia Shanghai Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "ad9e7ce1-bd50-5f31-85ac-36801b8b3f64",
+      "title": "The 2023 ICPC Asia Jinan Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1472?v=1",
+          "provider_contest_id": "1472?v=1",
+          "source_title": "The 2023 ICPC Asia Jinan Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "7a99d999-2b4a-5c7b-817c-34630d583a89",
+      "title": "2023 北京市大学生程序设计竞赛",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1464",
+          "provider_contest_id": "1464",
+          "source_title": "2023 北京市大学生程序设计竞赛",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "51756255-18a5-568d-8705-4f5128e1c8a8",
+      "title": "The 2023 ICPC Asia Macau Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1459?v=1",
+          "provider_contest_id": "1459?v=1",
+          "source_title": "The 2023 ICPC Asia Macau Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "622423cc-4d15-5d91-b73b-7f7e5eb1a7e6",
+      "title": "The 2023 ICPC Asia Shenyang Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1449?v=1",
+          "provider_contest_id": "1449?v=1",
+          "source_title": "The 2023 ICPC Asia Shenyang Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "46641bfe-10a2-558c-8fe6-055c286c5ee4",
+      "title": "The 2023 ICPC Asia Jinan Regional Contest. Warm Up",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1443",
+          "provider_contest_id": "1443",
+          "source_title": "The 2023 ICPC Asia Jinan Regional Contest. Warm Up",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "3ce01414-8f05-57f7-b1ab-f799bbba5133",
+      "title": "The 2023 ICPC Asia Hefei Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1440?v=1",
+          "provider_contest_id": "1440?v=1",
+          "source_title": "The 2023 ICPC Asia Hefei Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "c4a4388b-3f90-5655-8f80-f31d08434a2b",
+      "title": "The 2023 ICPC Asia Nanjing Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1435?v=1",
+          "provider_contest_id": "1435?v=1",
+          "source_title": "The 2023 ICPC Asia Nanjing Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "d1033c8b-b63e-50a4-b0ec-4a27571da91d",
+      "title": "第九届中国大学生程序设计竞赛 哈尔滨站（CCPC 2023 Harbin Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1412?v=1",
+          "provider_contest_id": "1412?v=1",
+          "source_title": "第九届中国大学生程序设计竞赛 哈尔滨站（CCPC 2023 Harbin Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "e83fe930-1a64-5d91-8ec1-4a5e3d394a24",
+      "title": "第九届中国大学生程序设计竞赛 秦皇岛站（CCPC 2023 Qinhuangdao Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1411?v=1",
+          "provider_contest_id": "1411?v=1",
+          "source_title": "第九届中国大学生程序设计竞赛 秦皇岛站（CCPC 2023 Qinhuangdao Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "e959b793-9337-583a-9de1-5b9035d00eed",
+      "title": "The 2023 ICPC Asia Nanjing Regional Contest. Warm Up",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1409",
+          "provider_contest_id": "1409",
+          "source_title": "The 2023 ICPC Asia Nanjing Regional Contest. Warm Up",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 3 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "0cbd885f-faa7-5d5f-b578-634a83b24b47",
+      "title": "第九届中国大学生程序设计竞赛 桂林站 热身赛（CCPC 2023 Guilin, Practice）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1408",
+          "provider_contest_id": "1408",
+          "source_title": "第九届中国大学生程序设计竞赛 桂林站 热身赛（CCPC 2023 Guilin, Practice）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 3 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "708df217-2adf-5e3c-b625-dc4c772c5662",
+      "title": "第九届中国大学生程序设计竞赛 桂林站（CCPC 2023 Guilin Site）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1404?v=1",
+          "provider_contest_id": "1404?v=1",
+          "source_title": "第九届中国大学生程序设计竞赛 桂林站（CCPC 2023 Guilin Site）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "495a3451-1957-5d7b-a049-28b656675200",
+      "title": "2023 年 CCPC 网络预选赛",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1358?v=1",
+          "provider_contest_id": "1358?v=1",
+          "source_title": "2023 年 CCPC 网络预选赛",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "6a88ce2f-a5c9-577a-8816-399439a79fe9",
+      "title": "The 2018 ICPC Asia Qingdao Regional Contest (Online Session)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1339?v=1",
+          "provider_contest_id": "1339?v=1",
+          "source_title": "The 2018 ICPC Asia Qingdao Regional Contest (Online Session)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "1c5b6dd1-18d1-5542-998e-d857ad2bd688",
+      "title": "The 2020 ICPC Asia Yinchuan Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1322",
+          "provider_contest_id": "1322",
+          "source_title": "The 2020 ICPC Asia Yinchuan Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "8c7b31c6-6847-5edd-bc22-095c78e3fa35",
+      "title": "The 2019 ICPC Asia Nanjing Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1321",
+          "provider_contest_id": "1321",
+          "source_title": "The 2019 ICPC Asia Nanjing Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "d239defe-7339-59c4-a3c4-7105e210d81d",
+      "title": "The 2019 ICPC Asia Yinchuan Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1320",
+          "provider_contest_id": "1320",
+          "source_title": "The 2019 ICPC Asia Yinchuan Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "65006b7e-f651-5073-b101-c663eb08be2a",
+      "title": "The 2018 ICPC Asia Jiaozuo Regional Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1319",
+          "provider_contest_id": "1319",
+          "source_title": "The 2018 ICPC Asia Jiaozuo Regional Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "4573433b-cc85-5f22-9f23-533e9790f704",
+      "title": "The 2018 ICPC Asia Shenyang Regional Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1318",
+          "provider_contest_id": "1318",
+          "source_title": "The 2018 ICPC Asia Shenyang Regional Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "d7ee857b-c562-5b25-b951-0a45a559d26e",
+      "title": "第七届中国大学生程序设计竞赛 桂林站（CCPC 2021 Guilin）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1305",
+          "provider_contest_id": "1305",
+          "source_title": "第七届中国大学生程序设计竞赛 桂林站（CCPC 2021 Guilin）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "00dc8a30-6746-5dc1-ae8a-88a73c891d38",
+      "title": "2022 Shanghai Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1304",
+          "provider_contest_id": "1304",
+          "source_title": "2022 Shanghai Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "77ad8425-2784-5590-97d4-9e1c17c177d0",
+      "title": "第八届中国大学生程序设计竞赛 桂林站（CCPC 2022 Guilin）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1303",
+          "provider_contest_id": "1303",
+          "source_title": "第八届中国大学生程序设计竞赛 桂林站（CCPC 2022 Guilin）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "ce16e019-efab-5f80-ab9b-7b1a16cd315c",
+      "title": "The 2021 ICPC China Sichuan Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1292",
+          "provider_contest_id": "1292",
+          "source_title": "The 2021 ICPC China Sichuan Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "aa77b61e-e85a-5046-b187-5eb07d6606d3",
+      "title": "The 2023 ICPC China Shaanxi Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1290",
+          "provider_contest_id": "1290",
+          "source_title": "The 2023 ICPC China Shaanxi Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "1f1f4825-1e71-5bf6-a235-339310d94095",
+      "title": "The 2019 ICPC China Shaanxi Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1285",
+          "provider_contest_id": "1285",
+          "source_title": "The 2019 ICPC China Shaanxi Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "b6d21958-d365-5272-b5a5-1a2f3c0d08a8",
+      "title": "The 2003 ACM-ICPC Asia Guangzhou Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1282",
+          "provider_contest_id": "1282",
+          "source_title": "The 2003 ACM-ICPC Asia Guangzhou Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "13511c25-bcd9-549f-a61e-b8e09cd90219",
+      "title": "The 2019 ICPC China Shandong Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1281",
+          "provider_contest_id": "1281",
+          "source_title": "The 2019 ICPC China Shandong Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "89d02342-cbb1-554f-ad08-c36c946947a9",
+      "title": "The 2023 ICPC China Shandong Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1280",
+          "provider_contest_id": "1280",
+          "source_title": "The 2023 ICPC China Shandong Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "6b6294c5-a5be-5499-9dae-52d81fce0749",
+      "title": "The 2021 ICPC Asia Shenyang Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1252",
+          "provider_contest_id": "1252",
+          "source_title": "The 2021 ICPC Asia Shenyang Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "19915fee-84ce-5d9a-ac6c-8a25f72e88af",
+      "title": "The 2020 ICPC Asia Shenyang Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1251",
+          "provider_contest_id": "1251",
+          "source_title": "The 2020 ICPC Asia Shenyang Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "c6bfbfa1-fb9b-5a30-9733-a57d3d21a299",
+      "title": "The 2023 Guangdong Provincial Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1247",
+          "provider_contest_id": "1247",
+          "source_title": "The 2023 Guangdong Provincial Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "3e8944ec-982d-541b-a153-7896d8e606e6",
+      "title": "第八届中国大学生程序设计竞赛总决赛（CCPC Final 2022）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1244",
+          "provider_contest_id": "1244",
+          "source_title": "第八届中国大学生程序设计竞赛总决赛（CCPC Final 2022）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "c4596eb7-5c3d-504a-9095-6d18b07c29be",
+      "title": "The 2021 ICPC Asia Nanjing Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1236",
+          "provider_contest_id": "1236",
+          "source_title": "The 2021 ICPC Asia Nanjing Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "ba3e53f9-5915-5846-9d9f-57a1186b960c",
+      "title": "The 2020 ICPC Asia Nanjing Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1235",
+          "provider_contest_id": "1235",
+          "source_title": "The 2020 ICPC Asia Nanjing Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "7e6520b3-42e6-552c-a2c2-d1df97569125",
+      "title": "The 2022 ICPC Asia East Continent Final Contest (EC-Final 2022)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1197",
+          "provider_contest_id": "1197",
+          "source_title": "The 2022 ICPC Asia East Continent Final Contest (EC-Final 2022)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "057d2ebb-18df-586a-9cec-7a01bb9c5ef8",
+      "title": "The 2018 ICPC Asia Qingdao Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1187",
+          "provider_contest_id": "1187",
+          "source_title": "The 2018 ICPC Asia Qingdao Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "b74eb934-f2a6-5013-9466-5a1202883d3f",
+      "title": "The 2022 ICPC Asia Hong Kong Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1099",
+          "provider_contest_id": "1099",
+          "source_title": "The 2022 ICPC Asia Hong Kong Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "6799dd5f-c7b3-54f8-9daa-1e18ec65c1ba",
+      "title": "The 2022 ICPC Asia Shenyang Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1096",
+          "provider_contest_id": "1096",
+          "source_title": "The 2022 ICPC Asia Shenyang Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "980c3733-2ac8-59b1-b4db-a1e354a5a3e5",
+      "title": "The 2022 ICPC Asia Nanjing Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1093",
+          "provider_contest_id": "1093",
+          "source_title": "The 2022 ICPC Asia Nanjing Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "42aac174-3448-55c7-b0ea-1044fe52e7f7",
+      "title": "The 2011 ACM-ICPC Asia Shanghai Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1072",
+          "provider_contest_id": "1072",
+          "source_title": "The 2011 ACM-ICPC Asia Shanghai Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "e2f42c37-53ee-5e91-ad38-757cceb22692",
+      "title": "The 2022 ICPC Asia Hangzhou Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1071",
+          "provider_contest_id": "1071",
+          "source_title": "The 2022 ICPC Asia Hangzhou Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "99bafb00-6199-534c-8f4a-732346686254",
+      "title": "The 2022 ICPC Asia Jinan Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1053",
+          "provider_contest_id": "1053",
+          "source_title": "The 2022 ICPC Asia Jinan Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "949103d7-10f5-5ba8-a5a1-312288e6f9d7",
+      "title": "The 2022 ICPC Asia Xi'an Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1051",
+          "provider_contest_id": "1051",
+          "source_title": "The 2022 ICPC Asia Xi'an Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "73dbed90-365b-5248-8a51-2e52aa4b777b",
+      "title": "The 2021 ICPC Asia East Continent Final Contest (EC-Final 2021)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1041",
+          "provider_contest_id": "1041",
+          "source_title": "The 2021 ICPC Asia East Continent Final Contest (EC-Final 2021)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "f0e04b9d-ed57-5b59-a573-acbb8878172c",
+      "title": "The 2020 ICPC Asia East Continent Final Contest (EC-Final 2020)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1040",
+          "provider_contest_id": "1040",
+          "source_title": "The 2020 ICPC Asia East Continent Final Contest (EC-Final 2020)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "a5e39c4e-5140-54ac-9458-9f05325db90a",
+      "title": "The 2019 ICPC Asia East Continent Final Contest (EC-Final 2019)",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/1039",
+          "provider_contest_id": "1039",
+          "source_title": "The 2019 ICPC Asia East Continent Final Contest (EC-Final 2019)",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "46ec4523-09d1-5a5d-aaef-388cc60d6f93",
+      "title": "The 2021 ICPC Asia Macau Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/911",
+          "provider_contest_id": "911",
+          "source_title": "The 2021 ICPC Asia Macau Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "6f3dde84-bacc-5599-8568-7e27bff50694",
+      "title": "The 2020 Hunan Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/908",
+          "provider_contest_id": "908",
+          "source_title": "The 2020 Hunan Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "b066ef77-763d-5b0a-9677-d6c5fb8c94ca",
+      "title": "The 2019 Hunan Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/907",
+          "provider_contest_id": "907",
+          "source_title": "The 2019 Hunan Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "9638d522-de62-5e98-9221-3ac36d80b7f4",
+      "title": "The 2018 Hunan Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/906",
+          "provider_contest_id": "906",
+          "source_title": "The 2018 Hunan Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "1d8c3d66-1e0f-5c7b-9d52-5f331df6860f",
+      "title": "The 2016 Hunan Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/905",
+          "provider_contest_id": "905",
+          "source_title": "The 2016 Hunan Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "164d1da9-1b70-5f20-a65a-b6cab79d05bc",
+      "title": "The 2014 Hunan Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/904",
+          "provider_contest_id": "904",
+          "source_title": "The 2014 Hunan Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "f7c6f030-5cc4-5057-98ce-9356804fa8aa",
+      "title": "The 2013 Hunan Collegiate Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/903",
+          "provider_contest_id": "903",
+          "source_title": "The 2013 Hunan Collegiate Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "8e385398-218e-5047-abc0-56451d48c824",
+      "title": "The 2017 ICPC China Sichuan Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/902",
+          "provider_contest_id": "902",
+          "source_title": "The 2017 ICPC China Sichuan Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "1a1a13c8-814d-573b-a7c1-b5c24cb0d7f5",
+      "title": "The 2016 ICPC China Sichuan Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/901",
+          "provider_contest_id": "901",
+          "source_title": "The 2016 ICPC China Sichuan Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "3663deab-4d2e-5a44-bb41-3e28045af4dc",
+      "title": "The 2015 ICPC China Sichuan Provincial Programming Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/900",
+          "provider_contest_id": "900",
+          "source_title": "The 2015 ICPC China Sichuan Provincial Programming Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "9dac6953-77d5-5ac7-b79f-636d442786fa",
+      "title": "The 2009 ACM-ICPC Asia Wuhan Regional Contest",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": null,
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/875",
+          "provider_contest_id": "875",
+          "source_title": "The 2009 ACM-ICPC Asia Wuhan Regional Contest",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    },
+    {
+      "contestId": "ec90a01c-32fa-5132-ae2e-234ca9cbb02d",
+      "title": "第六届中国大学生程序设计竞赛总决赛（CCPC Final 2020）",
+      "aliases": [],
+      "tags": [
+        "qoj",
+        "draft_import"
+      ],
+      "startAt": "2022-03-08 14:05:00",
+      "curationStatus": "contest_stub",
+      "problemIds": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/845",
+          "provider_contest_id": "845",
+          "source_title": "第六届中国大学生程序设计竞赛总决赛（CCPC Final 2020）",
+          "label": "QOJ contest"
+        }
+      ],
+      "notes": "Extracted from a locally saved QOJ contests .mht page. This is a draft catalog candidate, not canonical curated data. Visible duration on contests page: 5 hours.",
+      "generatedFrom": "qoj_mht_extract"
+    }
+  ],
+  "problems": []
+}

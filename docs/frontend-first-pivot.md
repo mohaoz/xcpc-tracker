@@ -84,8 +84,15 @@ fixtures/
     codeforces/
     qoj/
 scripts/
+  browser-fetch-contests.mjs
+  filter-contests.cjs
+  filter-rules.cjs
+  build-final-json.mjs
+  rebuild-catalog-from-result.mjs
+  fetch-codeforces-undated-contest-times.mjs
+  apply-codeforces-undated-years.mjs
+  generate-default-catalog.mjs
   validate-catalog.*
-  generate-catalog.*
 ```
 
 ### Ownership rules
@@ -93,6 +100,7 @@ scripts/
 - `catalog/` is the canonical hand-edited source of truth.
 - imported payloads belong in runtime storage or fixture/sample areas, not in `catalog/` unless they are manually normalized first.
 - import flows may generate reviewable drafts, but they should not silently overwrite curated files.
+- a user-saved QOJ contests HTML or MHT export may be normalized into baseline contest stubs and then promoted into `catalog/` intentionally.
 
 ### Curated contest file shape
 

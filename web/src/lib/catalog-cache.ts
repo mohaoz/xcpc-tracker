@@ -86,8 +86,8 @@ function mapProblems(detail: CatalogContestDetail): LocalCatalogProblemRecord[] 
   }));
 }
 
-export async function loadBundledCatalogSnapshot(): Promise<LocalCatalogSnapshot> {
-  const snapshot = await fetchBundledCatalogSnapshot();
+export async function loadBundledCatalogSnapshot(options?: { forceRefresh?: boolean }): Promise<LocalCatalogSnapshot> {
+  const snapshot = await fetchBundledCatalogSnapshot(options);
   return {
     schemaVersion: 1,
     exportKind: "local_catalog_snapshot",
@@ -119,8 +119,11 @@ export async function loadBundledCatalogSnapshot(): Promise<LocalCatalogSnapshot
 export async function importBundledCatalogSnapshot(options?: {
   mode?: "merge" | "replace";
   includeProblems?: boolean;
+  forceRefresh?: boolean;
 }): Promise<LocalCatalogSnapshot> {
-  const snapshot = await loadBundledCatalogSnapshot();
+  const snapshot = await loadBundledCatalogSnapshot({
+    forceRefresh: options?.forceRefresh,
+  });
   await applyLocalCatalogSnapshot(snapshot, options);
   return snapshot;
 }

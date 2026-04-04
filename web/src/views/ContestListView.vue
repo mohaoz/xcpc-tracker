@@ -56,6 +56,30 @@ function compareContestsByTime(left: CatalogContestIndexItem, right: CatalogCont
   return left.title.localeCompare(right.title);
 }
 
+function getContestSearchHaystacks(contest: CatalogContestIndexItem) {
+  const sourceTokens: string[] = [];
+  const localContest = localContestMap.value.get(contest.id);
+  for (const source of localContest?.sources ?? []) {
+    sourceTokens.push(source.provider);
+    if (source.provider === "codeforces") {
+      sourceTokens.push("cf");
+      sourceTokens.push("codeforces");
+    }
+    if (source.provider === "qoj") {
+      sourceTokens.push("qoj");
+    }
+    if (source.kind) {
+      sourceTokens.push(source.kind);
+    }
+    if (source.source_title) {
+      sourceTokens.push(source.source_title);
+    }
+  }
+
+  return [contest.title, ...contest.aliases, ...contest.tags, ...sourceTokens]
+    .map((value) => value.toLocaleLowerCase());
+}
+
 const queryTokens = computed(() =>
   contestListStore.query
     .split(/\s+/)
@@ -79,8 +103,7 @@ const allMembersSelected = computed(() => {
 const filteredContests = computed(() => {
   return contests.value.filter((contest) => {
     if (queryTokens.value.length) {
-      const haystacks = [contest.title, ...contest.aliases, ...contest.tags]
-        .map((value) => value.toLocaleLowerCase());
+      const haystacks = getContestSearchHaystacks(contest);
 
       const includeMatch = includeQueryTokens.value.every((token) =>
         haystacks.some((value) => value.includes(token)),
@@ -262,7 +285,7 @@ async function handleImportDefaultData() {
   error.value = "";
   try {
     await importBundledCatalogSnapshot({
-      mode: "merge",
+      mode: "replace",
       includeProblems: true,
     });
     await loadContests();
@@ -278,13 +301,22 @@ function problemStateClass(status: "solved" | "attempted" | "unseen") {
   return `contest-problem-state--${status}`;
 }
 
-function contestCodeforcesLabel(contestId: string) {
+function contestSourceLabel(contestId: string) {
   const contest = localContestMap.value.get(contestId);
-  const source = contest?.sources.find(
-    (item) => item.provider === "codeforces" && item.provider_contest_id,
-  );
-  if (source?.provider_contest_id) {
-    return `CODEFORCES / ${source.provider_contest_id}`;
+  const sourceLabels = (contest?.sources ?? [])
+    .filter((item) => item.kind === "contest")
+    .map((item) => {
+      const provider = item.provider.trim().toUpperCase();
+      const providerId = (item.provider_contest_id ?? "").trim();
+      if (providerId) {
+        return `${provider} / ${providerId}`;
+      }
+      const sourceTitle = (item.source_title ?? item.label ?? "").trim();
+      return sourceTitle ? `${provider} / ${sourceTitle}` : provider;
+    });
+
+  if (sourceLabels.length) {
+    return sourceLabels.join(" | ");
   }
   return "CURATED CONTEST";
 }
@@ -353,7 +385,7 @@ watch(() => contestListStore.mode, () => {
           <div class="contest-toolbar__filters">
             <div class="filter-toggle-row">
               <div class="mode-switch">
-                <span class="mode-switch__label">List Mode</span>
+                <span class="mode-switch__label">列表模式</span>
                 <div class="mode-switch__rail">
                   <button
                     type="button"
@@ -381,22 +413,27 @@ watch(() => contestListStore.mode, () => {
                   </button>
                 </div>
               </div>
-              <button
-                v-if="contestListStore.query.trim()"
-                class="button button--ghost"
-                type="button"
-                @click="clearQuery()"
-              >
-                Clear Filters
-              </button>
+              <div class="filter-toggle-row__actions">
+                <div class="inline-tags">
+                  <span class="tag tag--neutral">{{ pageLabel }}</span>
+                </div>
+                <button
+                  v-if="contestListStore.query.trim()"
+                  class="button button--ghost"
+                  type="button"
+                  @click="clearQuery()"
+                >
+                  清空筛选
+                </button>
+              </div>
             </div>
 
             <div class="field">
-              <label for="contest-query">Search</label>
+              <label for="contest-query">搜索</label>
               <input
                 id="contest-query"
                 v-model="contestListStore.query"
-                placeholder="搜索标题、alias 或 tags；用 -2025 这类写法排除"
+                placeholder="搜索标题、alias、tags 或平台如 qoj / cf；用 -2025 这类写法排除"
               />
             </div>
 
@@ -435,35 +472,16 @@ watch(() => contestListStore.mode, () => {
             </div>
 
           </div>
-
-          <div class="contest-toolbar__actions">
-            <RouterLink to="/manage" class="button contest-toolbar__primary-action">
-              <span class="button__eyebrow">Tools</span>
-              <span>Manage Data</span>
-            </RouterLink>
-            <RouterLink to="/contests/new" class="button button--ghost contest-toolbar__secondary-action">
-              <span class="button__eyebrow">Catalog</span>
-              <span>Add Contest</span>
-            </RouterLink>
-            <button class="button button--ghost contest-toolbar__secondary-action" :disabled="loading" @click="loadContests">
-              <span class="button__eyebrow">Catalog</span>
-              <span>{{ loading ? "Refreshing..." : "Reload Catalog" }}</span>
-            </button>
-            <p class="muted tiny contest-toolbar__meta">
-              <span>上次更新：{{ latestSyncLabel }}</span>
-              <span>{{ pageLabel }}</span>
-            </p>
-          </div>
         </div>
 
         <p v-if="error" class="error-box" style="margin-bottom: 16px">{{ error }}</p>
 
-        <div v-if="loading" class="notice">loading curated contests...</div>
+        <div v-if="loading" class="notice">正在加载比赛列表...</div>
         <div v-else-if="!contests.length" class="notice">
           <div>当前还没有本地比赛数据。</div>
           <div class="actions" style="margin-top: 12px; margin-bottom: 0">
             <button class="button" :disabled="importingDefaultData" @click="handleImportDefaultData">
-              {{ importingDefaultData ? "Importing..." : "导入默认数据" }}
+              {{ importingDefaultData ? "导入中..." : "导入默认数据" }}
             </button>
           </div>
         </div>
@@ -479,7 +497,7 @@ watch(() => contestListStore.mode, () => {
           >
             <div class="contest-card__top">
               <div>
-                <p class="eyebrow">{{ contestCodeforcesLabel(contest.id) }}</p>
+                <p class="eyebrow">{{ contestSourceLabel(contest.id) }}</p>
                 <h3>{{ contest.title }}</h3>
               </div>
             </div>
@@ -488,10 +506,10 @@ watch(() => contestListStore.mode, () => {
               <div class="contest-card__meta-main">
                 <div class="inline-tags">
                   <span class="tag tag--neutral">
-                    {{ coverageSummaryMap.get(contest.id)?.problemCount ?? contest.problem_count }} problems
+                    {{ coverageSummaryMap.get(contest.id)?.problemCount ?? contest.problem_count }} 题
                   </span>
                   <span class="tag tag--neutral">
-                    solved {{ coverageSummaryMap.get(contest.id)?.solvedProblemCount ?? 0 }}
+                    已做 {{ coverageSummaryMap.get(contest.id)?.solvedProblemCount ?? 0 }}
                   </span>
                 </div>
                 <div
@@ -508,9 +526,9 @@ watch(() => contestListStore.mode, () => {
                     {{ problem.ordinal }}
                   </span>
                 </div>
-                <span v-else class="contest-card__empty-source">数据未同步，请在 Manage 里全量同步</span>
+                <span v-else class="contest-card__empty-source">本地目录里还没有这场的题目数据</span>
               </div>
-              <span class="contest-card__link-mark" aria-hidden="true">open ↗</span>
+              <span class="contest-card__link-mark" aria-hidden="true">查看 ↗</span>
             </div>
 
             <div v-if="contest.tags.length" class="inline-tags" style="margin-top: 16px">
@@ -529,7 +547,7 @@ watch(() => contestListStore.mode, () => {
 
         <div v-if="totalPages > 1" class="pagination-bar">
           <button class="button button--ghost" :disabled="loading || contestListStore.page <= 1" @click="goToPage(contestListStore.page - 1)">
-            Previous
+            上一页
           </button>
           <div class="pagination-pages">
             <button
@@ -544,7 +562,7 @@ watch(() => contestListStore.mode, () => {
             </button>
           </div>
           <button class="button button--ghost" :disabled="loading || contestListStore.page >= totalPages" @click="goToPage(contestListStore.page + 1)">
-            Next
+            下一页
           </button>
         </div>
       </div>

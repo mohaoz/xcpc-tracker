@@ -17,7 +17,16 @@
         "type": "object",
         "required": ["handle"],
         "properties": {
+          "member_id": {
+            "type": "string"
+          },
           "handle": {
+            "type": "string"
+          },
+          "display_name": {
+            "type": "string"
+          },
+          "profile_url": {
             "type": "string"
           },
           "solved": {

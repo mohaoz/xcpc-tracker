@@ -4,6 +4,12 @@
   "version": "0.2.0-planning",
   "type": "module",
   "scripts": {
+    "catalog:build-final": "node scripts/build-final-json.mjs",
+    "catalog:fetch-cf-problems": "node scripts/fetch-codeforces-problems.mjs",
+    "catalog:generate-default": "node scripts/generate-default-catalog.mjs",
+    "catalog:import-cf-problems": "node scripts/import-codeforces-problems-export.mjs",
+    "catalog:import-qoj-problems": "node scripts/import-qoj-problems-export.mjs",
+    "catalog:refresh": "node scripts/build-final-json.mjs && node scripts/generate-default-catalog.mjs",
     "catalog:build-tools": "./web/node_modules/.bin/tsc -p scripts/tsconfig.catalog.json",
     "catalog:validate": "npm run catalog:build-tools && node .catalog-tools-build/validate-catalog.js"
   }
