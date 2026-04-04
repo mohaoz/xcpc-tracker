@@ -4,6 +4,7 @@
 - If scope is unclear, then optimize for an XCPC tracker that ships as a static frontend-first site.
 - If choosing the first live sync source, then use Codeforces public API directly from the frontend.
 - If choosing the second source, then use QOJ userscript-assisted JSON import; do not build a Python scraper for it.
+- If seeding the built-in baseline contest catalog from QOJ, then prefer a user-saved QOJ contests HTML or MHT export normalized into catalog stubs.
 - If choosing the curated data source, then keep contest and artifact metadata in Git-managed JSON files.
 - If describing the main user value, then prioritize: browse curated contests, inspect member coverage, import member status, and answer VP-before freshness questions.
 - If a feature does not directly help curated contest browsing, member coverage tracking, Codeforces import, QOJ import, or static deployment, then cut it from the near-term plan.
@@ -20,6 +21,7 @@
 - If adding curated contest metadata, then keep the built-in default catalog in a single bundled JSON file under `catalog/`.
 - If data is intended to be canonical and reviewable, then it must live under `catalog/` and be editable by hand.
 - If data comes from import flows, then treat it as candidate or draft input until it is normalized into curated catalog files.
+- If a curator intentionally promotes a QOJ contests page export into the bundled default catalog, then normalize it into reviewable contest stubs first and keep provider provenance on `sources`.
 - If adding schema validation, then validate curated files against JSON Schema before build or deploy.
 - If adding canonical catalog fields, then prefer `id`, `title`, `aliases`, `tags`, `problems`, `sources`, and optional provenance notes; do not duplicate obvious tag semantics into separate fields without a concrete product need.
 - If storing external links, then use a `sources` array with objects shaped like `provider`, `kind`, and `url`.
@@ -31,6 +33,7 @@
 - If the source is Codeforces, then use official public API access from the frontend.
 - If a Codeforces contest is private or access-controlled, then prompt the user to save API credentials and ensure their own account has permission before expecting a complete sync.
 - If the source is QOJ, then use userscript-exported JSON snapshots imported into the app.
+- If the source is a baseline QOJ contest catalog seed, then use a user-saved contests page export instead of backend scraping.
 - If import data is stored in the repository, then keep it as fixture or draft material, not as the canonical curated dataset.
 - If import logic is provider-specific, then keep it in frontend adapters/importers, not in a server-provider abstraction.
 - If import output is ambiguous, then preserve raw import payload metadata and provenance alongside normalized local records.

@@ -56,7 +56,7 @@ async function loadMember() {
       throw new Error("member not found");
     }
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to load member";
+    error.value = caught instanceof Error ? caught.message : "加载成员失败";
   } finally {
     loading.value = false;
   }
@@ -81,7 +81,7 @@ async function handleSyncHandle(handle: LocalMemberPerson["handles"][number]) {
     await loadMember();
     feedback.value = `已同步 ${handle.provider} / ${handle.handle}`;
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to sync handle";
+    error.value = caught instanceof Error ? caught.message : "同步账号失败";
     syncWarning.value = "如果这是 private Codeforces 数据，请先在 Manage 页面保存 API 凭据，并确认当前账号本身有访问权限。即使具备权限，返回的数据也可能仍然不完整。";
   } finally {
     syncingHandleId.value = "";
@@ -103,7 +103,7 @@ async function handleDeleteHandle(handle: LocalMemberPerson["handles"][number]) 
     await loadMember();
     feedback.value = `已删除 ${handle.provider} / ${handle.handle}`;
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to delete handle";
+    error.value = caught instanceof Error ? caught.message : "删除账号失败";
   } finally {
     deletingHandleId.value = "";
   }
@@ -125,7 +125,7 @@ async function handleDeleteMember() {
     emitMemberMutated();
     await router.push("/members");
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to delete member";
+    error.value = caught instanceof Error ? caught.message : "删除成员失败";
   } finally {
     deletingMemberId.value = "";
   }
@@ -154,31 +154,31 @@ onUnmounted(() => {
       <div class="panel__body">
         <div class="panel__header">
           <div class="panel__title">
-            <p class="eyebrow">Member</p>
-            <h2>{{ person?.displayName ?? "Member Detail" }}</h2>
+            <p class="eyebrow">成员</p>
+            <h2>{{ person?.displayName ?? "成员详情" }}</h2>
           </div>
           <RouterLink to="/members" class="button button--ghost">
-            Back To Members
+            返回成员列表
           </RouterLink>
         </div>
 
-        <div v-if="loading" class="notice">loading member...</div>
+        <div v-if="loading" class="notice">正在加载成员...</div>
         <template v-else-if="person">
           <div class="stat-grid" style="margin-bottom: 18px">
             <div class="stat-card">
-              <p class="stat-card__label">Member Id</p>
+              <p class="stat-card__label">成员名</p>
               <div class="stat-card__value" style="font-size: 1rem">{{ person.memberId }}</div>
             </div>
             <div class="stat-card">
-              <p class="stat-card__label">Solved</p>
+              <p class="stat-card__label">已做</p>
               <div class="stat-card__value">{{ person.solvedCount }}</div>
             </div>
             <div class="stat-card">
-              <p class="stat-card__label">Attempted</p>
+              <p class="stat-card__label">尝试过</p>
               <div class="stat-card__value">{{ person.attemptedCount }}</div>
             </div>
             <div class="stat-card">
-              <p class="stat-card__label">Last Sync</p>
+              <p class="stat-card__label">上次同步</p>
               <div class="stat-card__value" style="font-size: 1rem">{{ formatDateTime(person.lastSyncedAt) }}</div>
             </div>
           </div>
@@ -186,7 +186,7 @@ onUnmounted(() => {
           <section class="panel" style="box-shadow: none; margin-bottom: 18px">
             <div class="panel__body">
               <div class="panel__title" style="margin-bottom: 14px">
-                <p class="eyebrow">Handles</p>
+                <p class="eyebrow">账号</p>
                 <h3>账户与同步</h3>
               </div>
               <div class="list-grid">
@@ -209,14 +209,14 @@ onUnmounted(() => {
                       :disabled="!isHandleSyncable(handle.provider) || syncingHandleId === handle.handleId"
                       @click="handleSyncHandle(handle)"
                     >
-                      {{ syncingHandleId === handle.handleId ? "Syncing..." : "Sync Handle" }}
+                      {{ syncingHandleId === handle.handleId ? "同步中..." : "同步账号" }}
                     </button>
                     <button
                       class="button button--ghost"
                       :disabled="deletingHandleId === handle.handleId"
                       @click="handleDeleteHandle(handle)"
                     >
-                      {{ deletingHandleId === handle.handleId ? "Deleting..." : "Delete Handle" }}
+                      {{ deletingHandleId === handle.handleId ? "删除中..." : "删除账号" }}
                     </button>
                   </div>
                 </div>
@@ -227,12 +227,12 @@ onUnmounted(() => {
           <section class="panel" style="box-shadow: none">
             <div class="panel__body">
               <div class="panel__title" style="margin-bottom: 14px">
-                <p class="eyebrow">Danger Zone</p>
+                <p class="eyebrow">危险操作</p>
                 <h3>成员删除</h3>
               </div>
               <div class="actions">
                 <button class="button button--ghost" :disabled="deletingMemberId === person.memberId" @click="handleDeleteMember">
-                  {{ deletingMemberId === person.memberId ? "Deleting..." : "Delete Member" }}
+                  {{ deletingMemberId === person.memberId ? "删除中..." : "删除成员" }}
                 </button>
               </div>
             </div>

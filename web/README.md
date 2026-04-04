@@ -25,18 +25,15 @@ npm run build
 - `/contests`
   contest pool with unified search, member filter, pagination, and per-problem status strips
 - `/manage`
-  local workspace for catalog import/export, default catalog import, and one-click sync
-- `/contests/new`
-  add a contest into local catalog
+  local workspace for catalog import/export and default catalog import
 - `/contests/:contestId`
   contest detail and coverage matrix
 - `/members`
   tracked member overview
 - `/members/new`
-  import a member from Codeforces
+  QOJ member import script
 
 ## Notes
 
 - the frontend reads the bundled default catalog from `catalog/default-catalog.min.json`
 - runtime state lives in Dexie / IndexedDB
-- the frontend talks to Codeforces public API directly for member and contest sync
