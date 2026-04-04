@@ -84,8 +84,15 @@ fixtures/
     codeforces/
     qoj/
 scripts/
+  browser-fetch-contests.mjs
+  filter-contests.cjs
+  filter-rules.cjs
+  build-final-json.mjs
+  rebuild-catalog-from-result.mjs
+  fetch-codeforces-undated-contest-times.mjs
+  apply-codeforces-undated-years.mjs
+  generate-default-catalog.mjs
   validate-catalog.*
-  generate-catalog.*
 ```
 
 ### Ownership rules

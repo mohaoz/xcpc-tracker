@@ -8,7 +8,7 @@ import {
   loadCodeforcesApiCredentials,
   saveCodeforcesApiCredentials,
 } from "../lib/codeforces-auth";
-import { importBundledCatalogSnapshot, refreshCatalogCache } from "../lib/catalog-cache";
+import { importBundledCatalogSnapshot, loadBundledCatalogSnapshot, refreshCatalogCache } from "../lib/catalog-cache";
 import { emitCatalogMutated } from "../lib/catalog-events";
 import { emitMemberMutated } from "../lib/member-events";
 import {
@@ -19,6 +19,7 @@ import {
   exportLocalCatalogSnapshot,
   exportLocalRuntimeSnapshot,
   getCatalogDbStatus,
+  resetLocalDb,
 } from "../lib/local-db";
 import type { LocalCatalogSnapshot, LocalDbStatus, LocalRuntimeSnapshot } from "../lib/local-model";
 
@@ -36,6 +37,7 @@ const syncProgress = ref<{
 const refreshingCatalog = ref(false);
 const importingDefaultData = ref(false);
 const syncingContests = ref(false);
+const initializingDevData = ref(false);
 let syncAbortController: AbortController | null = null;
 const codeforcesApiKey = ref("");
 const codeforcesApiSecret = ref("");
@@ -150,6 +152,40 @@ async function handleImportDefaultData() {
     error.value = caught instanceof Error ? caught.message : "failed to import default catalog";
   } finally {
     importingDefaultData.value = false;
+    submitting.value = false;
+  }
+}
+
+async function handleOneClickInit() {
+  const confirmed = window.confirm("一键初始化会删除当前浏览器里整个本地数据库，然后重新导入默认 catalog。是否继续？");
+  if (!confirmed) {
+    return;
+  }
+
+  submitting.value = true;
+  initializingDevData.value = true;
+  clearStatus();
+  syncProgress.value = null;
+
+  try {
+    const snapshot = await loadBundledCatalogSnapshot({
+      forceRefresh: true,
+    });
+
+    await resetLocalDb();
+    await applyLocalCatalogSnapshot(snapshot, {
+      mode: "replace",
+      includeProblems: true,
+    });
+
+    await refreshStats();
+    emitCatalogMutated();
+    emitMemberMutated();
+    feedback.value = `开发初始化完成：${snapshot.contests.length} 场比赛，${snapshot.problems.length} 道题目，本地成员数据已清空`;
+  } catch (caught) {
+    error.value = caught instanceof Error ? caught.message : "failed to initialize local development data";
+  } finally {
+    initializingDevData.value = false;
     submitting.value = false;
   }
 }
@@ -472,6 +508,9 @@ onMounted(() => {
                 <span style="margin-left: 8px">正在同步：{{ syncProgress.currentContestTitle }}</span>
               </div>
               <div class="actions">
+                <button class="button" :disabled="submitting || loadingStats" @click="handleOneClickInit">
+                  {{ initializingDevData ? "Initializing..." : "一键初始化" }}
+                </button>
                 <button class="button" :disabled="loadingStats" @click="syncingContests ? handleInterruptSync() : handleOneClickSync()">
                   {{ syncingContests ? "Interrupt Sync" : "全量同步" }}
                 </button>

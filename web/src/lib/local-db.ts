@@ -999,6 +999,11 @@ export async function clearLocalMemberData(): Promise<void> {
   );
 }
 
+export async function resetLocalDb(): Promise<void> {
+  await localDb.delete();
+  await localDb.open();
+}
+
 export async function listCodeforcesMemberSyncTargets(): Promise<Array<{
   memberId: string;
   displayName: string;

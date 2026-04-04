@@ -35,8 +35,19 @@ XCPC-Tracker/
 Catalog:
 
 ```bash
+npm run catalog:build-final
+npm run catalog:generate-default
+npm run catalog:refresh
 npm run catalog:validate
 ```
+
+Catalog flow:
+
+1. Run `scripts/browser-fetch-contests.mjs` in the browser to export candidate contests into `result.json`.
+2. Save the exported file as `data/contests.json`.
+3. Run `npm run catalog:build-final` to build `data/final.json`.
+4. Run `npm run catalog:generate-default` to build `catalog/default-catalog.min.json`.
+5. Or run `npm run catalog:refresh` to execute the full chain.
 
 Frontend:
 
@@ -68,6 +79,7 @@ npm run build
 ## Related Docs
 
 - [AGENTS.md](./AGENTS.md)
+- [scripts/README.md](./scripts/README.md)
 - [docs/architecture.md](./docs/architecture.md)
 - [docs/project-plan.md](./docs/project-plan.md)
 - [docs/mvp-design.md](./docs/mvp-design.md)
