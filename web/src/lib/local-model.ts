@@ -107,6 +107,7 @@ export type LocalRuntimeSnapshot = {
 export type LocalCatalogSnapshot = {
   schemaVersion: 1;
   exportKind: "local_catalog_snapshot";
+  version?: string;
   exportedAt: string;
   contests: LocalCatalogContestRecord[];
   problems: LocalCatalogProblemRecord[];

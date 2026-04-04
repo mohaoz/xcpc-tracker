@@ -1,7 +1,7 @@
 {
   "name": "xcpc-tracker",
   "private": true,
-  "version": "0.2.0-planning",
+  "version": "0.3.0",
   "type": "module",
   "scripts": {
     "catalog:build-final": "node scripts/build-final-json.mjs",

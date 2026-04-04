@@ -8,6 +8,7 @@ const repoRoot = resolve(__dirname, "..");
 
 const DEFAULT_INPUT_PATH = resolve(repoRoot, "data", "final.json");
 const DEFAULT_OUTPUT_PATH = resolve(repoRoot, "fixtures", "imports", "qoj", "result-rebuilt.catalog.json");
+const PACKAGE_JSON_PATH = resolve(repoRoot, "package.json");
 
 const CITY_TAGS = [
   ["北京", /Beijing|北京/iu],
@@ -353,6 +354,8 @@ function compareByTitle(left, right) {
 async function main() {
   const inputPath = process.argv[2] ? resolve(process.argv[2]) : DEFAULT_INPUT_PATH;
   const outputPath = process.argv[3] ? resolve(process.argv[3]) : DEFAULT_OUTPUT_PATH;
+  const packageJson = JSON.parse(await readFile(PACKAGE_JSON_PATH, "utf8"));
+  const bundleVersion = typeof packageJson.version === "string" ? packageJson.version : undefined;
   const raw = JSON.parse(await readFile(inputPath, "utf8"));
   const entries = normalizeInputEntries(raw);
   const inferredYearByTitle = buildInferredYearByTitle(entries);
@@ -415,6 +418,7 @@ async function main() {
   const output = {
     schemaVersion: 1,
     exportKind: "local_catalog_snapshot",
+    version: bundleVersion,
     exportedAt: new Date().toISOString(),
     contests,
     problems: [],

@@ -90,6 +90,7 @@ type CatalogSnapshotProblem = {
 export type CatalogSnapshotBundle = {
   schemaVersion: number;
   exportKind: "local_catalog_snapshot";
+  version?: string;
   exportedAt: string;
   contests: CatalogSnapshotContest[];
   problems: CatalogSnapshotProblem[];
