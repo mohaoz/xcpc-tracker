@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import { useRouter } from "vue-router";
 
 import { importCodeforcesMember } from "../lib/codeforces";
@@ -9,9 +9,25 @@ const router = useRouter();
 const submitting = ref(false);
 const error = ref("");
 const feedback = ref("");
-const copyFeedback = ref("");
 
-const qojBrowserScript = `(() => {
+const memberForm = ref({
+  memberId: "",
+  platform: "codeforces" as "codeforces" | "qoj",
+  handle: "",
+});
+
+const submitLabel = computed(() =>
+  memberForm.value.platform === "codeforces" ? "导入并同步 Codeforces" : "打开 QOJ 页面并复制脚本",
+);
+
+function buildQojBrowserScript(payload: {
+  memberId: string;
+  handle: string;
+}) {
+  return `(() => {
+  const expectedHandle = ${JSON.stringify(payload.handle)};
+  const embeddedMemberId = ${JSON.stringify(payload.memberId)};
+
   function cleanText(value) {
     return String(value || "").replace(/\\s+/g, " ").trim();
   }
@@ -65,12 +81,14 @@ const qojBrowserScript = `(() => {
 
   const handle = extractHandle();
   if (!handle) {
-    throw new Error("Could not determine QOJ handle from this page");
+    throw new Error("无法从当前页面识别 QOJ 用户名");
+  }
+  if (expectedHandle && handle !== expectedHandle) {
+    throw new Error(\`Expected QOJ handle "\${expectedHandle}", but current page is "\${handle}"\`);
   }
 
-  const memberId = window.prompt("Local member id", handle) || handle;
-  const fallbackDisplayName = extractDisplayName() || handle;
-  const displayName = window.prompt("Display name", fallbackDisplayName) || fallbackDisplayName;
+  const memberId = cleanText(embeddedMemberId) || handle;
+  const displayName = memberId || extractDisplayName() || handle;
   const solved = extractProblemIds("Accepted problems");
   const attempted = extractProblemIds("Tried problems").filter((problemId) => !solved.includes(problemId));
 
@@ -79,9 +97,9 @@ const qojBrowserScript = `(() => {
     exported_at: new Date().toISOString(),
     members: [
       {
-        member_id: cleanText(memberId) || handle,
+        member_id: memberId,
         handle,
-        display_name: cleanText(displayName) || handle,
+        display_name: displayName,
         profile_url: location.href,
         solved,
         attempted,
@@ -93,15 +111,8 @@ const qojBrowserScript = `(() => {
   async function main() {
     try {
       await navigator.clipboard.writeText(text);
-      console.log("已复制到剪贴板", {
-        handle,
-        memberId: payload.members[0].member_id,
-        solvedCount: solved.length,
-        attemptedCount: attempted.length,
-      });
       alert("QOJ 成员 JSON 已复制到剪贴板。回到 xcpc-tracker 的 Manage 页面直接粘贴导入。");
     } catch (error) {
-      console.warn("复制失败，回退为下载 JSON 文件", error);
       const blob = new Blob([text], {
         type: "application/json;charset=utf-8",
       });
@@ -118,52 +129,41 @@ const qojBrowserScript = `(() => {
   }
 
   main();
-
-  console.log("导出完成", {
-    handle,
-    memberId: payload.members[0].member_id,
-    solvedCount: solved.length,
-    attemptedCount: attempted.length,
-  });
 })();`;
+}
 
-const memberForm = ref({
-  memberId: "",
-  providerHandle: "",
-  displayName: "",
-});
-
-async function submitCodeforcesImport() {
-  if (!memberForm.value.memberId.trim() || !memberForm.value.providerHandle.trim()) {
-    error.value = "member id and Codeforces handle are required";
+async function handleSubmit() {
+  const memberId = memberForm.value.memberId.trim();
+  const handle = memberForm.value.handle.trim();
+  if (!memberId || !handle) {
+    error.value = "名称和 Handle 不能为空";
     return;
   }
 
   submitting.value = true;
   error.value = "";
   feedback.value = "";
+
   try {
-    await importCodeforcesMember({
-      memberId: memberForm.value.memberId.trim(),
-      handle: memberForm.value.providerHandle.trim(),
-      displayName: memberForm.value.displayName.trim() || undefined,
-    });
-    emitMemberMutated();
-    await router.replace({ name: "members" });
+    if (memberForm.value.platform === "codeforces") {
+      await importCodeforcesMember({
+        memberId,
+        handle,
+      });
+      emitMemberMutated();
+      await router.replace({ name: "members" });
+      return;
+    }
+
+    const script = buildQojBrowserScript({ memberId, handle });
+    await navigator.clipboard.writeText(script);
+    window.open(`https://qoj.ac/user/profile/${encodeURIComponent(handle)}`, "_blank", "noopener,noreferrer");
+    await router.replace({ name: "manage", query: { import: "member" } });
+    feedback.value = "QOJ 脚本已复制，并已打开对应用户页。当前页面已跳到 Manage，执行脚本后直接粘贴导入即可。";
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to import Codeforces member";
+    error.value = caught instanceof Error ? caught.message : "处理成员来源失败";
   } finally {
     submitting.value = false;
-  }
-}
-
-async function copyQojBrowserScript() {
-  copyFeedback.value = "";
-  try {
-    await navigator.clipboard.writeText(qojBrowserScript);
-    copyFeedback.value = "QOJ 脚本已复制";
-  } catch {
-    copyFeedback.value = "复制失败，请手动选中下面代码";
   }
 }
 </script>
@@ -174,69 +174,47 @@ async function copyQojBrowserScript() {
       <div class="panel__body">
         <div class="panel__header">
           <div class="panel__title">
-            <p class="eyebrow">Codeforces</p>
-            <h2>Add Member</h2>
+            <p class="eyebrow">成员来源</p>
+            <h2>添加成员</h2>
           </div>
         </div>
 
         <div class="form-grid">
           <div class="field">
-            <label for="add-member-id">成员名</label>
+            <label for="add-member-id">名称</label>
             <input id="add-member-id" v-model="memberForm.memberId" placeholder="alice" />
           </div>
+
           <div class="field">
-            <label for="add-member-handle">Codeforces 账户名</label>
-            <input id="add-member-handle" v-model="memberForm.providerHandle" placeholder="tourist" />
+            <label for="add-member-platform">来源平台</label>
+            <select id="add-member-platform" v-model="memberForm.platform">
+              <option value="codeforces">Codeforces</option>
+              <option value="qoj">QOJ</option>
+            </select>
           </div>
+
           <div class="field">
-            <label for="add-member-name">显示名称（可选）</label>
-            <input id="add-member-name" v-model="memberForm.displayName" placeholder="Alice" />
+            <label for="add-member-handle">Handle</label>
+            <input
+              id="add-member-handle"
+              v-model="memberForm.handle"
+              :placeholder="memberForm.platform === 'codeforces' ? 'tourist' : 'Qingyu'"
+            />
           </div>
         </div>
 
         <div class="actions">
-          <button class="button" :disabled="submitting" @click="submitCodeforcesImport">
-            {{ submitting ? "导入中..." : "导入 Codeforces 成员" }}
+          <button class="button" :disabled="submitting" @click="handleSubmit">
+            {{ submitting ? "处理中..." : submitLabel }}
           </button>
         </div>
+
+        <p class="muted tiny" style="margin-top: 16px">
+          `Codeforces` 会直接用 API 拉取题目状态；`QOJ` 会复制浏览器脚本并打开用户主页，然后在目标页控制台执行脚本。
+        </p>
 
         <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
         <p v-if="error" class="error-box" style="margin-top: 16px">{{ error }}</p>
-      </div>
-    </section>
-
-    <section class="panel">
-      <div class="panel__body">
-        <div class="panel__header">
-          <div class="panel__title">
-            <p class="eyebrow">QOJ</p>
-            <h2>Browser Script</h2>
-          </div>
-        </div>
-
-        <p class="muted">
-          在 QOJ 用户主页打开浏览器控制台，粘贴下面脚本运行。它会优先把成员 JSON 复制到剪贴板，然后你可以直接回到 Manage 页面粘贴导入。
-        </p>
-
-        <div class="actions">
-          <button class="button button--ghost" type="button" @click="copyQojBrowserScript">
-            复制脚本
-          </button>
-        </div>
-
-        <p v-if="copyFeedback" class="notice" style="margin-top: 16px">{{ copyFeedback }}</p>
-
-        <div class="field" style="margin-top: 16px">
-          <label for="qoj-browser-script">QOJ 成员导出脚本</label>
-          <textarea
-            id="qoj-browser-script"
-            class="input-textarea"
-            :value="qojBrowserScript"
-            readonly
-            rows="18"
-            spellcheck="false"
-          />
-        </div>
       </div>
     </section>
   </div>

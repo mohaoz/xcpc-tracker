@@ -1,21 +1,14 @@
 <script setup lang="ts">
 import { onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
 
-import { syncAllCodeforcesContests, syncAllCodeforcesMembers } from "../lib/codeforces";
 import { importQojUserscriptMembers, type QojUserscriptImport } from "../lib/qoj";
-import {
-  clearCodeforcesApiCredentials,
-  loadCodeforcesApiCredentials,
-  saveCodeforcesApiCredentials,
-} from "../lib/codeforces-auth";
-import { importBundledCatalogSnapshot, loadBundledCatalogSnapshot, refreshCatalogCache } from "../lib/catalog-cache";
+import { loadBundledCatalogSnapshot } from "../lib/catalog-cache";
 import { emitCatalogMutated } from "../lib/catalog-events";
 import { emitMemberMutated } from "../lib/member-events";
 import {
   applyLocalCatalogSnapshot,
   applyLocalRuntimeSnapshot,
-  clearLocalContestData,
-  clearLocalMemberData,
   exportLocalCatalogSnapshot,
   exportLocalRuntimeSnapshot,
   getCatalogDbStatus,
@@ -23,26 +16,15 @@ import {
 } from "../lib/local-db";
 import type { LocalCatalogSnapshot, LocalDbStatus, LocalRuntimeSnapshot } from "../lib/local-model";
 
+const route = useRoute();
+
 const submitting = ref(false);
 const loadingStats = ref(false);
 const error = ref("");
 const feedback = ref("");
 const importFileInput = ref<HTMLInputElement | null>(null);
 const dbStatus = ref<LocalDbStatus | null>(null);
-const syncProgress = ref<{
-  totalContestCount: number;
-  syncedContestCount: number;
-  currentContestTitle: string;
-} | null>(null);
-const refreshingCatalog = ref(false);
-const importingDefaultData = ref(false);
-const syncingContests = ref(false);
 const initializingDevData = ref(false);
-let syncAbortController: AbortController | null = null;
-const codeforcesApiKey = ref("");
-const codeforcesApiSecret = ref("");
-const codeforcesAuthFeedback = ref("");
-const syncFailureSummary = ref("");
 
 const exportTarget = ref<"contest" | "member">("contest");
 const exportIncludeProblems = ref(true);
@@ -54,32 +36,6 @@ const importText = ref("");
 function clearStatus() {
   error.value = "";
   feedback.value = "";
-  syncFailureSummary.value = "";
-}
-
-function loadCodeforcesSettings() {
-  const credentials = loadCodeforcesApiCredentials();
-  codeforcesApiKey.value = credentials?.apiKey ?? "";
-  codeforcesApiSecret.value = credentials?.apiSecret ?? "";
-}
-
-function saveCodeforcesSettings() {
-  const apiKey = codeforcesApiKey.value.trim();
-  const apiSecret = codeforcesApiSecret.value.trim();
-  if (!apiKey || !apiSecret) {
-    codeforcesAuthFeedback.value = "API key and secret are required";
-    return;
-  }
-
-  saveCodeforcesApiCredentials({ apiKey, apiSecret });
-  codeforcesAuthFeedback.value = "Codeforces API credentials saved in this browser";
-}
-
-function clearCodeforcesSettings() {
-  clearCodeforcesApiCredentials();
-  codeforcesApiKey.value = "";
-  codeforcesApiSecret.value = "";
-  codeforcesAuthFeedback.value = "Saved Codeforces API credentials cleared";
 }
 
 function downloadJson(filename: string, payload: unknown) {
@@ -94,7 +50,7 @@ function downloadJson(filename: string, payload: unknown) {
 
 function formatDateTime(value: string | null) {
   if (!value) {
-    return "not imported yet";
+    return "暂无记录";
   }
   const parsed = new Date(value);
   if (Number.isNaN(parsed.getTime())) {
@@ -118,44 +74,6 @@ async function refreshStats() {
   }
 }
 
-async function handleRefreshCatalog() {
-  submitting.value = true;
-  refreshingCatalog.value = true;
-  clearStatus();
-  try {
-    await refreshCatalogCache();
-    await refreshStats();
-    emitCatalogMutated();
-    feedback.value = "catalog cache refreshed";
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to refresh catalog cache";
-  } finally {
-    refreshingCatalog.value = false;
-    submitting.value = false;
-  }
-}
-
-async function handleImportDefaultData() {
-  submitting.value = true;
-  importingDefaultData.value = true;
-  clearStatus();
-  try {
-    const payload = await importBundledCatalogSnapshot({
-      mode: "replace",
-      includeProblems: importIncludeProblems.value,
-    });
-    await refreshStats();
-    emitCatalogMutated();
-    feedback.value = `imported default catalog: ${payload.contests.length} contests, ${payload.problems.length} problems`;
-    await maybeAutoSyncImportedContests(payload);
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to import default catalog";
-  } finally {
-    importingDefaultData.value = false;
-    submitting.value = false;
-  }
-}
-
 async function handleOneClickInit() {
   const confirmed = window.confirm("一键初始化会删除当前浏览器里整个本地数据库，然后重新导入默认 catalog。是否继续？");
   if (!confirmed) {
@@ -165,7 +83,6 @@ async function handleOneClickInit() {
   submitting.value = true;
   initializingDevData.value = true;
   clearStatus();
-  syncProgress.value = null;
 
   try {
     const snapshot = await loadBundledCatalogSnapshot({
@@ -183,96 +100,9 @@ async function handleOneClickInit() {
     emitMemberMutated();
     feedback.value = `开发初始化完成：${snapshot.contests.length} 场比赛，${snapshot.problems.length} 道题目，本地成员数据已清空`;
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to initialize local development data";
+    error.value = caught instanceof Error ? caught.message : "初始化本地数据失败";
   } finally {
     initializingDevData.value = false;
-    submitting.value = false;
-  }
-}
-
-async function handleOneClickSync() {
-  submitting.value = true;
-  syncingContests.value = true;
-  syncAbortController = new AbortController();
-  clearStatus();
-  syncProgress.value = {
-    totalContestCount: dbStatus.value?.contestCount ?? 0,
-    syncedContestCount: dbStatus.value?.syncedContestCount ?? 0,
-    currentContestTitle: "checking unsynced contests",
-  };
-  try {
-    const result = await syncAllCodeforcesContests({
-      signal: syncAbortController.signal,
-      onProgress: ({ currentIndex, pendingContestCount, alreadySyncedCount, contestTitle }) => {
-        syncProgress.value = {
-          totalContestCount: dbStatus.value?.contestCount ?? (alreadySyncedCount + pendingContestCount),
-          syncedContestCount: alreadySyncedCount + currentIndex - 1,
-          currentContestTitle: contestTitle,
-        };
-      },
-    });
-    await refreshStats();
-    syncProgress.value = {
-      totalContestCount: dbStatus.value?.contestCount ?? result.totalContestCount,
-      syncedContestCount: dbStatus.value?.syncedContestCount ?? result.syncedContestCount,
-      currentContestTitle: result.cancelled ? "sync interrupted" : "sync finished",
-    };
-    feedback.value = result.cancelled
-      ? `sync interrupted, now ${result.syncedContestCount}/${result.totalContestCount} ready`
-      : `synced ${result.synced.length} new contests, now ${result.syncedContestCount}/${result.totalContestCount} ready`;
-    if (result.failed.length) {
-      syncFailureSummary.value = [
-        `以下比赛没有同步成功：${result.failed.map((item) => item.contestTitle).join("、")}`,
-        "如果其中有 private Codeforces 比赛，请先在 Manage 页面保存 API 凭据，并确认当前账号本身有访问权限。即使具备权限，返回的数据也可能仍然不完整。",
-      ].join(" ");
-    }
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to run full sync";
-  } finally {
-    syncAbortController = null;
-    syncingContests.value = false;
-    submitting.value = false;
-  }
-}
-
-function handleInterruptSync() {
-  syncAbortController?.abort();
-}
-
-async function handleDeleteLocalContests() {
-  const confirmed = window.confirm("Delete all local contest data? This clears contests, problems, and contest-side cache.");
-  if (!confirmed) {
-    return;
-  }
-  submitting.value = true;
-  clearStatus();
-  try {
-    await clearLocalContestData();
-    await refreshStats();
-    emitCatalogMutated();
-    feedback.value = "local contest data deleted";
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to delete local contest data";
-  } finally {
-    submitting.value = false;
-  }
-}
-
-async function handleDeleteLocalMembers() {
-  const confirmed = window.confirm("Delete all local member data? This clears members, handles, statuses, and sync metadata.");
-  if (!confirmed) {
-    return;
-  }
-  submitting.value = true;
-  clearStatus();
-  try {
-    await clearLocalMemberData();
-    await refreshStats();
-    emitMemberMutated();
-    feedback.value = "local member data deleted";
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to delete local member data";
-  } finally {
     submitting.value = false;
   }
 }
@@ -285,7 +115,7 @@ async function handleExportData() {
         includeProblems: exportIncludeProblems.value,
       });
       downloadJson("contest-export.min.json", payload);
-      feedback.value = `exported ${payload.contests.length} contests`;
+      feedback.value = `已导出 ${payload.contests.length} 场比赛`;
       return;
     }
 
@@ -293,67 +123,14 @@ async function handleExportData() {
       includeProblemStatus: exportIncludeProblems.value,
     });
     downloadJson("member-export.min.json", payload);
-    feedback.value = `exported ${payload.members.length} members`;
+    feedback.value = `已导出 ${payload.members.length} 名成员`;
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to export data";
+    error.value = caught instanceof Error ? caught.message : "导出数据失败";
   }
 }
 
 function handleOpenImport() {
   importFileInput.value?.click();
-}
-
-async function maybeAutoSyncImportedContests(payload: LocalCatalogSnapshot) {
-  const shouldPrompt = !importIncludeProblems.value || payload.problems.length === 0;
-  if (!shouldPrompt) {
-    return;
-  }
-
-  const confirmed = window.confirm("导入内容未包含题目，是否现在自动同步比赛题目？");
-  if (!confirmed) {
-    return;
-  }
-
-  syncProgress.value = {
-    totalContestCount: dbStatus.value?.contestCount ?? payload.contests.length,
-    syncedContestCount: dbStatus.value?.syncedContestCount ?? 0,
-    currentContestTitle: "checking unsynced contests",
-  };
-
-  const result = await syncAllCodeforcesContests({
-    onProgress: ({ currentIndex, pendingContestCount, alreadySyncedCount, contestTitle }) => {
-      syncProgress.value = {
-        totalContestCount: dbStatus.value?.contestCount ?? (alreadySyncedCount + pendingContestCount),
-        syncedContestCount: alreadySyncedCount + currentIndex - 1,
-        currentContestTitle: contestTitle,
-      };
-    },
-  });
-
-  await refreshStats();
-  emitCatalogMutated();
-  syncProgress.value = {
-    totalContestCount: dbStatus.value?.contestCount ?? result.totalContestCount,
-    syncedContestCount: dbStatus.value?.syncedContestCount ?? result.syncedContestCount,
-    currentContestTitle: result.cancelled ? "sync interrupted" : "sync finished",
-  };
-  feedback.value = `imported contest data: ${payload.contests.length} contests, ${payload.problems.length} problems; auto-synced ${result.synced.length} contests`;
-}
-
-async function maybeAutoSyncImportedMembers(payload: LocalRuntimeSnapshot) {
-  const shouldPrompt = !importIncludeProblems.value || payload.memberProblemStatus.length === 0;
-  if (!shouldPrompt) {
-    return;
-  }
-
-  const confirmed = window.confirm("导入内容未包含题目状态，是否现在自动同步成员题目状态？");
-  if (!confirmed) {
-    return;
-  }
-
-  const result = await syncAllCodeforcesMembers();
-  emitMemberMutated();
-  feedback.value = `imported member data: ${payload.members.length} members, ${payload.memberProblemStatus.length} statuses; auto-synced ${result.syncedMemberCount} members`;
 }
 
 async function importDataFromText(text: string) {
@@ -371,7 +148,6 @@ async function importDataFromText(text: string) {
     feedback.value = `imported contest data: ${payload.contests.length} contests, ${payload.problems.length} problems`;
     emitCatalogMutated();
     await refreshStats();
-    await maybeAutoSyncImportedContests(payload);
   } else {
     const rawPayload = JSON.parse(normalizedText) as LocalRuntimeSnapshot | QojUserscriptImport;
     if ("provider" in rawPayload && rawPayload.provider === "qoj") {
@@ -391,7 +167,6 @@ async function importDataFromText(text: string) {
       feedback.value = `imported member data: ${payload.members.length} members, ${payload.memberProblemStatus.length} statuses`;
       emitMemberMutated();
       await refreshStats();
-      await maybeAutoSyncImportedMembers(payload);
     }
   }
 }
@@ -408,7 +183,7 @@ async function handleImportData(event: Event) {
   try {
     await importDataFromText(await file.text());
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to import data";
+    error.value = caught instanceof Error ? caught.message : "导入数据失败";
   } finally {
     submitting.value = false;
     if (importFileInput.value) {
@@ -424,14 +199,18 @@ async function handleImportPastedData() {
     await importDataFromText(importText.value);
     importText.value = "";
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to import data";
+    error.value = caught instanceof Error ? caught.message : "导入数据失败";
   } finally {
     submitting.value = false;
   }
 }
 
 onMounted(() => {
-  loadCodeforcesSettings();
+  if (route.query.import === "member") {
+    importTarget.value = "member";
+  } else if (route.query.import === "contest") {
+    importTarget.value = "contest";
+  }
   void refreshStats();
 });
 </script>
@@ -442,19 +221,19 @@ onMounted(() => {
       <div class="panel__body">
         <div class="stat-grid" style="margin-bottom: 20px">
           <div class="stat-card">
-            <p class="stat-card__label">Catalog Contests</p>
-            <div class="stat-card__value">{{ dbStatus?.syncedContestCount ?? 0 }}/{{ dbStatus?.contestCount ?? 0 }}</div>
+            <p class="stat-card__label">比赛数</p>
+            <div class="stat-card__value">{{ dbStatus?.contestCount ?? 0 }}</div>
           </div>
           <div class="stat-card">
-            <p class="stat-card__label">Catalog Problems</p>
+            <p class="stat-card__label">题目数</p>
             <div class="stat-card__value">{{ dbStatus?.problemCount ?? 0 }}</div>
           </div>
           <div class="stat-card">
-            <p class="stat-card__label">Members</p>
+            <p class="stat-card__label">成员数</p>
             <div class="stat-card__value">{{ dbStatus?.memberCount ?? 0 }}</div>
           </div>
           <div class="stat-card">
-            <p class="stat-card__label">Problem Status</p>
+            <p class="stat-card__label">做题状态</p>
             <div class="stat-card__value">{{ dbStatus?.statusCount ?? 0 }}</div>
           </div>
         </div>
@@ -463,71 +242,12 @@ onMounted(() => {
           <section class="panel" style="box-shadow: none">
             <div class="panel__body">
               <div class="panel__title" style="margin-bottom: 14px">
-                <p class="eyebrow">Codeforces</p>
-                <h3>API 凭据</h3>
-              </div>
-              <p class="muted">
-                保存后，比赛一键导入、比赛题目同步、成员做题记录导入和全量成员同步都会自动使用这组凭据。private 比赛通常还要求你的账号本身有访问权限，而且返回的数据仍可能不完整。
-              </p>
-              <div class="form-grid" style="margin-top: 14px">
-                <div class="field">
-                  <label>API Key</label>
-                  <input v-model="codeforcesApiKey" type="text" placeholder="Codeforces API key" />
-                </div>
-                <div class="field">
-                  <label>API Secret</label>
-                  <input v-model="codeforcesApiSecret" type="password" placeholder="Codeforces API secret" />
-                </div>
-              </div>
-              <div class="actions">
-                <button class="button" @click="saveCodeforcesSettings">
-                  保存 Codeforces API
-                </button>
-                <button class="button button--ghost" @click="clearCodeforcesSettings">
-                  清除已保存凭据
-                </button>
-              </div>
-              <p class="muted tiny">
-                凭据仅保存在当前浏览器本地，不会上传到仓库或后端。
-              </p>
-              <p v-if="codeforcesAuthFeedback" class="notice" style="margin-top: 14px">{{ codeforcesAuthFeedback }}</p>
-            </div>
-          </section>
-
-          <section class="panel" style="box-shadow: none">
-            <div class="panel__body">
-              <div class="panel__title" style="margin-bottom: 14px">
-                <p class="eyebrow">Operations</p>
+                <p class="eyebrow">操作</p>
                 <h3>本地操作</h3>
-              </div>
-              <p class="muted">
-                上次 catalog 更新：{{ formatDateTime(dbStatus?.lastCatalogImportAt ?? null) }}
-              </p>
-              <div v-if="syncProgress" class="notice" style="margin-top: 14px">
-                <strong>{{ syncProgress.syncedContestCount }}/{{ syncProgress.totalContestCount }}</strong>
-                <span style="margin-left: 8px">正在同步：{{ syncProgress.currentContestTitle }}</span>
               </div>
               <div class="actions">
                 <button class="button" :disabled="submitting || loadingStats" @click="handleOneClickInit">
-                  {{ initializingDevData ? "Initializing..." : "一键初始化" }}
-                </button>
-                <button class="button" :disabled="loadingStats" @click="syncingContests ? handleInterruptSync() : handleOneClickSync()">
-                  {{ syncingContests ? "Interrupt Sync" : "全量同步" }}
-                </button>
-                <span v-if="syncFailureSummary" class="editor-validation">
-                  {{ syncFailureSummary }}
-                </span>
-                <button class="button" :disabled="submitting || loadingStats" @click="handleImportDefaultData">
-                  {{ importingDefaultData ? "Importing..." : "导入默认数据" }}
-                </button>
-                <button class="button" :disabled="submitting || loadingStats" @click="handleRefreshCatalog">
-                  {{ refreshingCatalog ? "Refreshing..." : "刷新缓存" }}
-                </button>
-                <button class="button button--ghost" :disabled="submitting" @click="handleDeleteLocalContests">
-                  删除本地比赛
-                </button>
-                <button class="button button--ghost" :disabled="submitting" @click="handleDeleteLocalMembers">
-                  删除本地成员
+                  {{ initializingDevData ? "初始化中..." : "一键初始化" }}
                 </button>
               </div>
             </div>
@@ -536,7 +256,7 @@ onMounted(() => {
           <section class="panel" style="box-shadow: none">
             <div class="panel__body">
               <div class="panel__title" style="margin-bottom: 14px">
-                <p class="eyebrow">Import</p>
+                <p class="eyebrow">导入</p>
                 <h3>导入</h3>
               </div>
 
@@ -608,7 +328,7 @@ onMounted(() => {
                 成员导入支持 `local_runtime_snapshot`，也支持从 QOJ 用户页控制台脚本复制到剪贴板的 `provider = qoj` JSON。
               </p>
               <p v-else class="muted tiny">
-                如果是从比赛详情页复制的 QOJ 单场同步 JSON，这里保持导入模式为 `merge`。
+                比赛导入支持整份 `local_catalog_snapshot`，也支持单场补丁 JSON；补充已有比赛时保持导入模式为 `merge`。
               </p>
             </div>
           </section>
@@ -616,7 +336,7 @@ onMounted(() => {
           <section class="panel" style="box-shadow: none">
             <div class="panel__body">
               <div class="panel__title" style="margin-bottom: 14px">
-                <p class="eyebrow">Export</p>
+                <p class="eyebrow">导出</p>
                 <h3>导出</h3>
               </div>
 

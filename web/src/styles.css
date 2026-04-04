@@ -55,6 +55,7 @@ textarea {
 
 .shell {
   min-height: 100vh;
+  overflow-x: clip;
 }
 
 .shell__hero {
@@ -75,7 +76,8 @@ textarea {
 .shell__hero-inner,
 .shell__main {
   position: relative;
-  width: min(1180px, calc(100vw - 32px));
+  width: min(1180px, calc(100% - 32px));
+  max-width: calc(100% - 32px);
   margin: 0 auto;
 }
 
@@ -375,15 +377,11 @@ h1 {
 }
 
 .contest-toolbar {
-  display: grid;
-  grid-template-columns: minmax(0, 1.65fr) minmax(240px, 0.9fr);
-  gap: 18px;
-  align-items: stretch;
+  display: block;
   margin-bottom: 18px;
 }
 
-.contest-toolbar__filters,
-.contest-toolbar__actions {
+.contest-toolbar__filters {
   padding: 18px;
   border-radius: var(--radius-lg);
   background: rgba(255, 255, 255, 0.56);
@@ -393,21 +391,6 @@ h1 {
 .contest-toolbar__filters {
   display: grid;
   gap: 14px;
-}
-
-.contest-toolbar__actions {
-  display: grid;
-  align-content: start;
-  gap: 12px;
-}
-
-.contest-toolbar__meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  margin: 8px 4px 0;
 }
 
 .button {
@@ -719,6 +702,15 @@ h1 {
   justify-content: space-between;
 }
 
+.filter-toggle-row__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-left: auto;
+}
+
 .mode-switch {
   display: grid;
   gap: 8px;
@@ -987,6 +979,7 @@ h1 {
   width: 100%;
   border-collapse: collapse;
   min-width: 680px;
+  table-layout: fixed;
   background: rgba(255, 255, 255, 0.74);
 }
 
@@ -1004,27 +997,31 @@ h1 {
   font-weight: 700;
 }
 
+.coverage-table__title-column {
+  width: 34%;
+  max-width: 420px;
+  border-right: 1px solid rgba(41, 55, 81, 0.12);
+}
+
+.coverage-table__title-column > div {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
 .status-dot {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  justify-content: center;
+  min-width: 12px;
   font-weight: 600;
-}
-
-.status-dot::before {
-  content: "";
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: currentColor;
 }
 
 .status-solved {
   color: var(--solved);
 }
 
-.status-tried {
-  color: var(--tried);
+.status-attempted {
+  color: var(--danger);
 }
 
 .status-unseen {

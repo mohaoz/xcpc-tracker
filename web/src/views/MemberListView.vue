@@ -50,7 +50,7 @@ async function loadMembers() {
     people.value = peoplePayload;
     dbStatus.value = statusPayload;
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to load members";
+    error.value = caught instanceof Error ? caught.message : "加载成员失败";
   } finally {
     loading.value = false;
   }
@@ -86,7 +86,7 @@ async function handleSyncMembers() {
       handle: "",
     };
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to sync members";
+    error.value = caught instanceof Error ? caught.message : "同步成员失败";
   } finally {
     syncing.value = false;
     syncAbortController = null;
@@ -116,42 +116,33 @@ onUnmounted(() => {
       <div class="panel__body">
         <div v-if="dbStatus" class="member-overview-grid">
           <div class="stat-card">
-            <p class="stat-card__label">Members</p>
+            <p class="stat-card__label">成员数</p>
             <div class="stat-card__value">{{ dbStatus.memberCount }}</div>
           </div>
           <div class="stat-card">
-            <p class="stat-card__label">Handles</p>
+            <p class="stat-card__label">账号数</p>
             <div class="stat-card__value">{{ dbStatus.handleCount }}</div>
           </div>
           <div class="stat-card">
-            <p class="stat-card__label">Problem Status</p>
+            <p class="stat-card__label">做题状态</p>
             <div class="stat-card__value">{{ dbStatus.statusCount }}</div>
-          </div>
-          <div class="stat-card">
-            <p class="stat-card__label">Catalog Imported</p>
-            <div class="stat-card__value" style="font-size: 1rem">
-              {{ formatDateTime(dbStatus.lastCatalogImportAt) }}
-            </div>
           </div>
         </div>
 
         <div class="member-toolbar">
           <div class="member-toolbar__actions">
             <button class="button button--ghost" :disabled="loading" @click="syncing ? handleInterruptSync() : handleSyncMembers()">
-              {{ syncing ? "Interrupt Sync" : "One-Click Sync" }}
+              {{ syncing ? "中断同步" : "一键同步" }}
             </button>
             <RouterLink to="/members/new" class="button">
-              Add Member
+              添加成员
             </RouterLink>
           </div>
-          <p v-if="dbStatus" class="muted tiny">
-            上次 catalog 更新：{{ formatDateTime(dbStatus.lastCatalogImportAt) }}
-          </p>
         </div>
 
         <p v-if="error" class="error-box" style="margin-top: 16px">{{ error }}</p>
 
-        <div v-if="loading" class="notice">loading local members...</div>
+        <div v-if="loading" class="notice">正在加载成员...</div>
         <div v-else-if="syncProgress" class="notice" style="margin-bottom: 16px">
           <strong>{{ syncProgress.currentIndex }}/{{ syncProgress.totalMemberCount }}</strong>
           <span style="margin-left: 8px">
@@ -170,12 +161,12 @@ onUnmounted(() => {
           >
             <div class="member-card__top">
               <div>
-                <p class="eyebrow">Member</p>
+                <p class="eyebrow">成员</p>
                 <h3>{{ person.displayName }}</h3>
                 <div class="inline-tags" style="margin-top: 10px">
-                  <span class="tag tag--neutral">{{ person.providerCount }} providers</span>
-                  <span class="tag tag--neutral">{{ person.handleCount }} handles</span>
-                  <span class="tag tag--neutral">{{ person.totalProblemCount }} total</span>
+                  <span class="tag tag--neutral">{{ person.providerCount }} 个平台</span>
+                  <span class="tag tag--neutral">{{ person.handleCount }} 个账号</span>
+                  <span class="tag tag--neutral">{{ person.totalProblemCount }} 题记录</span>
                 </div>
               </div>
               <div class="member-card__actions">
@@ -185,15 +176,15 @@ onUnmounted(() => {
 
             <div class="member-card__stats">
               <div class="member-card__stat">
-                <span class="member-card__stat-label">Solved</span>
+                <span class="member-card__stat-label">已做</span>
                 <strong>{{ person.solvedCount }}</strong>
               </div>
               <div class="member-card__stat">
-                <span class="member-card__stat-label">Attempted</span>
+                <span class="member-card__stat-label">尝试过</span>
                 <strong>{{ person.attemptedCount }}</strong>
               </div>
               <div class="member-card__stat">
-                <span class="member-card__stat-label">Last Sync</span>
+                <span class="member-card__stat-label">上次同步</span>
                 <strong>{{ formatDateTime(person.lastSyncedAt) }}</strong>
               </div>
             </div>

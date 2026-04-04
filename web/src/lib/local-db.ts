@@ -685,22 +685,6 @@ export async function applyLocalRuntimeSnapshot(
   await mergeLocalRuntimeMembersOnlySnapshot(snapshot);
 }
 
-export async function addManualCatalogContest(payload: {
-  contest: LocalCatalogContestRecord;
-  problems?: LocalCatalogProblemRecord[];
-}): Promise<void> {
-  await localDb.transaction(
-    "rw",
-    [localDb.catalogContests, localDb.catalogProblems],
-    async () => {
-      await localDb.catalogContests.put(payload.contest);
-      if (payload.problems?.length) {
-        await localDb.catalogProblems.bulkPut(payload.problems);
-      }
-    },
-  );
-}
-
 export async function replaceManualCatalogContest(payload: {
   contest: LocalCatalogContestRecord;
   problems: LocalCatalogProblemRecord[];

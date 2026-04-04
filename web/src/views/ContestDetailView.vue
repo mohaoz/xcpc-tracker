@@ -10,7 +10,6 @@ import {
 } from "../lib/catalog";
 import { aggregateAliasesFromSources } from "../lib/catalog-sources";
 import { emitCatalogMutated } from "../lib/catalog-events";
-import { syncCodeforcesContestProblems } from "../lib/codeforces";
 import { emitMemberMutated } from "../lib/member-events";
 import {
   deleteCatalogContestRecord,
@@ -29,11 +28,8 @@ const router = useRouter();
 const contest = ref<CatalogContestDetail | null>(null);
 const coverage = ref<LocalContestCoverage | null>(null);
 const loading = ref(false);
-const syncing = ref(false);
 const error = ref("");
 const feedback = ref("");
-const syncWarning = ref("");
-const qojScriptFeedback = ref("");
 const editing = ref(false);
 const saving = ref(false);
 const deleting = ref(false);
@@ -42,17 +38,21 @@ const markMode = ref(false);
 const markSavingCellKey = ref("");
 
 const contestId = computed(() => String(route.params.contestId ?? ""));
-const hasCodeforcesContestSource = computed(() =>
-  contest.value?.sources.some((source) => source.provider === "codeforces" && source.kind === "contest") ?? false,
-);
-const qojContestSource = computed(() =>
-  contest.value?.sources.find((source) => source.provider === "qoj" && source.kind === "contest") ?? null,
-);
 const trackedMembers = computed(() => coverage.value?.trackedMembers ?? []);
 const contestEyebrow = computed(() => {
-  const source = contest.value?.sources.find((item) => item.provider === "codeforces" && item.kind === "contest" && item.provider_contest_id);
-  if (source?.provider && source.provider_contest_id) {
-    return `${source.provider.toUpperCase()} / ${source.provider_contest_id}`;
+  const sourceLabels = (contest.value?.sources ?? [])
+    .filter((item) => item.kind === "contest")
+    .map((item) => {
+      const provider = item.provider.trim().toUpperCase();
+      const providerId = (item.provider_contest_id ?? "").trim();
+      if (providerId) {
+        return `${provider} / ${providerId}`;
+      }
+      const sourceTitle = (item.source_title ?? item.label ?? "").trim();
+      return sourceTitle ? `${provider} / ${sourceTitle}` : provider;
+    });
+  if (sourceLabels.length) {
+    return sourceLabels.join(" | ");
   }
   return "CURATED CONTEST";
 });
@@ -134,7 +134,7 @@ async function loadContestPage() {
       throw new Error("contest not found locally");
     }
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to load contest";
+    error.value = caught instanceof Error ? caught.message : "加载比赛失败";
   } finally {
     loading.value = false;
   }
@@ -164,7 +164,7 @@ async function saveContestMetadata(payload: {
     return;
   }
   if (!payload.title.trim()) {
-    error.value = "contest title is required";
+    error.value = "比赛标题不能为空";
     return;
   }
 
@@ -199,306 +199,11 @@ async function saveContestMetadata(payload: {
     emitCatalogMutated();
     await loadContestPage();
     editing.value = false;
-    feedback.value = "contest metadata updated";
+    feedback.value = "比赛信息已更新";
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to save contest metadata";
+    error.value = caught instanceof Error ? caught.message : "保存比赛信息失败";
   } finally {
     saving.value = false;
-  }
-}
-
-async function syncProblemsFromCodeforces() {
-  if (!contestId.value) {
-    return;
-  }
-
-  syncing.value = true;
-  error.value = "";
-  feedback.value = "";
-  syncWarning.value = "";
-  try {
-    const result = await syncCodeforcesContestProblems(contestId.value);
-    emitCatalogMutated();
-    feedback.value = `synced ${result.problemCount} problems from ${result.sourceCount} Codeforces source(s)`;
-    await loadContestPage();
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to sync contest problems";
-    syncWarning.value = "如果这是一个 private Codeforces 比赛，请先在 Manage 页面保存 API 凭据，并确认当前账号本身有访问权限。即使具备权限，返回的数据也可能仍然不完整。";
-  } finally {
-    syncing.value = false;
-  }
-}
-
-function buildQojManualSyncScript() {
-  if (!contest.value || !qojContestSource.value) {
-    return "";
-  }
-
-  const serializedContest = JSON.stringify({
-    contestId: contest.value.id,
-    title: contest.value.title,
-    aliases: contest.value.aliases,
-    tags: contest.value.tags,
-    startAt: contest.value.start_at ?? null,
-    curationStatus: contest.value.curation_status,
-    sources: contest.value.sources,
-    notes: contest.value.notes ?? null,
-    generatedFrom: contest.value.generated_from ?? "catalog",
-  });
-  const serializedProblems = JSON.stringify(
-    contest.value.problems.map((problem) => ({
-      problemId: problem.id,
-      ordinal: problem.ordinal,
-      title: problem.title,
-      aliases: problem.aliases,
-      sources: problem.sources,
-    })),
-  );
-  const expectedContestId = qojContestSource.value.provider_contest_id ?? "";
-
-  return `(() => {
-  const embeddedContest = ${serializedContest};
-  const embeddedProblems = ${serializedProblems};
-  const expectedContestId = ${JSON.stringify(expectedContestId)};
-
-  function cleanText(value) {
-    return String(value || "").replace(/\\s+/g, " ").trim();
-  }
-
-  function normalizeTitle(value) {
-    return cleanText(value).toLowerCase();
-  }
-
-  function dedupeStrings(values) {
-    const seen = new Set();
-    const result = [];
-    for (const value of values) {
-      const normalized = cleanText(value);
-      if (!normalized) continue;
-      const key = normalized.toLowerCase();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      result.push(normalized);
-    }
-    return result;
-  }
-
-  function sourceIdentity(source) {
-    return [
-      cleanText(source.provider).toLowerCase(),
-      cleanText(source.kind).toLowerCase(),
-      cleanText(source.provider_problem_id || source.provider_contest_id || source.url).toLowerCase(),
-    ].join("::");
-  }
-
-  function mergeSourceList(existingSources, nextSource) {
-    const items = [...(existingSources || [])];
-    const nextKey = sourceIdentity(nextSource);
-    const index = items.findIndex((source) => sourceIdentity(source) === nextKey);
-    if (index < 0) {
-      items.push(nextSource);
-      return items;
-    }
-    items[index] = {
-      ...items[index],
-      ...nextSource,
-      source_title: nextSource.source_title || items[index].source_title,
-      label: nextSource.label || items[index].label,
-    };
-    return items;
-  }
-
-  function looksLikeOrdinal(value) {
-    const text = cleanText(value);
-    return /^([A-Z]|[A-Z][0-9]|[0-9]+|[A-Z]{2,3})$/u.test(text);
-  }
-
-  function extractOrdinalFromRow(row, anchor) {
-    const cells = Array.from(row.querySelectorAll("td"));
-    for (const cell of cells) {
-      const text = cleanText(cell.textContent);
-      if (looksLikeOrdinal(text)) {
-        return text;
-      }
-    }
-    const previousCell = anchor.closest("td")?.previousElementSibling;
-    if (previousCell) {
-      const text = cleanText(previousCell.textContent);
-      if (looksLikeOrdinal(text)) {
-        return text;
-      }
-    }
-    return null;
-  }
-
-  function extractProblems() {
-    const rows = Array.from(document.querySelectorAll("tr"));
-    const problems = [];
-    const seen = new Set();
-    let fallbackIndex = 1;
-
-    for (const row of rows) {
-      const anchors = Array.from(row.querySelectorAll('a[href]'));
-      const anchor = anchors.find((item) => /\\/contest\\/\\d+\\/problem\\/\\d+$/i.test(item.href));
-      if (!anchor) continue;
-
-      const title = cleanText(anchor.textContent);
-      const url = anchor.href;
-      const providerProblemIdMatch = url.match(/\\/problem\\/(\\d+)$/i);
-      const providerProblemId = providerProblemIdMatch ? providerProblemIdMatch[1] : "";
-      if (!title || !providerProblemId) continue;
-
-      let ordinal = extractOrdinalFromRow(row, anchor);
-      if (!ordinal) {
-        ordinal = String.fromCharCode(64 + fallbackIndex);
-      }
-      fallbackIndex += 1;
-
-      const key = \`\${ordinal}@@\${providerProblemId}\`;
-      if (seen.has(key)) continue;
-      seen.add(key);
-
-      problems.push({ ordinal, title, url, providerProblemId });
-    }
-
-    return problems;
-  }
-
-  const currentContestMatch = location.pathname.match(/\\/contest\\/(\\d+)/i);
-  const currentContestId = currentContestMatch ? currentContestMatch[1] : "";
-  if (!currentContestId) {
-    throw new Error("当前页面不是 QOJ contest 页面");
-  }
-  if (expectedContestId && currentContestId !== expectedContestId) {
-    throw new Error(\`这不是目标比赛页面。期望 contest/\${expectedContestId}，实际是 contest/\${currentContestId}\`);
-  }
-
-  const qojContestTitle = cleanText(document.querySelector("h1")?.textContent) || embeddedContest.title;
-  const qojContestUrl = location.href.replace(/[#?].*$/u, "");
-  const qojContestSource = {
-    provider: "qoj",
-    kind: "contest",
-    url: qojContestUrl,
-    provider_contest_id: currentContestId,
-    source_title: qojContestTitle,
-    label: "QOJ contest",
-  };
-
-  const qojProblems = extractProblems();
-  const usedProblemIds = new Set();
-  const existingById = new Map(embeddedProblems.map((problem) => [problem.problemId, problem]));
-  const existingByOrdinal = new Map(embeddedProblems.map((problem) => [cleanText(problem.ordinal).toLowerCase(), problem]));
-  const existingByTitle = new Map(embeddedProblems.map((problem) => [normalizeTitle(problem.title), problem]));
-  const mergedProblems = [];
-
-  for (const qojProblem of qojProblems) {
-    const matched = existingByOrdinal.get(cleanText(qojProblem.ordinal).toLowerCase()) ||
-      existingByTitle.get(normalizeTitle(qojProblem.title)) ||
-      null;
-    const nextSource = {
-      provider: "qoj",
-      kind: "problem",
-      url: qojProblem.url,
-      provider_problem_id: qojProblem.providerProblemId,
-      source_title: qojProblem.title,
-      label: \`QOJ \${qojProblem.ordinal}\`,
-    };
-
-    if (matched) {
-      usedProblemIds.add(matched.problemId);
-      mergedProblems.push({
-        ...matched,
-        ordinal: matched.ordinal || qojProblem.ordinal,
-        title: matched.title || qojProblem.title,
-        aliases: dedupeStrings([...(matched.aliases || []), qojProblem.title !== matched.title ? qojProblem.title : null]),
-        sources: mergeSourceList(matched.sources || [], nextSource),
-      });
-      continue;
-    }
-
-    const problemId = \`\${embeddedContest.contestId}:\${qojProblem.ordinal}\`;
-    usedProblemIds.add(problemId);
-    mergedProblems.push({
-      problemId,
-      ordinal: qojProblem.ordinal,
-      title: qojProblem.title,
-      aliases: [],
-      sources: [nextSource],
-    });
-  }
-
-  for (const problem of embeddedProblems) {
-    if (usedProblemIds.has(problem.problemId)) continue;
-    mergedProblems.push(problem);
-  }
-
-  mergedProblems.sort((left, right) => left.ordinal.localeCompare(right.ordinal));
-
-  const payload = {
-    schemaVersion: 1,
-    exportKind: "local_catalog_snapshot",
-    exportedAt: new Date().toISOString(),
-    contests: [
-      {
-        contestId: embeddedContest.contestId,
-        title: embeddedContest.title,
-        aliases: embeddedContest.aliases || [],
-        tags: embeddedContest.tags || [],
-        startAt: embeddedContest.startAt,
-        curationStatus: mergedProblems.length ? "problem_listed" : embeddedContest.curationStatus,
-        problemIds: mergedProblems.map((problem) => problem.problemId),
-        sources: mergeSourceList(embeddedContest.sources || [], qojContestSource),
-        notes: embeddedContest.notes,
-        generatedFrom: embeddedContest.generatedFrom || "catalog",
-        deletedAt: null,
-      },
-    ],
-    problems: mergedProblems.map((problem) => ({
-      problemId: problem.problemId,
-      contestId: embeddedContest.contestId,
-      ordinal: problem.ordinal,
-      title: problem.title,
-      aliases: problem.aliases || [],
-      sources: problem.sources || [],
-    })),
-  };
-
-  const text = JSON.stringify(payload, null, 2);
-  navigator.clipboard.writeText(text).then(() => {
-    alert("这场比赛的 QOJ 导入 JSON 已复制到剪贴板。回到 xcpc-tracker 的 Manage 页面直接粘贴导入。");
-  }).catch(() => {
-    const blob = new Blob([text], { type: "application/json;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const anchor = document.createElement("a");
-    anchor.href = url;
-    anchor.download = \`qoj-contest-\${currentContestId}.json\`;
-    document.body.appendChild(anchor);
-    anchor.click();
-    anchor.remove();
-    URL.revokeObjectURL(url);
-    alert("剪贴板复制失败，已回退为下载 JSON 文件。");
-  });
-
-  console.log("QOJ contest export ready", {
-    contestId: embeddedContest.contestId,
-    qojContestId: currentContestId,
-    problemCount: mergedProblems.length,
-  });
-})();`;
-}
-
-async function copyQojManualSyncScript() {
-  if (!qojContestSource.value) {
-    return;
-  }
-  qojScriptFeedback.value = "";
-  error.value = "";
-  feedback.value = "";
-  try {
-    await navigator.clipboard.writeText(buildQojManualSyncScript());
-    qojScriptFeedback.value = "QOJ 同步脚本已复制。去对应的 QOJ contest 页面控制台执行，然后回 Manage 页面粘贴导入，并保持导入模式为 merge。";
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to copy QOJ sync script";
   }
 }
 
@@ -519,7 +224,7 @@ async function handleDeleteContest() {
     emitCatalogMutated();
     await router.push("/contests");
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to delete contest";
+    error.value = caught instanceof Error ? caught.message : "删除比赛失败";
   } finally {
     deleting.value = false;
   }
@@ -527,6 +232,16 @@ async function handleDeleteContest() {
 
 function buildCellKey(problemId: string, memberId: string) {
   return `${problemId}:${memberId}`;
+}
+
+function getProblemAggregateStatus(problem: LocalContestCoverage["problems"][number]) {
+  if (problem.members.some((member) => member.status === "solved")) {
+    return "solved";
+  }
+  if (problem.members.some((member) => member.status === "attempted")) {
+    return "attempted";
+  }
+  return "unseen";
 }
 
 function getNextManualStatus(payload: {
@@ -557,7 +272,7 @@ async function applyMarkToCell(
     return;
   }
   if (!trackedMembers.value.length || !(coverage.value?.problems.length)) {
-    error.value = "no members or problems available for marking";
+    error.value = "当前没有可标记的成员或题目";
     return;
   }
 
@@ -598,7 +313,7 @@ onMounted(loadContestPage);
   <div class="view-stack">
     <section class="panel">
       <div class="panel__body">
-        <div v-if="loading" class="notice">loading contest...</div>
+        <div v-if="loading" class="notice">正在加载比赛...</div>
         <template v-else-if="contest">
           <div class="panel__header">
             <div class="panel__title">
@@ -624,44 +339,35 @@ onMounted(loadContestPage);
             <div class="panel" style="box-shadow: none">
               <div class="panel__body">
                 <div class="panel__title" style="margin-bottom: 16px">
-                  <p class="eyebrow">Catalog</p>
+                  <p class="eyebrow">目录</p>
                   <h3>比赛元数据与题目列表</h3>
                 </div>
 
                 <div class="stat-grid" style="margin-bottom: 18px">
                   <div class="stat-card">
-                    <p class="stat-card__label">Problems</p>
+                    <p class="stat-card__label">题目数</p>
                     <div class="stat-card__value">{{ coverage?.problemCount ?? contest.problems.length }}</div>
                   </div>
                   <div class="stat-card">
-                    <p class="stat-card__label">Fresh For Team</p>
+                    <p class="stat-card__label">队伍未做</p>
                     <div class="stat-card__value">{{ coverage?.freshProblemCount ?? 0 }}</div>
                   </div>
                 </div>
 
                 <div class="actions" style="margin-top: 0; margin-bottom: 18px">
-                  <button v-if="hasCodeforcesContestSource" class="button" :disabled="syncing" @click="syncProblemsFromCodeforces">
-                    {{ syncing ? "Syncing..." : "Sync" }}
-                  </button>
-                  <button v-if="qojContestSource" class="button button--ghost" type="button" @click="copyQojManualSyncScript">
-                    Copy QOJ Sync Script
-                  </button>
                   <button
                     :class="markMode ? 'button' : 'button button--ghost'"
                     :disabled="!coverage?.trackedMembers.length || !coverage?.problemCount"
                     @click="markMode = !markMode"
                   >
-                    {{ markMode ? "Cancel Mark Mode" : "Enter Mark Mode" }}
+                    {{ markMode ? "退出标记模式" : "进入标记模式" }}
                   </button>
                   <button class="button button--ghost" :disabled="saving" @click="editing = !editing">
-                    {{ editing ? "Close Editor" : "Edit Contest Metadata" }}
+                    {{ editing ? "关闭编辑器" : "编辑比赛信息" }}
                   </button>
                   <button class="button button--ghost" :disabled="deleting" @click="handleDeleteContest">
-                    {{ deleting ? "Deleting..." : "Delete Contest" }}
+                    {{ deleting ? "删除中..." : "删除比赛" }}
                   </button>
-                  <span v-if="coverage" class="muted tiny">
-                    {{ coverage.trackedMembers.length }} tracked members
-                  </span>
                 </div>
 
                 <div v-if="editing" class="panel" style="box-shadow: none; margin-bottom: 18px">
@@ -670,7 +376,7 @@ onMounted(loadContestPage);
                       :initial-value="contestEditorInitialValue"
                       :existing-tags="existingTags"
                       :busy="saving"
-                      submit-label="Save Contest"
+                      submit-label="保存比赛"
                       @submit="saveContestMetadata"
                     />
                   </div>
@@ -680,9 +386,8 @@ onMounted(loadContestPage);
                   <table class="coverage-table">
                     <thead>
                       <tr>
-                        <th>Problem</th>
-                        <th>Title</th>
-                        <th>Team Fresh</th>
+                        <th>题号</th>
+                        <th class="coverage-table__title-column">标题</th>
                         <th
                           v-for="member in coverage?.trackedMembers ?? []"
                           :key="member.memberId"
@@ -694,18 +399,15 @@ onMounted(loadContestPage);
                     <tbody>
                       <tr v-for="problem in coverage?.problems ?? []" :key="problem.problemId">
                         <td>
-                          <strong>{{ problem.ordinal }}</strong>
-                        </td>
-                        <td>
-                          <div>{{ problem.title }}</div>
-                        </td>
-                        <td>
                           <span
-                            class="tag"
-                            :class="problem.freshForTeam ? 'tag--warm' : 'tag--neutral'"
+                            class="contest-problem-state"
+                            :class="`contest-problem-state--${getProblemAggregateStatus(problem)}`"
                           >
-                            {{ problem.freshForTeam ? "fresh" : "touched" }}
+                            {{ problem.ordinal }}
                           </span>
+                        </td>
+                        <td class="coverage-table__title-column">
+                          <div>{{ problem.title }}</div>
                         </td>
                         <td v-for="member in problem.members" :key="`${problem.problemId}-${member.memberId}`">
                           <button
@@ -718,8 +420,12 @@ onMounted(loadContestPage);
                             <span class="status-dot" :class="`status-${member.status}`">
                               {{
                                 markSavingCellKey === buildCellKey(problem.problemId, member.memberId)
-                                  ? "saving..."
-                                  : member.status
+                                  ? "..."
+                                  : member.status === "solved"
+                                    ? "+"
+                                    : member.status === "attempted"
+                                      ? "-"
+                                      : ""
                               }}
                             </span>
                           </button>
@@ -730,13 +436,8 @@ onMounted(loadContestPage);
                 </div>
 
                 <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
-                <p v-if="qojScriptFeedback" class="notice" style="margin-top: 16px">{{ qojScriptFeedback }}</p>
-                <p v-if="syncWarning" class="notice" style="margin-top: 16px">{{ syncWarning }}</p>
-                <p v-if="qojContestSource" class="muted tiny" style="margin-top: 16px">
-                  QOJ 手动同步脚本会为当前比赛生成一份单场 `local_catalog_snapshot`。回到 Manage 页面导入时保持 `merge`，这样只会把 QOJ source 和题目并进当前比赛，不会覆盖已有的 Codeforces 数据。
-                </p>
                 <p v-if="!(coverage?.problemCount)" class="notice" style="margin-top: 16px">
-                  这场比赛还没有题目列表。可以在编辑器里手动补题，或者如果存在 Codeforces source 再同步。
+                  这场比赛还没有题目列表。可以在编辑器里手动补题，或者回到 Manage 页面导入补丁 JSON。
                 </p>
               </div>
             </div>
@@ -744,12 +445,12 @@ onMounted(loadContestPage);
             <div class="panel" style="box-shadow: none">
               <div class="panel__body">
                 <div class="panel__title" style="margin-bottom: 16px">
-                  <p class="eyebrow">Sources</p>
+                  <p class="eyebrow">来源</p>
                   <h3>来源与整理说明</h3>
                 </div>
 
                 <div class="field">
-                  <label>Aggregated Aliases</label>
+                  <label>别名</label>
                   <div class="inline-tags" style="margin-top: 10px">
                     <span
                       v-for="alias in contest.aliases"
@@ -758,12 +459,12 @@ onMounted(loadContestPage);
                     >
                       {{ alias }}
                     </span>
-                    <span v-if="!contest.aliases.length" class="muted tiny">No aliases</span>
+                    <span v-if="!contest.aliases.length" class="muted tiny">暂无别名</span>
                   </div>
                 </div>
 
                 <div class="field" style="margin-top: 14px">
-                  <label>Source Links</label>
+                  <label>来源链接</label>
                   <div class="list-grid" style="margin-top: 12px">
                     <component
                       v-for="source in contest.sources"
@@ -777,7 +478,7 @@ onMounted(loadContestPage);
                       <div class="contest-card__top">
                         <div>
                           <p class="eyebrow">{{ source.provider }} / {{ source.kind }}</p>
-                          <h3>{{ source.label || source.url || "Manual Source" }}</h3>
+                          <h3>{{ source.label || source.url || "手动来源" }}</h3>
                           <p v-if="source.source_title" class="muted tiny">{{ source.source_title }}</p>
                         </div>
                       </div>
