@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.0
+
+### Added
+
+- added build-time XCPCIO Board and Codeforces official standings award cutoff data
+- added contest list medal progress filters and award cutoff progress cards
+
 ## 0.5.0
 
 ### Changed
