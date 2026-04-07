@@ -73,6 +73,7 @@ const PROVINCE_TAGS = [
 ];
 
 const REGION_TAGS = [
+  ["多省", /Multi-Provincial|多省/iu],
   ["东北", /Northeast|东北/iu],
 ];
 
@@ -215,14 +216,15 @@ function inferContestTags(title) {
   const isOnline = /Online|网络/iu.test(value) && !isRegionalOnlineAlias;
   const isCcpc = /\bCCPC\b|中国大学生程序设计竞赛|China Collegiate Programming Contest/iu.test(value);
   const isIcpc = /ICPC|ACM-ICPC/iu.test(value);
+  const isInvitational = /Invitational|邀请赛|国邀/iu.test(value);
   const isProvincial =
     /Provincial|省赛|省程序设计竞赛|省大学生程序设计竞赛|省大学生竞赛|Multi-Provincial|多省/iu.test(value) ||
     /Province/iu.test(value) ||
     MUNICIPALITY_PROVINCIAL_RE.test(value) ||
     ((matchesAnyTagPattern(value, PROVINCE_TAGS) || matchesAnyTagPattern(value, REGION_TAGS)) &&
       PROVINCIAL_CONTEST_KIND_RE.test(value) &&
+      !isInvitational &&
       !isRegional);
-  const isInvitational = /Invitational|邀请赛|国邀/iu.test(value);
   const year = value.match(/\b(19|20)\d{2}\b/u)?.[0];
   if (year) tags.push(year);
   if (isOnline) {

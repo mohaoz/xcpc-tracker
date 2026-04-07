@@ -2,7 +2,7 @@ function has(re, s) {
   return re.test(s);
 }
 
-const WARM_UP = /warmup|热身|warm/iu;
+const WARM_UP = /warmup|热身|warm|practice/iu;
 const CCPC = /ccpc|国大|China Collegiate Programming Contest/iu;
 const PROVINCIAL = /省赛|省大|市赛|市大/iu;
 const PROVINCIAL_SUFFIX =

@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.5.0
+
+### Changed
+
+- tightened curated catalog filtering for practice contests and multi-provincial tagging
+- merged cross-platform contest duplicates when tag subset evidence and problem ordinals support a shared problem set
+- refreshed the bundled default catalog for the 0.5.0 release
+
 ## 0.3.0
 
 ### Added
