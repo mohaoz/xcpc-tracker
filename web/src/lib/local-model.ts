@@ -1,4 +1,4 @@
-import type { CatalogSource } from "./catalog";
+import type { CatalogAwardCutoffs, CatalogSource } from "./catalog";
 
 export type LocalCatalogContestRecord = {
   contestId: string;
@@ -9,6 +9,7 @@ export type LocalCatalogContestRecord = {
   curationStatus: "contest_stub" | "problem_listed" | "reviewed";
   problemIds: string[];
   sources: CatalogSource[];
+  awardCutoffs?: CatalogAwardCutoffs;
   notes: string | null;
   generatedFrom: string | null;
   deletedAt?: string | null;

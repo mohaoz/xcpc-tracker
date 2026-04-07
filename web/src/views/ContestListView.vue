@@ -17,7 +17,7 @@ import type {
   LocalContestCoverageSummary,
   LocalMemberPerson,
 } from "../lib/local-model";
-import { useContestListStore } from "../stores/contest-list";
+import { contestListModes, type ContestListMode, useContestListStore } from "../stores/contest-list";
 
 const contests = ref<CatalogContestIndexItem[]>([]);
 const localContestMap = ref(new Map<string, LocalCatalogContestRecord>());
@@ -31,6 +31,30 @@ let latestLoadRequestId = 0;
 const pageSize = 12;
 let unsubscribeCatalogMutated: (() => void) | null = null;
 const contestListStore = useContestListStore();
+const listModeButtonLabels: Record<ContestListMode, string> = {
+  UNSEEN: "未做",
+  "NONE-MEDAL-DATA": "已做",
+  FE: "铁牌",
+  CU: "铜牌",
+  AG: "银牌",
+  AU: "金牌",
+};
+const listModeBadgeLabels: Record<ContestListMode, string> = {
+  UNSEEN: "-",
+  "NONE-MEDAL-DATA": "?",
+  FE: "Fe",
+  CU: "Cu",
+  AG: "Ag",
+  AU: "Au",
+};
+const listModeTips: Record<ContestListMode, string> = {
+  "NONE-MEDAL-DATA": "No medal cutoff data",
+  UNSEEN: "No selected member has tried any problem in this contest",
+  FE: "The selected members have tried this contest but combined coverage is below the bronze cutoff",
+  CU: "The selected members' combined coverage reached the bronze cutoff",
+  AG: "The selected members' combined coverage reached the silver cutoff",
+  AU: "The selected members' combined coverage reached the gold cutoff",
+};
 
 function extractContestYear(contest: Pick<CatalogContestIndexItem, "title" | "tags">) {
   for (const tag of contest.tags) {
@@ -100,6 +124,63 @@ const allMembersSelected = computed(() => {
   }
   return contestListStore.selectedMemberIds.length === memberOptions.value.length;
 });
+function getSolvedCutoff(
+  contest: LocalCatalogContestRecord | undefined,
+  medal: "gold" | "silver" | "bronze",
+) {
+  const solved = contest?.awardCutoffs?.cutoffs[medal]?.solved;
+  return typeof solved === "number" ? solved : null;
+}
+
+function getContestListMode(contestId: string): ContestListMode {
+  const localContest = localContestMap.value.get(contestId);
+  const summary = coverageSummaryMap.value.get(contestId);
+  const solvedProblemCount = summary?.solvedProblemCount ?? 0;
+  const attemptedProblemCount = summary?.attemptedProblemCount ?? 0;
+  const bronzeSolved = getSolvedCutoff(localContest, "bronze");
+  const goldSolved = getSolvedCutoff(localContest, "gold");
+  const silverSolved = getSolvedCutoff(localContest, "silver");
+
+  if (solvedProblemCount === 0 && attemptedProblemCount === 0) {
+    return "UNSEEN";
+  }
+  if (bronzeSolved === null) {
+    return "NONE-MEDAL-DATA";
+  }
+  if (goldSolved !== null && solvedProblemCount >= goldSolved) {
+    return "AU";
+  }
+  if (silverSolved !== null && solvedProblemCount >= silverSolved) {
+    return "AG";
+  }
+  if (solvedProblemCount >= bronzeSolved) {
+    return "CU";
+  }
+  return "FE";
+}
+
+function getContestAwardRange(contestId: string) {
+  const localContest = localContestMap.value.get(contestId);
+  const mode = getContestListMode(contestId);
+  const bronzeSolved = getSolvedCutoff(localContest, "bronze");
+  const silverSolved = getSolvedCutoff(localContest, "silver");
+  const goldSolved = getSolvedCutoff(localContest, "gold");
+
+  if (mode === "FE" && bronzeSolved !== null) {
+    return { mode, label: "Fe", lower: 0, upper: bronzeSolved };
+  }
+  if (mode === "CU" && bronzeSolved !== null) {
+    return { mode, label: "Cu", lower: bronzeSolved, upper: silverSolved };
+  }
+  if (mode === "AG" && silverSolved !== null) {
+    return { mode, label: "Ag", lower: silverSolved, upper: goldSolved };
+  }
+  if (mode === "AU" && goldSolved !== null) {
+    return { mode, label: "Au", lower: goldSolved, upper: "∞" };
+  }
+  return null;
+}
+
 const filteredContests = computed(() => {
   return contests.value.filter((contest) => {
     if (queryTokens.value.length) {
@@ -120,20 +201,7 @@ const filteredContests = computed(() => {
       }
     }
 
-    const summary = coverageSummaryMap.value.get(contest.id);
-    const hasSnapshot = !!summary && summary.problemCount > 0;
-    const hasTouchedProblems =
-      hasSnapshot &&
-      ((summary.solvedProblemCount ?? 0) > 0 || (summary.attemptedProblemCount ?? 0) > 0);
-    const hasUntouchedProblems = hasSnapshot && !hasTouchedProblems;
-
-    if (contestListStore.mode === "fresh-only") {
-      return hasUntouchedProblems;
-    }
-    if (contestListStore.mode === "non-fresh-only") {
-      return hasTouchedProblems;
-    }
-    return true;
+    return contestListStore.selectedModes.includes(getContestListMode(contest.id));
   });
 });
 const totalCount = computed(() => filteredContests.value.length);
@@ -280,6 +348,24 @@ function toggleAllMembers() {
   contestListStore.selectedMemberIds = memberOptions.value.map((member) => member.memberId);
 }
 
+function toggleListMode(mode: ContestListMode) {
+  if (contestListStore.selectedModes.includes(mode)) {
+    contestListStore.selectedModes = contestListStore.selectedModes.filter((item) => item !== mode);
+    return;
+  }
+  contestListStore.selectedModes = contestListModes.filter(
+    (item) => item === mode || contestListStore.selectedModes.includes(item),
+  );
+}
+
+function listModeBadgeClass(mode: ContestListMode) {
+  return `contest-medal-badge--${mode.toLowerCase().replace(/[^a-z0-9]+/gu, "-")}`;
+}
+
+function awardRangeClass(mode: ContestListMode) {
+  return `contest-award-range--${mode.toLowerCase().replace(/[^a-z0-9]+/gu, "-")}`;
+}
+
 async function handleImportDefaultData() {
   importingDefaultData.value = true;
   error.value = "";
@@ -365,11 +451,11 @@ watch(() => contestListStore.selectedMemberIds, () => {
   }
   void loadContests();
 }, { deep: true });
-watch(() => contestListStore.mode, () => {
+watch(() => contestListStore.selectedModes, () => {
   if (contestListStore.page !== 1) {
     contestListStore.page = 1;
   }
-});
+}, { deep: true });
 </script>
 
 <template>
@@ -388,28 +474,14 @@ watch(() => contestListStore.mode, () => {
                 <span class="mode-switch__label">列表模式</span>
                 <div class="mode-switch__rail">
                   <button
+                    v-for="mode in contestListModes"
+                    :key="mode"
                     type="button"
                     class="mode-switch__option"
-                    :class="{ 'mode-switch__option--active': contestListStore.mode === 'all' }"
-                    @click="contestListStore.mode = 'all'"
+                    :class="{ 'mode-switch__option--active': contestListStore.selectedModes.includes(mode) }"
+                    @click="toggleListMode(mode)"
                   >
-                    全部
-                  </button>
-                  <button
-                    type="button"
-                    class="mode-switch__option"
-                    :class="{ 'mode-switch__option--active': contestListStore.mode === 'fresh-only' }"
-                    @click="contestListStore.mode = 'fresh-only'"
-                  >
-                    只看未做
-                  </button>
-                  <button
-                    type="button"
-                    class="mode-switch__option"
-                    :class="{ 'mode-switch__option--active': contestListStore.mode === 'non-fresh-only' }"
-                    @click="contestListStore.mode = 'non-fresh-only'"
-                  >
-                    只看做过
+                    {{ listModeButtonLabels[mode] }}
                   </button>
                 </div>
               </div>
@@ -505,6 +577,42 @@ watch(() => contestListStore.mode, () => {
             <div class="contest-card__meta-row">
               <div class="contest-card__meta-main">
                 <div class="inline-tags">
+                  <span
+                    v-if="getContestAwardRange(contest.id)"
+                    class="contest-award-range"
+                    :class="[
+                      awardRangeClass(getContestAwardRange(contest.id)?.mode ?? 'FE'),
+                      {
+                        'contest-award-range--no-lower': getContestAwardRange(contest.id)?.lower === null,
+                        'contest-award-range--no-upper': getContestAwardRange(contest.id)?.upper === null,
+                      },
+                    ]"
+                    :title="listModeTips[getContestListMode(contest.id)]"
+                  >
+                    <sub
+                      v-if="getContestAwardRange(contest.id)?.lower !== null"
+                      class="contest-award-range__bound contest-award-range__bound--lower"
+                    >
+                      {{ getContestAwardRange(contest.id)?.lower }}
+                    </sub>
+                    <span class="contest-award-range__label">
+                      {{ getContestAwardRange(contest.id)?.label }}
+                    </span>
+                    <sup
+                      v-if="getContestAwardRange(contest.id)?.upper !== null"
+                      class="contest-award-range__bound contest-award-range__bound--upper"
+                    >
+                      {{ getContestAwardRange(contest.id)?.upper }}
+                    </sup>
+                  </span>
+                  <span
+                    v-else
+                    class="contest-medal-badge"
+                    :class="listModeBadgeClass(getContestListMode(contest.id))"
+                    :title="listModeTips[getContestListMode(contest.id)]"
+                  >
+                    {{ listModeBadgeLabels[getContestListMode(contest.id)] }}
+                  </span>
                   <span class="tag tag--neutral">
                     {{ coverageSummaryMap.get(contest.id)?.problemCount ?? contest.problem_count }} 题
                   </span>

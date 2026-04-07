@@ -38,6 +38,10 @@ function main() {
     typeof ruleModule.groupKey === "function"
       ? ruleModule.groupKey
       : (item) => getBaseUrl(item.url);
+  const keep =
+    typeof ruleModule.keep === "function"
+      ? ruleModule.keep
+      : () => true;
 
   if (!Array.isArray(contests)) {
     console.error("contests.json must be an array like [{ title, url }]");
@@ -53,6 +57,9 @@ function main() {
 
   for (const item of contests) {
     if (!item || typeof item.title !== "string" || typeof item.url !== "string") {
+      continue;
+    }
+    if (!keep(item)) {
       continue;
     }
 

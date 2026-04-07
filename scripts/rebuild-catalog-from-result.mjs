@@ -85,7 +85,7 @@ const PROVINCIAL_CONTEST_KIND_RE = /(?:Collegiate Programming Contest|Programmin
 const MANUAL_YEAR_BY_TITLE = new Map([
   ["The 1st Universal Cup. Stage 15: Hangzhou", "2023"],
   ["The 9th CCPC (Harbin) Onsite(The 2nd Universal Cup. Stage 10: Harbin)", "2023"],
-  ["The 10th Shandong Provincial Collegiate Programming Contest", "2023"],
+  ["The 10th Shandong Provincial Collegiate Programming Contest", "2019"],
   ["The 13th Shaanxi Provincial Collegiate Programming Contest", "2025"],
   ["The 13th Shandong ICPC Provincial Collegiate Programming Contest", "2025"],
   ["The 13th Xiangtan Collegiate Programming Contest", "2023"],
@@ -105,7 +105,7 @@ const MANUAL_YEAR_BY_PROVIDER_CONTEST_ID = new Map([
   ["103055", "2021"],
   ["103687", "2022"],
   ["104417", "2025"],
-  ["104459", "2023"],
+  ["104459", "2019"],
   ["104461", "2017"],
   ["104813", "2023"],
   ["105887", "2025"],
@@ -151,6 +151,76 @@ function normalizeYearInferenceTitle(value) {
     .replace(/[^\p{L}\p{N}]+/gu, " ")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function parseChineseInteger(value) {
+  const normalized = String(value ?? "").trim();
+  if (/^\d+$/u.test(normalized)) {
+    return Number(normalized);
+  }
+
+  const digits = new Map([
+    ["零", 0],
+    ["一", 1],
+    ["二", 2],
+    ["两", 2],
+    ["三", 3],
+    ["四", 4],
+    ["五", 5],
+    ["六", 6],
+    ["七", 7],
+    ["八", 8],
+    ["九", 9],
+  ]);
+  if (!normalized.includes("十")) {
+    return digits.get(normalized) ?? null;
+  }
+
+  const [tensRaw, onesRaw] = normalized.split("十");
+  const tens = tensRaw ? digits.get(tensRaw) : 1;
+  const ones = onesRaw ? digits.get(onesRaw) : 0;
+  if (tens === undefined || ones === undefined) {
+    return null;
+  }
+  return tens * 10 + ones;
+}
+
+function extractCcpcEdition(value) {
+  const haystack = String(value ?? "");
+  if (!/ccpc|中国大学生程序设计竞赛/iu.test(haystack)) {
+    return null;
+  }
+  const chineseEdition = haystack.match(/第\s*([一二两三四五六七八九十\d]+)\s*届/iu)?.[1];
+  if (chineseEdition) {
+    return parseChineseInteger(chineseEdition);
+  }
+  const englishEdition = haystack.match(/\b(?:the\s*)?(\d+)(?:st|nd|rd|th)\s+CCPC\b/iu)?.[1];
+  return englishEdition ? Number(englishEdition) : null;
+}
+
+function extractIcpcEdition(value) {
+  const haystack = String(value ?? "");
+  if (!/\bicpc\b|acm-icpc/iu.test(haystack)) {
+    return null;
+  }
+  const chineseEdition = haystack.match(/第\s*([一二两三四五六七八九十\d]+)\s*届[^，。；;]*?(?:ACM-)?ICPC/iu)?.[1];
+  if (chineseEdition) {
+    return parseChineseInteger(chineseEdition);
+  }
+  const englishEdition = haystack.match(/\b(?:the\s*)?(\d+)(?:st|nd|rd|th)\s+(?:ACM-)?ICPC\b/iu)?.[1];
+  return englishEdition ? Number(englishEdition) : null;
+}
+
+function getYearFromSeriesEdition(value) {
+  const ccpcEdition = extractCcpcEdition(value);
+  if (ccpcEdition) {
+    return String(ccpcEdition + 2014);
+  }
+  const icpcEdition = extractIcpcEdition(value);
+  if (icpcEdition) {
+    return String(icpcEdition + 1975);
+  }
+  return null;
 }
 
 function inferProvider(url) {
@@ -208,7 +278,7 @@ function inferIcpcOnlineStageTag(value) {
 function inferContestTags(title) {
   const tags = [];
   const value = String(title ?? "").trim();
-  const isRegional = /Regional|站|Onsite/iu.test(value);
+  const isRegional = /Regional|站|Onsite|\bSite\b/iu.test(value);
   const isRegionalOnlineAlias =
     isRegional &&
     /Online|网络/iu.test(value) &&
@@ -225,7 +295,7 @@ function inferContestTags(title) {
       PROVINCIAL_CONTEST_KIND_RE.test(value) &&
       !isInvitational &&
       !isRegional);
-  const year = value.match(/\b(19|20)\d{2}\b/u)?.[0];
+  const year = value.match(/\b(19|20)\d{2}\b/u)?.[0] ?? getYearFromSeriesEdition(value);
   if (year) tags.push(year);
   if (isOnline) {
     if (isIcpc) {

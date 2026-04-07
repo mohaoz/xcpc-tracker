@@ -27,6 +27,12 @@ jobs:
         run: npm ci
         working-directory: web
 
+      - name: Refresh XCPCIO Board award cutoffs
+        run: npm run catalog:refresh-xcpcio-board
+
+      - name: Refresh Codeforces award cutoffs
+        run: npm run catalog:refresh-codeforces-award-cutoffs
+
       - name: Validate curated catalog
         run: npm run catalog:validate
 

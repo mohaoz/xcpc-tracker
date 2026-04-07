@@ -225,6 +225,145 @@ h1 {
   font-weight: 700;
 }
 
+.award-cutoff-card {
+  position: relative;
+  overflow: hidden;
+  --award-current-color: rgba(255, 255, 255, 0.64);
+  --award-target-color: rgba(255, 255, 255, 0.64);
+  display: grid;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(41, 55, 81, 0.08);
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(
+      90deg,
+      var(--award-current-color) 0%,
+      var(--award-current-color) calc(var(--award-progress, 0%) - 10%),
+      color-mix(in srgb, var(--award-current-color) 50%, var(--award-target-color) 50%) var(--award-progress, 0%),
+      var(--award-target-color) calc(var(--award-progress, 0%) + 10%),
+      var(--award-target-color) 100%
+    );
+}
+
+.award-cutoff-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.award-cutoff-card--fe {
+  --award-current-color: rgba(124, 45, 18, 0.28);
+  border-color: rgba(124, 45, 18, 0.3);
+}
+
+.award-cutoff-card--cu {
+  --award-current-color: rgba(184, 115, 51, 0.16);
+  border-color: rgba(184, 115, 51, 0.24);
+}
+
+.award-cutoff-card--ag {
+  --award-current-color: rgba(209, 213, 219, 0.42);
+  border-color: rgba(156, 163, 175, 0.34);
+}
+
+.award-cutoff-card--au {
+  --award-current-color: rgba(217, 164, 65, 0.2);
+  border-color: rgba(217, 164, 65, 0.28);
+}
+
+.award-cutoff-card--target-cu {
+  --award-target-color: rgba(184, 115, 51, 0.16);
+}
+
+.award-cutoff-card--target-ag {
+  --award-target-color: rgba(209, 213, 219, 0.42);
+}
+
+.award-cutoff-card--target-au {
+  --award-target-color: rgba(217, 164, 65, 0.2);
+}
+
+.award-cutoff-card__header {
+  display: grid;
+  grid-template-columns: auto minmax(120px, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+}
+
+.award-cutoff-card__current {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.award-cutoff-card__current strong {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.award-cutoff-card__progress {
+  min-height: 36px;
+  display: grid;
+  place-items: center;
+  color: var(--ink);
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.award-cutoff-card__next {
+  display: flex;
+  gap: 10px;
+  justify-self: end;
+  align-items: center;
+}
+
+.award-cutoff-card__next-count {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+}
+
+.award-cutoff-card__next-crown {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border-radius: 8px;
+  background: rgba(217, 164, 65, 0.2);
+  color: #8a5a0a;
+  font-weight: 900;
+}
+
+.award-cutoff-card__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.award-cutoff-card__item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 10px 12px;
+  border: 1px solid rgba(41, 55, 81, 0.08);
+  border-radius: var(--radius-md);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.award-cutoff-card__item strong {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.08rem;
+}
+
+.award-cutoff-card__source {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -872,6 +1011,112 @@ h1 {
   align-items: center;
   gap: 10px 14px;
   min-width: 0;
+}
+
+.contest-medal-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  min-width: 40px;
+  height: 28px;
+  padding: 0;
+  border-radius: 7px;
+  color: #f8fafc;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  line-height: 1;
+}
+
+.contest-medal-badge--none-medal-data {
+  background: #6b7280;
+}
+
+.contest-medal-badge--unseen {
+  background: transparent;
+  color: var(--ink-soft);
+  box-shadow: inset 0 0 0 1px rgba(100, 116, 139, 0.35);
+}
+
+.contest-medal-badge--fe {
+  background: #7c2d12;
+}
+
+.contest-medal-badge--cu {
+  background: #b87333;
+}
+
+.contest-medal-badge--ag {
+  background: #d1d5db;
+  color: #1f2937;
+}
+
+.contest-medal-badge--au {
+  background: #ca8a04;
+}
+
+.contest-award-range {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  width: 40px;
+  min-width: 40px;
+  min-height: 28px;
+  padding: 0;
+  border-radius: 7px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 800;
+  color: #f8fafc;
+  line-height: 1;
+}
+
+.contest-award-range--fe {
+  background: #7c2d12;
+}
+
+.contest-award-range--cu {
+  background: #b87333;
+}
+
+.contest-award-range--ag {
+  background: #d1d5db;
+  color: #1f2937;
+}
+
+.contest-award-range--au {
+  background: #ca8a04;
+}
+
+.contest-award-range__label {
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+}
+
+.contest-award-range--no-lower .contest-award-range__label {
+  margin-left: 0.72em;
+}
+
+.contest-award-range--no-upper .contest-award-range__label {
+  margin-right: 0.72em;
+}
+
+.contest-award-range__bound {
+  min-width: 0.72em;
+  font-size: 0.58rem;
+  line-height: 1;
+}
+
+.contest-award-range__bound--lower {
+  align-self: flex-end;
+  margin-bottom: 3px;
+}
+
+.contest-award-range__bound--upper {
+  align-self: flex-start;
+  margin-top: 3px;
 }
 
 .contest-card__link-mark {

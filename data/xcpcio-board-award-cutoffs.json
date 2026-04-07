@@ -1,0 +1,3823 @@
+{
+  "generated_at": "2026-04-07T15:15:53.470Z",
+  "board_index": "data/xcpcio-board-contests.json",
+  "raw_output_path": null,
+  "normalized_output_path": null,
+  "source_provider": "xcpcio_board",
+  "match_count": 129,
+  "cutoff_count": 127,
+  "error_count": 0,
+  "cutoffs": [
+    {
+      "contest_id": "640e6d94-b5d8-5a13-9c03-855774ace1f5",
+      "title": "“华为智联杯”无线程序设计大赛暨2025年上海市大学生程序设计竞赛",
+      "board_path": "/provincial-contest/2025/shanghai",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2025/shanghai",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 153,
+      "cutoffs": {
+        "gold": {
+          "rank": 15,
+          "solved": 8,
+          "penalty": 922,
+          "teamId": "C601-05"
+        },
+        "silver": {
+          "rank": 45,
+          "solved": 4,
+          "penalty": 424,
+          "teamId": "C426-03"
+        },
+        "bronze": {
+          "rank": 91,
+          "solved": 3,
+          "penalty": 423,
+          "teamId": "C427-05"
+        }
+      }
+    },
+    {
+      "contest_id": "9f1d5ef1-ebaf-5300-9e98-1020bf6b95d6",
+      "title": "（2025）第六届辽宁省大学生程序设计竞赛 (沈阳)",
+      "board_path": "/provincial-contest/2025/liaoning",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2025/liaoning",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 146,
+      "cutoffs": {
+        "gold": {
+          "rank": 15,
+          "solved": 6,
+          "penalty": 570,
+          "teamId": "P_J12"
+        },
+        "silver": {
+          "rank": 44,
+          "solved": 5,
+          "penalty": 361,
+          "teamId": "P_C13"
+        },
+        "bronze": {
+          "rank": 87,
+          "solved": 5,
+          "penalty": 1031,
+          "teamId": "P_L07"
+        }
+      }
+    },
+    {
+      "contest_id": "edd794a7-e983-5d21-aac7-1c46b85cf196",
+      "title": "2014-2015 ACM-ICPC, Asia Xian Regional Contest",
+      "board_path": "/icpc/2014/nwpu_onsite",
+      "source_url": "https://board.xcpcio.com/icpc/2014/nwpu_onsite",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 264,
+      "cutoffs": {
+        "gold": {
+          "rank": 26,
+          "solved": 4,
+          "penalty": 398,
+          "teamId": "26"
+        },
+        "silver": {
+          "rank": 79,
+          "solved": 3,
+          "penalty": 345,
+          "teamId": "79"
+        },
+        "bronze": {
+          "rank": 158,
+          "solved": 2,
+          "penalty": 97,
+          "teamId": "158"
+        }
+      }
+    },
+    {
+      "contest_id": "701c4768-064b-5412-95dc-b33204db20bd",
+      "title": "2015 ACM-ICPC Asia EC-Final Contest",
+      "board_path": "/icpc/2015/ecfinal",
+      "source_url": "https://board.xcpcio.com/icpc/2015/ecfinal",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 288,
+      "cutoffs": {
+        "gold": {
+          "rank": 28,
+          "solved": 7,
+          "penalty": 1178,
+          "teamId": "28"
+        },
+        "silver": {
+          "rank": 86,
+          "solved": 5,
+          "penalty": 997,
+          "teamId": "86"
+        },
+        "bronze": {
+          "rank": 172,
+          "solved": 3,
+          "penalty": 232,
+          "teamId": "172"
+        }
+      }
+    },
+    {
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "2020 CCPC Henan Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2020/henancpc",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2020/henancpc",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 206,
+      "cutoffs": {
+        "gold": {
+          "rank": 20,
+          "solved": 4,
+          "penalty": 654,
+          "teamId": "t002"
+        },
+        "silver": {
+          "rank": 61,
+          "solved": 2,
+          "penalty": 196,
+          "teamId": "t012"
+        },
+        "bronze": {
+          "rank": 123,
+          "solved": 1,
+          "penalty": 11,
+          "teamId": "t144"
+        }
+      }
+    },
+    {
+      "contest_id": "46b27d08-2d30-56e0-98ac-c02edc5deb22",
+      "title": "2020 ICPC Asia East Continent Final",
+      "board_path": "/icpc/2020/ec-final",
+      "source_url": "https://board.xcpcio.com/icpc/2020/ec-final",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 294,
+      "cutoffs": {
+        "gold": {
+          "rank": 29,
+          "solved": 5,
+          "penalty": 628,
+          "teamId": "32"
+        },
+        "silver": {
+          "rank": 88,
+          "solved": 4,
+          "penalty": 679,
+          "teamId": "28"
+        },
+        "bronze": {
+          "rank": 176,
+          "solved": 2,
+          "penalty": 92,
+          "teamId": "252"
+        }
+      }
+    },
+    {
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "2020-2021 ACM-ICPC, Asia Nanjing Regional Contest (XXI Open Cup, Grand Prix of Nanjing)",
+      "board_path": "/icpc/2020/nanjing",
+      "source_url": "https://board.xcpcio.com/icpc/2020/nanjing",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 554,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 6,
+          "penalty": 735,
+          "teamId": "1030001328"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 4,
+          "penalty": 395,
+          "teamId": "1030001752"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 4,
+          "penalty": 826,
+          "teamId": "1030001484"
+        }
+      }
+    },
+    {
+      "contest_id": "7d1fd162-16c3-510b-a292-b1bc35039905",
+      "title": "2021 ICPC Asia East Continent Final",
+      "board_path": "/icpc/46th/ec-final",
+      "source_url": "https://board.xcpcio.com/icpc/46th/ec-final",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 363,
+      "cutoffs": {
+        "gold": {
+          "rank": 36,
+          "solved": 6,
+          "penalty": 950,
+          "teamId": "3"
+        },
+        "silver": {
+          "rank": 108,
+          "solved": 4,
+          "penalty": 341,
+          "teamId": "241"
+        },
+        "bronze": {
+          "rank": 216,
+          "solved": 3,
+          "penalty": 102,
+          "teamId": "155"
+        }
+      }
+    },
+    {
+      "contest_id": "fad2ee36-e1f3-58ad-9af2-3f1b651c3b26",
+      "title": "2021 Jiangsu Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2021/jiangsu",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2021/jiangsu",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 118,
+      "cutoffs": {
+        "gold": {
+          "rank": 11,
+          "solved": 7,
+          "penalty": 687,
+          "teamId": "20"
+        },
+        "silver": {
+          "rank": 35,
+          "solved": 6,
+          "penalty": 777,
+          "teamId": "60"
+        },
+        "bronze": {
+          "rank": 70,
+          "solved": 4,
+          "penalty": 551,
+          "teamId": "64"
+        }
+      }
+    },
+    {
+      "contest_id": "15ae4353-81c6-5468-aff0-94b248f8d0e5",
+      "title": "2021 Shandong Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2021/sdcpc",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2021/sdcpc",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 243,
+      "cutoffs": {
+        "gold": {
+          "rank": 24,
+          "solved": 6,
+          "penalty": 1066,
+          "teamId": "1030003657"
+        },
+        "silver": {
+          "rank": 72,
+          "solved": 4,
+          "penalty": 394,
+          "teamId": "1030003837"
+        },
+        "bronze": {
+          "rank": 145,
+          "solved": 3,
+          "penalty": 619,
+          "teamId": "1030003673"
+        }
+      }
+    },
+    {
+      "contest_id": "460b4fd6-fa3f-5410-8426-96f4e0980cc7",
+      "title": "2021年中国大学生程序设计竞赛女生专场",
+      "board_path": "/ccpc/7th/girl",
+      "source_url": "https://board.xcpcio.com/ccpc/7th/girl",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 258,
+      "cutoffs": {
+        "gold": {
+          "rank": 25,
+          "solved": 6,
+          "penalty": 394,
+          "teamId": "CCPC2099202110310250"
+        },
+        "silver": {
+          "rank": 77,
+          "solved": 5,
+          "penalty": 269,
+          "teamId": "CCPC2099202110310040"
+        },
+        "bronze": {
+          "rank": 154,
+          "solved": 5,
+          "penalty": 530,
+          "teamId": "CCPC2099202110310183"
+        }
+      }
+    },
+    {
+      "contest_id": "902618d7-caef-540d-a9c7-c548dd9a70d6",
+      "title": "2022 Hubei Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2022/hbcpc",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2022/hbcpc",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 166,
+      "cutoffs": {
+        "gold": {
+          "rank": 16,
+          "solved": 6,
+          "penalty": 806,
+          "teamId": "CCPC2099202205220052"
+        },
+        "silver": {
+          "rank": 49,
+          "solved": 5,
+          "penalty": 975,
+          "teamId": "CCPC2099202205220119"
+        },
+        "bronze": {
+          "rank": 99,
+          "solved": 3,
+          "penalty": 286,
+          "teamId": "CCPC2099202205220137"
+        }
+      }
+    },
+    {
+      "contest_id": "14246c8f-a0e2-5ff5-b1d9-d9b1c1389118",
+      "title": "2022 Jiangsu Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2022/jiangsu",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2022/jiangsu",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 138,
+      "cutoffs": {
+        "gold": {
+          "rank": 13,
+          "solved": 6,
+          "penalty": 1082,
+          "teamId": "2103202205270058"
+        },
+        "silver": {
+          "rank": 41,
+          "solved": 4,
+          "penalty": 568,
+          "teamId": "2104202205270049"
+        },
+        "bronze": {
+          "rank": 82,
+          "solved": 3,
+          "penalty": 764,
+          "teamId": "2103202205270055"
+        }
+      }
+    },
+    {
+      "contest_id": "5a1301dd-3f4f-5dff-8a6f-61efa949b36e",
+      "title": "2022年中国大学生程序设计竞赛女生专场",
+      "board_path": "/ccpc/8th/girls",
+      "source_url": "https://board.xcpcio.com/ccpc/8th/girls",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 275,
+      "cutoffs": {
+        "gold": {
+          "rank": 26,
+          "solved": 6,
+          "penalty": 901,
+          "teamId": "2012202211270040"
+        },
+        "silver": {
+          "rank": 77,
+          "solved": 4,
+          "penalty": 638,
+          "teamId": "2000202211270049"
+        },
+        "bronze": {
+          "rank": 153,
+          "solved": 3,
+          "penalty": 617,
+          "teamId": "2009202211270034"
+        }
+      }
+    },
+    {
+      "contest_id": "6bf5dc05-6279-5a84-93c0-3da04882afb3",
+      "title": "2023 (ICPC) Jiangxi Provincial Contest -- Official Contest",
+      "board_path": "/provincial-contest/2023/jiangxi",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2023/jiangxi",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 179,
+      "cutoffs": {
+        "gold": {
+          "rank": 17,
+          "solved": 6,
+          "penalty": 808,
+          "teamId": "113"
+        },
+        "silver": {
+          "rank": 53,
+          "solved": 4,
+          "penalty": 254,
+          "teamId": "94"
+        },
+        "bronze": {
+          "rank": 107,
+          "solved": 2,
+          "penalty": 7,
+          "teamId": "246"
+        }
+      }
+    },
+    {
+      "contest_id": "d49a6906-748c-57a9-9159-74f139bf75dc",
+      "title": "2023 CCPC Henan Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2023/henan",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2023/henan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 313,
+      "cutoffs": {
+        "gold": {
+          "rank": 31,
+          "solved": 5,
+          "penalty": 860,
+          "teamId": "302003"
+        },
+        "silver": {
+          "rank": 93,
+          "solved": 3,
+          "penalty": 419,
+          "teamId": "316037"
+        },
+        "bronze": {
+          "rank": 187,
+          "solved": 2,
+          "penalty": 479,
+          "teamId": "215013"
+        }
+      }
+    },
+    {
+      "contest_id": "9cd0abe4-223a-5be8-a219-32c07402199f",
+      "title": "2023 China Collegiate Programming Contest (CCPC) Guilin Onsite (The 2nd Universal Cup. Stage 8: Guilin)",
+      "board_path": "/ccpc/9th/guilin",
+      "source_url": "https://board.xcpcio.com/ccpc/9th/guilin",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 240,
+      "cutoffs": {
+        "gold": {
+          "rank": 24,
+          "solved": 7,
+          "penalty": 1078,
+          "teamId": "161"
+        },
+        "silver": {
+          "rank": 72,
+          "solved": 5,
+          "penalty": 785,
+          "teamId": "13"
+        },
+        "bronze": {
+          "rank": 144,
+          "solved": 3,
+          "penalty": 436,
+          "teamId": "116"
+        }
+      }
+    },
+    {
+      "contest_id": "042b3a9c-ac2e-5192-93b6-f85df13ec905",
+      "title": "2023 Hubei Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2023/hubei",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2023/hubei",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 175,
+      "cutoffs": {
+        "gold": {
+          "rank": 17,
+          "solved": 7,
+          "penalty": 1133,
+          "teamId": "106"
+        },
+        "silver": {
+          "rank": 52,
+          "solved": 6,
+          "penalty": 999,
+          "teamId": "82"
+        },
+        "bronze": {
+          "rank": 105,
+          "solved": 4,
+          "penalty": 645,
+          "teamId": "43"
+        }
+      }
+    },
+    {
+      "contest_id": "624e066e-2f47-57aa-8ba1-91de5329d750",
+      "title": "2023 Jiangsu Collegiate Programming Contest, 2023 National Invitational of CCPC (Hunan), The 13th Xiangtan Collegiate Programming Contest",
+      "board_path": "/ccpc/9th/jiangsu-and-xiangtan",
+      "source_url": "https://board.xcpcio.com/ccpc/9th/jiangsu-and-xiangtan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 433,
+      "cutoffs": {
+        "gold": {
+          "rank": 43,
+          "solved": 6,
+          "penalty": 444,
+          "teamId": "jiangsu173"
+        },
+        "silver": {
+          "rank": 129,
+          "solved": 6,
+          "penalty": 747,
+          "teamId": "xiangtan23251"
+        },
+        "bronze": {
+          "rank": 259,
+          "solved": 5,
+          "penalty": 736,
+          "teamId": "xiangtan23080"
+        }
+      }
+    },
+    {
+      "contest_id": "4e2a350c-d590-59b8-b65a-3a4c6bb7d49c",
+      "title": "2023 年 CCPC 网络预选赛",
+      "board_path": "/ccpc/9th/online-qualification",
+      "source_url": "https://board.xcpcio.com/ccpc/9th/online-qualification",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 1490,
+      "cutoffs": {
+        "gold": {
+          "rank": 149,
+          "solved": 3,
+          "penalty": 626,
+          "teamId": "2017202308190103"
+        },
+        "silver": {
+          "rank": 447,
+          "solved": 1,
+          "penalty": 38,
+          "teamId": "2002202308190049"
+        },
+        "bronze": {
+          "rank": 894,
+          "solved": 1,
+          "penalty": 106,
+          "teamId": "2033202308190016"
+        }
+      }
+    },
+    {
+      "contest_id": "ebc21e05-5863-5095-a83b-87134d5c6a51",
+      "title": "2023年中国大学生程序设计竞赛女生专场",
+      "board_path": "/ccpc/9th/girl",
+      "source_url": "https://board.xcpcio.com/ccpc/9th/girl",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 186,
+      "cutoffs": {
+        "gold": {
+          "rank": 19,
+          "solved": 6,
+          "penalty": 757,
+          "teamId": "2000202310210132"
+        },
+        "silver": {
+          "rank": 57,
+          "solved": 5,
+          "penalty": 593,
+          "teamId": "2000202310210021"
+        },
+        "bronze": {
+          "rank": 114,
+          "solved": 4,
+          "penalty": 585,
+          "teamId": "2000202310210152"
+        }
+      }
+    },
+    {
+      "contest_id": "9ba53a0b-bea0-505e-9249-7b048dc2fbb2",
+      "title": "2024 (ICPC) Jiangxi Provincial Contest -- Official Contest",
+      "board_path": "/provincial-contest/2024/jiangxi",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/jiangxi",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 184,
+      "cutoffs": {
+        "gold": {
+          "rank": 19,
+          "solved": 8,
+          "penalty": 1166,
+          "teamId": "82"
+        },
+        "silver": {
+          "rank": 56,
+          "solved": 6,
+          "penalty": 535,
+          "teamId": "119"
+        },
+        "bronze": {
+          "rank": 112,
+          "solved": 5,
+          "penalty": 997,
+          "teamId": "70"
+        }
+      }
+    },
+    {
+      "contest_id": "7113bc04-ec9e-53c5-8cc6-3e05f2438e44",
+      "title": "2024 CCPC Liaoning Provincial Contest",
+      "board_path": "/provincial-contest/2024/liaoning",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/liaoning",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 127,
+      "cutoffs": {
+        "gold": {
+          "rank": 12,
+          "solved": 7,
+          "penalty": 812,
+          "teamId": "team149"
+        },
+        "silver": {
+          "rank": 38,
+          "solved": 5,
+          "penalty": 698,
+          "teamId": "team39"
+        },
+        "bronze": {
+          "rank": 76,
+          "solved": 3,
+          "penalty": 254,
+          "teamId": "team118"
+        }
+      }
+    },
+    {
+      "contest_id": "0ec23dd3-02c5-59ae-8a3f-a33e410fabe6",
+      "title": "2024 China Collegiate Programming Contest (CCPC) Chongqing Onsite",
+      "board_path": "/ccpc/10th/chongqing",
+      "source_url": "https://board.xcpcio.com/ccpc/10th/chongqing",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 278,
+      "cutoffs": {
+        "gold": {
+          "rank": 27,
+          "solved": 8,
+          "penalty": 799,
+          "teamId": "F406"
+        },
+        "silver": {
+          "rank": 83,
+          "solved": 6,
+          "penalty": 248,
+          "teamId": "H506"
+        },
+        "bronze": {
+          "rank": 166,
+          "solved": 6,
+          "penalty": 760,
+          "teamId": "J807"
+        }
+      }
+    },
+    {
+      "contest_id": "033094a1-9c70-5d37-969d-b7a00db88f2f",
+      "title": "2024 China Collegiate Programming Contest (CCPC) Harbin Onsite (The 3rd Universal Cup. Stage 14: Harbin)",
+      "board_path": "/ccpc/10th/harbin",
+      "source_url": "https://board.xcpcio.com/ccpc/10th/harbin",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 280,
+      "cutoffs": {
+        "gold": {
+          "rank": 28,
+          "solved": 8,
+          "penalty": 1041,
+          "teamId": "G12"
+        },
+        "silver": {
+          "rank": 84,
+          "solved": 5,
+          "penalty": 246,
+          "teamId": "C08"
+        },
+        "bronze": {
+          "rank": 168,
+          "solved": 5,
+          "penalty": 961,
+          "teamId": "C26"
+        }
+      }
+    },
+    {
+      "contest_id": "3abb2c7f-0e8c-51fc-afac-fdceab5470a7",
+      "title": "2024 China Collegiate Programming Contest (CCPC) Zhengzhou Onsite (The 3rd Universal Cup. Stage 22: Zhengzhou)",
+      "board_path": "/ccpc/10th/zhengzhou",
+      "source_url": "https://board.xcpcio.com/ccpc/10th/zhengzhou",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 280,
+      "cutoffs": {
+        "gold": {
+          "rank": 28,
+          "solved": 6,
+          "penalty": 991,
+          "teamId": "C305"
+        },
+        "silver": {
+          "rank": 84,
+          "solved": 5,
+          "penalty": 888,
+          "teamId": "B103"
+        },
+        "bronze": {
+          "rank": 168,
+          "solved": 4,
+          "penalty": 885,
+          "teamId": "A308"
+        }
+      }
+    },
+    {
+      "contest_id": "b50d1996-9f44-5f19-9835-2e2b298c2b1b",
+      "title": "2024 ICPC Asia Chengdu Regional Contest (The 3rd Universal Cup. Stage 15: Chengdu)",
+      "board_path": "/icpc/49th/chengdu",
+      "source_url": "https://board.xcpcio.com/icpc/49th/chengdu",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 307,
+      "cutoffs": {
+        "gold": {
+          "rank": 31,
+          "solved": 7,
+          "penalty": 600,
+          "teamId": "A30"
+        },
+        "silver": {
+          "rank": 93,
+          "solved": 6,
+          "penalty": 769,
+          "teamId": "C36"
+        },
+        "bronze": {
+          "rank": 187,
+          "solved": 5,
+          "penalty": 953,
+          "teamId": "F42"
+        }
+      }
+    },
+    {
+      "contest_id": "b59cbf88-45bc-5688-89cc-a6ff21bd4391",
+      "title": "2024 ICPC National Invitational Collegiate Programming Contest, Wuhan Site",
+      "board_path": "/icpc/49th/wuhan-invitational",
+      "source_url": "https://board.xcpcio.com/icpc/49th/wuhan-invitational",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 220,
+      "cutoffs": {
+        "gold": {
+          "rank": 22,
+          "solved": 6,
+          "penalty": 818,
+          "teamId": "204"
+        },
+        "silver": {
+          "rank": 66,
+          "solved": 4,
+          "penalty": 385,
+          "teamId": "220"
+        },
+        "bronze": {
+          "rank": 132,
+          "solved": 3,
+          "penalty": 231,
+          "teamId": "86"
+        }
+      }
+    },
+    {
+      "contest_id": "dca220fb-0f03-56c9-865e-12ac1db1eabb",
+      "title": "2024 ICPC ShaanXi Provincial Contest",
+      "board_path": "/provincial-contest/2024/shaanxi",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/shaanxi",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 117,
+      "cutoffs": {
+        "gold": {
+          "rank": 12,
+          "solved": 7,
+          "penalty": 324,
+          "teamId": "team-032"
+        },
+        "silver": {
+          "rank": 36,
+          "solved": 7,
+          "penalty": 898,
+          "teamId": "team-021"
+        },
+        "bronze": {
+          "rank": 72,
+          "solved": 5,
+          "penalty": 422,
+          "teamId": "team-114"
+        }
+      }
+    },
+    {
+      "contest_id": "7d8a7c5f-ba4e-5231-98bb-6ae44ae0c064",
+      "title": "2024 Jiangsu Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2024/jiangsu",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/jiangsu",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 190,
+      "cutoffs": {
+        "gold": {
+          "rank": 19,
+          "solved": 6,
+          "penalty": 521,
+          "teamId": "68"
+        },
+        "silver": {
+          "rank": 57,
+          "solved": 4,
+          "penalty": 271,
+          "teamId": "53"
+        },
+        "bronze": {
+          "rank": 114,
+          "solved": 3,
+          "penalty": 376,
+          "teamId": "143"
+        }
+      }
+    },
+    {
+      "contest_id": "861750a2-a4bc-5c63-b06c-acece91ab757",
+      "title": "2024 National Invitational of CCPC (Zhengzhou), 2024 CCPC Henan Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2024/henan",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/henan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 424,
+      "cutoffs": {
+        "gold": {
+          "rank": 42,
+          "solved": 9,
+          "penalty": 1206,
+          "teamId": "C41N"
+        },
+        "silver": {
+          "rank": 127,
+          "solved": 7,
+          "penalty": 782,
+          "teamId": "D03N"
+        },
+        "bronze": {
+          "rank": 254,
+          "solved": 4,
+          "penalty": 333,
+          "teamId": "H21Y"
+        }
+      }
+    },
+    {
+      "contest_id": "ddf7cc31-8a01-5f58-a4b9-8ff486e5bea8",
+      "title": "2024 北京市大学生程序设计竞赛",
+      "board_path": "/provincial-contest/2024/beijing",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/beijing",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 66,
+      "cutoffs": {
+        "gold": {
+          "rank": 6,
+          "solved": 4,
+          "penalty": 611,
+          "teamId": "2000202405190070"
+        },
+        "silver": {
+          "rank": 19,
+          "solved": 2,
+          "penalty": 197,
+          "teamId": "2000202405190077"
+        },
+        "bronze": {
+          "rank": 39,
+          "solved": 1,
+          "penalty": 83,
+          "teamId": "2000202405190022"
+        }
+      }
+    },
+    {
+      "contest_id": "fd6fc150-2f05-5e0e-831f-dc2ff3c4e16a",
+      "title": "2024湖南省赛",
+      "board_path": "/provincial-contest/2024/hunan",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/hunan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 147,
+      "cutoffs": {
+        "gold": {
+          "rank": 14,
+          "solved": 6,
+          "penalty": 715,
+          "teamId": "team127"
+        },
+        "silver": {
+          "rank": 44,
+          "solved": 3,
+          "penalty": 270,
+          "teamId": "team122"
+        },
+        "bronze": {
+          "rank": 88,
+          "solved": 2,
+          "penalty": 138,
+          "teamId": "team082"
+        }
+      }
+    },
+    {
+      "contest_id": "d505e000-4947-579c-8d9b-99e31160839f",
+      "title": "2025 CCPC 全国邀请赛（南昌）暨第二届江西省赛",
+      "board_path": "/icpc/50th/nanchang-invitational",
+      "source_url": "https://board.xcpcio.com/icpc/50th/nanchang-invitational",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 457,
+      "cutoffs": {
+        "gold": {
+          "rank": 39,
+          "solved": 8,
+          "penalty": 1209,
+          "teamId": "317"
+        },
+        "silver": {
+          "rank": 117,
+          "solved": 7,
+          "penalty": 1163,
+          "teamId": "135"
+        },
+        "bronze": {
+          "rank": 234,
+          "solved": 5,
+          "penalty": 671,
+          "teamId": "412"
+        }
+      }
+    },
+    {
+      "contest_id": "9c24593e-15cd-5d66-b041-6bb69a464fa1",
+      "title": "2025 ICPC Nanchang Invitational and Jiangxi Provincial Collegiate Programming Contest",
+      "board_path": "/icpc/50th/nanchang-invitational",
+      "source_url": "https://board.xcpcio.com/icpc/50th/nanchang-invitational",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 457,
+      "cutoffs": {
+        "gold": {
+          "rank": 39,
+          "solved": 8,
+          "penalty": 1209,
+          "teamId": "317"
+        },
+        "silver": {
+          "rank": 117,
+          "solved": 7,
+          "penalty": 1163,
+          "teamId": "135"
+        },
+        "bronze": {
+          "rank": 234,
+          "solved": 5,
+          "penalty": 671,
+          "teamId": "412"
+        }
+      }
+    },
+    {
+      "contest_id": "2d28130e-3c6e-527d-9ac2-597b2120d367",
+      "title": "2025 National Invitational of CCPC (Zhengzhou), 2025 CCPC Henan Provincial Collegiate Programming Contest",
+      "board_path": "/ccpc/11th/zhengzhou-invitational",
+      "source_url": "https://board.xcpcio.com/ccpc/11th/zhengzhou-invitational",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 433,
+      "cutoffs": {
+        "gold": {
+          "rank": 43,
+          "solved": 8,
+          "penalty": 891,
+          "teamId": "C0909"
+        },
+        "silver": {
+          "rank": 129,
+          "solved": 7,
+          "penalty": 767,
+          "teamId": "B1007"
+        },
+        "bronze": {
+          "rank": 259,
+          "solved": 5,
+          "penalty": 385,
+          "teamId": "C0204"
+        }
+      }
+    },
+    {
+      "contest_id": "2768dce1-b920-59ac-8898-9bfdf673bf29",
+      "title": "The 7th China Collegiate Programming Contest, Finals (CCPC Finals 2021)",
+      "board_path": "/ccpc/7th/final",
+      "source_url": "https://board.xcpcio.com/ccpc/7th/final",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 115,
+      "cutoffs": {
+        "gold": {
+          "rank": 11,
+          "solved": 8,
+          "penalty": 1133,
+          "teamId": "2004202207260043"
+        },
+        "silver": {
+          "rank": 34,
+          "solved": 6,
+          "penalty": 791,
+          "teamId": "2002202207260031"
+        },
+        "bronze": {
+          "rank": 69,
+          "solved": 4,
+          "penalty": 299,
+          "teamId": "2004202207260001"
+        }
+      }
+    },
+    {
+      "contest_id": "ab802aa2-4882-5d82-9999-bec2e2d2e5fd",
+      "title": "The 7th Hebei Collegiate Programming Contest (CCPC 2023 河北省赛)",
+      "board_path": "/provincial-contest/2023/hebei",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2023/hebei",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 259,
+      "cutoffs": {
+        "gold": {
+          "rank": 25,
+          "solved": 5,
+          "penalty": 328,
+          "teamId": "B04"
+        },
+        "silver": {
+          "rank": 77,
+          "solved": 3,
+          "penalty": 126,
+          "teamId": "E24"
+        },
+        "bronze": {
+          "rank": 155,
+          "solved": 2,
+          "penalty": 40,
+          "teamId": "F04"
+        }
+      }
+    },
+    {
+      "contest_id": "52210714-8251-5667-b174-b9720b98f308",
+      "title": "The 8th Hebei Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2024/hebei",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/hebei",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 206,
+      "cutoffs": {
+        "gold": {
+          "rank": 21,
+          "solved": 6,
+          "penalty": 805,
+          "teamId": "1793645055033921662"
+        },
+        "silver": {
+          "rank": 63,
+          "solved": 4,
+          "penalty": 495,
+          "teamId": "1793645055033921717"
+        },
+        "bronze": {
+          "rank": 125,
+          "solved": 3,
+          "penalty": 154,
+          "teamId": "1793645055033921577"
+        }
+      }
+    },
+    {
+      "contest_id": "e5bf6ecb-f1a1-5631-b168-de071ad7cb07",
+      "title": "The 9th CCPC (Harbin) Onsite(The 2nd Universal Cup. Stage 10: Harbin)",
+      "board_path": "/ccpc/9th/harbin",
+      "source_url": "https://board.xcpcio.com/ccpc/9th/harbin",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 240,
+      "cutoffs": {
+        "gold": {
+          "rank": 24,
+          "solved": 6,
+          "penalty": 808,
+          "teamId": "D36"
+        },
+        "silver": {
+          "rank": 70,
+          "solved": 5,
+          "penalty": 763,
+          "teamId": "B36"
+        },
+        "bronze": {
+          "rank": 140,
+          "solved": 4,
+          "penalty": 670,
+          "teamId": "C22"
+        }
+      }
+    },
+    {
+      "contest_id": "f080df0d-d3ff-5fac-89e8-04cc21a337c9",
+      "title": "The 9th Hebei Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2025/hebei",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2025/hebei",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 217,
+      "cutoffs": {
+        "gold": {
+          "rank": 21,
+          "solved": 6,
+          "penalty": 1038,
+          "teamId": "1923303674446708811"
+        },
+        "silver": {
+          "rank": 63,
+          "solved": 3,
+          "penalty": 176,
+          "teamId": "1923303674446708929"
+        },
+        "bronze": {
+          "rank": 125,
+          "solved": 2,
+          "penalty": 225,
+          "teamId": "1923303674446708836"
+        }
+      }
+    },
+    {
+      "contest_id": "8a102ede-16fe-59e1-b739-ed8f243fdf40",
+      "title": "The 13th Shaanxi Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2025/shaanxi",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2025/shaanxi",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 155,
+      "cutoffs": {
+        "gold": {
+          "rank": 16,
+          "solved": 7,
+          "penalty": 543,
+          "teamId": "212"
+        },
+        "silver": {
+          "rank": 48,
+          "solved": 6,
+          "penalty": 876,
+          "teamId": "234"
+        },
+        "bronze": {
+          "rank": 96,
+          "solved": 4,
+          "penalty": 676,
+          "teamId": "181"
+        }
+      }
+    },
+    {
+      "contest_id": "5bd69255-07bf-56e9-a35e-dfa67c9505cf",
+      "title": "The 13th Shandong ICPC Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2025/shandong",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2025/shandong",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 231,
+      "cutoffs": {
+        "gold": {
+          "rank": 23,
+          "solved": 6,
+          "penalty": 1002,
+          "teamId": "405x06"
+        },
+        "silver": {
+          "rank": 69,
+          "solved": 4,
+          "penalty": 463,
+          "teamId": "303x20"
+        },
+        "bronze": {
+          "rank": 138,
+          "solved": 3,
+          "penalty": 571,
+          "teamId": "407x22"
+        }
+      }
+    },
+    {
+      "contest_id": "2fc81563-266f-5759-8f23-e35435eb24e8",
+      "title": "The 15th Jilin Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2021/jilin",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2021/jilin",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_all_teams_medal_ratio_10_20_30",
+      "eligible_team_count": 169,
+      "cutoffs": {
+        "gold": {
+          "rank": 16,
+          "solved": 8,
+          "penalty": 691,
+          "teamId": "94"
+        },
+        "silver": {
+          "rank": 50,
+          "solved": 5,
+          "penalty": 699,
+          "teamId": "44"
+        },
+        "bronze": {
+          "rank": 101,
+          "solved": 3,
+          "penalty": 294,
+          "teamId": "138"
+        }
+      }
+    },
+    {
+      "contest_id": "99d7897e-30fe-5b6c-8ec6-a3e261cf4d0c",
+      "title": "The 15th Shandong CCPC Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2025/shandong",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2025/shandong",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 231,
+      "cutoffs": {
+        "gold": {
+          "rank": 23,
+          "solved": 6,
+          "penalty": 1002,
+          "teamId": "405x06"
+        },
+        "silver": {
+          "rank": 69,
+          "solved": 4,
+          "penalty": 463,
+          "teamId": "303x20"
+        },
+        "bronze": {
+          "rank": 138,
+          "solved": 3,
+          "penalty": 571,
+          "teamId": "407x22"
+        }
+      }
+    },
+    {
+      "contest_id": "e607087b-5fba-5e93-91c9-3309b9fafbe6",
+      "title": "The 18th Jilin Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2025/jilin",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2025/jilin",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_all_teams_medal_ratio_10_20_30",
+      "eligible_team_count": 176,
+      "cutoffs": {
+        "gold": {
+          "rank": 17,
+          "solved": 6,
+          "penalty": 191,
+          "teamId": "JiLin-team-H21"
+        },
+        "silver": {
+          "rank": 52,
+          "solved": 6,
+          "penalty": 792,
+          "teamId": "JiLin-team-H19"
+        },
+        "bronze": {
+          "rank": 105,
+          "solved": 4,
+          "penalty": 323,
+          "teamId": "JiLin-team-C19"
+        }
+      }
+    },
+    {
+      "contest_id": "6562f5bd-c742-5b9a-a157-d70eae2b739d",
+      "title": "The 2009 ACM-ICPC Asia Wuhan Regional Contest",
+      "board_path": "/icpc/2009/whu_onsite",
+      "source_url": "https://board.xcpcio.com/icpc/2009/whu_onsite",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 124,
+      "cutoffs": {
+        "gold": {
+          "rank": 12,
+          "solved": 5,
+          "penalty": 553,
+          "teamId": "16"
+        },
+        "silver": {
+          "rank": 37,
+          "solved": 4,
+          "penalty": 640,
+          "teamId": "44"
+        },
+        "bronze": {
+          "rank": 74,
+          "solved": 3,
+          "penalty": 463,
+          "teamId": "81"
+        }
+      }
+    },
+    {
+      "contest_id": "615f8c70-a81c-50a8-9aed-fa4ad1476cda",
+      "title": "The 2011 ACM-ICPC Asia Shanghai Regional Contest",
+      "board_path": "/icpc/2011/fdu_onsite",
+      "source_url": "https://board.xcpcio.com/icpc/2011/fdu_onsite",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 150,
+      "cutoffs": {
+        "gold": {
+          "rank": 15,
+          "solved": 3,
+          "penalty": 515,
+          "teamId": "15"
+        },
+        "silver": {
+          "rank": 45,
+          "solved": 2,
+          "penalty": 501,
+          "teamId": "45"
+        },
+        "bronze": {
+          "rank": 90,
+          "solved": 1,
+          "penalty": 337,
+          "teamId": "91"
+        }
+      }
+    },
+    {
+      "contest_id": "ddb26b39-9073-56d1-878b-106828862b49",
+      "title": "The 2015 ACM-ICPC Asia Changchun Regional Contest",
+      "board_path": "/icpc/2015/nenu_onsite",
+      "source_url": "https://board.xcpcio.com/icpc/2015/nenu_onsite",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 220,
+      "cutoffs": {
+        "gold": {
+          "rank": 22,
+          "solved": 5,
+          "penalty": 386,
+          "teamId": "22"
+        },
+        "silver": {
+          "rank": 66,
+          "solved": 4,
+          "penalty": 236,
+          "teamId": "66"
+        },
+        "bronze": {
+          "rank": 132,
+          "solved": 4,
+          "penalty": 599,
+          "teamId": "132"
+        }
+      }
+    },
+    {
+      "contest_id": "31eb706c-0e85-51b0-b3fe-3f38bf8c4a79",
+      "title": "The 2015 ACM-ICPC Asia Shenyang Regional Contest",
+      "board_path": "/icpc/2015/neu_onsite",
+      "source_url": "https://board.xcpcio.com/icpc/2015/neu_onsite",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 172,
+      "cutoffs": {
+        "gold": {
+          "rank": 17,
+          "solved": 5,
+          "penalty": 775,
+          "teamId": "17"
+        },
+        "silver": {
+          "rank": 51,
+          "solved": 4,
+          "penalty": 908,
+          "teamId": "51"
+        },
+        "bronze": {
+          "rank": 103,
+          "solved": 2,
+          "penalty": 150,
+          "teamId": "103"
+        }
+      }
+    },
+    {
+      "contest_id": "f853d26d-cb1b-55b0-90e6-caefa3b7d2f9",
+      "title": "The 2016 ACM-ICPC Asia Shenyang Regional Contest",
+      "board_path": "/icpc/2016/neu_onsite",
+      "source_url": "https://board.xcpcio.com/icpc/2016/neu_onsite",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 180,
+      "cutoffs": {
+        "gold": {
+          "rank": 18,
+          "solved": 6,
+          "penalty": 706,
+          "teamId": "18"
+        },
+        "silver": {
+          "rank": 54,
+          "solved": 5,
+          "penalty": 685,
+          "teamId": "52"
+        },
+        "bronze": {
+          "rank": 108,
+          "solved": 4,
+          "penalty": 549,
+          "teamId": "110"
+        }
+      }
+    },
+    {
+      "contest_id": "dfa81fde-dc7d-52f8-a1eb-6b70e90b7f47",
+      "title": "The 2017 ACM-ICPC Asia Shenyang Regional Contest",
+      "board_path": "/icpc/2017/neu_onsite",
+      "source_url": "https://board.xcpcio.com/icpc/2017/neu_onsite",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 180,
+      "cutoffs": {
+        "gold": {
+          "rank": 18,
+          "solved": 6,
+          "penalty": 706,
+          "teamId": "18"
+        },
+        "silver": {
+          "rank": 54,
+          "solved": 5,
+          "penalty": 685,
+          "teamId": "52"
+        },
+        "bronze": {
+          "rank": 108,
+          "solved": 4,
+          "penalty": 549,
+          "teamId": "110"
+        }
+      }
+    },
+    {
+      "contest_id": "e01b3167-d048-5861-b7a8-1f48355a229e",
+      "title": "The 2019 ICPC Asia Yinchuan Regional Contest",
+      "board_path": "/icpc/2019/yinchuan",
+      "source_url": "https://board.xcpcio.com/icpc/2019/yinchuan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 393,
+      "cutoffs": {
+        "gold": {
+          "rank": 40,
+          "solved": 6,
+          "penalty": 824,
+          "teamId": "161"
+        },
+        "silver": {
+          "rank": 120,
+          "solved": 4,
+          "penalty": 180,
+          "teamId": "257"
+        },
+        "bronze": {
+          "rank": 240,
+          "solved": 3,
+          "penalty": 157,
+          "teamId": "271"
+        }
+      }
+    },
+    {
+      "contest_id": "a570f9a0-c71c-5375-a096-5adcabf3ae98",
+      "title": "The 2019 ICPC China Shaanxi Provincial Programming Contest",
+      "board_path": "/provincial-contest/2019/sxcpc",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2019/sxcpc",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 105,
+      "cutoffs": {
+        "gold": {
+          "rank": 10,
+          "solved": 6,
+          "penalty": 813,
+          "teamId": "team:93"
+        },
+        "silver": {
+          "rank": 31,
+          "solved": 4,
+          "penalty": 400,
+          "teamId": "team:39"
+        },
+        "bronze": {
+          "rank": 63,
+          "solved": 3,
+          "penalty": 364,
+          "teamId": "team:21"
+        }
+      }
+    },
+    {
+      "contest_id": "775f33df-813f-5fd8-a112-203fde7f7856",
+      "title": "The 2019 ICPC China Shandong Provincial Programming Contest",
+      "board_path": "/provincial-contest/2019/sdcpc",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2019/sdcpc",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 249,
+      "cutoffs": {
+        "gold": {
+          "rank": 24,
+          "solved": 8,
+          "penalty": 1235,
+          "teamId": "C33"
+        },
+        "silver": {
+          "rank": 74,
+          "solved": 5,
+          "penalty": 199,
+          "teamId": "C58"
+        },
+        "bronze": {
+          "rank": 149,
+          "solved": 5,
+          "penalty": 752,
+          "teamId": "B40"
+        }
+      }
+    },
+    {
+      "contest_id": "ec0cc911-dd10-5f7b-867c-59a3e754cb74",
+      "title": "The 2020 ICPC Asia Jinan Regional Contest",
+      "board_path": "/icpc/2020/jinan",
+      "source_url": "https://board.xcpcio.com/icpc/2020/jinan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 496,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 6,
+          "penalty": 558,
+          "teamId": "1030001899"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 5,
+          "penalty": 450,
+          "teamId": "1030002009"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 4,
+          "penalty": 204,
+          "teamId": "1030002289"
+        }
+      }
+    },
+    {
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "The 2020 ICPC Asia Shanghai Regional Contest",
+      "board_path": "/icpc/2020/shanghai",
+      "source_url": "https://board.xcpcio.com/icpc/2020/shanghai",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 635,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 7,
+          "penalty": 1057,
+          "teamId": "1030000643"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 5,
+          "penalty": 914,
+          "teamId": "1030000713"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 4,
+          "penalty": 731,
+          "teamId": "1030000859"
+        }
+      }
+    },
+    {
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "The 2020 ICPC Asia Shenyang Regional Contest",
+      "board_path": "/icpc/2020/shenyang",
+      "source_url": "https://board.xcpcio.com/icpc/2020/shenyang",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 269,
+      "cutoffs": {
+        "gold": {
+          "rank": 26,
+          "solved": 6,
+          "penalty": 820,
+          "teamId": "27"
+        },
+        "silver": {
+          "rank": 78,
+          "solved": 4,
+          "penalty": 629,
+          "teamId": "81"
+        },
+        "bronze": {
+          "rank": 156,
+          "solved": 3,
+          "penalty": 325,
+          "teamId": "159"
+        }
+      }
+    },
+    {
+      "contest_id": "a2ed781a-6f64-56cf-8bc0-d36d7d368a56",
+      "title": "The 2020 ICPC Asia Yinchuan Regional Contest",
+      "board_path": "/icpc/2020/yinchuan",
+      "source_url": "https://board.xcpcio.com/icpc/2020/yinchuan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 491,
+      "cutoffs": {
+        "gold": {
+          "rank": 50,
+          "solved": 5,
+          "penalty": 590,
+          "teamId": "172"
+        },
+        "silver": {
+          "rank": 150,
+          "solved": 4,
+          "penalty": 390,
+          "teamId": "88"
+        },
+        "bronze": {
+          "rank": 300,
+          "solved": 3,
+          "penalty": 228,
+          "teamId": "11"
+        }
+      }
+    },
+    {
+      "contest_id": "ce2f360f-5ea3-51af-8280-1aab3449e5de",
+      "title": "The 2020 ICPC China Zhejiang Provincial Programming Contest (17th)",
+      "board_path": "/provincial-contest/2020/zjcpc",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2020/zjcpc",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 410,
+      "cutoffs": {
+        "gold": {
+          "rank": 41,
+          "solved": 6,
+          "penalty": 845,
+          "teamId": "1188"
+        },
+        "silver": {
+          "rank": 123,
+          "solved": 3,
+          "penalty": 352,
+          "teamId": "1315"
+        },
+        "bronze": {
+          "rank": 246,
+          "solved": 1,
+          "penalty": 62,
+          "teamId": "1176"
+        }
+      }
+    },
+    {
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "The 2021 CCPC Guangzhou Onsite",
+      "board_path": "/ccpc/7th/guangzhou",
+      "source_url": "https://board.xcpcio.com/ccpc/7th/guangzhou",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 231,
+      "cutoffs": {
+        "gold": {
+          "rank": 23,
+          "solved": 4,
+          "penalty": 381,
+          "teamId": "101"
+        },
+        "silver": {
+          "rank": 67,
+          "solved": 4,
+          "penalty": 997,
+          "teamId": "186"
+        },
+        "bronze": {
+          "rank": 134,
+          "solved": 3,
+          "penalty": 647,
+          "teamId": "1"
+        }
+      }
+    },
+    {
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "The 2021 CCPC Guilin Onsite (XXII Open Cup, Grand Prix of EDG)",
+      "board_path": "/ccpc/7th/guilin",
+      "source_url": "https://board.xcpcio.com/ccpc/7th/guilin",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 239,
+      "cutoffs": {
+        "gold": {
+          "rank": 24,
+          "solved": 7,
+          "penalty": 1000,
+          "teamId": "241"
+        },
+        "silver": {
+          "rank": 72,
+          "solved": 5,
+          "penalty": 362,
+          "teamId": "152"
+        },
+        "bronze": {
+          "rank": 143,
+          "solved": 4,
+          "penalty": 363,
+          "teamId": "205"
+        }
+      }
+    },
+    {
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "The 2021 CCPC Weihai Onsite",
+      "board_path": "/ccpc/7th/weihai",
+      "source_url": "https://board.xcpcio.com/ccpc/7th/weihai",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 240,
+      "cutoffs": {
+        "gold": {
+          "rank": 24,
+          "solved": 8,
+          "penalty": 1101,
+          "teamId": "276"
+        },
+        "silver": {
+          "rank": 72,
+          "solved": 5,
+          "penalty": 615,
+          "teamId": "275"
+        },
+        "bronze": {
+          "rank": 144,
+          "solved": 4,
+          "penalty": 435,
+          "teamId": "299"
+        }
+      }
+    },
+    {
+      "contest_id": "41351723-3b6f-57e2-986e-9eee4e058b68",
+      "title": "The 2021 ICPC Asia Jinan Regional Contest",
+      "board_path": "/icpc/46th/jinan",
+      "source_url": "https://board.xcpcio.com/icpc/46th/jinan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 726,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 4,
+          "penalty": 1122,
+          "teamId": "534"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 2,
+          "penalty": 235,
+          "teamId": "368"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 1,
+          "penalty": 32,
+          "teamId": "364"
+        }
+      }
+    },
+    {
+      "contest_id": "33c98b98-dbd6-5101-97a2-ec00479841a8",
+      "title": "The 2021 ICPC Asia Kunming Regional Contest",
+      "board_path": "/icpc/46th/kunming",
+      "source_url": "https://board.xcpcio.com/icpc/46th/kunming",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 753,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 5,
+          "penalty": 836,
+          "teamId": "1030007465"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 3,
+          "penalty": 555,
+          "teamId": "1030007900"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 2,
+          "penalty": 283,
+          "teamId": "1030007504"
+        }
+      }
+    },
+    {
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "The 2021 ICPC Asia Nanjing Regional Contest",
+      "board_path": "/icpc/46th/nanjing",
+      "source_url": "https://board.xcpcio.com/icpc/46th/nanjing",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 641,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 6,
+          "penalty": 641,
+          "teamId": "254"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 5,
+          "penalty": 594,
+          "teamId": "547"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 4,
+          "penalty": 480,
+          "teamId": "142"
+        }
+      }
+    },
+    {
+      "contest_id": "6d2c1050-2a48-512c-803a-3440f69b7412",
+      "title": "The 2021 ICPC Asia Shanghai Regional Contest",
+      "board_path": "/icpc/46th/shanghai",
+      "source_url": "https://board.xcpcio.com/icpc/46th/shanghai",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 632,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 8,
+          "penalty": 1226,
+          "teamId": "1030006175"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 6,
+          "penalty": 815,
+          "teamId": "1030006189"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 4,
+          "penalty": 214,
+          "teamId": "1030006661"
+        }
+      }
+    },
+    {
+      "contest_id": "975f0683-3fa0-5d7b-bba9-ef9e1ff6449f",
+      "title": "The 2021 ICPC Asia Shenyang Regional Contest",
+      "board_path": "/icpc/46th/shenyang",
+      "source_url": "https://board.xcpcio.com/icpc/46th/shenyang",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 575,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 7,
+          "penalty": 845,
+          "teamId": "1030004890"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 5,
+          "penalty": 576,
+          "teamId": "1030005348"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 4,
+          "penalty": 490,
+          "teamId": "1030005417"
+        }
+      }
+    },
+    {
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "The 2021 ICPC China Zhejiang Provincial Programming Contest (18th)",
+      "board_path": "/provincial-contest/2021/zjcpc",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2021/zjcpc",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 380,
+      "cutoffs": {
+        "gold": {
+          "rank": 38,
+          "solved": 7,
+          "penalty": 752,
+          "teamId": "1029"
+        },
+        "silver": {
+          "rank": 114,
+          "solved": 5,
+          "penalty": 568,
+          "teamId": "1338"
+        },
+        "bronze": {
+          "rank": 228,
+          "solved": 3,
+          "penalty": 499,
+          "teamId": "1221"
+        }
+      }
+    },
+    {
+      "contest_id": "2412a2bc-22b9-5f61-89cd-d4165fc578de",
+      "title": "The 2021 Shanghai Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2021/shanghai",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2021/shanghai",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 48,
+      "cutoffs": {
+        "gold": {
+          "rank": 4,
+          "solved": 8,
+          "penalty": 704,
+          "teamId": "116"
+        },
+        "silver": {
+          "rank": 14,
+          "solved": 6,
+          "penalty": 451,
+          "teamId": "145"
+        },
+        "bronze": {
+          "rank": 28,
+          "solved": 5,
+          "penalty": 479,
+          "teamId": "118"
+        }
+      }
+    },
+    {
+      "contest_id": "754419bd-dc96-57e1-9cf4-236edd3be39b",
+      "title": "The 2022 ICPC Asia East Continent Final Contest (EC-Final 2022)",
+      "board_path": "/icpc/47th/ec-final",
+      "source_url": "https://board.xcpcio.com/icpc/47th/ec-final",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 281,
+      "cutoffs": {
+        "gold": {
+          "rank": 28,
+          "solved": 7,
+          "penalty": 1045,
+          "teamId": "277"
+        },
+        "silver": {
+          "rank": 84,
+          "solved": 5,
+          "penalty": 751,
+          "teamId": "36"
+        },
+        "bronze": {
+          "rank": 168,
+          "solved": 4,
+          "penalty": 762,
+          "teamId": "56"
+        }
+      }
+    },
+    {
+      "contest_id": "5a52aa8b-1ea7-584e-9b08-ec21a77d1692",
+      "title": "The 2022 ICPC Asia Hangzhou Regional Contest",
+      "board_path": "/icpc/47th/hangzhou",
+      "source_url": "https://board.xcpcio.com/icpc/47th/hangzhou",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 556,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 6,
+          "penalty": 624,
+          "teamId": "2099202212040030"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 5,
+          "penalty": 510,
+          "teamId": "2099202212040172"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 4,
+          "penalty": 553,
+          "teamId": "2099202212040541"
+        }
+      }
+    },
+    {
+      "contest_id": "0c921b62-9d27-5bc5-9e4e-2eea9144df73",
+      "title": "The 2022 ICPC Asia Hong Kong Regional Contest",
+      "board_path": "/icpc/47th/hongkong",
+      "source_url": "https://board.xcpcio.com/icpc/47th/hongkong",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 115,
+      "cutoffs": {
+        "gold": {
+          "rank": 11,
+          "solved": 7,
+          "penalty": 1323,
+          "teamId": "80"
+        },
+        "silver": {
+          "rank": 34,
+          "solved": 4,
+          "penalty": 420,
+          "teamId": "120"
+        },
+        "bronze": {
+          "rank": 69,
+          "solved": 3,
+          "penalty": 263,
+          "teamId": "58"
+        }
+      }
+    },
+    {
+      "contest_id": "d185bec8-a409-596f-b3bc-7839ef04b99a",
+      "title": "The 2022 ICPC Asia Jinan Regional Contest",
+      "board_path": "/icpc/47th/jinan",
+      "source_url": "https://board.xcpcio.com/icpc/47th/jinan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 511,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 6,
+          "penalty": 729,
+          "teamId": "2099202211270161"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 5,
+          "penalty": 618,
+          "teamId": "2099202211270303"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 4,
+          "penalty": 502,
+          "teamId": "2099202211270168"
+        }
+      }
+    },
+    {
+      "contest_id": "bf22dd1f-7927-5fe4-a7d9-68f7402bcd5f",
+      "title": "The 2022 ICPC Asia Nanjing Regional Contest",
+      "board_path": "/icpc/47th/nanjing",
+      "source_url": "https://board.xcpcio.com/icpc/47th/nanjing",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 438,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 6,
+          "penalty": 728,
+          "teamId": "2014202212180019"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 4,
+          "penalty": 468,
+          "teamId": "2012202212180058"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 3,
+          "penalty": 409,
+          "teamId": "2009202212180043"
+        }
+      }
+    },
+    {
+      "contest_id": "a372ed10-c268-5dc2-bd26-d5e9aa7b38bb",
+      "title": "The 2022 ICPC Asia Shenyang Regional Contest",
+      "board_path": "/icpc/47th/shenyang",
+      "source_url": "https://board.xcpcio.com/icpc/47th/shenyang",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 708,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 5,
+          "penalty": 660,
+          "teamId": "2099202211060626"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 4,
+          "penalty": 483,
+          "teamId": "2099202211060101"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 3,
+          "penalty": 216,
+          "teamId": "2099202211060364"
+        }
+      }
+    },
+    {
+      "contest_id": "851a3a76-041d-522b-a96c-4aa0104cfa96",
+      "title": "The 2022 ICPC Asia Xi'an Regional Contest",
+      "board_path": "/icpc/47th/xian",
+      "source_url": "https://board.xcpcio.com/icpc/47th/xian",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 476,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 8,
+          "penalty": 825,
+          "teamId": "2099202211130206"
+        },
+        "silver": {
+          "rank": 105,
+          "solved": 6,
+          "penalty": 352,
+          "teamId": "2099202211130200"
+        },
+        "bronze": {
+          "rank": 210,
+          "solved": 6,
+          "penalty": 786,
+          "teamId": "2099202211130081"
+        }
+      }
+    },
+    {
+      "contest_id": "e5b39fc7-a1cd-5de1-a2a5-b60940de01bf",
+      "title": "The 2022 ICPC China Zhejiang Provincial Programming Contest (19th)",
+      "board_path": "/provincial-contest/2022/zjcpc",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2022/zjcpc",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 435,
+      "cutoffs": {
+        "gold": {
+          "rank": 43,
+          "solved": 7,
+          "penalty": 509,
+          "teamId": "2017202204160040"
+        },
+        "silver": {
+          "rank": 130,
+          "solved": 6,
+          "penalty": 432,
+          "teamId": "2015202204160049"
+        },
+        "bronze": {
+          "rank": 261,
+          "solved": 4,
+          "penalty": 484,
+          "teamId": "2002202204160010"
+        }
+      }
+    },
+    {
+      "contest_id": "c04eefcf-c70c-51c1-9110-e0d1d738d201",
+      "title": "The 2023 CCPC (Qinhuangdao) Onsite (The 2nd Universal Cup. Stage 9: Qinhuangdao)",
+      "board_path": "/ccpc/9th/qinhuangdao",
+      "source_url": "https://board.xcpcio.com/ccpc/9th/qinhuangdao",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 240,
+      "cutoffs": {
+        "gold": {
+          "rank": 24,
+          "solved": 6,
+          "penalty": 450,
+          "teamId": "G07"
+        },
+        "silver": {
+          "rank": 72,
+          "solved": 5,
+          "penalty": 409,
+          "teamId": "J15"
+        },
+        "bronze": {
+          "rank": 144,
+          "solved": 4,
+          "penalty": 292,
+          "teamId": "F08"
+        }
+      }
+    },
+    {
+      "contest_id": "b3aa94bd-ff18-5e8b-87e6-ef07c14b1307",
+      "title": "The 2023 Guangdong Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2023/guangdong",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2023/guangdong",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 242,
+      "cutoffs": {
+        "gold": {
+          "rank": 24,
+          "solved": 7,
+          "penalty": 1262,
+          "teamId": "team196"
+        },
+        "silver": {
+          "rank": 72,
+          "solved": 5,
+          "penalty": 604,
+          "teamId": "team291"
+        },
+        "bronze": {
+          "rank": 145,
+          "solved": 3,
+          "penalty": 380,
+          "teamId": "team295"
+        }
+      }
+    },
+    {
+      "contest_id": "ae54ca49-12f6-5fe9-ad47-2a5984625674",
+      "title": "The 2023 ICPC Asia East Continent Final Contest (EC-Final 2023)",
+      "board_path": "/icpc/48th/ecfinal",
+      "source_url": "https://board.xcpcio.com/icpc/48th/ecfinal",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 280,
+      "cutoffs": {
+        "gold": {
+          "rank": 28,
+          "solved": 6,
+          "penalty": 618,
+          "teamId": "F48"
+        },
+        "silver": {
+          "rank": 84,
+          "solved": 5,
+          "penalty": 392,
+          "teamId": "C35"
+        },
+        "bronze": {
+          "rank": 168,
+          "solved": 5,
+          "penalty": 838,
+          "teamId": "C16"
+        }
+      }
+    },
+    {
+      "contest_id": "18f05535-cadc-51be-8de7-fdc26452c210",
+      "title": "The 2023 ICPC Asia Hangzhou Regional Contest",
+      "board_path": "/icpc/48th/hangzhou",
+      "source_url": "https://board.xcpcio.com/icpc/48th/hangzhou",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 442,
+      "cutoffs": {
+        "gold": {
+          "rank": 45,
+          "solved": 6,
+          "penalty": 1071,
+          "teamId": "2023-icpc-hz-59-team"
+        },
+        "silver": {
+          "rank": 135,
+          "solved": 5,
+          "penalty": 814,
+          "teamId": "2023-icpc-hz-11-team"
+        },
+        "bronze": {
+          "rank": 270,
+          "solved": 3,
+          "penalty": 317,
+          "teamId": "2023-icpc-hz-343-team"
+        }
+      }
+    },
+    {
+      "contest_id": "df9c7da4-fb87-51c3-ac9a-59163e337e02",
+      "title": "The 2023 ICPC Asia Hefei Regional Contest",
+      "board_path": "/icpc/48th/hefei",
+      "source_url": "https://board.xcpcio.com/icpc/48th/hefei",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 344,
+      "cutoffs": {
+        "gold": {
+          "rank": 36,
+          "solved": 6,
+          "penalty": 728,
+          "teamId": "685"
+        },
+        "silver": {
+          "rank": 104,
+          "solved": 5,
+          "penalty": 1019,
+          "teamId": "446"
+        },
+        "bronze": {
+          "rank": 208,
+          "solved": 3,
+          "penalty": 435,
+          "teamId": "563"
+        }
+      }
+    },
+    {
+      "contest_id": "0379daf3-46ac-5439-887f-959c8276c799",
+      "title": "The 2023 ICPC Asia Jinan Regional Contest",
+      "board_path": "/icpc/48th/jinan",
+      "source_url": "https://board.xcpcio.com/icpc/48th/jinan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 334,
+      "cutoffs": {
+        "gold": {
+          "rank": 34,
+          "solved": 7,
+          "penalty": 774,
+          "teamId": "281"
+        },
+        "silver": {
+          "rank": 102,
+          "solved": 5,
+          "penalty": 741,
+          "teamId": "95"
+        },
+        "bronze": {
+          "rank": 201,
+          "solved": 4,
+          "penalty": 837,
+          "teamId": "271"
+        }
+      }
+    },
+    {
+      "contest_id": "64ee3c32-4aad-55e0-8921-dc37b82f475b",
+      "title": "The 2023 ICPC Asia Macau Regional Contest",
+      "board_path": "/icpc/48th/macau",
+      "source_url": "https://board.xcpcio.com/icpc/48th/macau",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 82,
+      "cutoffs": {
+        "gold": {
+          "rank": 8,
+          "solved": 6,
+          "penalty": 718,
+          "teamId": "203"
+        },
+        "silver": {
+          "rank": 24,
+          "solved": 4,
+          "penalty": 562,
+          "teamId": "242"
+        },
+        "bronze": {
+          "rank": 48,
+          "solved": 2,
+          "penalty": 332,
+          "teamId": "237"
+        }
+      }
+    },
+    {
+      "contest_id": "72f9e764-58e1-51b4-bb8a-a088eb7ed66a",
+      "title": "The 2023 ICPC Asia Nanjing Regional Contest",
+      "board_path": "/icpc/48th/nanjing",
+      "source_url": "https://board.xcpcio.com/icpc/48th/nanjing",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 331,
+      "cutoffs": {
+        "gold": {
+          "rank": 33,
+          "solved": 7,
+          "penalty": 961,
+          "teamId": "187"
+        },
+        "silver": {
+          "rank": 99,
+          "solved": 5,
+          "penalty": 417,
+          "teamId": "290"
+        },
+        "bronze": {
+          "rank": 198,
+          "solved": 3,
+          "penalty": 391,
+          "teamId": "244"
+        }
+      }
+    },
+    {
+      "contest_id": "7f54c1ce-eb4b-50ec-9a49-c8b944d1d174",
+      "title": "The 2023 ICPC Asia Shenyang Regional Contest",
+      "board_path": "/icpc/48th/shenyang",
+      "source_url": "https://board.xcpcio.com/icpc/48th/shenyang",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 291,
+      "cutoffs": {
+        "gold": {
+          "rank": 29,
+          "solved": 6,
+          "penalty": 871,
+          "teamId": "11"
+        },
+        "silver": {
+          "rank": 87,
+          "solved": 4,
+          "penalty": 350,
+          "teamId": "216"
+        },
+        "bronze": {
+          "rank": 174,
+          "solved": 3,
+          "penalty": 304,
+          "teamId": "48"
+        }
+      }
+    },
+    {
+      "contest_id": "4986ba75-b888-5fd3-9e0d-33dc802ab1bd",
+      "title": "The 2023 ICPC Asia Xi'an Regional Contest",
+      "board_path": "/icpc/48th/xian",
+      "source_url": "https://board.xcpcio.com/icpc/48th/xian",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 406,
+      "cutoffs": {
+        "gold": {
+          "rank": 41,
+          "solved": 5,
+          "penalty": 738,
+          "teamId": "89"
+        },
+        "silver": {
+          "rank": 123,
+          "solved": 4,
+          "penalty": 984,
+          "teamId": "249"
+        },
+        "bronze": {
+          "rank": 246,
+          "solved": 3,
+          "penalty": 712,
+          "teamId": "113"
+        }
+      }
+    },
+    {
+      "contest_id": "8c0a5042-9150-5c73-b869-2c44ea00a278",
+      "title": "The 2023 ICPC China Shandong Provincial Programming Contest",
+      "board_path": "/provincial-contest/2023/shandong",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2023/shandong",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 240,
+      "cutoffs": {
+        "gold": {
+          "rank": 24,
+          "solved": 7,
+          "penalty": 1002,
+          "teamId": "276"
+        },
+        "silver": {
+          "rank": 72,
+          "solved": 5,
+          "penalty": 498,
+          "teamId": "258"
+        },
+        "bronze": {
+          "rank": 144,
+          "solved": 3,
+          "penalty": 196,
+          "teamId": "226"
+        }
+      }
+    },
+    {
+      "contest_id": "4a62c5ea-8e2f-53cf-80cb-0d03e3f150cc",
+      "title": "The 2023 ICPC Xi'an Invitational Programming Contest",
+      "board_path": "/icpc/48th/xian-invitational",
+      "source_url": "https://board.xcpcio.com/icpc/48th/xian-invitational",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 354,
+      "cutoffs": {
+        "gold": {
+          "rank": 35,
+          "solved": 5,
+          "penalty": 434,
+          "teamId": "53"
+        },
+        "silver": {
+          "rank": 106,
+          "solved": 4,
+          "penalty": 387,
+          "teamId": "354"
+        },
+        "bronze": {
+          "rank": 212,
+          "solved": 3,
+          "penalty": 301,
+          "teamId": "318"
+        }
+      }
+    },
+    {
+      "contest_id": "4c825047-c0ce-5619-9be1-f27256ab6824",
+      "title": "The 2024 CCPC Online Contest",
+      "board_path": "/ccpc/10th/online-qualification",
+      "source_url": "https://board.xcpcio.com/ccpc/10th/online-qualification",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_all_teams_medal_ratio_10_20_30",
+      "eligible_team_count": 2156,
+      "cutoffs": {
+        "gold": {
+          "rank": 215,
+          "solved": 8,
+          "penalty": 1456,
+          "teamId": "2049"
+        },
+        "silver": {
+          "rank": 646,
+          "solved": 4,
+          "penalty": 374,
+          "teamId": "517"
+        },
+        "bronze": {
+          "rank": 1293,
+          "solved": 3,
+          "penalty": 319,
+          "teamId": "1797"
+        }
+      }
+    },
+    {
+      "contest_id": "b3cf0765-08c2-5174-a9e6-c1794a98444f",
+      "title": "The 2024 CCPC Shandong Invitational Contest and Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2024/shandong",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/shandong",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 459,
+      "cutoffs": {
+        "gold": {
+          "rank": 45,
+          "solved": 7,
+          "penalty": 541,
+          "teamId": "2001202405260415"
+        },
+        "silver": {
+          "rank": 137,
+          "solved": 7,
+          "penalty": 1512,
+          "teamId": "2001202405260044"
+        },
+        "bronze": {
+          "rank": 275,
+          "solved": 5,
+          "penalty": 784,
+          "teamId": "2001202405260333"
+        }
+      }
+    },
+    {
+      "contest_id": "37be7218-0651-56cc-a5cd-c5669149d6f3",
+      "title": "The 2024 Guangdong Provincial Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2024/guangdong",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/guangdong",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 306,
+      "cutoffs": {
+        "gold": {
+          "rank": 30,
+          "solved": 4,
+          "penalty": 283,
+          "teamId": "team0158"
+        },
+        "silver": {
+          "rank": 91,
+          "solved": 4,
+          "penalty": 899,
+          "teamId": "team0145"
+        },
+        "bronze": {
+          "rank": 183,
+          "solved": 1,
+          "penalty": 199,
+          "teamId": "team0030"
+        }
+      }
+    },
+    {
+      "contest_id": "894b4784-a6a1-552f-92d7-896533b93357",
+      "title": "The 2024 ICPC Asia East Continent Final Contest (EC-Final 2024)",
+      "board_path": "/icpc/49th/ecfinal",
+      "source_url": "https://board.xcpcio.com/icpc/49th/ecfinal",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 280,
+      "cutoffs": {
+        "gold": {
+          "rank": 28,
+          "solved": 6,
+          "penalty": 1116,
+          "teamId": "81"
+        },
+        "silver": {
+          "rank": 84,
+          "solved": 4,
+          "penalty": 556,
+          "teamId": "186"
+        },
+        "bronze": {
+          "rank": 168,
+          "solved": 3,
+          "penalty": 357,
+          "teamId": "224"
+        }
+      }
+    },
+    {
+      "contest_id": "aeaa99e4-2410-562d-b01a-1cadd26edfcf",
+      "title": "The 2024 ICPC Asia Hangzhou Regional Contest",
+      "board_path": "/icpc/49th/hangzhou",
+      "source_url": "https://board.xcpcio.com/icpc/49th/hangzhou",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 366,
+      "cutoffs": {
+        "gold": {
+          "rank": 37,
+          "solved": 6,
+          "penalty": 495,
+          "teamId": "A31"
+        },
+        "silver": {
+          "rank": 111,
+          "solved": 5,
+          "penalty": 723,
+          "teamId": "A44"
+        },
+        "bronze": {
+          "rank": 222,
+          "solved": 4,
+          "penalty": 739,
+          "teamId": "D77"
+        }
+      }
+    },
+    {
+      "contest_id": "3cdc2d96-852d-5744-9739-a35167a931f0",
+      "title": "The 2024 ICPC Asia Hong Kong Regional Contest",
+      "board_path": "/icpc/49th/hongkong",
+      "source_url": "https://board.xcpcio.com/icpc/49th/hongkong",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 149,
+      "cutoffs": {
+        "gold": {
+          "rank": 15,
+          "solved": 5,
+          "penalty": 918,
+          "teamId": "CD302-07"
+        },
+        "silver": {
+          "rank": 45,
+          "solved": 3,
+          "penalty": 411,
+          "teamId": "BC302-20"
+        },
+        "bronze": {
+          "rank": 90,
+          "solved": 2,
+          "penalty": 143,
+          "teamId": "CD304-06"
+        }
+      }
+    },
+    {
+      "contest_id": "7dc5bfb0-285b-594b-8dbd-d6103b948c9c",
+      "title": "The 2024 ICPC Asia Kunming Regional Contest",
+      "board_path": "/icpc/49th/kunming",
+      "source_url": "https://board.xcpcio.com/icpc/49th/kunming",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 449,
+      "cutoffs": {
+        "gold": {
+          "rank": 45,
+          "solved": 7,
+          "penalty": 1033,
+          "teamId": "A1004"
+        },
+        "silver": {
+          "rank": 135,
+          "solved": 5,
+          "penalty": 635,
+          "teamId": "A0902"
+        },
+        "bronze": {
+          "rank": 270,
+          "solved": 4,
+          "penalty": 1061,
+          "teamId": "A0706"
+        }
+      }
+    },
+    {
+      "contest_id": "74a8b654-776d-5c5d-ab8b-508f1fb501d3",
+      "title": "The 2024 ICPC Asia Nanjing Regional Contest",
+      "board_path": "/icpc/49th/nanjing",
+      "source_url": "https://board.xcpcio.com/icpc/49th/nanjing",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 336,
+      "cutoffs": {
+        "gold": {
+          "rank": 33,
+          "solved": 5,
+          "penalty": 645,
+          "teamId": "A1702"
+        },
+        "silver": {
+          "rank": 99,
+          "solved": 4,
+          "penalty": 606,
+          "teamId": "A0502"
+        },
+        "bronze": {
+          "rank": 198,
+          "solved": 3,
+          "penalty": 406,
+          "teamId": "C1801"
+        }
+      }
+    },
+    {
+      "contest_id": "c941aeb5-a938-5fb2-b42b-463cb54075c9",
+      "title": "The 2024 ICPC Asia Shanghai Regional Contest",
+      "board_path": "/icpc/49th/shanghai",
+      "source_url": "https://board.xcpcio.com/icpc/49th/shanghai",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 336,
+      "cutoffs": {
+        "gold": {
+          "rank": 34,
+          "solved": 6,
+          "penalty": 1260,
+          "teamId": "D21"
+        },
+        "silver": {
+          "rank": 102,
+          "solved": 5,
+          "penalty": 888,
+          "teamId": "C22"
+        },
+        "bronze": {
+          "rank": 204,
+          "solved": 3,
+          "penalty": 448,
+          "teamId": "B16"
+        }
+      }
+    },
+    {
+      "contest_id": "e0a65779-7c6b-51c4-8bb1-31a427747116",
+      "title": "The 2024 ICPC Asia Shenyang Regional Contest",
+      "board_path": "/icpc/49th/shenyang",
+      "source_url": "https://board.xcpcio.com/icpc/49th/shenyang",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 300,
+      "cutoffs": {
+        "gold": {
+          "rank": 30,
+          "solved": 6,
+          "penalty": 928,
+          "teamId": "10043"
+        },
+        "silver": {
+          "rank": 90,
+          "solved": 4,
+          "penalty": 479,
+          "teamId": "10113"
+        },
+        "bronze": {
+          "rank": 180,
+          "solved": 2,
+          "penalty": 189,
+          "teamId": "10135"
+        }
+      }
+    },
+    {
+      "contest_id": "9001e86a-0cd1-57e0-aa6b-a4e50d47d17d",
+      "title": "The 2024 ICPC China Sichuan Provincial Programming Contest",
+      "board_path": "/provincial-contest/2024/sichuan",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/sichuan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 195,
+      "cutoffs": {
+        "gold": {
+          "rank": 19,
+          "solved": 5,
+          "penalty": 438,
+          "teamId": "team_47"
+        },
+        "silver": {
+          "rank": 58,
+          "solved": 4,
+          "penalty": 489,
+          "teamId": "team_139"
+        },
+        "bronze": {
+          "rank": 117,
+          "solved": 3,
+          "penalty": 358,
+          "teamId": "team_208"
+        }
+      }
+    },
+    {
+      "contest_id": "f1418917-e78e-50ae-af2e-297f6926fb40",
+      "title": "The 2024 ICPC China Zhejiang Province Programming Contest",
+      "board_path": "/provincial-contest/2024/zhejiang",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/zhejiang",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 410,
+      "cutoffs": {
+        "gold": {
+          "rank": 41,
+          "solved": 4,
+          "penalty": 512,
+          "teamId": "4-A79"
+        },
+        "silver": {
+          "rank": 123,
+          "solved": 3,
+          "penalty": 463,
+          "teamId": "3-C13"
+        },
+        "bronze": {
+          "rank": 246,
+          "solved": 1,
+          "penalty": 63,
+          "teamId": "3-B01"
+        }
+      }
+    },
+    {
+      "contest_id": "f30b6e9e-6a4c-5de0-af3e-2e34bd07106b",
+      "title": "The 2024 ICPC Kunming Invitational Contest",
+      "board_path": "/icpc/49th/kunming-invitational",
+      "source_url": "https://board.xcpcio.com/icpc/49th/kunming-invitational",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 264,
+      "cutoffs": {
+        "gold": {
+          "rank": 26,
+          "solved": 6,
+          "penalty": 563,
+          "teamId": "B-07"
+        },
+        "silver": {
+          "rank": 78,
+          "solved": 5,
+          "penalty": 507,
+          "teamId": "C-47"
+        },
+        "bronze": {
+          "rank": 156,
+          "solved": 4,
+          "penalty": 407,
+          "teamId": "B-40"
+        }
+      }
+    },
+    {
+      "contest_id": "0ddb3154-f147-5383-b0a1-fe6d585f7ac5",
+      "title": "The 2024 International Collegiate Programming Contest in Hubei Province, China",
+      "board_path": "/provincial-contest/2024/hubei",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/hubei",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 168,
+      "cutoffs": {
+        "gold": {
+          "rank": 17,
+          "solved": 7,
+          "penalty": 1020,
+          "teamId": "442"
+        },
+        "silver": {
+          "rank": 52,
+          "solved": 5,
+          "penalty": 502,
+          "teamId": "591"
+        },
+        "bronze": {
+          "rank": 102,
+          "solved": 4,
+          "penalty": 401,
+          "teamId": "501"
+        }
+      }
+    },
+    {
+      "contest_id": "288ae13f-a26a-5a72-9b73-cd1996bbb96b",
+      "title": "The 2024 Shanghai Collegiate Programming Contest",
+      "board_path": "/provincial-contest/2024/shanghai",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2024/shanghai",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 165,
+      "cutoffs": {
+        "gold": {
+          "rank": 15,
+          "solved": 7,
+          "penalty": 984,
+          "teamId": "SHCPC-D413-14"
+        },
+        "silver": {
+          "rank": 45,
+          "solved": 4,
+          "penalty": 260,
+          "teamId": "SHCPC-D401-27"
+        },
+        "bronze": {
+          "rank": 90,
+          "solved": 3,
+          "penalty": 233,
+          "teamId": "SHCPC-D401-11"
+        }
+      }
+    },
+    {
+      "contest_id": "81cb7a42-a523-5734-8cc4-ba68a16d0b2b",
+      "title": "The 2025 CCPC National Invitational Contest (Northeast), The 19th Northeast Collegiate Programming Contest",
+      "board_path": "/ccpc/11th/northeastern",
+      "source_url": "https://board.xcpcio.com/ccpc/11th/northeastern",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_all_teams_medal_ratio_10_20_30",
+      "eligible_team_count": 397,
+      "cutoffs": {
+        "gold": {
+          "rank": 39,
+          "solved": 7,
+          "penalty": 1030,
+          "teamId": "NE-team-O14"
+        },
+        "silver": {
+          "rank": 119,
+          "solved": 5,
+          "penalty": 368,
+          "teamId": "NE-team-I19"
+        },
+        "bronze": {
+          "rank": 238,
+          "solved": 4,
+          "penalty": 925,
+          "teamId": "NE-team-E16"
+        }
+      }
+    },
+    {
+      "contest_id": "85531b6c-d671-5ba1-903c-1b3086c738d5",
+      "title": "The 2025 ICPC Asia Chengdu Regional Contest",
+      "board_path": "/icpc/50th/chengdu",
+      "source_url": "https://board.xcpcio.com/icpc/50th/chengdu",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 320,
+      "cutoffs": {
+        "gold": {
+          "rank": 32,
+          "solved": 8,
+          "penalty": 956,
+          "teamId": "E12"
+        },
+        "silver": {
+          "rank": 96,
+          "solved": 6,
+          "penalty": 926,
+          "teamId": "B02"
+        },
+        "bronze": {
+          "rank": 192,
+          "solved": 4,
+          "penalty": 563,
+          "teamId": "E38"
+        }
+      }
+    },
+    {
+      "contest_id": "bdf7cdde-ef00-5059-8422-f258f612e606",
+      "title": "The 2025 ICPC Asia East Continent Final Contest (EC-Final 2025)",
+      "board_path": "/icpc/50th/ecfinal",
+      "source_url": "https://board.xcpcio.com/icpc/50th/ecfinal",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 280,
+      "cutoffs": {
+        "gold": {
+          "rank": 28,
+          "solved": 7,
+          "penalty": 1225,
+          "teamId": "B-054"
+        },
+        "silver": {
+          "rank": 84,
+          "solved": 5,
+          "penalty": 879,
+          "teamId": "A-021"
+        },
+        "bronze": {
+          "rank": 168,
+          "solved": 3,
+          "penalty": 275,
+          "teamId": "C-054"
+        }
+      }
+    },
+    {
+      "contest_id": "d673ead4-3978-52fa-a717-21c7b0e556ae",
+      "title": "The 2025 ICPC Asia Hong Kong Regional Contest",
+      "board_path": "/icpc/50th/hongkong",
+      "source_url": "https://board.xcpcio.com/icpc/50th/hongkong",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 126,
+      "cutoffs": {
+        "gold": {
+          "rank": 13,
+          "solved": 5,
+          "penalty": 495,
+          "teamId": "B03"
+        },
+        "silver": {
+          "rank": 39,
+          "solved": 3,
+          "penalty": 349,
+          "teamId": "J07"
+        },
+        "bronze": {
+          "rank": 78,
+          "solved": 2,
+          "penalty": 279,
+          "teamId": "J02"
+        }
+      }
+    },
+    {
+      "contest_id": "b17e0929-8761-50bc-af76-e8d60a1955d9",
+      "title": "The 2025 ICPC Asia Nanjing Regional Contest",
+      "board_path": "/icpc/50th/nanjing",
+      "source_url": "https://board.xcpcio.com/icpc/50th/nanjing",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 335,
+      "cutoffs": {
+        "gold": {
+          "rank": 33,
+          "solved": 7,
+          "penalty": 1183,
+          "teamId": "B0607"
+        },
+        "silver": {
+          "rank": 99,
+          "solved": 4,
+          "penalty": 504,
+          "teamId": "A1702"
+        },
+        "bronze": {
+          "rank": 199,
+          "solved": 3,
+          "penalty": 656,
+          "teamId": "B1403"
+        }
+      }
+    },
+    {
+      "contest_id": "2b834493-ac39-5f1d-94e5-290f5c282577",
+      "title": "The 2025 ICPC Asia Shanghai Regional Contest",
+      "board_path": "/icpc/50th/shanghai",
+      "source_url": "https://board.xcpcio.com/icpc/50th/shanghai",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 331,
+      "cutoffs": {
+        "gold": {
+          "rank": 30,
+          "solved": 6,
+          "penalty": 1009,
+          "teamId": "C64"
+        },
+        "silver": {
+          "rank": 90,
+          "solved": 4,
+          "penalty": 523,
+          "teamId": "A52"
+        },
+        "bronze": {
+          "rank": 180,
+          "solved": 2,
+          "penalty": 281,
+          "teamId": "B14"
+        }
+      }
+    },
+    {
+      "contest_id": "202b66e9-6caf-5385-be88-175319cac197",
+      "title": "The 2025 ICPC Asia Shenyang Regional Contest",
+      "board_path": "/icpc/50th/shenyang",
+      "source_url": "https://board.xcpcio.com/icpc/50th/shenyang",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 400,
+      "cutoffs": {
+        "gold": {
+          "rank": 40,
+          "solved": 5,
+          "penalty": 561,
+          "teamId": "I_F04"
+        },
+        "silver": {
+          "rank": 120,
+          "solved": 4,
+          "penalty": 482,
+          "teamId": "I_G01"
+        },
+        "bronze": {
+          "rank": 240,
+          "solved": 3,
+          "penalty": 274,
+          "teamId": "I_G07"
+        }
+      }
+    },
+    {
+      "contest_id": "5468060e-974f-5025-babc-9c3e89aba539",
+      "title": "The 2025 ICPC Asia Wuhan Regional Contest",
+      "board_path": "/icpc/50th/wuhan",
+      "source_url": "https://board.xcpcio.com/icpc/50th/wuhan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 446,
+      "cutoffs": {
+        "gold": {
+          "rank": 45,
+          "solved": 6,
+          "penalty": 831,
+          "teamId": "R23"
+        },
+        "silver": {
+          "rank": 135,
+          "solved": 4,
+          "penalty": 452,
+          "teamId": "D26"
+        },
+        "bronze": {
+          "rank": 271,
+          "solved": 3,
+          "penalty": 312,
+          "teamId": "N13"
+        }
+      }
+    },
+    {
+      "contest_id": "9d9a2f76-75d7-542e-83bd-440a4454db55",
+      "title": "The 2025 ICPC Asia Xi'an Regional Contest",
+      "board_path": "/icpc/50th/xian",
+      "source_url": "https://board.xcpcio.com/icpc/50th/xian",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 399,
+      "cutoffs": {
+        "gold": {
+          "rank": 40,
+          "solved": 6,
+          "penalty": 630,
+          "teamId": "team150"
+        },
+        "silver": {
+          "rank": 120,
+          "solved": 5,
+          "penalty": 766,
+          "teamId": "team014"
+        },
+        "bronze": {
+          "rank": 240,
+          "solved": 3,
+          "penalty": 165,
+          "teamId": "team088"
+        }
+      }
+    },
+    {
+      "contest_id": "2f0ed056-6a2f-5f78-9b09-bd603440088c",
+      "title": "The 2025 ICPC China Hubei(Wuhan) National Invitational Programming Contest",
+      "board_path": "/icpc/50th/wuhan-invitational",
+      "source_url": "https://board.xcpcio.com/icpc/50th/wuhan-invitational",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 280,
+      "cutoffs": {
+        "gold": {
+          "rank": 28,
+          "solved": 6,
+          "penalty": 831,
+          "teamId": "84"
+        },
+        "silver": {
+          "rank": 84,
+          "solved": 4,
+          "penalty": 412,
+          "teamId": "309"
+        },
+        "bronze": {
+          "rank": 168,
+          "solved": 3,
+          "penalty": 203,
+          "teamId": "318"
+        }
+      }
+    },
+    {
+      "contest_id": "c91ce6a1-50d3-52dc-9166-6cf36d5df834",
+      "title": "The 2025 ICPC China Sichuan Provincial Programming Contest",
+      "board_path": "/provincial-contest/2025/sichuan",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2025/sichuan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 204,
+      "cutoffs": {
+        "gold": {
+          "rank": 20,
+          "solved": 6,
+          "penalty": 874,
+          "teamId": "G05"
+        },
+        "silver": {
+          "rank": 61,
+          "solved": 4,
+          "penalty": 782,
+          "teamId": "C03"
+        },
+        "bronze": {
+          "rank": 122,
+          "solved": 2,
+          "penalty": 301,
+          "teamId": "J21"
+        }
+      }
+    },
+    {
+      "contest_id": "16f4adf5-7080-5acc-b1a5-a9c04f049a37",
+      "title": "The 2025 ICPC China Zhejiang Province Programming Contest (22nd)",
+      "board_path": "/provincial-contest/2025/zhejiang",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2025/zhejiang",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 419,
+      "cutoffs": {
+        "gold": {
+          "rank": 41,
+          "solved": 5,
+          "penalty": 411,
+          "teamId": "3-C15"
+        },
+        "silver": {
+          "rank": 125,
+          "solved": 3,
+          "penalty": 199,
+          "teamId": "4-B13"
+        },
+        "bronze": {
+          "rank": 251,
+          "solved": 2,
+          "penalty": 165,
+          "teamId": "2-E03"
+        }
+      }
+    },
+    {
+      "contest_id": "f2988a25-a87b-5222-ae8c-102af2090df1",
+      "title": "第九届中国大学生程序设计竞赛 深圳站（CCPC 2023 Shenzhen Site）",
+      "board_path": "/ccpc/9th/shenzhen",
+      "source_url": "https://board.xcpcio.com/ccpc/9th/shenzhen",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 240,
+      "cutoffs": {
+        "gold": {
+          "rank": 24,
+          "solved": 7,
+          "penalty": 1189,
+          "teamId": "team158"
+        },
+        "silver": {
+          "rank": 72,
+          "solved": 5,
+          "penalty": 908,
+          "teamId": "team252"
+        },
+        "bronze": {
+          "rank": 144,
+          "solved": 3,
+          "penalty": 430,
+          "teamId": "team087"
+        }
+      }
+    },
+    {
+      "contest_id": "227596ec-a090-53a9-8799-92b2bdd68020",
+      "title": "第九届中国大学生程序设计竞赛总决赛（CCPC Final 2023）",
+      "board_path": "/ccpc/9th/final",
+      "source_url": "https://board.xcpcio.com/ccpc/9th/final",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "explicit",
+      "eligible_team_count": 127,
+      "cutoffs": {
+        "gold": {
+          "rank": 12,
+          "solved": 6,
+          "penalty": 896,
+          "teamId": "3000202403310039"
+        },
+        "silver": {
+          "rank": 36,
+          "solved": 5,
+          "penalty": 848,
+          "teamId": "3000202403310046"
+        },
+        "bronze": {
+          "rank": 73,
+          "solved": 4,
+          "penalty": 665,
+          "teamId": "3000202403310086"
+        }
+      }
+    },
+    {
+      "contest_id": "e1c4780c-9b45-55f5-b5ec-e94428e2dcbf",
+      "title": "第八届中国大学生程序设计竞赛总决赛（CCPC Final 2022）",
+      "board_path": "/ccpc/8th/final",
+      "source_url": "https://board.xcpcio.com/ccpc/8th/final",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 129,
+      "cutoffs": {
+        "gold": {
+          "rank": 12,
+          "solved": 6,
+          "penalty": 804,
+          "teamId": "3000202305140074"
+        },
+        "silver": {
+          "rank": 38,
+          "solved": 5,
+          "penalty": 678,
+          "teamId": "3000202305140007"
+        },
+        "bronze": {
+          "rank": 77,
+          "solved": 4,
+          "penalty": 525,
+          "teamId": "3000202305140020"
+        }
+      }
+    },
+    {
+      "contest_id": "0a1c2bdb-fe56-577a-ab99-6465d9ae441d",
+      "title": "第八届中国大学生程序设计竞赛网络预选赛（CCPC Online 2022）",
+      "board_path": "/ccpc/8th/online-qualification",
+      "source_url": "https://board.xcpcio.com/ccpc/8th/online-qualification",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 1772,
+      "cutoffs": {
+        "gold": {
+          "rank": 177,
+          "solved": 5,
+          "penalty": 442,
+          "teamId": "2079202209100053"
+        },
+        "silver": {
+          "rank": 531,
+          "solved": 4,
+          "penalty": 368,
+          "teamId": "2074202209100016"
+        },
+        "bronze": {
+          "rank": 1063,
+          "solved": 3,
+          "penalty": 305,
+          "teamId": "2072202209100031"
+        }
+      }
+    },
+    {
+      "contest_id": "78427c9a-afa5-504f-a09d-576afe16f691",
+      "title": "第六届中国大学生程序设计竞赛总决赛（CCPC Final 2020）",
+      "board_path": "/ccpc/2020/final",
+      "source_url": "https://board.xcpcio.com/ccpc/2020/final",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 115,
+      "cutoffs": {
+        "gold": {
+          "rank": 11,
+          "solved": 8,
+          "penalty": 1166,
+          "teamId": "135"
+        },
+        "silver": {
+          "rank": 34,
+          "solved": 6,
+          "penalty": 539,
+          "teamId": "108"
+        },
+        "bronze": {
+          "rank": 69,
+          "solved": 5,
+          "penalty": 549,
+          "teamId": "100"
+        }
+      }
+    },
+    {
+      "contest_id": "90304e71-e24f-52db-ac10-905968538e15",
+      "title": "第十一届中国大学生程序设计竞赛 哈尔滨站（CCPC 2025 Harbin Site）",
+      "board_path": "/ccpc/11th/harbin",
+      "source_url": "https://board.xcpcio.com/ccpc/11th/harbin",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 260,
+      "cutoffs": {
+        "gold": {
+          "rank": 26,
+          "solved": 7,
+          "penalty": 862,
+          "teamId": "C06"
+        },
+        "silver": {
+          "rank": 78,
+          "solved": 6,
+          "penalty": 978,
+          "teamId": "J05"
+        },
+        "bronze": {
+          "rank": 156,
+          "solved": 4,
+          "penalty": 376,
+          "teamId": "F03"
+        }
+      }
+    },
+    {
+      "contest_id": "3c1f14cf-3e1d-55a5-bc61-95cfb3192540",
+      "title": "第十一届中国大学生程序设计竞赛 济南站（CCPC 2025 Jinan Site）",
+      "board_path": "/ccpc/11th/jinan",
+      "source_url": "https://board.xcpcio.com/ccpc/11th/jinan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 260,
+      "cutoffs": {
+        "gold": {
+          "rank": 26,
+          "solved": 6,
+          "penalty": 845,
+          "teamId": "117"
+        },
+        "silver": {
+          "rank": 78,
+          "solved": 4,
+          "penalty": 478,
+          "teamId": "106"
+        },
+        "bronze": {
+          "rank": 156,
+          "solved": 3,
+          "penalty": 377,
+          "teamId": "158"
+        }
+      }
+    },
+    {
+      "contest_id": "0e2f509e-0941-51bf-9ef2-a3a80deb603b",
+      "title": "第十一届中国大学生程序设计竞赛 郑州站（CCPC 2025 Zhengzhou Site）",
+      "board_path": "/ccpc/11th/zhengzhou",
+      "source_url": "https://board.xcpcio.com/ccpc/11th/zhengzhou",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 260,
+      "cutoffs": {
+        "gold": {
+          "rank": 26,
+          "solved": 6,
+          "penalty": 972,
+          "teamId": "13"
+        },
+        "silver": {
+          "rank": 78,
+          "solved": 4,
+          "penalty": 719,
+          "teamId": "165"
+        },
+        "bronze": {
+          "rank": 156,
+          "solved": 3,
+          "penalty": 778,
+          "teamId": "51"
+        }
+      }
+    },
+    {
+      "contest_id": "e94e1e74-b0c7-5989-ad3d-a14481dd32d8",
+      "title": "第十一届中国大学生程序设计竞赛 重庆站（CCPC 2025 Chongqing Site）",
+      "board_path": "/ccpc/11th/chongqing",
+      "source_url": "https://board.xcpcio.com/ccpc/11th/chongqing",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 260,
+      "cutoffs": {
+        "gold": {
+          "rank": 26,
+          "solved": 7,
+          "penalty": 1150,
+          "teamId": "49"
+        },
+        "silver": {
+          "rank": 78,
+          "solved": 5,
+          "penalty": 640,
+          "teamId": "154"
+        },
+        "bronze": {
+          "rank": 156,
+          "solved": 4,
+          "penalty": 632,
+          "teamId": "41"
+        }
+      }
+    },
+    {
+      "contest_id": "d037a863-64dc-5228-b830-fbcd818798ed",
+      "title": "第十届中国大学生程序设计竞赛 济南站（CCPC 2024 Jinan Site）",
+      "board_path": "/ccpc/10th/jinan",
+      "source_url": "https://board.xcpcio.com/ccpc/10th/jinan",
+      "source_provider": "xcpcio_board",
+      "source_label": "XCPCIO Board",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 280,
+      "cutoffs": {
+        "gold": {
+          "rank": 28,
+          "solved": 7,
+          "penalty": 1111,
+          "teamId": "B13"
+        },
+        "silver": {
+          "rank": 84,
+          "solved": 5,
+          "penalty": 669,
+          "teamId": "B31"
+        },
+        "bronze": {
+          "rank": 168,
+          "solved": 4,
+          "penalty": 934,
+          "teamId": "E83"
+        }
+      }
+    }
+  ],
+  "errors": []
+}

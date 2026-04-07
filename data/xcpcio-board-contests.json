@@ -1,0 +1,2935 @@
+[
+  {
+    "title": "ICPC 2009 武汉赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2009/whu_onsite",
+    "board_link": "/icpc/2009/whu_onsite",
+    "start_time": 1252630800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2009 武汉赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2009/whu_online",
+    "board_link": "/icpc/2009/whu_online",
+    "start_time": 1252630800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2009 合肥赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2009/ustc_online",
+    "board_link": "/icpc/2009/ustc_online",
+    "start_time": 1252630800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2009 上海赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2009/dhu_online",
+    "board_link": "/icpc/2009/dhu_online",
+    "start_time": 1252630800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2009 哈尔滨赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2009/hit_online",
+    "board_link": "/icpc/2009/hit_online",
+    "start_time": 1252630800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2009 宁波赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2009/nit_online",
+    "board_link": "/icpc/2009/nit_online",
+    "start_time": 1252630800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2010 福州赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2010/fzu_online",
+    "board_link": "/icpc/2010/fzu_online",
+    "start_time": 1286672400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2010 福州赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2010/fzu_onsite",
+    "board_link": "/icpc/2010/fzu_onsite",
+    "start_time": 1290301200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2010 成都赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2010/scu_online",
+    "board_link": "/icpc/2010/scu_online",
+    "start_time": 1284771600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2010 成都赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2010/scu_onsite",
+    "board_link": "/icpc/2010/scu_onsite",
+    "start_time": 1289091600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2010 天津赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2010/tju_onsite",
+    "board_link": "/icpc/2010/tju_onsite",
+    "start_time": 1287277200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2010 哈尔滨赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2010/hrbeu_onsite",
+    "board_link": "/icpc/2010/hrbeu_onsite",
+    "start_time": 1285462800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2010 杭州赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2010/zstu_online",
+    "board_link": "/icpc/2010/zstu_online",
+    "start_time": 1284858000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2010 天津赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2010/tju_online",
+    "board_link": "/icpc/2010/tju_online",
+    "start_time": 1284253200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2010 哈尔滨赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2010/hrbeu_online",
+    "board_link": "/icpc/2010/hrbeu_online",
+    "start_time": 1284166800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2010 杭州赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2010/zstu_onsite",
+    "board_link": "/icpc/2010/zstu_onsite",
+    "start_time": 1287882000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2011 上海赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2011/fdu_onsite",
+    "board_link": "/icpc/2011/fdu_onsite",
+    "start_time": 1318726800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC fdu onsite0",
+    "url": "https://board.xcpcio.com/icpc/2011/fdu_onsite0",
+    "board_link": "/icpc/2011/fdu_onsite0",
+    "start_time": 1314838800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2011 上海赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2011/fdu_online",
+    "board_link": "/icpc/2011/fdu_online",
+    "start_time": 1315616400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2011 成都赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2011/ccniit_onsite",
+    "board_link": "/icpc/2011/ccniit_onsite",
+    "start_time": 1320541200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC dlut onsite2",
+    "url": "https://board.xcpcio.com/icpc/2011/dlut_onsite2",
+    "board_link": "/icpc/2011/dlut_onsite2",
+    "start_time": 1314838800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2011 大连赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2011/dlut_onsite",
+    "board_link": "/icpc/2011/dlut_onsite",
+    "start_time": 1316912400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2011 成都赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2011/ccniit_online",
+    "board_link": "/icpc/2011/ccniit_online",
+    "start_time": 1315702800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2011 大连赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2011/dlut_online",
+    "board_link": "/icpc/2011/dlut_online",
+    "start_time": 1315011600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2011 福州赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2011/fjnu_online",
+    "board_link": "/icpc/2011/fjnu_online",
+    "start_time": 1317949200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2011 福州赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2011/fjnu_onsite",
+    "board_link": "/icpc/2011/fjnu_onsite",
+    "start_time": 1321750800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2011 北京赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2011/bupt_onsite",
+    "board_link": "/icpc/2011/bupt_onsite",
+    "start_time": 1319331600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC ccniit onsite000",
+    "url": "https://board.xcpcio.com/icpc/2011/ccniit_onsite000",
+    "board_link": "/icpc/2011/ccniit_onsite000",
+    "start_time": 1314838800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2011 北京赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2011/bupt_online",
+    "board_link": "/icpc/2011/bupt_online",
+    "start_time": 1316307600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2012 金华赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2012/zjnu_onsite",
+    "board_link": "/icpc/2012/zjnu_onsite",
+    "start_time": 1351386000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2012 金华赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2012/zjnu_online",
+    "board_link": "/icpc/2012/zjnu_online",
+    "start_time": 1348275600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC ccniit online",
+    "url": "https://board.xcpcio.com/icpc/2012/ccniit_online",
+    "board_link": "/icpc/2012/ccniit_online",
+    "start_time": 1346461200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2012 长春赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2012/nenu_onsite",
+    "board_link": "/icpc/2012/nenu_onsite",
+    "start_time": 1350176400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2012 长春赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2012/nenu_online",
+    "board_link": "/icpc/2012/nenu_online",
+    "start_time": 1347066000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2012 成都赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2012/nsu_onsite",
+    "board_link": "/icpc/2012/nsu_onsite",
+    "start_time": 1352595600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2012 天津赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2012/tjut_onsite",
+    "board_link": "/icpc/2012/tjut_onsite",
+    "start_time": 1350781200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2012 杭州赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2012/zstu_online",
+    "board_link": "/icpc/2012/zstu_online",
+    "start_time": 1348362000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2012 成都赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2012/nsu_online",
+    "board_link": "/icpc/2012/nsu_online",
+    "start_time": 1347757200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2012 天津赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2012/tjut_online",
+    "board_link": "/icpc/2012/tjut_online",
+    "start_time": 1347152400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2012 杭州赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2012/zstu_onsite",
+    "board_link": "/icpc/2012/zstu_onsite",
+    "start_time": 1351990800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2013 杭州赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2013/zjut_onsite",
+    "board_link": "/icpc/2013/zjut_onsite",
+    "start_time": 1382835600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2013 杭州赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2013/zjut_online",
+    "board_link": "/icpc/2013/zjut_online",
+    "start_time": 1379206800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2013 南京赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2013/njust_onsite",
+    "board_link": "/icpc/2013/njust_onsite",
+    "start_time": 1383354000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2013 长春赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2013/jlu_onsite",
+    "board_link": "/icpc/2013/jlu_onsite",
+    "start_time": 1386464400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2013 南京赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2013/njust_online",
+    "board_link": "/icpc/2013/njust_online",
+    "start_time": 1379725200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2013 长春赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2013/jlu_online",
+    "board_link": "/icpc/2013/jlu_online",
+    "start_time": 1380330000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2013 长沙赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2013/hnu_onsite",
+    "board_link": "/icpc/2013/hnu_onsite",
+    "start_time": 1384650000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2013 成都赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2013/uestc_online",
+    "board_link": "/icpc/2013/uestc_online",
+    "start_time": 1379120400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2013 长沙赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2013/hnu_online",
+    "board_link": "/icpc/2013/hnu_online",
+    "start_time": 1379811600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2013 成都赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2013/uestc_onsite",
+    "board_link": "/icpc/2013/uestc_onsite",
+    "start_time": 1382230800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 广州赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2014/scut_onsite",
+    "board_link": "/icpc/2014/scut_onsite",
+    "start_time": 1416704400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 广州赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2014/scut_online",
+    "board_link": "/icpc/2014/scut_online",
+    "start_time": 1411174800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 西安赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2014/nwpu_online",
+    "board_link": "/icpc/2014/nwpu_online",
+    "start_time": 1410656400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 北京赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2014/bnu_onsite",
+    "board_link": "/icpc/2014/bnu_onsite",
+    "start_time": 1416099600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 西安赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2014/nwpu_onsite",
+    "board_link": "/icpc/2014/nwpu_onsite",
+    "start_time": 1414285200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 北京赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2014/bnu_online",
+    "board_link": "/icpc/2014/bnu_online",
+    "start_time": 1411261200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 上海赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2014/shu_onsite",
+    "board_link": "/icpc/2014/shu_onsite",
+    "start_time": 1417914000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC wpu onsite",
+    "url": "https://board.xcpcio.com/icpc/2014/wpu_onsite",
+    "board_link": "/icpc/2014/wpu_onsite",
+    "start_time": 1409533200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 鞍山赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2014/ustl_online",
+    "board_link": "/icpc/2014/ustl_online",
+    "start_time": 1410570000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 牡丹江赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2014/mdjnu_online",
+    "board_link": "/icpc/2014/mdjnu_online",
+    "start_time": 1410051600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 上海赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2014/shu_online",
+    "board_link": "/icpc/2014/shu_online",
+    "start_time": 1411779600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 鞍山赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2014/ustl_onsite",
+    "board_link": "/icpc/2014/ustl_onsite",
+    "start_time": 1413680400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2014 牡丹江赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2014/mdjnu_onsite",
+    "board_link": "/icpc/2014/mdjnu_onsite",
+    "start_time": 1413075600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2015 北京赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2015/pku_online",
+    "board_link": "/icpc/2015/pku_online",
+    "start_time": 1442710800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2015 上海赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2015/ecust_online",
+    "board_link": "/icpc/2015/ecust_online",
+    "start_time": 1443229200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2015 北京赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2015/pku_onsite",
+    "board_link": "/icpc/2015/pku_onsite",
+    "start_time": 1447549200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2015 上海赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2015/ecust_onsite",
+    "board_link": "/icpc/2015/ecust_onsite",
+    "start_time": 1448154000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2015 合肥赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2015/ustc_onsite",
+    "board_link": "/icpc/2015/ustc_onsite",
+    "start_time": 1446944400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2015 合肥赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2015/ustc_online",
+    "board_link": "/icpc/2015/ustc_online",
+    "start_time": 1443315600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 40th ICPC Asia East Continent Final Contest",
+    "url": "https://board.xcpcio.com/icpc/2015/ecfinal",
+    "board_link": "/icpc/2015/ecfinal",
+    "start_time": 1449968400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2015 长春赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2015/nenu_onsite",
+    "board_link": "/icpc/2015/nenu_onsite",
+    "start_time": 1445130000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2015 沈阳赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2015/neu_onsite",
+    "board_link": "/icpc/2015/neu_onsite",
+    "start_time": 1445734800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2015 长春赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2015/nenu_online",
+    "board_link": "/icpc/2015/nenu_online",
+    "start_time": 1442106000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2015 沈阳赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2015/neu_online",
+    "board_link": "/icpc/2015/neu_online",
+    "start_time": 1442624400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2016 大连赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2016/dlmu_onsite",
+    "board_link": "/icpc/2016/dlmu_onsite",
+    "start_time": 1476579600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC pku onsite",
+    "url": "https://board.xcpcio.com/icpc/2016/pku_onsite",
+    "board_link": "/icpc/2016/pku_onsite",
+    "start_time": 1472691600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2016 大连赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2016/dlmu_online",
+    "board_link": "/icpc/2016/dlmu_online",
+    "start_time": 1473469200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC dlmu onsite2",
+    "url": "https://board.xcpcio.com/icpc/2016/dlmu_onsite2",
+    "board_link": "/icpc/2016/dlmu_onsite2",
+    "start_time": 1472691600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2016 青岛网络赛",
+    "url": "https://board.xcpcio.com/icpc/2016/upc_online",
+    "board_link": "/icpc/2016/upc_online",
+    "start_time": 1474074000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2016 香港赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2016/cuhk_onsite",
+    "board_link": "/icpc/2016/cuhk_onsite",
+    "start_time": 1478394000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2016 沈阳赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2016/neu_onsite",
+    "board_link": "/icpc/2016/neu_onsite",
+    "start_time": 1477184400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC hrbust onsite",
+    "url": "https://board.xcpcio.com/icpc/2016/hrbust_onsite",
+    "board_link": "/icpc/2016/hrbust_onsite",
+    "start_time": 1472691600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC nwpu onsite",
+    "url": "https://board.xcpcio.com/icpc/2016/nwpu_onsite",
+    "board_link": "/icpc/2016/nwpu_onsite",
+    "start_time": 1472691600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC cuhk online",
+    "url": "https://board.xcpcio.com/icpc/2016/cuhk_online",
+    "board_link": "/icpc/2016/cuhk_online",
+    "start_time": 1472691600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2016 沈阳赛区网络赛",
+    "url": "https://board.xcpcio.com/icpc/2016/neu_online",
+    "board_link": "/icpc/2016/neu_online",
+    "start_time": 1474160400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC shu onsite",
+    "url": "https://board.xcpcio.com/icpc/2016/shu_onsite",
+    "board_link": "/icpc/2016/shu_onsite",
+    "start_time": 1472691600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC gxu onsite",
+    "url": "https://board.xcpcio.com/icpc/2017/gxu_onsite",
+    "board_link": "/icpc/2017/gxu_onsite",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC pku onsite",
+    "url": "https://board.xcpcio.com/icpc/2017/pku_onsite",
+    "board_link": "/icpc/2017/pku_onsite",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC 2017 沈阳赛区现场赛",
+    "url": "https://board.xcpcio.com/icpc/2017/neu_onsite",
+    "board_link": "/icpc/2017/neu_onsite",
+    "start_time": 1508634000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 42 届 ICPC 国际大学生程序设计竞赛区域赛青岛站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/2017/qingdao",
+    "board_link": "/icpc/2017/qingdao",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC hrbust onsite",
+    "url": "https://board.xcpcio.com/icpc/2017/hrbust_onsite",
+    "board_link": "/icpc/2017/hrbust_onsite",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC nwpu onsite",
+    "url": "https://board.xcpcio.com/icpc/2017/nwpu_onsite",
+    "board_link": "/icpc/2017/nwpu_onsite",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC xju onsite",
+    "url": "https://board.xcpcio.com/icpc/2017/xju_onsite",
+    "board_link": "/icpc/2017/xju_onsite",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 43 届 ICPC 国际大学生程序设计竞赛区域赛青岛站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/2018/qingdao",
+    "board_link": "/icpc/2018/qingdao",
+    "start_time": 1540083600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 42nd ICPC World Finals",
+    "url": "https://board.xcpcio.com/icpc/2018/world-finals",
+    "board_link": "/icpc/2018/world-finals",
+    "start_time": 1524099600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 44th ICPC Asia Yinchuan Regional Programming Contest",
+    "url": "https://board.xcpcio.com/icpc/2019/yinchuan",
+    "board_link": "/icpc/2019/yinchuan",
+    "start_time": 1571533200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 43rd ICPC World Finals",
+    "url": "https://board.xcpcio.com/icpc/2019/world-finals",
+    "board_link": "/icpc/2019/world-finals",
+    "start_time": 1554339600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 44th ICPC International Collegiate Programming Contest Asian Regional Contest (Nanchang)",
+    "url": "https://board.xcpcio.com/icpc/2019/nanchang",
+    "board_link": "/icpc/2019/nanchang",
+    "start_time": 1573434000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 45 届国际大学生程序设计竞赛（ICPC）亚洲区域赛（上海）正式赛",
+    "url": "https://board.xcpcio.com/icpc/2020/shanghai",
+    "board_link": "/icpc/2020/shanghai",
+    "start_time": 1607828400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC2020-ICPC·小米 网络选拔赛第二场",
+    "url": "https://board.xcpcio.com/icpc/2020/xiaomi-preliminary-contest-2",
+    "board_link": "/icpc/2020/xiaomi-preliminary-contest-2",
+    "start_time": 1604116800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 45 届国际大学生程序设计竞赛（ICPC）亚洲区域赛（上海）热身赛",
+    "url": "https://board.xcpcio.com/icpc/2020/shanghai-warmup",
+    "board_link": "/icpc/2020/shanghai-warmup",
+    "start_time": 1607770800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 44th ICPC World Finals Moscow Invitational Contest",
+    "url": "https://board.xcpcio.com/icpc/2020/world-finals-Invitational",
+    "board_link": "/icpc/2020/world-finals-Invitational",
+    "start_time": 1633006800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 45 届国际大学生程序设计竞赛（ICPC）亚洲区域赛（南京）正式赛",
+    "url": "https://board.xcpcio.com/icpc/2020/nanjing",
+    "board_link": "/icpc/2020/nanjing",
+    "start_time": 1608433200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 45th ICPC Asia Shenyang Regional Programming Contest",
+    "url": "https://board.xcpcio.com/icpc/2020/shenyang",
+    "board_link": "/icpc/2020/shenyang",
+    "start_time": 1626570000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2020 ICPC·小米邀请赛 决赛",
+    "url": "https://board.xcpcio.com/icpc/2020/xiaomi",
+    "board_link": "/icpc/2020/xiaomi",
+    "start_time": 1606006800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 45th ICPC Asia Yinchuan Regional Programming Contest",
+    "url": "https://board.xcpcio.com/icpc/2020/yinchuan",
+    "board_link": "/icpc/2020/yinchuan",
+    "start_time": 1621126800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 45 届国际大学生程序设计竞赛（ICPC）亚洲区域赛（南京）热身赛",
+    "url": "https://board.xcpcio.com/icpc/2020/nanjing-warmup",
+    "board_link": "/icpc/2020/nanjing-warmup",
+    "start_time": 1608375600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 44th ICPC World Finals",
+    "url": "https://board.xcpcio.com/icpc/2020/world-finals",
+    "board_link": "/icpc/2020/world-finals",
+    "start_time": 1633414860,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 45 届国际大学生程序设计竞赛（ICPC）亚洲区域赛（济南）正式赛",
+    "url": "https://board.xcpcio.com/icpc/2020/jinan",
+    "board_link": "/icpc/2020/jinan",
+    "start_time": 1609038000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC2020-ICPC·小米 网络选拔赛第一场",
+    "url": "https://board.xcpcio.com/icpc/2020/xiaomi-preliminary-contest-1",
+    "board_link": "/icpc/2020/xiaomi-preliminary-contest-1",
+    "start_time": 1603598400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2020 ICPC·小米邀请赛 决赛热身赛",
+    "url": "https://board.xcpcio.com/icpc/2020/xiaomi-warmup",
+    "board_link": "/icpc/2020/xiaomi-warmup",
+    "start_time": 1605942000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ICPC2020-第 45 届国际大学生程序设计竞赛亚洲网上区域赛模拟赛",
+    "url": "https://board.xcpcio.com/icpc/2020/practice-contest",
+    "board_link": "/icpc/2020/practice-contest",
+    "start_time": 1604124000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 45 届国际大学生程序设计竞赛（ICPC）亚洲区域赛（济南）热身赛",
+    "url": "https://board.xcpcio.com/icpc/2020/jinan-warmup",
+    "board_link": "/icpc/2020/jinan-warmup",
+    "start_time": 1608980400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 45 届国际大学生程序设计竞赛（ICPC）亚洲区域赛（昆明）热身赛",
+    "url": "https://board.xcpcio.com/icpc/2020/kunming-warmup",
+    "board_link": "/icpc/2020/kunming-warmup",
+    "start_time": 1617361200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 45 届国际大学生程序设计竞赛（ICPC）亚洲区域赛（昆明）正式赛",
+    "url": "https://board.xcpcio.com/icpc/2020/kunming",
+    "board_link": "/icpc/2020/kunming",
+    "start_time": 1617418800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 45th ICPC Asia East Continent Final Contest",
+    "url": "https://board.xcpcio.com/icpc/2020/ec-final",
+    "board_link": "/icpc/2020/ec-final",
+    "start_time": 1618707600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 46 届 ICPC 国际大学生程序设计竞赛亚洲区域赛（上海）正式赛",
+    "url": "https://board.xcpcio.com/icpc/46th/shanghai",
+    "board_link": "/icpc/46th/shanghai",
+    "start_time": 1638068400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 46 屆 ICPC 東亞洲區域賽（澳門）正式賽",
+    "url": "https://board.xcpcio.com/icpc/46th/macau",
+    "board_link": "/icpc/46th/macau",
+    "start_time": 1648954800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 46 届 ICPC 国际大学生程序设计竞赛亚洲区域赛（上海）热身赛",
+    "url": "https://board.xcpcio.com/icpc/46th/shanghai-warmup",
+    "board_link": "/icpc/46th/shanghai-warmup",
+    "start_time": 1637992800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 46 届 ICPC 国际大学生程序设计竞赛亚洲区域赛（南京）正式赛",
+    "url": "https://board.xcpcio.com/icpc/46th/nanjing",
+    "board_link": "/icpc/46th/nanjing",
+    "start_time": 1638586800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 46 届 ICPC 国际大学生程序设计竞赛亚洲区域赛（沈阳）正式赛",
+    "url": "https://board.xcpcio.com/icpc/46th/shenyang",
+    "board_link": "/icpc/46th/shenyang",
+    "start_time": 1637463600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 46th ICPC Asia East Continent Final Contest Warmup",
+    "url": "https://board.xcpcio.com/icpc/46th/ec-final-warmup",
+    "board_link": "/icpc/46th/ec-final-warmup",
+    "start_time": 1658217600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 46 届 ICPC 国际大学生程序设计竞赛亚洲区域赛（南京）热身赛",
+    "url": "https://board.xcpcio.com/icpc/46th/nanjing-warmup",
+    "board_link": "/icpc/46th/nanjing-warmup",
+    "start_time": 1638527400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 46th ICPC World Finals",
+    "url": "https://board.xcpcio.com/icpc/46th/world-finals",
+    "board_link": "/icpc/46th/world-finals",
+    "start_time": 1713433680,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 46th ICPC Asia Jinan Regional Contest - Contest Session",
+    "url": "https://board.xcpcio.com/icpc/46th/jinan",
+    "board_link": "/icpc/46th/jinan",
+    "start_time": 1636858800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 46 屆 ICPC 東亞洲區域賽（澳門）熱身賽",
+    "url": "https://board.xcpcio.com/icpc/46th/macau-warmup",
+    "board_link": "/icpc/46th/macau-warmup",
+    "start_time": 1648949400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 46 届 ICPC 国际大学生程序设计竞赛亚洲区域赛（沈阳）热身赛",
+    "url": "https://board.xcpcio.com/icpc/46th/shenyang-warmup",
+    "board_link": "/icpc/46th/shenyang-warmup",
+    "start_time": 1637395200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 46th ICPC Asia Jinan Regional Contest - Practice Session",
+    "url": "https://board.xcpcio.com/icpc/46th/jinan-warmup",
+    "board_link": "/icpc/46th/jinan-warmup",
+    "start_time": 1636799400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 46 届 ICPC 亚洲区域赛（昆明）热身赛",
+    "url": "https://board.xcpcio.com/icpc/46th/kunming-warmup",
+    "board_link": "/icpc/46th/kunming-warmup",
+    "start_time": 1650106800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 46 届 ICPC 亚洲区域赛（昆明）正式赛",
+    "url": "https://board.xcpcio.com/icpc/46th/kunming",
+    "board_link": "/icpc/46th/kunming",
+    "start_time": 1650164400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 46th ICPC Asia East Continent Final Contest",
+    "url": "https://board.xcpcio.com/icpc/46th/ec-final",
+    "board_link": "/icpc/46th/ec-final",
+    "start_time": 1658278800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛西安站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/48th/xian",
+    "board_link": "/icpc/48th/xian",
+    "start_time": 1697936400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛西安邀请赛（热身赛）",
+    "url": "https://board.xcpcio.com/icpc/48th/xian-invitational-warmup",
+    "board_link": "/icpc/48th/xian-invitational-warmup",
+    "start_time": 1684022400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛合肥站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/48th/hefei-warmup",
+    "board_link": "/icpc/48th/hefei-warmup",
+    "start_time": 1700893800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛杭州站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/48th/hangzhou-warmup",
+    "board_link": "/icpc/48th/hangzhou-warmup",
+    "start_time": 1702103400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛西安邀请赛（正式赛）",
+    "url": "https://board.xcpcio.com/icpc/48th/xian-invitational",
+    "board_link": "/icpc/48th/xian-invitational",
+    "start_time": 1684029600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 - 2024 International Collegiate Programming Contest, Macau Site",
+    "url": "https://board.xcpcio.com/icpc/48th/macau",
+    "board_link": "/icpc/48th/macau",
+    "start_time": 1700363100,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛杭州站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/48th/hangzhou",
+    "board_link": "/icpc/48th/hangzhou",
+    "start_time": 1702170000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛南京站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/48th/nanjing",
+    "board_link": "/icpc/48th/nanjing",
+    "start_time": 1699147800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 2023 ICPC Asia Regionals Online Contest (II)",
+    "url": "https://board.xcpcio.com/icpc/48th/online-qualification-2",
+    "board_link": "/icpc/48th/online-qualification-2",
+    "start_time": 1695441600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 48th ICPC Asia East Continent Final Contest",
+    "url": "https://board.xcpcio.com/icpc/48th/ecfinal",
+    "board_link": "/icpc/48th/ecfinal",
+    "start_time": 1705114800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛沈阳站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/48th/shenyang",
+    "board_link": "/icpc/48th/shenyang",
+    "start_time": 1699750800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛南京站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/48th/nanjing-warmup",
+    "board_link": "/icpc/48th/nanjing-warmup",
+    "start_time": 1699079400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 48th ICPC World Finals",
+    "url": "https://board.xcpcio.com/icpc/48th/world-finals",
+    "board_link": "/icpc/48th/world-finals",
+    "start_time": 1726725079000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛济南站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/48th/jinan",
+    "board_link": "/icpc/48th/jinan",
+    "start_time": 1701567000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛沈阳站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/48th/shenyang-warmup",
+    "board_link": "/icpc/48th/shenyang-warmup",
+    "start_time": 1699684200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 48th ICPC Asia East Continent Final Contest Warmup",
+    "url": "https://board.xcpcio.com/icpc/48th/ecfinal-warmup",
+    "board_link": "/icpc/48th/ecfinal-warmup",
+    "start_time": 1705044600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛合肥站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/48th/hefei",
+    "board_link": "/icpc/48th/hefei",
+    "start_time": 1700962200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 2023 ICPC Asia Regionals Online Contest (I)",
+    "url": "https://board.xcpcio.com/icpc/48th/online-qualification-1",
+    "board_link": "/icpc/48th/online-qualification-1",
+    "start_time": 1694923200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 48 届 ICPC 国际大学生程序设计竞赛区域赛济南站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/48th/jinan-warmup",
+    "board_link": "/icpc/48th/jinan-warmup",
+    "start_time": 1701499200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛西安站（正式赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/xian",
+    "board_link": "/icpc/47th/xian",
+    "start_time": 1668312000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛合肥站（热身赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/hefei-warmup",
+    "board_link": "/icpc/47th/hefei-warmup",
+    "start_time": 1668837600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛杭州站（热身赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/hangzhou-warmup",
+    "board_link": "/icpc/47th/hangzhou-warmup",
+    "start_time": 1670047200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛杭州站（正式赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/hangzhou",
+    "board_link": "/icpc/47th/hangzhou",
+    "start_time": 1670126400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 47th ICPC Asia Hong Kong Regional Contest Warmup",
+    "url": "https://board.xcpcio.com/icpc/47th/hongkong-warmup",
+    "board_link": "/icpc/47th/hongkong-warmup",
+    "start_time": 1673659800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛南京站（正式赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/nanjing",
+    "board_link": "/icpc/47th/nanjing",
+    "start_time": 1671332400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 2022 ICPC Asia Regionals Online Contest (II)",
+    "url": "https://board.xcpcio.com/icpc/47th/online-qualification-2",
+    "board_link": "/icpc/47th/online-qualification-2",
+    "start_time": 1664078400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛沈阳站（正式赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/shenyang",
+    "board_link": "/icpc/47th/shenyang",
+    "start_time": 1667707200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛西安站（热身赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/xian-warmup",
+    "board_link": "/icpc/47th/xian-warmup",
+    "start_time": 1668232800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛南京站（热身赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/nanjing-warmup",
+    "board_link": "/icpc/47th/nanjing-warmup",
+    "start_time": 1671256800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 47th ICPC World Finals",
+    "url": "https://board.xcpcio.com/icpc/47th/world-finals",
+    "board_link": "/icpc/47th/world-finals",
+    "start_time": 1713433680,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛济南站（正式赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/jinan",
+    "board_link": "/icpc/47th/jinan",
+    "start_time": 1669521600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 47th ICPC Asia Hong Kong Regional Contest",
+    "url": "https://board.xcpcio.com/icpc/47th/hongkong",
+    "board_link": "/icpc/47th/hongkong",
+    "start_time": 1673670600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛沈阳站（热身赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/shenyang-warmup",
+    "board_link": "/icpc/47th/shenyang-warmup",
+    "start_time": 1667628000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛合肥站（正式赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/hefei",
+    "board_link": "/icpc/47th/hefei",
+    "start_time": 1668916800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 2022 ICPC Asia Regionals Online Contest (I)",
+    "url": "https://board.xcpcio.com/icpc/47th/online-qualification-1",
+    "board_link": "/icpc/47th/online-qualification-1",
+    "start_time": 1663387200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 47 届国际大学生程序设计竞赛亚洲区域赛济南站（热身赛）",
+    "url": "https://board.xcpcio.com/icpc/47th/jinan-warmup",
+    "board_link": "/icpc/47th/jinan-warmup",
+    "start_time": 1669442400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 47th ICPC Asia East Continent Final Contest",
+    "url": "https://board.xcpcio.com/icpc/47th/ec-final",
+    "board_link": "/icpc/47th/ec-final",
+    "start_time": 1679709600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛邀请赛西安站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/49th/xian-invitational-warmup",
+    "board_link": "/icpc/49th/xian-invitational-warmup",
+    "start_time": 1716076800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛上海站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/49th/shanghai",
+    "board_link": "/icpc/49th/shanghai",
+    "start_time": 1731805200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛邀请赛昆明站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/49th/kunming-invitational-warmup",
+    "board_link": "/icpc/49th/kunming-invitational-warmup",
+    "start_time": 1716619200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛杭州站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/49th/hangzhou-warmup",
+    "board_link": "/icpc/49th/hangzhou-warmup",
+    "start_time": 1731132300,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛邀请赛西安站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/49th/xian-invitational",
+    "board_link": "/icpc/49th/xian-invitational",
+    "start_time": 1716084000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛上海站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/49th/shanghai-warmup",
+    "board_link": "/icpc/49th/shanghai-warmup",
+    "start_time": 1731740400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛杭州站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/49th/hangzhou",
+    "board_link": "/icpc/49th/hangzhou",
+    "start_time": 1731200400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 49th ICPC Asia Hong Kong Regional Contest Warmup",
+    "url": "https://board.xcpcio.com/icpc/49th/hongkong-warmup",
+    "board_link": "/icpc/49th/hongkong-warmup",
+    "start_time": 1734768000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛南京站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/49th/nanjing",
+    "board_link": "/icpc/49th/nanjing",
+    "start_time": 1730597400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛邀请赛昆明站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/49th/kunming-invitational",
+    "board_link": "/icpc/49th/kunming-invitational",
+    "start_time": 1716688800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 49th ICPC Asia Regionals Online Contest (II)",
+    "url": "https://board.xcpcio.com/icpc/49th/online-qualification-2",
+    "board_link": "/icpc/49th/online-qualification-2",
+    "start_time": 1726894800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 49th ICPC Asia East Continent Final Contest",
+    "url": "https://board.xcpcio.com/icpc/49th/ecfinal",
+    "board_link": "/icpc/49th/ecfinal",
+    "start_time": 1735351200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛成都站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/49th/chengdu-warmup",
+    "board_link": "/icpc/49th/chengdu-warmup",
+    "start_time": 1729923000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛沈阳站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/49th/shenyang",
+    "board_link": "/icpc/49th/shenyang",
+    "start_time": 1732410000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛成都站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/49th/chengdu",
+    "board_link": "/icpc/49th/chengdu",
+    "start_time": 1729991100,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛邀请赛武汉站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/49th/wuhan-invitational",
+    "board_link": "/icpc/49th/wuhan-invitational",
+    "start_time": 1714614000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛南京站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/49th/nanjing-warmup",
+    "board_link": "/icpc/49th/nanjing-warmup",
+    "start_time": 1730529000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛邀请赛武汉站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/49th/wuhan-invitational-warmup",
+    "board_link": "/icpc/49th/wuhan-invitational-warmup",
+    "start_time": 1714545000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 49th ICPC World Finals",
+    "url": "https://board.xcpcio.com/icpc/49th/world-finals",
+    "board_link": "/icpc/49th/world-finals",
+    "start_time": 1756968526,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 49th ICPC World Finals - Dress Rehearsal",
+    "url": "https://board.xcpcio.com/icpc/49th/world-finals-dress-rehearsal",
+    "board_link": "/icpc/49th/world-finals-dress-rehearsal",
+    "start_time": 1756796576,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 49th ICPC Asia Hong Kong Regional Contest",
+    "url": "https://board.xcpcio.com/icpc/49th/hongkong",
+    "board_link": "/icpc/49th/hongkong",
+    "start_time": 1734829800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛沈阳站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/49th/shenyang-warmup",
+    "board_link": "/icpc/49th/shenyang-warmup",
+    "start_time": 1732343400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 49th ICPC Asia East Continent Final Contest Warmup",
+    "url": "https://board.xcpcio.com/icpc/49th/ecfinal-warmup",
+    "board_link": "/icpc/49th/ecfinal-warmup",
+    "start_time": 1735288800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 49th ICPC Asia Regionals Online Contest (I)",
+    "url": "https://board.xcpcio.com/icpc/49th/online-qualification-1",
+    "board_link": "/icpc/49th/online-qualification-1",
+    "start_time": 1726376400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛昆明站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/49th/kunming-warmup",
+    "board_link": "/icpc/49th/kunming-warmup",
+    "start_time": 1732949100,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 49 届 ICPC 国际大学生程序设计竞赛区域赛昆明站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/49th/kunming",
+    "board_link": "/icpc/49th/kunming",
+    "start_time": 1733016600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 50 届 ICPC 国际大学生程序设计竞赛西安站",
+    "url": "https://board.xcpcio.com/icpc/50th/xian",
+    "board_link": "/icpc/50th/xian",
+    "start_time": 1760835600000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」第 50 届 ICPC 国际大学生程序设计竞赛区域赛上海站",
+    "url": "https://board.xcpcio.com/icpc/50th/shanghai",
+    "board_link": "/icpc/50th/shanghai",
+    "start_time": 1763859600000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025年icpc全国邀请赛（南昌）暨2025年（icpc）江西省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/50th/nanchang-invitational",
+    "board_link": "/icpc/50th/nanchang-invitational",
+    "start_time": 1747533600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」第 50 届 ICPC 国际大学生程序设计竞赛区域赛上海站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/50th/shanghai-warmup",
+    "board_link": "/icpc/50th/shanghai-warmup",
+    "start_time": 1763793900000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025年icpc全国邀请赛（南昌）暨2025年（icpc）江西省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/50th/nanchang-invitational-warmup",
+    "board_link": "/icpc/50th/nanchang-invitational-warmup",
+    "start_time": 1747528200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 50th ICPC Asia Hong Kong Regional Contest Warmup",
+    "url": "https://board.xcpcio.com/icpc/50th/hongkong-warmup",
+    "board_link": "/icpc/50th/hongkong-warmup",
+    "start_time": 1764401400000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」第 50 届 ICPC 国际大学生程序设计竞赛区域赛南京站",
+    "url": "https://board.xcpcio.com/icpc/50th/nanjing",
+    "board_link": "/icpc/50th/nanjing",
+    "start_time": 1762651800000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」第 50 届 ICPC 国际大学生程序设计竞赛区域赛成都站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/50th/chengdu-warmup",
+    "board_link": "/icpc/50th/chengdu-warmup",
+    "start_time": 1761373800000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」第 50 届 ICPC 国际大学生程序设计竞赛区域赛沈阳站",
+    "url": "https://board.xcpcio.com/icpc/50th/shenyang",
+    "board_link": "/icpc/50th/shenyang",
+    "start_time": 1763254800000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」第 50 届 ICPC 国际大学生程序设计竞赛区域赛成都站",
+    "url": "https://board.xcpcio.com/icpc/50th/chengdu",
+    "board_link": "/icpc/50th/chengdu",
+    "start_time": 1761441000000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 50 届 ICPC 国际大学生程序设计竞赛邀请赛武汉站 - 正式赛",
+    "url": "https://board.xcpcio.com/icpc/50th/wuhan-invitational",
+    "board_link": "/icpc/50th/wuhan-invitational",
+    "start_time": 1745719200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」第 50 届 ICPC 国际大学生程序设计竞赛区域赛南京站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/50th/nanjing-warmup",
+    "board_link": "/icpc/50th/nanjing-warmup",
+    "start_time": 1762584000000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 50 届 ICPC 国际大学生程序设计竞赛邀请赛武汉站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/50th/wuhan-invitational-warmup",
+    "board_link": "/icpc/50th/wuhan-invitational-warmup",
+    "start_time": 1745649900,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 50th ICPC Asia Hong Kong Regional Contest",
+    "url": "https://board.xcpcio.com/icpc/50th/hongkong",
+    "board_link": "/icpc/50th/hongkong",
+    "start_time": 1764464400000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」第 50 届 ICPC 国际大学生程序设计竞赛区域赛沈阳站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/50th/shenyang-warmup",
+    "board_link": "/icpc/50th/shenyang-warmup",
+    "start_time": 1763200800000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」第 50 届 ICPC 国际大学生程序设计竞赛区域赛武汉站 - 热身赛",
+    "url": "https://board.xcpcio.com/icpc/50th/wuhan-warmup",
+    "board_link": "/icpc/50th/wuhan-warmup",
+    "start_time": 1761978600000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」第 50 届 ICPC 国际大学生程序设计竞赛区域赛武汉站",
+    "url": "https://board.xcpcio.com/icpc/50th/wuhan",
+    "board_link": "/icpc/50th/wuhan",
+    "start_time": 1762047000000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The \"Huawei Cup\" 50th ICPC Asia East Continent Final Contest",
+    "url": "https://board.xcpcio.com/icpc/50th/ecfinal",
+    "board_link": "/icpc/50th/ecfinal",
+    "start_time": 1769994300000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The \"Huawei Cup\" 50th ICPC Asia East Continent Final Contest Warmup",
+    "url": "https://board.xcpcio.com/icpc/50th/ecfinal-warmup",
+    "board_link": "/icpc/50th/ecfinal-warmup",
+    "start_time": 1769912100000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2015 中国大学生程序设计竞赛（南阳）",
+    "url": "https://board.xcpcio.com/ccpc/2015/nyist_onsite",
+    "board_link": "/ccpc/2015/nyist_onsite",
+    "start_time": 1445130000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC dlmu onsite",
+    "url": "https://board.xcpcio.com/ccpc/2016/dlmu_onsite",
+    "board_link": "/ccpc/2016/dlmu_onsite",
+    "start_time": 1472691600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC 2016 长春赛区现场赛",
+    "url": "https://board.xcpcio.com/ccpc/2016/jlu_onsite",
+    "board_link": "/ccpc/2016/jlu_onsite",
+    "start_time": 1474938000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC cuhk onsite",
+    "url": "https://board.xcpcio.com/ccpc/2016/cuhk_onsite",
+    "board_link": "/ccpc/2016/cuhk_onsite",
+    "start_time": 1472691600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC 2016 合肥赛区现场赛",
+    "url": "https://board.xcpcio.com/ccpc/2016/ahu_onsite",
+    "board_link": "/ccpc/2016/ahu_onsite",
+    "start_time": 1476579600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC neu onsite",
+    "url": "https://board.xcpcio.com/ccpc/2016/neu_onsite",
+    "board_link": "/ccpc/2016/neu_onsite",
+    "start_time": 1472691600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC cuhk online",
+    "url": "https://board.xcpcio.com/ccpc/2016/cuhk_online",
+    "board_link": "/ccpc/2016/cuhk_online",
+    "start_time": 1472691600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC 2016 杭州赛区现场赛",
+    "url": "https://board.xcpcio.com/ccpc/2016/hdu_onsite",
+    "board_link": "/ccpc/2016/hdu_onsite",
+    "start_time": 1476579600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC neu onsite",
+    "url": "https://board.xcpcio.com/ccpc/2017/neu_onsite",
+    "board_link": "/ccpc/2017/neu_onsite",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC 2017 哈尔滨赛区现场赛",
+    "url": "https://board.xcpcio.com/ccpc/2017/hrbust_onsite",
+    "board_link": "/ccpc/2017/hrbust_onsite",
+    "start_time": 1508634000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC nwpu onsite",
+    "url": "https://board.xcpcio.com/ccpc/2017/nwpu_onsite",
+    "board_link": "/ccpc/2017/nwpu_onsite",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC hdu onsite",
+    "url": "https://board.xcpcio.com/ccpc/2017/hdu_onsite",
+    "board_link": "/ccpc/2017/hdu_onsite",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC final onsite",
+    "url": "https://board.xcpcio.com/ccpc/2017/final_onsite",
+    "board_link": "/ccpc/2017/final_onsite",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC zstu onsite",
+    "url": "https://board.xcpcio.com/ccpc/2017/zstu_onsite",
+    "board_link": "/ccpc/2017/zstu_onsite",
+    "start_time": 1504227600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC2020-第六届中国大学生程序设计竞赛（长春） 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/2020/changchun-warmup",
+    "board_link": "/ccpc/2020/changchun-warmup",
+    "start_time": 1604732400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC2020-第六届中国大学生程序设计竞赛（绵阳） 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/2020/mianyang",
+    "board_link": "/ccpc/2020/mianyang",
+    "start_time": 1604192400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC2020-第六届中国大学生程序设计竞赛（长春） 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/2020/changchun",
+    "board_link": "/ccpc/2020/changchun",
+    "start_time": 1604797200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC2020-第六届中国大学生程序设计竞赛（威海） 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/2020/weihai-warmup",
+    "board_link": "/ccpc/2020/weihai-warmup",
+    "start_time": 1603522800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第六届中国大学生程序设计竞赛总决赛（热身赛）",
+    "url": "https://board.xcpcio.com/ccpc/2020/final-warmup",
+    "board_link": "/ccpc/2020/final-warmup",
+    "start_time": 1622273400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC2020-第六届中国大学生程序设计竞赛（秦皇岛）正式赛",
+    "url": "https://board.xcpcio.com/ccpc/2020/qinhuangdao",
+    "board_link": "/ccpc/2020/qinhuangdao",
+    "start_time": 1602982800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第六届中国大学生程序设计竞赛总决赛（正式赛）",
+    "url": "https://board.xcpcio.com/ccpc/2020/final",
+    "board_link": "/ccpc/2020/final",
+    "start_time": 1622336400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC2020-第六届中国大学生程序设计竞赛（女生专场） 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/2020/wfinal",
+    "board_link": "/ccpc/2020/wfinal",
+    "start_time": 1602982800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC2020-第六届中国大学生程序设计竞赛（威海） 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/2020/weihai",
+    "board_link": "/ccpc/2020/weihai",
+    "start_time": 1603587600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "CCPC2020-第六届中国大学生程序设计竞赛（绵阳） 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/2020/mianyang-warmup",
+    "board_link": "/ccpc/2020/mianyang-warmup",
+    "start_time": 1604127600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 11 届 CCPC 中国大学生程序设计竞赛郑州站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/zhengzhou",
+    "board_link": "/ccpc/11th/zhengzhou",
+    "start_time": 1763859600000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 11 届 CCPC 中国大学生程序设计竞赛郑州站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/zhengzhou-warmup",
+    "board_link": "/ccpc/11th/zhengzhou-warmup",
+    "start_time": 1763794800000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025 年 CCPC 全国邀请赛（东北）暨第十九届 CCPC 东北地区大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/northeastern",
+    "board_link": "/ccpc/11th/northeastern",
+    "start_time": 1748136300,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025 CCPC 全国邀请赛（郑州）暨第七届 CCPC 河南省赛 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/zhengzhou-invitational",
+    "board_link": "/ccpc/11th/zhengzhou-invitational",
+    "start_time": 1748826000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025 CCPC 全国邀请赛（南昌）暨第二届江西省赛 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/nanchang-invitational",
+    "board_link": "/ccpc/11th/nanchang-invitational",
+    "start_time": 1757727000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025 CCPC 全国邀请赛（南昌）暨第二届江西省赛 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/nanchang-invitational-warmup",
+    "board_link": "/ccpc/11th/nanchang-invitational-warmup",
+    "start_time": 1757660400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 11 届 CCPC 中国大学生程序设计竞赛重庆站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/chongqing",
+    "board_link": "/ccpc/11th/chongqing",
+    "start_time": 1764464400000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025 CCPC 全国邀请赛（郑州）暨第七届 CCPC 河南省赛 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/zhengzhou-invitational-warmup",
+    "board_link": "/ccpc/11th/zhengzhou-invitational-warmup",
+    "start_time": 1748764800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 11 届 CCPC 中国大学生程序设计竞赛哈尔滨站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/harbin",
+    "board_link": "/ccpc/11th/harbin",
+    "start_time": 1762650000000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 11 届 CCPC 中国大学生程序设计竞赛济南站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/jinan",
+    "board_link": "/ccpc/11th/jinan",
+    "start_time": 1763254800000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 11 届 CCPC 中国大学生程序设计竞赛重庆站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/chongqing-warmup",
+    "board_link": "/ccpc/11th/chongqing-warmup",
+    "start_time": 1764401400000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025 年 CCPC 全国邀请赛（东北）暨第十九届 CCPC 东北地区大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/northeastern-warmup",
+    "board_link": "/ccpc/11th/northeastern-warmup",
+    "start_time": 1748082000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 11 届 CCPC 中国大学生程序设计竞赛哈尔滨站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/harbin-warmup",
+    "board_link": "/ccpc/11th/harbin-warmup",
+    "start_time": 1762583400000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 11 届 CCPC 中国大学生程序设计竞赛济南站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/11th/jinan-warmup",
+    "board_link": "/ccpc/11th/jinan-warmup",
+    "start_time": 1763190600000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年中国大学生程序设计竞赛全国邀请赛（湖南）- 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/xiangtan-invitational-warmup",
+    "board_link": "/ccpc/9th/xiangtan-invitational-warmup",
+    "start_time": 1685176200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛秦皇岛站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/qinhuangdao-warmup",
+    "board_link": "/ccpc/9th/qinhuangdao-warmup",
+    "start_time": 1697266800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛深圳站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/shenzhen-warmup",
+    "board_link": "/ccpc/9th/shenzhen-warmup",
+    "start_time": 1699687800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛高职专场 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/vocational",
+    "board_link": "/ccpc/9th/vocational",
+    "start_time": 1697850000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛女生专场 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/girl-warmup",
+    "board_link": "/ccpc/9th/girl-warmup",
+    "start_time": 1697786100,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛总决赛 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/final-warmup",
+    "board_link": "/ccpc/9th/final-warmup",
+    "start_time": 1711764000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛秦皇岛站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/qinhuangdao",
+    "board_link": "/ccpc/9th/qinhuangdao",
+    "start_time": 1697331600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年中国大学生程序设计竞赛全国邀请赛（湖南）- 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/xiangtan-invitational",
+    "board_link": "/ccpc/9th/xiangtan-invitational",
+    "start_time": 1685237400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛哈尔滨站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/harbin",
+    "board_link": "/ccpc/9th/harbin",
+    "start_time": 1699146000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年 CCPC 江苏省赛 & 全国邀请赛（湖南）- 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/jiangsu-and-xiangtan",
+    "board_link": "/ccpc/9th/jiangsu-and-xiangtan",
+    "start_time": 1685237400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第九届中国大学生程序设计竞赛网络预选赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/online-qualification",
+    "board_link": "/ccpc/9th/online-qualification",
+    "start_time": 1692504000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛女生专场 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/girl",
+    "board_link": "/ccpc/9th/girl",
+    "start_time": 1697850000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛桂林站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/guilin",
+    "board_link": "/ccpc/9th/guilin",
+    "start_time": 1698541200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛总决赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/final",
+    "board_link": "/ccpc/9th/final",
+    "start_time": 1711846800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛桂林站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/guilin-warmup",
+    "board_link": "/ccpc/9th/guilin-warmup",
+    "start_time": 1698476400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年 CCPC 江苏省赛 & 全国邀请赛（湖南）- 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/jiangsu-and-xiangtan-warmup",
+    "board_link": "/ccpc/9th/jiangsu-and-xiangtan-warmup",
+    "start_time": 1685167200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛深圳站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/shenzhen",
+    "board_link": "/ccpc/9th/shenzhen",
+    "start_time": 1699750800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛高职专场 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/vocational-warmup",
+    "board_link": "/ccpc/9th/vocational-warmup",
+    "start_time": 1697787000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 9 届 CCPC 中国大学生程序设计竞赛哈尔滨站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/9th/harbin-warmup",
+    "board_link": "/ccpc/9th/harbin-warmup",
+    "start_time": 1699081200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 7 届中国大学生程序设计竞赛（CCPC）威海站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/weihai-warmup",
+    "board_link": "/ccpc/7th/weihai-warmup",
+    "start_time": 1637393400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021 年中国大学生程序设计竞赛女生专场 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/girl-warmup",
+    "board_link": "/ccpc/7th/girl-warmup",
+    "start_time": 1635577200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 7 届中国大学生程序设计竞赛（CCPC）哈尔滨站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/harbin",
+    "board_link": "/ccpc/7th/harbin",
+    "start_time": 1638061200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021 年中国大学生程序设计竞赛女生专场 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/girl",
+    "board_link": "/ccpc/7th/girl",
+    "start_time": 1635642000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021 年中国大学生程序设计竞赛桂林站 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/guilin",
+    "board_link": "/ccpc/7th/guilin",
+    "start_time": 1636246800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 7 届中国大学生程序设计竞赛（CCPC）广州站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/guangzhou-warmup",
+    "board_link": "/ccpc/7th/guangzhou-warmup",
+    "start_time": 1636786800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第七届中国大学生程序设计竞赛总决赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/final",
+    "board_link": "/ccpc/7th/final",
+    "start_time": 1658883600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021 年中国大学生程序设计竞赛桂林站 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/guilin-warmup",
+    "board_link": "/ccpc/7th/guilin-warmup",
+    "start_time": 1636182000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 7 届中国大学生程序设计竞赛（CCPC）威海站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/weihai",
+    "board_link": "/ccpc/7th/weihai",
+    "start_time": 1637456400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 7 届中国大学生程序设计竞赛（CCPC）广州站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/guangzhou",
+    "board_link": "/ccpc/7th/guangzhou",
+    "start_time": 1636851600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 7 届中国大学生程序设计竞赛（CCPC）哈尔滨站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/7th/harbin-warmup",
+    "board_link": "/ccpc/7th/harbin-warmup",
+    "start_time": 1637998200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 中国大学生程序设计竞赛（绵阳） - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/8th/mianyang",
+    "board_link": "/ccpc/8th/mianyang",
+    "start_time": 1668906000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 中国大学生程序设计竞赛（女生专场） - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/8th/girls",
+    "board_link": "/ccpc/8th/girls",
+    "start_time": 1669510800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 中国大学生程序设计竞赛（女生专场） - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/8th/girls-warmup",
+    "board_link": "/ccpc/8th/girls-warmup",
+    "start_time": 1669447800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 中国大学生程序设计竞赛（威海） - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/8th/weihai-warmup",
+    "board_link": "/ccpc/8th/weihai-warmup",
+    "start_time": 1667633400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第八届中国大学生程序设计竞赛总决赛（热身赛）",
+    "url": "https://board.xcpcio.com/ccpc/8th/final-warmup",
+    "board_link": "/ccpc/8th/final-warmup",
+    "start_time": 1683943200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年中国大学生程序设计竞赛网络预选赛",
+    "url": "https://board.xcpcio.com/ccpc/8th/online-qualification",
+    "board_link": "/ccpc/8th/online-qualification",
+    "start_time": 1662868800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年中国大学生程序设计竞赛 (CCPC) 桂林",
+    "url": "https://board.xcpcio.com/ccpc/8th/guilin",
+    "board_link": "/ccpc/8th/guilin",
+    "start_time": 1667091600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 中国大学生程序设计竞赛（广州） - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/8th/guangzhou-warmup",
+    "board_link": "/ccpc/8th/guangzhou-warmup",
+    "start_time": 1668236400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年中国大学生程序设计竞赛 (CCPC) 高职专场",
+    "url": "https://board.xcpcio.com/ccpc/8th/gaozhi",
+    "board_link": "/ccpc/8th/gaozhi",
+    "start_time": 1666486800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第八届中国大学生程序设计竞赛总决赛（正式赛）",
+    "url": "https://board.xcpcio.com/ccpc/8th/final",
+    "board_link": "/ccpc/8th/final",
+    "start_time": 1684026600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 中国大学生程序设计竞赛（威海） - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/8th/weihai",
+    "board_link": "/ccpc/8th/weihai",
+    "start_time": 1667696400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 中国大学生程序设计竞赛（广州） - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/8th/guangzhou",
+    "board_link": "/ccpc/8th/guangzhou",
+    "start_time": 1668301200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 中国大学生程序设计竞赛（绵阳） - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/8th/mianyang-warmup",
+    "board_link": "/ccpc/8th/mianyang-warmup",
+    "start_time": 1668841200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 10 届 CCPC 中国大学生程序设计竞赛郑州站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/10th/zhengzhou",
+    "board_link": "/ccpc/10th/zhengzhou",
+    "start_time": 1731805200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 10 届 CCPC 中国大学生程序设计竞赛郑州站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/10th/zhengzhou-warmup",
+    "board_link": "/ccpc/10th/zhengzhou-warmup",
+    "start_time": 1731740400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 10 届 CCPC 中国大学生程序设计竞赛重庆站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/10th/chongqing",
+    "board_link": "/ccpc/10th/chongqing",
+    "start_time": 1731201600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 10 届 CCPC 中国大学生程序设计竞赛哈尔滨站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/10th/harbin",
+    "board_link": "/ccpc/10th/harbin",
+    "start_time": 1729387200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 10 届 CCPC 中国大学生程序设计竞赛济南站 - 正式赛",
+    "url": "https://board.xcpcio.com/ccpc/10th/jinan",
+    "board_link": "/ccpc/10th/jinan",
+    "start_time": 1729990800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第十届中国大学生程序设计竞赛网络预选赛",
+    "url": "https://board.xcpcio.com/ccpc/10th/online-qualification",
+    "board_link": "/ccpc/10th/online-qualification",
+    "start_time": 1725768000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 10 届 CCPC 中国大学生程序设计竞赛重庆站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/10th/chongqing-warmup",
+    "board_link": "/ccpc/10th/chongqing-warmup",
+    "start_time": 1731134400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 10 届 CCPC 中国大学生程序设计竞赛哈尔滨站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/10th/harbin-warmup",
+    "board_link": "/ccpc/10th/harbin-warmup",
+    "start_time": 1729321200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 10 届 CCPC 中国大学生程序设计竞赛济南站 - 热身赛",
+    "url": "https://board.xcpcio.com/ccpc/10th/jinan-warmup",
+    "board_link": "/ccpc/10th/jinan-warmup",
+    "start_time": 1729926000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021 字节跳动程序设计竞赛冬令营 网络赛",
+    "url": "https://board.xcpcio.com/camp/bytedance/2021/online-qualification",
+    "board_link": "/camp/bytedance/2021/online-qualification",
+    "start_time": 1607670000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ByteDance - Moscow Workshops Programming Camp 2022. Shuffle Contest",
+    "url": "https://board.xcpcio.com/camp/bytedance/2022/shuffle",
+    "board_link": "/camp/bytedance/2022/shuffle",
+    "start_time": 1657951200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ByteDance - Moscow Workshops Programming Camp 2022. Training Contest 4",
+    "url": "https://board.xcpcio.com/camp/bytedance/2022/day4",
+    "board_link": "/camp/bytedance/2022/day4",
+    "start_time": 1657778400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ByteDance - Moscow Workshops Programming Camp 2022. Training Contest 3",
+    "url": "https://board.xcpcio.com/camp/bytedance/2022/day3",
+    "board_link": "/camp/bytedance/2022/day3",
+    "start_time": 1657692000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ByteDance - Moscow Workshops Programming Camp 2022. Training Contest 2",
+    "url": "https://board.xcpcio.com/camp/bytedance/2022/day2",
+    "board_link": "/camp/bytedance/2022/day2",
+    "start_time": 1657605600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 字节跳动程序设计竞赛冬令营 网络赛",
+    "url": "https://board.xcpcio.com/camp/bytedance/2022/online-qualification",
+    "board_link": "/camp/bytedance/2022/online-qualification",
+    "start_time": 1639206000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ByteDance - Moscow Workshops Programming Camp 2022. Training Contest 1",
+    "url": "https://board.xcpcio.com/camp/bytedance/2022/day1",
+    "board_link": "/camp/bytedance/2022/day1",
+    "start_time": 1657519200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "ByteDance - Moscow Workshops Programming Camp 2022. The Final Contest",
+    "url": "https://board.xcpcio.com/camp/bytedance/2022/final",
+    "board_link": "/camp/bytedance/2022/final",
+    "start_time": 1657864800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2024. Day4",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2024/day4",
+    "board_link": "/camp/tsinghua/2024/day4",
+    "start_time": 1724378400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2024. Day3",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2024/day3",
+    "board_link": "/camp/tsinghua/2024/day3",
+    "start_time": 1724292000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2024. Day2",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2024/day2",
+    "board_link": "/camp/tsinghua/2024/day2",
+    "start_time": 1724205600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2024. Finals",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2024/finals",
+    "board_link": "/camp/tsinghua/2024/finals",
+    "start_time": 1724463000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2024. Qualification Round",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2024/qualification-round",
+    "board_link": "/camp/tsinghua/2024/qualification-round",
+    "start_time": 1721538000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2024. Day1",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2024/day1",
+    "board_link": "/camp/tsinghua/2024/day1",
+    "start_time": 1724119200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2025. Day 4",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2025/day4",
+    "board_link": "/camp/tsinghua/2025/day4",
+    "start_time": 1754618400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2025. Day 3",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2025/day3",
+    "board_link": "/camp/tsinghua/2025/day3",
+    "start_time": 1754532000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2025. Day 2",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2025/day2",
+    "board_link": "/camp/tsinghua/2025/day2",
+    "start_time": 1754445600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2025. Day 5",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2025/day5",
+    "board_link": "/camp/tsinghua/2025/day5",
+    "start_time": 1754703000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2025. Qualification Round",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2025/qualification-round",
+    "board_link": "/camp/tsinghua/2025/qualification-round",
+    "start_time": 1751173200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "Tsinghua Bootcamp 2025. Day 1",
+    "url": "https://board.xcpcio.com/camp/tsinghua/2025/day1",
+    "board_link": "/camp/tsinghua/2025/day1",
+    "start_time": 1754359200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 10th Shandong Provincial Collegiate Programming Contest",
+    "url": "https://board.xcpcio.com/provincial-contest/2019/sdcpc",
+    "board_link": "/provincial-contest/2019/sdcpc",
+    "start_time": 1556769600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 2019 ICPC China Shaanxi Provincial Programming Contest",
+    "url": "https://board.xcpcio.com/provincial-contest/2019/sxcpc",
+    "board_link": "/provincial-contest/2019/sxcpc",
+    "start_time": 1559448000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "“SHEIN杯”2019年江苏省大学生程序设计大赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2019/jscpc",
+    "board_link": "/provincial-contest/2019/jscpc",
+    "start_time": 1557795600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2020ICPC 江西省大学生程序设计竞赛热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2020/jscpc-warmup",
+    "board_link": "/provincial-contest/2020/jscpc-warmup",
+    "start_time": 1605337200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2020ICPC 江西省大学生程序设计竞赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2020/jscpc",
+    "board_link": "/provincial-contest/2020/jscpc",
+    "start_time": 1605423600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 17th Zhejiang Provincial Collegiate Programming Contest Sponsored by TuSimple",
+    "url": "https://board.xcpcio.com/provincial-contest/2020/zjcpc",
+    "board_link": "/provincial-contest/2020/zjcpc",
+    "start_time": 1602907200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "“卓见杯”2020年河南省CCPC大学生程序设计竞赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2020/henancpc",
+    "board_link": "/provincial-contest/2020/henancpc",
+    "start_time": 1605931200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "\"红旗杯\"第十四届东北地区大学生程序设计竞赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2020/necpc",
+    "board_link": "/provincial-contest/2020/necpc",
+    "start_time": 1602378000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第十一届山东省大学生程序设计竞赛(正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/sdcpc",
+    "board_link": "/provincial-contest/2021/sdcpc",
+    "start_time": 1620525600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "“红旗杯”第十五届东北地区大学生程序设计竞赛（热身赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/necpc-warmup",
+    "board_link": "/provincial-contest/2021/necpc-warmup",
+    "start_time": 1623495600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021“科大讯飞杯”上海市大学生程序设计竞赛——暨 CCPC 2021 上海市赛正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/shanghai",
+    "board_link": "/provincial-contest/2021/shanghai",
+    "start_time": 1625976000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021 年河南省第三届 CCPC 大学生程序设计竞赛正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/henan",
+    "board_link": "/provincial-contest/2021/henan",
+    "start_time": 1635566400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021“科大讯飞杯”上海市大学生程序设计竞赛——暨 CCPC 2021 上海市赛热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/shanghai-warmup",
+    "board_link": "/provincial-contest/2021/shanghai-warmup",
+    "start_time": 1625968800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021 年江苏省大学生程序设计大赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/jiangsu-warmup",
+    "board_link": "/provincial-contest/2021/jiangsu-warmup",
+    "start_time": 1640341800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 18th Zhejiang Provincial Collegiate Programming Contest Sponsored by TuSimple",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/zjcpc",
+    "board_link": "/provincial-contest/2021/zjcpc",
+    "start_time": 1618632000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021 年江苏省大学生程序设计大赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/jiangsu",
+    "board_link": "/provincial-contest/2021/jiangsu",
+    "start_time": 1640401200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第十五届吉林省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/jilin",
+    "board_link": "/provincial-contest/2021/jilin",
+    "start_time": 1638244800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "“红旗杯”第十五届东北地区大学生程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/necpc",
+    "board_link": "/provincial-contest/2021/necpc",
+    "start_time": 1623546000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2021 年河南省第三届 CCPC 大学生程序设计竞赛热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2021/henan-warmup",
+    "board_link": "/provincial-contest/2021/henan-warmup",
+    "start_time": 1635555600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年湖北省大学生程序设计竞赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/hbcpc",
+    "board_link": "/provincial-contest/2022/hbcpc",
+    "start_time": 1653188400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年江西省大学生程序设计竞赛 (正式赛)",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/jiangxi",
+    "board_link": "/provincial-contest/2022/jiangxi",
+    "start_time": 1666490400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第五届广西大学生程序设计大赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/guangxi",
+    "board_link": "/provincial-contest/2022/guangxi",
+    "start_time": 1656205200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年第三届辽宁省大学生程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/liaoning",
+    "board_link": "/provincial-contest/2022/liaoning",
+    "start_time": 1666486800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年国际大学生程序设计竞赛第 10 届陕西省程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/shanxi",
+    "board_link": "/provincial-contest/2022/shanxi",
+    "start_time": 1666414800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年「小马智行杯」广东省大学生程序设计大赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/guangdong-warmup",
+    "board_link": "/provincial-contest/2022/guangdong-warmup",
+    "start_time": 1654394400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年「小马智行杯」广东省大学生程序设计大赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/guangdong",
+    "board_link": "/provincial-contest/2022/guangdong",
+    "start_time": 1654399800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年第三届辽宁省大学生程序设计竞赛（热身赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/liaoning-warmup",
+    "board_link": "/provincial-contest/2022/liaoning-warmup",
+    "start_time": 1666418400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年江苏省大学生程序设计大赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/jiangsu-warmup",
+    "board_link": "/provincial-contest/2022/jiangsu-warmup",
+    "start_time": 1653649200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 19th Zhejiang Provincial Collegiate Programming Contest Sponsored by TuSimple",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/zjcpc",
+    "board_link": "/provincial-contest/2022/zjcpc",
+    "start_time": 1650081600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年江西省大学生程序设计竞赛 (热身赛)",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/jiangxi-warmup",
+    "board_link": "/provincial-contest/2022/jiangxi-warmup",
+    "start_time": 1666485000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年国际大学生程序设计竞赛第 10 届陕西省程序设计竞赛（热身赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/shanxi-warmup",
+    "board_link": "/provincial-contest/2022/shanxi-warmup",
+    "start_time": 1666404000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2022 年江苏省大学生程序设计大赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2022/jiangsu",
+    "board_link": "/provincial-contest/2022/jiangsu",
+    "start_time": 1653706800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第十三届山东省 ICPC 大学生程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/shandong",
+    "board_link": "/provincial-contest/2023/shandong",
+    "start_time": 1685840400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第五届 CCPC 河南省大学生程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/henan",
+    "board_link": "/provincial-contest/2023/henan",
+    "start_time": 1683424800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年 ICPC 江西省大学生程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/jiangxi",
+    "board_link": "/provincial-contest/2023/jiangxi",
+    "start_time": 1684634400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第五届 CCPC 湖北省大学生程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/hubei",
+    "board_link": "/provincial-contest/2023/hubei",
+    "start_time": 1682820000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年第六届广西大学生程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/guangxi",
+    "board_link": "/provincial-contest/2023/guangxi",
+    "start_time": 1685840400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第十三届山东省 ICPC 大学生程序设计竞赛（热身赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/shandong-warmup",
+    "board_link": "/provincial-contest/2023/shandong-warmup",
+    "start_time": 1685777400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第五届 CCPC 湖北省大学生程序设计竞赛（热身赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/hubei-warmup",
+    "board_link": "/provincial-contest/2023/hubei-warmup",
+    "start_time": 1682751600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第二十届 CCPC 广东省大学生程序设计竞赛（热身赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/guangdong-warmup",
+    "board_link": "/provincial-contest/2023/guangdong-warmup",
+    "start_time": 1683963000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第二十届 CCPC 广东省大学生程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/guangdong",
+    "board_link": "/provincial-contest/2023/guangdong",
+    "start_time": 1684029600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年江苏省大学生程序设计竞赛（热身赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/jiangsu-warmup",
+    "board_link": "/provincial-contest/2023/jiangsu-warmup",
+    "start_time": 1685167200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年第六届广西大学生程序设计竞赛（热身赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/guangxi-warmup",
+    "board_link": "/provincial-contest/2023/guangxi-warmup",
+    "start_time": 1685775600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "湖南省第十九届大学生计算机程序设计竞赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/hunan",
+    "board_link": "/provincial-contest/2023/hunan",
+    "start_time": 1694912400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年江苏省大学生程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/jiangsu",
+    "board_link": "/provincial-contest/2023/jiangsu",
+    "start_time": 1685237400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年国际大学生程序设计竞赛（ACM-ICPC）新疆赛区",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/xinjiang",
+    "board_link": "/provincial-contest/2023/xinjiang",
+    "start_time": 1684558800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2023 年 CCPC 河北省大学生程序设计竞赛（正式赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/hebei",
+    "board_link": "/provincial-contest/2023/hebei",
+    "start_time": 1684630800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 20th Zhejiang Provincial Collegiate Programming Contest Sponsored by TuSimple",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/zhejiang",
+    "board_link": "/provincial-contest/2023/zhejiang",
+    "start_time": 1681531200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第五届 CCPC 河南省大学生程序设计竞赛（热身赛）",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/henan-warmup",
+    "board_link": "/provincial-contest/2023/henan-warmup",
+    "start_time": 1683280800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 20th Zhejiang Provincial Collegiate Programming Contest Sponsored by TuSimple - Practice Session",
+    "url": "https://board.xcpcio.com/provincial-contest/2023/zhejiang-warmup",
+    "board_link": "/provincial-contest/2023/zhejiang-warmup",
+    "start_time": 1681521300,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "湖南省第二十届大学生计算机程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/hunan-warmup",
+    "board_link": "/provincial-contest/2024/hunan-warmup",
+    "start_time": 1728718200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2024 北京市大学生程序设计竞赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/beijing",
+    "board_link": "/provincial-contest/2024/beijing",
+    "start_time": 1716084900,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为智联杯」无线程序设计竞赛暨 2024 年上海市大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/shanghai",
+    "board_link": "/provincial-contest/2024/shanghai",
+    "start_time": 1718503200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 12 届陕西省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/shaanxi-warmup",
+    "board_link": "/provincial-contest/2024/shaanxi-warmup",
+    "start_time": 1717293600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2024 CCPC 全国邀请赛（山东）暨山东省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/shandong",
+    "board_link": "/provincial-contest/2024/shandong",
+    "start_time": 1716687000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 6 届 CCPC 河南省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/henan",
+    "board_link": "/provincial-contest/2024/henan",
+    "start_time": 1715477400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 12 届陕西省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/shaanxi",
+    "board_link": "/provincial-contest/2024/shaanxi",
+    "start_time": 1717299000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第十一届福建省大学生程序设计竞赛暨 CCPC 全国邀请赛（福州）",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/fujian",
+    "board_link": "/provincial-contest/2024/fujian",
+    "start_time": 1716687000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2024 江西省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/jiangxi",
+    "board_link": "/provincial-contest/2024/jiangxi",
+    "start_time": 1717293600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 2024 ICPC in Hubei Province, China",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/hubei",
+    "board_link": "/provincial-contest/2024/hubei",
+    "start_time": 1714183200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第七届广西大学生程序设计大赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/guangxi",
+    "board_link": "/provincial-contest/2024/guangxi",
+    "start_time": 1716080400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第五届辽宁省大学生程序设计竞赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/liaoning",
+    "board_link": "/provincial-contest/2024/liaoning",
+    "start_time": 1730596800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第十六届四川省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/sichuan",
+    "board_link": "/provincial-contest/2024/sichuan",
+    "start_time": 1718499600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "The 2024 ICPC in Hubei Province, China - Warming Up",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/hubei-warmup",
+    "board_link": "/provincial-contest/2024/hubei-warmup",
+    "start_time": 1714113900,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第二十一届广东省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/guangdong-warmup",
+    "board_link": "/provincial-contest/2024/guangdong-warmup",
+    "start_time": 1716604200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第二十一届广东省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/guangdong",
+    "board_link": "/provincial-contest/2024/guangdong",
+    "start_time": 1716685200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2024 CCPC 河北省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/hebei-warmup",
+    "board_link": "/provincial-contest/2024/hebei-warmup",
+    "start_time": 1716622200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2024 江西省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/jiangxi-warmup",
+    "board_link": "/provincial-contest/2024/jiangxi-warmup",
+    "start_time": 1717288200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第十六届四川省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/sichuan-warmup",
+    "board_link": "/provincial-contest/2024/sichuan-warmup",
+    "start_time": 1718436600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "湖南省第二十届大学生计算机程序设计竞赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/hunan",
+    "board_link": "/provincial-contest/2024/hunan",
+    "start_time": 1728781200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」2024 江苏省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/jiangsu",
+    "board_link": "/provincial-contest/2024/jiangsu",
+    "start_time": 1715477400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2024 ICPC 河南省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/henan-icpc",
+    "board_link": "/provincial-contest/2024/henan-icpc",
+    "start_time": 1717376400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2024 ICPC 河南省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/henan-icpc-warmup",
+    "board_link": "/provincial-contest/2024/henan-icpc-warmup",
+    "start_time": 1717313400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2024 CCPC 河北省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/hebei",
+    "board_link": "/provincial-contest/2024/hebei",
+    "start_time": 1716685200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「睿琪杯」浙江省第 21 届大学生程序设计竞赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/zhejiang",
+    "board_link": "/provincial-contest/2024/zhejiang",
+    "start_time": 1712980800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 6 届 CCPC 河南省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/henan-warmup",
+    "board_link": "/provincial-contest/2024/henan-warmup",
+    "start_time": 1715409000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「睿琪杯」浙江省第 21 届大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2024/zhejiang-warmup",
+    "board_link": "/provincial-contest/2024/zhejiang-warmup",
+    "start_time": 1712971200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为智联杯」无线程序设计竞赛暨 2025 年上海市大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/shanghai",
+    "board_link": "/provincial-contest/2025/shanghai",
+    "start_time": 1751680800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第十三届陕西省国际大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/shaanxi-warmup",
+    "board_link": "/provincial-contest/2025/shaanxi-warmup",
+    "start_time": 1746842512,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025年山东省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/shandong",
+    "board_link": "/provincial-contest/2025/shandong",
+    "start_time": 1748136600,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025 ICPC 河南省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/henan",
+    "board_link": "/provincial-contest/2025/henan",
+    "start_time": 1746925200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第十三届陕西省国际大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/shaanxi",
+    "board_link": "/provincial-contest/2025/shaanxi",
+    "start_time": 1746847800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为智联杯」无线程序设计竞赛暨 2025 年上海市大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/shanghai-warmup",
+    "board_link": "/provincial-contest/2025/shanghai-warmup",
+    "start_time": 1751677200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第六届辽宁省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/liaoning",
+    "board_link": "/provincial-contest/2025/liaoning",
+    "start_time": 1763168400000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025 四川省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/sichuan",
+    "board_link": "/provincial-contest/2025/sichuan",
+    "start_time": 1749344400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 18 届吉林省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/jilin-warmup",
+    "board_link": "/provincial-contest/2025/jilin-warmup",
+    "start_time": 1747985400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第六届辽宁省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/liaoning-warmup",
+    "board_link": "/provincial-contest/2025/liaoning-warmup",
+    "start_time": 1763114400000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」2025 年江苏省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/jiangsu-warmup",
+    "board_link": "/provincial-contest/2025/jiangsu-warmup",
+    "start_time": 1748761200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第九届河北省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/hebei-warmup",
+    "board_link": "/provincial-contest/2025/hebei-warmup",
+    "start_time": 1747463400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025 四川省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/sichuan-warmup",
+    "board_link": "/provincial-contest/2025/sichuan-warmup",
+    "start_time": 1749281400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「华为杯」2025 年江苏省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/jiangsu",
+    "board_link": "/provincial-contest/2025/jiangsu",
+    "start_time": 1748827800,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第 18 届吉林省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/jilin",
+    "board_link": "/provincial-contest/2025/jilin",
+    "start_time": 1748048400,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "第九届河北省大学生程序设计竞赛 - 正式赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/hebei",
+    "board_link": "/provincial-contest/2025/hebei",
+    "start_time": 1747530000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「睿琪杯」浙江省第 22 届大学生程序设计竞赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/zhejiang",
+    "board_link": "/provincial-contest/2025/zhejiang",
+    "start_time": 1745640000,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "2025 ICPC 河南省大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/henan-warmup",
+    "board_link": "/provincial-contest/2025/henan-warmup",
+    "start_time": 1746862200,
+    "source_provider": "xcpcio_board"
+  },
+  {
+    "title": "「睿琪杯」浙江省第 22 届大学生程序设计竞赛 - 热身赛",
+    "url": "https://board.xcpcio.com/provincial-contest/2025/zhejiang-warmup",
+    "board_link": "/provincial-contest/2025/zhejiang-warmup",
+    "start_time": 1745630100,
+    "source_provider": "xcpcio_board"
+  }
+]

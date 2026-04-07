@@ -7,6 +7,8 @@
 - 生成 `data/final.json`
 - 生成 `catalog/default-catalog.min.json`
 - 给无年份的 Codeforces 比赛补 `year` 标签
+- 匹配 XCPCIO Board standings 到默认 catalog，并在部署前预计算奖牌线
+- 对没有 XCPCIO Board cutoff 的 Codeforces 比赛，用 Codeforces API 的 official standings 预计算 fallback 奖牌线
 - 导入 QOJ / Codeforces 抓到的题目列表
 - 校验内置 catalog
 
@@ -19,6 +21,9 @@
 - `npm run catalog:fetch-cf-problems`
 - `npm run catalog:import-cf-problems`
 - `npm run catalog:import-qoj-problems`
+- `npm run catalog:match-xcpcio-board`
+- `npm run catalog:refresh-xcpcio-board`
+- `npm run catalog:refresh-codeforces-award-cutoffs`
 - `npm run catalog:generate-default`
 - `npm run catalog:refresh`
 
@@ -28,7 +33,9 @@
 2. 将导出的 `contests.json` 放到 `data/contests.json`
 3. `npm run catalog:build-final` 生成 `data/final.json`
 4. `npm run catalog:generate-default` 生成 `catalog/default-catalog.min.json`
-5. 或直接运行 `npm run catalog:refresh`
+5. `npm run catalog:refresh-xcpcio-board` 匹配 XCPCIO Board 并预计算奖牌线
+6. `npm run catalog:refresh-codeforces-award-cutoffs` 用 Codeforces official standings 补齐仍无 cutoff 的 Codeforces 比赛
+7. 或直接运行 `npm run catalog:refresh`
 
 额外浏览器脚本：
 
@@ -45,6 +52,10 @@
   将 `data/codeforces-problems.json` 并进 `catalog/default-catalog.min.json`
 - `import-qoj-problems-export.mjs`
   将 `data/qoj-problems-a.json` / `data/qoj-problems-b.json` 这类 QOJ 题目导出并进 `catalog/default-catalog.min.json`
+- `match-xcpcio-board-contests.mjs`
+  XCPCIO Board 的构建期数据管线。`--fetch-raw --normalize` 会先保存原始 board index 到 `data/xcpcio-board-raw.json`，再生成与主 contest 流程一致的 `[{ title, url }]` 风格规范化文件 `data/xcpcio-board-contests.json`；默认匹配阶段读取这个规范化文件并给 title 打 tags。加 `--apply` 会把 high confidence 的 `xcpcio_board` standings source 合并进 catalog；加 `--fetch-cutoffs` 会在构建期读取 board standings 数据，按官方 medal 配置或 10% / 20% / 30% 奖牌数量预计算金银铜线，保存到 `data/xcpcio-board-award-cutoffs.json` 并写入 catalog。前端只读取 catalog 里的 `awardCutoffs`，不会请求 board 数据。若要写入 medium 匹配，显式传 `--apply-confidence=high,medium` 后再人工复核 diff。
+- `fetch-codeforces-award-cutoffs.mjs`
+  Codeforces fallback 奖牌线管线。默认处理仍没有 `awardCutoffs` 且带 Codeforces contest source 的比赛，并重新刷新已有的 Codeforces fallback；通过 Codeforces `contest.standings` API 拉取 `showUnofficial=false` 的 official standings，再按 10% / 20% / 30% 奖牌数量预计算金银铜线，保存到 `data/codeforces-award-cutoffs.json` 并在 `--apply` 时写回 catalog。前端不会请求 Codeforces standings。
 
 保留脚本：
 
@@ -55,15 +66,18 @@
 - `filter-rules.cjs`
 - `build-final-json.mjs`
 - `fetch-codeforces-problems.mjs`
+- `fetch-codeforces-award-cutoffs.mjs`
 - `import-codeforces-problems-export.mjs`
 - `import-qoj-problems-export.mjs`
 - `rebuild-catalog-from-result.mjs`
 - `fetch-codeforces-undated-contest-times.mjs`
 - `apply-codeforces-undated-years.mjs`
 - `generate-default-catalog.mjs`
+- `match-xcpcio-board-contests.mjs`
 - `catalog-lib.ts`
 - `validate-catalog.ts`
 
 CI：
 
-- `.github/workflows/static-catalog.yml` 会校验 catalog 并构建前端
+- Netlify build 会先运行 `npm run catalog:refresh-xcpcio-board` 和 `npm run catalog:refresh-codeforces-award-cutoffs`，确保部署前已经计算可用奖牌线
+- `.github/workflows/static-catalog.yml` 会先刷新 XCPCIO Board 与 Codeforces fallback 奖牌线，再校验 catalog 并构建前端
