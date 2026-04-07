@@ -96,6 +96,41 @@ function attachProblemIdsToContests(
   }));
 }
 
+function memberProblemStatusPriority(status: "solved" | "attempted"): number {
+  return status === "solved" ? 2 : 1;
+}
+
+function mergeMemberProblemStatusRecord(
+  existing: LocalMemberProblemStatusRecord | undefined,
+  incoming: LocalMemberProblemStatusRecord,
+): LocalMemberProblemStatusRecord {
+  if (!existing) {
+    return incoming;
+  }
+
+  const incomingWins =
+    memberProblemStatusPriority(incoming.status) >= memberProblemStatusPriority(existing.status);
+  const baseRecord = incomingWins ? incoming : existing;
+
+  return {
+    ...baseRecord,
+    statusId: existing.statusId,
+    firstSeenAt: existing.firstSeenAt < incoming.firstSeenAt
+      ? existing.firstSeenAt
+      : incoming.firstSeenAt,
+    lastSeenAt: existing.lastSeenAt > incoming.lastSeenAt
+      ? existing.lastSeenAt
+      : incoming.lastSeenAt,
+  };
+}
+
+async function upsertMemberProblemStatusWithPriority(
+  status: LocalMemberProblemStatusRecord,
+): Promise<void> {
+  const existing = await localDb.memberProblemStatus.get(status.statusId);
+  await localDb.memberProblemStatus.put(mergeMemberProblemStatusRecord(existing, status));
+}
+
 export async function replaceCatalogSnapshot(payload: {
   contests: LocalCatalogContestRecord[];
   problems: LocalCatalogProblemRecord[];
@@ -284,7 +319,6 @@ export async function upsertMemberBundle(payload: {
   statuses: LocalMemberProblemStatusRecord[];
   importSource: LocalImportSourceRecord;
   syncRecord: LocalSyncRecord;
-  replaceStatusProvider?: string;
 }): Promise<void> {
   await localDb.transaction(
     "rw",
@@ -302,21 +336,8 @@ export async function upsertMemberBundle(payload: {
         deletedAt: handle.deletedAt ?? null,
       })));
 
-      if (payload.replaceStatusProvider) {
-        const existingStatuses = await localDb.memberProblemStatus
-          .where("memberId")
-          .equals(payload.member.memberId)
-          .toArray();
-        const replacedStatusIds = existingStatuses
-          .filter((status) => status.provider === payload.replaceStatusProvider)
-          .map((status) => status.statusId);
-        if (replacedStatusIds.length > 0) {
-          await localDb.memberProblemStatus.bulkDelete(replacedStatusIds);
-        }
-      }
-
       for (const status of payload.statuses) {
-        await localDb.memberProblemStatus.put(status);
+        await upsertMemberProblemStatusWithPriority(status);
       }
 
       await localDb.importSources.put(payload.importSource);
@@ -793,7 +814,7 @@ export async function upsertManualMemberProblemStatus(payload: {
         return;
       }
 
-      await localDb.memberProblemStatus.put({
+      await upsertMemberProblemStatusWithPriority({
         statusId: existingManualStatus?.statusId ?? crypto.randomUUID(),
         memberId: payload.memberId,
         problemId: payload.problemId,
@@ -844,7 +865,9 @@ export async function importLocalRuntimeSnapshot(snapshot: LocalRuntimeSnapshot)
         await localDb.memberHandles.bulkPut(snapshot.memberHandles);
       }
       if (snapshot.memberProblemStatus.length) {
-        await localDb.memberProblemStatus.bulkPut(snapshot.memberProblemStatus);
+        for (const status of snapshot.memberProblemStatus) {
+          await upsertMemberProblemStatusWithPriority(status);
+        }
       }
       if (snapshot.importSources.length) {
         await localDb.importSources.bulkPut(snapshot.importSources);
@@ -904,7 +927,9 @@ export async function mergeLocalRuntimeSnapshot(snapshot: LocalRuntimeSnapshot):
         await localDb.memberHandles.bulkPut(snapshot.memberHandles);
       }
       if (snapshot.memberProblemStatus.length) {
-        await localDb.memberProblemStatus.bulkPut(snapshot.memberProblemStatus);
+        for (const status of snapshot.memberProblemStatus) {
+          await upsertMemberProblemStatusWithPriority(status);
+        }
       }
       if (snapshot.importSources.length) {
         await localDb.importSources.bulkPut(snapshot.importSources);
@@ -951,7 +976,9 @@ export async function importLocalRuntimeProblemsOnlySnapshot(snapshot: LocalRunt
       localDb.syncRecords,
     ],
     async () => {
-      await localDb.memberProblemStatus.bulkPut(snapshot.memberProblemStatus);
+      for (const status of snapshot.memberProblemStatus) {
+        await upsertMemberProblemStatusWithPriority(status);
+      }
       if (snapshot.importSources.length) {
         await localDb.importSources.bulkPut(snapshot.importSources);
       }

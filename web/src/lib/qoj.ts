@@ -173,7 +173,6 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
       statuses,
       importSource,
       syncRecord,
-      replaceStatusProvider: "qoj",
     });
     importedHandles.push(handle);
   }
