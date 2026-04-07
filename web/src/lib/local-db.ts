@@ -284,6 +284,7 @@ export async function upsertMemberBundle(payload: {
   statuses: LocalMemberProblemStatusRecord[];
   importSource: LocalImportSourceRecord;
   syncRecord: LocalSyncRecord;
+  replaceStatusProvider?: string;
 }): Promise<void> {
   await localDb.transaction(
     "rw",
@@ -300,6 +301,19 @@ export async function upsertMemberBundle(payload: {
         ...handle,
         deletedAt: handle.deletedAt ?? null,
       })));
+
+      if (payload.replaceStatusProvider) {
+        const existingStatuses = await localDb.memberProblemStatus
+          .where("memberId")
+          .equals(payload.member.memberId)
+          .toArray();
+        const replacedStatusIds = existingStatuses
+          .filter((status) => status.provider === payload.replaceStatusProvider)
+          .map((status) => status.statusId);
+        if (replacedStatusIds.length > 0) {
+          await localDb.memberProblemStatus.bulkDelete(replacedStatusIds);
+        }
+      }
 
       for (const status of payload.statuses) {
         await localDb.memberProblemStatus.put(status);

@@ -57,10 +57,16 @@ function buildQojBrowserScript(payload: {
     if (!heading) {
       return [];
     }
-    const container = heading.parentElement;
-    const links = Array.from(container?.querySelectorAll('a[href*="/problem/"]') ?? []);
+    const links = [];
     const seen = new Set();
     const result = [];
+
+    for (let node = heading.nextElementSibling; node; node = node.nextElementSibling) {
+      if (node.matches(".list-group-item-heading")) {
+        break;
+      }
+      links.push(...Array.from(node.querySelectorAll('a[href*="/problem/"]')));
+    }
 
     for (const link of links) {
       const href = link.getAttribute("href") || "";
