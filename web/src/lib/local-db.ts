@@ -394,11 +394,10 @@ export async function getCatalogDbStatus(): Promise<LocalDbStatus> {
 }
 
 export async function listMemberPeopleFromDb(): Promise<LocalMemberPerson[]> {
-  const [members, handles, statuses, importSources] = await Promise.all([
+  const [members, handles, statuses] = await Promise.all([
     localDb.members.toArray(),
     localDb.memberHandles.toArray(),
     localDb.memberProblemStatus.toArray(),
-    localDb.importSources.toArray(),
   ]);
 
   const activeMembers = members.filter((member) => !member.deletedAt);
@@ -410,7 +409,12 @@ export async function listMemberPeopleFromDb(): Promise<LocalMemberPerson[]> {
       const memberHandles = activeHandles
         .filter((handle) => handle.memberId === member.memberId)
         .sort((left, right) => left.handle.localeCompare(right.handle));
-      const memberStatuses = statuses.filter((status) => status.memberId === member.memberId);
+      const activeMemberProviders = new Set(memberHandles.map((handle) => handle.provider));
+      const memberStatuses = statuses.filter(
+        (status) =>
+          status.memberId === member.memberId &&
+          (status.provider === "manual" || activeMemberProviders.has(status.provider)),
+      );
       const providerCount = new Set(memberHandles.map((handle) => handle.provider)).size;
       const solvedProblemIds = new Set(
         memberStatuses
@@ -426,59 +430,16 @@ export async function listMemberPeopleFromDb(): Promise<LocalMemberPerson[]> {
         ...solvedProblemIds,
         ...attemptedOnlyProblemIds,
       ]);
-      const latestImportRecords = memberHandles
-        .map((handle) => {
-          const matchedSources = importSources
-            .filter((source) => {
-              const importedHandle = source.rawMetaJson.handle;
-              if (typeof importedHandle !== "string") {
-                return false;
-              }
-              if (importedHandle.toLocaleLowerCase() !== handle.handle.toLocaleLowerCase()) {
-                return false;
-              }
-              if (handle.provider === "codeforces") {
-                return source.kind === "codeforces_api";
-              }
-              if (handle.provider === "qoj") {
-                return source.kind === "qoj_userscript_json";
-              }
-              return false;
-            })
-            .sort((left, right) => right.importedAt.localeCompare(left.importedAt));
-
-          const latestSource = matchedSources[0];
-          if (!latestSource) {
-            return null;
-          }
-
-          const totalProblemCountCandidate =
-            latestSource.rawMetaJson.normalized_problem_status_count ??
-            latestSource.rawMetaJson.total_problem_count ??
-            latestSource.rawMetaJson.problem_count;
-
-          return {
-            importedAt: latestSource.importedAt,
-            totalProblemCount:
-              typeof totalProblemCountCandidate === "number" ? totalProblemCountCandidate : 0,
-          };
-        })
-        .filter((record): record is { importedAt: string; totalProblemCount: number } => record !== null);
       const lastSyncedAt = memberStatuses
         .map((status) => status.lastSeenAt)
         .sort()
         .slice(-1)[0] ?? null;
-      const totalProblemCount = latestImportRecords.reduce(
-        (sum, record) => sum + record.totalProblemCount,
-        0,
-      );
 
       return {
         memberId: member.memberId,
         displayName: member.displayName,
         providerCount,
         handleCount: memberHandles.length,
-        totalProblemCount,
         solvedCount: solvedProblemIds.size,
         attemptedCount: attemptedOnlyProblemIds.size,
         lastSyncedAt,
@@ -1147,8 +1108,14 @@ export async function getContestCoverageFromDb(
   const problemRows = problems.map((problem) => {
     let anySeen = false;
     const memberRows = members.map((member) => {
+      const activeMemberProviders = new Set(member.handles.map((handle) => handle.provider));
       const candidateStatuses = statuses
-        .filter((status) => status.memberId === member.memberId && status.problemId === problem.problemId)
+        .filter(
+          (status) =>
+            status.memberId === member.memberId &&
+            status.problemId === problem.problemId &&
+            (status.provider === "manual" || activeMemberProviders.has(status.provider)),
+        )
         .map((status) => status.status);
       const mergedStatus = mergeStatus(
         candidateStatuses.length > 0 ? candidateStatuses : ["unseen"],
