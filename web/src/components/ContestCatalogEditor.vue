@@ -171,7 +171,7 @@ function removeSource(index: number) {
 }
 
 function buildSourceProviderOptions(currentProvider: string) {
-  const options = ["manual", "codeforces", "qoj", "board_xcpcio", "other"];
+  const options = ["manual", "codeforces", "qoj", "xcpcio_board", "other"];
   if (currentProvider && !options.includes(currentProvider)) {
     return [currentProvider, ...options];
   }
@@ -185,8 +185,8 @@ function buildSourceKindOptions(provider: string) {
   if (provider === "codeforces" || provider === "qoj") {
     return ["contest"];
   }
-  if (provider === "board_xcpcio") {
-    return ["ranking"];
+  if (provider === "xcpcio_board") {
+    return ["standings"];
   }
   if (provider === "other") {
     return ["contest", "ranking", "writeup", "other"];
