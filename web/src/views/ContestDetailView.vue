@@ -5,6 +5,7 @@ import { useRouter } from "vue-router";
 
 import ContestCatalogEditor from "../components/ContestCatalogEditor.vue";
 import {
+  type CatalogAwardCutoffs,
   type CatalogSource,
   type CatalogContestDetail,
 } from "../lib/catalog";
@@ -22,11 +23,6 @@ import {
   upsertManualMemberProblemStatus,
 } from "../lib/local-db";
 import type { LocalCatalogContestRecord, LocalCatalogProblemRecord, LocalContestCoverage } from "../lib/local-model";
-import {
-  fetchXcpcioAwardCutoffs,
-  findXcpcioBoardStandingsSource,
-  type XcpcioAwardCutoffSummary,
-} from "../lib/xcpcio-board";
 
 const route = useRoute();
 const router = useRouter();
@@ -41,21 +37,16 @@ const deleting = ref(false);
 const existingTags = ref<string[]>([]);
 const markMode = ref(false);
 const markSavingCellKey = ref("");
-const awardCutoffs = ref<XcpcioAwardCutoffSummary | null>(null);
-const awardCutoffsLoading = ref(false);
-const awardCutoffsError = ref("");
+const awardCutoffs = ref<CatalogAwardCutoffs | null>(null);
 
 const contestId = computed(() => String(route.params.contestId ?? ""));
 const trackedMembers = computed(() => coverage.value?.trackedMembers ?? []);
-const awardStandingsSource = computed(() =>
-  contest.value ? findXcpcioBoardStandingsSource(contest.value.sources) : null,
-);
 const awardCutoffRows = computed(() => {
   const cutoffs = awardCutoffs.value?.cutoffs;
   return [
-    { key: "gold" as const, label: "金牌", cutoff: cutoffs?.gold ?? null },
-    { key: "silver" as const, label: "银牌", cutoff: cutoffs?.silver ?? null },
-    { key: "bronze" as const, label: "铜牌", cutoff: cutoffs?.bronze ?? null },
+    { key: "bronze" as const, label: "Cu", cutoff: cutoffs?.bronze ?? null },
+    { key: "silver" as const, label: "Ag", cutoff: cutoffs?.silver ?? null },
+    { key: "gold" as const, label: "Au", cutoff: cutoffs?.gold ?? null },
   ];
 });
 const awardCutoffSourceLabel = computed(() => {
@@ -69,6 +60,48 @@ const awardCutoffSourceLabel = computed(() => {
     return "按 official 队伍奖牌数量 10% / 20% / 30% 推断";
   }
   return "未识别 official 分组，按全部队伍奖牌数量 10% / 20% / 30% 推断";
+});
+const solvedProblemCount = computed(() =>
+  coverage.value?.problems.filter((problem) => problem.members.some((member) => member.status === "solved")).length ?? 0,
+);
+const awardPlacement = computed(() => {
+  const cutoffs = awardCutoffs.value?.cutoffs;
+  if (!cutoffs) {
+    return null;
+  }
+  const solved = solvedProblemCount.value;
+  if (cutoffs.gold && solved >= cutoffs.gold.solved) {
+    return "Au";
+  }
+  if (cutoffs.silver && solved >= cutoffs.silver.solved) {
+    return "Ag";
+  }
+  if (cutoffs.bronze && solved >= cutoffs.bronze.solved) {
+    return "Cu";
+  }
+  return "Fe";
+});
+const nextAwardTarget = computed(() => {
+  const cutoffs = awardCutoffs.value?.cutoffs;
+  const placement = awardPlacement.value;
+  if (!cutoffs || !placement || placement === "Au") {
+    return null;
+  }
+  const nextCutoff = placement === "Fe" ? cutoffs.bronze : placement === "Cu" ? cutoffs.silver : cutoffs.gold;
+  const nextLabel = placement === "Fe" ? "Cu" : placement === "Cu" ? "Ag" : "Au";
+  const currentCutoff = placement === "Fe" ? null : placement === "Cu" ? cutoffs.bronze : cutoffs.silver;
+  if (!nextCutoff) {
+    return null;
+  }
+  const baseSolved = currentCutoff?.solved ?? 0;
+  const targetGap = Math.max(1, nextCutoff.solved - baseSolved);
+  const solvedWithinLevel = Math.max(0, Math.min(targetGap, solvedProblemCount.value - baseSolved));
+  return {
+    label: nextLabel,
+    remaining: Math.max(0, nextCutoff.solved - solvedProblemCount.value),
+    solved: nextCutoff.solved,
+    progressPercent: 50 + Math.round((solvedWithinLevel / targetGap) * 50),
+  };
 });
 const contestEyebrow = computed(() => {
   const sourceLabels = (contest.value?.sources ?? [])
@@ -88,22 +121,8 @@ const contestEyebrow = computed(() => {
   return "CURATED CONTEST";
 });
 
-async function loadAwardCutoffs() {
-  awardCutoffs.value = null;
-  awardCutoffsError.value = "";
-  const source = awardStandingsSource.value;
-  if (!source) {
-    return;
-  }
-
-  awardCutoffsLoading.value = true;
-  try {
-    awardCutoffs.value = await fetchXcpcioAwardCutoffs(source);
-  } catch (caught) {
-    awardCutoffsError.value = caught instanceof Error ? caught.message : "加载 XCPCIO standings 失败";
-  } finally {
-    awardCutoffsLoading.value = false;
-  }
+function loadAwardCutoffs() {
+  awardCutoffs.value = contest.value?.awardCutoffs ?? null;
 }
 const contestEditorInitialValue = computed(() => {
   if (!contest.value) {
@@ -144,6 +163,7 @@ function mapLocalContestRecordToDetail(
     start_at: contestRecord.startAt,
     curation_status: contestRecord.curationStatus,
     sources: contestRecord.sources,
+    awardCutoffs: contestRecord.awardCutoffs,
     problems: problems.map((problem) => ({
       id: problem.problemId,
       ordinal: problem.ordinal,
@@ -176,7 +196,7 @@ async function loadContestPage() {
       const localCoverage = await getContestCoverageFromDb(contestId.value);
       coverage.value = localCoverage;
       contest.value = mapLocalContestRecordToDetail(localDetail.contest, localDetail.problems);
-      void loadAwardCutoffs();
+      loadAwardCutoffs();
     } else {
       if (await hasDeletedCatalogContestId(contestId.value)) {
         throw new Error("contest deleted");
@@ -241,6 +261,7 @@ async function saveContestMetadata(payload: {
         curationStatus: nextProblems.length ? "problem_listed" : contest.value.curation_status,
         problemIds: nextProblems.map((problem) => problem.problemId),
         sources: payload.sources,
+        awardCutoffs: contest.value.awardCutoffs,
         notes: payload.notes,
         generatedFrom: "manual",
       },
@@ -402,35 +423,73 @@ onMounted(loadContestPage);
                     <p class="stat-card__label">队伍未做</p>
                     <div class="stat-card__value">{{ coverage?.freshProblemCount ?? 0 }}</div>
                   </div>
-                  <div
-                    v-for="row in awardCutoffRows"
-                    :key="row.key"
-                    class="stat-card"
-                  >
-                    <p class="stat-card__label">{{ row.label }}线</p>
-                    <div class="stat-card__value">
-                      {{ row.cutoff ? row.cutoff.solved : "—" }}
-                    </div>
-                    <p v-if="row.cutoff" class="muted tiny">
-                      第 {{ row.cutoff.rank }} 名，罚时 {{ row.cutoff.penalty }}
-                    </p>
-                  </div>
                 </div>
 
-                <div v-if="awardStandingsSource" class="notice" style="margin-bottom: 18px">
-                  <template v-if="awardCutoffsLoading">
-                    正在加载 XCPCIO standings 奖牌线...
-                  </template>
-                  <template v-else-if="awardCutoffs">
-                    {{ awardCutoffSourceLabel }}，计入队伍：
-                    {{ awardCutoffs.eligibleTeamCount }}。
-                  </template>
-                  <template v-else-if="awardCutoffsError">
-                    XCPCIO standings 奖牌线加载失败：{{ awardCutoffsError }}
-                  </template>
+                <div
+                  v-if="awardCutoffs"
+                  :class="[
+                    'award-cutoff-card',
+                    `award-cutoff-card--${awardPlacement?.toLowerCase() ?? 'fe'}`,
+                    `award-cutoff-card--target-${nextAwardTarget?.label.toLowerCase() ?? awardPlacement?.toLowerCase() ?? 'fe'}`,
+                  ]"
+                  :style="{ '--award-progress': awardPlacement === 'Au' ? '100%' : nextAwardTarget ? `${nextAwardTarget.progressPercent}%` : '0%' }"
+                >
+                  <div class="award-cutoff-card__header">
+                    <div class="award-cutoff-card__current">
+                      <span
+                        v-if="awardPlacement"
+                        :class="`contest-medal-badge contest-medal-badge--${awardPlacement.toLowerCase()}`"
+                      >
+                        {{ awardPlacement }}
+                      </span>
+                      <div>
+                        <strong>{{ solvedProblemCount }} solved</strong>
+                      </div>
+                    </div>
+                    <div
+                      v-if="nextAwardTarget"
+                      class="award-cutoff-card__progress"
+                    >
+                      <span>
+                        NEXT +{{ nextAwardTarget.remaining }}
+                        {{ nextAwardTarget.remaining === 1 ? "prob" : "probs" }}
+                      </span>
+                    </div>
+                    <div v-if="awardPlacement === 'Au'" class="award-cutoff-card__next">
+                      <span class="award-cutoff-card__next-crown">★</span>
+                    </div>
+                    <div v-else-if="nextAwardTarget" class="award-cutoff-card__next">
+                      <span class="award-cutoff-card__next-count">{{ nextAwardTarget.solved }} solved</span>
+                      <span :class="`contest-medal-badge contest-medal-badge--${nextAwardTarget.label.toLowerCase()}`">
+                        {{ nextAwardTarget.label }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="award-cutoff-card__grid">
+                    <div
+                      v-for="row in awardCutoffRows"
+                      :key="row.key"
+                      class="award-cutoff-card__item"
+                    >
+                      <span :class="`contest-medal-badge contest-medal-badge--${row.label.toLowerCase()}`">
+                        {{ row.label }}
+                      </span>
+                      <div>
+                        <strong>{{ row.cutoff ? `${row.cutoff.solved} solved` : "—" }}</strong>
+                        <p v-if="row.cutoff" class="muted tiny">
+                          第 {{ row.cutoff.rank }} 名，罚时 {{ row.cutoff.penalty }}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="award-cutoff-card__source">
+                    来源：<a :href="awardCutoffs.sourceUrl" target="_blank" rel="noreferrer">
+                      {{ awardCutoffs.sourceLabel }}
+                    </a>。{{ awardCutoffSourceLabel }}，{{ awardCutoffs.eligibleTeamCount }} official teams。
+                  </p>
                 </div>
                 <p v-else class="muted tiny" style="margin-bottom: 18px">
-                  未配置 XCPCIO Board standings 来源，暂不能计算金银铜解题线。
+                  暂无预计算奖牌线。
                 </p>
 
                 <div class="actions" style="margin-top: 0; margin-bottom: 18px">

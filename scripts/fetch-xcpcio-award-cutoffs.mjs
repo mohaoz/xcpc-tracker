@@ -42,6 +42,28 @@ function getTeamId(team) {
   return typeof id === "string" || typeof id === "number" ? String(id) : null;
 }
 
+function normalizeBoardCollection(value, label) {
+  if (Array.isArray(value)) {
+    return value;
+  }
+  if (!value || typeof value !== "object") {
+    throw new Error(`${label} must be an array or object map`);
+  }
+  for (const key of [label, `${label}s`, "data", "rows"]) {
+    if (Array.isArray(value[key])) {
+      return value[key];
+    }
+  }
+  if (label === "team") {
+    return Object.entries(value).map(([id, team]) => (
+      team && typeof team === "object" && !Array.isArray(team)
+        ? { id, ...team }
+        : { id, members: team }
+    ));
+  }
+  return Object.values(value);
+}
+
 function getEligibleTeamIds(teams) {
   const officialTeamIds = teams
     .filter((team) => team.group?.includes("official") || team.official === true || team.official === 1)
@@ -170,7 +192,11 @@ const [config, teams, runs] = await Promise.all([
   fetchJson(`${baseUrl}/run.json`),
 ]);
 
-const { source: inferredSource, rankedTeams } = buildRankedTeams(config, teams, runs);
+const { source: inferredSource, rankedTeams } = buildRankedTeams(
+  config,
+  normalizeBoardCollection(teams, "team"),
+  normalizeBoardCollection(runs, "run"),
+);
 const cutoffRanks = getCutoffRanks(config, rankedTeams.length);
 const result = {
   board_path: `/${boardPath}`,

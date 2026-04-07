@@ -8,6 +8,24 @@ const repoRoot = resolve(__dirname, "..");
 const DEFAULT_INPUT_PATH = resolve(repoRoot, "data", "codeforces-problems.json");
 const DEFAULT_CATALOG_PATH = resolve(repoRoot, "catalog", "default-catalog.min.json");
 const DEFAULT_OUTPUT_PATH = DEFAULT_CATALOG_PATH;
+const CONTEST_URL_REMAPS = new Map([
+  [
+    "https://codeforces.com/gym/104459",
+    {
+      provider: "qoj",
+      provider_contest_id: "1281",
+      reason: "Codeforces problem order differs from the official PDF/QOJ order.",
+    },
+  ],
+  [
+    "https://codeforces.com/gym/104172",
+    {
+      provider: "qoj",
+      provider_contest_id: "1099",
+      reason: "Codeforces/Universal Cup title uses 2023 for the same 47th ICPC Asia Hong Kong Regional contest.",
+    },
+  ],
+]);
 
 function cleanText(value) {
   return String(value ?? "").replace(/\s+/gu, " ").trim();
@@ -36,6 +54,20 @@ function normalizeUrl(value) {
   }
 }
 
+function normalizeTitleKey(value) {
+  return cleanText(value).toLowerCase();
+}
+
+function getSourcePriority(source) {
+  if (source?.provider === "qoj") return 0;
+  if (source?.provider === "codeforces") return 1;
+  return 2;
+}
+
+function orderSources(sources) {
+  return [...(sources ?? [])].sort((left, right) => getSourcePriority(left) - getSourcePriority(right));
+}
+
 function mergeSourceList(existingSources, nextSource) {
   const items = [...(existingSources ?? [])];
   const nextKey = [
@@ -53,7 +85,7 @@ function mergeSourceList(existingSources, nextSource) {
   });
   if (index < 0) {
     items.push(nextSource);
-    return items;
+    return orderSources(items);
   }
   items[index] = {
     ...items[index],
@@ -61,7 +93,7 @@ function mergeSourceList(existingSources, nextSource) {
     source_title: nextSource.source_title || items[index].source_title,
     label: nextSource.label || items[index].label,
   };
-  return items;
+  return orderSources(items);
 }
 
 function normalizeInputContests(raw) {
@@ -120,8 +152,13 @@ async function main() {
 
   const inputContests = normalizeInputContests(input);
   const contestsByCodeforcesUrl = new Map();
+  const contestsBySourceKey = new Map();
   for (const contest of catalog.contests ?? []) {
     for (const source of contest.sources ?? []) {
+      const providerContestId = cleanText(source?.provider_contest_id);
+      if (source?.provider && source?.kind === "contest" && providerContestId) {
+        contestsBySourceKey.set(`${source.provider}:${providerContestId}`, contest);
+      }
       if (source?.provider === "codeforces" && source?.kind === "contest" && source?.url) {
         contestsByCodeforcesUrl.set(normalizeUrl(source.url), contest);
       }
@@ -136,15 +173,31 @@ async function main() {
   let skippedContestCount = 0;
 
   for (const importedContest of inputContests) {
-    const targetContest = contestsByCodeforcesUrl.get(importedContest.normalizedUrl);
+    const remap = CONTEST_URL_REMAPS.get(importedContest.normalizedUrl);
+    const targetContest = remap
+      ? contestsBySourceKey.get(`${remap.provider}:${remap.provider_contest_id}`)
+      : contestsByCodeforcesUrl.get(importedContest.normalizedUrl);
     if (!targetContest) {
       skippedContestCount += 1;
       continue;
     }
 
     matchedContestCount += 1;
+    if (remap) {
+      targetContest.aliases = dedupeStrings([...(targetContest.aliases ?? []), importedContest.title]);
+      targetContest.sources = mergeSourceList(targetContest.sources ?? [], {
+        provider: "codeforces",
+        kind: "contest",
+        url: importedContest.url,
+        provider_contest_id: importedContest.url.match(/codeforces\.com\/gym\/(\d+)/iu)?.[1],
+        source_title: importedContest.title,
+        label: "Codeforces Gym",
+        notes: remap.reason,
+      });
+    }
     const existingProblems = problems.filter((problem) => problem.contestId === targetContest.contestId);
     const existingByOrdinal = new Map(existingProblems.map((problem) => [cleanText(problem.ordinal).toLowerCase(), problem]));
+    const existingByTitle = new Map(existingProblems.map((problem) => [normalizeTitleKey(problem.title), problem]));
     const existingByProviderProblemId = new Map();
     for (const problem of existingProblems) {
       for (const source of problem.sources ?? []) {
@@ -165,6 +218,7 @@ async function main() {
       };
       const matched =
         existingByProviderProblemId.get(importedProblem.provider_problem_id) ??
+        (remap ? existingByTitle.get(normalizeTitleKey(importedProblem.title)) : null) ??
         existingByOrdinal.get(importedProblem.ordinal.toLowerCase()) ??
         null;
 

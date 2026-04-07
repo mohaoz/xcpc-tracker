@@ -26,6 +26,22 @@ export type CatalogSource = {
   label?: string;
 };
 
+export type CatalogAwardCutoff = {
+  rank: number;
+  solved: number;
+  penalty: number;
+  teamId: string;
+};
+
+export type CatalogAwardCutoffs = {
+  source: "explicit" | "inferred_official_medal_ratio_10_20_30" | "inferred_all_teams_medal_ratio_10_20_30" | string;
+  sourceProvider: string;
+  sourceLabel: string;
+  sourceUrl: string;
+  eligibleTeamCount: number;
+  cutoffs: Record<"gold" | "silver" | "bronze", CatalogAwardCutoff | null>;
+};
+
 export type CatalogProblem = {
   id: string;
   ordinal: string;
@@ -42,6 +58,7 @@ export type CatalogContestDetail = {
   start_at?: string | null;
   curation_status: "contest_stub" | "problem_listed" | "reviewed";
   sources: CatalogSource[];
+  awardCutoffs?: CatalogAwardCutoffs;
   problems: CatalogProblem[];
   notes?: string;
   generated_from?: string;
@@ -74,6 +91,7 @@ type CatalogSnapshotContest = {
   curationStatus: "contest_stub" | "problem_listed" | "reviewed";
   problemIds: string[];
   sources: CatalogSnapshotSource[];
+  awardCutoffs?: CatalogAwardCutoffs;
   notes?: string;
   generatedFrom?: string;
 };
@@ -164,6 +182,7 @@ export async function fetchGeneratedCatalogBundle(options?: { forceRefresh?: boo
         start_at: contest.startAt ?? null,
         curation_status: contest.curationStatus,
         sources: contest.sources ?? [],
+        awardCutoffs: contest.awardCutoffs,
         problems: (problemsByContestId.get(contest.contestId) ?? []).sort((left, right) =>
           left.ordinal.localeCompare(right.ordinal),
         ),

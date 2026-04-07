@@ -1,0 +1,634 @@
+{
+  "generated_at": "2026-04-07T15:52:45.867Z",
+  "catalog_path": "catalog/default-catalog.min.json",
+  "output_path": "catalog/default-catalog.min.json",
+  "cutoffs_output_path": "data/codeforces-award-cutoffs.json",
+  "source_provider": "codeforces",
+  "apply": true,
+  "candidate_count": 61,
+  "fetched_count": 9,
+  "error_count": 52,
+  "cutoffs": [
+    {
+      "contest_id": "4eecb6e7-820c-5482-b9e1-c4a050def7e8",
+      "title": "2018-2019 ACM-ICPC, Asia East Continent Finals",
+      "codeforces_contest_id": "102056",
+      "source_url": "https://codeforces.com/gym/102056",
+      "source_provider": "codeforces",
+      "source_label": "Codeforces Gym",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 15,
+      "cutoffs": {
+        "gold": {
+          "rank": 1,
+          "solved": 5,
+          "penalty": 360,
+          "teamId": "52626"
+        },
+        "silver": {
+          "rank": 4,
+          "solved": 2,
+          "penalty": 183,
+          "teamId": "48302"
+        },
+        "bronze": {
+          "rank": 9,
+          "solved": 1,
+          "penalty": 158,
+          "teamId": "ccsu_cat_love_jiejie"
+        }
+      }
+    },
+    {
+      "contest_id": "fe7945d8-427d-57d6-a3df-48ae1342708a",
+      "title": "2018-2019 ACM-ICPC, Asia Jiaozuo Regional Contest",
+      "codeforces_contest_id": "102028",
+      "source_url": "https://codeforces.com/gym/102028",
+      "source_provider": "codeforces",
+      "source_label": "Codeforces Gym",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 55,
+      "cutoffs": {
+        "gold": {
+          "rank": 5,
+          "solved": 6,
+          "penalty": 489,
+          "teamId": "yjq_naiiive"
+        },
+        "silver": {
+          "rank": 16,
+          "solved": 5,
+          "penalty": 652,
+          "teamId": "51906"
+        },
+        "bronze": {
+          "rank": 33,
+          "solved": 2,
+          "penalty": 325,
+          "teamId": "nuanxin"
+        }
+      }
+    },
+    {
+      "contest_id": "b034a860-a632-51fa-89c6-81ec9843aff0",
+      "title": "2018-2019 ACM-ICPC, Asia Nanjing Regional Contest",
+      "codeforces_contest_id": "101981",
+      "source_url": "https://codeforces.com/gym/101981",
+      "source_provider": "codeforces",
+      "source_label": "Codeforces Gym",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 94,
+      "cutoffs": {
+        "gold": {
+          "rank": 9,
+          "solved": 6,
+          "penalty": 770,
+          "teamId": "48160"
+        },
+        "silver": {
+          "rank": 28,
+          "solved": 4,
+          "penalty": 462,
+          "teamId": "hantiaotiao"
+        },
+        "bronze": {
+          "rank": 56,
+          "solved": 1,
+          "penalty": 55,
+          "teamId": "Mitsuhaw"
+        }
+      }
+    },
+    {
+      "contest_id": "88c1ec18-5721-50ca-a6b8-656e6160bd46",
+      "title": "2018-2019 ACM-ICPC, Asia Shenyang Regional Contest",
+      "codeforces_contest_id": "101955",
+      "source_url": "https://codeforces.com/gym/101955",
+      "source_provider": "codeforces",
+      "source_label": "Codeforces Gym",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 40,
+      "cutoffs": {
+        "gold": {
+          "rank": 4,
+          "solved": 2,
+          "penalty": 152,
+          "teamId": "dacin21"
+        },
+        "silver": {
+          "rank": 12,
+          "solved": 2,
+          "penalty": 445,
+          "teamId": "AubRain"
+        },
+        "bronze": {
+          "rank": 24,
+          "solved": 1,
+          "penalty": 111,
+          "teamId": "Learnerxy"
+        }
+      }
+    },
+    {
+      "contest_id": "b84b53b2-0b01-5b1d-995e-3fff0d88cf8c",
+      "title": "2018-2019 ACM-ICPC, Asia Xuzhou Regional Contest",
+      "codeforces_contest_id": "102012",
+      "source_url": "https://codeforces.com/gym/102012",
+      "source_provider": "codeforces",
+      "source_label": "Codeforces Gym",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 31,
+      "cutoffs": {
+        "gold": {
+          "rank": 3,
+          "solved": 3,
+          "penalty": 441,
+          "teamId": "51589"
+        },
+        "silver": {
+          "rank": 9,
+          "solved": 2,
+          "penalty": 222,
+          "teamId": "31776"
+        },
+        "bronze": {
+          "rank": 18,
+          "solved": 1,
+          "penalty": 23,
+          "teamId": "dyume"
+        }
+      }
+    },
+    {
+      "contest_id": "bd74ee37-02f8-512b-bf19-220c08f657bc",
+      "title": "2018-2019 ACM-ICPC, China Multi-Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "102222",
+      "source_url": "https://codeforces.com/gym/102222",
+      "source_provider": "codeforces",
+      "source_label": "Codeforces Gym",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 4,
+      "cutoffs": {
+        "gold": null,
+        "silver": {
+          "rank": 1,
+          "solved": 13,
+          "penalty": 1227,
+          "teamId": "60555"
+        },
+        "bronze": {
+          "rank": 2,
+          "solved": 12,
+          "penalty": 1450,
+          "teamId": "43685"
+        }
+      }
+    },
+    {
+      "contest_id": "744bd29f-b782-545f-aa91-21e4127a7104",
+      "title": "2022 Shanghai Collegiate Programming Contest",
+      "codeforces_contest_id": "103931",
+      "source_url": "https://codeforces.com/gym/103931",
+      "source_provider": "codeforces",
+      "source_label": "Codeforces Gym",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 2,
+      "cutoffs": {
+        "gold": null,
+        "silver": null,
+        "bronze": {
+          "rank": 1,
+          "solved": 11,
+          "penalty": 1111,
+          "teamId": "triple__a"
+        }
+      }
+    },
+    {
+      "contest_id": "3a471a31-d02b-5e95-9618-9dfd8ca8c4ac",
+      "title": "CCPC 2016-2017, Finals",
+      "codeforces_contest_id": "101206",
+      "source_url": "https://codeforces.com/gym/101206",
+      "source_provider": "codeforces",
+      "source_label": "Codeforces Gym",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 24,
+      "cutoffs": {
+        "gold": {
+          "rank": 2,
+          "solved": 7,
+          "penalty": 1282,
+          "teamId": "25220"
+        },
+        "silver": {
+          "rank": 7,
+          "solved": 4,
+          "penalty": 591,
+          "teamId": "lzr_010506"
+        },
+        "bronze": {
+          "rank": 14,
+          "solved": 1,
+          "penalty": 9,
+          "teamId": "oos1111"
+        }
+      }
+    },
+    {
+      "contest_id": "13702f06-4035-5d2f-9273-542a31bacfc6",
+      "title": "第五届中国大学生程序设计竞赛 哈尔滨站（CCPC 2019 Harbin Site）",
+      "codeforces_contest_id": "102394",
+      "source_url": "https://codeforces.com/gym/102394",
+      "source_provider": "codeforces",
+      "source_label": "Codeforces Gym",
+      "cutoff_source": "inferred_official_medal_ratio_10_20_30",
+      "eligible_team_count": 346,
+      "cutoffs": {
+        "gold": {
+          "rank": 34,
+          "solved": 5,
+          "penalty": 666,
+          "teamId": "BenFromHUST"
+        },
+        "silver": {
+          "rank": 103,
+          "solved": 4,
+          "penalty": 543,
+          "teamId": "Bo12138"
+        },
+        "bronze": {
+          "rank": 207,
+          "solved": 2,
+          "penalty": 93,
+          "teamId": "58886"
+        }
+      }
+    }
+  ],
+  "errors": [
+    {
+      "contest_id": "842d4418-bf7d-5eca-9bec-4032b5c90fe5",
+      "title": "2014-2015 ACM-ICPC, Asia Mudanjiang Regional Contest",
+      "codeforces_contest_id": "100554",
+      "source_url": "https://codeforces.com/gym/100554",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "title": "2016-2017 ACM-ICPC CHINA-Final",
+      "codeforces_contest_id": "101194",
+      "source_url": "https://codeforces.com/gym/101194",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "5a3b18de-d000-5ab9-a77b-bf4e3e6e7188",
+      "title": "2017 China Collegiate Programming Contest Final (CCPC-Final 2017)",
+      "codeforces_contest_id": "104207",
+      "source_url": "https://codeforces.com/gym/104207",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b",
+      "title": "2017-2018 ACM-ICPC Asia East Continent League Final (ECL-Final 2017)",
+      "codeforces_contest_id": "101775",
+      "source_url": "https://codeforces.com/gym/101775",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "3e291fbb-1a71-5e8f-919d-318af31c4218",
+      "title": "2018 China Collegiate Programming Contest Final (CCPC-Final 2018)",
+      "codeforces_contest_id": "102055",
+      "source_url": "https://codeforces.com/gym/102055",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "ef84014d-61b3-5e71-8f19-8f6f552c57d6",
+      "title": "2019 China Collegiate Programming Contest Final (CCPC-Final 2019)",
+      "codeforces_contest_id": "102431",
+      "source_url": "https://codeforces.com/gym/102431",
+      "error": "No usable bronze cutoff from official Codeforces standings rows"
+    },
+    {
+      "contest_id": "6b61024f-712d-593d-80b3-00b74b720e0b",
+      "title": "2019 China Collegiate Programming Contest Qinhuangdao Onsite",
+      "codeforces_contest_id": "102361",
+      "source_url": "https://codeforces.com/gym/102361",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "eb2976be-353a-59ba-93a5-adc4b20913be",
+      "title": "2019 ICPC Asia-East Continent Final",
+      "codeforces_contest_id": "102471",
+      "source_url": "https://codeforces.com/gym/102471",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "4f9e483d-130f-5bbe-adb3-76b8926ca5af",
+      "title": "2019-2020 ICPC Asia Hong Kong Regional Contest",
+      "codeforces_contest_id": "102452",
+      "source_url": "https://codeforces.com/gym/102452",
+      "error": "No usable bronze cutoff from official Codeforces standings rows"
+    },
+    {
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "2020 China Collegiate Programming Contest Changchun Onsite",
+      "codeforces_contest_id": "102832",
+      "source_url": "https://codeforces.com/gym/102832",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "74443b43-bdc0-5659-b228-a8301cc80835",
+      "title": "2020 China Collegiate Programming Contest Qinhuangdao Site",
+      "codeforces_contest_id": "102769",
+      "source_url": "https://codeforces.com/gym/102769",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "315e1aa8-b487-5a7b-a19d-d99e15f18537",
+      "title": "2020 Jiangsu Collegiate Programming Contest",
+      "codeforces_contest_id": "102875",
+      "source_url": "https://codeforces.com/gym/102875",
+      "error": "No usable bronze cutoff from official Codeforces standings rows"
+    },
+    {
+      "contest_id": "1b8afce8-769f-5447-8d35-17e9d8478692",
+      "title": "2021 Hubei Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "103104",
+      "source_url": "https://codeforces.com/gym/103104",
+      "error": "No usable bronze cutoff from official Codeforces standings rows"
+    },
+    {
+      "contest_id": "2ad15588-253d-51cf-a870-cb184fd6b3ab",
+      "title": "2021 Jiangxi Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "103366",
+      "source_url": "https://codeforces.com/gym/103366",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "4bcbeeea-fb9c-5bb9-a02c-c01c88bad5cc",
+      "title": "2021 Xinjiang Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "103115",
+      "source_url": "https://codeforces.com/gym/103115",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "7d931e77-1d2c-5bf9-8c4a-357650428d2e",
+      "title": "2022 CCPC Henan Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "103941",
+      "source_url": "https://codeforces.com/gym/103941",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "c68771ee-2216-5543-9fb3-b60deef4e1c0",
+      "title": "2022 China Collegiate Programming Contest (CCPC) Guangzhou Onsite",
+      "codeforces_contest_id": "104053",
+      "source_url": "https://codeforces.com/gym/104053",
+      "error": "No usable bronze cutoff from official Codeforces standings rows"
+    },
+    {
+      "contest_id": "db44796f-a9c1-58b0-9a5a-81bfdf8c36a6",
+      "title": "2022 China Collegiate Programming Contest (CCPC) Mianyang Onsite",
+      "codeforces_contest_id": "104065",
+      "source_url": "https://codeforces.com/gym/104065",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "48166f23-fbea-5246-b0e7-ff6dc39aa160",
+      "title": "2022 Collegiate Programming Contest of Xiangtan University",
+      "codeforces_contest_id": "103765",
+      "source_url": "https://codeforces.com/gym/103765",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "42585869-60d1-53b9-b565-b03269dfb38f",
+      "title": "2023湖南省赛",
+      "codeforces_contest_id": "104611",
+      "source_url": "https://codeforces.com/gym/104611",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff",
+      "title": "2024 China Collegiate Programming Contest (CCPC) Female Onsite (2024年中国大学生程序设计竞赛女生专场)",
+      "codeforces_contest_id": "105487",
+      "source_url": "https://codeforces.com/gym/105487",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "4c61e830-0179-5f48-a33d-6a2141ff7015",
+      "title": "2025 National Invitational of CCPC (Fujian), The 12th Fujian Collegiate Programming Contest",
+      "codeforces_contest_id": "105977",
+      "source_url": "https://codeforces.com/gym/105977",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "b48a800e-5949-5b90-97c3-b0171c0914c6",
+      "title": "2025 北京市大学生程序设计竞赛暨“小米杯”全国邀请赛",
+      "codeforces_contest_id": "105851",
+      "source_url": "https://codeforces.com/gym/105851",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "f91b33c4-586d-5a8f-8f84-2a248c7f46ff",
+      "title": "China Collegiate Programming Contest 2021, Qualification Round (Online), Rematch",
+      "codeforces_contest_id": "103492",
+      "source_url": "https://codeforces.com/gym/103492",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "1b18fdeb-0feb-54e1-8853-d3bda9d56641",
+      "title": "The 14th Jilin Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "102800",
+      "source_url": "https://codeforces.com/gym/102800",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "eebc7566-3b93-50b3-b70a-309f232c3c0b",
+      "title": "The 15th Heilongjiang Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "102803",
+      "source_url": "https://codeforces.com/gym/102803",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "e1d3c1b0-bf1d-5ce0-b90f-58a011e8887e",
+      "title": "The 16th Heilongjiang Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "103107",
+      "source_url": "https://codeforces.com/gym/103107",
+      "error": "No usable bronze cutoff from official Codeforces standings rows"
+    },
+    {
+      "contest_id": "f1122720-406c-531d-8173-f97965cc03c2",
+      "title": "The 17th Heilongjiang Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "103688",
+      "source_url": "https://codeforces.com/gym/103688",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "6b470057-7548-5620-bf4c-f4cb5124be4b",
+      "title": "The 18th Heilongjiang Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "104363",
+      "source_url": "https://codeforces.com/gym/104363",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "ace15753-085a-5d14-bc7c-70a696d0f8b3",
+      "title": "The 19th Heilongjiang Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "105163",
+      "source_url": "https://codeforces.com/gym/105163",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "3e561dbb-360a-5cb4-8670-30f0ce40167d",
+      "title": "The 21st Hunan Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "106139",
+      "source_url": "https://codeforces.com/gym/106139",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "6eb5a527-6437-54e9-8561-9685f0dff94a",
+      "title": "The 2015 China Collegiate Programming Contest (CCPC 2015)",
+      "codeforces_contest_id": "103964",
+      "source_url": "https://codeforces.com/gym/103964",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "fae6c6d9-87ae-59d4-9fa3-4f6c64eafa4c",
+      "title": "The 2017 ACM-ICPC China Zhejiang Provincial Programming Contest (14th)",
+      "codeforces_contest_id": "104461",
+      "source_url": "https://codeforces.com/gym/104461",
+      "error": "No usable bronze cutoff from official Codeforces standings rows"
+    },
+    {
+      "contest_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "title": "The 2018 ACM-ICPC Asia Qingdao Regional Contest, Online (The 2nd Universal Cup. Stage 1: Qingdao)",
+      "codeforces_contest_id": "104270",
+      "source_url": "https://codeforces.com/gym/104270",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "4dca1a19-fa44-512b-9c7a-8b8540c8ab79",
+      "title": "The 2019 ICPC Asia Nanjing Regional Contest",
+      "codeforces_contest_id": "103466",
+      "source_url": "https://codeforces.com/gym/103466",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "8671c6ba-007d-5496-ac31-e9cb37734086",
+      "title": "The 2019 ICPC China Sichuan Provincial Programming Contest",
+      "codeforces_contest_id": "102821",
+      "source_url": "https://codeforces.com/gym/102821",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "13466675-d0fc-5dbc-8c40-689a8366bdd4",
+      "title": "The 2020 ICPC Asia Macau Regional Contest",
+      "codeforces_contest_id": "103119",
+      "source_url": "https://codeforces.com/gym/103119",
+      "error": "No usable bronze cutoff from official Codeforces standings rows"
+    },
+    {
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "The 2021 China Collegiate Programming Contest (Harbin)",
+      "codeforces_contest_id": "103447",
+      "source_url": "https://codeforces.com/gym/103447",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "b7b281e9-4786-5e94-b0a8-f74b83af926d",
+      "title": "The 2021 ICPC Asia Macau Regional Contest",
+      "codeforces_contest_id": "104373",
+      "source_url": "https://codeforces.com/gym/104373",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46",
+      "title": "The 2021 ICPC China Sichuan Provincial Programming Contest",
+      "codeforces_contest_id": "103117",
+      "source_url": "https://codeforces.com/gym/103117",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "f0e14f1a-5dbe-55d9-b6c8-64f09f2ac332",
+      "title": "The 2023 ICPC Asia East Continent Online Contest (I)",
+      "codeforces_contest_id": "104639",
+      "source_url": "https://codeforces.com/gym/104639",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "341a425a-e3a3-5a18-8cc7-6380793e186c",
+      "title": "The 2024 CCPC National Invitational Contest (Changchun) , The 17th Jilin Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "105170",
+      "source_url": "https://codeforces.com/gym/105170",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "44512cc4-fbec-5ffc-9558-c692354c9b78",
+      "title": "The 2024 CCPC National Invitational Contest (Northeast), The 18th Northeast Collegiate Programming Contest",
+      "codeforces_contest_id": "105173",
+      "source_url": "https://codeforces.com/gym/105173",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "7cb8a4a0-4b89-5914-82e1-38745ae4cf87",
+      "title": "The 2024 ICPC Asia East Continent Online Contest (II)",
+      "codeforces_contest_id": "105358",
+      "source_url": "https://codeforces.com/gym/105358",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "The 2025 ICPC Asia East Continent Online Contest (II)",
+      "codeforces_contest_id": "106072",
+      "source_url": "https://codeforces.com/gym/106072",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "146c5860-236d-58c9-823f-97c2d2b10ca4",
+      "title": "The 2025 Jiangsu Collegiate Programming Contest, The 2025 Guangdong Provincial Collegiate Programming Contest",
+      "codeforces_contest_id": "105945",
+      "source_url": "https://codeforces.com/gym/105945",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "5f133fa7-f237-5750-ba30-9ee51e651bc6",
+      "title": "第八届中国大学生程序设计竞赛 威海站（CCPC 2022 Weihai）",
+      "codeforces_contest_id": "104023",
+      "source_url": "https://codeforces.com/gym/104023",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "830a11dd-ef5f-5e5a-9b8d-656e9048b041",
+      "title": "第八届中国大学生程序设计竞赛 桂林站（CCPC 2022 Guilin）",
+      "codeforces_contest_id": "104008",
+      "source_url": "https://codeforces.com/gym/104008",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "第六届中国大学生程序设计竞赛 威海站（CCPC 2020 Weihai）",
+      "codeforces_contest_id": "102798",
+      "source_url": "https://codeforces.com/gym/102798",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "第六届中国大学生程序设计竞赛 绵阳站（CCPC 2020 Mianyang）",
+      "codeforces_contest_id": "102822",
+      "source_url": "https://codeforces.com/gym/102822",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "9c678c83-09b0-535d-9053-1049bd087f63",
+      "title": "第十三届重庆市大学生程序设计竞赛",
+      "codeforces_contest_id": "105887",
+      "source_url": "https://codeforces.com/gym/105887",
+      "error": "No official Codeforces standings rows found"
+    },
+    {
+      "contest_id": "e0e09ba7-5ad7-5745-8197-f3397a5b5687",
+      "title": "第四届中国大学生程序设计竞赛 桂林站（CCPC 2018 Guilin Site）",
+      "codeforces_contest_id": "102823",
+      "source_url": "https://codeforces.com/gym/102823",
+      "error": "No official Codeforces standings rows found"
+    }
+  ]
+}

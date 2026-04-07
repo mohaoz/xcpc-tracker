@@ -51,6 +51,7 @@ function mapContest(detail: CatalogContestDetail): LocalCatalogContestRecord {
     curationStatus: detail.curation_status,
     problemIds: detail.problems.map((problem) => problem.id),
     sources: detail.sources,
+    awardCutoffs: detail.awardCutoffs,
     notes: detail.notes ?? null,
     generatedFrom: detail.generated_from ?? null,
   };
@@ -102,6 +103,7 @@ export async function loadBundledCatalogSnapshot(options?: { forceRefresh?: bool
       curationStatus: contest.curationStatus,
       problemIds: contest.problemIds ?? [],
       sources: contest.sources ?? [],
+      awardCutoffs: contest.awardCutoffs,
       notes: contest.notes ?? null,
       generatedFrom: contest.generatedFrom ?? "catalog",
       deletedAt: null,
