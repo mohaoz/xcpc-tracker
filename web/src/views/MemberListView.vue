@@ -166,7 +166,6 @@ onUnmounted(() => {
                 <div class="inline-tags" style="margin-top: 10px">
                   <span class="tag tag--neutral">{{ person.providerCount }} 个平台</span>
                   <span class="tag tag--neutral">{{ person.handleCount }} 个账号</span>
-                  <span class="tag tag--neutral">{{ person.totalProblemCount }} 题记录</span>
                 </div>
               </div>
               <div class="member-card__actions">

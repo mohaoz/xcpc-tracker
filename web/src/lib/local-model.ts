@@ -118,7 +118,6 @@ export type LocalMemberPerson = {
   displayName: string;
   providerCount: number;
   handleCount: number;
-  totalProblemCount: number;
   solvedCount: number;
   attemptedCount: number;
   lastSyncedAt: string | null;
