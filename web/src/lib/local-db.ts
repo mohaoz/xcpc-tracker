@@ -1054,20 +1054,38 @@ export async function listCodeforcesMemberSyncTargets(): Promise<Array<{
 }
 
 export async function softDeleteMemberHandle(handleId: string): Promise<void> {
-  const handle = await localDb.memberHandles.get(handleId);
-  if (!handle) {
-    return;
-  }
-  await localDb.memberHandles.put({
-    ...handle,
-    deletedAt: new Date().toISOString(),
-  });
+  await localDb.transaction(
+    "rw",
+    [localDb.memberHandles, localDb.memberProblemStatus],
+    async () => {
+      const handle = await localDb.memberHandles.get(handleId);
+      if (!handle) {
+        return;
+      }
+
+      await localDb.memberHandles.put({
+        ...handle,
+        deletedAt: new Date().toISOString(),
+      });
+
+      const providerStatuses = await localDb.memberProblemStatus
+        .where("memberId")
+        .equals(handle.memberId)
+        .toArray();
+      const statusIds = providerStatuses
+        .filter((status) => status.provider === handle.provider && status.provider !== "manual")
+        .map((status) => status.statusId);
+      if (statusIds.length > 0) {
+        await localDb.memberProblemStatus.bulkDelete(statusIds);
+      }
+    },
+  );
 }
 
 export async function softDeleteMember(memberId: string): Promise<void> {
   await localDb.transaction(
     "rw",
-    [localDb.members, localDb.memberHandles],
+    [localDb.members, localDb.memberHandles, localDb.memberProblemStatus],
     async () => {
       const member = await localDb.members.get(memberId);
       if (member) {
@@ -1083,6 +1101,11 @@ export async function softDeleteMember(memberId: string): Promise<void> {
           ...handle,
           deletedAt: new Date().toISOString(),
         });
+      }
+
+      const statuses = await localDb.memberProblemStatus.where("memberId").equals(memberId).toArray();
+      if (statuses.length > 0) {
+        await localDb.memberProblemStatus.bulkDelete(statuses.map((status) => status.statusId));
       }
     },
   );
