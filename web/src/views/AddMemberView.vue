@@ -51,12 +51,7 @@ function buildQojBrowserScript(payload: {
     return cleanText(heading?.textContent);
   }
 
-  function extractProblemIds(headingText) {
-    const headings = Array.from(document.querySelectorAll(".list-group-item-heading"));
-    const heading = headings.find((node) => cleanText(node.textContent).includes(headingText));
-    if (!heading) {
-      return [];
-    }
+  function extractProblemIdsFromSection(heading) {
     const links = [];
     const seen = new Set();
     const result = [];
@@ -85,6 +80,28 @@ function buildQojBrowserScript(payload: {
     return result;
   }
 
+  function extractProblemSections() {
+    const headings = Array.from(document.querySelectorAll(".list-group-item-heading"));
+    return headings
+      .map((heading) => ({
+        headingText: cleanText(heading.textContent),
+        problemIds: extractProblemIdsFromSection(heading),
+      }))
+      .filter((section) => section.problemIds.length > 0);
+  }
+
+  function extractProblemIds(headingPatterns, fallbackSectionIndex) {
+    const sections = extractProblemSections();
+    const section = sections.find((item) =>
+      headingPatterns.some((pattern) => pattern.test(item.headingText)),
+    );
+    if (section) {
+      return section.problemIds;
+    }
+
+    return sections[fallbackSectionIndex]?.problemIds ?? [];
+  }
+
   const handle = extractHandle();
   if (!handle) {
     throw new Error("无法从当前页面识别 QOJ 用户名");
@@ -95,8 +112,9 @@ function buildQojBrowserScript(payload: {
 
   const memberId = cleanText(embeddedMemberId) || handle;
   const displayName = memberId || extractDisplayName() || handle;
-  const solved = extractProblemIds("Accepted problems");
-  const attempted = extractProblemIds("Tried problems").filter((problemId) => !solved.includes(problemId));
+  const solved = extractProblemIds([/Accepted problems/i], 0);
+  const attempted = extractProblemIds([/Tried problems/i], 1)
+    .filter((problemId) => !solved.includes(problemId));
 
   const payload = {
     provider: "qoj",
