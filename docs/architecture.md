@@ -106,4 +106,4 @@
 - Catalog validation and generation are handled by repo-level scripts.
 - Codeforces member sync runs directly in the browser.
 - Contest list filters are stored locally in app state rather than in URL query parameters.
-- Default catalog upgrades can trigger a forced one-click local re-init when the bundled catalog minor version is newer than the locally applied version.
+- Default catalog is consumed through deploy-time generated static assets; browser runtime should not force local re-init based on bundled version changes.

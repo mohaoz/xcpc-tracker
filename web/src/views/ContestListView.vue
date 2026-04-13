@@ -3,27 +3,22 @@ import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { RouterLink } from "vue-router";
 
 import type { CatalogContestIndexItem } from "../lib/catalog";
-import { importBundledCatalogSnapshot } from "../lib/catalog-cache";
 import { subscribeCatalogMutated } from "../lib/catalog-events";
+import { listRuntimeCatalogContests, listRuntimeContestCoveragePayload, type RuntimeCatalogContestListRecord } from "../lib/catalog-runtime";
 import {
-  getCatalogDbStatus,
-  listDeletedCatalogContestIdsFromDb,
-  listCatalogContestsFromDb,
-  listContestCoverageSummariesFromDb,
+  listContestCoverageSummariesForCatalog,
   listMemberPeopleFromDb,
 } from "../lib/local-db";
 import type {
-  LocalCatalogContestRecord,
   LocalContestCoverageSummary,
   LocalMemberPerson,
 } from "../lib/local-model";
 import { contestListModes, type ContestListMode, useContestListStore } from "../stores/contest-list";
 
 const contests = ref<CatalogContestIndexItem[]>([]);
-const localContestMap = ref(new Map<string, LocalCatalogContestRecord>());
+const localContestMap = ref(new Map<string, RuntimeCatalogContestListRecord>());
 const coverageSummaryMap = ref(new Map<string, LocalContestCoverageSummary>());
 const loading = ref(false);
-const importingDefaultData = ref(false);
 const error = ref("");
 const generatedAt = ref("");
 const memberOptions = ref<LocalMemberPerson[]>([]);
@@ -125,7 +120,7 @@ const allMembersSelected = computed(() => {
   return contestListStore.selectedMemberIds.length === memberOptions.value.length;
 });
 function getSolvedCutoff(
-  contest: LocalCatalogContestRecord | undefined,
+  contest: RuntimeCatalogContestListRecord | undefined,
   medal: "gold" | "silver" | "bronze",
 ) {
   const solved = contest?.awardCutoffs?.cutoffs[medal]?.solved;
@@ -289,34 +284,38 @@ async function loadContests() {
       contestListStore.selectedMemberIds = localMembers.map((member) => member.memberId);
       contestListStore.memberSelectionInitialized = true;
     }
-    const [localContests, deletedContestIds, coverageSummaries, dbStatus] = await Promise.all([
-      listCatalogContestsFromDb(),
-      listDeletedCatalogContestIdsFromDb(),
-      listContestCoverageSummariesFromDb({ memberIds: contestListStore.selectedMemberIds }),
-      getCatalogDbStatus(),
+    const [runtimeCatalog, coveragePayload] = await Promise.all([
+      listRuntimeCatalogContests(),
+      listRuntimeContestCoveragePayload(),
     ]);
+    const coverageSummaries = await listContestCoverageSummariesForCatalog(coveragePayload, {
+      memberIds: contestListStore.selectedMemberIds,
+    });
     if (requestId !== latestLoadRequestId) {
       return;
     }
-    const localContestById = new Map(localContests.map((contest) => [contest.contestId, contest]));
-    const localItems: CatalogContestIndexItem[] = localContests
-      .filter((contest) => !deletedContestIds.has(contest.contestId))
-      .map((contest) => ({
-        id: contest.contestId,
-        title: contest.title,
-        aliases: contest.aliases,
-        tags: contest.tags,
-        curation_status: contest.curationStatus,
-        problem_count:
-          coverageSummaries.find((summary) => summary.contestId === contest.contestId)?.problemCount ??
-          contest.problemIds.length,
-      }));
+    const localContestById = new Map(runtimeCatalog.contests.map((contest) => [contest.contestId, contest]));
+    const localItems: CatalogContestIndexItem[] = runtimeCatalog.contests.map((contest) => ({
+      id: contest.contestId,
+      title: contest.title,
+      aliases: contest.aliases,
+      tags: contest.tags,
+      start_at: contest.startAt,
+      curation_status: contest.curationStatus,
+      sources: contest.sources,
+      awardCutoffs: contest.awardCutoffs ?? null,
+      notes: contest.notes ?? null,
+      generated_from: contest.generatedFrom ?? "catalog",
+      problem_count:
+        coverageSummaries.find((summary) => summary.contestId === contest.contestId)?.problemCount ??
+        contest.problemCount,
+    }));
     contests.value = localItems.sort(compareContestsByTime);
     localContestMap.value = localContestById;
     coverageSummaryMap.value = new Map(
       coverageSummaries.map((summary) => [summary.contestId, summary]),
     );
-    generatedAt.value = dbStatus.lastCatalogImportAt ?? "";
+    generatedAt.value = runtimeCatalog.generatedAt ?? "";
     if (contestListStore.page > totalPages.value) {
       contestListStore.page = totalPages.value;
     }
@@ -364,23 +363,6 @@ function listModeBadgeClass(mode: ContestListMode) {
 
 function awardRangeClass(mode: ContestListMode) {
   return `contest-award-range--${mode.toLowerCase().replace(/[^a-z0-9]+/gu, "-")}`;
-}
-
-async function handleImportDefaultData() {
-  importingDefaultData.value = true;
-  error.value = "";
-  try {
-    await importBundledCatalogSnapshot({
-      mode: "replace",
-      includeProblems: true,
-    });
-    await loadContests();
-    window.dispatchEvent(new CustomEvent("xvg:catalog-mutated"));
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to import default catalog";
-  } finally {
-    importingDefaultData.value = false;
-  }
 }
 
 function problemStateClass(status: "solved" | "attempted" | "unseen") {
@@ -548,14 +530,9 @@ watch(() => contestListStore.selectedModes, () => {
 
         <p v-if="error" class="error-box" style="margin-bottom: 16px">{{ error }}</p>
 
-        <div v-if="loading" class="notice">正在加载比赛列表...</div>
+        <div v-if="loading" class="notice">catalog loading...</div>
         <div v-else-if="!contests.length" class="notice">
-          <div>当前还没有本地比赛数据。</div>
-          <div class="actions" style="margin-top: 12px; margin-bottom: 0">
-            <button class="button" :disabled="importingDefaultData" @click="handleImportDefaultData">
-              {{ importingDefaultData ? "导入中..." : "导入默认数据" }}
-            </button>
-          </div>
+          当前没有可显示的比赛数据。
         </div>
         <div v-else-if="!visibleContests.length" class="notice">
           当前标签筛选下没有匹配的比赛。

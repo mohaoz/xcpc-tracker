@@ -8,7 +8,7 @@
 - 在浏览器里维护比赛、成员和覆盖状态
 - 在比赛列表中直接查看每题颜色状态条
 - 用统一搜索、成员筛选和标签匹配快速挑比赛
-- 导入、导出本地比赛与成员数据
+- 导入、导出本地成员数据
 - 通过 Codeforces handle 导入和同步成员做题状态
 - 通过 QOJ 浏览器脚本导入成员做题状态
 
@@ -27,6 +27,7 @@
 ```bash
 npm run catalog:build-final
 npm run catalog:generate-default
+npm run catalog:generate-web-assets
 npm run catalog:refresh
 npm run catalog:validate
 ```
@@ -37,14 +38,15 @@ npm run catalog:validate
 2. 将导出的文件保存为 `data/contests.json`
 3. 运行 `npm run catalog:build-final`，生成 `data/final.json`
 4. 运行 `npm run catalog:generate-default`，生成 `catalog/default-catalog.min.json`
-5. 或直接运行 `npm run catalog:refresh`
+5. 运行 `npm run catalog:generate-web-assets`，生成前端直接读取的静态索引与详情分片
+6. 或直接运行 `npm run catalog:refresh`
 
 前端构建：
 
 ```bash
-cd web
-npm install
-npm run build
+npm ci --prefix web
+npm run catalog:generate-web-assets
+npm run build --prefix web
 ```
 
 ## 部署
@@ -55,6 +57,7 @@ npm run build
 - 构建命令：`npm ci --prefix web && npm run deploy:build`
 - 发布目录：`web/dist`
 - 仓库已包含 [netlify.toml](./netlify.toml)
+- 部署构建会先校验 catalog，再生成 `catalog/generated/` 静态索引与详情分片，最后构建前端
 - 部署构建不会重新抓取 XCPCIO Board 或 Codeforces，只使用仓库里已提交的 catalog / data
 
 ### 本地服务器
@@ -67,7 +70,9 @@ npm run deploy:build
 ```
 
 - 实际部署目录：`web/dist`
+- 默认 catalog 在部署期被切成静态资产，浏览器直接读取 `default-catalog.min.json` 与 `generated/*.json`
 - 这是一个 SPA，服务器需要把未知路径回退到 `index.html`
+- 如果站点部署在子路径下而不是域名根路径下，需要同步设置 Vite `base`，让路由和静态 JSON 请求都使用同一个前缀
 - Caddy 最小配置示例：
 
 ```caddy
@@ -81,6 +86,7 @@ npm run deploy:build
 - 如果只是临时在本机预览：
 
 ```bash
+npm run deploy:build
 cd web
 npm run preview -- --host 0.0.0.0 --port 4173
 ```
@@ -96,7 +102,7 @@ npm run preview -- --host 0.0.0.0 --port 4173
 - `/members/new`
   通过 Codeforces handle 添加成员，或启动 QOJ 导入流程
 - `/manage`
-  一键初始化，以及本地比赛/成员数据导入导出工具
+  本地成员数据导入导出工具；默认 catalog 由静态资源直接提供
 
 ## 相关文档
 

@@ -53,7 +53,7 @@
 
 ## Frontend Data Model
 - If modeling runtime entities, then define frontend-oriented records for `contest`, `problem`, `member`, `member_problem_status`, `sync_record`, and `import_source`.
-- If describing catalog bootstrap behavior, then note that the browser may force one-click local initialization when the local bundled-catalog minor version is behind the shipped default catalog version.
+- If describing catalog bootstrap behavior, then note that the shipped default catalog is consumed as prebuilt static assets and should not trigger browser-side full initialization based on version checks.
 - If the product question is "has this member solved or tried this curated problem", then model that directly in IndexedDB.
 - If UI lists tracked people, then group by stable local member identity and treat provider handles as linked sources.
 - If upstream fields differ across providers, then keep normalized columns plus raw payload metadata.

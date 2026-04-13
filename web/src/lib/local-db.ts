@@ -234,6 +234,18 @@ export async function listContestProblemsFromDb(contestId: string): Promise<Loca
   return records.sort((left, right) => left.ordinal.localeCompare(right.ordinal));
 }
 
+export async function listContestProblemsByContestIdsFromDb(contestIds: string[]): Promise<Map<string, LocalCatalogProblemRecord[]>> {
+  const problemsByContestId = new Map<string, LocalCatalogProblemRecord[]>();
+  const uniqueContestIds = [...new Set(contestIds.filter(Boolean))];
+
+  await Promise.all(uniqueContestIds.map(async (contestId) => {
+    const problems = await listContestProblemsFromDb(contestId);
+    problemsByContestId.set(contestId, problems);
+  }));
+
+  return problemsByContestId;
+}
+
 export async function getCatalogContestFromDb(contestId: string): Promise<LocalCatalogContestRecord | undefined> {
   const contest = await localDb.catalogContests.get(contestId);
   if (contest?.deletedAt) {
@@ -1086,16 +1098,27 @@ export async function getContestCoverageFromDb(
   contestId: string,
   options?: { memberIds?: string[] },
 ): Promise<LocalContestCoverage> {
-  const [contest, problems, allMembers, allStatuses] = await Promise.all([
+  const [contest, problems] = await Promise.all([
     getCatalogContestFromDb(contestId),
     listContestProblemsFromDb(contestId),
-    listMemberPeopleFromDb(),
-    localDb.memberProblemStatus.toArray(),
   ]);
 
   if (!contest) {
     throw new Error(`Unknown contest: ${contestId}`);
   }
+
+  return getContestCoverageForCatalog(contest, problems, options);
+}
+
+export async function getContestCoverageForCatalog(
+  contest: LocalCatalogContestRecord,
+  problems: LocalCatalogProblemRecord[],
+  options?: { memberIds?: string[] },
+): Promise<LocalContestCoverage> {
+  const [allMembers, allStatuses] = await Promise.all([
+    listMemberPeopleFromDb(),
+    localDb.memberProblemStatus.toArray(),
+  ]);
 
   const memberIdFilter = options?.memberIds ? new Set(options.memberIds) : null;
   const members = memberIdFilter !== null
@@ -1153,6 +1176,12 @@ export async function getContestCoverageSummaryFromDb(
   options?: { memberIds?: string[] },
 ): Promise<LocalContestCoverageSummary | null> {
   const coverage = await getContestCoverageFromDb(contestId, options);
+  return summarizeContestCoverage(coverage);
+}
+
+export function summarizeContestCoverage(
+  coverage: LocalContestCoverage,
+): LocalContestCoverageSummary | null {
   if (coverage.problemCount === 0) {
     return null;
   }
@@ -1167,7 +1196,7 @@ export async function getContestCoverageSummaryFromDb(
   });
 
   return {
-    contestId,
+    contestId: coverage.contest.contestId,
     problemCount: coverage.problemCount,
     freshProblemCount: coverage.freshProblemCount,
     solvedProblemCount: problemStates.filter((problem) => problem.status === "solved").length,
@@ -1183,5 +1212,22 @@ export async function listContestCoverageSummariesFromDb(
   const summaries = await Promise.all(
     contests.map((contest) => getContestCoverageSummaryFromDb(contest.contestId, options)),
   );
+  return summaries.filter((summary): summary is LocalContestCoverageSummary => summary !== null);
+}
+
+export async function listContestCoverageSummariesForCatalog(
+  payload: Array<{
+    contest: LocalCatalogContestRecord;
+    problems: LocalCatalogProblemRecord[];
+  }>,
+  options?: { memberIds?: string[] },
+): Promise<LocalContestCoverageSummary[]> {
+  const summaries = await Promise.all(
+    payload.map(async ({ contest, problems }) => {
+      const coverage = await getContestCoverageForCatalog(contest, problems, options);
+      return summarizeContestCoverage(coverage);
+    }),
+  );
+
   return summaries.filter((summary): summary is LocalContestCoverageSummary => summary !== null);
 }

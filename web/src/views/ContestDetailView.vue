@@ -10,15 +10,13 @@ import {
   type CatalogContestDetail,
 } from "../lib/catalog";
 import { aggregateAliasesFromSources } from "../lib/catalog-sources";
+import { getRuntimeCatalogContestDetail, listRuntimeCatalogContests } from "../lib/catalog-runtime";
 import { emitCatalogMutated } from "../lib/catalog-events";
 import { emitMemberMutated } from "../lib/member-events";
 import {
   deleteCatalogContestRecord,
-  getCatalogContestDetailFromDb,
-  getContestCoverageFromDb,
+  getContestCoverageForCatalog,
   getManualMemberProblemStatusFromDb,
-  hasDeletedCatalogContestId,
-  listCatalogContestsFromDb,
   replaceManualCatalogContest,
   upsertManualMemberProblemStatus,
 } from "../lib/local-db";
@@ -185,24 +183,16 @@ async function loadContestPage() {
   loading.value = true;
   error.value = "";
   try {
-    const [localDetail, allContests] = await Promise.all([
-      getCatalogContestDetailFromDb(contestId.value),
-      listCatalogContestsFromDb(),
+    const [runtimeDetail, allContests] = await Promise.all([
+      getRuntimeCatalogContestDetail(contestId.value),
+      listRuntimeCatalogContests(),
     ]);
-    existingTags.value = [...new Set(allContests.flatMap((item) => item.tags))].sort((left, right) =>
+    existingTags.value = [...new Set(allContests.contests.flatMap((item) => item.tags))].sort((left, right) =>
       left.localeCompare(right),
     );
-    if (localDetail) {
-      const localCoverage = await getContestCoverageFromDb(contestId.value);
-      coverage.value = localCoverage;
-      contest.value = mapLocalContestRecordToDetail(localDetail.contest, localDetail.problems);
-      loadAwardCutoffs();
-    } else {
-      if (await hasDeletedCatalogContestId(contestId.value)) {
-        throw new Error("contest deleted");
-      }
-      throw new Error("contest not found locally");
-    }
+    coverage.value = await getContestCoverageForCatalog(runtimeDetail.contest, runtimeDetail.problems);
+    contest.value = mapLocalContestRecordToDetail(runtimeDetail.contest, runtimeDetail.problems);
+    loadAwardCutoffs();
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "加载比赛失败";
   } finally {
@@ -211,10 +201,11 @@ async function loadContestPage() {
 }
 
 async function refreshCoverageOnly() {
-  if (!contestId.value) {
+  if (!contestId.value || !contest.value) {
     return;
   }
-  coverage.value = await getContestCoverageFromDb(contestId.value);
+  const runtimeDetail = await getRuntimeCatalogContestDetail(contestId.value);
+  coverage.value = await getContestCoverageForCatalog(runtimeDetail.contest, runtimeDetail.problems);
 }
 
 async function saveContestMetadata(payload: {
@@ -384,7 +375,7 @@ onMounted(loadContestPage);
   <div class="view-stack">
     <section class="panel">
       <div class="panel__body">
-        <div v-if="loading" class="notice">正在加载比赛...</div>
+        <div v-if="loading" class="notice">catalog loading...</div>
         <template v-else-if="contest">
           <div class="panel__header">
             <div class="panel__title">

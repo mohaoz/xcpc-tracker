@@ -16,8 +16,12 @@ npm run dev
 
 ## Build
 
+From the repo root:
+
 ```bash
-npm run build
+npm ci --prefix web
+npm run catalog:generate-web-assets
+npm run build --prefix web
 ```
 
 ## Current Views
@@ -25,7 +29,7 @@ npm run build
 - `/contests`
   contest pool with unified search, member filter, pagination, and per-problem status strips
 - `/manage`
-  one-click init plus local contest/member import and export
+  local member import and export
 - `/contests/:contestId`
   contest detail, coverage matrix, and metadata editor
 - `/members`
@@ -35,7 +39,7 @@ npm run build
 
 ## Notes
 
-- the frontend reads the bundled default catalog from `catalog/default-catalog.min.json`
+- the frontend reads the bundled default catalog and generated static assets from `catalog/`
 - runtime state lives in Dexie / IndexedDB
 - contest data is curated/imported locally; the frontend does not provide contest-side online sync
 - member-side Codeforces sync is still available in the browser

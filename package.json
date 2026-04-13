@@ -7,14 +7,15 @@
     "catalog:build-final": "node scripts/build-final-json.mjs",
     "catalog:fetch-cf-problems": "node scripts/fetch-codeforces-problems.mjs",
     "catalog:generate-default": "node scripts/generate-default-catalog.mjs",
+    "catalog:generate-web-assets": "node scripts/generate-web-catalog-assets.mjs",
     "catalog:import-cf-problems": "node scripts/import-codeforces-problems-export.mjs",
     "catalog:import-qoj-problems": "node scripts/import-qoj-problems-export.mjs",
     "catalog:match-xcpcio-board": "node scripts/match-xcpcio-board-contests.mjs",
     "catalog:refresh-xcpcio-board": "node scripts/match-xcpcio-board-contests.mjs --fetch-raw --normalize && node scripts/match-xcpcio-board-contests.mjs --apply --apply-confidence=high --fetch-cutoffs",
     "catalog:refresh-codeforces-award-cutoffs": "node scripts/fetch-codeforces-award-cutoffs.mjs --apply",
-    "catalog:refresh": "node scripts/build-final-json.mjs && node scripts/generate-default-catalog.mjs && npm run catalog:refresh-xcpcio-board && npm run catalog:refresh-codeforces-award-cutoffs",
+    "catalog:refresh": "node scripts/build-final-json.mjs && node scripts/generate-default-catalog.mjs && node scripts/generate-web-catalog-assets.mjs && npm run catalog:refresh-xcpcio-board && npm run catalog:refresh-codeforces-award-cutoffs",
     "catalog:build-tools": "./web/node_modules/.bin/tsc -p scripts/tsconfig.catalog.json",
     "catalog:validate": "npm run catalog:build-tools && node .catalog-tools-build/validate-catalog.js",
-    "deploy:build": "npm run catalog:validate && npm run build --prefix web"
+    "deploy:build": "npm run catalog:validate && npm run catalog:generate-web-assets && npm run build --prefix web"
   }
 }

@@ -5,7 +5,12 @@ export type CatalogContestIndexItem = {
   title: string;
   aliases: string[];
   tags: string[];
+  start_at?: string | null;
   curation_status: "contest_stub" | "problem_listed" | "reviewed";
+  sources?: CatalogSource[];
+  awardCutoffs?: CatalogAwardCutoffs | null;
+  notes?: string | null;
+  generated_from?: string;
   problem_count: number;
 };
 
@@ -13,6 +18,7 @@ export type CatalogContestIndex = {
   generated_at: string;
   source: string;
   contest_count: number;
+  problem_count?: number;
   contests: CatalogContestIndexItem[];
 };
 
@@ -114,8 +120,32 @@ export type CatalogSnapshotBundle = {
   problems: CatalogSnapshotProblem[];
 };
 
+export type CatalogCoverageBasis = {
+  generated_at: string;
+  contest_count: number;
+  problem_count: number;
+  contests: Array<{
+    contestId: string;
+    problems: Array<{
+      problemId: string;
+      ordinal: string;
+      title: string;
+    }>;
+  }>;
+};
+
+export type CatalogProblemLookup = {
+  generated_at: string;
+  problem_count: number;
+  problems: CatalogSnapshotProblem[];
+};
+
 async function requestStaticJson<T>(path: string, options?: { cacheMode?: RequestCache }): Promise<T> {
-  const response = await fetch(path, {
+  const normalizedBaseUrl = import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
+  const normalizedPath = path.replace(/^\/+/, "");
+  const response = await fetch(`${normalizedBaseUrl}${normalizedPath}`, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -132,22 +162,30 @@ async function requestStaticJson<T>(path: string, options?: { cacheMode?: Reques
 
 let catalogBundlePromise: Promise<GeneratedCatalogBundle> | null = null;
 let catalogSnapshotPromise: Promise<CatalogSnapshotBundle> | null = null;
+let contestIndexPromise: Promise<CatalogContestIndex> | null = null;
+let coverageBasisPromise: Promise<CatalogCoverageBasis> | null = null;
+let problemLookupPromise: Promise<CatalogProblemLookup> | null = null;
+const contestDetailPromiseMap = new Map<string, Promise<CatalogContestDetail>>();
 
 export function resetCatalogFetchCache(): void {
   catalogBundlePromise = null;
   catalogSnapshotPromise = null;
+  contestIndexPromise = null;
+  coverageBasisPromise = null;
+  problemLookupPromise = null;
+  contestDetailPromiseMap.clear();
 }
 
 export async function fetchBundledCatalogSnapshot(options?: { forceRefresh?: boolean }): Promise<CatalogSnapshotBundle> {
   if (options?.forceRefresh) {
     resetCatalogFetchCache();
-    catalogSnapshotPromise = requestStaticJson<CatalogSnapshotBundle>("/default-catalog.min.json", {
+    catalogSnapshotPromise = requestStaticJson<CatalogSnapshotBundle>("default-catalog.min.json", {
       cacheMode: "reload",
     });
     return catalogSnapshotPromise;
   }
 
-  catalogSnapshotPromise ??= requestStaticJson<CatalogSnapshotBundle>("/default-catalog.min.json");
+  catalogSnapshotPromise ??= requestStaticJson<CatalogSnapshotBundle>("default-catalog.min.json");
   return catalogSnapshotPromise;
 }
 
@@ -196,27 +234,35 @@ export async function fetchGeneratedCatalogBundle(options?: { forceRefresh?: boo
 }
 
 export async function fetchCatalogContestIndex(): Promise<CatalogContestIndex> {
-  const bundle = await fetchGeneratedCatalogBundle();
-  return {
-    generated_at: bundle.generated_at,
-    source: bundle.source,
-    contest_count: bundle.contest_count,
-    contests: bundle.contests.map((contest) => ({
-      id: contest.id,
-      title: contest.title,
-      aliases: contest.aliases,
-      tags: contest.tags,
-      curation_status: contest.curation_status,
-      problem_count: contest.problem_count ?? contest.problems.length,
-    })),
-  };
+  contestIndexPromise ??= requestStaticJson<CatalogContestIndex>("generated/contest-index.json");
+  return contestIndexPromise;
 }
 
 export async function fetchCatalogContestDetail(contestId: string): Promise<CatalogContestDetail> {
-  const bundle = await fetchGeneratedCatalogBundle();
-  const contest = bundle.contests.find((item) => item.id === contestId);
-  if (!contest) {
-    throw new Error(`Unknown contest: ${contestId}`);
+  const cacheKey = encodeURIComponent(contestId);
+  const cached = contestDetailPromiseMap.get(cacheKey);
+  if (cached) {
+    return cached;
   }
-  return contest;
+
+  const request = requestStaticJson<CatalogContestDetail>(`generated/contests/${cacheKey}.json`);
+  contestDetailPromiseMap.set(cacheKey, request);
+  return request;
+}
+
+export async function fetchCatalogCoverageBasis(): Promise<CatalogCoverageBasis> {
+  coverageBasisPromise ??= requestStaticJson<CatalogCoverageBasis>("generated/coverage-basis.json");
+  return coverageBasisPromise;
+}
+
+export async function fetchCatalogProblemLookup(options?: { forceRefresh?: boolean }): Promise<CatalogProblemLookup> {
+  if (options?.forceRefresh) {
+    problemLookupPromise = requestStaticJson<CatalogProblemLookup>("generated/problem-lookup.json", {
+      cacheMode: "reload",
+    });
+    return problemLookupPromise;
+  }
+
+  problemLookupPromise ??= requestStaticJson<CatalogProblemLookup>("generated/problem-lookup.json");
+  return problemLookupPromise;
 }
