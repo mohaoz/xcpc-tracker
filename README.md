@@ -62,12 +62,46 @@ npm run build
 
 - GitHub repository: [mohaoz/xcpc-tracker](https://github.com/mohaoz/xcpc-tracker)
 - Recommended production branch: `release`
-- Build command: `npm ci --prefix web && npm run catalog:validate && npm run build --prefix web`
+- Build command: `npm ci --prefix web && npm run deploy:build`
 - Publish directory: `web/dist`
 - Repo-level `netlify.toml` is included, so Netlify can use the default settings directly
+- Deploy builds do not refetch XCPCIO Board or Codeforces data; they only use committed catalog/data files
 - Keep day-to-day development on `main`
 - Merge or push to `release` only when you want Netlify to publish a new version
 - Treat `release` as a deploy branch: keep runtime code, build config, bundled catalog data, required schemas/scripts, and only minimal release-facing docs there
+
+## Local Server Deploy
+
+- Build once:
+
+```bash
+npm ci --prefix web
+npm run deploy:build
+```
+
+- Deploy static files from `web/dist`
+- The app is an SPA, so your server must rewrite unknown routes to `index.html`
+- Minimal Nginx example:
+
+```nginx
+server {
+    listen 80;
+    server_name _;
+    root /srv/xcpc-tracker/web/dist;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+
+- Quick local preview on the server:
+
+```bash
+cd web
+npm run preview -- --host 0.0.0.0 --port 4173
+```
 
 ## App Routes
 

@@ -47,6 +47,49 @@ npm install
 npm run build
 ```
 
+## 部署
+
+### Netlify
+
+- 推荐发布分支：`release`
+- 构建命令：`npm ci --prefix web && npm run deploy:build`
+- 发布目录：`web/dist`
+- 仓库已包含 [netlify.toml](./netlify.toml)
+- 部署构建不会重新抓取 XCPCIO Board 或 Codeforces，只使用仓库里已提交的 catalog / data
+
+### 本地服务器
+
+- 先构建：
+
+```bash
+npm ci --prefix web
+npm run deploy:build
+```
+
+- 实际部署目录：`web/dist`
+- 这是一个 SPA，服务器需要把未知路径回退到 `index.html`
+- Nginx 最小配置示例：
+
+```nginx
+server {
+    listen 80;
+    server_name _;
+    root /srv/xcpc-tracker/web/dist;
+    index index.html;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+}
+```
+
+- 如果只是临时在本机预览：
+
+```bash
+cd web
+npm run preview -- --host 0.0.0.0 --port 4173
+```
+
 ## 主要页面
 
 - `/contests`

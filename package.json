@@ -14,6 +14,7 @@
     "catalog:refresh-codeforces-award-cutoffs": "node scripts/fetch-codeforces-award-cutoffs.mjs --apply",
     "catalog:refresh": "node scripts/build-final-json.mjs && node scripts/generate-default-catalog.mjs && npm run catalog:refresh-xcpcio-board && npm run catalog:refresh-codeforces-award-cutoffs",
     "catalog:build-tools": "./web/node_modules/.bin/tsc -p scripts/tsconfig.catalog.json",
-    "catalog:validate": "npm run catalog:build-tools && node .catalog-tools-build/validate-catalog.js"
+    "catalog:validate": "npm run catalog:build-tools && node .catalog-tools-build/validate-catalog.js",
+    "deploy:build": "npm run catalog:validate && npm run build --prefix web"
   }
 }

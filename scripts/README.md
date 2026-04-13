@@ -79,5 +79,6 @@
 
 CI：
 
-- Netlify build 会先运行 `npm run catalog:refresh-xcpcio-board` 和 `npm run catalog:refresh-codeforces-award-cutoffs`，确保部署前已经计算可用奖牌线
-- `.github/workflows/static-catalog.yml` 会先刷新 XCPCIO Board 与 Codeforces fallback 奖牌线，再校验 catalog 并构建前端
+- 部署构建只运行 `npm run deploy:build`，消费仓库里已经提交的 catalog / data，不会在部署时重新抓 XCPCIO Board 或 Codeforces
+- 如果要更新奖牌线数据，先手动运行 `npm run catalog:refresh-xcpcio-board` 和 `npm run catalog:refresh-codeforces-award-cutoffs`，确认 diff 后再提交
+- `.github/workflows/static-catalog.yml` 现在只校验 catalog 并构建前端，不再在 CI 里刷新外部数据
