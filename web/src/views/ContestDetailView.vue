@@ -515,7 +515,6 @@ onMounted(loadContestPage);
                   <table class="coverage-table">
                     <thead>
                       <tr>
-                        <th>题号</th>
                         <th class="coverage-table__title-column">标题</th>
                         <th
                           v-for="member in coverage?.trackedMembers ?? []"
@@ -527,16 +526,16 @@ onMounted(loadContestPage);
                     </thead>
                     <tbody>
                       <tr v-for="problem in coverage?.problems ?? []" :key="problem.problemId">
-                        <td>
-                          <span
-                            class="contest-problem-state"
-                            :class="`contest-problem-state--${getProblemAggregateStatus(problem)}`"
-                          >
-                            {{ problem.ordinal }}
-                          </span>
-                        </td>
                         <td class="coverage-table__title-column">
-                          <div>{{ problem.title }}</div>
+                          <div class="coverage-table__problem-title">
+                            <span
+                              class="contest-problem-state coverage-table__problem-ordinal"
+                              :class="`contest-problem-state--${getProblemAggregateStatus(problem)}`"
+                            >
+                              {{ problem.ordinal }}
+                            </span>
+                            <span class="coverage-table__problem-name">{{ problem.title }}</span>
+                          </div>
                         </td>
                         <td v-for="member in problem.members" :key="`${problem.problemId}-${member.memberId}`">
                           <button

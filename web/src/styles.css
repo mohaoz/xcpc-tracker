@@ -1261,6 +1261,21 @@ h1 {
   word-break: break-word;
 }
 
+.coverage-table__problem-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.coverage-table__problem-ordinal {
+  flex: 0 0 auto;
+  margin-top: 1px;
+}
+
+.coverage-table__problem-name {
+  min-width: 0;
+}
+
 .status-dot {
   display: inline-flex;
   align-items: center;
