@@ -1236,6 +1236,13 @@ h1 {
   vertical-align: top;
 }
 
+.coverage-table th:first-child,
+.coverage-table td:first-child {
+  width: 68px;
+  white-space: nowrap;
+  padding-right: 8px;
+}
+
 .coverage-table th {
   font-size: 0.86rem;
   color: var(--ink-soft);
@@ -1246,6 +1253,7 @@ h1 {
   width: 34%;
   max-width: 420px;
   border-right: 1px solid rgba(41, 55, 81, 0.12);
+  padding-left: 8px;
 }
 
 .coverage-table__title-column > div {
