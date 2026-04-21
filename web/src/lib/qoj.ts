@@ -31,11 +31,11 @@ export type QojImportSummary = {
   importedHandles: string[];
 };
 
-function findProblemByQojProviderProblemId(
+function findProblemsByQojProviderProblemId(
   catalogProblems: LocalCatalogProblemRecord[],
   providerProblemId: string,
-) {
-  return catalogProblems.find((problem) =>
+): LocalCatalogProblemRecord[] {
+  return catalogProblems.filter((problem) =>
     problem.sources.some(
       (source) =>
         source.provider === "qoj" &&
@@ -123,43 +123,47 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
     const statuses: LocalMemberProblemStatusRecord[] = [];
 
     for (const providerProblemId of normalized.solved) {
-      const matchedProblem = findProblemByQojProviderProblemId(catalogProblems, providerProblemId);
-      if (!matchedProblem) {
+      const matchedProblems = findProblemsByQojProviderProblemId(catalogProblems, providerProblemId);
+      if (!matchedProblems.length) {
         unmatchedStatusCount += 1;
         continue;
       }
-      statuses.push({
-        statusId: `${memberId}:${matchedProblem.problemId}:qoj`,
-        memberId,
-        problemId: matchedProblem.problemId,
-        provider: "qoj",
-        status: "solved",
-        firstSeenAt: importedAt,
-        lastSeenAt: importedAt,
-        sourceRecordId,
-        matchMethod: "provider_id",
-      });
-      matchedStatusCount += 1;
+      for (const matchedProblem of matchedProblems) {
+        statuses.push({
+          statusId: `${memberId}:${matchedProblem.problemId}:qoj`,
+          memberId,
+          problemId: matchedProblem.problemId,
+          provider: "qoj",
+          status: "solved",
+          firstSeenAt: importedAt,
+          lastSeenAt: importedAt,
+          sourceRecordId,
+          matchMethod: "provider_id",
+        });
+        matchedStatusCount += 1;
+      }
     }
 
     for (const providerProblemId of normalized.attempted) {
-      const matchedProblem = findProblemByQojProviderProblemId(catalogProblems, providerProblemId);
-      if (!matchedProblem) {
+      const matchedProblems = findProblemsByQojProviderProblemId(catalogProblems, providerProblemId);
+      if (!matchedProblems.length) {
         unmatchedStatusCount += 1;
         continue;
       }
-      statuses.push({
-        statusId: `${memberId}:${matchedProblem.problemId}:qoj`,
-        memberId,
-        problemId: matchedProblem.problemId,
-        provider: "qoj",
-        status: "attempted",
-        firstSeenAt: importedAt,
-        lastSeenAt: importedAt,
-        sourceRecordId,
-        matchMethod: "provider_id",
-      });
-      matchedStatusCount += 1;
+      for (const matchedProblem of matchedProblems) {
+        statuses.push({
+          statusId: `${memberId}:${matchedProblem.problemId}:qoj`,
+          memberId,
+          problemId: matchedProblem.problemId,
+          provider: "qoj",
+          status: "attempted",
+          firstSeenAt: importedAt,
+          lastSeenAt: importedAt,
+          sourceRecordId,
+          matchMethod: "provider_id",
+        });
+        matchedStatusCount += 1;
+      }
     }
 
     const importSource: LocalImportSourceRecord = {

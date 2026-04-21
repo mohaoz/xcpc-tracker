@@ -65,6 +65,10 @@ function mapBundledContestDetailToLocal(
   };
 }
 
+function shouldUseLocalCatalogContest(contest: LocalCatalogContestRecord, hasBundledContest: boolean): boolean {
+  return !hasBundledContest || contest.generatedFrom === "manual";
+}
+
 export async function listRuntimeCatalogContests(): Promise<{
   generatedAt: string;
   contests: RuntimeCatalogContestListRecord[];
@@ -81,6 +85,10 @@ export async function listRuntimeCatalogContests(): Promise<{
   for (const contest of localContests) {
     if (contest.deletedAt) {
       contestMap.delete(contest.contestId);
+      continue;
+    }
+
+    if (!shouldUseLocalCatalogContest(contest, contestMap.has(contest.contestId))) {
       continue;
     }
 
@@ -134,6 +142,10 @@ export async function listRuntimeContestCoveragePayload(): Promise<Array<{
       continue;
     }
 
+    if (!shouldUseLocalCatalogContest(localContest, bundledContestMap.has(localContest.contestId))) {
+      continue;
+    }
+
     bundledContestMap.set(localContest.contestId, localContest);
     if (localProblemMap.has(localContest.contestId)) {
       bundledProblemMap.set(localContest.contestId, localProblemMap.get(localContest.contestId) ?? []);
@@ -150,13 +162,26 @@ export async function getRuntimeCatalogContestDetail(contestId: string): Promise
   contest: LocalCatalogContestRecord;
   problems: LocalCatalogProblemRecord[];
 }> {
-  const localDetail = await getCatalogContestDetailFromDb(contestId);
-  if (localDetail) {
+  const [localDetail, deleted, bundledIndex] = await Promise.all([
+    getCatalogContestDetailFromDb(contestId),
+    hasDeletedCatalogContestId(contestId),
+    fetchCatalogContestIndex(),
+  ]);
+  const hasBundledContest = bundledIndex.contests.some((contest) => contest.id === contestId);
+
+  if (deleted) {
+    throw new Error("contest deleted");
+  }
+
+  if (localDetail && shouldUseLocalCatalogContest(localDetail.contest, hasBundledContest)) {
     return localDetail;
   }
 
-  if (await hasDeletedCatalogContestId(contestId)) {
-    throw new Error("contest deleted");
+  if (!hasBundledContest) {
+    if (localDetail) {
+      return localDetail;
+    }
+    throw new Error("contest not found");
   }
 
   const detail = await fetchCatalogContestDetail(contestId);
@@ -164,23 +189,28 @@ export async function getRuntimeCatalogContestDetail(contestId: string): Promise
 }
 
 export async function getRuntimeCatalogContestRecord(contestId: string): Promise<RuntimeCatalogContestListRecord | null> {
-  const localContest = await getCatalogContestFromDb(contestId);
-  if (localContest) {
+  const [localContest, deleted, bundledIndex] = await Promise.all([
+    getCatalogContestFromDb(contestId),
+    hasDeletedCatalogContestId(contestId),
+    fetchCatalogContestIndex(),
+  ]);
+  const bundledContest = bundledIndex.contests.find((item) => item.id === contestId);
+  const hasBundledContest = !!bundledContest;
+
+  if (deleted) {
+    return null;
+  }
+
+  if (localContest && shouldUseLocalCatalogContest(localContest, hasBundledContest)) {
     return {
       ...localContest,
       problemCount: localContest.problemIds.length,
     };
   }
 
-  if (await hasDeletedCatalogContestId(contestId)) {
+  if (!bundledContest) {
     return null;
   }
 
-  const bundledIndex = await fetchCatalogContestIndex();
-  const contest = bundledIndex.contests.find((item) => item.id === contestId);
-  if (!contest) {
-    return null;
-  }
-
-  return mapBundledIndexItemToContestRecord(contest);
+  return mapBundledIndexItemToContestRecord(bundledContest);
 }
