@@ -3,6 +3,7 @@ import { onMounted, ref } from "vue";
 
 import { importQojUserscriptMembers, type QojUserscriptImport } from "../lib/qoj";
 import { emitMemberMutated } from "../lib/member-events";
+import { listRuntimeCatalogContests } from "../lib/catalog-runtime";
 import {
   applyLocalRuntimeSnapshot,
   exportLocalRuntimeSnapshot,
@@ -40,7 +41,15 @@ function downloadJson(filename: string, payload: unknown) {
 async function refreshStats() {
   loadingStats.value = true;
   try {
-    dbStatus.value = await getCatalogDbStatus();
+    const [localStatus, runtimeCatalog] = await Promise.all([
+      getCatalogDbStatus(),
+      listRuntimeCatalogContests(),
+    ]);
+    dbStatus.value = {
+      ...localStatus,
+      contestCount: runtimeCatalog.contests.length,
+      problemCount: runtimeCatalog.contests.reduce((sum, contest) => sum + contest.problemCount, 0),
+    };
   } finally {
     loadingStats.value = false;
   }
@@ -153,19 +162,6 @@ onMounted(() => {
         </div>
 
         <div class="list-grid">
-          <section class="panel" style="box-shadow: none">
-            <div class="panel__body">
-              <div class="panel__title" style="margin-bottom: 14px">
-                <p class="eyebrow">Catalog</p>
-                <h3>静态目录</h3>
-              </div>
-              <p class="muted tiny">
-                默认比赛目录由部署期生成的静态资源直接提供，不会走本地初始化。
-                本页只保留成员数据导入导出。
-              </p>
-            </div>
-          </section>
-
           <section class="panel" style="box-shadow: none">
             <div class="panel__body">
               <div class="panel__title" style="margin-bottom: 14px">

@@ -1014,6 +1014,8 @@ h1 {
 }
 
 .contest-medal-badge {
+  appearance: none;
+  border: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1028,6 +1030,12 @@ h1 {
   font-weight: 800;
   letter-spacing: 0.02em;
   line-height: 1;
+  cursor: pointer;
+}
+
+.contest-medal-badge:hover,
+.contest-award-range:hover {
+  filter: brightness(1.06);
 }
 
 .contest-medal-badge--none-medal-data {
@@ -1058,6 +1066,8 @@ h1 {
 }
 
 .contest-award-range {
+  appearance: none;
+  border: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1071,6 +1081,7 @@ h1 {
   font-weight: 800;
   color: #f8fafc;
   line-height: 1;
+  cursor: pointer;
 }
 
 .contest-award-range--fe {

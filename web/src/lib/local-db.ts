@@ -472,6 +472,57 @@ export async function getMemberPersonFromDb(memberId: string): Promise<LocalMemb
   return people.find((person) => person.memberId === memberId) ?? null;
 }
 
+export async function listMemberHandleProblemCountsFromDb(memberId: string): Promise<Record<string, {
+  solvedCount: number;
+  attemptedCount: number;
+  totalCount: number;
+}>> {
+  const [handles, statuses] = await Promise.all([
+    localDb.memberHandles.where("memberId").equals(memberId).toArray(),
+    localDb.memberProblemStatus.where("memberId").equals(memberId).toArray(),
+  ]);
+  const activeHandles = handles.filter((handle) => !handle.deletedAt);
+  const activeHandlesByProvider = new Map<string, LocalMemberHandleRecord[]>();
+  for (const handle of activeHandles) {
+    const bucket = activeHandlesByProvider.get(handle.provider) ?? [];
+    bucket.push(handle);
+    activeHandlesByProvider.set(handle.provider, bucket);
+  }
+
+  const result: Record<string, { solvedCount: number; attemptedCount: number; totalCount: number }> = {};
+  for (const handle of activeHandles) {
+    const sourcePrefix = `${handle.provider}:${handle.handle}:`;
+    const sameProviderHandles = activeHandlesByProvider.get(handle.provider) ?? [];
+    const handleStatuses = statuses.filter((status) => {
+      if (status.provider !== handle.provider) {
+        return false;
+      }
+      if (status.sourceRecordId.startsWith(sourcePrefix)) {
+        return true;
+      }
+      return sameProviderHandles.length === 1;
+    });
+    const solvedProblemIds = new Set(
+      handleStatuses
+        .filter((status) => status.status === "solved")
+        .map((status) => status.problemId),
+    );
+    const attemptedProblemIds = new Set(
+      handleStatuses
+        .filter((status) => status.status === "attempted" && !solvedProblemIds.has(status.problemId))
+        .map((status) => status.problemId),
+    );
+
+    result[handle.handleId] = {
+      solvedCount: solvedProblemIds.size,
+      attemptedCount: attemptedProblemIds.size,
+      totalCount: solvedProblemIds.size + attemptedProblemIds.size,
+    };
+  }
+
+  return result;
+}
+
 export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatus?: boolean }): Promise<LocalRuntimeSnapshot> {
   const [members, memberHandles, memberProblemStatus, importSources, syncRecords] = await Promise.all([
     localDb.members.toArray(),

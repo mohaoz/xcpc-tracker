@@ -13,7 +13,7 @@ import type {
   LocalContestCoverageSummary,
   LocalMemberPerson,
 } from "../lib/local-model";
-import { contestListModes, type ContestListMode, useContestListStore } from "../stores/contest-list";
+import { contestListModes, isContestListMode, type ContestListMode, useContestListStore } from "../stores/contest-list";
 
 const contests = ref<CatalogContestIndexItem[]>([]);
 const localContestMap = ref(new Map<string, RuntimeCatalogContestListRecord>());
@@ -26,30 +26,83 @@ let latestLoadRequestId = 0;
 const pageSize = 12;
 let unsubscribeCatalogMutated: (() => void) | null = null;
 const contestListStore = useContestListStore();
+
+function normalizeContestListState() {
+  if (!isContestListMode(contestListStore.selectedMode)) {
+    contestListStore.selectedMode = "ALL";
+  }
+  if (!Number.isFinite(contestListStore.page) || contestListStore.page < 1) {
+    contestListStore.page = 1;
+  }
+  if (!Array.isArray(contestListStore.selectedMemberIds)) {
+    contestListStore.selectedMemberIds = [];
+  }
+  if (typeof contestListStore.query !== "string") {
+    contestListStore.query = "";
+  }
+}
+
 const listModeButtonLabels: Record<ContestListMode, string> = {
+  ALL: "全部",
   UNSEEN: "未做",
-  "NONE-MEDAL-DATA": "已做",
-  FE: "铁牌",
-  CU: "铜牌",
-  AG: "银牌",
-  AU: "金牌",
+  DONE: "已做",
 };
 const listModeBadgeLabels: Record<ContestListMode, string> = {
+  ALL: "·",
   UNSEEN: "-",
-  "NONE-MEDAL-DATA": "?",
-  FE: "Fe",
-  CU: "Cu",
-  AG: "Ag",
-  AU: "Au",
+  DONE: "✓",
 };
 const listModeTips: Record<ContestListMode, string> = {
-  "NONE-MEDAL-DATA": "No medal cutoff data",
-  UNSEEN: "No selected member has tried any problem in this contest",
-  FE: "The selected members have tried this contest but combined coverage is below the bronze cutoff",
+  ALL: "All contests",
+  UNSEEN: "No selected member has solved any problem in this contest",
+  DONE: "At least one selected member has solved a problem in this contest",
+};
+
+const awardSearchAliases = {
+  FE: ["fe", "铁", "铁牌"],
+  CU: ["cu", "铜", "铜牌"],
+  AG: ["ag", "银", "银牌"],
+  AU: ["au", "金", "金牌"],
+} as const;
+
+type ContestAwardMode = keyof typeof awardSearchAliases;
+
+const awardModeTips: Record<ContestAwardMode, string> = {
+  FE: "The selected members have solved problems, but combined coverage is below the bronze cutoff",
   CU: "The selected members' combined coverage reached the bronze cutoff",
   AG: "The selected members' combined coverage reached the silver cutoff",
   AU: "The selected members' combined coverage reached the gold cutoff",
 };
+
+function getAwardModeFromSearchToken(token: string): ContestAwardMode | null {
+  for (const [mode, aliases] of Object.entries(awardSearchAliases) as Array<[ContestAwardMode, readonly string[]]>) {
+    if (aliases.includes(token)) {
+      return mode;
+    }
+  }
+  return null;
+}
+
+function isNoMedalDataSearchToken(token: string) {
+  return token === "?" || token === "无奖牌" || token === "无奖牌数据";
+}
+
+type QueryAlternative = {
+  token: string;
+  negated: boolean;
+};
+
+function parseQueryGroup(token: string): QueryAlternative[] {
+  return token
+    .split("|")
+    .map((item) => item.trim())
+    .filter((item) => item && item !== "-")
+    .map((item) => ({
+      token: item.startsWith("-") ? item.slice(1) : item,
+      negated: item.startsWith("-"),
+    }))
+    .filter((item) => item.token.length > 0);
+}
 
 function extractContestYear(contest: Pick<CatalogContestIndexItem, "title" | "tags">) {
   for (const tag of contest.tags) {
@@ -105,13 +158,8 @@ const queryTokens = computed(() =>
     .map((token) => token.trim().toLocaleLowerCase())
     .filter(Boolean),
 );
-const includeQueryTokens = computed(() =>
-  queryTokens.value.filter((token) => token !== "-" && !token.startsWith("-")),
-);
-const excludeQueryTokens = computed(() =>
-  queryTokens.value
-    .filter((token) => token.startsWith("-") && token.length > 1)
-    .map((token) => token.slice(1)),
+const queryGroups = computed(() =>
+  queryTokens.value.map(parseQueryGroup).filter((group) => group.length > 0),
 );
 const allMembersSelected = computed(() => {
   if (!memberOptions.value.length) {
@@ -128,19 +176,25 @@ function getSolvedCutoff(
 }
 
 function getContestListMode(contestId: string): ContestListMode {
+  const summary = coverageSummaryMap.value.get(contestId);
+  const solvedProblemCount = summary?.solvedProblemCount ?? 0;
+
+  return solvedProblemCount > 0 ? "DONE" : "UNSEEN";
+}
+
+function getContestAwardMode(contestId: string): ContestAwardMode | null {
   const localContest = localContestMap.value.get(contestId);
   const summary = coverageSummaryMap.value.get(contestId);
   const solvedProblemCount = summary?.solvedProblemCount ?? 0;
-  const attemptedProblemCount = summary?.attemptedProblemCount ?? 0;
   const bronzeSolved = getSolvedCutoff(localContest, "bronze");
   const goldSolved = getSolvedCutoff(localContest, "gold");
   const silverSolved = getSolvedCutoff(localContest, "silver");
 
-  if (solvedProblemCount === 0 && attemptedProblemCount === 0) {
-    return "UNSEEN";
+  if (solvedProblemCount === 0) {
+    return null;
   }
   if (bronzeSolved === null) {
-    return "NONE-MEDAL-DATA";
+    return null;
   }
   if (goldSolved !== null && solvedProblemCount >= goldSolved) {
     return "AU";
@@ -154,12 +208,38 @@ function getContestListMode(contestId: string): ContestListMode {
   return "FE";
 }
 
+function getContestBadgeMode(contestId: string): ContestListMode | "NONE-MEDAL-DATA" {
+  const listMode = getContestListMode(contestId);
+  if (listMode === "DONE" && !getContestAwardMode(contestId)) {
+    return "NONE-MEDAL-DATA";
+  }
+  return listMode;
+}
+
+function getContestBadgeLabel(contestId: string) {
+  return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA" ? "?" : listModeBadgeLabels[getContestListMode(contestId)];
+}
+
+function getContestBadgeTitle(contestId: string) {
+  return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA"
+    ? "No medal cutoff data"
+    : listModeTips[getContestListMode(contestId)];
+}
+
+function getContestBadgeSearchToken(contestId: string) {
+  return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA" ? "?" : null;
+}
+
 function getContestAwardRange(contestId: string) {
   const localContest = localContestMap.value.get(contestId);
-  const mode = getContestListMode(contestId);
+  const mode = getContestAwardMode(contestId);
   const bronzeSolved = getSolvedCutoff(localContest, "bronze");
   const silverSolved = getSolvedCutoff(localContest, "silver");
   const goldSolved = getSolvedCutoff(localContest, "gold");
+
+  if (!mode) {
+    return null;
+  }
 
   if (mode === "FE" && bronzeSolved !== null) {
     return { mode, label: "Fe", lower: 0, upper: bronzeSolved };
@@ -180,23 +260,29 @@ const filteredContests = computed(() => {
   return contests.value.filter((contest) => {
     if (queryTokens.value.length) {
       const haystacks = getContestSearchHaystacks(contest);
+      const awardMode = getContestAwardMode(contest.id);
+      const hasNoMedalData = getContestBadgeMode(contest.id) === "NONE-MEDAL-DATA";
 
-      const includeMatch = includeQueryTokens.value.every((token) =>
-        haystacks.some((value) => value.includes(token)),
-      );
-      if (!includeMatch) {
-        return false;
-      }
+      const matchesToken = (token: string) => {
+        const tokenAwardMode = getAwardModeFromSearchToken(token);
+        if (tokenAwardMode) {
+          return awardMode === tokenAwardMode;
+        }
+        if (isNoMedalDataSearchToken(token)) {
+          return hasNoMedalData;
+        }
+        return haystacks.some((value) => value.includes(token));
+      };
 
-      const excludeMatch = excludeQueryTokens.value.some((token) =>
-        haystacks.some((value) => value.includes(token)),
+      const queryMatch = queryGroups.value.every((group) =>
+        group.some((alternative) => alternative.negated !== matchesToken(alternative.token)),
       );
-      if (excludeMatch) {
+      if (!queryMatch) {
         return false;
       }
     }
 
-    return contestListStore.selectedModes.includes(getContestListMode(contest.id));
+    return contestListStore.selectedMode === "ALL" || contestListStore.selectedMode === getContestListMode(contest.id);
   });
 });
 const totalCount = computed(() => filteredContests.value.length);
@@ -347,22 +433,25 @@ function toggleAllMembers() {
   contestListStore.selectedMemberIds = memberOptions.value.map((member) => member.memberId);
 }
 
-function toggleListMode(mode: ContestListMode) {
-  if (contestListStore.selectedModes.includes(mode)) {
-    contestListStore.selectedModes = contestListStore.selectedModes.filter((item) => item !== mode);
-    return;
-  }
-  contestListStore.selectedModes = contestListModes.filter(
-    (item) => item === mode || contestListStore.selectedModes.includes(item),
-  );
+function setListMode(mode: ContestListMode) {
+  contestListStore.selectedMode = mode;
 }
 
-function listModeBadgeClass(mode: ContestListMode) {
-  return `contest-medal-badge--${mode.toLowerCase().replace(/[^a-z0-9]+/gu, "-")}`;
+function contestBadgeClass(contestId: string) {
+  return `contest-medal-badge--${getContestBadgeMode(contestId).toLowerCase().replace(/[^a-z0-9]+/gu, "-")}`;
 }
 
-function awardRangeClass(mode: ContestListMode) {
+function awardRangeClass(mode: ContestAwardMode) {
   return `contest-award-range--${mode.toLowerCase().replace(/[^a-z0-9]+/gu, "-")}`;
+}
+
+function awardRangeTitle(contestId: string) {
+  const mode = getContestAwardMode(contestId);
+  return mode ? awardModeTips[mode] : "";
+}
+
+function getContestAwardSearchToken(contestId: string) {
+  return getContestAwardRange(contestId)?.label ?? null;
 }
 
 function problemStateClass(status: "solved" | "attempted" | "unseen") {
@@ -413,6 +502,7 @@ function appendSearchToken(rawToken: string) {
 }
 
 onMounted(() => {
+  normalizeContestListState();
   unsubscribeCatalogMutated = subscribeCatalogMutated(() => {
     void loadContests();
   });
@@ -433,11 +523,11 @@ watch(() => contestListStore.selectedMemberIds, () => {
   }
   void loadContests();
 }, { deep: true });
-watch(() => contestListStore.selectedModes, () => {
+watch(() => contestListStore.selectedMode, () => {
   if (contestListStore.page !== 1) {
     contestListStore.page = 1;
   }
-}, { deep: true });
+});
 </script>
 
 <template>
@@ -460,8 +550,8 @@ watch(() => contestListStore.selectedModes, () => {
                     :key="mode"
                     type="button"
                     class="mode-switch__option"
-                    :class="{ 'mode-switch__option--active': contestListStore.selectedModes.includes(mode) }"
-                    @click="toggleListMode(mode)"
+                    :class="{ 'mode-switch__option--active': contestListStore.selectedMode === mode }"
+                    @click="setListMode(mode)"
                   >
                     {{ listModeButtonLabels[mode] }}
                   </button>
@@ -487,7 +577,7 @@ watch(() => contestListStore.selectedModes, () => {
               <input
                 id="contest-query"
                 v-model="contestListStore.query"
-                placeholder="搜索标题、alias、tags 或平台如 qoj / cf；用 -2025 这类写法排除"
+                placeholder="可搜索标签、标题、平台、奖牌；用-排除，用|表示或"
               />
             </div>
 
@@ -554,8 +644,9 @@ watch(() => contestListStore.selectedModes, () => {
             <div class="contest-card__meta-row">
               <div class="contest-card__meta-main">
                 <div class="inline-tags">
-                  <span
+                  <button
                     v-if="getContestAwardRange(contest.id)"
+                    type="button"
                     class="contest-award-range"
                     :class="[
                       awardRangeClass(getContestAwardRange(contest.id)?.mode ?? 'FE'),
@@ -564,7 +655,8 @@ watch(() => contestListStore.selectedModes, () => {
                         'contest-award-range--no-upper': getContestAwardRange(contest.id)?.upper === null,
                       },
                     ]"
-                    :title="listModeTips[getContestListMode(contest.id)]"
+                    :title="awardRangeTitle(contest.id)"
+                    @click.prevent.stop="appendSearchToken(getContestAwardSearchToken(contest.id) ?? '')"
                   >
                     <sub
                       v-if="getContestAwardRange(contest.id)?.lower !== null"
@@ -581,15 +673,17 @@ watch(() => contestListStore.selectedModes, () => {
                     >
                       {{ getContestAwardRange(contest.id)?.upper }}
                     </sup>
-                  </span>
-                  <span
+                  </button>
+                  <button
                     v-else
+                    type="button"
                     class="contest-medal-badge"
-                    :class="listModeBadgeClass(getContestListMode(contest.id))"
-                    :title="listModeTips[getContestListMode(contest.id)]"
+                    :class="contestBadgeClass(contest.id)"
+                    :title="getContestBadgeTitle(contest.id)"
+                    @click.prevent.stop="appendSearchToken(getContestBadgeSearchToken(contest.id) ?? '')"
                   >
-                    {{ listModeBadgeLabels[getContestListMode(contest.id)] }}
-                  </span>
+                    {{ getContestBadgeLabel(contest.id) }}
+                  </button>
                   <span class="tag tag--neutral">
                     {{ coverageSummaryMap.get(contest.id)?.problemCount ?? contest.problem_count }} 题
                   </span>

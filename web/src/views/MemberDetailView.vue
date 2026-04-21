@@ -4,7 +4,12 @@ import { RouterLink, useRoute, useRouter } from "vue-router";
 
 import { importCodeforcesMember } from "../lib/codeforces";
 import { emitMemberMutated, subscribeMemberMutated } from "../lib/member-events";
-import { getMemberPersonFromDb, softDeleteMember, softDeleteMemberHandle } from "../lib/local-db";
+import {
+  getMemberPersonFromDb,
+  listMemberHandleProblemCountsFromDb,
+  softDeleteMember,
+  softDeleteMemberHandle,
+} from "../lib/local-db";
 import type { LocalMemberPerson } from "../lib/local-model";
 
 const route = useRoute();
@@ -17,6 +22,11 @@ const syncWarning = ref("");
 const syncingHandleId = ref("");
 const deletingHandleId = ref("");
 const deletingMemberId = ref("");
+const handleProblemCounts = ref<Record<string, {
+  solvedCount: number;
+  attemptedCount: number;
+  totalCount: number;
+}>>({});
 let unsubscribeMemberMutated: (() => void) | null = null;
 
 const memberId = computed(() => String(route.params.memberId ?? ""));
@@ -43,6 +53,14 @@ function isHandleSyncable(provider: string) {
   return provider === "codeforces";
 }
 
+function getHandleProblemCount(handleId: string) {
+  return handleProblemCounts.value[handleId] ?? {
+    solvedCount: 0,
+    attemptedCount: 0,
+    totalCount: 0,
+  };
+}
+
 async function loadMember() {
   if (!memberId.value) {
     return;
@@ -51,8 +69,13 @@ async function loadMember() {
   loading.value = true;
   error.value = "";
   try {
-    person.value = await getMemberPersonFromDb(memberId.value);
-    if (!person.value) {
+    const [personPayload, handleCountsPayload] = await Promise.all([
+      getMemberPersonFromDb(memberId.value),
+      listMemberHandleProblemCountsFromDb(memberId.value),
+    ]);
+    person.value = personPayload;
+    handleProblemCounts.value = handleCountsPayload;
+    if (!personPayload) {
       throw new Error("member not found");
     }
   } catch (caught) {
@@ -202,6 +225,17 @@ onUnmounted(() => {
                       <h3>{{ handle.handle }}</h3>
                     </div>
                     <span class="muted tiny">{{ formatDateTime(handle.updatedAt) }}</span>
+                  </div>
+                  <div class="inline-tags" style="margin-top: 12px">
+                    <span class="tag tag--neutral">
+                      {{ getHandleProblemCount(handle.handleId).totalCount }} 题
+                    </span>
+                    <span class="tag tag--neutral">
+                      已做 {{ getHandleProblemCount(handle.handleId).solvedCount }}
+                    </span>
+                    <span class="tag tag--neutral">
+                      尝试 {{ getHandleProblemCount(handle.handleId).attemptedCount }}
+                    </span>
                   </div>
                   <div class="actions" style="margin-top: 12px">
                     <button
