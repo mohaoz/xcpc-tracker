@@ -1,10 +1,12 @@
 import type {
+  LocalCatalogProblemRecord,
   LocalImportSourceRecord,
   LocalMemberHandleRecord,
   LocalMemberProblemStatusRecord,
   LocalMemberRecord,
   LocalSyncRecord,
 } from "./local-model";
+import { fetchCatalogProblemLookup } from "./catalog";
 import { listCatalogProblemsFromDb, upsertMemberBundle } from "./local-db";
 
 type QojUserscriptMember = {
@@ -30,7 +32,7 @@ export type QojImportSummary = {
 };
 
 function findProblemByQojProviderProblemId(
-  catalogProblems: Awaited<ReturnType<typeof listCatalogProblemsFromDb>>,
+  catalogProblems: LocalCatalogProblemRecord[],
   providerProblemId: string,
 ) {
   return catalogProblems.find((problem) =>
@@ -40,6 +42,32 @@ function findProblemByQojProviderProblemId(
         source.provider_problem_id === providerProblemId,
     ),
   );
+}
+
+async function listQojCatalogProblems(): Promise<LocalCatalogProblemRecord[]> {
+  const [localProblems, problemLookup] = await Promise.all([
+    listCatalogProblemsFromDb(),
+    fetchCatalogProblemLookup(),
+  ]);
+
+  const mergedByProblemId = new Map<string, LocalCatalogProblemRecord>();
+  for (const problem of problemLookup.problems) {
+    mergedByProblemId.set(problem.problemId, {
+      problemId: problem.problemId,
+      contestId: problem.contestId,
+      ordinal: problem.ordinal,
+      title: problem.title,
+      aliases: problem.aliases ?? [],
+      sources: problem.sources ?? [],
+      sourceKind: "catalog",
+    });
+  }
+
+  for (const problem of localProblems) {
+    mergedByProblemId.set(problem.problemId, problem);
+  }
+
+  return [...mergedByProblemId.values()];
 }
 
 function normalizeQojProblemStatuses(member: QojUserscriptMember) {
@@ -57,7 +85,7 @@ function normalizeQojProblemStatuses(member: QojUserscriptMember) {
 }
 
 export async function importQojUserscriptMembers(payload: QojUserscriptImport): Promise<QojImportSummary> {
-  const catalogProblems = await listCatalogProblemsFromDb();
+  const catalogProblems = await listQojCatalogProblems();
   const importedAt = new Date().toISOString();
   let matchedStatusCount = 0;
   let unmatchedStatusCount = 0;
