@@ -27,66 +27,29 @@ const pageSize = 12;
 let unsubscribeCatalogMutated: (() => void) | null = null;
 const contestListStore = useContestListStore();
 const listModeButtonLabels: Record<ContestListMode, string> = {
-  ALL: "全部",
   UNSEEN: "未做",
-  DONE: "已做",
+  "NONE-MEDAL-DATA": "已做",
+  FE: "铁牌",
+  CU: "铜牌",
+  AG: "银牌",
+  AU: "金牌",
 };
 const listModeBadgeLabels: Record<ContestListMode, string> = {
-  ALL: "·",
   UNSEEN: "-",
-  DONE: "✓",
+  "NONE-MEDAL-DATA": "?",
+  FE: "Fe",
+  CU: "Cu",
+  AG: "Ag",
+  AU: "Au",
 };
 const listModeTips: Record<ContestListMode, string> = {
-  ALL: "All contests",
-  UNSEEN: "No selected member has solved any problem in this contest",
-  DONE: "At least one selected member has solved a problem in this contest",
-};
-
-const awardSearchAliases = {
-  FE: ["fe", "铁", "铁牌"],
-  CU: ["cu", "铜", "铜牌"],
-  AG: ["ag", "银", "银牌"],
-  AU: ["au", "金", "金牌"],
-} as const;
-
-type ContestAwardMode = keyof typeof awardSearchAliases;
-
-const awardModeTips: Record<ContestAwardMode, string> = {
-  FE: "The selected members have solved problems, but combined coverage is below the bronze cutoff",
+  "NONE-MEDAL-DATA": "No medal cutoff data",
+  UNSEEN: "No selected member has tried any problem in this contest",
+  FE: "The selected members have tried this contest but combined coverage is below the bronze cutoff",
   CU: "The selected members' combined coverage reached the bronze cutoff",
   AG: "The selected members' combined coverage reached the silver cutoff",
   AU: "The selected members' combined coverage reached the gold cutoff",
 };
-
-function getAwardModeFromSearchToken(token: string): ContestAwardMode | null {
-  for (const [mode, aliases] of Object.entries(awardSearchAliases) as Array<[ContestAwardMode, readonly string[]]>) {
-    if (aliases.includes(token)) {
-      return mode;
-    }
-  }
-  return null;
-}
-
-function isNoMedalDataSearchToken(token: string) {
-  return token === "?" || token === "无奖牌" || token === "无奖牌数据";
-}
-
-type QueryAlternative = {
-  token: string;
-  negated: boolean;
-};
-
-function parseQueryGroup(token: string): QueryAlternative[] {
-  return token
-    .split("|")
-    .map((item) => item.trim())
-    .filter((item) => item && item !== "-")
-    .map((item) => ({
-      token: item.startsWith("-") ? item.slice(1) : item,
-      negated: item.startsWith("-"),
-    }))
-    .filter((item) => item.token.length > 0);
-}
 
 function extractContestYear(contest: Pick<CatalogContestIndexItem, "title" | "tags">) {
   for (const tag of contest.tags) {
@@ -142,8 +105,13 @@ const queryTokens = computed(() =>
     .map((token) => token.trim().toLocaleLowerCase())
     .filter(Boolean),
 );
-const queryGroups = computed(() =>
-  queryTokens.value.map(parseQueryGroup).filter((group) => group.length > 0),
+const includeQueryTokens = computed(() =>
+  queryTokens.value.filter((token) => token !== "-" && !token.startsWith("-")),
+);
+const excludeQueryTokens = computed(() =>
+  queryTokens.value
+    .filter((token) => token.startsWith("-") && token.length > 1)
+    .map((token) => token.slice(1)),
 );
 const allMembersSelected = computed(() => {
   if (!memberOptions.value.length) {
@@ -160,25 +128,19 @@ function getSolvedCutoff(
 }
 
 function getContestListMode(contestId: string): ContestListMode {
-  const summary = coverageSummaryMap.value.get(contestId);
-  const solvedProblemCount = summary?.solvedProblemCount ?? 0;
-
-  return solvedProblemCount > 0 ? "DONE" : "UNSEEN";
-}
-
-function getContestAwardMode(contestId: string): ContestAwardMode | null {
   const localContest = localContestMap.value.get(contestId);
   const summary = coverageSummaryMap.value.get(contestId);
   const solvedProblemCount = summary?.solvedProblemCount ?? 0;
+  const attemptedProblemCount = summary?.attemptedProblemCount ?? 0;
   const bronzeSolved = getSolvedCutoff(localContest, "bronze");
   const goldSolved = getSolvedCutoff(localContest, "gold");
   const silverSolved = getSolvedCutoff(localContest, "silver");
 
-  if (solvedProblemCount === 0) {
-    return null;
+  if (solvedProblemCount === 0 && attemptedProblemCount === 0) {
+    return "UNSEEN";
   }
   if (bronzeSolved === null) {
-    return null;
+    return "NONE-MEDAL-DATA";
   }
   if (goldSolved !== null && solvedProblemCount >= goldSolved) {
     return "AU";
@@ -192,38 +154,12 @@ function getContestAwardMode(contestId: string): ContestAwardMode | null {
   return "FE";
 }
 
-function getContestBadgeMode(contestId: string): ContestListMode | "NONE-MEDAL-DATA" {
-  const listMode = getContestListMode(contestId);
-  if (listMode === "DONE" && !getContestAwardMode(contestId)) {
-    return "NONE-MEDAL-DATA";
-  }
-  return listMode;
-}
-
-function getContestBadgeLabel(contestId: string) {
-  return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA" ? "?" : listModeBadgeLabels[getContestListMode(contestId)];
-}
-
-function getContestBadgeTitle(contestId: string) {
-  return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA"
-    ? "No medal cutoff data"
-    : listModeTips[getContestListMode(contestId)];
-}
-
-function getContestBadgeSearchToken(contestId: string) {
-  return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA" ? "?" : null;
-}
-
 function getContestAwardRange(contestId: string) {
   const localContest = localContestMap.value.get(contestId);
-  const mode = getContestAwardMode(contestId);
+  const mode = getContestListMode(contestId);
   const bronzeSolved = getSolvedCutoff(localContest, "bronze");
   const silverSolved = getSolvedCutoff(localContest, "silver");
   const goldSolved = getSolvedCutoff(localContest, "gold");
-
-  if (!mode) {
-    return null;
-  }
 
   if (mode === "FE" && bronzeSolved !== null) {
     return { mode, label: "Fe", lower: 0, upper: bronzeSolved };
@@ -244,29 +180,23 @@ const filteredContests = computed(() => {
   return contests.value.filter((contest) => {
     if (queryTokens.value.length) {
       const haystacks = getContestSearchHaystacks(contest);
-      const awardMode = getContestAwardMode(contest.id);
-      const hasNoMedalData = getContestBadgeMode(contest.id) === "NONE-MEDAL-DATA";
 
-      const matchesToken = (token: string) => {
-        const tokenAwardMode = getAwardModeFromSearchToken(token);
-        if (tokenAwardMode) {
-          return awardMode === tokenAwardMode;
-        }
-        if (isNoMedalDataSearchToken(token)) {
-          return hasNoMedalData;
-        }
-        return haystacks.some((value) => value.includes(token));
-      };
-
-      const queryMatch = queryGroups.value.every((group) =>
-        group.some((alternative) => alternative.negated !== matchesToken(alternative.token)),
+      const includeMatch = includeQueryTokens.value.every((token) =>
+        haystacks.some((value) => value.includes(token)),
       );
-      if (!queryMatch) {
+      if (!includeMatch) {
+        return false;
+      }
+
+      const excludeMatch = excludeQueryTokens.value.some((token) =>
+        haystacks.some((value) => value.includes(token)),
+      );
+      if (excludeMatch) {
         return false;
       }
     }
 
-    return contestListStore.selectedMode === "ALL" || contestListStore.selectedMode === getContestListMode(contest.id);
+    return contestListStore.selectedModes.includes(getContestListMode(contest.id));
   });
 });
 const totalCount = computed(() => filteredContests.value.length);
@@ -417,25 +347,22 @@ function toggleAllMembers() {
   contestListStore.selectedMemberIds = memberOptions.value.map((member) => member.memberId);
 }
 
-function setListMode(mode: ContestListMode) {
-  contestListStore.selectedMode = mode;
+function toggleListMode(mode: ContestListMode) {
+  if (contestListStore.selectedModes.includes(mode)) {
+    contestListStore.selectedModes = contestListStore.selectedModes.filter((item) => item !== mode);
+    return;
+  }
+  contestListStore.selectedModes = contestListModes.filter(
+    (item) => item === mode || contestListStore.selectedModes.includes(item),
+  );
 }
 
-function contestBadgeClass(contestId: string) {
-  return `contest-medal-badge--${getContestBadgeMode(contestId).toLowerCase().replace(/[^a-z0-9]+/gu, "-")}`;
+function listModeBadgeClass(mode: ContestListMode) {
+  return `contest-medal-badge--${mode.toLowerCase().replace(/[^a-z0-9]+/gu, "-")}`;
 }
 
-function awardRangeClass(mode: ContestAwardMode) {
+function awardRangeClass(mode: ContestListMode) {
   return `contest-award-range--${mode.toLowerCase().replace(/[^a-z0-9]+/gu, "-")}`;
-}
-
-function awardRangeTitle(contestId: string) {
-  const mode = getContestAwardMode(contestId);
-  return mode ? awardModeTips[mode] : "";
-}
-
-function getContestAwardSearchToken(contestId: string) {
-  return getContestAwardRange(contestId)?.label ?? null;
 }
 
 function problemStateClass(status: "solved" | "attempted" | "unseen") {
@@ -506,11 +433,11 @@ watch(() => contestListStore.selectedMemberIds, () => {
   }
   void loadContests();
 }, { deep: true });
-watch(() => contestListStore.selectedMode, () => {
+watch(() => contestListStore.selectedModes, () => {
   if (contestListStore.page !== 1) {
     contestListStore.page = 1;
   }
-});
+}, { deep: true });
 </script>
 
 <template>
@@ -533,8 +460,8 @@ watch(() => contestListStore.selectedMode, () => {
                     :key="mode"
                     type="button"
                     class="mode-switch__option"
-                    :class="{ 'mode-switch__option--active': contestListStore.selectedMode === mode }"
-                    @click="setListMode(mode)"
+                    :class="{ 'mode-switch__option--active': contestListStore.selectedModes.includes(mode) }"
+                    @click="toggleListMode(mode)"
                   >
                     {{ listModeButtonLabels[mode] }}
                   </button>
@@ -560,7 +487,7 @@ watch(() => contestListStore.selectedMode, () => {
               <input
                 id="contest-query"
                 v-model="contestListStore.query"
-                placeholder="可搜索标签、标题、平台、奖牌；用-排除，用|表示或"
+                placeholder="搜索标题、alias、tags 或平台如 qoj / cf；用 -2025 这类写法排除"
               />
             </div>
 
@@ -627,9 +554,8 @@ watch(() => contestListStore.selectedMode, () => {
             <div class="contest-card__meta-row">
               <div class="contest-card__meta-main">
                 <div class="inline-tags">
-                  <button
+                  <span
                     v-if="getContestAwardRange(contest.id)"
-                    type="button"
                     class="contest-award-range"
                     :class="[
                       awardRangeClass(getContestAwardRange(contest.id)?.mode ?? 'FE'),
@@ -638,8 +564,7 @@ watch(() => contestListStore.selectedMode, () => {
                         'contest-award-range--no-upper': getContestAwardRange(contest.id)?.upper === null,
                       },
                     ]"
-                    :title="awardRangeTitle(contest.id)"
-                    @click.prevent.stop="appendSearchToken(getContestAwardSearchToken(contest.id) ?? '')"
+                    :title="listModeTips[getContestListMode(contest.id)]"
                   >
                     <sub
                       v-if="getContestAwardRange(contest.id)?.lower !== null"
@@ -656,17 +581,15 @@ watch(() => contestListStore.selectedMode, () => {
                     >
                       {{ getContestAwardRange(contest.id)?.upper }}
                     </sup>
-                  </button>
-                  <button
+                  </span>
+                  <span
                     v-else
-                    type="button"
                     class="contest-medal-badge"
-                    :class="contestBadgeClass(contest.id)"
-                    :title="getContestBadgeTitle(contest.id)"
-                    @click.prevent.stop="appendSearchToken(getContestBadgeSearchToken(contest.id) ?? '')"
+                    :class="listModeBadgeClass(getContestListMode(contest.id))"
+                    :title="listModeTips[getContestListMode(contest.id)]"
                   >
-                    {{ getContestBadgeLabel(contest.id) }}
-                  </button>
+                    {{ listModeBadgeLabels[getContestListMode(contest.id)] }}
+                  </span>
                   <span class="tag tag--neutral">
                     {{ coverageSummaryMap.get(contest.id)?.problemCount ?? contest.problem_count }} 题
                   </span>

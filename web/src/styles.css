@@ -912,18 +912,6 @@ h1 {
   border: 1px solid rgba(41, 55, 81, 0.1);
 }
 
-.contest-source-card--clickable {
-  cursor: pointer;
-  transition: transform 120ms ease, border-color 120ms ease;
-}
-
-.contest-source-card--clickable:hover,
-.contest-source-card--clickable:focus-visible {
-  transform: translateY(-1px);
-  border-color: rgba(21, 94, 117, 0.26);
-  outline: none;
-}
-
 .editor-validation {
   display: inline-flex;
   align-items: center;
@@ -1026,7 +1014,6 @@ h1 {
 }
 
 .contest-medal-badge {
-  border: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1041,12 +1028,6 @@ h1 {
   font-weight: 800;
   letter-spacing: 0.02em;
   line-height: 1;
-  cursor: pointer;
-}
-
-.contest-medal-badge:hover,
-.contest-award-range:hover {
-  filter: brightness(1.06);
 }
 
 .contest-medal-badge--none-medal-data {
@@ -1057,10 +1038,6 @@ h1 {
   background: transparent;
   color: var(--ink-soft);
   box-shadow: inset 0 0 0 1px rgba(100, 116, 139, 0.35);
-}
-
-.contest-medal-badge--done {
-  background: #14532d;
 }
 
 .contest-medal-badge--fe {
@@ -1081,7 +1058,6 @@ h1 {
 }
 
 .contest-award-range {
-  border: 0;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1095,7 +1071,6 @@ h1 {
   font-weight: 800;
   color: #f8fafc;
   line-height: 1;
-  cursor: pointer;
 }
 
 .contest-award-range--fe {

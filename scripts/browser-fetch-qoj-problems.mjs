@@ -28,7 +28,7 @@
   }
 
   function downloadJson(filename, payload) {
-    const text = `${JSON.stringify(payload)}\n`;
+    const text = `${JSON.stringify(payload, null, 2)}\n`;
     const blob = new Blob([text], { type: "application/json;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
@@ -37,20 +37,6 @@
     anchor.click();
     URL.revokeObjectURL(url);
     return text;
-  }
-
-  function publishJsonText(text) {
-    window.__xcpcTrackerProblemJson = text;
-    if (typeof copy === "function") {
-      try {
-        copy(text);
-        console.log("已通过 DevTools copy(text) 复制 JSON；同时保存在 window.__xcpcTrackerProblemJson");
-      } catch (error) {
-        console.warn("DevTools copy(text) failed", error);
-      }
-    }
-    console.log("JSON text is also available as window.__xcpcTrackerProblemJson:");
-    console.log("%s", text);
   }
 
   async function pickJsonFile() {
@@ -233,6 +219,6 @@
     failed_count: results.filter((item) => !!item.error).length,
     total_problem_count: results.reduce((sum, item) => sum + item.problems.length, 0),
   });
-  publishJsonText(text);
+  console.log(results);
   return results;
 })();

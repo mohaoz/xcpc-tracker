@@ -3,7 +3,6 @@ import { onMounted, ref } from "vue";
 
 import { importQojUserscriptMembers, type QojUserscriptImport } from "../lib/qoj";
 import { emitMemberMutated } from "../lib/member-events";
-import { listRuntimeCatalogContests } from "../lib/catalog-runtime";
 import {
   applyLocalRuntimeSnapshot,
   exportLocalRuntimeSnapshot,
@@ -41,15 +40,7 @@ function downloadJson(filename: string, payload: unknown) {
 async function refreshStats() {
   loadingStats.value = true;
   try {
-    const [localStatus, runtimeCatalog] = await Promise.all([
-      getCatalogDbStatus(),
-      listRuntimeCatalogContests(),
-    ]);
-    dbStatus.value = {
-      ...localStatus,
-      contestCount: runtimeCatalog.contests.length,
-      problemCount: runtimeCatalog.contests.reduce((sum, contest) => sum + contest.problemCount, 0),
-    };
+    dbStatus.value = await getCatalogDbStatus();
   } finally {
     loadingStats.value = false;
   }

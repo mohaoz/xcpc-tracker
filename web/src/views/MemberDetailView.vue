@@ -43,24 +43,6 @@ function isHandleSyncable(provider: string) {
   return provider === "codeforces";
 }
 
-function getHandleProfileUrl(handle: LocalMemberPerson["handles"][number]) {
-  if (handle.provider === "codeforces") {
-    return `https://codeforces.com/profile/${encodeURIComponent(handle.handle)}`;
-  }
-  if (handle.provider === "qoj") {
-    return `https://qoj.ac/user/profile/${encodeURIComponent(handle.handle)}`;
-  }
-  return null;
-}
-
-function openHandleProfile(handle: LocalMemberPerson["handles"][number]) {
-  const profileUrl = getHandleProfileUrl(handle);
-  if (!profileUrl) {
-    return;
-  }
-  window.open(profileUrl, "_blank", "noopener,noreferrer");
-}
-
 async function loadMember() {
   if (!memberId.value) {
     return;
@@ -212,35 +194,27 @@ onUnmounted(() => {
                   v-for="handle in person.handles"
                   :key="handle.handleId"
                   class="contest-source-card"
-                  :class="{ 'contest-source-card--clickable': !!getHandleProfileUrl(handle) }"
                   :style="deletingHandleId === handle.handleId ? 'border-color: rgba(185, 28, 28, 0.4); background: rgba(185, 28, 28, 0.06);' : ''"
-                  role="link"
-                  tabindex="0"
-                  @click="openHandleProfile(handle)"
-                  @keydown.enter="openHandleProfile(handle)"
                 >
                   <div class="contest-card__top">
                     <div>
                       <p class="eyebrow">{{ handle.provider }}</p>
                       <h3>{{ handle.handle }}</h3>
                     </div>
-                    <div style="text-align: right">
-                      <span class="muted tiny">{{ formatDateTime(handle.updatedAt) }}</span>
-                      <p v-if="getHandleProfileUrl(handle)" class="muted tiny" style="margin-top: 4px">打开主页 ↗</p>
-                    </div>
+                    <span class="muted tiny">{{ formatDateTime(handle.updatedAt) }}</span>
                   </div>
                   <div class="actions" style="margin-top: 12px">
                     <button
                       class="button button--ghost"
                       :disabled="!isHandleSyncable(handle.provider) || syncingHandleId === handle.handleId"
-                      @click.stop="handleSyncHandle(handle)"
+                      @click="handleSyncHandle(handle)"
                     >
                       {{ syncingHandleId === handle.handleId ? "同步中..." : "同步账号" }}
                     </button>
                     <button
                       class="button button--ghost"
                       :disabled="deletingHandleId === handle.handleId"
-                      @click.stop="handleDeleteHandle(handle)"
+                      @click="handleDeleteHandle(handle)"
                     >
                       {{ deletingHandleId === handle.handleId ? "删除中..." : "删除账号" }}
                     </button>
