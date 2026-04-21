@@ -1236,13 +1236,6 @@ h1 {
   vertical-align: top;
 }
 
-.coverage-table th:first-child,
-.coverage-table td:first-child {
-  width: 68px;
-  white-space: nowrap;
-  padding-right: 8px;
-}
-
 .coverage-table th {
   font-size: 0.86rem;
   color: var(--ink-soft);
@@ -1250,10 +1243,9 @@ h1 {
 }
 
 .coverage-table__title-column {
-  width: 34%;
-  max-width: 420px;
+  width: 38%;
+  min-width: 280px;
   border-right: 1px solid rgba(41, 55, 81, 0.12);
-  padding-left: 8px;
 }
 
 .coverage-table__title-column > div {
@@ -1263,13 +1255,12 @@ h1 {
 
 .coverage-table__problem-title {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
 }
 
 .coverage-table__problem-ordinal {
   flex: 0 0 auto;
-  margin-top: 1px;
 }
 
 .coverage-table__problem-name {
