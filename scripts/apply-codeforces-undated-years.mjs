@@ -100,6 +100,17 @@ function isProperTagSubset(leftTags, rightTags) {
   return left.size < right.size && [...left].every((tag) => right.has(tag));
 }
 
+function haveSameTagSet(leftTags, rightTags) {
+  const left = dedupeStrings(leftTags ?? []);
+  const right = dedupeStrings(rightTags ?? []);
+  if (left.length !== right.length) {
+    return false;
+  }
+  const leftKey = createTagKey(left);
+  const rightKey = createTagKey(right);
+  return leftKey === rightKey;
+}
+
 function buildProblemsByContestId(problems) {
   const problemsByContestId = new Map();
   for (const problem of problems ?? []) {
@@ -191,27 +202,15 @@ function findContestMergeGroups(contests, problemsByContestId) {
     }
   };
 
-  const groups = new Map();
-  for (const [index, contest] of contests.entries()) {
-    const tagKey = createTagKey(contest.tags ?? []);
-    const bucket = groups.get(tagKey) ?? [];
-    bucket.push(index);
-    groups.set(tagKey, bucket);
-  }
-
-  for (const bucket of groups.values()) {
-    for (let index = 1; index < bucket.length; index += 1) {
-      unite(bucket[0], bucket[index]);
-    }
-  }
-
   for (let left = 0; left < contests.length; left += 1) {
     for (let right = left + 1; right < contests.length; right += 1) {
       const leftTags = contests[left].tags ?? [];
       const rightTags = contests[right].tags ?? [];
-      const isSubset =
-        isProperTagSubset(leftTags, rightTags) || isProperTagSubset(rightTags, leftTags);
-      if (!isSubset) continue;
+      const haveComparableTags =
+        haveSameTagSet(leftTags, rightTags) ||
+        isProperTagSubset(leftTags, rightTags) ||
+        isProperTagSubset(rightTags, leftTags);
+      if (!haveComparableTags) continue;
       if (!hasDifferentProviderEvidence(contests[left], contests[right])) continue;
       const leftProblems = problemsByContestId.get(contests[left].contestId) ?? [];
       const rightProblems = problemsByContestId.get(contests[right].contestId) ?? [];
