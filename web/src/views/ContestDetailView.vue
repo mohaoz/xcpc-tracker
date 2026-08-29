@@ -59,6 +59,9 @@ const awardCutoffSourceLabel = computed(() => {
   }
   return "未识别 official 分组，按全部队伍奖牌数量 10% / 20% / 30% 推断";
 });
+const contestDateLabel = computed(() =>
+  contest.value?.start_at?.match(/^\d{4}-\d{2}-\d{2}/u)?.[0] ?? "",
+);
 const solvedProblemCount = computed(() =>
   coverage.value?.problems.filter((problem) => problem.members.some((member) => member.status === "solved")).length ?? 0,
 );
@@ -102,8 +105,11 @@ const nextAwardTarget = computed(() => {
   };
 });
 const contestEyebrow = computed(() => {
-  const sourceLabels = (contest.value?.sources ?? [])
-    .filter((item) => item.kind === "contest")
+  const sources = contest.value?.sources ?? [];
+  const preferredSources = sources.some((item) => item.kind === "contest")
+    ? sources.filter((item) => item.kind === "contest")
+    : sources;
+  const sourceLabels = preferredSources
     .map((item) => {
       const provider = item.provider.trim().toUpperCase();
       const providerId = (item.provider_contest_id ?? "").trim();
@@ -384,6 +390,7 @@ onMounted(loadContestPage);
               <div class="inline-meta muted tiny">
                 <span>{{ coverage?.problemCount ?? contest.problems.length }} problems</span>
                 <span>{{ coverage?.freshProblemCount ?? 0 }} fresh</span>
+                <span v-if="contestDateLabel">{{ contestDateLabel }}</span>
               </div>
             </div>
             <div class="inline-tags">

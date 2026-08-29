@@ -19,7 +19,9 @@
 - `npm run catalog:validate`
 - `npm run catalog:build-final`
 - `npm run catalog:fetch-cf-problems`
+- `npm run catalog:check-reviewed-cf-problems`
 - `npm run catalog:import-cf-problems`
+- `npm run catalog:import-reviewed-cf-problems`
 - `npm run catalog:import-qoj-problems`
 - `npm run catalog:match-xcpcio-board`
 - `npm run catalog:refresh-xcpcio-board`
@@ -33,9 +35,11 @@
 2. 将导出的 `contests.json` 放到 `data/contests.json`
 3. `npm run catalog:build-final` 生成 `data/final.json`
 4. `npm run catalog:generate-default` 生成 `catalog/default-catalog.min.json`
-5. `npm run catalog:refresh-xcpcio-board` 匹配 XCPCIO Board 并预计算奖牌线
-6. `npm run catalog:refresh-codeforces-award-cutoffs` 用 Codeforces official standings 补齐仍无 cutoff 的 Codeforces 比赛
-7. 或直接运行 `npm run catalog:refresh`
+5. `npm run catalog:import-reviewed-cf-problems` 合并维护者已核验的 Codeforces 比赛元数据与题单
+6. `npm run catalog:refresh-xcpcio-board` 匹配 XCPCIO Board 并预计算奖牌线
+7. `npm run catalog:refresh-codeforces-award-cutoffs` 用 Codeforces official standings 补齐仍无 cutoff 的 Codeforces 比赛
+8. `npm run catalog:generate-web-assets` 在 catalog 更新完成后生成前端资产
+9. 或直接运行 `npm run catalog:refresh`
 
 额外浏览器脚本：
 
@@ -49,11 +53,11 @@
 - `fetch-codeforces-problems.mjs`
   在本地用 Codeforces API 一次抓取全部 Codeforces 比赛题目，默认读取 `data/final.json`，输出到 `data/codeforces-problems.json`
 - `import-codeforces-problems-export.mjs`
-  将 `data/codeforces-problems.json` 并进 `catalog/default-catalog.min.json`
+  将 `data/codeforces-problems.json` 并进 `catalog/default-catalog.min.json`。导入记录可带 `target_contest_ids`，也可带完整 `target_contests` 以原子方式新建比赛及其题单；一个 Codeforces Gym 可显式映射多个目录比赛。`--check` 会只读检查导入是否已完整、幂等地落入目录。维护者核验的 2026 比赛与题单位于 `fixtures/imports/codeforces/2026-xcpc-problem-lists.json`。
 - `import-qoj-problems-export.mjs`
   将 `data/qoj-problems-a.json` / `data/qoj-problems-b.json` 这类 QOJ 题目导出并进 `catalog/default-catalog.min.json`
 - `match-xcpcio-board-contests.mjs`
-  XCPCIO Board 的构建期数据管线。`--fetch-raw --normalize` 会先保存原始 board index 到 `data/xcpcio-board-raw.json`，再生成与主 contest 流程一致的 `[{ title, url }]` 风格规范化文件 `data/xcpcio-board-contests.json`；默认匹配阶段读取这个规范化文件并给 title 打 tags。加 `--apply` 会把 high confidence 的 `xcpcio_board` standings source 合并进 catalog；加 `--fetch-cutoffs` 会在构建期读取 board standings 数据，按官方 medal 配置或 10% / 20% / 30% 奖牌数量预计算金银铜线，保存到 `data/xcpcio-board-award-cutoffs.json` 并写入 catalog。前端只读取 catalog 里的 `awardCutoffs`，不会请求 board 数据。若要写入 medium 匹配，显式传 `--apply-confidence=high,medium` 后再人工复核 diff。
+  XCPCIO Board 的构建期数据管线。`--fetch-raw --normalize` 会先保存原始 board index 到 `data/xcpcio-board-raw.json`，再生成与主 contest 流程一致的 `[{ title, url }]` 风格规范化文件 `data/xcpcio-board-contests.json`；默认匹配阶段读取这个规范化文件并给 title 打 tags。加 `--apply` 会把 high confidence 的 `xcpcio_board` standings source 合并进已有 catalog 比赛；加 `--fetch-cutoffs` 会在构建期读取 board standings 数据，按官方 medal 配置或 10% / 20% / 30% 奖牌数量预计算金银铜线，保存到 `data/xcpcio-board-award-cutoffs.json` 并写入 catalog。该脚本不会新增无题目比赛。前端只读取 catalog 里的 `awardCutoffs`，不会请求 board 数据。若要写入 medium 匹配，显式传 `--apply-confidence=high,medium` 后再人工复核 diff。
 - `fetch-codeforces-award-cutoffs.mjs`
   Codeforces fallback 奖牌线管线。默认处理仍没有 `awardCutoffs` 且带 Codeforces contest source 的比赛，并重新刷新已有的 Codeforces fallback；通过 Codeforces `contest.standings` API 拉取 `showUnofficial=false` 的 official standings，再按 10% / 20% / 30% 奖牌数量预计算金银铜线，保存到 `data/codeforces-award-cutoffs.json` 并在 `--apply` 时写回 catalog。前端不会请求 Codeforces standings。
 

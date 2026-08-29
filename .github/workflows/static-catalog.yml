@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - release
       - codex-frontend-first-pivot
   pull_request:
 
@@ -29,6 +30,9 @@ jobs:
 
       - name: Validate curated catalog
         run: npm run catalog:validate
+
+      - name: Generate static catalog assets
+        run: npm run catalog:generate-web-assets
 
       - name: Build frontend
         run: npm run build

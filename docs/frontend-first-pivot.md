@@ -100,7 +100,7 @@ scripts/
 - `catalog/` is the canonical hand-edited source of truth.
 - imported payloads belong in runtime storage or fixture/sample areas, not in `catalog/` unless they are manually normalized first.
 - import flows may generate reviewable drafts, but they should not silently overwrite curated files.
-- a user-saved QOJ contests HTML or MHT export may be normalized into baseline contest stubs and then promoted into `catalog/` intentionally.
+- a user-saved QOJ contests HTML or MHT export may be normalized into a documentation-only candidate list; a contest is promoted into `catalog/` only after its problem list is reviewed.
 
 ### Curated contest file shape
 
@@ -136,7 +136,7 @@ Rules:
 - The built-in default catalog is stored as a single bundled JSON file.
 - Human-edited files stay under `catalog/`.
 - Frontend should consume the bundled default catalog directly for built-in data.
-- `curation_status` allows us to carry partial curated contests during migration, for example contest metadata present but problem list not finished yet.
+- the shipped default catalog excludes partial contests: every published contest must have at least one curated problem, while unfinished candidates remain in maintainer documentation.
 - `aliases` should store normal alternative titles or well-known formal names, not old console-oriented short codes.
 - provider-only shorthand should stay in `sources` metadata rather than becoming the primary human-facing alias model.
 

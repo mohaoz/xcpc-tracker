@@ -1,0 +1,844 @@
+[
+  {
+    "title": "2026 GBA International Programming Contest",
+    "url": "https://codeforces.com/gym/106484",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Bugcaaaaaat",
+        "url": "https://codeforces.com/gym/106484/problem/A",
+        "provider_problem_id": "106484:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Bugcat's Counting Game",
+        "url": "https://codeforces.com/gym/106484/problem/B",
+        "provider_problem_id": "106484:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Bugcat's Unique Queue",
+        "url": "https://codeforces.com/gym/106484/problem/C",
+        "provider_problem_id": "106484:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Locks",
+        "url": "https://codeforces.com/gym/106484/problem/D",
+        "provider_problem_id": "106484:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Bugcat's Gathering",
+        "url": "https://codeforces.com/gym/106484/problem/E",
+        "provider_problem_id": "106484:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Card Game",
+        "url": "https://codeforces.com/gym/106484/problem/F",
+        "provider_problem_id": "106484:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Skynet",
+        "url": "https://codeforces.com/gym/106484/problem/G",
+        "provider_problem_id": "106484:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Teaching Building",
+        "url": "https://codeforces.com/gym/106484/problem/H",
+        "provider_problem_id": "106484:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Bugcat's Adventure",
+        "url": "https://codeforces.com/gym/106484/problem/I",
+        "provider_problem_id": "106484:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Bugcat's Mahjong",
+        "url": "https://codeforces.com/gym/106484/problem/J",
+        "provider_problem_id": "106484:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Moonlit Trees",
+        "url": "https://codeforces.com/gym/106484/problem/K",
+        "provider_problem_id": "106484:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Pairing Bugcats",
+        "url": "https://codeforces.com/gym/106484/problem/L",
+        "provider_problem_id": "106484:L"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "1ac1cd8e-42b5-5e26-9419-c72b913577f8",
+        "title": "2026 GBA International Programming Contest",
+        "aliases": [],
+        "tags": [
+          "2026",
+          "省赛"
+        ],
+        "start_at": "2026-04-12T04:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106484",
+            "provider_contest_id": "106484",
+            "source_title": "2026 GBA International Programming Contest",
+            "label": "Codeforces Gym"
+          },
+          {
+            "provider": "xcpcio_board",
+            "kind": "standings",
+            "url": "https://board.xcpcio.com/provincial-contest/2026/gba",
+            "provider_contest_id": "/provincial-contest/2026/gba",
+            "source_title": "2026 GBA International Programming Contest",
+            "label": "XCPCIO Board"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  },
+  {
+    "title": "The 2026 Shaanxi Provincial Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106532",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "The Unending Dream",
+        "url": "https://codeforces.com/gym/106532/problem/A",
+        "provider_problem_id": "106532:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "White Stone Creek",
+        "url": "https://codeforces.com/gym/106532/problem/B",
+        "provider_problem_id": "106532:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Circular Rain",
+        "url": "https://codeforces.com/gym/106532/problem/C",
+        "provider_problem_id": "106532:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Amanojaku",
+        "url": "https://codeforces.com/gym/106532/problem/D",
+        "provider_problem_id": "106532:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Towards The Skyline",
+        "url": "https://codeforces.com/gym/106532/problem/E",
+        "provider_problem_id": "106532:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Good Evening-Morning",
+        "url": "https://codeforces.com/gym/106532/problem/F",
+        "provider_problem_id": "106532:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Wanna Be Free",
+        "url": "https://codeforces.com/gym/106532/problem/G",
+        "provider_problem_id": "106532:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "The Peak-End Rule",
+        "url": "https://codeforces.com/gym/106532/problem/H",
+        "provider_problem_id": "106532:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Stargazer",
+        "url": "https://codeforces.com/gym/106532/problem/I",
+        "provider_problem_id": "106532:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "The Last Singer",
+        "url": "https://codeforces.com/gym/106532/problem/J",
+        "provider_problem_id": "106532:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Turning Regrets Into Songs",
+        "url": "https://codeforces.com/gym/106532/problem/K",
+        "provider_problem_id": "106532:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Old Ballads",
+        "url": "https://codeforces.com/gym/106532/problem/L",
+        "provider_problem_id": "106532:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "Group Effect",
+        "url": "https://codeforces.com/gym/106532/problem/M",
+        "provider_problem_id": "106532:M"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "51ea566e-015d-50c9-a1a0-8efe98a119c8",
+        "title": "第 14 届陕西省国际大学生程序设计竞赛 - 正式赛",
+        "aliases": [
+          "The 2026 Shaanxi Provincial Collegiate Programming Contest"
+        ],
+        "tags": [
+          "2026",
+          "省赛",
+          "陕西"
+        ],
+        "start_at": "2026-05-16T02:30:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106532",
+            "provider_contest_id": "106532",
+            "source_title": "The 2026 Shaanxi Provincial Collegiate Programming Contest",
+            "label": "Codeforces Gym"
+          },
+          {
+            "provider": "xcpcio_board",
+            "kind": "standings",
+            "url": "https://board.xcpcio.com/provincial-contest/2026/shaanxi",
+            "provider_contest_id": "/provincial-contest/2026/shaanxi",
+            "source_title": "第 14 届陕西省国际大学生程序设计竞赛 - 正式赛",
+            "label": "XCPCIO Board"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  },
+  {
+    "title": "The 2026 Jiangsu Collegiate Programming Contest, The 2026 Guangdong Provincial Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106550",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Dancing Zombie",
+        "url": "https://codeforces.com/gym/106550/problem/A",
+        "provider_problem_id": "106550:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Galaxy of Stars in a Dream",
+        "url": "https://codeforces.com/gym/106550/problem/B",
+        "provider_problem_id": "106550:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Binary String",
+        "url": "https://codeforces.com/gym/106550/problem/C",
+        "provider_problem_id": "106550:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Bracket Convex Hull",
+        "url": "https://codeforces.com/gym/106550/problem/D",
+        "provider_problem_id": "106550:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "High-Dimensional Geometry",
+        "url": "https://codeforces.com/gym/106550/problem/E",
+        "provider_problem_id": "106550:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Counting",
+        "url": "https://codeforces.com/gym/106550/problem/F",
+        "provider_problem_id": "106550:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Passing Ball Problem",
+        "url": "https://codeforces.com/gym/106550/problem/G",
+        "provider_problem_id": "106550:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Treasure Island",
+        "url": "https://codeforces.com/gym/106550/problem/H",
+        "provider_problem_id": "106550:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "The Test of the Clever Pig",
+        "url": "https://codeforces.com/gym/106550/problem/I",
+        "provider_problem_id": "106550:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Splendor",
+        "url": "https://codeforces.com/gym/106550/problem/J",
+        "provider_problem_id": "106550:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Stock Trading",
+        "url": "https://codeforces.com/gym/106550/problem/K",
+        "provider_problem_id": "106550:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Two-Player Game",
+        "url": "https://codeforces.com/gym/106550/problem/L",
+        "provider_problem_id": "106550:L"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "f1530276-8b8a-5dec-a563-060fdc7ff438",
+        "title": "2026 年江苏省大学生程序设计竞赛",
+        "aliases": [
+          "The 2026 Jiangsu Collegiate Programming Contest, The 2026 Guangdong Provincial Collegiate Programming Contest"
+        ],
+        "tags": [
+          "2026",
+          "省赛",
+          "江苏"
+        ],
+        "start_at": "2026-05-17T02:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106550",
+            "provider_contest_id": "106550",
+            "source_title": "The 2026 Jiangsu Collegiate Programming Contest, The 2026 Guangdong Provincial Collegiate Programming Contest",
+            "label": "Codeforces Gym"
+          },
+          {
+            "provider": "xcpcio_board",
+            "kind": "standings",
+            "url": "https://board.xcpcio.com/provincial-contest/2026/jiangsu",
+            "provider_contest_id": "/provincial-contest/2026/jiangsu",
+            "source_title": "2026 年江苏省大学生程序设计竞赛",
+            "label": "XCPCIO Board"
+          }
+        ],
+        "notes": null
+      },
+      {
+        "contest_id": "b84e4298-4c66-56b3-a5e1-403d1d7c87cd",
+        "title": "第二十三届广东省大学生程序设计竞赛 - 正式赛",
+        "aliases": [
+          "The 2026 Jiangsu Collegiate Programming Contest, The 2026 Guangdong Provincial Collegiate Programming Contest"
+        ],
+        "tags": [
+          "2026",
+          "省赛",
+          "广东"
+        ],
+        "start_at": "2026-05-17T02:40:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106550",
+            "provider_contest_id": "106550",
+            "source_title": "The 2026 Jiangsu Collegiate Programming Contest, The 2026 Guangdong Provincial Collegiate Programming Contest",
+            "label": "Codeforces Gym"
+          },
+          {
+            "provider": "xcpcio_board",
+            "kind": "standings",
+            "url": "https://board.xcpcio.com/provincial-contest/2026/guangdong",
+            "provider_contest_id": "/provincial-contest/2026/guangdong",
+            "source_title": "第二十三届广东省大学生程序设计竞赛 - 正式赛",
+            "label": "XCPCIO Board"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  },
+  {
+    "title": "2026 ICPC Nanchang Invitational and Jiangxi Provincial Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106551",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "The Difficulty of Marathon",
+        "url": "https://codeforces.com/gym/106551/problem/A",
+        "provider_problem_id": "106551:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "UNO",
+        "url": "https://codeforces.com/gym/106551/problem/B",
+        "provider_problem_id": "106551:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Tourist",
+        "url": "https://codeforces.com/gym/106551/problem/C",
+        "provider_problem_id": "106551:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Eating Cherries",
+        "url": "https://codeforces.com/gym/106551/problem/D",
+        "provider_problem_id": "106551:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Critical Perfect",
+        "url": "https://codeforces.com/gym/106551/problem/E",
+        "provider_problem_id": "106551:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "One Touch Drawing",
+        "url": "https://codeforces.com/gym/106551/problem/F",
+        "provider_problem_id": "106551:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "The Meaning of the World",
+        "url": "https://codeforces.com/gym/106551/problem/G",
+        "provider_problem_id": "106551:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "BABA BOOEY",
+        "url": "https://codeforces.com/gym/106551/problem/H",
+        "provider_problem_id": "106551:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Gotta Go Fast",
+        "url": "https://codeforces.com/gym/106551/problem/I",
+        "provider_problem_id": "106551:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Journey of GCD",
+        "url": "https://codeforces.com/gym/106551/problem/J",
+        "provider_problem_id": "106551:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Legacy Code",
+        "url": "https://codeforces.com/gym/106551/problem/K",
+        "provider_problem_id": "106551:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Little Z's Function",
+        "url": "https://codeforces.com/gym/106551/problem/L",
+        "provider_problem_id": "106551:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "Kingdam of Construction",
+        "url": "https://codeforces.com/gym/106551/problem/M",
+        "provider_problem_id": "106551:M"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "ce44751f-d252-5bfb-a4a9-324fe2eeaa65",
+        "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（南昌）暨江西省赛 - 正式赛",
+        "aliases": [
+          "2026 ICPC Nanchang Invitational and Jiangxi Provincial Collegiate Programming Contest"
+        ],
+        "tags": [
+          "2026",
+          "icpc",
+          "省赛",
+          "邀请赛",
+          "南昌",
+          "江西"
+        ],
+        "start_at": "2026-05-17T01:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106551",
+            "provider_contest_id": "106551",
+            "source_title": "2026 ICPC Nanchang Invitational and Jiangxi Provincial Collegiate Programming Contest",
+            "label": "Codeforces Gym"
+          },
+          {
+            "provider": "xcpcio_board",
+            "kind": "standings",
+            "url": "https://board.xcpcio.com/icpc/51st/jiangxi-invitational",
+            "provider_contest_id": "/icpc/51st/jiangxi-invitational",
+            "source_title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（南昌）暨江西省赛 - 正式赛",
+            "label": "XCPCIO Board"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  },
+  {
+    "title": "[Unofficial Mirror] 2026 CCPC National Invitational (Nanchang) and The 3rd Jiangxi Provincial Programming Contest",
+    "url": "https://codeforces.com/gym/106554",
+    "source_label": "Codeforces Gym (unofficial mirror)",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "求求你不要再摔馍片了",
+        "url": "https://codeforces.com/gym/106554/problem/A",
+        "provider_problem_id": "106554:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "世界树",
+        "url": "https://codeforces.com/gym/106554/problem/B",
+        "provider_problem_id": "106554:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "简单字符串题",
+        "url": "https://codeforces.com/gym/106554/problem/C",
+        "provider_problem_id": "106554:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "电梯",
+        "url": "https://codeforces.com/gym/106554/problem/D",
+        "provider_problem_id": "106554:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "猜01序列",
+        "url": "https://codeforces.com/gym/106554/problem/E",
+        "provider_problem_id": "106554:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "建设高铁",
+        "url": "https://codeforces.com/gym/106554/problem/F",
+        "provider_problem_id": "106554:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "可能是字符串签到题",
+        "url": "https://codeforces.com/gym/106554/problem/G",
+        "provider_problem_id": "106554:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "南昌拌粉的绝妙配比",
+        "url": "https://codeforces.com/gym/106554/problem/H",
+        "provider_problem_id": "106554:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "灯带",
+        "url": "https://codeforces.com/gym/106554/problem/I",
+        "provider_problem_id": "106554:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "贪吃蛇",
+        "url": "https://codeforces.com/gym/106554/problem/J",
+        "provider_problem_id": "106554:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "拯救猫猫",
+        "url": "https://codeforces.com/gym/106554/problem/K",
+        "provider_problem_id": "106554:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "三人成角",
+        "url": "https://codeforces.com/gym/106554/problem/L",
+        "provider_problem_id": "106554:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "最正宗的白糖糕",
+        "url": "https://codeforces.com/gym/106554/problem/M",
+        "provider_problem_id": "106554:M"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "48308c06-eafd-569e-bf06-c20e40a98fee",
+        "title": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（南昌） - 正式赛",
+        "aliases": [
+          "[Unofficial Mirror] 2026 CCPC National Invitational (Nanchang) and The 3rd Jiangxi Provincial Programming Contest"
+        ],
+        "tags": [
+          "2026",
+          "ccpc",
+          "邀请赛",
+          "南昌"
+        ],
+        "start_at": "2026-05-24T01:30:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106554",
+            "provider_contest_id": "106554",
+            "source_title": "[Unofficial Mirror] 2026 CCPC National Invitational (Nanchang) and The 3rd Jiangxi Provincial Programming Contest",
+            "label": "Codeforces Gym (unofficial mirror)"
+          },
+          {
+            "provider": "xcpcio_board",
+            "kind": "standings",
+            "url": "https://board.xcpcio.com/ccpc/12th/nanchang-invitational",
+            "provider_contest_id": "/ccpc/12th/nanchang-invitational",
+            "source_title": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（南昌） - 正式赛",
+            "label": "XCPCIO Board"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  },
+  {
+    "title": "The 19th Jilin Provincial Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106567",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Manhattan Cycle",
+        "url": "https://codeforces.com/gym/106567/problem/A",
+        "provider_problem_id": "106567:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Japanese Digits",
+        "url": "https://codeforces.com/gym/106567/problem/B",
+        "provider_problem_id": "106567:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Map1e",
+        "url": "https://codeforces.com/gym/106567/problem/C",
+        "provider_problem_id": "106567:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Hidden k-Tuples",
+        "url": "https://codeforces.com/gym/106567/problem/D",
+        "provider_problem_id": "106567:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Roco Kingdom World",
+        "url": "https://codeforces.com/gym/106567/problem/E",
+        "provider_problem_id": "106567:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Counting Trees",
+        "url": "https://codeforces.com/gym/106567/problem/F",
+        "provider_problem_id": "106567:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Sequence Operation 1",
+        "url": "https://codeforces.com/gym/106567/problem/G",
+        "provider_problem_id": "106567:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Graph",
+        "url": "https://codeforces.com/gym/106567/problem/H",
+        "provider_problem_id": "106567:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Koishi Is Number One",
+        "url": "https://codeforces.com/gym/106567/problem/I",
+        "provider_problem_id": "106567:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Reverse Inversion",
+        "url": "https://codeforces.com/gym/106567/problem/J",
+        "provider_problem_id": "106567:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Twin Spanning Trees",
+        "url": "https://codeforces.com/gym/106567/problem/K",
+        "provider_problem_id": "106567:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Straight",
+        "url": "https://codeforces.com/gym/106567/problem/L",
+        "provider_problem_id": "106567:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "Crystal Castle",
+        "url": "https://codeforces.com/gym/106567/problem/M",
+        "provider_problem_id": "106567:M"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "2e723e83-803e-5132-8bc8-87166ad1b28a",
+        "title": "第 19 届吉林省大学生程序设计竞赛 - 正式赛",
+        "aliases": [
+          "The 19th Jilin Provincial Collegiate Programming Contest"
+        ],
+        "tags": [
+          "2026",
+          "省赛",
+          "吉林"
+        ],
+        "start_at": "2026-05-23T01:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106567",
+            "provider_contest_id": "106567",
+            "source_title": "The 19th Jilin Provincial Collegiate Programming Contest",
+            "label": "Codeforces Gym"
+          },
+          {
+            "provider": "xcpcio_board",
+            "kind": "standings",
+            "url": "https://board.xcpcio.com/provincial-contest/2026/jilin",
+            "provider_contest_id": "/provincial-contest/2026/jilin",
+            "source_title": "第 19 届吉林省大学生程序设计竞赛 - 正式赛",
+            "label": "XCPCIO Board"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  },
+  {
+    "title": "The 2026 ICPC China Sichuan Provincial Programming Contest",
+    "url": "https://codeforces.com/gym/106570",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "那一年的秘密基地",
+        "url": "https://codeforces.com/gym/106570/problem/A",
+        "provider_problem_id": "106570:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "括号序列",
+        "url": "https://codeforces.com/gym/106570/problem/B",
+        "provider_problem_id": "106570:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "精灵对战",
+        "url": "https://codeforces.com/gym/106570/problem/C",
+        "provider_problem_id": "106570:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "那一天的回文字符串",
+        "url": "https://codeforces.com/gym/106570/problem/D",
+        "provider_problem_id": "106570:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "永恒的奥古斯都",
+        "url": "https://codeforces.com/gym/106570/problem/E",
+        "provider_problem_id": "106570:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "交换余生",
+        "url": "https://codeforces.com/gym/106570/problem/F",
+        "provider_problem_id": "106570:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "禁忌教典的消失咒文",
+        "url": "https://codeforces.com/gym/106570/problem/G",
+        "provider_problem_id": "106570:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "最大权独立集问题",
+        "url": "https://codeforces.com/gym/106570/problem/H",
+        "provider_problem_id": "106570:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "星系观测计划",
+        "url": "https://codeforces.com/gym/106570/problem/I",
+        "provider_problem_id": "106570:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "献给空白的无败冠冕",
+        "url": "https://codeforces.com/gym/106570/problem/J",
+        "provider_problem_id": "106570:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "环基基环树",
+        "url": "https://codeforces.com/gym/106570/problem/K",
+        "provider_problem_id": "106570:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "博德之跃 3",
+        "url": "https://codeforces.com/gym/106570/problem/L",
+        "provider_problem_id": "106570:L"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "351df86a-97da-50fb-9d53-f536ecd9e383",
+        "title": "第十八届四川省大学生程序设计竞赛 - 正式赛",
+        "aliases": [
+          "The 2026 ICPC China Sichuan Provincial Programming Contest"
+        ],
+        "tags": [
+          "2026",
+          "省赛",
+          "四川"
+        ],
+        "start_at": "2026-05-31T01:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106570",
+            "provider_contest_id": "106570",
+            "source_title": "The 2026 ICPC China Sichuan Provincial Programming Contest",
+            "label": "Codeforces Gym"
+          },
+          {
+            "provider": "xcpcio_board",
+            "kind": "standings",
+            "url": "https://board.xcpcio.com/provincial-contest/2026/sichuan",
+            "provider_contest_id": "/provincial-contest/2026/sichuan",
+            "source_title": "第十八届四川省大学生程序设计竞赛 - 正式赛",
+            "label": "XCPCIO Board"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  }
+]

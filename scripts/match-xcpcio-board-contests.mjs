@@ -73,6 +73,7 @@ const locationPatterns = [
   ["新疆", /新疆|xinjiang/iu],
   ["河北", /河北|hebei/iu],
   ["河南", /河南|henan/iu],
+  ["贵州", /贵州|guizhou/iu],
   ["广西", /广西|guangxi/iu],
   ["陕西", /陕西|shaanxi|shanxi/iu],
 ];
@@ -791,6 +792,7 @@ const [catalog, boardInput] = await Promise.all([
     ? readJsonFromPathOrUrl(boardIndexPathOrUrl)
     : readJsonFromPathOrUrl(normalizedPathOrUrl),
 ]);
+const originalCatalogJson = JSON.stringify(catalog);
 
 if (fetchRaw) {
   await fs.writeFile(rawOutputPath, `${JSON.stringify(boardInput, null, 2)}\n`, "utf8");
@@ -805,8 +807,42 @@ if (fetchRaw || normalizeRaw) {
 }
 
 const matches = [];
+const boardItemsByPath = new Map(
+  boardItems.map((boardItem) => [toBoardPath(boardItem.board_link ?? boardItem.url), boardItem]),
+);
 
 for (const contest of catalog.contests ?? []) {
+  const existingBoardSource = (contest.sources ?? []).find((source) => source.provider === "xcpcio_board");
+  const existingBoardItem = existingBoardSource
+    ? boardItemsByPath.get(toBoardPath(existingBoardSource.provider_contest_id ?? existingBoardSource.url))
+    : null;
+  if (existingBoardItem) {
+    matches.push({
+      contest_id: contest.contestId,
+      title: contest.title,
+      tags: contest.tags ?? [],
+      confidence: "high",
+      suggested_source: {
+        provider: "xcpcio_board",
+        kind: "standings",
+        url: existingBoardItem.url,
+        provider_contest_id: existingBoardItem.board_link,
+        source_title: existingBoardItem.title,
+        label: "XCPCIO Board",
+      },
+      candidates: [
+        {
+          score: 200,
+          board_link: existingBoardItem.board_link,
+          board_title: existingBoardItem.title,
+          board_tags: existingBoardItem.tags,
+          reasons: ["existing_source_path"],
+        },
+      ],
+    });
+    continue;
+  }
+
   const candidates = boardItems
     .map((boardItem) => {
       const scored = scoreCandidate(contest, boardItem);
@@ -816,6 +852,7 @@ for (const contest of catalog.contests ?? []) {
       return {
         score: scored.score,
         board_link: boardItem.board_link,
+        url: boardItem.url,
         board_title: boardItem.title,
         board_tags: boardItem.tags,
         reasons: scored.reasons,
@@ -935,6 +972,13 @@ if (applyMatches) {
     contest.sources = [...sources, nextSource];
     appliedCount += 1;
   }
+}
+
+const catalogChanged = JSON.stringify(catalog) !== originalCatalogJson;
+if (catalogChanged) {
+  catalog.exportedAt = new Date().toISOString();
+}
+if (applyMatches && (catalogChanged || outputPath !== catalogPath)) {
   await fs.writeFile(outputPath, `${JSON.stringify(catalog, null, 2)}\n`, "utf8");
 }
 
@@ -950,6 +994,7 @@ console.log(JSON.stringify({
   min_score: minScore,
   applied: applyMatches,
   output_path: applyMatches ? outputPath : null,
+  catalog_changed: catalogChanged,
   apply_confidence: applyMatches ? [...applyConfidence] : null,
   applied_count: appliedCount,
   skipped_by_confidence_count: skippedByConfidenceCount,

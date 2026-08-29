@@ -19,6 +19,8 @@ Rules:
 - keep the built-in default catalog in this single bundled JSON file
 - treat this directory as the canonical source of truth for curated contest metadata
 - keep imported data out of `catalog/` until it has been normalized and reviewed
+- publish a contest only after its reviewed problem list is available; keep no-problem candidates in project documentation instead of this public bundle
+- reject contests with empty problem lists or `curationStatus = contest_stub` during public catalog validation
 - preserve upstream provenance on `sources`
 - keep derived award cutoff provenance in `awardCutoffs.sourceProvider`, `awardCutoffs.sourceLabel`, and `awardCutoffs.sourceUrl`
 - prefer XCPCIO Board award cutoffs when available; use Codeforces official standings as a build-time fallback for Codeforces contests without board cutoffs

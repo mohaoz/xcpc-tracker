@@ -23,6 +23,21 @@ async function main() {
     problemsByContestId.set(problem.contestId, bucket);
   }
 
+  const unpublishedContests = (snapshot.contests ?? []).filter(
+    (contest) =>
+      contest.curationStatus === "contest_stub" ||
+      (problemsByContestId.get(contest.contestId) ?? []).length === 0,
+  );
+  if (unpublishedContests.length > 0) {
+    const preview = unpublishedContests
+      .slice(0, 5)
+      .map((contest) => `${contest.contestId} (${contest.title})`)
+      .join(", ");
+    throw new Error(
+      `refusing to generate public assets for ${unpublishedContests.length} contests without curated problems: ${preview}`,
+    );
+  }
+
   const contestIndex = {
     generated_at: snapshot.exportedAt,
     source: "catalog/default-catalog.min.json",

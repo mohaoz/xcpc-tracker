@@ -6,6 +6,10 @@
 
 - added build-time XCPCIO Board and Codeforces official standings award cutoff data
 - added contest list medal progress filters and award cutoff progress cards
+- documented 29 candidate contests without complete problem lists while excluding them from the public catalog and generated site assets
+- public catalog validation now rejects empty problem lists and `contest_stub` records
+- added 100 verified problem records across eight 2026 contests from seven Codeforces Gym problemsets, with explicit shared mapping for Jiangsu/Guangdong and mirror provenance for CCPC Nanchang
+- Codeforces member imports now apply an exact provider problem match to every curated problem that shares it, so shared contest problemsets update coverage on both contests
 
 ## 0.5.0
 

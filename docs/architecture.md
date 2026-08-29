@@ -7,7 +7,7 @@
 - Curated contest metadata lives in Git-managed JSON files.
 - Codeforces member status comes from public API access in the frontend.
 - QOJ member status comes from userscript-exported JSON imports.
-- The baseline built-in contest catalog may be seeded from a user-saved QOJ contests page export normalized into Git-managed stubs.
+- Candidate contests without problem lists may be collected from user-saved exports, but remain in maintainer documentation until their problem lists are reviewed.
 - Browser-local persistence is the primary runtime store.
 - `main` carries the full development and planning context, while `release` only needs deployment-relevant files and minimal release-facing docs.
 
@@ -23,6 +23,7 @@
 ### 1. Catalog Source
 - Human-edited curated contest JSON in `catalog/`.
 - The built-in default catalog lives in a single bundled JSON file.
+- Every contest in the shipped bundle has at least one curated problem; metadata-only candidates live under `docs/` and are not generated into public assets.
 - Stores stable IDs, tags, aliases, problem definitions, and source links.
 - This is the canonical product dataset.
 
@@ -32,7 +33,7 @@
 
 ### 3. Import Inputs
 - Imported data can come from Codeforces API sessions, QOJ userscript exports, or one-time tooling.
-- A curator-reviewed QOJ contests page export may be promoted into the bundled default catalog as stub contest metadata.
+- A curator-reviewed contest-page export may populate the documentation-only candidate list; promotion into the bundled default catalog requires a reviewed problem list.
 - Imported payloads are not automatically canonical source data.
 - Import flows should produce normalized local runtime records and, when useful, reviewable draft catalog material.
 
@@ -57,7 +58,7 @@
 
 ## Runtime Data Flow
 
-1. Curated contests are authored in `catalog/`.
+1. Curated contests with reviewed problem lists are authored in `catalog/`; metadata-only candidates stay in `docs/`.
 2. Optional import flows produce runtime data and, when needed, draft metadata for review.
 3. Scripts validate the catalog bundle against repo rules and schema.
 4. The static site ships with the bundled default catalog as a static asset.

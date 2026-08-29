@@ -125,6 +125,13 @@ function compareContestsByTime(left: CatalogContestIndexItem, right: CatalogCont
   if (yearDiff !== 0) {
     return yearDiff;
   }
+  const leftStart = left.start_at ? Date.parse(left.start_at) : Number.NaN;
+  const rightStart = right.start_at ? Date.parse(right.start_at) : Number.NaN;
+  if (Number.isFinite(leftStart) || Number.isFinite(rightStart)) {
+    if (!Number.isFinite(leftStart)) return 1;
+    if (!Number.isFinite(rightStart)) return -1;
+    if (leftStart !== rightStart) return rightStart - leftStart;
+  }
   return left.title.localeCompare(right.title);
 }
 
@@ -148,7 +155,7 @@ function getContestSearchHaystacks(contest: CatalogContestIndexItem) {
     }
   }
 
-  return [contest.title, ...contest.aliases, ...contest.tags, ...sourceTokens]
+  return [contest.title, ...contest.aliases, ...contest.tags, contest.start_at ?? "", ...sourceTokens]
     .map((value) => value.toLocaleLowerCase());
 }
 
@@ -228,6 +235,10 @@ function getContestBadgeTitle(contestId: string) {
 
 function getContestBadgeSearchToken(contestId: string) {
   return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA" ? "?" : null;
+}
+
+function formatContestDate(value: string | null | undefined) {
+  return value?.match(/^\d{4}-\d{2}-\d{2}/u)?.[0] ?? value ?? "";
 }
 
 function getContestAwardRange(contestId: string) {
@@ -460,8 +471,11 @@ function problemStateClass(status: "solved" | "attempted" | "unseen") {
 
 function contestSourceLabel(contestId: string) {
   const contest = localContestMap.value.get(contestId);
-  const sourceLabels = (contest?.sources ?? [])
-    .filter((item) => item.kind === "contest")
+  const sources = contest?.sources ?? [];
+  const preferredSources = sources.some((item) => item.kind === "contest")
+    ? sources.filter((item) => item.kind === "contest")
+    : sources;
+  const sourceLabels = preferredSources
     .map((item) => {
       const provider = item.provider.trim().toUpperCase();
       const providerId = (item.provider_contest_id ?? "").trim();
@@ -689,6 +703,9 @@ watch(() => contestListStore.selectedMode, () => {
                   </span>
                   <span class="tag tag--neutral">
                     已做 {{ coverageSummaryMap.get(contest.id)?.solvedProblemCount ?? 0 }}
+                  </span>
+                  <span v-if="contest.start_at" class="tag tag--neutral">
+                    {{ formatContestDate(contest.start_at) }}
                   </span>
                 </div>
                 <div

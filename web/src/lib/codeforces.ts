@@ -151,11 +151,11 @@ function normalizeCodeforcesStatus(submissions: CodeforcesSubmission[]) {
   return [...bestByProviderProblemId.values()];
 }
 
-function findProblemByCodeforcesProviderProblemId(
+function findProblemsByCodeforcesProviderProblemId(
   catalogProblems: LocalCatalogProblemRecord[],
   providerProblemId: string,
-): LocalCatalogProblemRecord | undefined {
-  return catalogProblems.find((problem) =>
+): LocalCatalogProblemRecord[] {
+  return catalogProblems.filter((problem) =>
     problem.sources.some(
       (source) =>
         source.provider === "codeforces" &&
@@ -223,29 +223,23 @@ export async function importCodeforcesMember(payload: {
     },
   ];
 
-  const candidateStatuses: Array<LocalMemberProblemStatusRecord | null> = normalizedStatuses
-    .map((item) => {
-      const matchedProblem = findProblemByCodeforcesProviderProblemId(
-        catalogProblems,
-        item.providerProblemId,
-      );
-      if (!matchedProblem) {
-        return null;
-      }
-      return {
-        statusId: `${payload.memberId}:${matchedProblem.problemId}:codeforces`,
-        memberId: payload.memberId,
-        problemId: matchedProblem.problemId,
-        provider: "codeforces",
-        status: item.status,
-        firstSeenAt: importedAt,
-        lastSeenAt: importedAt,
-        sourceRecordId,
-        matchMethod: "provider_id",
-      };
-    });
-
-  const statuses = candidateStatuses.filter((item): item is LocalMemberProblemStatusRecord => !!item);
+  const statuses: LocalMemberProblemStatusRecord[] = normalizedStatuses.flatMap((item) => {
+    const matchedProblems = findProblemsByCodeforcesProviderProblemId(
+      catalogProblems,
+      item.providerProblemId,
+    );
+    return matchedProblems.map((matchedProblem) => ({
+      statusId: `${payload.memberId}:${matchedProblem.problemId}:codeforces`,
+      memberId: payload.memberId,
+      problemId: matchedProblem.problemId,
+      provider: "codeforces" as const,
+      status: item.status,
+      firstSeenAt: importedAt,
+      lastSeenAt: importedAt,
+      sourceRecordId,
+      matchMethod: "provider_id" as const,
+    }));
+  });
 
   const importSource: LocalImportSourceRecord = {
     sourceRecordId,

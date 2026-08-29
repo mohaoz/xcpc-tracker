@@ -4,7 +4,7 @@
 - If scope is unclear, then optimize for an XCPC tracker that ships as a static frontend-first site.
 - If choosing the first live sync source, then use Codeforces public API directly from the frontend.
 - If choosing the second source, then use QOJ userscript-assisted JSON import; do not build a Python scraper for it.
-- If seeding the built-in baseline contest catalog from QOJ, then prefer a user-saved QOJ contests HTML or MHT export normalized into catalog stubs.
+- If seeding candidate contests from QOJ, then prefer a user-saved QOJ contests HTML or MHT export normalized into a documentation-only review list; do not publish a contest until its problem list is curated.
 - If choosing the curated data source, then keep contest and artifact metadata in Git-managed JSON files.
 - If describing the main user value, then prioritize: browse curated contests, inspect member coverage, import member status, and answer VP-before freshness questions.
 - If a feature does not directly help curated contest browsing, member coverage tracking, Codeforces import, QOJ import, or static deployment, then cut it from the near-term plan.
@@ -26,10 +26,12 @@
 
 ## Data And Catalog Rules
 - If adding curated contest metadata, then keep the built-in default catalog in a single bundled JSON file under `catalog/`.
+- If a contest has no curated problems, then keep it in a maintainer document under `docs/`; do not include it in the bundled catalog or generated public assets.
+- If publishing the bundled default catalog, then require every contest to reference at least one problem and reject `contest_stub` records during validation.
 - If changing the bundled default catalog release, then keep its top-level `version` aligned with the current app release version.
 - If data is intended to be canonical and reviewable, then it must live under `catalog/` and be editable by hand.
 - If data comes from import flows, then treat it as candidate or draft input until it is normalized into curated catalog files.
-- If a curator intentionally promotes a QOJ contests page export into the bundled default catalog, then normalize it into reviewable contest stubs first and keep provider provenance on `sources`.
+- If a curator intentionally promotes a contest-page export into the bundled default catalog, then add it only together with a reviewed problem list and keep provider provenance on `sources`.
 - If adding schema validation, then validate curated files against JSON Schema before build or deploy.
 - If adding canonical catalog fields, then prefer `id`, `title`, `aliases`, `tags`, `problems`, `sources`, and optional provenance notes; do not duplicate obvious tag semantics into separate fields without a concrete product need.
 - If storing external links, then use a `sources` array with objects shaped like `provider`, `kind`, and `url`.
@@ -68,6 +70,7 @@
 
 ## Testing And Validation
 - If adding catalog data, then add schema validation and deterministic generation checks.
+- If validating the public bundled catalog, then fail when any contest has an empty problem list or `curation_status = contest_stub`.
 - If adding provider import logic, then include fixtures for raw payloads and normalized mapping outputs.
 - If a test requires live network, browser login, or manual userscript interaction, then it is not a default CI test.
 - If CI runs, then it should validate catalog JSON, generate indexes, run frontend checks, and build the static app.

@@ -27,6 +27,7 @@
 ```bash
 npm run catalog:build-final
 npm run catalog:generate-default
+npm run catalog:import-reviewed-cf-problems
 npm run catalog:generate-web-assets
 npm run catalog:refresh
 npm run catalog:validate
@@ -38,8 +39,11 @@ npm run catalog:validate
 2. 将导出的文件保存为 `data/contests.json`
 3. 运行 `npm run catalog:build-final`，生成 `data/final.json`
 4. 运行 `npm run catalog:generate-default`，生成 `catalog/default-catalog.min.json`
-5. 运行 `npm run catalog:generate-web-assets`，生成前端直接读取的静态索引与详情分片
-6. 或直接运行 `npm run catalog:refresh`
+5. 运行 `npm run catalog:import-reviewed-cf-problems`，合并已核验的 Codeforces 比赛元数据与题单
+6. 运行 `npm run catalog:generate-web-assets`，生成前端直接读取的静态索引与详情分片
+7. 或直接运行 `npm run catalog:refresh`，按上述顺序重建、补入已完成题单的比赛、刷新来源并最后生成前端资产
+
+尚无完整题单的候选比赛只记录在 [`docs/2026-contests-pending-problem-lists.md`](docs/2026-contests-pending-problem-lists.md)，不会进入公开 catalog 或站点资源。
 
 前端构建：
 

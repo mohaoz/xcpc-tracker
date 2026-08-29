@@ -166,6 +166,17 @@ export function validateContest(contest: CatalogContest, filePath: string): stri
   return errors.map((error) => `${filePath}: ${error}`);
 }
 
+function validatePublishedContest(contest: CatalogContest, filePath: string): string[] {
+  const errors: string[] = [];
+  if (contest.curation_status === "contest_stub") {
+    errors.push(`${filePath}: published catalog must not contain contest_stub records`);
+  }
+  if (!Array.isArray(contest.problems) || contest.problems.length === 0) {
+    errors.push(`${filePath}: published catalog contests must contain at least one problem`);
+  }
+  return errors;
+}
+
 export async function loadCatalogContests(): Promise<CatalogContest[]> {
   const bundlePath = getCatalogBundlePath();
   const raw = await readFile(bundlePath, "utf8");
@@ -206,7 +217,10 @@ export async function loadCatalogContests(): Promise<CatalogContest[]> {
     const ids = new Set<string>();
     for (const [index, contest] of contests.entries()) {
       const filePath = `${bundlePath}#contests[${index}]`;
-      const errors = validateContest(contest, filePath);
+      const errors = [
+        ...validateContest(contest, filePath),
+        ...validatePublishedContest(contest, filePath),
+      ];
       if (errors.length > 0) {
         throw new Error(errors.join("\n"));
       }
@@ -248,7 +262,10 @@ export async function loadCatalogContests(): Promise<CatalogContest[]> {
 
   for (const [index, contest] of parsed.contests.entries()) {
     const filePath = `${bundlePath}#contests[${index}]`;
-    const errors = validateContest(contest, filePath);
+    const errors = [
+      ...validateContest(contest, filePath),
+      ...validatePublishedContest(contest, filePath),
+    ];
     if (errors.length > 0) {
       const message = errors.join("\n");
       throw new Error(message);
