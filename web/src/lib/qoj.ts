@@ -7,7 +7,7 @@ import type {
   LocalSyncRecord,
 } from "./local-model";
 import { listRuntimeCatalogProblemsForImport } from "./catalog-runtime";
-import { upsertMemberBundle } from "./local-db";
+import { recordImportSyncAttempt, upsertMemberBundle } from "./local-db";
 
 type QojUserscriptMember = {
   member_id?: string;
@@ -18,17 +18,27 @@ type QojUserscriptMember = {
   attempted?: string[];
 };
 
+type QojUserscriptFetchFailure = {
+  member_id?: string;
+  handle: string;
+  error?: string;
+};
+
 export type QojUserscriptImport = {
   provider: "qoj";
   exported_at: string;
+  script_version?: number;
   members: QojUserscriptMember[];
+  fetch_failures?: QojUserscriptFetchFailure[];
 };
 
 export type QojImportSummary = {
   memberCount: number;
   matchedStatusCount: number;
   unmatchedStatusCount: number;
+  fetchFailureCount: number;
   importedHandles: string[];
+  failedHandles: string[];
 };
 
 function findProblemsByQojProviderProblemId(
@@ -61,11 +71,22 @@ function normalizeQojProblemStatuses(member: QojUserscriptMember) {
 export async function importQojUserscriptMembers(payload: QojUserscriptImport): Promise<QojImportSummary> {
   const catalogProblems = await listRuntimeCatalogProblemsForImport();
   const importedAt = new Date().toISOString();
+  const memberPayloads = Array.isArray(payload.members) ? payload.members : [];
+  const fetchFailures = (Array.isArray(payload.fetch_failures) ? payload.fetch_failures : [])
+    .map((failure) => ({
+      memberId: String(failure.member_id ?? "").trim(),
+      handle: String(failure.handle ?? "").trim(),
+      error: String(failure.error ?? "QOJ 用户页读取失败").trim() || "QOJ 用户页读取失败",
+    }))
+    .filter((failure) => failure.handle);
+  if (!memberPayloads.length && !fetchFailures.length) {
+    throw new Error("QOJ JSON 中没有成员或抓取失败记录");
+  }
   let matchedStatusCount = 0;
   let unmatchedStatusCount = 0;
   const importedHandles: string[] = [];
 
-  for (const memberPayload of payload.members) {
+  for (const memberPayload of memberPayloads) {
     const handle = String(memberPayload.handle ?? "").trim();
     if (!handle) {
       continue;
@@ -164,6 +185,15 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
         solved_provider_problem_ids: normalized.solved,
         attempted_provider_problem_ids: normalized.attempted,
         unmatched_problem_statuses: unmatchedStatuses,
+        script_version: payload.script_version ?? null,
+        batch_exported_at: payload.exported_at || null,
+        batch_member_count: memberPayloads.length,
+        batch_fetch_failure_count: fetchFailures.length,
+        batch_fetch_failures: fetchFailures.map((failure) => ({
+          member_id: failure.memberId || null,
+          handle: failure.handle,
+          error: failure.error,
+        })),
       },
     };
 
@@ -194,10 +224,46 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
     importedHandles.push(handle);
   }
 
+  for (const [failureIndex, failure] of fetchFailures.entries()) {
+    const sourceRecordId = `qoj:${failure.handle}:${importedAt}:fetch-failed:${failureIndex}`;
+    await recordImportSyncAttempt({
+      importSource: {
+        sourceRecordId,
+        kind: "qoj_userscript_json",
+        label: `QOJ userscript fetch failure for ${failure.handle}`,
+        importedAt,
+        rawMetaJson: {
+          handle: failure.handle,
+          member_id: failure.memberId || null,
+          fetch_error: failure.error,
+          script_version: payload.script_version ?? null,
+          batch_exported_at: payload.exported_at || null,
+          batch_member_count: memberPayloads.length,
+          batch_fetch_failure_count: fetchFailures.length,
+        },
+      },
+      syncRecord: {
+        syncId: `qoj-sync:${failure.handle}:${importedAt}:fetch-failed:${failureIndex}`,
+        sourceRecordId,
+        adapter: "qoj_userscript",
+        startedAt: payload.exported_at || importedAt,
+        finishedAt: importedAt,
+        status: "failed",
+        summaryJson: {
+          handle: failure.handle,
+          member_id: failure.memberId || null,
+          fetch_error: failure.error,
+        },
+      },
+    });
+  }
+
   return {
     memberCount: importedHandles.length,
     matchedStatusCount,
     unmatchedStatusCount,
+    fetchFailureCount: fetchFailures.length,
     importedHandles,
+    failedHandles: fetchFailures.map((failure) => failure.handle),
   };
 }

@@ -8,4 +8,8 @@ Use this area for:
 - QOJ userscript JSON samples
 - draft payload examples used by validation and mapper tests
 
+`qoj/qoj-members-batch.json` is the accepted snapshot shape produced by the
+member-page QOJ batch console script. It intentionally includes both successful
+members and a per-handle fetch failure so import behavior remains reviewable.
+
 Do not treat this directory as canonical product data. The canonical curated dataset lives under `catalog/`.

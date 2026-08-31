@@ -11,6 +11,7 @@
 - 对没有 XCPCIO Board cutoff 的 Codeforces 比赛，用 Codeforces API 的 official standings 预计算 fallback 奖牌线
 - 导入 QOJ / Codeforces 抓到的题目列表
 - 校验内置 catalog
+- 校验成员页生成的 QOJ 批量控制台脚本及其导入 fixture
 
 正常产品运行不依赖这些脚本。
 
@@ -29,6 +30,7 @@
 - `npm run catalog:refresh-codeforces-award-cutoffs`
 - `npm run catalog:generate-default`
 - `npm run catalog:refresh`
+- `npm run qoj:validate-member-script`
 
 当前流程：
 
@@ -62,6 +64,8 @@
   XCPCIO Board 的构建期数据管线。`--fetch-raw --normalize` 会先保存原始 board index 到 `data/xcpcio-board-raw.json`，再生成与主 contest 流程一致的 `[{ title, url }]` 风格规范化文件 `data/xcpcio-board-contests.json`；默认匹配阶段读取这个规范化文件并给 title 打 tags。加 `--apply` 会把 high confidence 的 `xcpcio_board` standings source 合并进已有 catalog 比赛；加 `--fetch-cutoffs` 会在构建期读取 board standings 数据，按官方 medal 配置或 10% / 20% / 30% 奖牌数量预计算金银铜线，保存到 `data/xcpcio-board-award-cutoffs.json` 并写入 catalog。该脚本不会新增无题目比赛。前端只读取 catalog 里的 `awardCutoffs`，不会请求 board 数据。若要写入 medium 匹配，显式传 `--apply-confidence=high,medium` 后再人工复核 diff。
 - `fetch-codeforces-award-cutoffs.mjs`
   Codeforces fallback 奖牌线管线。默认处理仍没有 `awardCutoffs` 且带 Codeforces contest source 的比赛，并重新刷新已有的 Codeforces fallback；通过 Codeforces `contest.standings` API 拉取 `showUnofficial=false` 的 official standings，再按 10% / 20% / 30% 奖牌数量预计算金银铜线，保存到 `data/codeforces-award-cutoffs.json` 并在 `--apply` 时写回 catalog。前端不会请求 Codeforces standings。
+- `validate-qoj-member-script.mjs`
+  转译成员页的 QOJ 脚本生成器，检查单账号和批量脚本的 JavaScript 语法、批量 fixture 契约，以及同一 Handle 关联多个本地成员时的防护。`npm run deploy:build` 会自动执行。
 
 保留脚本：
 
@@ -82,6 +86,7 @@
 - `match-xcpcio-board-contests.mjs`
 - `catalog-lib.ts`
 - `validate-catalog.ts`
+- `validate-qoj-member-script.mjs`
 
 CI：
 

@@ -1,0 +1,30 @@
+{
+  "provider": "qoj",
+  "exported_at": "2026-08-31T12:00:00.000Z",
+  "script_version": 2,
+  "members": [
+    {
+      "member_id": "alice",
+      "handle": "alice_qoj",
+      "display_name": "Alice",
+      "profile_url": "https://qoj.ac/user/profile/alice_qoj",
+      "solved": ["1001", "1002"],
+      "attempted": ["1003"]
+    },
+    {
+      "member_id": "bob",
+      "handle": "bob_qoj",
+      "display_name": "Bob",
+      "profile_url": "https://qoj.ac/user/profile/bob_qoj",
+      "solved": ["1004"],
+      "attempted": []
+    }
+  ],
+  "fetch_failures": [
+    {
+      "member_id": "carol",
+      "handle": "carol_qoj",
+      "error": "HTTP 404 Not Found"
+    }
+  ]
+}

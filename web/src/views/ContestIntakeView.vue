@@ -81,9 +81,12 @@ async function importDataFromText(text: string) {
   const rawPayload = JSON.parse(normalizedText) as LocalRuntimeSnapshot | QojUserscriptImport;
   if ("provider" in rawPayload && rawPayload.provider === "qoj") {
     const summary = await importQojUserscriptMembers(rawPayload);
-    feedback.value = `imported QOJ member data: ${summary.memberCount} members, ${summary.matchedStatusCount} matched statuses`;
+    feedback.value = `已导入 ${summary.memberCount} 名 QOJ 成员、${summary.matchedStatusCount} 条已匹配状态`;
     if (summary.unmatchedStatusCount > 0) {
-      feedback.value += `, ${summary.unmatchedStatusCount} unmatched`;
+      feedback.value += `，${summary.unmatchedStatusCount} 条状态未匹配`;
+    }
+    if (summary.fetchFailureCount > 0) {
+      feedback.value += `，${summary.fetchFailureCount} 个账号抓取失败（${summary.failedHandles.join("、")}）`;
     }
     emitMemberMutated();
     await refreshStats();
@@ -217,11 +220,11 @@ onMounted(() => {
                   class="input-textarea"
                   rows="10"
                   spellcheck="false"
-                  placeholder="把 QOJ 浏览器脚本复制到剪贴板的 JSON 或 local_runtime_snapshot 粘贴到这里"
+                  placeholder="把 QOJ 单账号或批量浏览器脚本复制的 JSON，或 local_runtime_snapshot，粘贴到这里"
                 />
               </div>
               <p class="muted tiny">
-                成员导入支持 `local_runtime_snapshot`，也支持从 QOJ 用户页控制台脚本复制到剪贴板的 `provider = qoj` JSON。
+                成员导入支持 `local_runtime_snapshot`，也支持 QOJ 控制台脚本生成的单账号或批量 `provider = qoj` JSON；批量抓取失败清单会保留在同步记录中。
               </p>
             </div>
           </section>

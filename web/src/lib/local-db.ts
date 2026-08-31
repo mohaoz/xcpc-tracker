@@ -358,6 +358,20 @@ export async function upsertMemberBundle(payload: {
   );
 }
 
+export async function recordImportSyncAttempt(payload: {
+  importSource: LocalImportSourceRecord;
+  syncRecord: LocalSyncRecord;
+}): Promise<void> {
+  await localDb.transaction(
+    "rw",
+    [localDb.importSources, localDb.syncRecords],
+    async () => {
+      await localDb.importSources.put(payload.importSource);
+      await localDb.syncRecords.put(payload.syncRecord);
+    },
+  );
+}
+
 export async function getCatalogDbStatus(): Promise<LocalDbStatus> {
   const [
     contests,
