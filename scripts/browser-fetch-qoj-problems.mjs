@@ -102,8 +102,9 @@
   }
 
   async function fetchQojContestProblems(entry) {
-    const contestUrl = entry.url.replace(/[#?].*$/u, "");
-    const response = await fetch(contestUrl, { credentials: "include" });
+    const contestUrl = new URL(entry.url, location.href);
+    contestUrl.hash = "";
+    const response = await fetch(contestUrl.toString(), { credentials: "include" });
     if (!response.ok) {
       throw new Error(`QOJ HTTP ${response.status}`);
     }

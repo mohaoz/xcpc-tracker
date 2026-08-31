@@ -6,9 +6,8 @@ import type {
   LocalMemberRecord,
   LocalSyncRecord,
 } from "./local-model";
-import { fetchCatalogProblemLookup } from "./catalog";
+import { listRuntimeCatalogProblemsForImport } from "./catalog-runtime";
 import {
-  listCatalogProblemsFromDb,
   listCodeforcesMemberSyncTargets,
   upsertMemberBundle,
 } from "./local-db";
@@ -164,32 +163,6 @@ function findProblemsByCodeforcesProviderProblemId(
   );
 }
 
-async function listCodeforcesCatalogProblems(): Promise<LocalCatalogProblemRecord[]> {
-  const [localProblems, problemLookup] = await Promise.all([
-    listCatalogProblemsFromDb(),
-    fetchCatalogProblemLookup(),
-  ]);
-
-  const mergedByProblemId = new Map<string, LocalCatalogProblemRecord>();
-  for (const problem of problemLookup.problems) {
-    mergedByProblemId.set(problem.problemId, {
-      problemId: problem.problemId,
-      contestId: problem.contestId,
-      ordinal: problem.ordinal,
-      title: problem.title,
-      aliases: problem.aliases ?? [],
-      sources: problem.sources ?? [],
-      sourceKind: "catalog",
-    });
-  }
-
-  for (const problem of localProblems) {
-    mergedByProblemId.set(problem.problemId, problem);
-  }
-
-  return [...mergedByProblemId.values()];
-}
-
 export async function importCodeforcesMember(payload: {
   memberId: string;
   handle: string;
@@ -200,7 +173,7 @@ export async function importCodeforcesMember(payload: {
     handle: payload.handle,
   });
   const normalizedStatuses = normalizeCodeforcesStatus(submissions);
-  const catalogProblems = await listCodeforcesCatalogProblems();
+  const catalogProblems = await listRuntimeCatalogProblemsForImport();
   const importedAt = new Date().toISOString();
   const sourceRecordId = `codeforces:${payload.handle}:${importedAt}`;
 

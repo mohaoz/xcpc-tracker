@@ -2,6 +2,7 @@ import {
   fetchCatalogContestDetail,
   fetchCatalogContestIndex,
   fetchCatalogCoverageBasis,
+  fetchCatalogProblemLookup,
   type CatalogContestDetail,
   type CatalogContestIndexItem,
 } from "./catalog";
@@ -11,6 +12,7 @@ import {
   getCatalogContestDetailFromDb,
   hasDeletedCatalogContestId,
   listCatalogContestsFromDb,
+  listCatalogProblemsFromDb,
   listContestProblemsByContestIdsFromDb,
 } from "./local-db";
 
@@ -67,6 +69,48 @@ function mapBundledContestDetailToLocal(
 
 function shouldUseLocalCatalogContest(contest: LocalCatalogContestRecord, hasBundledContest: boolean): boolean {
   return !hasBundledContest || contest.generatedFrom === "manual";
+}
+
+export async function listRuntimeCatalogProblemsForImport(): Promise<LocalCatalogProblemRecord[]> {
+  const [problemLookup, localProblems, localContests] = await Promise.all([
+    fetchCatalogProblemLookup(),
+    listCatalogProblemsFromDb(),
+    listCatalogContestsFromDb({ includeDeleted: true }),
+  ]);
+  const bundledContestIds = new Set(problemLookup.problems.map((problem) => problem.contestId));
+  const localContestById = new Map(localContests.map((contest) => [contest.contestId, contest]));
+  const mergedByProblemId = new Map<string, LocalCatalogProblemRecord>();
+
+  for (const problem of problemLookup.problems) {
+    const localContest = localContestById.get(problem.contestId);
+    if (localContest?.deletedAt || localContest?.generatedFrom === "manual") {
+      continue;
+    }
+
+    mergedByProblemId.set(problem.problemId, {
+      problemId: problem.problemId,
+      contestId: problem.contestId,
+      ordinal: problem.ordinal,
+      title: problem.title,
+      aliases: problem.aliases ?? [],
+      sources: problem.sources ?? [],
+      sourceKind: "catalog",
+    });
+  }
+
+  for (const problem of localProblems) {
+    const localContest = localContestById.get(problem.contestId);
+    if (localContest?.deletedAt) {
+      continue;
+    }
+    if (bundledContestIds.has(problem.contestId) && localContest?.generatedFrom !== "manual") {
+      continue;
+    }
+
+    mergedByProblemId.set(problem.problemId, problem);
+  }
+
+  return [...mergedByProblemId.values()];
 }
 
 export async function listRuntimeCatalogContests(): Promise<{

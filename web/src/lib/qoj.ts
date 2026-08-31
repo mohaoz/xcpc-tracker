@@ -6,8 +6,8 @@ import type {
   LocalMemberRecord,
   LocalSyncRecord,
 } from "./local-model";
-import { fetchCatalogProblemLookup } from "./catalog";
-import { listCatalogProblemsFromDb, upsertMemberBundle } from "./local-db";
+import { listRuntimeCatalogProblemsForImport } from "./catalog-runtime";
+import { upsertMemberBundle } from "./local-db";
 
 type QojUserscriptMember = {
   member_id?: string;
@@ -44,32 +44,6 @@ function findProblemsByQojProviderProblemId(
   );
 }
 
-async function listQojCatalogProblems(): Promise<LocalCatalogProblemRecord[]> {
-  const [localProblems, problemLookup] = await Promise.all([
-    listCatalogProblemsFromDb(),
-    fetchCatalogProblemLookup(),
-  ]);
-
-  const mergedByProblemId = new Map<string, LocalCatalogProblemRecord>();
-  for (const problem of problemLookup.problems) {
-    mergedByProblemId.set(problem.problemId, {
-      problemId: problem.problemId,
-      contestId: problem.contestId,
-      ordinal: problem.ordinal,
-      title: problem.title,
-      aliases: problem.aliases ?? [],
-      sources: problem.sources ?? [],
-      sourceKind: "catalog",
-    });
-  }
-
-  for (const problem of localProblems) {
-    mergedByProblemId.set(problem.problemId, problem);
-  }
-
-  return [...mergedByProblemId.values()];
-}
-
 function normalizeQojProblemStatuses(member: QojUserscriptMember) {
   const solved = new Set((member.solved ?? []).map((value) => String(value).trim()).filter(Boolean));
   const attempted = new Set(
@@ -85,7 +59,7 @@ function normalizeQojProblemStatuses(member: QojUserscriptMember) {
 }
 
 export async function importQojUserscriptMembers(payload: QojUserscriptImport): Promise<QojImportSummary> {
-  const catalogProblems = await listQojCatalogProblems();
+  const catalogProblems = await listRuntimeCatalogProblemsForImport();
   const importedAt = new Date().toISOString();
   let matchedStatusCount = 0;
   let unmatchedStatusCount = 0;
@@ -121,11 +95,16 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
     ];
 
     const statuses: LocalMemberProblemStatusRecord[] = [];
+    const unmatchedStatuses: Array<{
+      provider_problem_id: string;
+      status: "solved" | "attempted";
+    }> = [];
 
     for (const providerProblemId of normalized.solved) {
       const matchedProblems = findProblemsByQojProviderProblemId(catalogProblems, providerProblemId);
       if (!matchedProblems.length) {
         unmatchedStatusCount += 1;
+        unmatchedStatuses.push({ provider_problem_id: providerProblemId, status: "solved" });
         continue;
       }
       for (const matchedProblem of matchedProblems) {
@@ -148,6 +127,7 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
       const matchedProblems = findProblemsByQojProviderProblemId(catalogProblems, providerProblemId);
       if (!matchedProblems.length) {
         unmatchedStatusCount += 1;
+        unmatchedStatuses.push({ provider_problem_id: providerProblemId, status: "attempted" });
         continue;
       }
       for (const matchedProblem of matchedProblems) {
@@ -180,6 +160,10 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
         attempted_count: normalized.attempted.length,
         normalized_problem_status_count: normalized.solved.length + normalized.attempted.length,
         matched_status_count: statuses.length,
+        unmatched_status_count: unmatchedStatuses.length,
+        solved_provider_problem_ids: normalized.solved,
+        attempted_provider_problem_ids: normalized.attempted,
+        unmatched_problem_statuses: unmatchedStatuses,
       },
     };
 
@@ -196,6 +180,7 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
         solved_count: normalized.solved.length,
         attempted_count: normalized.attempted.length,
         matched_status_count: statuses.length,
+        unmatched_status_count: unmatchedStatuses.length,
       },
     };
 

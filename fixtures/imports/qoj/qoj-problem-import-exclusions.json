@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "excluded_contest_urls": [
+    {
+      "url": "https://qoj.ac/contest/2008?v=1",
+      "reason": "The saved snapshot was captured after the fetch script stripped ?v=1, so its 10839-10850 problem list belongs to the default Jiangsu/Xiangtan view rather than the 2023 Hunan contest. Recapture this exact version in an authenticated browser before promotion."
+    },
+    {
+      "url": "https://qoj.ac/contest/2008?v=2",
+      "reason": "The saved snapshot was captured after the fetch script stripped ?v=2. The same problem IDs are already curated through the default Jiangsu/Xiangtan view; keep this ambiguous duplicate out until the exact version is recaptured."
+    }
+  ]
+}

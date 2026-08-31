@@ -58,11 +58,13 @@
     if (!title) {
       throw new Error("无法识别当前 QOJ 比赛标题");
     }
+    const contestUrl = new URL(`${location.origin}/contest/${providerContestId}`);
+    contestUrl.search = location.search;
     return {
       provider: "qoj",
       provider_contest_id: providerContestId,
       title,
-      url: `${location.origin}/contest/${providerContestId}`,
+      url: contestUrl.toString(),
     };
   }
 
