@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 
 import { importQojUserscriptMembers, type QojUserscriptImport } from "../lib/qoj";
 import { emitMemberMutated } from "../lib/member-events";
@@ -15,6 +15,7 @@ const submitting = ref(false);
 const loadingStats = ref(false);
 const error = ref("");
 const feedback = ref("");
+const importProgress = ref("");
 const importFileInput = ref<HTMLInputElement | null>(null);
 const dbStatus = ref<LocalDbStatus | null>(null);
 
@@ -26,6 +27,13 @@ const importText = ref("");
 function clearStatus() {
   error.value = "";
   feedback.value = "";
+  importProgress.value = "";
+}
+
+async function showImportProgress(message: string) {
+  importProgress.value = message;
+  await nextTick();
+  await new Promise<void>((resolve) => setTimeout(resolve, 0));
 }
 
 function downloadJson(filename: string, payload: unknown) {
@@ -73,14 +81,25 @@ function handleOpenImport() {
 }
 
 async function importDataFromText(text: string) {
+  await showImportProgress("正在解析导入内容…");
   const normalizedText = text.trim();
   if (!normalizedText) {
     throw new Error("没有可导入的 JSON 内容");
   }
 
-  const rawPayload = JSON.parse(normalizedText) as LocalRuntimeSnapshot | QojUserscriptImport;
+  const parsedPayload = JSON.parse(normalizedText) as unknown;
+  if (!parsedPayload || typeof parsedPayload !== "object" || Array.isArray(parsedPayload)) {
+    throw new Error("导入内容必须是 JSON 对象");
+  }
+  const rawPayload = parsedPayload as LocalRuntimeSnapshot | QojUserscriptImport;
   if ("provider" in rawPayload && rawPayload.provider === "qoj") {
-    const summary = await importQojUserscriptMembers(rawPayload);
+    const summary = await importQojUserscriptMembers(rawPayload, {
+      onProgress: ({ currentIndex, totalCount, handle, phase }) => {
+        importProgress.value = phase === "failure"
+          ? `正在记录抓取失败 ${currentIndex}/${totalCount}：${handle}`
+          : `正在导入 QOJ 成员 ${currentIndex}/${totalCount}：${handle}`;
+      },
+    });
     feedback.value = `已导入 ${summary.memberCount} 名 QOJ 成员、${summary.matchedStatusCount} 条已匹配状态`;
     if (summary.unmatchedStatusCount > 0) {
       feedback.value += `，${summary.unmatchedStatusCount} 条状态未匹配`;
@@ -89,15 +108,18 @@ async function importDataFromText(text: string) {
       feedback.value += `，${summary.fetchFailureCount} 个账号抓取失败（${summary.failedHandles.join("、")}）`;
     }
     emitMemberMutated();
+    importProgress.value = "导入完成，正在刷新统计…";
     await refreshStats();
   } else {
     const payload = rawPayload as LocalRuntimeSnapshot;
+    await showImportProgress(`正在导入 ${payload.members?.length ?? 0} 名成员…`);
     await applyLocalRuntimeSnapshot(payload, {
       mode: importMode.value,
       includeProblemStatus: importIncludeProblemStatus.value,
     });
     feedback.value = `imported member data: ${payload.members.length} members, ${payload.memberProblemStatus.length} statuses`;
     emitMemberMutated();
+    importProgress.value = "导入完成，正在刷新统计…";
     await refreshStats();
   }
 }
@@ -112,11 +134,13 @@ async function handleImportData(event: Event) {
   submitting.value = true;
   clearStatus();
   try {
+    await showImportProgress(`正在读取文件：${file.name}`);
     await importDataFromText(await file.text());
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "导入数据失败";
   } finally {
     submitting.value = false;
+    importProgress.value = "";
     if (importFileInput.value) {
       importFileInput.value.value = "";
     }
@@ -127,12 +151,14 @@ async function handleImportPastedData() {
   submitting.value = true;
   clearStatus();
   try {
+    await showImportProgress("正在读取粘贴内容…");
     await importDataFromText(importText.value);
     importText.value = "";
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "导入数据失败";
   } finally {
     submitting.value = false;
+    importProgress.value = "";
   }
 }
 
@@ -206,12 +232,21 @@ onMounted(() => {
                   @change="handleImportData"
                 />
                 <button class="button button--ghost" :disabled="submitting" @click="handleOpenImport">
-                  导入
+                  {{ submitting ? "正在导入…" : "导入" }}
                 </button>
                 <button class="button" :disabled="submitting || !importText.trim()" @click="handleImportPastedData">
-                  粘贴内容导入
+                  {{ submitting ? "正在导入…" : "粘贴内容导入" }}
                 </button>
               </div>
+              <p
+                v-if="submitting"
+                class="notice"
+                role="status"
+                aria-live="polite"
+                style="margin-top: 12px"
+              >
+                {{ importProgress || "正在准备导入…" }}
+              </p>
               <div class="field" style="margin-top: 16px">
                 <label for="import-json-text">直接粘贴 JSON</label>
                 <textarea

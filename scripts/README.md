@@ -65,7 +65,7 @@
 - `fetch-codeforces-award-cutoffs.mjs`
   Codeforces fallback 奖牌线管线。默认处理仍没有 `awardCutoffs` 且带 Codeforces contest source 的比赛，并重新刷新已有的 Codeforces fallback；通过 Codeforces `contest.standings` API 拉取 `showUnofficial=false` 的 official standings，再按 10% / 20% / 30% 奖牌数量预计算金银铜线，保存到 `data/codeforces-award-cutoffs.json` 并在 `--apply` 时写回 catalog。前端不会请求 Codeforces standings。
 - `validate-qoj-member-script.mjs`
-  转译并执行成员页的 QOJ 脚本生成器，检查单账号和批量脚本的 JavaScript 语法、批量 fixture 契约，以及同一 Handle 关联多个本地成员时的防护。回归场景会让页面导航栏显示另一个已登录用户，并在异步请求开始后移除 DevTools `copy()`，确保脚本仍按响应 URL 识别目标账号、使用预先捕获的复制函数，并把可见进度更新到 100% 后显示 tracker 返回入口。`npm run deploy:build` 会自动执行。
+  转译并执行成员页的 QOJ 脚本生成器，检查单账号和批量脚本的 JavaScript 语法、批量 fixture 契约，以及同一 Handle 关联多个本地成员时的防护。回归场景会让页面导航栏显示另一个已登录用户，并在异步请求开始后移除 DevTools `copy()`，确保脚本仍按响应 URL 识别目标账号且能使用预先捕获的复制函数。`npm run deploy:build` 会自动执行。
 
 保留脚本：
 

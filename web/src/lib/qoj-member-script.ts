@@ -37,14 +37,11 @@ function normalizeMembers(members: QojBrowserScriptMember[]): QojBrowserScriptMe
 
 export function buildQojBatchBrowserScript(payload: {
   members: QojBrowserScriptMember[];
-  returnUrl?: string;
 }) {
   const members = normalizeMembers(payload.members);
-  const returnUrl = String(payload.returnUrl ?? "").trim();
 
   return `void (async () => {
   const targets = ${JSON.stringify(members)};
-  const trackerReturnUrl = ${JSON.stringify(returnUrl)};
   const devtoolsCopy = typeof copy === "function" ? copy : null;
   const host = location.hostname.toLowerCase();
   if (host !== "qoj.ac" && !host.endsWith(".qoj.ac")) {
@@ -57,119 +54,6 @@ export function buildQojBatchBrowserScript(payload: {
 
   function errorMessage(error) {
     return error instanceof Error ? error.message : String(error || "未知错误");
-  }
-
-  function applyStyles(element, styles) {
-    Object.assign(element.style, styles);
-  }
-
-  function createProgressPanel() {
-    const existingPanel = document.getElementById("xcpc-tracker-qoj-progress");
-    if (existingPanel) {
-      existingPanel.remove();
-    }
-
-    const panel = document.createElement("section");
-    panel.id = "xcpc-tracker-qoj-progress";
-    panel.setAttribute("role", "status");
-    panel.setAttribute("aria-live", "polite");
-    applyStyles(panel, {
-      position: "fixed",
-      top: "16px",
-      right: "16px",
-      zIndex: "2147483647",
-      width: "min(380px, calc(100vw - 32px))",
-      boxSizing: "border-box",
-      padding: "16px",
-      border: "1px solid rgba(15, 118, 110, 0.28)",
-      borderRadius: "14px",
-      background: "rgba(255, 255, 255, 0.98)",
-      boxShadow: "0 18px 48px rgba(15, 23, 42, 0.24)",
-      color: "#0f172a",
-      fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-      fontSize: "14px",
-      lineHeight: "1.5",
-    });
-
-    const header = document.createElement("div");
-    applyStyles(header, {
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "space-between",
-      gap: "12px",
-    });
-    const title = document.createElement("strong");
-    title.textContent = "XCPC Tracker · QOJ 批量更新";
-    applyStyles(title, { color: "#0f766e", fontSize: "15px" });
-    const closeButton = document.createElement("button");
-    closeButton.type = "button";
-    closeButton.textContent = "×";
-    closeButton.setAttribute("aria-label", "关闭进度面板");
-    applyStyles(closeButton, {
-      border: "0",
-      background: "transparent",
-      color: "#64748b",
-      cursor: "pointer",
-      fontSize: "22px",
-      lineHeight: "1",
-      padding: "0 2px",
-    });
-    closeButton.addEventListener("click", () => panel.remove());
-    header.append(title, closeButton);
-
-    const statusText = document.createElement("div");
-    statusText.dataset.xcpcRole = "status";
-    applyStyles(statusText, { marginTop: "12px", fontWeight: "650" });
-
-    const progressTrack = document.createElement("div");
-    applyStyles(progressTrack, {
-      height: "8px",
-      marginTop: "10px",
-      overflow: "hidden",
-      borderRadius: "999px",
-      background: "#e2e8f0",
-    });
-    const progressBar = document.createElement("div");
-    progressBar.dataset.xcpcRole = "progress";
-    applyStyles(progressBar, {
-      width: "0%",
-      height: "100%",
-      borderRadius: "inherit",
-      background: "#0f766e",
-      transition: "width 180ms ease",
-    });
-    progressTrack.append(progressBar);
-
-    const countsText = document.createElement("div");
-    countsText.dataset.xcpcRole = "counts";
-    applyStyles(countsText, { marginTop: "10px", color: "#334155" });
-    const detailText = document.createElement("div");
-    detailText.dataset.xcpcRole = "detail";
-    applyStyles(detailText, { marginTop: "4px", color: "#64748b", fontSize: "12px" });
-
-    const returnLink = document.createElement("a");
-    returnLink.dataset.xcpcRole = "return";
-    returnLink.textContent = "返回 xcpc-tracker 导入";
-    returnLink.target = "_blank";
-    returnLink.rel = "noopener noreferrer";
-    returnLink.href = trackerReturnUrl || "#";
-    applyStyles(returnLink, {
-      display: "none",
-      width: "100%",
-      boxSizing: "border-box",
-      justifyContent: "center",
-      marginTop: "12px",
-      padding: "9px 12px",
-      borderRadius: "9px",
-      background: "#0f766e",
-      color: "#ffffff",
-      fontWeight: "650",
-      textDecoration: "none",
-    });
-
-    panel.append(header, statusText, progressTrack, countsText, detailText, returnLink);
-    document.body.appendChild(panel);
-    return { statusText, progressBar, countsText, detailText, returnLink };
   }
 
   function extractHandle(pageUrl) {
@@ -328,80 +212,14 @@ export function buildQojBatchBrowserScript(payload: {
     } catch (error) {
       console.warn("[xcpc-tracker] Clipboard API 失败", error);
     }
-    console.log("[xcpc-tracker] JSON 也保存在 window.__xcpcTrackerQojMemberJson：");
-    console.log("%s", text);
     downloadJson(text);
     return "download";
   }
 
   const importedMembers = [];
   const fetchFailures = [];
-  const progressUi = createProgressPanel();
-  const progressState = {
-    completedCount: 0,
-    currentHandle: "",
-    currentIndex: 0,
-    currentStartedAt: Date.now(),
-    finished: false,
-    phase: "preparing",
-    publishMethod: "",
-  };
-  const overallStartedAt = Date.now();
-
-  function renderProgress() {
-    const successCount = importedMembers.length;
-    const failureCount = fetchFailures.length;
-    const percent = targets.length
-      ? Math.round((progressState.completedCount / targets.length) * 100)
-      : 100;
-    progressUi.progressBar.style.width = percent + "%";
-    progressUi.countsText.textContent =
-      "已完成 " + progressState.completedCount + "/" + targets.length
-      + " · 成功 " + successCount + " · 失败 " + failureCount;
-
-    if (progressState.finished) {
-      progressUi.statusText.textContent = progressState.publishMethod === "download"
-        ? "读取完成，JSON 已下载"
-        : "读取完成，JSON 已复制";
-      progressUi.detailText.textContent =
-        "总耗时 " + Math.max(0, Math.floor((Date.now() - overallStartedAt) / 1000))
-        + " 秒。失败账号也已写入结果。";
-      if (trackerReturnUrl) {
-        progressUi.returnLink.style.display = "inline-flex";
-      }
-      return;
-    }
-
-    if (progressState.phase === "reading") {
-      progressUi.statusText.textContent =
-        progressState.currentIndex + "/" + targets.length
-        + " 正在读取 " + progressState.currentHandle;
-      progressUi.detailText.textContent =
-        "当前账号已等待 "
-        + Math.max(0, Math.floor((Date.now() - progressState.currentStartedAt) / 1000))
-        + " 秒，单账号最多等待 20 秒。";
-      return;
-    }
-
-    if (progressState.phase === "publishing") {
-      progressUi.statusText.textContent = "账号读取完毕，正在整理 JSON…";
-      progressUi.detailText.textContent = "即将复制到剪贴板；不可用时会自动下载文件。";
-      return;
-    }
-
-    progressUi.statusText.textContent = "准备读取 " + targets.length + " 个 QOJ 账号…";
-    progressUi.detailText.textContent = "脚本会逐个读取，期间请保持当前页面打开。";
-  }
-
-  renderProgress();
-  const progressTimer = setInterval(renderProgress, 1000);
   for (let index = 0; index < targets.length; index += 1) {
     const target = targets[index];
-    progressState.currentHandle = target.handle;
-    progressState.currentIndex = index + 1;
-    progressState.currentStartedAt = Date.now();
-    progressState.phase = "reading";
-    renderProgress();
     try {
       importedMembers.push(await fetchMember(target, index + 1));
     } catch (error) {
@@ -413,15 +231,11 @@ export function buildQojBatchBrowserScript(payload: {
       fetchFailures.push(failure);
       console.error("[xcpc-tracker] 读取 " + target.handle + " 失败：" + failure.error);
     }
-    progressState.completedCount = index + 1;
-    renderProgress();
     if (index + 1 < targets.length) {
       await new Promise((resolve) => setTimeout(resolve, 150));
     }
   }
 
-  progressState.phase = "publishing";
-  renderProgress();
   const exportedPayload = {
     provider: "qoj",
     exported_at: new Date().toISOString(),
@@ -430,11 +244,9 @@ export function buildQojBatchBrowserScript(payload: {
     fetch_failures: fetchFailures,
   };
   const text = JSON.stringify(exportedPayload);
+  console.log("[xcpc-tracker] QOJ 批量 JSON：");
+  console.log("%s", text);
   const publishMethod = await publishJsonText(text);
-  clearInterval(progressTimer);
-  progressState.finished = true;
-  progressState.publishMethod = publishMethod;
-  renderProgress();
   if (fetchFailures.length) {
     console.table(fetchFailures);
   }

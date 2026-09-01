@@ -43,4 +43,4 @@ npm run build --prefix web
 - runtime state lives in Dexie / IndexedDB
 - contest data is curated/imported locally; the frontend does not provide contest-side online sync
 - member-side Codeforces sync is still available in the browser
-- member-side QOJ refresh generates a console script for every currently linked QOJ handle, redirects to QOJ after copying, shows in-page fetch progress, and returns one batch JSON payload for `/manage`
+- member-side QOJ refresh generates a console script for every currently linked QOJ handle, opens QOJ in a new tab, logs fetch progress in the console, and returns one batch JSON payload for `/manage`

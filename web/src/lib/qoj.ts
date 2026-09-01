@@ -41,17 +41,34 @@ export type QojImportSummary = {
   failedHandles: string[];
 };
 
-function findProblemsByQojProviderProblemId(
+export type QojImportProgress = {
+  currentIndex: number;
+  totalCount: number;
+  handle: string;
+  phase: "member" | "failure";
+};
+
+type QojImportOptions = {
+  onProgress?: (progress: QojImportProgress) => void;
+};
+
+function buildQojProblemIndex(
   catalogProblems: LocalCatalogProblemRecord[],
-  providerProblemId: string,
-): LocalCatalogProblemRecord[] {
-  return catalogProblems.filter((problem) =>
-    problem.sources.some(
-      (source) =>
-        source.provider === "qoj" &&
-        source.provider_problem_id === providerProblemId,
-    ),
-  );
+): Map<string, LocalCatalogProblemRecord[]> {
+  const problemIndex = new Map<string, LocalCatalogProblemRecord[]>();
+  for (const problem of catalogProblems) {
+    for (const source of problem.sources) {
+      if (source.provider !== "qoj" || !source.provider_problem_id) {
+        continue;
+      }
+      const matchedProblems = problemIndex.get(source.provider_problem_id) ?? [];
+      if (!matchedProblems.includes(problem)) {
+        matchedProblems.push(problem);
+      }
+      problemIndex.set(source.provider_problem_id, matchedProblems);
+    }
+  }
+  return problemIndex;
 }
 
 function normalizeQojProblemStatuses(member: QojUserscriptMember) {
@@ -68,8 +85,12 @@ function normalizeQojProblemStatuses(member: QojUserscriptMember) {
   };
 }
 
-export async function importQojUserscriptMembers(payload: QojUserscriptImport): Promise<QojImportSummary> {
+export async function importQojUserscriptMembers(
+  payload: QojUserscriptImport,
+  options: QojImportOptions = {},
+): Promise<QojImportSummary> {
   const catalogProblems = await listRuntimeCatalogProblemsForImport();
+  const qojProblemIndex = buildQojProblemIndex(catalogProblems);
   const importedAt = new Date().toISOString();
   const memberPayloads = Array.isArray(payload.members) ? payload.members : [];
   const fetchFailures = (Array.isArray(payload.fetch_failures) ? payload.fetch_failures : [])
@@ -85,12 +106,20 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
   let matchedStatusCount = 0;
   let unmatchedStatusCount = 0;
   const importedHandles: string[] = [];
+  const importableMemberCount = memberPayloads.filter((member) =>
+    String(member.handle ?? "").trim(),
+  ).length;
+  const totalCount = importableMemberCount + fetchFailures.length;
+  let currentIndex = 0;
 
   for (const memberPayload of memberPayloads) {
     const handle = String(memberPayload.handle ?? "").trim();
     if (!handle) {
       continue;
     }
+    currentIndex += 1;
+    options.onProgress?.({ currentIndex, totalCount, handle, phase: "member" });
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
     const memberId = String(memberPayload.member_id ?? handle).trim() || handle;
     const displayName = String(memberPayload.display_name ?? memberId).trim() || memberId;
     const sourceRecordId = `qoj:${handle}:${importedAt}`;
@@ -122,7 +151,7 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
     }> = [];
 
     for (const providerProblemId of normalized.solved) {
-      const matchedProblems = findProblemsByQojProviderProblemId(catalogProblems, providerProblemId);
+      const matchedProblems = qojProblemIndex.get(providerProblemId) ?? [];
       if (!matchedProblems.length) {
         unmatchedStatusCount += 1;
         unmatchedStatuses.push({ provider_problem_id: providerProblemId, status: "solved" });
@@ -145,7 +174,7 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
     }
 
     for (const providerProblemId of normalized.attempted) {
-      const matchedProblems = findProblemsByQojProviderProblemId(catalogProblems, providerProblemId);
+      const matchedProblems = qojProblemIndex.get(providerProblemId) ?? [];
       if (!matchedProblems.length) {
         unmatchedStatusCount += 1;
         unmatchedStatuses.push({ provider_problem_id: providerProblemId, status: "attempted" });
@@ -225,6 +254,14 @@ export async function importQojUserscriptMembers(payload: QojUserscriptImport): 
   }
 
   for (const [failureIndex, failure] of fetchFailures.entries()) {
+    currentIndex += 1;
+    options.onProgress?.({
+      currentIndex,
+      totalCount,
+      handle: failure.handle,
+      phase: "failure",
+    });
+    await new Promise<void>((resolve) => setTimeout(resolve, 0));
     const sourceRecordId = `qoj:${failure.handle}:${importedAt}:fetch-failed:${failureIndex}`;
     await recordImportSyncAttempt({
       importSource: {
