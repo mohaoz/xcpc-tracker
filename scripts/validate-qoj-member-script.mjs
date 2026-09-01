@@ -101,11 +101,16 @@ function createProblemHeading(textContent) {
   };
 }
 
-async function runFetchedProfileRegression() {
-  const acceptedHeading = createProblemHeading("Accepted problems");
-  const attemptedHeading = createProblemHeading("Tried problems");
-  const attemptedContent = createProblemContent(["1002"]);
-  const acceptedContent = createProblemContent(["1001"], attemptedHeading);
+async function runFetchedProfileRegression({
+  acceptedHeadingText,
+  attemptedHeadingText,
+  solvedProblemId,
+  attemptedProblemId,
+}) {
+  const acceptedHeading = createProblemHeading(acceptedHeadingText);
+  const attemptedHeading = createProblemHeading(attemptedHeadingText);
+  const attemptedContent = createProblemContent([attemptedProblemId]);
+  const acceptedContent = createProblemContent([solvedProblemId], attemptedHeading);
   acceptedHeading.nextElementSibling = acceptedContent;
   attemptedHeading.nextElementSibling = attemptedContent;
 
@@ -213,12 +218,29 @@ async function runFetchedProfileRegression() {
   assert(payload.members.length === 1, "Fetched profile regression must import the target member");
   assert(payload.fetch_failures.length === 0, "Signed-in navbar user must not create a handle mismatch");
   assert(payload.members[0].handle === "target_qoj", "Response URL must identify the requested handle");
-  assert(payload.members[0].solved.join(",") === "1001", "Accepted problem extraction regressed");
-  assert(payload.members[0].attempted.join(",") === "1002", "Attempted problem extraction regressed");
+  assert(
+    payload.members[0].solved.join(",") === solvedProblemId,
+    `Accepted problem extraction regressed for heading: ${acceptedHeadingText}`,
+  );
+  assert(
+    payload.members[0].attempted.join(",") === attemptedProblemId,
+    `Attempted problem extraction regressed for heading: ${attemptedHeadingText}`,
+  );
   assert(clipboardWriteCount === 0, "Captured DevTools copy must run before the unfocused Clipboard API fallback");
 }
 
-await runFetchedProfileRegression();
+await runFetchedProfileRegression({
+  acceptedHeadingText: "AC 过的题目：共 1 道题",
+  attemptedHeadingText: "尝试过的题目：共 1 道题",
+  solvedProblemId: "15431",
+  attemptedProblemId: "14549",
+});
+await runFetchedProfileRegression({
+  acceptedHeadingText: "已解题目列表",
+  attemptedHeadingText: "做过题目列表",
+  solvedProblemId: "1001",
+  attemptedProblemId: "1002",
+});
 
 let duplicateRejected = false;
 try {
@@ -241,5 +263,7 @@ console.log(JSON.stringify({
   singleScriptSyntax: "valid",
   signedInNavbarIsolation: "valid",
   asyncDevtoolsCopy: "valid",
+  localizedStatusSections: "valid",
+  positionalStatusFallback: "valid",
   duplicateHandleGuard: "valid",
 }, null, 2));

@@ -104,10 +104,15 @@ export function buildQojBatchBrowserScript(payload: {
       }));
   }
 
-  function findProblemSection(sections, headingPatterns) {
-    return sections.find((item) =>
+  function findProblemSection(sections, headingPatterns, fallbackSectionIndex) {
+    const matchedSection = sections.find((item) =>
       headingPatterns.some((pattern) => pattern.test(item.headingText)),
     );
+    if (matchedSection) {
+      return matchedSection;
+    }
+
+    return sections.filter((section) => section.problemIds.length > 0)[fallbackSectionIndex];
   }
 
   async function fetchMember(target, currentIndex) {
@@ -158,13 +163,31 @@ export function buildQojBatchBrowserScript(payload: {
     }
     const solvedSection = findProblemSection(
       sections,
-      [/Accepted problems/i, /accepted/i, /通过的?题目/i, /已通过/i],
+      [
+        /Accepted problems/i,
+        /accepted/i,
+        /AC\s*过的?题目/i,
+        /AC\s*過的?題目/i,
+        /通过的?题目/i,
+        /通過的?題目/i,
+        /已通过/i,
+        /已通過/i,
+      ],
+      0,
     );
     const attemptedSection = findProblemSection(
       sections,
-      [/Tried problems/i, /tried/i, /尝试过的?题目/i, /已尝试/i],
+      [
+        /Tried problems/i,
+        /tried/i,
+        /尝试过的?题目/i,
+        /嘗試過的?題目/i,
+        /已尝试/i,
+        /已嘗試/i,
+      ],
+      1,
     );
-    if (sections.length && !solvedSection && !attemptedSection) {
+    if (!solvedSection || (attemptedSection && solvedSection === attemptedSection)) {
       throw new Error(
         "无法识别 QOJ 做题分区：" + sections.map((section) => section.headingText).join(" / "),
       );
