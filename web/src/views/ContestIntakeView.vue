@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { nextTick, onMounted, ref } from "vue";
+import { useRoute } from "vue-router";
 
 import { importQojUserscriptMembers, type QojUserscriptImport } from "../lib/qoj";
 import { emitMemberMutated } from "../lib/member-events";
@@ -11,12 +12,16 @@ import {
 } from "../lib/local-db";
 import type { LocalDbStatus, LocalRuntimeSnapshot } from "../lib/local-model";
 
+const route = useRoute();
 const submitting = ref(false);
 const loadingStats = ref(false);
 const error = ref("");
 const feedback = ref("");
 const importProgress = ref("");
+const importSucceeded = ref(false);
+const pastedImportSucceeded = ref(false);
 const importFileInput = ref<HTMLInputElement | null>(null);
+const importTextArea = ref<HTMLTextAreaElement | null>(null);
 const dbStatus = ref<LocalDbStatus | null>(null);
 
 const exportIncludeProblemStatus = ref(true);
@@ -28,6 +33,8 @@ function clearStatus() {
   error.value = "";
   feedback.value = "";
   importProgress.value = "";
+  importSucceeded.value = false;
+  pastedImportSucceeded.value = false;
 }
 
 async function showImportProgress(message: string) {
@@ -78,6 +85,15 @@ async function handleExportData() {
 
 function handleOpenImport() {
   importFileInput.value?.click();
+}
+
+function handleImportTextInput() {
+  if (submitting.value || !pastedImportSucceeded.value) {
+    return;
+  }
+  pastedImportSucceeded.value = false;
+  importSucceeded.value = false;
+  feedback.value = "";
 }
 
 async function importDataFromText(text: string) {
@@ -136,6 +152,7 @@ async function handleImportData(event: Event) {
   try {
     await showImportProgress(`正在读取文件：${file.name}`);
     await importDataFromText(await file.text());
+    importSucceeded.value = true;
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "导入数据失败";
   } finally {
@@ -154,6 +171,8 @@ async function handleImportPastedData() {
     await showImportProgress("正在读取粘贴内容…");
     await importDataFromText(importText.value);
     importText.value = "";
+    importSucceeded.value = true;
+    pastedImportSucceeded.value = true;
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "导入数据失败";
   } finally {
@@ -162,8 +181,13 @@ async function handleImportPastedData() {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   void refreshStats();
+  if (route.query.import === "member") {
+    await nextTick();
+    importTextArea.value?.focus({ preventScroll: true });
+    importTextArea.value?.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
 });
 </script>
 
@@ -197,6 +221,10 @@ onMounted(() => {
                 <p class="eyebrow">导入</p>
                 <h3>成员导入</h3>
               </div>
+
+              <p v-if="route.query.import === 'member'" class="notice" style="margin-bottom: 16px">
+                QOJ 导入已就绪。运行新标签页中的控制台脚本后，回到这里直接粘贴 JSON。
+              </p>
 
               <div class="manage-io-grid">
                 <div class="field">
@@ -234,8 +262,13 @@ onMounted(() => {
                 <button class="button button--ghost" :disabled="submitting" @click="handleOpenImport">
                   {{ submitting ? "正在导入…" : "导入" }}
                 </button>
-                <button class="button" :disabled="submitting || !importText.trim()" @click="handleImportPastedData">
-                  {{ submitting ? "正在导入…" : "粘贴内容导入" }}
+                <button
+                  class="button"
+                  :class="{ 'button--success': pastedImportSucceeded }"
+                  :disabled="submitting || !importText.trim()"
+                  @click="handleImportPastedData"
+                >
+                  {{ submitting ? "正在导入…" : pastedImportSucceeded ? "✓ 导入完成" : "粘贴内容导入" }}
                 </button>
               </div>
               <p
@@ -247,15 +280,27 @@ onMounted(() => {
               >
                 {{ importProgress || "正在准备导入…" }}
               </p>
+              <div
+                v-else-if="importSucceeded && feedback"
+                class="notice import-result"
+                role="status"
+                aria-live="polite"
+                style="margin-top: 12px"
+              >
+                <strong>✓ 导入完成</strong>
+                <span>{{ feedback }}</span>
+              </div>
               <div class="field" style="margin-top: 16px">
                 <label for="import-json-text">直接粘贴 JSON</label>
                 <textarea
                   id="import-json-text"
+                  ref="importTextArea"
                   v-model="importText"
                   class="input-textarea"
                   rows="10"
                   spellcheck="false"
                   placeholder="把 QOJ 单账号或批量浏览器脚本复制的 JSON，或 local_runtime_snapshot，粘贴到这里"
+                  @input="handleImportTextInput"
                 />
               </div>
               <p class="muted tiny">
@@ -292,7 +337,7 @@ onMounted(() => {
           </section>
         </div>
 
-        <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
+        <p v-if="feedback && !importSucceeded" class="notice" style="margin-top: 16px">{{ feedback }}</p>
         <p v-if="error" class="error-box" style="margin-top: 16px">{{ error }}</p>
       </div>
     </section>

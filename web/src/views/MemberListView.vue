@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 
 import { syncAllCodeforcesMembers } from "../lib/codeforces";
 import { getCatalogDbStatus, listMemberPeopleFromDb } from "../lib/local-db";
@@ -8,6 +8,7 @@ import { subscribeMemberMutated } from "../lib/member-events";
 import type { LocalDbStatus, LocalMemberPerson } from "../lib/local-model";
 import { buildQojBatchBrowserScript } from "../lib/qoj-member-script";
 
+const router = useRouter();
 const people = ref<LocalMemberPerson[]>([]);
 const dbStatus = ref<LocalDbStatus | null>(null);
 const loading = ref(false);
@@ -144,7 +145,9 @@ async function copyQojScript() {
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "浏览器未允许复制，请在脚本框中手动复制";
     qojFeedback.value = "已在新标签页打开 QOJ；浏览器未允许复制，请在下方手动复制脚本。";
+    return;
   }
+  await router.replace({ name: "manage", query: { import: "member" } });
 }
 
 async function handlePrepareQojScript() {
@@ -170,7 +173,9 @@ async function handlePrepareQojScript() {
       qojFeedback.value = `已复制包含 ${qojScriptTargetCount.value} 个 QOJ 账号的批量脚本，并在新标签页打开 QOJ。`;
     } catch {
       qojFeedback.value = `已在新标签页打开 QOJ，并生成包含 ${qojScriptTargetCount.value} 个账号的批量脚本。浏览器未允许自动复制，请在下方手动复制。`;
+      return;
     }
+    await router.replace({ name: "manage", query: { import: "member" } });
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "生成 QOJ 批量脚本失败";
   } finally {
