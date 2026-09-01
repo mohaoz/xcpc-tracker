@@ -129,7 +129,45 @@ async function runFetchedProfileRegression() {
     },
   };
 
-  const globalNames = ["copy", "DOMParser", "fetch", "location", "navigator", "window", "alert"];
+  const createdElements = [];
+  function createUiElement(tagName) {
+    const element = {
+      tagName,
+      attributes: {},
+      children: [],
+      dataset: {},
+      removed: false,
+      style: {},
+      textContent: "",
+      addEventListener() {},
+      append(...children) {
+        this.children.push(...children);
+      },
+      appendChild(child) {
+        this.children.push(child);
+        return child;
+      },
+      remove() {
+        this.removed = true;
+      },
+      setAttribute(name, value) {
+        this.attributes[name] = String(value);
+      },
+    };
+    createdElements.push(element);
+    return element;
+  }
+  const browserDocument = {
+    body: createUiElement("body"),
+    createElement(tagName) {
+      return createUiElement(tagName);
+    },
+    getElementById(id) {
+      return createdElements.find((element) => element.id === id && !element.removed) ?? null;
+    },
+  };
+
+  const globalNames = ["copy", "document", "DOMParser", "fetch", "location", "navigator", "window", "alert"];
   const originalDescriptors = new Map(
     globalNames.map((name) => [name, Object.getOwnPropertyDescriptor(globalThis, name)]),
   );
@@ -153,6 +191,7 @@ async function runFetchedProfileRegression() {
   try {
     setGlobal("location", { hostname: "qoj.ac", origin: "https://qoj.ac" });
     setGlobal("window", {});
+    setGlobal("document", browserDocument);
     setGlobal("alert", () => {});
     setGlobal("navigator", {
       clipboard: {
@@ -186,6 +225,7 @@ async function runFetchedProfileRegression() {
 
     const runtimeScript = buildQojBatchBrowserScript({
       members: [{ memberId: "target", displayName: "Target", handle: "target_qoj" }],
+      returnUrl: "https://tracker.example/manage?import=member",
     });
     new Function(runtimeScript)();
     await Promise.race([
@@ -213,6 +253,16 @@ async function runFetchedProfileRegression() {
   assert(payload.members[0].solved.join(",") === "1001", "Accepted problem extraction regressed");
   assert(payload.members[0].attempted.join(",") === "1002", "Attempted problem extraction regressed");
   assert(clipboardWriteCount === 0, "Captured DevTools copy must run before the unfocused Clipboard API fallback");
+  const progressStatus = createdElements.find((element) => element.dataset.xcpcRole === "status");
+  const progressBar = createdElements.find((element) => element.dataset.xcpcRole === "progress");
+  const returnLink = createdElements.find((element) => element.dataset.xcpcRole === "return");
+  assert(progressStatus?.textContent.includes("读取完成"), "QOJ progress panel must show completion feedback");
+  assert(progressBar?.style.width === "100%", "QOJ progress panel must reach 100 percent");
+  assert(
+    returnLink?.href === "https://tracker.example/manage?import=member"
+      && returnLink.style.display === "inline-flex",
+    "QOJ progress panel must expose the tracker return link after completion",
+  );
 }
 
 await runFetchedProfileRegression();
@@ -238,5 +288,7 @@ console.log(JSON.stringify({
   singleScriptSyntax: "valid",
   signedInNavbarIsolation: "valid",
   asyncDevtoolsCopy: "valid",
+  visibleProgressPanel: "valid",
+  trackerReturnLink: "valid",
   duplicateHandleGuard: "valid",
 }, null, 2));
