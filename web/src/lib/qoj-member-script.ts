@@ -42,6 +42,7 @@ export function buildQojBatchBrowserScript(payload: {
 
   return `void (async () => {
   const targets = ${JSON.stringify(members)};
+  const devtoolsCopy = typeof copy === "function" ? copy : null;
   const host = location.hostname.toLowerCase();
   if (host !== "qoj.ac" && !host.endsWith(".qoj.ac")) {
     throw new Error("请在 qoj.ac 页面运行这段脚本");
@@ -55,24 +56,14 @@ export function buildQojBatchBrowserScript(payload: {
     return error instanceof Error ? error.message : String(error || "未知错误");
   }
 
-  function extractHandle(doc, expectedHandle) {
-    const profileHeading = doc.querySelector(
-      '.card-body h2 a.uoj-username[href*="/user/profile/"]',
-    );
-    const links = profileHeading
-      ? [profileHeading, ...Array.from(doc.querySelectorAll('a.uoj-username[href*="/user/profile/"]'))]
-      : Array.from(doc.querySelectorAll('a.uoj-username[href*="/user/profile/"]'));
-    const handles = [];
-    for (const link of links) {
-      const href = link.getAttribute("href") || "";
-      const hrefMatch = href.match(/\\/user\\/profile\\/([^/?#]+)/i);
-      if (hrefMatch) {
-        handles.push(decodeURIComponent(hrefMatch[1]));
-      }
+  function extractHandle(pageUrl) {
+    try {
+      const pathname = new URL(pageUrl, location.origin).pathname;
+      const profileMatch = pathname.match(/\\/user\\/profile\\/([^/?#]+)/i);
+      return profileMatch ? decodeURIComponent(profileMatch[1]) : "";
+    } catch {
+      return "";
     }
-    return handles.find((handle) => handle.toLowerCase() === expectedHandle.toLowerCase())
-      || handles[0]
-      || "";
   }
 
   function extractDisplayName(doc) {
@@ -153,7 +144,7 @@ export function buildQojBatchBrowserScript(payload: {
     }
 
     const doc = new DOMParser().parseFromString(html, "text/html");
-    const fetchedHandle = extractHandle(doc, target.handle);
+    const fetchedHandle = extractHandle(response.url);
     if (!fetchedHandle) {
       throw new Error("返回页面不是可识别的 QOJ 用户主页，可能需要先完成人机验证");
     }
@@ -162,6 +153,9 @@ export function buildQojBatchBrowserScript(payload: {
     }
 
     const sections = extractProblemSections(doc);
+    if (!doc.querySelector(".card-body h2") && !sections.length) {
+      throw new Error("返回页面缺少 QOJ 用户资料内容，可能需要先完成人机验证");
+    }
     const solvedSection = findProblemSection(
       sections,
       [/Accepted problems/i, /accepted/i, /通过的?题目/i, /已通过/i],
@@ -204,9 +198,9 @@ export function buildQojBatchBrowserScript(payload: {
 
   async function publishJsonText(text) {
     window.__xcpcTrackerQojMemberJson = text;
-    if (typeof copy === "function") {
+    if (devtoolsCopy) {
       try {
-        copy(text);
+        devtoolsCopy(text);
         return "devtools";
       } catch (error) {
         console.warn("[xcpc-tracker] DevTools copy(text) 失败", error);

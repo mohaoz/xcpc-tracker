@@ -68,6 +68,155 @@ for (const member of fixture.members) {
 const singleScript = buildQojBrowserScript({ memberId: "single", handle: "single_qoj" });
 new Function(singleScript);
 
+function createProblemLink(problemId) {
+  return {
+    getAttribute(attributeName) {
+      return attributeName === "href" ? `/problem/${problemId}` : null;
+    },
+  };
+}
+
+function createProblemContent(problemIds, nextElementSibling = null) {
+  return {
+    nextElementSibling,
+    matches() {
+      return false;
+    },
+    querySelectorAll() {
+      return problemIds.map(createProblemLink);
+    },
+  };
+}
+
+function createProblemHeading(textContent) {
+  return {
+    textContent,
+    nextElementSibling: null,
+    matches(selector) {
+      return selector === ".list-group-item-heading";
+    },
+  };
+}
+
+async function runFetchedProfileRegression() {
+  const acceptedHeading = createProblemHeading("Accepted problems");
+  const attemptedHeading = createProblemHeading("Tried problems");
+  const attemptedContent = createProblemContent(["1002"]);
+  const acceptedContent = createProblemContent(["1001"], attemptedHeading);
+  acceptedHeading.nextElementSibling = acceptedContent;
+  attemptedHeading.nextElementSibling = attemptedContent;
+
+  const signedInUserLink = {
+    getAttribute(attributeName) {
+      return attributeName === "href" ? "/user/profile/Qingyu" : null;
+    },
+  };
+  const fetchedDocument = {
+    querySelector(selector) {
+      if (selector === ".card-body h2") {
+        return { textContent: "target_qoj" };
+      }
+      return null;
+    },
+    querySelectorAll(selector) {
+      if (selector === ".list-group-item-heading") {
+        return [acceptedHeading, attemptedHeading];
+      }
+      if (selector.includes("uoj-username")) {
+        return [signedInUserLink];
+      }
+      return [];
+    },
+  };
+
+  const globalNames = ["copy", "DOMParser", "fetch", "location", "navigator", "window", "alert"];
+  const originalDescriptors = new Map(
+    globalNames.map((name) => [name, Object.getOwnPropertyDescriptor(globalThis, name)]),
+  );
+  const setGlobal = (name, value) => {
+    Object.defineProperty(globalThis, name, {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value,
+    });
+  };
+
+  let copiedText = "";
+  let resolveCopiedText;
+  const copiedTextPromise = new Promise((resolve) => {
+    resolveCopiedText = resolve;
+  });
+  let clipboardWriteCount = 0;
+  let timeoutId;
+
+  try {
+    setGlobal("location", { hostname: "qoj.ac", origin: "https://qoj.ac" });
+    setGlobal("window", {});
+    setGlobal("alert", () => {});
+    setGlobal("navigator", {
+      clipboard: {
+        async writeText() {
+          clipboardWriteCount += 1;
+          throw new Error("Document is not focused");
+        },
+      },
+    });
+    setGlobal("DOMParser", class {
+      parseFromString() {
+        return fetchedDocument;
+      }
+    });
+    setGlobal("copy", (text) => {
+      copiedText = text;
+      resolveCopiedText(text);
+    });
+    setGlobal("fetch", async () => {
+      delete globalThis.copy;
+      return {
+        ok: true,
+        status: 200,
+        statusText: "OK",
+        url: "https://qoj.ac/user/profile/target_qoj",
+        async text() {
+          return "<html></html>";
+        },
+      };
+    });
+
+    const runtimeScript = buildQojBatchBrowserScript({
+      members: [{ memberId: "target", displayName: "Target", handle: "target_qoj" }],
+    });
+    new Function(runtimeScript)();
+    await Promise.race([
+      copiedTextPromise,
+      new Promise((_, reject) => {
+        timeoutId = setTimeout(() => reject(new Error("Generated QOJ script did not copy its result")), 1000);
+      }),
+    ]);
+    await new Promise((resolve) => setTimeout(resolve, 0));
+  } finally {
+    clearTimeout(timeoutId);
+    for (const [name, descriptor] of originalDescriptors) {
+      if (descriptor) {
+        Object.defineProperty(globalThis, name, descriptor);
+      } else {
+        delete globalThis[name];
+      }
+    }
+  }
+
+  const payload = JSON.parse(copiedText);
+  assert(payload.members.length === 1, "Fetched profile regression must import the target member");
+  assert(payload.fetch_failures.length === 0, "Signed-in navbar user must not create a handle mismatch");
+  assert(payload.members[0].handle === "target_qoj", "Response URL must identify the requested handle");
+  assert(payload.members[0].solved.join(",") === "1001", "Accepted problem extraction regressed");
+  assert(payload.members[0].attempted.join(",") === "1002", "Attempted problem extraction regressed");
+  assert(clipboardWriteCount === 0, "Captured DevTools copy must run before the unfocused Clipboard API fallback");
+}
+
+await runFetchedProfileRegression();
+
 let duplicateRejected = false;
 try {
   buildQojBatchBrowserScript({
@@ -87,5 +236,7 @@ console.log(JSON.stringify({
   fixtureFailureCount: fixture.fetch_failures.length,
   batchScriptSyntax: "valid",
   singleScriptSyntax: "valid",
+  signedInNavbarIsolation: "valid",
+  asyncDevtoolsCopy: "valid",
   duplicateHandleGuard: "valid",
 }, null, 2));
