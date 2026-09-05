@@ -145,19 +145,20 @@ async function requestStaticJson<T>(path: string, options?: { cacheMode?: Reques
     ? import.meta.env.BASE_URL
     : `${import.meta.env.BASE_URL}/`;
   const normalizedPath = path.replace(/^\/+/, "");
-  const response = await fetch(`${normalizedBaseUrl}${normalizedPath}`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-    cache: options?.cacheMode ?? "default",
-  });
-
-  if (!response.ok) {
-    const message = await response.text();
-    throw new Error(message || `HTTP ${response.status}`);
+  try {
+    const response = await fetch(`${normalizedBaseUrl}${normalizedPath}`, {
+      cache: options?.cacheMode ?? "default",
+    });
+    if (!response.ok) {
+      const message = await response.text();
+      throw new Error(message || `HTTP ${response.status}`);
+    }
+    return await response.json() as T;
+  } catch (error) {
+    // A rejected memoized promise must not make every subsequent visit fail.
+    resetCatalogFetchCache();
+    throw error;
   }
-
-  return response.json() as Promise<T>;
 }
 
 let catalogBundlePromise: Promise<GeneratedCatalogBundle> | null = null;

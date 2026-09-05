@@ -20,6 +20,7 @@
     "catalog:build-tools": "./web/node_modules/.bin/tsc -p scripts/tsconfig.catalog.json",
     "catalog:validate": "npm run catalog:build-tools && node .catalog-tools-build/validate-catalog.js && npm run catalog:check-reviewed-cf-problems && npm run catalog:check-qoj-problems",
     "qoj:validate-member-script": "node scripts/validate-qoj-member-script.mjs",
-    "deploy:build": "npm run catalog:validate && npm run qoj:validate-member-script && npm run catalog:generate-web-assets && npm run build --prefix web"
+    "coverage:validate": "node scripts/validate-coverage.mjs",
+    "deploy:build": "npm run catalog:validate && npm run qoj:validate-member-script && npm run coverage:validate && npm run catalog:generate-web-assets && npm run build --prefix web"
   }
 }

@@ -1,4 +1,10 @@
-import Dexie, { type Table } from "dexie";
+import Dexie, { type ObservabilitySet, type Table } from "dexie";
+import {
+  buildContestCoverage,
+  buildMemberCoverageInput,
+  summarizeCatalogCoverage,
+  type MemberCoverageInput,
+} from "./local-coverage";
 
 import type {
   LocalCatalogContestRecord,
@@ -238,10 +244,15 @@ export async function listContestProblemsByContestIdsFromDb(contestIds: string[]
   const problemsByContestId = new Map<string, LocalCatalogProblemRecord[]>();
   const uniqueContestIds = [...new Set(contestIds.filter(Boolean))];
 
-  await Promise.all(uniqueContestIds.map(async (contestId) => {
-    const problems = await listContestProblemsFromDb(contestId);
-    problemsByContestId.set(contestId, problems);
-  }));
+  if (!uniqueContestIds.length) return problemsByContestId;
+  for (const contestId of uniqueContestIds) problemsByContestId.set(contestId, []);
+  const problems = await localDb.catalogProblems.where("contestId").anyOf(uniqueContestIds).toArray();
+  for (const problem of problems) {
+    problemsByContestId.get(problem.contestId)!.push(problem);
+  }
+  for (const bucket of problemsByContestId.values()) {
+    bucket.sort((left, right) => left.ordinal.localeCompare(right.ordinal));
+  }
 
   return problemsByContestId;
 }
@@ -419,66 +430,32 @@ export async function getCatalogDbStatus(): Promise<LocalDbStatus> {
   };
 }
 
+export async function readMemberCoverageInputFromDb(): Promise<MemberCoverageInput> {
+  return localDb.transaction("r", localDb.members, localDb.memberHandles, localDb.memberProblemStatus, async () => {
+    const [members, handles, statuses] = await Promise.all([
+      localDb.members.toArray(),
+      localDb.memberHandles.toArray(),
+      localDb.memberProblemStatus.toArray(),
+    ]);
+    return buildMemberCoverageInput(members, handles, statuses);
+  });
+}
+
 export async function listMemberPeopleFromDb(): Promise<LocalMemberPerson[]> {
-  const [members, handles, statuses] = await Promise.all([
-    localDb.members.toArray(),
-    localDb.memberHandles.toArray(),
-    localDb.memberProblemStatus.toArray(),
-  ]);
+  return (await readMemberCoverageInputFromDb()).members;
+}
 
-  const activeMembers = members.filter((member) => !member.deletedAt);
-  const activeMemberIds = new Set(activeMembers.map((member) => member.memberId));
-  const activeHandles = handles.filter((handle) => !handle.deletedAt && activeMemberIds.has(handle.memberId));
-
-  return activeMembers
-    .map((member) => {
-      const memberHandles = activeHandles
-        .filter((handle) => handle.memberId === member.memberId)
-        .sort((left, right) => left.handle.localeCompare(right.handle));
-      const activeMemberProviders = new Set(memberHandles.map((handle) => handle.provider));
-      const memberStatuses = statuses.filter(
-        (status) =>
-          status.memberId === member.memberId &&
-          (status.provider === "manual" || activeMemberProviders.has(status.provider)),
-      );
-      const providerCount = new Set(memberHandles.map((handle) => handle.provider)).size;
-      const solvedProblemIds = new Set(
-        memberStatuses
-          .filter((status) => status.status === "solved")
-          .map((status) => status.problemId),
-      );
-      const attemptedOnlyProblemIds = new Set(
-        memberStatuses
-          .filter((status) => status.status === "attempted" && !solvedProblemIds.has(status.problemId))
-          .map((status) => status.problemId),
-      );
-      const touchedProblemIds = new Set([
-        ...solvedProblemIds,
-        ...attemptedOnlyProblemIds,
-      ]);
-      const lastSyncedAt = memberStatuses
-        .map((status) => status.lastSeenAt)
-        .sort()
-        .slice(-1)[0] ?? null;
-
-      return {
-        memberId: member.memberId,
-        displayName: member.displayName,
-        providerCount,
-        handleCount: memberHandles.length,
-        solvedCount: solvedProblemIds.size,
-        attemptedCount: attemptedOnlyProblemIds.size,
-        lastSyncedAt,
-        handles: memberHandles.map((handle) => ({
-          handleId: handle.handleId,
-          provider: handle.provider,
-          handle: handle.handle,
-          displayLabel: handle.displayLabel,
-          updatedAt: handle.updatedAt,
-        })),
-      };
-    })
-    .sort((left, right) => left.displayName.localeCompare(right.displayName));
+// Committed writes invalidate list inputs, including writes made by another tab.
+export function subscribeCoverageDataMutated(listener: () => void): () => void {
+  const prefixes = ["catalogContests", "catalogProblems", "members", "memberHandles", "memberProblemStatus"]
+    .map((table) => `idb://${localDb.name}/${table}/`);
+  const onMutation = (parts: ObservabilitySet) => {
+    if (Object.keys(parts).some((part) => prefixes.some((prefix) => part.startsWith(prefix)))) {
+      listener();
+    }
+  };
+  Dexie.on("storagemutated", onMutation);
+  return () => Dexie.on("storagemutated").unsubscribe(onMutation);
 }
 
 export async function getMemberPersonFromDb(memberId: string): Promise<LocalMemberPerson | null> {
@@ -1180,60 +1157,8 @@ export async function getContestCoverageForCatalog(
   problems: LocalCatalogProblemRecord[],
   options?: { memberIds?: string[] },
 ): Promise<LocalContestCoverage> {
-  const [allMembers, allStatuses] = await Promise.all([
-    listMemberPeopleFromDb(),
-    localDb.memberProblemStatus.toArray(),
-  ]);
-
-  const memberIdFilter = options?.memberIds ? new Set(options.memberIds) : null;
-  const members = memberIdFilter !== null
-    ? allMembers.filter((member) => memberIdFilter.has(member.memberId))
-    : allMembers;
-  const statuses = memberIdFilter !== null
-    ? allStatuses.filter((status) => memberIdFilter.has(status.memberId))
-    : allStatuses;
-
-  const problemRows = problems.map((problem) => {
-    let anySeen = false;
-    const memberRows = members.map((member) => {
-      const activeMemberProviders = new Set(member.handles.map((handle) => handle.provider));
-      const candidateStatuses = statuses
-        .filter(
-          (status) =>
-            status.memberId === member.memberId &&
-            status.problemId === problem.problemId &&
-            (status.provider === "manual" || activeMemberProviders.has(status.provider)),
-        )
-        .map((status) => status.status);
-      const mergedStatus = mergeStatus(
-        candidateStatuses.length > 0 ? candidateStatuses : ["unseen"],
-      );
-      if (mergedStatus !== "unseen") {
-        anySeen = true;
-      }
-      return {
-        memberId: member.memberId,
-        displayName: member.displayName,
-        status: mergedStatus,
-      };
-    });
-
-    return {
-      problemId: problem.problemId,
-      ordinal: problem.ordinal,
-      title: problem.title,
-      freshForTeam: !anySeen,
-      members: memberRows,
-    };
-  });
-
-  return {
-    contest,
-    trackedMembers: members,
-    problemCount: problemRows.length,
-    freshProblemCount: problemRows.filter((problem) => problem.freshForTeam).length,
-    problems: problemRows,
-  };
+  const input = await readMemberCoverageInputFromDb();
+  return buildContestCoverage({ contest, problems }, input, options);
 }
 
 export async function getContestCoverageSummaryFromDb(
@@ -1273,11 +1198,15 @@ export function summarizeContestCoverage(
 export async function listContestCoverageSummariesFromDb(
   options?: { memberIds?: string[] },
 ): Promise<LocalContestCoverageSummary[]> {
-  const contests = await listCatalogContestsFromDb();
-  const summaries = await Promise.all(
-    contests.map((contest) => getContestCoverageSummaryFromDb(contest.contestId, options)),
-  );
-  return summaries.filter((summary): summary is LocalContestCoverageSummary => summary !== null);
+  const [contests, input] = await Promise.all([
+    listCatalogContestsFromDb(),
+    readMemberCoverageInputFromDb(),
+  ]);
+  const problemsByContest = await listContestProblemsByContestIdsFromDb(contests.map((contest) => contest.contestId));
+  return summarizeCatalogCoverage(contests.map((contest) => ({
+    contest,
+    problems: problemsByContest.get(contest.contestId) ?? [],
+  })), input, options);
 }
 
 export async function listContestCoverageSummariesForCatalog(
@@ -1287,12 +1216,6 @@ export async function listContestCoverageSummariesForCatalog(
   }>,
   options?: { memberIds?: string[] },
 ): Promise<LocalContestCoverageSummary[]> {
-  const summaries = await Promise.all(
-    payload.map(async ({ contest, problems }) => {
-      const coverage = await getContestCoverageForCatalog(contest, problems, options);
-      return summarizeContestCoverage(coverage);
-    }),
-  );
-
-  return summaries.filter((summary): summary is LocalContestCoverageSummary => summary !== null);
+  const input = await readMemberCoverageInputFromDb();
+  return summarizeCatalogCoverage(payload, input, options);
 }

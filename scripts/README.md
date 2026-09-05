@@ -31,6 +31,7 @@
 - `npm run catalog:generate-default`
 - `npm run catalog:refresh`
 - `npm run qoj:validate-member-script`
+- `npm run coverage:validate`
 
 当前流程：
 
@@ -53,6 +54,9 @@
   在 QOJ 浏览器控制台运行，选择 `data/final.json` 或 `data/contests.json`，一次抓取全部 QOJ 比赛题目并导出简单数组 JSON。抓取时保留 contest URL 的 `?v=` 参数；QOJ 同一 contest id 的不同版本可能对应不同题单，不能退化为无查询参数的页面。
 
 额外 Node 脚本：
+
+- `validate-coverage.mjs`
+  检查覆盖状态优先级、删除成员/账号、空成员筛选和共享题目映射；确认 235 场比赛的统计只读取一次成员、账号和状态表。使用 Vue 内存渲染器验证首页缓存、切换成员不读库、数据变更刷新、加载期间写入和失败重试，无需浏览器或网络。部署构建与 CI 都会执行。
 
 - `fetch-codeforces-problems.mjs`
   在本地用 Codeforces API 一次抓取全部 Codeforces 比赛题目，默认读取 `data/final.json`，输出到 `data/codeforces-problems.json`

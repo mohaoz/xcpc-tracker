@@ -1,31 +1,39 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { computed, onActivated, onDeactivated, onMounted, onUnmounted, ref, shallowRef, watch } from "vue";
 import { RouterLink } from "vue-router";
 
 import type { CatalogContestIndexItem } from "../lib/catalog";
-import { subscribeCatalogMutated } from "../lib/catalog-events";
 import { listRuntimeCatalogContests, listRuntimeContestCoveragePayload, type RuntimeCatalogContestListRecord } from "../lib/catalog-runtime";
 import {
-  listContestCoverageSummariesForCatalog,
-  listMemberPeopleFromDb,
+  readMemberCoverageInputFromDb,
+  subscribeCoverageDataMutated,
 } from "../lib/local-db";
-import type {
-  LocalContestCoverageSummary,
-  LocalMemberPerson,
-} from "../lib/local-model";
+import { summarizeCatalogCoverage, type ContestCoverageInput, type MemberCoverageInput } from "../lib/local-coverage";
+import type { LocalMemberPerson } from "../lib/local-model";
 import { contestListModes, isContestListMode, type ContestListMode, useContestListStore } from "../stores/contest-list";
 
-const contests = ref<CatalogContestIndexItem[]>([]);
-const localContestMap = ref(new Map<string, RuntimeCatalogContestListRecord>());
-const coverageSummaryMap = ref(new Map<string, LocalContestCoverageSummary>());
+const contests = shallowRef<CatalogContestIndexItem[]>([]);
+const localContestMap = shallowRef(new Map<string, RuntimeCatalogContestListRecord>());
+const coverageInput = shallowRef<MemberCoverageInput | null>(null);
+const coveragePayload = shallowRef<ContestCoverageInput[]>([]);
 const loading = ref(false);
 const error = ref("");
 const generatedAt = ref("");
-const memberOptions = ref<LocalMemberPerson[]>([]);
+const memberOptions = shallowRef<LocalMemberPerson[]>([]);
 let latestLoadRequestId = 0;
 const pageSize = 12;
-let unsubscribeCatalogMutated: (() => void) | null = null;
+let unsubscribeCoverageDataMutated: (() => void) | null = null;
+let active = false;
+let needsReload = true;
+const hasLoaded = ref(false);
 const contestListStore = useContestListStore();
+const coverageSummaryMap = computed(() => new Map(
+  coverageInput.value
+    ? summarizeCatalogCoverage(coveragePayload.value, coverageInput.value, {
+        memberIds: contestListStore.selectedMemberIds,
+      }).map((summary) => [summary.contestId, summary])
+    : [],
+));
 
 function normalizeContestListState() {
   if (!isContestListMode(contestListStore.selectedMode)) {
@@ -364,35 +372,33 @@ const latestSyncLabel = computed(() => {
 });
 
 async function loadContests() {
+  if (loading.value || !needsReload) return;
   const requestId = ++latestLoadRequestId;
+  needsReload = false;
   loading.value = true;
   error.value = "";
   try {
-    const localMembers = await listMemberPeopleFromDb();
-    if (requestId !== latestLoadRequestId) {
-      return;
-    }
+    const [membersInput, runtimeCatalog, nextCoveragePayload] = await Promise.all([
+      readMemberCoverageInputFromDb(),
+      listRuntimeCatalogContests(),
+      listRuntimeContestCoveragePayload(),
+    ]);
+    if (requestId !== latestLoadRequestId) return;
+    const localMembers = membersInput.members;
     memberOptions.value = localMembers;
     const availableMemberIds = new Set(localMembers.map((member) => member.memberId));
     const hasInvalidSelection = contestListStore.selectedMemberIds.some((memberId) => !availableMemberIds.has(memberId));
     const shouldInitializeSelection =
-      !contestListStore.memberSelectionInitialized && memberOptions.value.length > 0;
+      !contestListStore.memberSelectionInitialized && localMembers.length > 0;
     if (shouldInitializeSelection || hasInvalidSelection) {
       contestListStore.selectedMemberIds = localMembers.map((member) => member.memberId);
       contestListStore.memberSelectionInitialized = true;
     }
-    const [runtimeCatalog, coveragePayload] = await Promise.all([
-      listRuntimeCatalogContests(),
-      listRuntimeContestCoveragePayload(),
-    ]);
-    const coverageSummaries = await listContestCoverageSummariesForCatalog(coveragePayload, {
-      memberIds: contestListStore.selectedMemberIds,
-    });
-    if (requestId !== latestLoadRequestId) {
-      return;
-    }
-    const localContestById = new Map(runtimeCatalog.contests.map((contest) => [contest.contestId, contest]));
-    const localItems: CatalogContestIndexItem[] = runtimeCatalog.contests.map((contest) => ({
+    coverageInput.value = membersInput;
+    coveragePayload.value = nextCoveragePayload;
+    const summaries = coverageSummaryMap.value;
+    localContestMap.value = new Map(runtimeCatalog.contests.map((contest) => [contest.contestId, contest]));
+    contests.value = runtimeCatalog.contests.map((contest): CatalogContestIndexItem => ({
       id: contest.contestId,
       title: contest.title,
       aliases: contest.aliases,
@@ -403,29 +409,29 @@ async function loadContests() {
       awardCutoffs: contest.awardCutoffs ?? null,
       notes: contest.notes ?? null,
       generated_from: contest.generatedFrom ?? "catalog",
-      problem_count:
-        coverageSummaries.find((summary) => summary.contestId === contest.contestId)?.problemCount ??
-        contest.problemCount,
-    }));
-    contests.value = localItems.sort(compareContestsByTime);
-    localContestMap.value = localContestById;
-    coverageSummaryMap.value = new Map(
-      coverageSummaries.map((summary) => [summary.contestId, summary]),
-    );
+      problem_count: summaries.get(contest.contestId)?.problemCount ?? contest.problemCount,
+    })).sort(compareContestsByTime);
     generatedAt.value = runtimeCatalog.generatedAt ?? "";
+    hasLoaded.value = true;
     if (contestListStore.page > totalPages.value) {
       contestListStore.page = totalPages.value;
     }
   } catch (caught) {
-    if (requestId !== latestLoadRequestId) {
-      return;
-    }
+    if (requestId !== latestLoadRequestId) return;
+    needsReload = true;
     error.value = caught instanceof Error ? caught.message : "failed to load contests";
   } finally {
     if (requestId === latestLoadRequestId) {
       loading.value = false;
+      // A write during this read needs another snapshot, but failures wait for a retry.
+      if (needsReload && active && !error.value) void loadContests();
     }
   }
+}
+
+function invalidateCoverageData() {
+  needsReload = true;
+  if (active) void loadContests();
 }
 
 function toggleMember(memberId: string) {
@@ -517,14 +523,18 @@ function appendSearchToken(rawToken: string) {
 
 onMounted(() => {
   normalizeContestListState();
-  unsubscribeCatalogMutated = subscribeCatalogMutated(() => {
-    void loadContests();
-  });
+  unsubscribeCoverageDataMutated = subscribeCoverageDataMutated(invalidateCoverageData);
+});
+onActivated(() => {
+  active = true;
   void loadContests();
 });
+onDeactivated(() => {
+  active = false;
+});
 onUnmounted(() => {
-  unsubscribeCatalogMutated?.();
-  unsubscribeCatalogMutated = null;
+  ++latestLoadRequestId;
+  unsubscribeCoverageDataMutated?.();
 });
 watch(queryTokens, () => {
   if (contestListStore.page !== 1) {
@@ -535,7 +545,6 @@ watch(() => contestListStore.selectedMemberIds, () => {
   if (contestListStore.page !== 1) {
     contestListStore.page = 1;
   }
-  void loadContests();
 }, { deep: true });
 watch(() => contestListStore.selectedMode, () => {
   if (contestListStore.page !== 1) {
@@ -632,9 +641,12 @@ watch(() => contestListStore.selectedMode, () => {
           </div>
         </div>
 
-        <p v-if="error" class="error-box" style="margin-bottom: 16px">{{ error }}</p>
+        <div v-if="error" class="error-box" style="margin-bottom: 16px">
+          {{ error }}
+          <button type="button" class="button button--ghost" :disabled="loading" @click="loadContests">重试</button>
+        </div>
 
-        <div v-if="loading" class="notice">catalog loading...</div>
+        <div v-if="loading && !hasLoaded" class="notice">正在加载比赛…</div>
         <div v-else-if="!contests.length" class="notice">
           当前没有可显示的比赛数据。
         </div>

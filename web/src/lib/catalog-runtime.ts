@@ -158,7 +158,11 @@ export async function listRuntimeContestCoveragePayload(): Promise<Array<{
     listCatalogContestsFromDb({ includeDeleted: true }),
   ]);
 
-  const localProblemMap = await listContestProblemsByContestIdsFromDb(localContests.map((contest) => contest.contestId));
+  const bundledContestIds = new Set(bundledIndex.contests.map((contest) => contest.id));
+  const localOverrides = localContests.filter((contest) =>
+    !contest.deletedAt && shouldUseLocalCatalogContest(contest, bundledContestIds.has(contest.contestId)),
+  );
+  const localProblemMap = await listContestProblemsByContestIdsFromDb(localOverrides.map((contest) => contest.contestId));
   const bundledContestMap = new Map<string, LocalCatalogContestRecord>(
     bundledIndex.contests.map((item) => {
       const mapped = mapBundledIndexItemToContestRecord(item);

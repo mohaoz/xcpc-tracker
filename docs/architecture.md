@@ -108,3 +108,12 @@
 - Codeforces member sync runs directly in the browser.
 - Contest list filters are stored locally in app state rather than in URL query parameters.
 - Default catalog is consumed through deploy-time generated static assets; browser runtime should not force local re-init based on bundled version changes.
+
+## Contest List Loading
+
+- Audit: the list previously called the detail coverage loader once per contest. For 235 contests this read the entire status table 470 times, then repeatedly filtered it for every member/problem pair. Route remounts and member selection changes repeated the work.
+- Read members, linked handles, and statuses once in a read transaction. Build an in-memory member/problem status index, preserving solved precedence, manual status provenance, and exclusion of deleted members/handles.
+- Compute list summaries directly from that index; the list does not need to allocate every contest's full member coverage matrix. Member filters reuse the same input snapshot without another database read.
+- Keep only the contest list page alive across SPA navigation. Invalidate its inputs after relevant Dexie writes (including writes from other tabs), defer reloads while it is inactive, and retain visible cards during refresh. Failed loads remain retryable.
+- Catalog and member reads start concurrently. Only local contest overrides need local problem queries; bundled catalog snapshots remain static assets.
+- These are disposable in-memory caches. IndexedDB stays at version 4 with no store, index, or persisted record changes; no migration or catalog re-import is required.

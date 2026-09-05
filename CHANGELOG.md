@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- batch contest coverage reads and reuse indexed member status when changing filters
+- retain the contest list across navigation and refresh it after local data changes without hiding existing cards
+
+
 ## 0.6.0
 
 ### Added

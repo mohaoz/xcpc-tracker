@@ -49,7 +49,11 @@ const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
     </header>
 
     <main class="shell__main">
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <KeepAlive include="ContestListView">
+          <component :is="Component" />
+        </KeepAlive>
+      </RouterView>
     </main>
   </div>
 </template>
