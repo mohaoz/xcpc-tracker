@@ -840,5 +840,366 @@
         "notes": null
       }
     ]
+  },
+  {
+    "title": "CCPC2026黑龙江省大学生程序设计竞赛",
+    "url": "https://codeforces.com/gym/106534",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "卡卡杀",
+        "url": "https://codeforces.com/gym/106534/problem/A",
+        "provider_problem_id": "106534:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "最大数码 2",
+        "url": "https://codeforces.com/gym/106534/problem/B",
+        "provider_problem_id": "106534:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "圆桌会议",
+        "url": "https://codeforces.com/gym/106534/problem/C",
+        "provider_problem_id": "106534:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "格兰法洛",
+        "url": "https://codeforces.com/gym/106534/problem/D",
+        "provider_problem_id": "106534:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "乐乐的杏花",
+        "url": "https://codeforces.com/gym/106534/problem/E",
+        "provider_problem_id": "106534:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "复读机",
+        "url": "https://codeforces.com/gym/106534/problem/F",
+        "provider_problem_id": "106534:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "卡卡数",
+        "url": "https://codeforces.com/gym/106534/problem/G",
+        "provider_problem_id": "106534:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "周二会员日",
+        "url": "https://codeforces.com/gym/106534/problem/H",
+        "provider_problem_id": "106534:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "假想对冲",
+        "url": "https://codeforces.com/gym/106534/problem/I",
+        "provider_problem_id": "106534:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "秋水横渡",
+        "url": "https://codeforces.com/gym/106534/problem/J",
+        "provider_problem_id": "106534:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "卡卡拆",
+        "url": "https://codeforces.com/gym/106534/problem/K",
+        "provider_problem_id": "106534:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "猪猪车",
+        "url": "https://codeforces.com/gym/106534/problem/L",
+        "provider_problem_id": "106534:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "六个核桃",
+        "url": "https://codeforces.com/gym/106534/problem/M",
+        "provider_problem_id": "106534:M"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "411cc95d-3733-5a0b-8806-ab17b43f8838",
+        "title": "第二十一届黑龙江省大学生程序设计竞赛",
+        "aliases": [
+          "2026 黑龙江省赛",
+          "2026 CCPC 黑龙江省赛"
+        ],
+        "tags": [
+          "2026",
+          "ccpc",
+          "省赛",
+          "黑龙江"
+        ],
+        "start_at": null,
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106534",
+            "provider_contest_id": "106534",
+            "source_title": "CCPC2026黑龙江省大学生程序设计竞赛",
+            "label": "Codeforces Gym"
+          },
+          {
+            "provider": "pintia",
+            "kind": "standings",
+            "url": "https://pintia.cn/rankings/2049414294076952576",
+            "provider_contest_id": "2049414294076952576",
+            "source_title": "第二十一届黑龙江省大学生程序设计竞赛",
+            "label": "PTA 榜单"
+          }
+        ],
+        "notes": "举办日期待核验：参考汇总表为 2026-05-10，Codeforces Gym 开始日期为 2026-05-09。"
+      }
+    ]
+  },
+  {
+    "title": "2026 National Invitational of CCPC (Fujian), The 13th Fujian Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106565",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "贝贝拯救FJCPC",
+        "url": "https://codeforces.com/gym/106565/problem/A",
+        "provider_problem_id": "106565:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "排考场",
+        "url": "https://codeforces.com/gym/106565/problem/B",
+        "provider_problem_id": "106565:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Of course，宁宁",
+        "url": "https://codeforces.com/gym/106565/problem/C",
+        "provider_problem_id": "106565:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "哦~搞错了",
+        "url": "https://codeforces.com/gym/106565/problem/D",
+        "provider_problem_id": "106565:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "胖虎与线段树",
+        "url": "https://codeforces.com/gym/106565/problem/E",
+        "provider_problem_id": "106565:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "青青草原扛把子",
+        "url": "https://codeforces.com/gym/106565/problem/F",
+        "provider_problem_id": "106565:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "变幻自在",
+        "url": "https://codeforces.com/gym/106565/problem/G",
+        "provider_problem_id": "106565:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "抱歉，这没有集美",
+        "url": "https://codeforces.com/gym/106565/problem/H",
+        "provider_problem_id": "106565:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Restricted Plate Travel",
+        "url": "https://codeforces.com/gym/106565/problem/I",
+        "provider_problem_id": "106565:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "高级程序设计",
+        "url": "https://codeforces.com/gym/106565/problem/J",
+        "provider_problem_id": "106565:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "高阶情景口语",
+        "url": "https://codeforces.com/gym/106565/problem/K",
+        "provider_problem_id": "106565:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "蛇小弟与奶龙",
+        "url": "https://codeforces.com/gym/106565/problem/L",
+        "provider_problem_id": "106565:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "夜空之猴",
+        "url": "https://codeforces.com/gym/106565/problem/M",
+        "provider_problem_id": "106565:M"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "abb72fec-deb3-5d04-9ca3-2b16d6c83ed9",
+        "title": "第十三届福建省大学生程序设计竞赛暨2026年CCPC全国邀请赛（福州）",
+        "aliases": [
+          "2026 CCPC 福州邀请赛",
+          "2026 福建省赛"
+        ],
+        "tags": [
+          "2026",
+          "ccpc",
+          "省赛",
+          "邀请赛",
+          "福建",
+          "福州"
+        ],
+        "start_at": "2026-05-30T04:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106565",
+            "provider_contest_id": "106565",
+            "source_title": "2026 National Invitational of CCPC (Fujian), The 13th Fujian Collegiate Programming Contest",
+            "label": "Codeforces Gym"
+          },
+          {
+            "provider": "pintia",
+            "kind": "standings",
+            "url": "https://pintia.cn/rankings/2056635464310784000",
+            "provider_contest_id": "2056635464310784000",
+            "source_title": "第十三届福建省大学生程序设计竞赛暨2026年CCPC全国邀请赛（福州）",
+            "label": "PTA 榜单"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  },
+  {
+    "title": "The 14th Chongqing Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106589",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "上下文管理器",
+        "url": "https://codeforces.com/gym/106589/problem/A",
+        "provider_problem_id": "106589:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "麻雀",
+        "url": "https://codeforces.com/gym/106589/problem/B",
+        "provider_problem_id": "106589:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "去旅行",
+        "url": "https://codeforces.com/gym/106589/problem/C",
+        "provider_problem_id": "106589:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "MEtriX",
+        "url": "https://codeforces.com/gym/106589/problem/D",
+        "provider_problem_id": "106589:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "侦探故事",
+        "url": "https://codeforces.com/gym/106589/problem/E",
+        "provider_problem_id": "106589:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "修修改",
+        "url": "https://codeforces.com/gym/106589/problem/F",
+        "provider_problem_id": "106589:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "命运石之门的选择",
+        "url": "https://codeforces.com/gym/106589/problem/G",
+        "provider_problem_id": "106589:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "顶针串",
+        "url": "https://codeforces.com/gym/106589/problem/H",
+        "provider_problem_id": "106589:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "别减了，直接开根吧",
+        "url": "https://codeforces.com/gym/106589/problem/I",
+        "provider_problem_id": "106589:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "被抹去的数字",
+        "url": "https://codeforces.com/gym/106589/problem/J",
+        "provider_problem_id": "106589:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "街树的影子",
+        "url": "https://codeforces.com/gym/106589/problem/K",
+        "provider_problem_id": "106589:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "样品检测",
+        "url": "https://codeforces.com/gym/106589/problem/L",
+        "provider_problem_id": "106589:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "Lowbit OR Lowbit",
+        "url": "https://codeforces.com/gym/106589/problem/M",
+        "provider_problem_id": "106589:M"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "a218c192-1ca0-50e3-886c-95286d773f1d",
+        "title": "重庆市第十四届大学生程序设计大赛",
+        "aliases": [
+          "第十四届重庆市大学生程序设计竞赛",
+          "2026 重庆市赛"
+        ],
+        "tags": [
+          "2026",
+          "省赛",
+          "重庆"
+        ],
+        "start_at": "2026-06-14",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106589",
+            "provider_contest_id": "106589",
+            "source_title": "The 14th Chongqing Collegiate Programming Contest",
+            "label": "Codeforces Gym"
+          },
+          {
+            "provider": "pintia",
+            "kind": "standings",
+            "url": "https://pintia.cn/rankings/2064240000901931008",
+            "provider_contest_id": "2064240000901931008",
+            "source_title": "重庆市第十四届大学生程序设计大赛",
+            "label": "PTA 榜单"
+          }
+        ],
+        "notes": "举办日期为 2026-06-14，具体开赛时刻未确认。"
+      }
+    ]
   }
 ]

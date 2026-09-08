@@ -64,6 +64,12 @@
           "source_title": {
             "type": "string"
           },
+          "variant": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
           "label": {
             "type": "string"
           }
@@ -131,6 +137,9 @@
                   "type": "string"
                 },
                 "source_title": {
+                  "type": "string"
+                },
+                "variant": {
                   "type": "string"
                 },
                 "label": {

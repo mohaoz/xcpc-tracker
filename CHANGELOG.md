@@ -2,8 +2,13 @@
 
 ## Unreleased
 
+### Added
+
+- added 39 reviewed problems across the 2026 Heilongjiang provincial contest, CCPC Fujian/Fuzhou invitational, and Chongqing provincial contest, with Codeforces problem sources and PTA standings links
+
 ### Changed
 
+- aligned the contest JSON Schema with existing optional source variant and provenance notes
 - batch contest coverage reads and reuse indexed member status when changing filters
 - retain the contest list across navigation and refresh it after local data changes without hiding existing cards
 
