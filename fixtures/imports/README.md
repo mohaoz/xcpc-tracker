@@ -8,6 +8,11 @@ Use this area for:
 - QOJ userscript JSON samples
 - draft payload examples used by validation and mapper tests
 
+`qoj/2026-pending-contests-draft.json` is a candidate URL list for the existing
+`scripts/browser-fetch-qoj-problems.mjs` browser export flow. It contains no
+curated problems and is not included in the shipped catalog. Export and review
+the problem lists before promoting any of these contests.
+
 `qoj/qoj-members-batch.json` is the accepted snapshot shape produced by the
 member-page QOJ batch console script. It intentionally includes both successful
 members and a per-handle fetch failure so import behavior remains reviewable.

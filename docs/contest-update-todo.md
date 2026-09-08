@@ -4,6 +4,38 @@
 
 本清单汇总两份参考表的全部 49 条记录（2026 赛季 24 条、2025 赛季 25 条），以及单独提出的 QOJ 4071 和 QOJ 更新流程问题。江苏／广东在两份表中各合列一条，因此记录数不等于独立比赛数。
 
+## 2026-09-08 更新批次
+
+- [x] 从 Codeforces 公开比赛页复核并补录 `26-08` 黑龙江（Gym 106534）、`26-19` 福建邀请赛（Gym 106565）、`26-24` 重庆（Gym 106589）的完整题单：每场 A–M 共 13 题，合计新增 3 场、39 题，目录现为 238 场、2928 题。
+- [x] 核验新增记录的元数据、来源及内部 ID；原有 235 场比赛与 2889 道题逐条保持一致，CF／QOJ 导入幂等校验、完整目录 JSON Schema 校验和静态构建通过，重复生成的 241 个静态文件哈希一致。
+- [x] 本批数据已提交到 `main`（`07c548c`）及 `release`（`40cc131`）并部署到 `ali`；线上索引为 238 场、2928 题，三场详情均为 13 题且与构建产物一致。[release CI 已通过](https://github.com/mohaoz/xcpc-tracker/actions/runs/34198165455)。部署前备份为 `/home/mohao/xcpc-tracker-deploy-backups/tracker-before-40cc131.tar.gz`。
+- [ ] 等待用户导入 QOJ 4071、3588?v=1、3749?v=1、3766、3799?v=1、3767、3944、3945 的题单 JSON；这些候选继续留在文档。
+
+本次获取情况：上述三个 Gym 的匿名 `contest.standings` 请求均返回 HTTP 400，正文为 `contestId: You have to be authenticated to use this method`；公开比赛题目表可读。[官方 API 文档](https://codeforces.com/apiHelp/methods#contest.standings)要求 Gym 榜单请求使用可访问比赛的账号认证。此次从公开比赛页整理审核快照；现有 API 获取脚本的认证支持另待完善。
+
+严格 JSON Schema 校验发现既有来源元数据使用了 `variant`（比赛／题目来源）和 `notes`（比赛来源），旧 schema 尚未声明。为这些已有可选字符串字段补充声明后复核完整目录；本次不迁移数据或 IndexedDB。
+
+日期差异：参考表 `26-08/C8` 为 2026-05-10，Codeforces `contest.list?gym=true` 中 Gym 106534 的开始时间为 2026-05-09T01:00:00Z，现场日期待进一步核验。Gym 106589 没有 API 开始时间；参考表 `26-24/C24` 为 2026-06-14，仅保留日期精度。
+
+### 需要用户提供的 QOJ 题单
+
+已准备[本批 8 场比赛的导出输入](../fixtures/imports/qoj/2026-pending-contests-draft.json)。这是浏览器导出用的候选清单，没有题目，也不会进入公开目录。
+
+1. 在自己的浏览器登录 QOJ，打开开发者工具 Console。
+2. 运行 [批量题单导出脚本](../scripts/browser-fetch-qoj-problems.mjs)，在文件选择框中选择上述 `2026-pending-contests-draft.json`。
+3. 提供下载的 `qoj-problems.json`，后续核验每场的标题、题号、题目链接和版本后再补录。
+
+| 比赛 | 必须保留的入口 |
+| --- | --- |
+| 2026 ICPC 网络赛第一场 | [4071](https://qoj.ac/contest/4071) |
+| 2026 深圳邀请赛 | [3588?v=1](https://qoj.ac/contest/3588?v=1) |
+| 2026 浙江省赛 | [3749?v=1](https://qoj.ac/contest/3749?v=1) |
+| 2026 西安邀请赛 | [3766](https://qoj.ac/contest/3766) |
+| 2026 武汉邀请赛暨湖北省赛 | [3799?v=1](https://qoj.ac/contest/3799?v=1) |
+| 2026 山东省赛 | [3767](https://qoj.ac/contest/3767) |
+| 2026 上海市赛 | [3944](https://qoj.ac/contest/3944) |
+| 2026 沈阳邀请赛 | [3945](https://qoj.ac/contest/3945) |
+
 ## 参考与完成标准
 
 - `26-行号` 对应 `/Users/mohao/Downloads/26赛季省赛邀请赛训练补题汇总.xlsx`，工作表 `工作表1`，数据范围 `A3:E26`。
@@ -38,8 +70,8 @@
 - [ ] **26-07 CCPC河南省赛**（2026-05-10；链接冲突待核验）
   名称／榜单：[第 8 届 CCPC 河南省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/henan)。原表标 `QOJ`，实际链接为 [Gym 106551](https://codeforces.com/gym/106551)，与 ICPC 南昌冲突；先核验正确入口，再补齐题单。
 
-- [ ] **26-08 黑龙江省赛**（2026-05-10；新增候选）
-  名称／榜单：[第二十一届黑龙江省大学生程序设计竞赛](https://pintia.cn/rankings/2049414294076952576)。补题：[Gym 106534](https://codeforces.com/gym/106534)（原表标 `Gym / QOJ`）。待复核完整题单，并查找 QOJ 入口。
+- [ ] **26-08 黑龙江省赛**（原表日期 2026-05-10；已补录，日期／QOJ 待核验）
+  名称／榜单：[第二十一届黑龙江省大学生程序设计竞赛](https://pintia.cn/rankings/2049414294076952576)。补题：[Gym 106534](https://codeforces.com/gym/106534)（原表标 `Gym / QOJ`）。2026-09-08 已补录 A–M 共 13 题及 PTA 榜单，内部 ID 为 `411cc95d-3733-5a0b-8806-ab17b43f8838`；因参考表与 Gym 日期不同，`startAt` 暂留空，待核验现场日期并补查 QOJ 来源。
 
 - [ ] **26-09 陕西省赛**（2026-05-16；已收录待复核）
   名称／榜单：[第 14 届陕西省国际大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/shaanxi)。补题：[Gym 106532](https://codeforces.com/gym/106532)（原表标 `Gym / QOJ`）。catalog 已有 13 题；复核题单并补查 QOJ 映射。
@@ -71,8 +103,8 @@
 - [ ] **26-18 山东省赛**（2026-05-24；新增候选）
   名称／榜单：[2026 年山东省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/shandong?group=official)。补题：[QOJ 3767](https://qoj.ac/contest/3767)。待导出并复核完整题单。
 
-- [ ] **26-19 福州邀请赛**（2026-05-30；新增候选）
-  名称／榜单：[第十三届福建省大学生程序设计竞赛 暨2026年CCPC全国邀请赛（福州）](https://pintia.cn/rankings/2056635464310784000)。补题：[Gym 106565](https://codeforces.com/gym/106565)（原表标 `Gym / QOJ`）。待复核完整题单，并查找 QOJ 入口。
+- [ ] **26-19 福州邀请赛**（2026-05-30；已补录，QOJ 待补查）
+  名称／榜单：[第十三届福建省大学生程序设计竞赛 暨2026年CCPC全国邀请赛（福州）](https://pintia.cn/rankings/2056635464310784000)。补题：[Gym 106565](https://codeforces.com/gym/106565)（原表标 `Gym / QOJ`）。2026-09-08 已补录 A–M 共 13 题及 PTA 榜单，内部 ID 为 `abb72fec-deb3-5d04-9ca3-2b16d6c83ed9`；待补查 QOJ 来源。
 
 - [ ] **26-20 四川省赛**（2026-05-31；已收录待复核）
   名称／榜单：[第十八届四川省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/sichuan?group=official)。补题：[Gym 106570](https://codeforces.com/gym/106570)（原表标 `Gym / QOJ`）。catalog 已有 12 题；复核题单并补查 QOJ 映射。
@@ -86,8 +118,8 @@
 - [ ] **26-23 贵州邀请赛**（2026-06-07；新增候选）
   名称／榜单：[2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛](https://board.xcpcio.com/ccpc/12th/guizhou-invitational?group=official)。D23 为 Gym 邀请入口，待确认比赛 ID 与可访问题单。原表 E23 备注“题目质量较差且有错题”，作为未核实反馈保留，待核验具体题目及修正情况。
 
-- [ ] **26-24 重庆市赛**（2026-06-14；新增候选）
-  名称／榜单：[重庆市第十四届大学生程序设计大赛](https://pintia.cn/rankings/2064240000901931008)。补题：[Gym 106589](https://codeforces.com/gym/106589)。待复核完整题单与来源。
+- [x] **26-24 重庆市赛**（2026-06-14；已补录）
+  名称／榜单：[重庆市第十四届大学生程序设计大赛](https://pintia.cn/rankings/2064240000901931008)。补题：[Gym 106589](https://codeforces.com/gym/106589)。2026-09-08 已补录 A–M 共 13 题及 PTA 榜单，内部 ID 为 `a218c192-1ca0-50e3-886c-95286d773f1d`；仅记录参考表提供的日期，没有推断开赛时刻。
 
 - [ ] **26-25 上海市赛**（2026-07-26；新增候选）
   名称／榜单：[“华为智联杯”无线程序设计大赛暨2026年上海市大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/shanghai)。补题：[QOJ 3944](https://qoj.ac/contest/3944)。待导出并复核完整题单。
@@ -152,7 +184,7 @@
   名称／榜单：[2025 四川省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest%2F2025%2Fsichuan?group=official)。补题：[Gym 105949](https://codeforces.com/gym/105949)。catalog 已有 12 题及 QOJ 2152 来源；复核逐题映射。
 
 - [ ] **25-21 贵州省赛**（2025-06-08；新增候选）
-  官方名称：2025-2026 ICPC 国际大学生程序设计竞赛贵州省赛。原表没有榜单超链接；D21 为 Gym 邀请入口，待确认比赛 ID、举办日期与赛季归属，补齐题单及榜单来源。
+  官方名称：2025-2026 ICPC 国际大学生程序设计竞赛贵州省赛。原表没有榜单超链接；D21 为 Gym 邀请入口，待确认比赛 ID、举办日期与赛季归属，补齐题单及榜单来源。仓库旧候选数据另指向 [Gym 615540](https://codeforces.com/gym/615540)，2026-09-08 匿名访问跳转登录页，仍未取得可核验题单。
 
 - [ ] **25-22 福建邀请赛暨省赛**（2025-06-21；已收录待复核）
   名称／榜单：[第十二届福建省大学生程序设计竞赛暨2025年CCPC福建邀请赛](https://pintia.cn/rankings/1934898936967766016)。补题：[Gym 105977](https://codeforces.com/gym/105977)。catalog 已有 13 题；复核题单与榜单，并补查 QOJ 来源。
@@ -180,6 +212,7 @@
 - [ ] 为未匹配的新 QOJ 比赛形成可审阅草稿／补丁，再将确认过的比赛与完整题单一起提升为 curated 数据；明确显示跳过与歧义原因。
 - [ ] 对已收录的 CF 比赛补查 QOJ 来源，核验逐题对应关系后补映射，保留原内部 ID 和现有来源。
 - [ ] 补齐目录刷新中使用已审核 QOJ 题单的步骤，并验证重新生成不会丢失已补录比赛、题目或来源；保留需要人工处理的候选报告。
+- [ ] 按现行 Codeforces API 规则完善 Gym 题单获取脚本的认证配置与错误报告；需要账号凭据时使用用户自有且有访问权限的账号，不把认证失败当作空题单或网络超时。
 - [ ] 为新增比赛草稿、跳过报告、QOJ 版本参数、错链和同题多场比赛增加必要的离线 fixture 与验证。
 - [ ] 每批数据完成后执行 catalog schema 验证、确定性生成检查及静态构建，确认没有空题单或 `contest_stub`，catalog 版本与应用发布版本一致。
 - [ ] 通过验证后按 `main`／`release` 分支规则提交、推送并部署，核对线上比赛数与 QOJ 题目映射；同步勾选本清单并更新[2026 待补题单文档](2026-contests-pending-problem-lists.md)。

@@ -65,6 +65,7 @@ Completed:
 
 Remaining high-priority work:
 
+- [比赛补录与 QOJ 更新 TODO](contest-update-todo.md): track both reference workbooks, QOJ 4071, source conflicts, and the QOJ catalog refresh workflow.
 - clearer provider/problem provenance and unresolved mapping handling
 - tighter schema/documentation alignment around the bundled catalog snapshot format
 - broader fixture coverage for import edge cases and partial matches

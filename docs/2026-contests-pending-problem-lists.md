@@ -4,6 +4,8 @@
 
 只有在题目序号、标题、题目链接和来源映射全部完成复核后，比赛才可连同题目列表一起加入公开 catalog。
 
+2025／2026 参考表的逐项补录进度、QOJ 入口及批量题单导出步骤见[比赛补录与 QOJ 更新 TODO](contest-update-todo.md)。
+
 | 日期 | 比赛 | 已知来源 |
 | --- | --- | --- |
 | 2026-04-11 | 2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（深圳） | [XCPCIO Board](https://board.xcpcio.com/icpc/51st/shenzhen-invitational) |
@@ -18,7 +20,7 @@
 | 2026-06-07 | 2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛 - 正式赛 | [XCPCIO Board](https://board.xcpcio.com/ccpc/12th/guizhou-invitational) |
 | 2026-07-26 | “华为智联杯”无线程序设计大赛暨2026年上海市大学生程序设计竞赛 | [XCPCIO Board](https://board.xcpcio.com/provincial-contest/2026/shanghai) |
 | 2026-07-29 | 2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（沈阳） - 正式赛 | [XCPCIO Board](https://board.xcpcio.com/icpc/51st/shenyang-invitational) |
-| 2026-09-06 | The 2026 ICPC Asia East Continent Online Contest (I) | [XCPC Link](https://xcpc.link/) · [ICPC 北京](https://icpc.pku.edu.cn/tzgg/12450f30353743ccaa302be16a7a1d85.htm) |
+| 2026-09-06 | The 2026 ICPC Asia East Continent Online Contest (I) | [QOJ 4071](https://qoj.ac/contest/4071)（2026-09-07 已从[公开分类](https://qoj.ac/category/763)确认 A–N 共 14 题；完整题单待登录导出） · [XCPC Link](https://xcpc.link/) · [ICPC 北京](https://icpc.pku.edu.cn/tzgg/12450f30353743ccaa302be16a7a1d85.htm) |
 | 2026-09-12 | The 2026 ICPC Asia East Continent Online Contest (II) | [XCPC Link](https://xcpc.link/) · [ICPC 北京](https://icpc.pku.edu.cn/tzgg/12450f30353743ccaa302be16a7a1d85.htm) |
 | 2026-09-19 | 2026 CCPC 网络赛 | [XCPC Link](https://xcpc.link/) |
 | 2026-10-10 | The 2026 ICPC Asia Xi'an Regional Contest | [XCPC Link](https://xcpc.link/) |
