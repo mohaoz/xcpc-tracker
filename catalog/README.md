@@ -22,6 +22,7 @@ Rules:
 - publish a contest only after its reviewed problem list is available; keep no-problem candidates in project documentation instead of this public bundle
 - reject contests with empty problem lists or `curationStatus = contest_stub` during public catalog validation
 - preserve upstream provenance on `sources`
+- preserve existing optional source metadata: `variant` on contest/problem sources and `notes` on contest sources; the contest JSON Schema accepts these strings
 - keep derived award cutoff provenance in `awardCutoffs.sourceProvider`, `awardCutoffs.sourceLabel`, and `awardCutoffs.sourceUrl`
 - prefer XCPCIO Board award cutoffs when available; use Codeforces official standings as a build-time fallback for Codeforces contests without board cutoffs
 - prefer stable internal contest and problem IDs over provider-scoped IDs
