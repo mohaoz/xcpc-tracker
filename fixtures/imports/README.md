@@ -26,3 +26,5 @@ QOJ 2026 contest curation fixtures:
 - `qoj/2026-xcpc-problem-lists.json`: reviewed `target_contest` metadata with eight complete problem lists (103 problems); imported into the canonical catalog. Generic exported `QOJ.ac` headings remain raw evidence, not contest aliases.
 - `qoj/contest-export-regression.json`: synthetic offline fixture for query parameters, relative links, and unrelated contest links.
 - `qoj/2026-retry-contests-draft.json`: historical retry input; all three contests are now curated.
+
+RankLand design fixtures live in `rankland/`: `mapping-review.example.json` and `award-review.example.json` cover review states, pinned provenance and medal group semantics. Both are synthetic and must never be applied to the catalog. See `docs/rankland-schema-design.md` for the contract and optional offline Python validation command.
