@@ -102,3 +102,7 @@ CI：
 - 如果要更新奖牌线数据，先手动运行 `npm run catalog:refresh-xcpcio-board` 和 `npm run catalog:refresh-codeforces-award-cutoffs`，确认 diff 后再提交
 - `.github/workflows/static-catalog.yml` 现在只校验 catalog 并构建前端，不再在 CI 里刷新外部数据
 - QOJ 题号映射属于已发布 catalog 的一部分；如果保存的审核快照能为某题补充 QOJ source，或某个未隔离的 QOJ catalog 场次仍有题目缺少 QOJ source，校验会失败，避免只保留 Codeforces source 而导致成员状态无法匹配
+
+## RankLand Schema 设计期验证
+
+`validate-rankland-schemas.py` 验证三份独立 JSON Schema、合成审核示例和负例，检查跨记录哈希、目标、默认入口和奖牌边界。先在虚拟环境安装 `scripts/requirements-schema.txt`，再运行该脚本；验证本身离线，不应用目录数据。当前独立于默认 CI，后续 RankLand apply 上线前须接入等价检查。

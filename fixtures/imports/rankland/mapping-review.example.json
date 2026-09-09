@@ -1,0 +1,138 @@
+{
+  "schema_version": 1,
+  "export_kind": "rankland_mapping_review",
+  "synthetic": true,
+  "catalog_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+  "entries": [
+    {
+      "entry_id": "mapping-approved",
+      "status": "approved",
+      "source": {
+        "provider": "rankland",
+        "collection": "official",
+        "provider_contest_id": "srk:official/icpc/example-approved.srk.json",
+        "srk_path": "official/icpc/example-approved.srk.json",
+        "repository_url": "https://github.com/algoux/srk-collection",
+        "commit_sha": "1111111111111111111111111111111111111111",
+        "content_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "index_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+        "srk_version": "0.3.13",
+        "fetched_at": "2026-09-09T06:00:00Z",
+        "page_url": "https://rl.algoux.cn/collection/official?rankId=synthetic-example",
+        "page_verified_at": "2026-09-09T06:05:00Z",
+        "source_title": "Synthetic Example Contest",
+        "attribution": {
+          "name": "algoUX / srk-collection (synthetic fixture)",
+          "license_url": "https://github.com/algoux/srk-collection/blob/master/LICENSE"
+        }
+      },
+      "candidate_contest_ids": [
+        "synthetic-contest"
+      ],
+      "evidence": [
+        "Synthetic identity evidence; no real upstream assertion."
+      ],
+      "selection": {
+        "contest_id": "synthetic-contest",
+        "make_default": true
+      },
+      "review": {
+        "reviewed_by": "synthetic-reviewer",
+        "reviewed_at": "2026-09-09T07:00:00Z",
+        "reason": "Synthetic test approval, not a real contest verification."
+      }
+    },
+    {
+      "entry_id": "mapping-pending",
+      "status": "pending",
+      "source": {
+        "provider": "rankland",
+        "collection": "official",
+        "provider_contest_id": "srk:official/icpc/example-pending.srk.json",
+        "srk_path": "official/icpc/example-pending.srk.json",
+        "repository_url": "https://github.com/algoux/srk-collection",
+        "commit_sha": "1111111111111111111111111111111111111111",
+        "content_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "index_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+        "srk_version": "0.3.13",
+        "fetched_at": "2026-09-09T06:00:00Z",
+        "page_url": "https://rl.algoux.cn/collection/official?rankId=synthetic-example",
+        "page_verified_at": "2026-09-09T06:05:00Z",
+        "source_title": "Synthetic Example Contest",
+        "attribution": {
+          "name": "algoUX / srk-collection (synthetic fixture)",
+          "license_url": "https://github.com/algoux/srk-collection/blob/master/LICENSE"
+        }
+      },
+      "candidate_contest_ids": [
+        "synthetic-contest"
+      ],
+      "evidence": [
+        "Synthetic identity evidence; no real upstream assertion."
+      ]
+    },
+    {
+      "entry_id": "mapping-conflict",
+      "status": "conflict",
+      "source": {
+        "provider": "rankland",
+        "collection": "official",
+        "provider_contest_id": "srk:official/icpc/example-conflict.srk.json",
+        "srk_path": "official/icpc/example-conflict.srk.json",
+        "repository_url": "https://github.com/algoux/srk-collection",
+        "commit_sha": "1111111111111111111111111111111111111111",
+        "content_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "index_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+        "srk_version": "0.3.13",
+        "fetched_at": "2026-09-09T06:00:00Z",
+        "page_url": "https://rl.algoux.cn/collection/official?rankId=synthetic-example",
+        "page_verified_at": "2026-09-09T06:05:00Z",
+        "source_title": "Synthetic Example Contest",
+        "attribution": {
+          "name": "algoUX / srk-collection (synthetic fixture)",
+          "license_url": "https://github.com/algoux/srk-collection/blob/master/LICENSE"
+        }
+      },
+      "candidate_contest_ids": [
+        "synthetic-contest"
+      ],
+      "evidence": [
+        "Synthetic identity evidence; no real upstream assertion."
+      ]
+    },
+    {
+      "entry_id": "mapping-rejected",
+      "status": "rejected",
+      "source": {
+        "provider": "rankland",
+        "collection": "official",
+        "provider_contest_id": "srk:official/icpc/example-rejected.srk.json",
+        "srk_path": "official/icpc/example-rejected.srk.json",
+        "repository_url": "https://github.com/algoux/srk-collection",
+        "commit_sha": "1111111111111111111111111111111111111111",
+        "content_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+        "index_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+        "srk_version": "0.3.13",
+        "fetched_at": "2026-09-09T06:00:00Z",
+        "page_url": "https://rl.algoux.cn/collection/official?rankId=synthetic-example",
+        "page_verified_at": "2026-09-09T06:05:00Z",
+        "source_title": "Synthetic Example Contest",
+        "attribution": {
+          "name": "algoUX / srk-collection (synthetic fixture)",
+          "license_url": "https://github.com/algoux/srk-collection/blob/master/LICENSE"
+        }
+      },
+      "candidate_contest_ids": [
+        "synthetic-contest"
+      ],
+      "evidence": [
+        "Synthetic identity evidence; no real upstream assertion."
+      ],
+      "review": {
+        "reviewed_by": "synthetic-reviewer",
+        "reviewed_at": "2026-09-09T07:00:00Z",
+        "reason": "Synthetic test approval, not a real contest verification."
+      }
+    }
+  ]
+}

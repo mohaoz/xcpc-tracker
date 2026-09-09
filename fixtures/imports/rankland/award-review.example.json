@@ -1,0 +1,127 @@
+{
+  "schema_version": 1,
+  "export_kind": "rankland_award_review",
+  "synthetic": true,
+  "catalog_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+  "entries": [
+    {
+      "entry_id": "award-approved",
+      "mapping_entry_id": "mapping-approved",
+      "contest_id": "synthetic-contest",
+      "source_content_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "status": "approved",
+      "reason": "Synthetic approved example.",
+      "result": {
+        "standings_state": "final",
+        "method": "official_awards",
+        "group": {
+          "scope": "selected",
+          "source_group_ids": [
+            "synthetic-official"
+          ],
+          "label": "Synthetic official group",
+          "eligibility_rule": "Include synthetic official group only.",
+          "exclusion_rule": "Exclude exhibition rows.",
+          "tie_policy": "Use explicit awarded rows; position in final eligible ordering.",
+          "evidence": [
+            "Synthetic group metadata."
+          ]
+        },
+        "eligible_team_count": 10,
+        "problem_count": 13,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Divide source penalty by 60.",
+        "method_evidence": [
+          "Synthetic explicit award records."
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 1,
+            "solved": 9,
+            "penalty": 101,
+            "team_id": "team-1"
+          },
+          "silver": {
+            "rank": 3,
+            "solved": 7,
+            "penalty": 103,
+            "team_id": "team-3"
+          },
+          "bronze": {
+            "rank": 6,
+            "solved": 4,
+            "penalty": 106,
+            "team_id": "team-6"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "synthetic-reviewer",
+        "reviewed_at": "2026-09-09T07:00:00Z",
+        "reason": "Synthetic test approval, not a real contest verification."
+      }
+    },
+    {
+      "entry_id": "award-proposed",
+      "mapping_entry_id": "mapping-approved",
+      "contest_id": "synthetic-contest",
+      "source_content_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "status": "proposed",
+      "reason": "Synthetic proposed example.",
+      "result": {
+        "standings_state": "final",
+        "method": "official_awards",
+        "group": {
+          "scope": "selected",
+          "source_group_ids": [
+            "synthetic-official"
+          ],
+          "label": "Synthetic official group",
+          "eligibility_rule": "Include synthetic official group only.",
+          "exclusion_rule": "Exclude exhibition rows.",
+          "tie_policy": "Use explicit awarded rows; position in final eligible ordering.",
+          "evidence": [
+            "Synthetic group metadata."
+          ]
+        },
+        "eligible_team_count": 10,
+        "problem_count": 13,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Divide source penalty by 60.",
+        "method_evidence": [
+          "Synthetic explicit award records."
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 1,
+            "solved": 9,
+            "penalty": 101,
+            "team_id": "team-1"
+          },
+          "silver": {
+            "rank": 3,
+            "solved": 7,
+            "penalty": 103,
+            "team_id": "team-3"
+          },
+          "bronze": {
+            "rank": 6,
+            "solved": 4,
+            "penalty": 106,
+            "team_id": "team-6"
+          }
+        }
+      }
+    },
+    {
+      "entry_id": "award-blocked",
+      "mapping_entry_id": "mapping-approved",
+      "contest_id": "synthetic-contest",
+      "source_content_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+      "status": "blocked",
+      "reason": "Synthetic blocked example."
+    }
+  ]
+}

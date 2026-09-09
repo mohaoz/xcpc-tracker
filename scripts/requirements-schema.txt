@@ -1,0 +1,2 @@
+# Optional design-time JSON Schema validation; no runtime Python service.
+jsonschema[format-nongpl]==4.26.0

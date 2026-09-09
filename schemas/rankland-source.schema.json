@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xcpc-tracker.local/schemas/rankland-source.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "provider",
+    "collection",
+    "provider_contest_id",
+    "srk_path",
+    "repository_url",
+    "commit_sha",
+    "content_sha256",
+    "index_sha256",
+    "srk_version",
+    "fetched_at",
+    "page_url",
+    "page_verified_at",
+    "source_title",
+    "attribution"
+  ],
+  "properties": {
+    "provider": {
+      "const": "rankland"
+    },
+    "collection": {
+      "const": "official"
+    },
+    "provider_contest_id": {
+      "type": "string",
+      "pattern": "^srk:official/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_.-]+\\.srk\\.json$"
+    },
+    "srk_path": {
+      "type": "string",
+      "pattern": "^official/(?:[A-Za-z0-9_-]+/)*[A-Za-z0-9_.-]+\\.srk\\.json$",
+      "description": "Repository-relative path including collection; fixed commit and SHA256 identify exact bytes."
+    },
+    "repository_url": {
+      "const": "https://github.com/algoux/srk-collection"
+    },
+    "commit_sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "content_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "index_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "srk_version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "fetched_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "page_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://rl\\.algoux\\.(?:cn|org)/(?:collection/official\\?|ranklist/)[^\\s]+$"
+    },
+    "page_verified_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_title": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    },
+    "attribution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "license_url"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        "license_url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https://"
+        }
+      }
+    }
+  }
+}

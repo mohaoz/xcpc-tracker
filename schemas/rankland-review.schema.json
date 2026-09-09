@@ -1,0 +1,178 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xcpc-tracker.local/schemas/rankland-review.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "export_kind",
+    "synthetic",
+    "catalog_sha256",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "export_kind": {
+      "const": "rankland_mapping_review"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "catalog_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entry_id",
+          "status",
+          "source",
+          "candidate_contest_ids",
+          "evidence"
+        ],
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "pending",
+              "conflict",
+              "approved",
+              "rejected"
+            ]
+          },
+          "source": {
+            "$ref": "rankland-source.schema.json"
+          },
+          "candidate_contest_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "minItems": 0,
+            "uniqueItems": true
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            "minItems": 1,
+            "uniqueItems": true
+          },
+          "selection": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "contest_id",
+              "make_default"
+            ],
+            "properties": {
+              "contest_id": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "make_default": {
+                "type": "boolean"
+              }
+            }
+          },
+          "review": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reviewed_by",
+              "reviewed_at",
+              "reason"
+            ],
+            "properties": {
+              "reviewed_by": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "reviewed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        },
+        "oneOf": [
+          {
+            "properties": {
+              "status": {
+                "const": "approved"
+              }
+            },
+            "required": [
+              "selection",
+              "review"
+            ]
+          },
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "pending",
+                  "conflict"
+                ]
+              }
+            },
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "selection"
+                  ]
+                },
+                {
+                  "required": [
+                    "review"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "properties": {
+              "status": {
+                "const": "rejected"
+              }
+            },
+            "required": [
+              "review"
+            ],
+            "not": {
+              "required": [
+                "selection"
+              ]
+            }
+          }
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  }
+}

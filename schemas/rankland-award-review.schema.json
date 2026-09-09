@@ -1,0 +1,424 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xcpc-tracker.local/schemas/rankland-award-review.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "export_kind",
+    "synthetic",
+    "catalog_sha256",
+    "entries"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "export_kind": {
+      "const": "rankland_award_review"
+    },
+    "synthetic": {
+      "type": "boolean"
+    },
+    "catalog_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "entry_id",
+          "mapping_entry_id",
+          "contest_id",
+          "source_content_sha256",
+          "status",
+          "reason"
+        ],
+        "properties": {
+          "entry_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "mapping_entry_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "contest_id": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "source_content_sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "blocked",
+              "proposed",
+              "approved"
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "result": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "standings_state",
+              "method",
+              "group",
+              "eligible_team_count",
+              "problem_count",
+              "source_penalty_unit",
+              "penalty_unit",
+              "normalization_notes",
+              "method_evidence",
+              "cutoffs"
+            ],
+            "properties": {
+              "standings_state": {
+                "const": "final"
+              },
+              "method": {
+                "type": "string",
+                "enum": [
+                  "official_awards",
+                  "official_medal_config"
+                ]
+              },
+              "group": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "scope",
+                  "label",
+                  "eligibility_rule",
+                  "exclusion_rule",
+                  "tie_policy",
+                  "evidence"
+                ],
+                "properties": {
+                  "scope": {
+                    "type": "string",
+                    "enum": [
+                      "all_eligible",
+                      "selected"
+                    ]
+                  },
+                  "source_group_ids": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "\\S"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "eligibility_rule": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "exclusion_rule": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "tie_policy": {
+                    "type": "string",
+                    "minLength": 1,
+                    "pattern": "\\S"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "minLength": 1,
+                      "pattern": "\\S"
+                    },
+                    "minItems": 1,
+                    "uniqueItems": true
+                  }
+                },
+                "oneOf": [
+                  {
+                    "properties": {
+                      "scope": {
+                        "const": "selected"
+                      }
+                    },
+                    "required": [
+                      "source_group_ids"
+                    ]
+                  },
+                  {
+                    "properties": {
+                      "scope": {
+                        "const": "all_eligible"
+                      }
+                    },
+                    "not": {
+                      "required": [
+                        "source_group_ids"
+                      ]
+                    }
+                  }
+                ]
+              },
+              "eligible_team_count": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "problem_count": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "source_penalty_unit": {
+                "type": "string",
+                "enum": [
+                  "seconds",
+                  "minutes",
+                  "milliseconds"
+                ]
+              },
+              "penalty_unit": {
+                "const": "minutes"
+              },
+              "normalization_notes": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "method_evidence": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "minLength": 1,
+                  "pattern": "\\S"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "cutoffs": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "gold",
+                  "silver",
+                  "bronze"
+                ],
+                "properties": {
+                  "gold": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "rank",
+                          "solved",
+                          "penalty",
+                          "team_id"
+                        ],
+                        "properties": {
+                          "rank": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "solved": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "penalty": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "team_id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "pattern": "\\S"
+                          }
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "silver": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "rank",
+                          "solved",
+                          "penalty",
+                          "team_id"
+                        ],
+                        "properties": {
+                          "rank": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "solved": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "penalty": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "team_id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "pattern": "\\S"
+                          }
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "bronze": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "required": [
+                          "rank",
+                          "solved",
+                          "penalty",
+                          "team_id"
+                        ],
+                        "properties": {
+                          "rank": {
+                            "type": "integer",
+                            "minimum": 1
+                          },
+                          "solved": {
+                            "type": "integer",
+                            "minimum": 0
+                          },
+                          "penalty": {
+                            "type": "number",
+                            "minimum": 0
+                          },
+                          "team_id": {
+                            "type": "string",
+                            "minLength": 1,
+                            "pattern": "\\S"
+                          }
+                        }
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                }
+              },
+              "missing_medals_reason": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          },
+          "review": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reviewed_by",
+              "reviewed_at",
+              "reason"
+            ],
+            "properties": {
+              "reviewed_by": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              },
+              "reviewed_at": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "reason": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        },
+        "oneOf": [
+          {
+            "properties": {
+              "status": {
+                "const": "blocked"
+              }
+            },
+            "not": {
+              "anyOf": [
+                {
+                  "required": [
+                    "result"
+                  ]
+                },
+                {
+                  "required": [
+                    "review"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "properties": {
+              "status": {
+                "const": "proposed"
+              }
+            },
+            "required": [
+              "result"
+            ],
+            "not": {
+              "required": [
+                "review"
+              ]
+            }
+          },
+          {
+            "properties": {
+              "status": {
+                "const": "approved"
+              }
+            },
+            "required": [
+              "result",
+              "review"
+            ]
+          }
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    }
+  }
+}
