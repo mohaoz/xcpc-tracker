@@ -4,6 +4,10 @@
 
 Keep the repository aligned with a static, frontend-first XCPC tracker with curated Git data and browser-local persistence.
 
+## RankLand Migration
+
+[RankLand 榜单与数据入口迁移计划](rankland-migration-plan.md) defines the next source migration: audited RankLand links first, SRK metadata and award cutoffs second, with explicit fallbacks and offline static builds. Status: planned, not implemented.
+
 ## Branch Policy
 
 - `main` is the canonical branch for development, scripts, architecture notes, and planning docs.

@@ -16,6 +16,7 @@
 - If a feature requires a running localhost backend in normal usage, then reject it by default.
 - If a backend/tooling task is still useful, then keep it as build-time or migration-time tooling only, not as the primary runtime architecture.
 - If content is large or derived, then commit only the single bundled default catalog and keep runtime-only copies out of the repo.
+- If implementing the planned RankLand migration, then follow `docs/rankland-migration-plan.md`: use verified RankLand standings links and audited SRK snapshots at build time, keep explicit fallbacks for gaps, and preserve the Git catalog plus CF/QOJ problem and member-status ownership.
 
 ## Branch Rules
 - If working on everyday development, then treat `main` as the canonical branch for code, docs, scripts, and planning notes.

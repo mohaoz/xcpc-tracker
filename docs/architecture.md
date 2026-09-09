@@ -117,3 +117,7 @@
 - Keep only the contest list page alive across SPA navigation. Invalidate its inputs after relevant Dexie writes (including writes from other tabs), defer reloads while it is inactive, and retain visible cards during refresh. Failed loads remain retryable.
 - Catalog and member reads start concurrently. Only local contest overrides need local problem queries; bundled catalog snapshots remain static assets.
 - These are disposable in-memory caches. IndexedDB stays at version 4 with no store, index, or persisted record changes; no migration or catalog re-import is required.
+
+## Planned RankLand Source Migration
+
+See [RankLand migration plan](rankland-migration-plan.md). RankLand will be the preferred verified standings link and SRK the preferred audited build-time standings input for migrated contests. Curated catalog JSON remains canonical; CF/QOJ problem mappings and browser-local member status retain their existing ownership. The browser consumes local static summaries and follows external ranklist links only on user navigation. This is a planned source migration, not a deployed architecture change.
