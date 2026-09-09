@@ -4,9 +4,14 @@
 
 ### Added
 
+- added 103 reviewed QOJ problems across eight 2026 contests, including online contest I, Shenzhen, Zhejiang, Xi’an, Wuhan/Hubei, Shandong, Shanghai, and Shenyang
+
 - added 39 reviewed problems across the 2026 Heilongjiang provincial contest, CCPC Fujian/Fuzhou invitational, and Chongqing provincial contest, with Codeforces problem sources and PTA standings links
 
 ### Changed
+
+- preserve QOJ version parameters in contest exports and report empty lists, login redirects, and version changes as failures
+- allow explicitly reviewed QOJ drafts to create complete contests, with offline regression and repeat-import checks in deployment validation
 
 - aligned the contest JSON Schema with existing optional source variant and provenance notes
 - batch contest coverage reads and reuse indexed member status when changing filters

@@ -1,0 +1,933 @@
+[
+  {
+    "title": "The 2026 ICPC Asia East Continent Online Contest (I)",
+    "url": "https://qoj.ac/contest/4071",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Recall",
+        "url": "https://qoj.ac/contest/4071/problem/20016",
+        "provider_problem_id": "20016"
+      },
+      {
+        "ordinal": "B",
+        "title": "Mod",
+        "url": "https://qoj.ac/contest/4071/problem/20017",
+        "provider_problem_id": "20017"
+      },
+      {
+        "ordinal": "C",
+        "title": "Permutation Inversions",
+        "url": "https://qoj.ac/contest/4071/problem/20018",
+        "provider_problem_id": "20018"
+      },
+      {
+        "ordinal": "D",
+        "title": "Sequence",
+        "url": "https://qoj.ac/contest/4071/problem/20019",
+        "provider_problem_id": "20019"
+      },
+      {
+        "ordinal": "E",
+        "title": "LCM Permutation",
+        "url": "https://qoj.ac/contest/4071/problem/20020",
+        "provider_problem_id": "20020"
+      },
+      {
+        "ordinal": "F",
+        "title": "50 Years of Excellence",
+        "url": "https://qoj.ac/contest/4071/problem/20021",
+        "provider_problem_id": "20021"
+      },
+      {
+        "ordinal": "G",
+        "title": "Toll Gates on a Tight Schedule",
+        "url": "https://qoj.ac/contest/4071/problem/20022",
+        "provider_problem_id": "20022"
+      },
+      {
+        "ordinal": "H",
+        "title": "The First Problem",
+        "url": "https://qoj.ac/contest/4071/problem/20023",
+        "provider_problem_id": "20023"
+      },
+      {
+        "ordinal": "I",
+        "title": "A Lamp of Moon",
+        "url": "https://qoj.ac/contest/4071/problem/20024",
+        "provider_problem_id": "20024"
+      },
+      {
+        "ordinal": "J",
+        "title": "String",
+        "url": "https://qoj.ac/contest/4071/problem/20025",
+        "provider_problem_id": "20025"
+      },
+      {
+        "ordinal": "K",
+        "title": "Wolf Game",
+        "url": "https://qoj.ac/contest/4071/problem/20026",
+        "provider_problem_id": "20026"
+      },
+      {
+        "ordinal": "L",
+        "title": "Longest Common Prefix",
+        "url": "https://qoj.ac/contest/4071/problem/20027",
+        "provider_problem_id": "20027"
+      },
+      {
+        "ordinal": "M",
+        "title": "Check In",
+        "url": "https://qoj.ac/contest/4071/problem/20028",
+        "provider_problem_id": "20028"
+      },
+      {
+        "ordinal": "N",
+        "title": "Red Sequence",
+        "url": "https://qoj.ac/contest/4071/problem/20029",
+        "provider_problem_id": "20029"
+      }
+    ],
+    "target_contest": {
+      "contest_id": "3d494493-657c-5f36-ab41-74a5d7c5e05e",
+      "title": "The 2026 ICPC Asia East Continent Online Contest (I)",
+      "aliases": [
+        "2026 ICPC 网络赛第一场"
+      ],
+      "tags": [
+        "2026",
+        "icpc",
+        "网络赛",
+        "第一场"
+      ],
+      "start_at": "2026-09-06",
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/4071",
+          "provider_contest_id": "4071",
+          "source_title": "The 2026 ICPC Asia East Continent Online Contest (I)",
+          "label": "QOJ"
+        }
+      ],
+      "notes": null
+    }
+  },
+  {
+    "title": "The 4th Universal Cup. Extra Stage 6: Shaanxi",
+    "url": "https://qoj.ac/contest/3766",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "North and South",
+        "url": "https://qoj.ac/contest/3766/problem/17342",
+        "provider_problem_id": "17342"
+      },
+      {
+        "ordinal": "B",
+        "title": "Operating Robot",
+        "url": "https://qoj.ac/contest/3766/problem/17343",
+        "provider_problem_id": "17343"
+      },
+      {
+        "ordinal": "C",
+        "title": "Palindromic and Balanced",
+        "url": "https://qoj.ac/contest/3766/problem/17344",
+        "provider_problem_id": "17344"
+      },
+      {
+        "ordinal": "D",
+        "title": "Qenerals",
+        "url": "https://qoj.ac/contest/3766/problem/17345",
+        "provider_problem_id": "17345"
+      },
+      {
+        "ordinal": "E",
+        "title": "Registration",
+        "url": "https://qoj.ac/contest/3766/problem/17346",
+        "provider_problem_id": "17346"
+      },
+      {
+        "ordinal": "F",
+        "title": "Split Sticks",
+        "url": "https://qoj.ac/contest/3766/problem/17347",
+        "provider_problem_id": "17347"
+      },
+      {
+        "ordinal": "G",
+        "title": "Transform",
+        "url": "https://qoj.ac/contest/3766/problem/17348",
+        "provider_problem_id": "17348"
+      },
+      {
+        "ordinal": "H",
+        "title": "Unreachable Land",
+        "url": "https://qoj.ac/contest/3766/problem/17349",
+        "provider_problem_id": "17349"
+      },
+      {
+        "ordinal": "I",
+        "title": "VIP Coupon",
+        "url": "https://qoj.ac/contest/3766/problem/17350",
+        "provider_problem_id": "17350"
+      },
+      {
+        "ordinal": "J",
+        "title": "Would You Make a Convex?",
+        "url": "https://qoj.ac/contest/3766/problem/17351",
+        "provider_problem_id": "17351"
+      },
+      {
+        "ordinal": "K",
+        "title": "XOR and LCA",
+        "url": "https://qoj.ac/contest/3766/problem/17352",
+        "provider_problem_id": "17352"
+      },
+      {
+        "ordinal": "L",
+        "title": "Yesterday Once More (Easy Version)",
+        "url": "https://qoj.ac/contest/3766/problem/17353",
+        "provider_problem_id": "17353"
+      },
+      {
+        "ordinal": "M",
+        "title": "Yesterday Once More (Hard Version)",
+        "url": "https://qoj.ac/contest/3766/problem/17354",
+        "provider_problem_id": "17354"
+      },
+      {
+        "ordinal": "N",
+        "title": "Zebra Crossing",
+        "url": "https://qoj.ac/contest/3766/problem/17355",
+        "provider_problem_id": "17355"
+      }
+    ],
+    "target_contest": {
+      "contest_id": "b6069f69-bc27-5966-a6e1-467028aebdcd",
+      "title": "第 51 届 ICPC 国际大学生程序设计竞赛邀请赛西安站",
+      "aliases": [
+        "2026 ICPC 西安邀请赛",
+        "The 2026 ICPC China Shaanxi National Invitational Programming Contest",
+        "The 4th Universal Cup. Extra Stage 6: Shaanxi",
+        "第 51 届 ICPC 国际大学生程序设计竞赛邀请赛西安站 - 正式赛"
+      ],
+      "tags": [
+        "2026",
+        "icpc",
+        "邀请赛",
+        "西安",
+        "陕西"
+      ],
+      "start_at": "2026-05-02T02:00:00.000Z",
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3766",
+          "provider_contest_id": "3766",
+          "source_title": "The 4th Universal Cup. Extra Stage 6: Shaanxi",
+          "label": "QOJ (Universal Cup mirror)"
+        },
+        {
+          "provider": "xcpcio_board",
+          "kind": "standings",
+          "url": "https://board.xcpcio.com/icpc/51st/xian-invitational",
+          "provider_contest_id": "/icpc/51st/xian-invitational",
+          "source_title": "第 51 届 ICPC 国际大学生程序设计竞赛邀请赛西安站 - 正式赛",
+          "label": "XCPCIO Board"
+        }
+      ],
+      "notes": "题单来自 QOJ 3766 默认的 Universal Cup 镜像；保留该视图的题号和来源。"
+    }
+  },
+  {
+    "title": "2026 年山东省大学生程序设计竞赛",
+    "url": "https://qoj.ac/contest/3767",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "华容道",
+        "url": "https://qoj.ac/contest/3767/problem/18307",
+        "provider_problem_id": "18307"
+      },
+      {
+        "ordinal": "B",
+        "title": "字典 2",
+        "url": "https://qoj.ac/contest/3767/problem/18308",
+        "provider_problem_id": "18308"
+      },
+      {
+        "ordinal": "C",
+        "title": "会议日程",
+        "url": "https://qoj.ac/contest/3767/problem/18309",
+        "provider_problem_id": "18309"
+      },
+      {
+        "ordinal": "D",
+        "title": "最大数码 2",
+        "url": "https://qoj.ac/contest/3767/problem/18310",
+        "provider_problem_id": "18310"
+      },
+      {
+        "ordinal": "E",
+        "title": "简单的构造题",
+        "url": "https://qoj.ac/contest/3767/problem/18311",
+        "provider_problem_id": "18311"
+      },
+      {
+        "ordinal": "F",
+        "title": "礼物归位",
+        "url": "https://qoj.ac/contest/3767/problem/18312",
+        "provider_problem_id": "18312"
+      },
+      {
+        "ordinal": "G",
+        "title": "吸血鬼爬行者",
+        "url": "https://qoj.ac/contest/3767/problem/18313",
+        "provider_problem_id": "18313"
+      },
+      {
+        "ordinal": "H",
+        "title": "拼图",
+        "url": "https://qoj.ac/contest/3767/problem/18314",
+        "provider_problem_id": "18314"
+      },
+      {
+        "ordinal": "I",
+        "title": "版本号",
+        "url": "https://qoj.ac/contest/3767/problem/18315",
+        "provider_problem_id": "18315"
+      },
+      {
+        "ordinal": "J",
+        "title": "插松枝",
+        "url": "https://qoj.ac/contest/3767/problem/18316",
+        "provider_problem_id": "18316"
+      },
+      {
+        "ordinal": "K",
+        "title": "最小生成树",
+        "url": "https://qoj.ac/contest/3767/problem/18317",
+        "provider_problem_id": "18317"
+      },
+      {
+        "ordinal": "L",
+        "title": "分数迭代",
+        "url": "https://qoj.ac/contest/3767/problem/18318",
+        "provider_problem_id": "18318"
+      },
+      {
+        "ordinal": "M",
+        "title": "博物馆奇妙夜 2",
+        "url": "https://qoj.ac/contest/3767/problem/18319",
+        "provider_problem_id": "18319"
+      }
+    ],
+    "target_contest": {
+      "contest_id": "965d670a-c551-5dda-a280-33fc2229feaf",
+      "title": "2026 年山东省大学生程序设计竞赛",
+      "aliases": [
+        "2026 山东省赛",
+        "2026 年山东省大学生程序设计竞赛 - 正式赛"
+      ],
+      "tags": [
+        "2026",
+        "ccpc",
+        "省赛",
+        "山东"
+      ],
+      "start_at": "2026-05-24T01:30:00.000Z",
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3767",
+          "provider_contest_id": "3767",
+          "source_title": "2026 年山东省大学生程序设计竞赛",
+          "label": "QOJ"
+        },
+        {
+          "provider": "xcpcio_board",
+          "kind": "standings",
+          "url": "https://board.xcpcio.com/provincial-contest/2026/shandong",
+          "provider_contest_id": "/provincial-contest/2026/shandong",
+          "source_title": "2026 年山东省大学生程序设计竞赛 - 正式赛",
+          "label": "XCPCIO Board"
+        }
+      ],
+      "notes": null
+    }
+  },
+  {
+    "title": "The 11th China Collegiate Provincial Programming Contest (Shanghai)",
+    "url": "https://qoj.ac/contest/3944",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "学术造假",
+        "url": "https://qoj.ac/contest/3944/problem/19003",
+        "provider_problem_id": "19003"
+      },
+      {
+        "ordinal": "B",
+        "title": "啥博弈",
+        "url": "https://qoj.ac/contest/3944/problem/19004",
+        "provider_problem_id": "19004"
+      },
+      {
+        "ordinal": "C",
+        "title": "植树",
+        "url": "https://qoj.ac/contest/3944/problem/19005",
+        "provider_problem_id": "19005"
+      },
+      {
+        "ordinal": "D",
+        "title": "收集符文",
+        "url": "https://qoj.ac/contest/3944/problem/19006",
+        "provider_problem_id": "19006"
+      },
+      {
+        "ordinal": "E",
+        "title": "完美区间",
+        "url": "https://qoj.ac/contest/3944/problem/19007",
+        "provider_problem_id": "19007"
+      },
+      {
+        "ordinal": "F",
+        "title": "神话子序列",
+        "url": "https://qoj.ac/contest/3944/problem/19008",
+        "provider_problem_id": "19008"
+      },
+      {
+        "ordinal": "G",
+        "title": "设备的问题",
+        "url": "https://qoj.ac/contest/3944/problem/19009",
+        "provider_problem_id": "19009"
+      },
+      {
+        "ordinal": "H",
+        "title": "DDL 战神",
+        "url": "https://qoj.ac/contest/3944/problem/19010",
+        "provider_problem_id": "19010"
+      },
+      {
+        "ordinal": "I",
+        "title": "堆排序",
+        "url": "https://qoj.ac/contest/3944/problem/19011",
+        "provider_problem_id": "19011"
+      },
+      {
+        "ordinal": "J",
+        "title": "内卷",
+        "url": "https://qoj.ac/contest/3944/problem/19012",
+        "provider_problem_id": "19012"
+      }
+    ],
+    "target_contest": {
+      "contest_id": "e7f754fb-7c45-5a17-8549-5fc0c7bde688",
+      "title": "“华为智联杯”无线程序设计大赛暨2026年上海市大学生程序设计竞赛",
+      "aliases": [
+        "2026 上海市赛",
+        "The 11th China Collegiate Provincial Programming Contest (Shanghai)"
+      ],
+      "tags": [
+        "2026",
+        "省赛",
+        "上海"
+      ],
+      "start_at": "2026-07-26T02:00:00.000Z",
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3944",
+          "provider_contest_id": "3944",
+          "source_title": "The 11th China Collegiate Provincial Programming Contest (Shanghai)",
+          "label": "QOJ"
+        },
+        {
+          "provider": "xcpcio_board",
+          "kind": "standings",
+          "url": "https://board.xcpcio.com/provincial-contest/2026/shanghai",
+          "provider_contest_id": "/provincial-contest/2026/shanghai",
+          "source_title": "“华为智联杯”无线程序设计大赛暨2026年上海市大学生程序设计竞赛",
+          "label": "XCPCIO Board"
+        }
+      ],
+      "notes": null
+    }
+  },
+  {
+    "title": "The 2026 ICPC China Shenyang National Invitational Programming Contest",
+    "url": "https://qoj.ac/contest/3945",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "小 X 今天心情怎么样？",
+        "url": "https://qoj.ac/contest/3945/problem/19013",
+        "provider_problem_id": "19013"
+      },
+      {
+        "ordinal": "B",
+        "title": "最短路之和",
+        "url": "https://qoj.ac/contest/3945/problem/19014",
+        "provider_problem_id": "19014"
+      },
+      {
+        "ordinal": "C",
+        "title": "魔法审判",
+        "url": "https://qoj.ac/contest/3945/problem/19015",
+        "provider_problem_id": "19015"
+      },
+      {
+        "ordinal": "D",
+        "title": "隐藏的旋律",
+        "url": "https://qoj.ac/contest/3945/problem/19016",
+        "provider_problem_id": "19016"
+      },
+      {
+        "ordinal": "E",
+        "title": "时空回溯",
+        "url": "https://qoj.ac/contest/3945/problem/19017",
+        "provider_problem_id": "19017"
+      },
+      {
+        "ordinal": "F",
+        "title": "等距矩阵",
+        "url": "https://qoj.ac/contest/3945/problem/19018",
+        "provider_problem_id": "19018"
+      },
+      {
+        "ordinal": "G",
+        "title": "三角形",
+        "url": "https://qoj.ac/contest/3945/problem/19019",
+        "provider_problem_id": "19019"
+      },
+      {
+        "ordinal": "H",
+        "title": "Force!",
+        "url": "https://qoj.ac/contest/3945/problem/19020",
+        "provider_problem_id": "19020"
+      },
+      {
+        "ordinal": "I",
+        "title": "Alice的压岁钱",
+        "url": "https://qoj.ac/contest/3945/problem/19021",
+        "provider_problem_id": "19021"
+      },
+      {
+        "ordinal": "J",
+        "title": "霓虹天际线",
+        "url": "https://qoj.ac/contest/3945/problem/19022",
+        "provider_problem_id": "19022"
+      },
+      {
+        "ordinal": "K",
+        "title": "环线补给",
+        "url": "https://qoj.ac/contest/3945/problem/19023",
+        "provider_problem_id": "19023"
+      },
+      {
+        "ordinal": "L",
+        "title": "渐隐的记忆",
+        "url": "https://qoj.ac/contest/3945/problem/19024",
+        "provider_problem_id": "19024"
+      },
+      {
+        "ordinal": "M",
+        "title": "能量晶体",
+        "url": "https://qoj.ac/contest/3945/problem/19025",
+        "provider_problem_id": "19025"
+      }
+    ],
+    "target_contest": {
+      "contest_id": "f6802fb9-74a6-5029-9a19-e0f5cfaf7645",
+      "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（沈阳）",
+      "aliases": [
+        "2026 ICPC 沈阳邀请赛",
+        "The 2026 ICPC China Shenyang National Invitational Programming Contest",
+        "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（沈阳） - 正式赛"
+      ],
+      "tags": [
+        "2026",
+        "icpc",
+        "邀请赛",
+        "沈阳",
+        "辽宁"
+      ],
+      "start_at": "2026-07-29T02:00:00.000Z",
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3945",
+          "provider_contest_id": "3945",
+          "source_title": "The 2026 ICPC China Shenyang National Invitational Programming Contest",
+          "label": "QOJ"
+        },
+        {
+          "provider": "xcpcio_board",
+          "kind": "standings",
+          "url": "https://board.xcpcio.com/icpc/51st/shenyang-invitational",
+          "provider_contest_id": "/icpc/51st/shenyang-invitational",
+          "source_title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（沈阳） - 正式赛",
+          "label": "XCPCIO Board"
+        }
+      ],
+      "notes": null
+    }
+  },
+  {
+    "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（深圳）",
+    "url": "https://qoj.ac/contest/3588?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Greetings from Prof. Chen",
+        "url": "https://qoj.ac/contest/3588/problem/17753?v=1",
+        "provider_problem_id": "17753"
+      },
+      {
+        "ordinal": "B",
+        "title": "All-Star Showdown",
+        "url": "https://qoj.ac/contest/3588/problem/17754?v=1",
+        "provider_problem_id": "17754"
+      },
+      {
+        "ordinal": "C",
+        "title": "One Item Away",
+        "url": "https://qoj.ac/contest/3588/problem/17755?v=1",
+        "provider_problem_id": "17755"
+      },
+      {
+        "ordinal": "D",
+        "title": "City Management",
+        "url": "https://qoj.ac/contest/3588/problem/17756?v=1",
+        "provider_problem_id": "17756"
+      },
+      {
+        "ordinal": "E",
+        "title": "Card Checking",
+        "url": "https://qoj.ac/contest/3588/problem/17757?v=1",
+        "provider_problem_id": "17757"
+      },
+      {
+        "ordinal": "F",
+        "title": "Astra",
+        "url": "https://qoj.ac/contest/3588/problem/17758?v=1",
+        "provider_problem_id": "17758"
+      },
+      {
+        "ordinal": "G",
+        "title": "Snake",
+        "url": "https://qoj.ac/contest/3588/problem/17759?v=1",
+        "provider_problem_id": "17759"
+      },
+      {
+        "ordinal": "H",
+        "title": "Telepathy",
+        "url": "https://qoj.ac/contest/3588/problem/17760?v=1",
+        "provider_problem_id": "17760"
+      },
+      {
+        "ordinal": "I",
+        "title": "Calendar Cubes",
+        "url": "https://qoj.ac/contest/3588/problem/17761?v=1",
+        "provider_problem_id": "17761"
+      },
+      {
+        "ordinal": "J",
+        "title": "Crossroads",
+        "url": "https://qoj.ac/contest/3588/problem/17762?v=1",
+        "provider_problem_id": "17762"
+      },
+      {
+        "ordinal": "K",
+        "title": "Sum and Product",
+        "url": "https://qoj.ac/contest/3588/problem/17763?v=1",
+        "provider_problem_id": "17763"
+      },
+      {
+        "ordinal": "L",
+        "title": "Critical Strike",
+        "url": "https://qoj.ac/contest/3588/problem/17764?v=1",
+        "provider_problem_id": "17764"
+      },
+      {
+        "ordinal": "M",
+        "title": "Night at the Museum",
+        "url": "https://qoj.ac/contest/3588/problem/17765?v=1",
+        "provider_problem_id": "17765"
+      }
+    ],
+    "fetched_url": "https://qoj.ac/contest/3588?v=1",
+    "target_contest": {
+      "contest_id": "fca291f3-d017-5cd3-9298-63a1b624b39e",
+      "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（深圳）",
+      "aliases": [
+        "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（深圳）"
+      ],
+      "tags": [
+        "2026",
+        "icpc",
+        "邀请赛",
+        "深圳",
+        "广东"
+      ],
+      "start_at": "2026-04-11T03:00:00.000Z",
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3588?v=1",
+          "provider_contest_id": "3588",
+          "label": "QOJ"
+        },
+        {
+          "provider": "xcpcio_board",
+          "kind": "standings",
+          "url": "https://board.xcpcio.com/icpc/51st/shenzhen-invitational",
+          "provider_contest_id": "/icpc/51st/shenzhen-invitational",
+          "source_title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（深圳）",
+          "label": "XCPCIO Board"
+        }
+      ]
+    }
+  },
+  {
+    "title": "「睿琪杯」浙江省第 23 届大学生程序设计竞赛",
+    "url": "https://qoj.ac/contest/3749?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "The Story of Company R",
+        "url": "https://qoj.ac/contest/3749/problem/18119?v=1",
+        "provider_problem_id": "18119"
+      },
+      {
+        "ordinal": "B",
+        "title": "Cloud-Ascending Platform",
+        "url": "https://qoj.ac/contest/3749/problem/18120?v=1",
+        "provider_problem_id": "18120"
+      },
+      {
+        "ordinal": "C",
+        "title": "PalindromemordnilaP",
+        "url": "https://qoj.ac/contest/3749/problem/18121?v=1",
+        "provider_problem_id": "18121"
+      },
+      {
+        "ordinal": "D",
+        "title": "GG",
+        "url": "https://qoj.ac/contest/3749/problem/18122?v=1",
+        "provider_problem_id": "18122"
+      },
+      {
+        "ordinal": "E",
+        "title": "Is this a problem?",
+        "url": "https://qoj.ac/contest/3749/problem/18123?v=1",
+        "provider_problem_id": "18123"
+      },
+      {
+        "ordinal": "F",
+        "title": "Tired",
+        "url": "https://qoj.ac/contest/3749/problem/18124?v=1",
+        "provider_problem_id": "18124"
+      },
+      {
+        "ordinal": "G",
+        "title": "Boring Constructive Problem",
+        "url": "https://qoj.ac/contest/3749/problem/18125?v=1",
+        "provider_problem_id": "18125"
+      },
+      {
+        "ordinal": "H",
+        "title": "ucup-team7610",
+        "url": "https://qoj.ac/contest/3749/problem/18126?v=1",
+        "provider_problem_id": "18126"
+      },
+      {
+        "ordinal": "I",
+        "title": "Hikoutei",
+        "url": "https://qoj.ac/contest/3749/problem/18127?v=1",
+        "provider_problem_id": "18127"
+      },
+      {
+        "ordinal": "J",
+        "title": "Ballon Problem",
+        "url": "https://qoj.ac/contest/3749/problem/18128?v=1",
+        "provider_problem_id": "18128"
+      },
+      {
+        "ordinal": "K",
+        "title": "Soul Link",
+        "url": "https://qoj.ac/contest/3749/problem/18129?v=1",
+        "provider_problem_id": "18129"
+      },
+      {
+        "ordinal": "L",
+        "title": "Marcel Adventure",
+        "url": "https://qoj.ac/contest/3749/problem/18130?v=1",
+        "provider_problem_id": "18130"
+      },
+      {
+        "ordinal": "M",
+        "title": "Rounddog",
+        "url": "https://qoj.ac/contest/3749/problem/18131?v=1",
+        "provider_problem_id": "18131"
+      }
+    ],
+    "fetched_url": "https://qoj.ac/contest/3749?v=1",
+    "target_contest": {
+      "contest_id": "a9098c59-44d3-5586-8b15-837d828f90b4",
+      "title": "「睿琪杯」浙江省第 23 届大学生程序设计竞赛",
+      "aliases": [
+        "「睿琪杯」浙江省第 23 届大学生程序设计竞赛"
+      ],
+      "tags": [
+        "2026",
+        "icpc",
+        "省赛",
+        "浙江"
+      ],
+      "start_at": "2026-04-25T04:00:00.000Z",
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3749?v=1",
+          "provider_contest_id": "3749",
+          "label": "QOJ"
+        },
+        {
+          "provider": "xcpcio_board",
+          "kind": "standings",
+          "url": "https://board.xcpcio.com/provincial-contest/2026/zhejiang",
+          "provider_contest_id": "/provincial-contest/2026/zhejiang",
+          "source_title": "「睿琪杯」浙江省第 23 届大学生程序设计竞赛",
+          "label": "XCPCIO Board"
+        }
+      ]
+    }
+  },
+  {
+    "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（武汉）暨湖北省赛",
+    "url": "https://qoj.ac/contest/3799?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Sort",
+        "url": "https://qoj.ac/contest/3799/problem/18428?v=1",
+        "provider_problem_id": "18428"
+      },
+      {
+        "ordinal": "B",
+        "title": "Sequence Operations",
+        "url": "https://qoj.ac/contest/3799/problem/18429?v=1",
+        "provider_problem_id": "18429"
+      },
+      {
+        "ordinal": "C",
+        "title": "Believe in You",
+        "url": "https://qoj.ac/contest/3799/problem/18430?v=1",
+        "provider_problem_id": "18430"
+      },
+      {
+        "ordinal": "D",
+        "title": "Prime Game",
+        "url": "https://qoj.ac/contest/3799/problem/18431?v=1",
+        "provider_problem_id": "18431"
+      },
+      {
+        "ordinal": "E",
+        "title": "Rook",
+        "url": "https://qoj.ac/contest/3799/problem/18432?v=1",
+        "provider_problem_id": "18432"
+      },
+      {
+        "ordinal": "F",
+        "title": "Lottery",
+        "url": "https://qoj.ac/contest/3799/problem/18433?v=1",
+        "provider_problem_id": "18433"
+      },
+      {
+        "ordinal": "G",
+        "title": "I Will Always Remember You",
+        "url": "https://qoj.ac/contest/3799/problem/18434?v=1",
+        "provider_problem_id": "18434"
+      },
+      {
+        "ordinal": "H",
+        "title": "Rectangle Cutting",
+        "url": "https://qoj.ac/contest/3799/problem/18435?v=1",
+        "provider_problem_id": "18435"
+      },
+      {
+        "ordinal": "I",
+        "title": "Nailoong vs. Bombloong 2",
+        "url": "https://qoj.ac/contest/3799/problem/18436?v=1",
+        "provider_problem_id": "18436"
+      },
+      {
+        "ordinal": "J",
+        "title": "The Best Card",
+        "url": "https://qoj.ac/contest/3799/problem/18437?v=1",
+        "provider_problem_id": "18437"
+      },
+      {
+        "ordinal": "K",
+        "title": "Deletion Game",
+        "url": "https://qoj.ac/contest/3799/problem/18438?v=1",
+        "provider_problem_id": "18438"
+      },
+      {
+        "ordinal": "L",
+        "title": "String Matching",
+        "url": "https://qoj.ac/contest/3799/problem/18439?v=1",
+        "provider_problem_id": "18439"
+      },
+      {
+        "ordinal": "M",
+        "title": "Iroha and the Kingdom of Construction",
+        "url": "https://qoj.ac/contest/3799/problem/18440?v=1",
+        "provider_problem_id": "18440"
+      }
+    ],
+    "fetched_url": "https://qoj.ac/contest/3799?v=1",
+    "target_contest": {
+      "contest_id": "b9a24afb-e623-5fd8-b97f-d7c71de3f8b6",
+      "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（武汉）暨湖北省赛",
+      "aliases": [
+        "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（武汉）暨湖北省赛",
+        "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（武汉）暨湖北省赛 - 正式赛"
+      ],
+      "tags": [
+        "2026",
+        "icpc",
+        "邀请赛",
+        "省赛",
+        "武汉",
+        "湖北"
+      ],
+      "start_at": "2026-05-17T01:30:00.000Z",
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/3799?v=1",
+          "provider_contest_id": "3799",
+          "label": "QOJ"
+        },
+        {
+          "provider": "xcpcio_board",
+          "kind": "standings",
+          "url": "https://board.xcpcio.com/icpc/51st/wuhan-invitational",
+          "provider_contest_id": "/icpc/51st/wuhan-invitational",
+          "source_title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（武汉）暨湖北省赛 - 正式赛",
+          "label": "XCPCIO Board"
+        }
+      ]
+    }
+  }
+]
