@@ -18,3 +18,11 @@ member-page QOJ batch console script. It intentionally includes both successful
 members and a per-handle fetch failure so import behavior remains reviewable.
 
 Do not treat this directory as canonical product data. The canonical curated dataset lives under `catalog/`.
+
+QOJ 2026 contest curation fixtures:
+
+- `qoj/2026-xcpc-browser-export.json`: original user export, five complete contests and three empty responses.
+- `qoj/2026-xcpc-browser-retry-export.json`: successful version-preserving retry of Shenzhen, Zhejiang, and Wuhan (39 problems).
+- `qoj/2026-xcpc-problem-lists.json`: reviewed `target_contest` metadata with eight complete problem lists (103 problems); imported into the canonical catalog. Generic exported `QOJ.ac` headings remain raw evidence, not contest aliases.
+- `qoj/contest-export-regression.json`: synthetic offline fixture for query parameters, relative links, and unrelated contest links.
+- `qoj/2026-retry-contests-draft.json`: historical retry input; all three contests are now curated.
