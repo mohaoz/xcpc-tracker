@@ -39,7 +39,7 @@
 2. 将导出的 `contests.json` 放到 `data/contests.json`
 3. `npm run catalog:build-final` 生成 `data/final.json`
 4. `npm run catalog:generate-default` 生成 `catalog/default-catalog.min.json`
-5. `npm run catalog:import-qoj-problems` 将已保存的两份 QOJ 题单快照合并到现有 catalog；导入按完整 contest URL 优先匹配，仅在路径目标唯一时回退，并跳过审核文件中明确隔离的错误快照
+5. `npm run catalog:import-qoj-problems` 将旧快照与 `2026-xcpc-problem-lists.json` 中已审核的 QOJ 题单合并到现有 catalog；导入按完整 contest URL 优先匹配，仅在路径目标唯一时回退，并跳过审核文件中明确隔离的错误快照
 6. `npm run catalog:import-reviewed-cf-problems` 合并维护者已核验的 Codeforces 比赛元数据与题单
 7. `npm run catalog:refresh-xcpcio-board` 匹配 XCPCIO Board 并预计算奖牌线
 8. `npm run catalog:refresh-codeforces-award-cutoffs` 用 Codeforces official standings 补齐仍无 cutoff 的 Codeforces 比赛
@@ -64,6 +64,10 @@
   将 `data/codeforces-problems.json` 并进 `catalog/default-catalog.min.json`。导入记录可带 `target_contest_ids`，也可带完整 `target_contests` 以原子方式新建比赛及其题单；一个 Codeforces Gym 可显式映射多个目录比赛。`--check` 会只读检查导入是否已完整、幂等地落入目录。维护者核验的 2026 比赛与题单位于 `fixtures/imports/codeforces/2026-xcpc-problem-lists.json`。
 - `import-qoj-problems-export.mjs`
   将 `data/qoj-problems-a.json` / `data/qoj-problems-b.json` 这类 QOJ 题目导出并进 `catalog/default-catalog.min.json`。默认审核排除项位于 `fixtures/imports/qoj/qoj-problem-import-exclusions.json`，用于保留错误快照的证据但阻止其污染正式目录；`--check` 仅检查，不写文件。
+
+  维护者审核的记录可额外带 `target_contest`，包含 `contest_id`、`title`、`aliases`、`tags`、`start_at`、`sources` 和可选 `notes`。目标必须带与输入完整 URL（含 `?v=`）一致的 QOJ 比赛来源；只在完整题单通过验证后原子创建比赛。已有目标必须与该 QOJ 来源一致，未审核的普通浏览器导出仍只匹配已有比赛，不自动新建。`fixtures/imports/qoj/2026-xcpc-problem-lists.json` 是本批经审核的输入示例，原始导出单独保留，首次导出的三场空题单及成功重试分别保留为原始 fixture，审核输入包含完整的 8 场、103 题。
+
+  QOJ 比赛页导出脚本按 URL 的 pathname 识别题目，保留查询参数和比赛版本；批量导出额外记录最终响应 URL 与页面标题。空题单、登录跳转或版本丢失会记录失败原因。单场导出的题目数组契约不变，遇到空题单会报错并停止下载。
 - `match-xcpcio-board-contests.mjs`
   XCPCIO Board 的构建期数据管线。`--fetch-raw --normalize` 会先保存原始 board index 到 `data/xcpcio-board-raw.json`，再生成与主 contest 流程一致的 `[{ title, url }]` 风格规范化文件 `data/xcpcio-board-contests.json`；默认匹配阶段读取这个规范化文件并给 title 打 tags。加 `--apply` 会把 high confidence 的 `xcpcio_board` standings source 合并进已有 catalog 比赛；加 `--fetch-cutoffs` 会在构建期读取 board standings 数据，按官方 medal 配置或 10% / 20% / 30% 奖牌数量预计算金银铜线，保存到 `data/xcpcio-board-award-cutoffs.json` 并写入 catalog。该脚本不会新增无题目比赛。前端只读取 catalog 里的 `awardCutoffs`，不会请求 board 数据。若要写入 medium 匹配，显式传 `--apply-confidence=high,medium` 后再人工复核 diff。
 - `fetch-codeforces-award-cutoffs.mjs`

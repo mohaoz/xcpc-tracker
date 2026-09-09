@@ -1,0 +1,431 @@
+[
+  {
+    "title": "The 2026 ICPC Asia East Continent Online Contest (I)",
+    "url": "https://qoj.ac/contest/4071",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Recall",
+        "url": "https://qoj.ac/contest/4071/problem/20016",
+        "provider_problem_id": "20016"
+      },
+      {
+        "ordinal": "B",
+        "title": "Mod",
+        "url": "https://qoj.ac/contest/4071/problem/20017",
+        "provider_problem_id": "20017"
+      },
+      {
+        "ordinal": "C",
+        "title": "Permutation Inversions",
+        "url": "https://qoj.ac/contest/4071/problem/20018",
+        "provider_problem_id": "20018"
+      },
+      {
+        "ordinal": "D",
+        "title": "Sequence",
+        "url": "https://qoj.ac/contest/4071/problem/20019",
+        "provider_problem_id": "20019"
+      },
+      {
+        "ordinal": "E",
+        "title": "LCM Permutation",
+        "url": "https://qoj.ac/contest/4071/problem/20020",
+        "provider_problem_id": "20020"
+      },
+      {
+        "ordinal": "F",
+        "title": "50 Years of Excellence",
+        "url": "https://qoj.ac/contest/4071/problem/20021",
+        "provider_problem_id": "20021"
+      },
+      {
+        "ordinal": "G",
+        "title": "Toll Gates on a Tight Schedule",
+        "url": "https://qoj.ac/contest/4071/problem/20022",
+        "provider_problem_id": "20022"
+      },
+      {
+        "ordinal": "H",
+        "title": "The First Problem",
+        "url": "https://qoj.ac/contest/4071/problem/20023",
+        "provider_problem_id": "20023"
+      },
+      {
+        "ordinal": "I",
+        "title": "A Lamp of Moon",
+        "url": "https://qoj.ac/contest/4071/problem/20024",
+        "provider_problem_id": "20024"
+      },
+      {
+        "ordinal": "J",
+        "title": "String",
+        "url": "https://qoj.ac/contest/4071/problem/20025",
+        "provider_problem_id": "20025"
+      },
+      {
+        "ordinal": "K",
+        "title": "Wolf Game",
+        "url": "https://qoj.ac/contest/4071/problem/20026",
+        "provider_problem_id": "20026"
+      },
+      {
+        "ordinal": "L",
+        "title": "Longest Common Prefix",
+        "url": "https://qoj.ac/contest/4071/problem/20027",
+        "provider_problem_id": "20027"
+      },
+      {
+        "ordinal": "M",
+        "title": "Check In",
+        "url": "https://qoj.ac/contest/4071/problem/20028",
+        "provider_problem_id": "20028"
+      },
+      {
+        "ordinal": "N",
+        "title": "Red Sequence",
+        "url": "https://qoj.ac/contest/4071/problem/20029",
+        "provider_problem_id": "20029"
+      }
+    ]
+  },
+  {
+    "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（深圳）",
+    "url": "https://qoj.ac/contest/3588?v=1",
+    "problems": []
+  },
+  {
+    "title": "「睿琪杯」浙江省第 23 届大学生程序设计竞赛",
+    "url": "https://qoj.ac/contest/3749?v=1",
+    "problems": []
+  },
+  {
+    "title": "第 51 届 ICPC 国际大学生程序设计竞赛邀请赛西安站",
+    "url": "https://qoj.ac/contest/3766",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "North and South",
+        "url": "https://qoj.ac/contest/3766/problem/17342",
+        "provider_problem_id": "17342"
+      },
+      {
+        "ordinal": "B",
+        "title": "Operating Robot",
+        "url": "https://qoj.ac/contest/3766/problem/17343",
+        "provider_problem_id": "17343"
+      },
+      {
+        "ordinal": "C",
+        "title": "Palindromic and Balanced",
+        "url": "https://qoj.ac/contest/3766/problem/17344",
+        "provider_problem_id": "17344"
+      },
+      {
+        "ordinal": "D",
+        "title": "Qenerals",
+        "url": "https://qoj.ac/contest/3766/problem/17345",
+        "provider_problem_id": "17345"
+      },
+      {
+        "ordinal": "E",
+        "title": "Registration",
+        "url": "https://qoj.ac/contest/3766/problem/17346",
+        "provider_problem_id": "17346"
+      },
+      {
+        "ordinal": "F",
+        "title": "Split Sticks",
+        "url": "https://qoj.ac/contest/3766/problem/17347",
+        "provider_problem_id": "17347"
+      },
+      {
+        "ordinal": "G",
+        "title": "Transform",
+        "url": "https://qoj.ac/contest/3766/problem/17348",
+        "provider_problem_id": "17348"
+      },
+      {
+        "ordinal": "H",
+        "title": "Unreachable Land",
+        "url": "https://qoj.ac/contest/3766/problem/17349",
+        "provider_problem_id": "17349"
+      },
+      {
+        "ordinal": "I",
+        "title": "VIP Coupon",
+        "url": "https://qoj.ac/contest/3766/problem/17350",
+        "provider_problem_id": "17350"
+      },
+      {
+        "ordinal": "J",
+        "title": "Would You Make a Convex?",
+        "url": "https://qoj.ac/contest/3766/problem/17351",
+        "provider_problem_id": "17351"
+      },
+      {
+        "ordinal": "K",
+        "title": "XOR and LCA",
+        "url": "https://qoj.ac/contest/3766/problem/17352",
+        "provider_problem_id": "17352"
+      },
+      {
+        "ordinal": "L",
+        "title": "Yesterday Once More (Easy Version)",
+        "url": "https://qoj.ac/contest/3766/problem/17353",
+        "provider_problem_id": "17353"
+      },
+      {
+        "ordinal": "M",
+        "title": "Yesterday Once More (Hard Version)",
+        "url": "https://qoj.ac/contest/3766/problem/17354",
+        "provider_problem_id": "17354"
+      },
+      {
+        "ordinal": "N",
+        "title": "Zebra Crossing",
+        "url": "https://qoj.ac/contest/3766/problem/17355",
+        "provider_problem_id": "17355"
+      }
+    ]
+  },
+  {
+    "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（武汉）暨湖北省赛",
+    "url": "https://qoj.ac/contest/3799?v=1",
+    "problems": []
+  },
+  {
+    "title": "2026 年山东省大学生程序设计竞赛",
+    "url": "https://qoj.ac/contest/3767",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "华容道",
+        "url": "https://qoj.ac/contest/3767/problem/18307",
+        "provider_problem_id": "18307"
+      },
+      {
+        "ordinal": "B",
+        "title": "字典 2",
+        "url": "https://qoj.ac/contest/3767/problem/18308",
+        "provider_problem_id": "18308"
+      },
+      {
+        "ordinal": "C",
+        "title": "会议日程",
+        "url": "https://qoj.ac/contest/3767/problem/18309",
+        "provider_problem_id": "18309"
+      },
+      {
+        "ordinal": "D",
+        "title": "最大数码 2",
+        "url": "https://qoj.ac/contest/3767/problem/18310",
+        "provider_problem_id": "18310"
+      },
+      {
+        "ordinal": "E",
+        "title": "简单的构造题",
+        "url": "https://qoj.ac/contest/3767/problem/18311",
+        "provider_problem_id": "18311"
+      },
+      {
+        "ordinal": "F",
+        "title": "礼物归位",
+        "url": "https://qoj.ac/contest/3767/problem/18312",
+        "provider_problem_id": "18312"
+      },
+      {
+        "ordinal": "G",
+        "title": "吸血鬼爬行者",
+        "url": "https://qoj.ac/contest/3767/problem/18313",
+        "provider_problem_id": "18313"
+      },
+      {
+        "ordinal": "H",
+        "title": "拼图",
+        "url": "https://qoj.ac/contest/3767/problem/18314",
+        "provider_problem_id": "18314"
+      },
+      {
+        "ordinal": "I",
+        "title": "版本号",
+        "url": "https://qoj.ac/contest/3767/problem/18315",
+        "provider_problem_id": "18315"
+      },
+      {
+        "ordinal": "J",
+        "title": "插松枝",
+        "url": "https://qoj.ac/contest/3767/problem/18316",
+        "provider_problem_id": "18316"
+      },
+      {
+        "ordinal": "K",
+        "title": "最小生成树",
+        "url": "https://qoj.ac/contest/3767/problem/18317",
+        "provider_problem_id": "18317"
+      },
+      {
+        "ordinal": "L",
+        "title": "分数迭代",
+        "url": "https://qoj.ac/contest/3767/problem/18318",
+        "provider_problem_id": "18318"
+      },
+      {
+        "ordinal": "M",
+        "title": "博物馆奇妙夜 2",
+        "url": "https://qoj.ac/contest/3767/problem/18319",
+        "provider_problem_id": "18319"
+      }
+    ]
+  },
+  {
+    "title": "“华为智联杯”无线程序设计大赛暨2026年上海市大学生程序设计竞赛",
+    "url": "https://qoj.ac/contest/3944",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "学术造假",
+        "url": "https://qoj.ac/contest/3944/problem/19003",
+        "provider_problem_id": "19003"
+      },
+      {
+        "ordinal": "B",
+        "title": "啥博弈",
+        "url": "https://qoj.ac/contest/3944/problem/19004",
+        "provider_problem_id": "19004"
+      },
+      {
+        "ordinal": "C",
+        "title": "植树",
+        "url": "https://qoj.ac/contest/3944/problem/19005",
+        "provider_problem_id": "19005"
+      },
+      {
+        "ordinal": "D",
+        "title": "收集符文",
+        "url": "https://qoj.ac/contest/3944/problem/19006",
+        "provider_problem_id": "19006"
+      },
+      {
+        "ordinal": "E",
+        "title": "完美区间",
+        "url": "https://qoj.ac/contest/3944/problem/19007",
+        "provider_problem_id": "19007"
+      },
+      {
+        "ordinal": "F",
+        "title": "神话子序列",
+        "url": "https://qoj.ac/contest/3944/problem/19008",
+        "provider_problem_id": "19008"
+      },
+      {
+        "ordinal": "G",
+        "title": "设备的问题",
+        "url": "https://qoj.ac/contest/3944/problem/19009",
+        "provider_problem_id": "19009"
+      },
+      {
+        "ordinal": "H",
+        "title": "DDL 战神",
+        "url": "https://qoj.ac/contest/3944/problem/19010",
+        "provider_problem_id": "19010"
+      },
+      {
+        "ordinal": "I",
+        "title": "堆排序",
+        "url": "https://qoj.ac/contest/3944/problem/19011",
+        "provider_problem_id": "19011"
+      },
+      {
+        "ordinal": "J",
+        "title": "内卷",
+        "url": "https://qoj.ac/contest/3944/problem/19012",
+        "provider_problem_id": "19012"
+      }
+    ]
+  },
+  {
+    "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（沈阳）",
+    "url": "https://qoj.ac/contest/3945",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "小 X 今天心情怎么样？",
+        "url": "https://qoj.ac/contest/3945/problem/19013",
+        "provider_problem_id": "19013"
+      },
+      {
+        "ordinal": "B",
+        "title": "最短路之和",
+        "url": "https://qoj.ac/contest/3945/problem/19014",
+        "provider_problem_id": "19014"
+      },
+      {
+        "ordinal": "C",
+        "title": "魔法审判",
+        "url": "https://qoj.ac/contest/3945/problem/19015",
+        "provider_problem_id": "19015"
+      },
+      {
+        "ordinal": "D",
+        "title": "隐藏的旋律",
+        "url": "https://qoj.ac/contest/3945/problem/19016",
+        "provider_problem_id": "19016"
+      },
+      {
+        "ordinal": "E",
+        "title": "时空回溯",
+        "url": "https://qoj.ac/contest/3945/problem/19017",
+        "provider_problem_id": "19017"
+      },
+      {
+        "ordinal": "F",
+        "title": "等距矩阵",
+        "url": "https://qoj.ac/contest/3945/problem/19018",
+        "provider_problem_id": "19018"
+      },
+      {
+        "ordinal": "G",
+        "title": "三角形",
+        "url": "https://qoj.ac/contest/3945/problem/19019",
+        "provider_problem_id": "19019"
+      },
+      {
+        "ordinal": "H",
+        "title": "Force!",
+        "url": "https://qoj.ac/contest/3945/problem/19020",
+        "provider_problem_id": "19020"
+      },
+      {
+        "ordinal": "I",
+        "title": "Alice的压岁钱",
+        "url": "https://qoj.ac/contest/3945/problem/19021",
+        "provider_problem_id": "19021"
+      },
+      {
+        "ordinal": "J",
+        "title": "霓虹天际线",
+        "url": "https://qoj.ac/contest/3945/problem/19022",
+        "provider_problem_id": "19022"
+      },
+      {
+        "ordinal": "K",
+        "title": "环线补给",
+        "url": "https://qoj.ac/contest/3945/problem/19023",
+        "provider_problem_id": "19023"
+      },
+      {
+        "ordinal": "L",
+        "title": "渐隐的记忆",
+        "url": "https://qoj.ac/contest/3945/problem/19024",
+        "provider_problem_id": "19024"
+      },
+      {
+        "ordinal": "M",
+        "title": "能量晶体",
+        "url": "https://qoj.ac/contest/3945/problem/19025",
+        "provider_problem_id": "19025"
+      }
+    ]
+  }
+]

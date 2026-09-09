@@ -75,10 +75,50 @@ function getQojProblemId(value) {
   }
 }
 
+function normalizeTargetContest(raw, importedUrl, label) {
+  if (raw == null) return null;
+  const contestId = cleanText(raw.contest_id);
+  const title = cleanText(raw.title);
+  if (!contestId || !title || !Array.isArray(raw.aliases) || !Array.isArray(raw.tags) || !Array.isArray(raw.sources)) {
+    throw new Error(`${label} requires contest_id, title, aliases, tags, and sources`);
+  }
+  const sources = raw.sources.map((source) => {
+    const provider = cleanText(source?.provider);
+    const kind = cleanText(source?.kind);
+    const url = cleanText(source?.url);
+    if (!provider || !kind || !url) throw new Error(`${label}.sources requires provider, kind, and url`);
+    new URL(url);
+    return { ...source, provider, kind, url };
+  });
+  const qojSources = sources.filter((source) => source.provider === "qoj" && source.kind === "contest");
+  if (qojSources.length !== 1 || normalizeExactUrl(qojSources[0].url) !== normalizeExactUrl(importedUrl)) {
+    throw new Error(`${label} requires exactly one QOJ source matching the complete import URL`);
+  }
+  if (qojSources[0].provider_contest_id && qojSources[0].provider_contest_id !== getQojContestId(importedUrl)) {
+    throw new Error(`${label}.sources provider_contest_id does not match its URL`);
+  }
+  const startAt = raw.start_at == null ? null : cleanText(raw.start_at);
+  if (startAt && Number.isNaN(Date.parse(startAt))) throw new Error(`${label}.start_at must be an ISO date`);
+  return {
+    contestId,
+    title,
+    aliases: dedupeStrings(raw.aliases),
+    tags: dedupeStrings(raw.tags),
+    startAt,
+    sources,
+    notes: raw.notes == null ? null : cleanText(raw.notes),
+  };
+}
+
 function normalizeInputContests(raw) {
   const rawContests = Array.isArray(raw) ? raw : raw?.contests;
   if (!Array.isArray(rawContests)) {
     throw new Error("input JSON must be an array or an object with contests");
+  }
+  for (const [index, contest] of rawContests.entries()) {
+    if (contest?.target_contest && (contest.error || !Array.isArray(contest.problems) || !contest.problems.length)) {
+      throw new Error(`contests[${index}].target_contest requires a non-empty, successful problem export`);
+    }
   }
 
   return rawContests
@@ -91,6 +131,7 @@ function normalizeInputContests(raw) {
       if (!title || !url || !providerContestId) {
         throw new Error(`${label} requires a title and a QOJ contest URL`);
       }
+      const targetContest = normalizeTargetContest(contest.target_contest, url, `${label}.target_contest`);
 
       const ordinals = new Set();
       const providerProblemIds = new Set();
@@ -109,6 +150,11 @@ function normalizeInputContests(raw) {
         }
         if (urlProblemId !== providerProblemId) {
           throw new Error(`${problemLabel}.provider_problem_id does not match its URL`);
+        }
+        const problemVersion = new URL(problemUrl).searchParams.get("v");
+        const contestVersion = new URL(url).searchParams.get("v");
+        if (problemVersion !== null && problemVersion !== contestVersion) {
+          throw new Error(`${problemLabel}.url has a different QOJ version from the contest`);
         }
 
         const ordinalKey = ordinal.toLowerCase();
@@ -135,6 +181,7 @@ function normalizeInputContests(raw) {
         exactUrl: normalizeExactUrl(url),
         pathUrl: normalizeUrl(url),
         providerContestId,
+        targetContest,
         problems,
       };
     });
@@ -248,8 +295,13 @@ async function main() {
   }
   const originalCatalog = JSON.stringify(catalog);
   const inputContests = normalizeInputContests(input);
+  const rawContests = Array.isArray(input) ? input : input.contests;
+  const emptyInputContests = rawContests
+    .filter((contest) => !Array.isArray(contest?.problems) || !contest.problems.length)
+    .map((contest) => ({ title: contest?.title, url: contest?.url, error: contest?.error || "empty problem list" }));
   const exclusions = normalizeReviewExclusions(review);
 
+  const contestsById = new Map(catalog.contests.map((contest) => [contest.contestId, contest]));
   const contestsByQojExactUrl = new Map();
   const contestsByQojPathUrl = new Map();
   for (const contest of catalog.contests) {
@@ -270,6 +322,7 @@ async function main() {
   let updatedProblemCount = 0;
   let unchangedProblemCount = 0;
   let excludedProblemCount = 0;
+  let insertedContestCount = 0;
   const excludedContests = [];
   const skippedContests = [];
   const ambiguousContests = [];
@@ -285,6 +338,43 @@ async function main() {
         reason: exclusion.reason,
       });
       continue;
+    }
+
+    const definition = importedContest.targetContest;
+    if (definition) {
+      const existing = contestsById.get(definition.contestId);
+      const exactMatches = contestsByQojExactUrl.get(importedContest.exactUrl) ?? [];
+      if (exactMatches.some((contest) => contest.contestId !== definition.contestId)) {
+        throw new Error(`QOJ URL already belongs to another curated contest: ${importedContest.url}`);
+      }
+      if (existing && (existing.sources ?? []).some((source) =>
+        source.provider === "qoj" && source.kind === "contest" && normalizeExactUrl(source.url) !== importedContest.exactUrl
+      )) {
+        throw new Error(`target contest ${definition.contestId} already has a different QOJ URL`);
+      }
+      let target = existing;
+      if (!target) {
+        target = {
+          ...definition,
+          curationStatus: "problem_listed",
+          problemIds: [],
+          generatedFrom: "catalog",
+          deletedAt: null,
+        };
+        catalog.contests.push(target);
+        contestsById.set(target.contestId, target);
+        insertedContestCount += 1;
+      } else {
+        const previousTitle = target.title;
+        target.title = definition.title;
+        target.aliases = dedupeStrings([...target.aliases, ...definition.aliases, previousTitle !== definition.title ? previousTitle : null]);
+        target.tags = dedupeStrings([...target.tags, ...definition.tags]);
+        target.startAt = definition.startAt ?? target.startAt ?? null;
+        target.sources = definition.sources.reduce(mergeSourceList, target.sources ?? []);
+        target.notes = definition.notes ?? target.notes ?? null;
+      }
+      addContestToLookup(contestsByQojExactUrl, importedContest.exactUrl, target);
+      addContestToLookup(contestsByQojPathUrl, importedContest.pathUrl, target);
     }
 
     const exactTargets = contestsByQojExactUrl.get(importedContest.exactUrl) ?? [];
@@ -473,6 +563,9 @@ async function main() {
         checkOnly,
         changed,
         importedContestCount: inputContests.length,
+        insertedContestCount,
+        emptyInputContestCount: emptyInputContests.length,
+        emptyInputContests,
         matchedContestCount,
         exactMatchedContestCount,
         pathMatchedContestCount,
@@ -499,7 +592,7 @@ async function main() {
 
   if (
     checkOnly &&
-    (changed || ambiguousContests.length > 0 || incompleteCatalogContests.length > 0)
+    (changed || emptyInputContests.length > 0 || ambiguousContests.length > 0 || incompleteCatalogContests.length > 0)
   ) {
     process.exitCode = 1;
   }

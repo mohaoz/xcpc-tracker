@@ -1,0 +1,260 @@
+[
+  {
+    "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（深圳）",
+    "url": "https://qoj.ac/contest/3588?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Greetings from Prof. Chen",
+        "url": "https://qoj.ac/contest/3588/problem/17753?v=1",
+        "provider_problem_id": "17753"
+      },
+      {
+        "ordinal": "B",
+        "title": "All-Star Showdown",
+        "url": "https://qoj.ac/contest/3588/problem/17754?v=1",
+        "provider_problem_id": "17754"
+      },
+      {
+        "ordinal": "C",
+        "title": "One Item Away",
+        "url": "https://qoj.ac/contest/3588/problem/17755?v=1",
+        "provider_problem_id": "17755"
+      },
+      {
+        "ordinal": "D",
+        "title": "City Management",
+        "url": "https://qoj.ac/contest/3588/problem/17756?v=1",
+        "provider_problem_id": "17756"
+      },
+      {
+        "ordinal": "E",
+        "title": "Card Checking",
+        "url": "https://qoj.ac/contest/3588/problem/17757?v=1",
+        "provider_problem_id": "17757"
+      },
+      {
+        "ordinal": "F",
+        "title": "Astra",
+        "url": "https://qoj.ac/contest/3588/problem/17758?v=1",
+        "provider_problem_id": "17758"
+      },
+      {
+        "ordinal": "G",
+        "title": "Snake",
+        "url": "https://qoj.ac/contest/3588/problem/17759?v=1",
+        "provider_problem_id": "17759"
+      },
+      {
+        "ordinal": "H",
+        "title": "Telepathy",
+        "url": "https://qoj.ac/contest/3588/problem/17760?v=1",
+        "provider_problem_id": "17760"
+      },
+      {
+        "ordinal": "I",
+        "title": "Calendar Cubes",
+        "url": "https://qoj.ac/contest/3588/problem/17761?v=1",
+        "provider_problem_id": "17761"
+      },
+      {
+        "ordinal": "J",
+        "title": "Crossroads",
+        "url": "https://qoj.ac/contest/3588/problem/17762?v=1",
+        "provider_problem_id": "17762"
+      },
+      {
+        "ordinal": "K",
+        "title": "Sum and Product",
+        "url": "https://qoj.ac/contest/3588/problem/17763?v=1",
+        "provider_problem_id": "17763"
+      },
+      {
+        "ordinal": "L",
+        "title": "Critical Strike",
+        "url": "https://qoj.ac/contest/3588/problem/17764?v=1",
+        "provider_problem_id": "17764"
+      },
+      {
+        "ordinal": "M",
+        "title": "Night at the Museum",
+        "url": "https://qoj.ac/contest/3588/problem/17765?v=1",
+        "provider_problem_id": "17765"
+      }
+    ],
+    "fetched_url": "https://qoj.ac/contest/3588?v=1",
+    "source_title": "QOJ.ac"
+  },
+  {
+    "title": "「睿琪杯」浙江省第 23 届大学生程序设计竞赛",
+    "url": "https://qoj.ac/contest/3749?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "The Story of Company R",
+        "url": "https://qoj.ac/contest/3749/problem/18119?v=1",
+        "provider_problem_id": "18119"
+      },
+      {
+        "ordinal": "B",
+        "title": "Cloud-Ascending Platform",
+        "url": "https://qoj.ac/contest/3749/problem/18120?v=1",
+        "provider_problem_id": "18120"
+      },
+      {
+        "ordinal": "C",
+        "title": "PalindromemordnilaP",
+        "url": "https://qoj.ac/contest/3749/problem/18121?v=1",
+        "provider_problem_id": "18121"
+      },
+      {
+        "ordinal": "D",
+        "title": "GG",
+        "url": "https://qoj.ac/contest/3749/problem/18122?v=1",
+        "provider_problem_id": "18122"
+      },
+      {
+        "ordinal": "E",
+        "title": "Is this a problem?",
+        "url": "https://qoj.ac/contest/3749/problem/18123?v=1",
+        "provider_problem_id": "18123"
+      },
+      {
+        "ordinal": "F",
+        "title": "Tired",
+        "url": "https://qoj.ac/contest/3749/problem/18124?v=1",
+        "provider_problem_id": "18124"
+      },
+      {
+        "ordinal": "G",
+        "title": "Boring Constructive Problem",
+        "url": "https://qoj.ac/contest/3749/problem/18125?v=1",
+        "provider_problem_id": "18125"
+      },
+      {
+        "ordinal": "H",
+        "title": "ucup-team7610",
+        "url": "https://qoj.ac/contest/3749/problem/18126?v=1",
+        "provider_problem_id": "18126"
+      },
+      {
+        "ordinal": "I",
+        "title": "Hikoutei",
+        "url": "https://qoj.ac/contest/3749/problem/18127?v=1",
+        "provider_problem_id": "18127"
+      },
+      {
+        "ordinal": "J",
+        "title": "Ballon Problem",
+        "url": "https://qoj.ac/contest/3749/problem/18128?v=1",
+        "provider_problem_id": "18128"
+      },
+      {
+        "ordinal": "K",
+        "title": "Soul Link",
+        "url": "https://qoj.ac/contest/3749/problem/18129?v=1",
+        "provider_problem_id": "18129"
+      },
+      {
+        "ordinal": "L",
+        "title": "Marcel Adventure",
+        "url": "https://qoj.ac/contest/3749/problem/18130?v=1",
+        "provider_problem_id": "18130"
+      },
+      {
+        "ordinal": "M",
+        "title": "Rounddog",
+        "url": "https://qoj.ac/contest/3749/problem/18131?v=1",
+        "provider_problem_id": "18131"
+      }
+    ],
+    "fetched_url": "https://qoj.ac/contest/3749?v=1",
+    "source_title": "QOJ.ac"
+  },
+  {
+    "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（武汉）暨湖北省赛",
+    "url": "https://qoj.ac/contest/3799?v=1",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Sort",
+        "url": "https://qoj.ac/contest/3799/problem/18428?v=1",
+        "provider_problem_id": "18428"
+      },
+      {
+        "ordinal": "B",
+        "title": "Sequence Operations",
+        "url": "https://qoj.ac/contest/3799/problem/18429?v=1",
+        "provider_problem_id": "18429"
+      },
+      {
+        "ordinal": "C",
+        "title": "Believe in You",
+        "url": "https://qoj.ac/contest/3799/problem/18430?v=1",
+        "provider_problem_id": "18430"
+      },
+      {
+        "ordinal": "D",
+        "title": "Prime Game",
+        "url": "https://qoj.ac/contest/3799/problem/18431?v=1",
+        "provider_problem_id": "18431"
+      },
+      {
+        "ordinal": "E",
+        "title": "Rook",
+        "url": "https://qoj.ac/contest/3799/problem/18432?v=1",
+        "provider_problem_id": "18432"
+      },
+      {
+        "ordinal": "F",
+        "title": "Lottery",
+        "url": "https://qoj.ac/contest/3799/problem/18433?v=1",
+        "provider_problem_id": "18433"
+      },
+      {
+        "ordinal": "G",
+        "title": "I Will Always Remember You",
+        "url": "https://qoj.ac/contest/3799/problem/18434?v=1",
+        "provider_problem_id": "18434"
+      },
+      {
+        "ordinal": "H",
+        "title": "Rectangle Cutting",
+        "url": "https://qoj.ac/contest/3799/problem/18435?v=1",
+        "provider_problem_id": "18435"
+      },
+      {
+        "ordinal": "I",
+        "title": "Nailoong vs. Bombloong 2",
+        "url": "https://qoj.ac/contest/3799/problem/18436?v=1",
+        "provider_problem_id": "18436"
+      },
+      {
+        "ordinal": "J",
+        "title": "The Best Card",
+        "url": "https://qoj.ac/contest/3799/problem/18437?v=1",
+        "provider_problem_id": "18437"
+      },
+      {
+        "ordinal": "K",
+        "title": "Deletion Game",
+        "url": "https://qoj.ac/contest/3799/problem/18438?v=1",
+        "provider_problem_id": "18438"
+      },
+      {
+        "ordinal": "L",
+        "title": "String Matching",
+        "url": "https://qoj.ac/contest/3799/problem/18439?v=1",
+        "provider_problem_id": "18439"
+      },
+      {
+        "ordinal": "M",
+        "title": "Iroha and the Kingdom of Construction",
+        "url": "https://qoj.ac/contest/3799/problem/18440?v=1",
+        "provider_problem_id": "18440"
+      }
+    ],
+    "fetched_url": "https://qoj.ac/contest/3799?v=1",
+    "source_title": "QOJ.ac"
+  }
+]

@@ -108,22 +108,40 @@
     if (!response.ok) {
       throw new Error(`QOJ HTTP ${response.status}`);
     }
+    const fetchedUrl = new URL(response.url || contestUrl);
+    if (fetchedUrl.origin !== contestUrl.origin || fetchedUrl.pathname.replace(/\/$/u, "") !== contestUrl.pathname.replace(/\/$/u, "")) {
+      throw new Error(`QOJ 跳转到 ${fetchedUrl}，请确认已登录且有权查看该比赛`);
+    }
+    if (fetchedUrl.searchParams.get("v") !== contestUrl.searchParams.get("v")) {
+      throw new Error(`QOJ 响应版本与请求不一致：${fetchedUrl}`);
+    }
     const html = await response.text();
     const doc = new DOMParser().parseFromString(html, "text/html");
+    const sourceTitle = cleanText(doc.querySelector("h1")?.textContent) || cleanText(doc.title.replace(/\s*-\s*QOJ\.ac$/iu, ""));
     const rows = Array.from(doc.querySelectorAll("tr"));
     const problems = [];
     let fallbackIndex = 1;
+    const problemPath = new RegExp(`^${contestUrl.pathname.replace(/\/$/u, "")}/problem/([0-9]+)/?$`, "u");
 
     for (const row of rows) {
-      const anchor = Array.from(row.querySelectorAll('a[href]')).find((item) =>
-        /\/contest\/\d+\/problem\/\d+$/iu.test(item.href),
-      );
+      const anchor = Array.from(row.querySelectorAll('a[href]')).find((item) => {
+        const candidate = new URL(item.getAttribute("href") ?? item.href, contestUrl);
+        return candidate.origin === contestUrl.origin && problemPath.test(candidate.pathname);
+      });
       if (!anchor) continue;
 
       const title = cleanText(anchor.textContent);
       const rawHref = anchor.getAttribute("href") ?? anchor.href;
-      const url = new URL(rawHref, contestUrl).toString().replace(/[#?].*$/u, "");
-      const providerProblemId = url.match(/\/problem\/(\d+)$/iu)?.[1] ?? "";
+      const problemUrl = new URL(rawHref, contestUrl);
+      problemUrl.hash = "";
+      if (contestUrl.searchParams.has("v")) {
+        if (problemUrl.searchParams.has("v") && problemUrl.searchParams.get("v") !== contestUrl.searchParams.get("v")) {
+          throw new Error(`题目链接版本与比赛不一致：${problemUrl}`);
+        }
+        problemUrl.searchParams.set("v", contestUrl.searchParams.get("v"));
+      }
+      const url = problemUrl.toString();
+      const providerProblemId = problemUrl.pathname.match(problemPath)?.[1] ?? "";
       if (!title || !providerProblemId) continue;
 
       let ordinal = null;
@@ -149,10 +167,18 @@
       });
     }
 
-    return dedupeBy(
+    const normalizedProblems = dedupeBy(
       problems,
       (problem) => `${cleanText(problem.ordinal).toLowerCase()}@@${problem.provider_problem_id}`,
     );
+    if (!normalizedProblems.length) {
+      throw new Error(`未解析到题目（页面：${sourceTitle || "未知"}）；请确认已登录、比赛版本正确且页面显示完整题单`);
+    }
+    return {
+      problems: normalizedProblems,
+      fetched_url: fetchedUrl.toString(),
+      source_title: sourceTitle || entry.title,
+    };
   }
 
   async function mapWithConcurrency(items, concurrency, worker) {
@@ -185,13 +211,13 @@
 
   const results = await mapWithConcurrency(entries, 4, async (entry) => {
     try {
-      const problems = await fetchQojContestProblems(entry);
+      const snapshot = await fetchQojContestProblems(entry);
       finished += 1;
-      console.log(`[${finished}/${total}] OK ${entry.url} ${problems.length} 题`);
+      console.log(`[${finished}/${total}] OK ${entry.url} ${snapshot.problems.length} 题`);
       return {
         title: entry.title,
         url: entry.url,
-        problems,
+        ...snapshot,
       };
     } catch (error) {
       finished += 1;

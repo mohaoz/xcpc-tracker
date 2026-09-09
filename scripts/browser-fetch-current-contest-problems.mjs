@@ -68,20 +68,31 @@
     };
   }
 
-  function extractQojProblems() {
+  function extractQojProblems(contestMeta) {
+    const contestUrl = new URL(contestMeta.url);
+    const problemPath = new RegExp(`^/contest/${contestMeta.provider_contest_id}/problem/([0-9]+)/?$`, "u");
     const rows = Array.from(document.querySelectorAll("tr"));
     const problems = [];
     let fallbackIndex = 1;
 
     for (const row of rows) {
-      const anchor = Array.from(row.querySelectorAll('a[href]')).find((item) =>
-        /\/contest\/\d+\/problem\/\d+$/iu.test(item.href),
-      );
+      const anchor = Array.from(row.querySelectorAll('a[href]')).find((item) => {
+        const candidate = new URL(item.getAttribute("href") ?? item.href, contestUrl);
+        return candidate.origin === contestUrl.origin && problemPath.test(candidate.pathname);
+      });
       if (!anchor) continue;
 
       const title = cleanText(anchor.textContent);
-      const url = anchor.href.replace(/[#?].*$/u, "");
-      const providerProblemId = url.match(/\/problem\/(\d+)$/iu)?.[1] ?? "";
+      const problemUrl = new URL(anchor.getAttribute("href") ?? anchor.href, contestUrl);
+      problemUrl.hash = "";
+      if (contestUrl.searchParams.has("v")) {
+        if (problemUrl.searchParams.has("v") && problemUrl.searchParams.get("v") !== contestUrl.searchParams.get("v")) {
+          throw new Error(`题目链接版本与比赛不一致：${problemUrl}`);
+        }
+        problemUrl.searchParams.set("v", contestUrl.searchParams.get("v"));
+      }
+      const url = problemUrl.toString();
+      const providerProblemId = problemUrl.pathname.match(problemPath)?.[1] ?? "";
       if (!title || !providerProblemId) continue;
 
       let ordinal = null;
@@ -175,8 +186,12 @@
       : getCodeforcesContestMeta();
   const problems =
     provider === "qoj"
-      ? extractQojProblems()
+      ? extractQojProblems(contest)
       : await extractCodeforcesProblems(contest);
+
+  if (!problems.length) {
+    throw new Error("未解析到题目；请确认已登录、比赛版本正确且页面显示完整题单");
+  }
 
   const filename = `${provider}-contest-${contest.provider_contest_id}-problems.json`;
   const text = downloadJson(filename, problems);

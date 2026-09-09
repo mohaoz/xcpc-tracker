@@ -1,0 +1,14 @@
+{
+  "synthetic": true,
+  "title": "Versioned contest fixture",
+  "url": "https://qoj.ac/contest/900001?v=1",
+  "rows": [
+    { "ordinal": "A", "title": "Versioned problem", "href": "/contest/900001/problem/900011?v=1#statement" },
+    { "ordinal": "B", "title": "Relative version inheritance", "href": "https://qoj.ac/contest/900001/problem/900012" },
+    { "ordinal": "Z", "title": "Unrelated contest", "href": "/contest/900002/problem/900099?v=1" }
+  ],
+  "expected_problems": [
+    { "ordinal": "A", "title": "Versioned problem", "url": "https://qoj.ac/contest/900001/problem/900011?v=1", "provider_problem_id": "900011" },
+    { "ordinal": "B", "title": "Relative version inheritance", "url": "https://qoj.ac/contest/900001/problem/900012?v=1", "provider_problem_id": "900012" }
+  ]
+}
