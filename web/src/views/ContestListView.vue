@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import { useSettingsStore } from '../stores/settings';
+import { selectAwardCutoffs } from '../lib/award-policy';
 import { computed, onActivated, onDeactivated, onMounted, onUnmounted, ref, shallowRef, watch } from "vue";
 import { RouterLink } from "vue-router";
-import ImportHealthNotice from '../components/ImportHealthNotice.vue';
 
 import type { CatalogContestIndexItem } from "../lib/catalog";
 import { listRuntimeCatalogContests, listRuntimeContestCoveragePayload, type RuntimeCatalogContestListRecord } from "../lib/catalog-runtime";
@@ -31,6 +32,7 @@ let needsReload = true;
 const hasLoaded = ref(false);
 const contestListStore = useContestListStore();
 const spoilers = useSpoilerStore();
+const settings = useSettingsStore();
 const allMemberCoverage = computed(() => new Map(coverageInput.value
   ? summarizeCatalogCoverage(coveragePayload.value, coverageInput.value).map(s => [s.contestId, s]) : []));
 const touched = (id: string) => isContestTouched(allMemberCoverage.value.get(id));
@@ -194,7 +196,7 @@ function getSolvedCutoff(
   contest: RuntimeCatalogContestListRecord | undefined,
   medal: "gold" | "silver" | "bronze",
 ) {
-  const solved = contest?.awardCutoffs?.cutoffs[medal]?.solved;
+  const solved = selectAwardCutoffs(contest, settings.allowMedalEstimates)?.cutoffs[medal]?.solved;
   return typeof solved === "number" ? solved : null;
 }
 
@@ -252,10 +254,6 @@ function getContestBadgeTitle(contestId: string) {
 
 function getContestBadgeSearchToken(contestId: string) {
   return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA" ? "?" : null;
-}
-
-function formatContestDate(value: string | null | undefined) {
-  return value?.match(/^\d{4}-\d{2}-\d{2}/u)?.[0] ?? value ?? "";
 }
 
 function getContestAwardRange(contestId: string) {
@@ -658,7 +656,6 @@ watch(() => contestListStore.selectedMode, () => {
           <button type="button" class="button button--ghost" :disabled="loading" @click="loadContests">重试</button>
         </div>
 
-        <ImportHealthNotice :member-ids="contestListStore.selectedMemberIds" />
         <p v-if="spoilers.error" class="error-box">{{ spoilers.error }}</p>
         <div v-if="loading && !hasLoaded" class="notice">正在加载比赛…</div>
         <div v-else-if="!contests.length" class="notice">
@@ -684,11 +681,6 @@ watch(() => contestListStore.selectedMode, () => {
             <div class="contest-card__meta-row">
               <div class="contest-card__meta-main">
                 <div class="inline-tags">
-                  <button type="button" class="tag tag--neutral" :aria-pressed="showSpoilers(contest.id)"
-                    :disabled="!spoilers.loaded || spoilers.saving.includes(contest.id)"
-                    @click.prevent.stop="spoilers.toggle(contest.id, touched(contest.id))">
-                    {{ showSpoilers(contest.id) ? '剧透' : '非剧透' }}
-                  </button>
                   <button
                     v-if="getContestAwardRange(contest.id)"
                     type="button"
@@ -734,9 +726,6 @@ watch(() => contestListStore.selectedMode, () => {
                   </span>
                   <span class="tag tag--neutral">
                     已做 {{ coverageSummaryMap.get(contest.id)?.solvedProblemCount ?? 0 }}
-                  </span>
-                  <span v-if="contest.start_at" class="tag tag--neutral">
-                    {{ formatContestDate(contest.start_at) }}
                   </span>
                 </div>
                 <div

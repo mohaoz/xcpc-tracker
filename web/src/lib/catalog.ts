@@ -9,6 +9,7 @@ export type CatalogContestIndexItem = {
   curation_status: "contest_stub" | "problem_listed" | "reviewed";
   sources?: CatalogSource[];
   awardCutoffs?: CatalogAwardCutoffs | null;
+  estimatedAwardCutoffs?: CatalogAwardCutoffs | null;
   notes?: string | null;
   generated_from?: string;
   problem_count: number;
@@ -51,6 +52,7 @@ export type CatalogAwardCutoffs = {
 
 export type CatalogProblem = {
   tags?: string[];
+  rating?: number;
   id: string;
   ordinal: string;
   title: string;
@@ -67,6 +69,7 @@ export type CatalogContestDetail = {
   curation_status: "contest_stub" | "problem_listed" | "reviewed";
   sources: CatalogSource[];
   awardCutoffs?: CatalogAwardCutoffs;
+  estimatedAwardCutoffs?: CatalogAwardCutoffs;
   problems: CatalogProblem[];
   notes?: string;
   generated_from?: string;
@@ -101,12 +104,14 @@ type CatalogSnapshotContest = {
   problemIds: string[];
   sources: CatalogSnapshotSource[];
   awardCutoffs?: CatalogAwardCutoffs;
+  estimatedAwardCutoffs?: CatalogAwardCutoffs;
   notes?: string;
   generatedFrom?: string;
 };
 
 type CatalogSnapshotProblem = {
   tags?: string[];
+  rating?: number;
   problemId: string;
   contestId: string;
   ordinal: string;
@@ -206,6 +211,7 @@ export async function fetchGeneratedCatalogBundle(options?: { forceRefresh?: boo
       bucket.push({
         id: problem.problemId,
         tags: problem.tags ?? [],
+        rating: problem.rating,
         ordinal: problem.ordinal,
         title: problem.title,
         aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources ?? []),
@@ -227,6 +233,7 @@ export async function fetchGeneratedCatalogBundle(options?: { forceRefresh?: boo
         curation_status: contest.curationStatus,
         sources: contest.sources ?? [],
         awardCutoffs: contest.awardCutoffs,
+        estimatedAwardCutoffs: contest.estimatedAwardCutoffs,
         problems: (problemsByContestId.get(contest.contestId) ?? []).sort((left, right) =>
           left.ordinal.localeCompare(right.ordinal),
         ),

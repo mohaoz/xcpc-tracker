@@ -41,6 +41,8 @@
 - If adding schema validation, then validate curated files against JSON Schema before build or deploy.
 - If adding canonical catalog fields, then prefer `id`, `title`, `aliases`, `tags`, `problems`, `sources`, and optional provenance notes; do not duplicate obvious tag semantics into separate fields without a concrete product need.
 - If enriching from XCPC Rating problems, then use verified matches for whole-contest practice links and optional problem tags; retain the existing whole-contest link interaction, show tags only in spoiler mode, preserve unresolved candidates, and never infer member status from rating data.
+- If displaying problem ratings, then use only verified XCPC Rating values with CF rank colors, leave missing values unset, and hide both tag and rating columns in non-spoiler mode. Put a compact member-row/problem-column heatmap above the problem metadata table, and put bulk spoiler and medal-estimation controls in management.
+- If using proportional medal estimates, then require the default-on user setting, prefer explicit award data, and only estimate missing awards from complete audited standings with known eligibility and highest group; gold/silver/bronze counts use floor(eligible * 10%/20%/30%) and estimates remain labelled.
 - If selecting a default standings source, then prefer an explicit `sources[*].is_default`, followed by verified RankLand and existing standings; preserve other sources as fallbacks.
 - If storing external links, then use a `sources` array with objects shaped like `provider`, `kind`, and `url`.
 - If contest/problem IDs are needed, then use stable internal IDs in curated data and keep provider-scoped IDs inside source mappings.

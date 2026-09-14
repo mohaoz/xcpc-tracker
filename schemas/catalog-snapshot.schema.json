@@ -12,10 +12,12 @@
       "problemIds": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
       "curationStatus": {"enum": ["problem_listed", "reviewed"]},
       "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}},
-      "awardCutoffs": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/awards"}]}
+      "awardCutoffs": {"anyOf": [{"type": "null"}, {"$ref": "#/$defs/awards"}]},
+      "estimatedAwardCutoffs": {"$ref": "#/$defs/awards"}
     }}},
     "problems": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["problemId", "contestId", "ordinal", "title", "sources", "aliases"], "properties": {
       "problemId": {"type": "string", "minLength": 1}, "contestId": {"type": "string", "minLength": 1}, "ordinal": {"type": "string", "minLength": 1}, "title": {"type": "string", "minLength": 1},
+      "rating": {"type": "number", "minimum": 0},
       "tags": {"$ref": "#/$defs/strings"}, "aliases": {"$ref": "#/$defs/strings"}, "sources": {"type": "array", "items": {"$ref": "#/$defs/source"}}
     }}}
   },

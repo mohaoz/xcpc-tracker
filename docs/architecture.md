@@ -10,7 +10,11 @@ RankLand 的集合配置及 SRK 从固定 Git 提交获取，页面 uniqueKey �
 
 XCPC Rating 仅在构建期匹配题目，补充可选 `tags` 与整场补题入口，沿用整场链接交互。模糊或冲突记录不应用。浏览器不请求 Rating 或 SRK 数据。
 
+题目可带 `rating`（XCPC Rating 原始数值，展示时四舍五入并按 CF 段位着色）；只沿用已审核的题目来源映射补入，缺失值不估算。上方做题热力图按成员为行、题目为列；下方题目表将标签与 rating 独立分列，非剧透时隐藏这两列。管理页的全部剧透开关批量写入当前目录每场比赛的手动设置，单场仍可在详情覆盖。
+
 ## 本地数据与剧透
+
+v6 新增 `appSettings`（主键 `key`）保存 `allow_medal_estimates`，默认 true，保留旧数据。牌线选择统一用于列表与详情：官方配置优先；比例估算仅开关开启时使用。估算在构建期由完整已核验榜单生成 `estimatedAwardCutoffs`，不在浏览器抓榜。10%／20%／30% 指金银铜各自人数（累计 10%／30%／60%，向下取整）；不足一支队的档位不生成牌线。保留最高组别与正式队过滤；榜单不完整或组别不明则不估算。
 
 IndexedDB 使用 Dexie。v5 在 v4 基础上增加 `contestPreferences`，主键 `contest_id`，记录 `{ contest_id, spoiler_mode: "spoiler" | "non_spoiler" }`，不清空已有 stores。
 

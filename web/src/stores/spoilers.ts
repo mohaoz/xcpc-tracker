@@ -10,6 +10,7 @@ export const useSpoilerStore = defineStore('spoilers', () => {
   const loaded = ref(false);
   const error = ref('');
   const saving = ref<string[]>([]);
+  const bulkSaving = ref(false);
   let started = false;
   function initialize() {
     if (started) return;
@@ -38,5 +39,21 @@ export const useSpoilerStore = defineStore('spoilers', () => {
     finally { saving.value = saving.value.filter(value => value !== id); }
   }
   initialize();
-  return { loaded, error, saving, visible, toggle, initialize };
+  function allEnabled(ids: string[]) {
+    return ids.length > 0 && ids.every(id => preferences.value.get(id) === 'spoiler');
+  }
+  async function setAll(ids: string[], enabled: boolean) {
+    if (!loaded.value || bulkSaving.value) return;
+    bulkSaving.value = true;
+    const mode = enabled ? 'spoiler' : 'non_spoiler';
+    try {
+      await localDb.contestPreferences.bulkPut(ids.map(id => ({contest_id: id, spoiler_mode: mode})));
+      const next = new Map(preferences.value);
+      ids.forEach(id => next.set(id, mode));
+      preferences.value = next;
+      error.value = '';
+    } catch { error.value = '批量剧透设置保存失败，请重试。'; }
+    finally { bulkSaving.value = false; }
+  }
+  return { loaded, error, saving, bulkSaving, visible, toggle, initialize, allEnabled, setAll };
 });

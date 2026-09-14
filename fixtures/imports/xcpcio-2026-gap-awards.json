@@ -1,0 +1,217 @@
+{
+  "fetched_at": "2026-09-14T05:51:47.557Z",
+  "audit": [
+    {
+      "contest_id": "51ea566e-015d-50c9-a1a0-8efe98a119c8",
+      "title": "第 14 届陕西省国际大学生程序设计竞赛 - 正式赛",
+      "status": "blocked",
+      "reason": "No verified official/highest group; do not merge unknown groups"
+    },
+    {
+      "contest_id": "351df86a-97da-50fb-9d53-f536ecd9e383",
+      "title": "第十八届四川省大学生程序设计竞赛 - 正式赛",
+      "status": "applied",
+      "group": "official",
+      "penalty_rule": "in_minutes",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2026/sichuan",
+      "hashes": {
+        "config": "5bd93ff0c98e040362a69083a84a85fd0e33dd50410dbd749ad15bbddacd0007",
+        "team": "6dc9cb205d3552138c7cb5e95c5f8e51f8ce426c182c5d7402b12483de96f4d2",
+        "run": "ddebec1a2e35992a84434a48f5c4fe635280ee78d3a2c9af66efd37899054756"
+      },
+      "result": {
+        "source": "explicit",
+        "eligibleTeamCount": 207,
+        "cutoffs": {
+          "gold": {
+            "rank": 20,
+            "solved": 5,
+            "penalty": 519,
+            "teamId": "team251"
+          },
+          "silver": {
+            "rank": 59,
+            "solved": 3,
+            "penalty": 131,
+            "teamId": "team153"
+          },
+          "bronze": {
+            "rank": 122,
+            "solved": 2,
+            "penalty": 211,
+            "teamId": "team274"
+          }
+        },
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2026/sichuan"
+      }
+    },
+    {
+      "contest_id": "1ac1cd8e-42b5-5e26-9419-c72b913577f8",
+      "title": "2026 GBA International Programming Contest",
+      "status": "blocked",
+      "reason": "No verified official/highest group; do not merge unknown groups"
+    },
+    {
+      "contest_id": "b84e4298-4c66-56b3-a5e1-403d1d7c87cd",
+      "title": "第二十三届广东省大学生程序设计竞赛 - 正式赛",
+      "status": "applied",
+      "group": "official",
+      "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2026/guangdong",
+      "hashes": {
+        "config": "34ed9e260283741c94e0a6668ae69187a414ce0f22dfa5f132c4ddf9ff66a82d",
+        "team": "598fc95b555a8c1d9a985f56017a7511fc1e075a6bc3b4ea591c5e032e901db3",
+        "run": "00e9740bd8d1289eb4c8b0fc3c79d6a0eb15a84400b1db7f3c6a2248ea1a5d53"
+      },
+      "result": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "eligibleTeamCount": 236,
+        "cutoffs": {
+          "gold": {
+            "rank": 23,
+            "solved": 7,
+            "penalty": 806,
+            "teamId": "team041"
+          },
+          "silver": {
+            "rank": 70,
+            "solved": 5,
+            "penalty": 578,
+            "teamId": "team404"
+          },
+          "bronze": {
+            "rank": 141,
+            "solved": 4,
+            "penalty": 826,
+            "teamId": "team287"
+          }
+        },
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2026/guangdong"
+      }
+    },
+    {
+      "contest_id": "965d670a-c551-5dda-a280-33fc2229feaf",
+      "title": "2026 年山东省大学生程序设计竞赛",
+      "status": "applied",
+      "group": "official",
+      "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2026/shandong",
+      "hashes": {
+        "config": "bf75c11cac4e77129676117013eb8bf009dad1d0f4208fe2d285773f7fb437e9",
+        "team": "59e243df927f9aa52e4cb87e23dd9bbfd883494c79c3ddc5f0390111ad784f7e",
+        "run": "315ea94d974c9002eaf64140d7d63f5010800b01099583d2dcdab8ed8cd27f89"
+      },
+      "result": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "eligibleTeamCount": 237,
+        "cutoffs": {
+          "gold": {
+            "rank": 23,
+            "solved": 5,
+            "penalty": 383,
+            "teamId": "team20339"
+          },
+          "silver": {
+            "rank": 71,
+            "solved": 5,
+            "penalty": 845,
+            "teamId": "teamteam40526"
+          },
+          "bronze": {
+            "rank": 142,
+            "solved": 3,
+            "penalty": 473,
+            "teamId": "teamteam40318"
+          }
+        },
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2026/shandong"
+      }
+    },
+    {
+      "contest_id": "e7f754fb-7c45-5a17-8549-5fc0c7bde688",
+      "title": "“华为智联杯”无线程序设计大赛暨2026年上海市大学生程序设计竞赛",
+      "status": "applied",
+      "group": "official",
+      "penalty_rule": "in_minutes",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2026/shanghai",
+      "hashes": {
+        "config": "dc7321443cc6ad87fd2b57207a3776e968956381e35ec482d395c88b0f0c238a",
+        "team": "874954a60a812e4bf6172bdfb7464f75408bf5cd20aced55261e9a097fc8f315",
+        "run": "812efe1e5e236e5ba78207eb5d041d8306482437d77e20a41b5ccbdaa66472c1"
+      },
+      "result": {
+        "source": "explicit",
+        "eligibleTeamCount": 144,
+        "cutoffs": {
+          "gold": {
+            "rank": 14,
+            "solved": 6,
+            "penalty": 615,
+            "teamId": "C601-01"
+          },
+          "silver": {
+            "rank": 42,
+            "solved": 4,
+            "penalty": 392,
+            "teamId": "C417-15"
+          },
+          "bronze": {
+            "rank": 84,
+            "solved": 3,
+            "penalty": 349,
+            "teamId": "C426-03"
+          }
+        },
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2026/shanghai"
+      }
+    },
+    {
+      "contest_id": "f6802fb9-74a6-5029-9a19-e0f5cfaf7645",
+      "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（沈阳）",
+      "status": "applied",
+      "group": "official",
+      "penalty_rule": "in_minutes",
+      "source_url": "https://board.xcpcio.com/icpc/51st/shenyang-invitational",
+      "hashes": {
+        "config": "3083182b489f5b52b64958a3662458e10d3b2a00a3562e8aab8aa712c99be40c",
+        "team": "0aa47ca6dba9c568ac554bfb1255f4deda1a2d63d58631e4baefe88a2469aeb9",
+        "run": "712ee2a0b39b9ab9e44849f5c04680a585fe5b9f2bf6c1f9cab2206146c35def"
+      },
+      "result": {
+        "source": "explicit",
+        "eligibleTeamCount": 281,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 6,
+            "penalty": 968,
+            "teamId": "137"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 4,
+            "penalty": 350,
+            "teamId": "163"
+          },
+          "bronze": {
+            "rank": 169,
+            "solved": 3,
+            "penalty": 124,
+            "teamId": "272"
+          }
+        },
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/icpc/51st/shenyang-invitational"
+      }
+    }
+  ]
+}

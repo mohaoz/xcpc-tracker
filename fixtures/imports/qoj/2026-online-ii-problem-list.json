@@ -1,0 +1,112 @@
+[
+  {
+    "title": "The 2026 ICPC Asia East Continent Online Contest (II)",
+    "url": "https://qoj.ac/contest/4113",
+    "provenance": {
+      "method": "reviewed_user_saved_html",
+      "source_sha256": "c7efa4d37af6b86b88631d32c3ecbfaf7f0078df9ac09ab8d7d99d3a90291bbb",
+      "reviewed_at": "2026-09-14",
+      "notes": "A–L reviewed from saved contest problem table; page user statuses and private account metadata excluded."
+    },
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "All Closed",
+        "url": "https://qoj.ac/contest/4113/problem/20236",
+        "provider_problem_id": "20236"
+      },
+      {
+        "ordinal": "B",
+        "title": "Bread",
+        "url": "https://qoj.ac/contest/4113/problem/20237",
+        "provider_problem_id": "20237"
+      },
+      {
+        "ordinal": "C",
+        "title": "Cut Tree",
+        "url": "https://qoj.ac/contest/4113/problem/20238",
+        "provider_problem_id": "20238"
+      },
+      {
+        "ordinal": "D",
+        "title": "Divide and Conquer",
+        "url": "https://qoj.ac/contest/4113/problem/20239",
+        "provider_problem_id": "20239"
+      },
+      {
+        "ordinal": "E",
+        "title": "Exponent",
+        "url": "https://qoj.ac/contest/4113/problem/20240",
+        "provider_problem_id": "20240"
+      },
+      {
+        "ordinal": "F",
+        "title": "Folding Game of Ohto Ai",
+        "url": "https://qoj.ac/contest/4113/problem/20241",
+        "provider_problem_id": "20241"
+      },
+      {
+        "ordinal": "G",
+        "title": "Ghost of Tsushima",
+        "url": "https://qoj.ac/contest/4113/problem/20242",
+        "provider_problem_id": "20242"
+      },
+      {
+        "ordinal": "H",
+        "title": "Hidden Track (Easy Version)",
+        "url": "https://qoj.ac/contest/4113/problem/20243",
+        "provider_problem_id": "20243"
+      },
+      {
+        "ordinal": "I",
+        "title": "Island",
+        "url": "https://qoj.ac/contest/4113/problem/20244",
+        "provider_problem_id": "20244"
+      },
+      {
+        "ordinal": "J",
+        "title": "Joker or Judger",
+        "url": "https://qoj.ac/contest/4113/problem/20245",
+        "provider_problem_id": "20245"
+      },
+      {
+        "ordinal": "K",
+        "title": "K-MEX",
+        "url": "https://qoj.ac/contest/4113/problem/20246",
+        "provider_problem_id": "20246"
+      },
+      {
+        "ordinal": "L",
+        "title": "Loop",
+        "url": "https://qoj.ac/contest/4113/problem/20247",
+        "provider_problem_id": "20247"
+      }
+    ],
+    "target_contest": {
+      "contest_id": "4df2ecfa-4632-5a6b-a926-0b7667774113",
+      "title": "The 2026 ICPC Asia East Continent Online Contest (II)",
+      "aliases": [
+        "2026 ICPC 网络赛第二场",
+        "2026 ICPC 网络赛 II"
+      ],
+      "tags": [
+        "2026",
+        "icpc",
+        "网络赛",
+        "第二场"
+      ],
+      "start_at": "2026-09-12",
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "contest",
+          "url": "https://qoj.ac/contest/4113",
+          "provider_contest_id": "4113",
+          "source_title": "The 2026 ICPC Asia East Continent Online Contest (II)",
+          "label": "QOJ"
+        }
+      ],
+      "notes": null
+    }
+  }
+]

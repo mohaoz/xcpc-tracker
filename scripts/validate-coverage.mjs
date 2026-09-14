@@ -133,6 +133,7 @@ let currentInput = input;
 const listStoreModule = loadModule("web/src/stores/contest-list.ts");
 const listComponent = loadModule("web/src/views/ContestListView.vue", {
   '../stores/spoilers': {useSpoilerStore: () => ({loaded:true, saving:[], error:'', visible: (_id,touched) => touched, toggle:async()=>{}})},
+  '../stores/settings': {useSettingsStore: () => ({allowMedalEstimates:false})},
   "../lib/local-db": {
     readMemberCoverageInputFromDb: async () => {
       memberReads++;

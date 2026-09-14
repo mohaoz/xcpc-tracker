@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 0.7.1
+
+- Backfill five XCPCIO award datasets with audited group/penalty rules; retain explicit gaps for Shaanxi/GBA group ambiguity. Default bulk spoilers off and medal estimates on, preserving saved preferences.
+- Add the 2026 ICPC Asia East Continent Online Contest (II), with 12 reviewed QOJ problems from a user-saved contest page.
+- Put the coverage heatmap in its own card above awards to keep its position stable when spoiler information is toggled.
+- Split member-row/problem-column heatmap from metadata, move management actions to the bottom, use CF rating colors, and add a default-on persistent medal ratio estimate setting.
+- Separate tags and XCPC Rating into spoiler-only columns; compact member coverage into a per-problem/per-member heatmap, add management bulk spoiler control, and align footer with the content edge.
+- Hide the date on contest list cards; retain date metadata and chronological sorting.
+- Move spoiler controls into a compact detail-header switch; remove duplicate standings entry and redundant date disclaimer.
+- Remove the import-gap notice from contest list and detail pages; retain import records and import-flow feedback.
+
 ## 0.7.0
 
 - Add persistent per-contest spoiler controls across list/detail: untouched contests hide medal cutoffs, awards and problem tags; manual choices override attempted/solved defaults.

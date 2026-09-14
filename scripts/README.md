@@ -1,5 +1,11 @@
 # 数据维护与验证
 
+XCPCIO 缺口补录：保存目标比赛的 `config/team/run.json` 后，使用 `node scripts/apply-xcpcio-gaps.mjs <缓存目录>`。只补缺失牌线，不修改来源；正式组不明则阻止应用。证据记录在 `fixtures/imports/xcpcio-2026-gap-awards.json`；`scripts/validate-xcpcio-gaps.mjs` 校验 CE 不计罚时、秒级累加取整和奖牌配置优先级。
+
+无奖牌配置的榜单估算：`node scripts/build-medal-estimates.mjs <已审核 SRK 缓存目录>`，结果写入独立的 `estimatedAwardCutoffs`，跳过原因保存在审核附件。浏览器管理页默认开启估算，也同时控制原目录已有的比例估算牌线。
+
+已审核题目的 Rating 补充：`node scripts/enrich-reviewed-ratings.mjs <原始 problems-index.json>`。该命令核对已保存审核包的原始文件 SHA，仅按已有来源映射写入有限非负数值；冲突与缺失不估算。
+
 所有脚本只用于构建或维护，正常使用不依赖它们。`catalog/default-catalog.min.json` 是正式数据，不能用旧抓取结果覆盖重建。
 
 ## 日常命令

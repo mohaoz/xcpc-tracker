@@ -1,17 +1,18 @@
 <script setup lang="ts">
+import { useSettingsStore } from '../stores/settings';
+import { selectAwardCutoffs } from '../lib/award-policy';
+import { ratingClass } from '../lib/rating-colors';
 import { computed, onMounted, ref, watch } from "vue";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 
 import ContestCatalogEditor from "../components/ContestCatalogEditor.vue";
-import ImportHealthNotice from '../components/ImportHealthNotice.vue';
 import {
   type CatalogAwardCutoffs,
   type CatalogSource,
   type CatalogContestDetail,
 } from "../lib/catalog";
 import { aggregateAliasesFromSources } from "../lib/catalog-sources";
-import { findStandingsSource } from "../lib/standings-sources";
 import { useSpoilerStore } from "../stores/spoilers";
 import { getRuntimeCatalogContestDetail, listRuntimeCatalogContests } from "../lib/catalog-runtime";
 import { emitCatalogMutated } from "../lib/catalog-events";
@@ -38,13 +39,21 @@ const deleting = ref(false);
 const existingTags = ref<string[]>([]);
 const markMode = ref(false);
 const markSavingCellKey = ref("");
-const awardCutoffs = ref<CatalogAwardCutoffs | null>(null);
+const settings = useSettingsStore();
+const awardCutoffs = computed(() => selectAwardCutoffs(contest.value, settings.allowMedalEstimates));
 const spoilers = useSpoilerStore();
 const touched = computed(() => coverage.value?.problems.some(p => p.members.some(m => m.status !== 'unseen')) ?? false);
 const showSpoilers = computed(() => !loading.value && spoilers.visible(contestId.value, touched.value));
 
 const contestId = computed(() => String(route.params.contestId ?? ""));
 const trackedMembers = computed(() => coverage.value?.trackedMembers ?? []);
+const memberCoverageRows = computed(() => trackedMembers.value.map(member => ({
+  ...member,
+  cells: (coverage.value?.problems ?? []).map(problem => ({
+    problemId: problem.problemId, ordinal: problem.ordinal, title: problem.title,
+    status: problem.members.find(m => m.memberId === member.memberId)?.status ?? 'unseen',
+  })),
+})));
 const awardCutoffRows = computed(() => {
   const cutoffs = awardCutoffs.value?.cutoffs;
   return [
@@ -58,7 +67,7 @@ const awardCutoffSourceLabel = computed(() => {
     return "";
   }
   if (awardCutoffs.value.source === "explicit") {
-    return "使用该来源的官方奖项配置（非比例估算）";
+    return "";
   }
   if (awardCutoffs.value.source === "inferred_official_medal_ratio_10_20_30") {
     return "按 official 队伍奖牌数量 10% / 20% / 30% 推断";
@@ -68,6 +77,8 @@ const awardCutoffSourceLabel = computed(() => {
 const contestDateLabel = computed(() =>
   contest.value?.start_at?.match(/^\d{4}-\d{2}-\d{2}/u)?.[0] ?? "",
 );
+const visibleContestNotes = computed(() => (contest.value?.notes ?? "")
+  .replace(/举办日期为\s*\d{4}-\d{2}-\d{2}，具体开赛时刻未确认。/gu, "").trim());
 const solvedProblemCount = computed(() =>
   coverage.value?.problems.filter((problem) => problem.members.some((member) => member.status === "solved")).length ?? 0,
 );
@@ -130,12 +141,8 @@ const contestEyebrow = computed(() => {
   }
   return "CURATED CONTEST";
 });
-const standingsSource = computed(() => findStandingsSource(contest.value?.sources ?? []));
 const problemMetadata = computed(() => new Map((contest.value?.problems ?? []).map(p => [p.id, p])));
 
-function loadAwardCutoffs() {
-  awardCutoffs.value = contest.value?.awardCutoffs ?? null;
-}
 const contestEditorInitialValue = computed(() => {
   if (!contest.value) {
     return undefined;
@@ -153,6 +160,7 @@ const contestEditorInitialValue = computed(() => {
       title: problem.title,
       aliases: problem.aliases,
       tags: problem.tags ?? [],
+      rating: problem.rating,
       sources: problem.sources,
     })),
   };
@@ -166,6 +174,7 @@ function mapLocalContestRecordToDetail(
     title: string;
     aliases?: string[];
     tags?: string[];
+    rating?: number;
     sources?: CatalogSource[];
   }> = [],
 ): CatalogContestDetail {
@@ -178,12 +187,14 @@ function mapLocalContestRecordToDetail(
     curation_status: contestRecord.curationStatus,
     sources: contestRecord.sources,
     awardCutoffs: contestRecord.awardCutoffs,
+    estimatedAwardCutoffs: contestRecord.estimatedAwardCutoffs,
     problems: problems.map((problem) => ({
       id: problem.problemId,
       ordinal: problem.ordinal,
       title: problem.title,
       aliases: "aliases" in problem ? (problem.aliases ?? []) : [],
       tags: "tags" in problem ? (problem.tags ?? []) : [],
+      rating: "rating" in problem ? problem.rating : undefined,
       sources: "sources" in problem ? (problem.sources ?? []) : [],
     })),
     notes: contestRecord.notes ?? undefined,
@@ -209,7 +220,6 @@ async function loadContestPage() {
     );
     coverage.value = await getContestCoverageForCatalog(runtimeDetail.contest, runtimeDetail.problems);
     contest.value = mapLocalContestRecordToDetail(runtimeDetail.contest, runtimeDetail.problems);
-    loadAwardCutoffs();
   } catch (caught) {
     error.value = caught instanceof Error ? caught.message : "加载比赛失败";
   } finally {
@@ -258,6 +268,7 @@ async function saveContestMetadata(payload: {
       title: problem.title,
       aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources),
       tags: 'tags' in problem ? (problem.tags ?? []) : (contest.value?.problems.find(p => p.ordinal === problem.ordinal)?.tags ?? []),
+      rating: contest.value?.problems.find(p => p.ordinal === problem.ordinal)?.rating,
       sources: problem.sources,
     }));
     const contestTitle = payload.title.trim();
@@ -272,6 +283,7 @@ async function saveContestMetadata(payload: {
         problemIds: nextProblems.map((problem) => problem.problemId),
         sources: payload.sources,
         awardCutoffs: contest.value.awardCutoffs,
+        estimatedAwardCutoffs: contest.value.estimatedAwardCutoffs,
         notes: payload.notes,
         generatedFrom: "manual",
       },
@@ -313,16 +325,6 @@ async function handleDeleteContest() {
 
 function buildCellKey(problemId: string, memberId: string) {
   return `${problemId}:${memberId}`;
-}
-
-function getProblemAggregateStatus(problem: LocalContestCoverage["problems"][number]) {
-  if (problem.members.some((member) => member.status === "solved")) {
-    return "solved";
-  }
-  if (problem.members.some((member) => member.status === "attempted")) {
-    return "attempted";
-  }
-  return "unseen";
 }
 
 function getNextManualStatus(payload: {
@@ -406,7 +408,21 @@ onMounted(loadContestPage);
                 <span v-if="contestDateLabel">{{ contestDateLabel }}</span>
               </div>
             </div>
-            <div class="inline-tags">
+            <div class="contest-detail-controls">
+              <button
+                type="button"
+                role="switch"
+                class="spoiler-switch"
+                :aria-checked="showSpoilers"
+                aria-label="显示剧透信息"
+                title="显示牌线、奖牌和题目标签"
+                :disabled="!spoilers.loaded || spoilers.saving.includes(contestId)"
+                @click="spoilers.toggle(contestId, touched)"
+              >
+                <span class="spoiler-switch__label">{{ showSpoilers ? '剧透' : '非剧透' }}</span>
+                <span class="spoiler-switch__track" aria-hidden="true"><span class="spoiler-switch__thumb"></span></span>
+              </button>
+              <div class="inline-tags">
               <span
                 v-for="tag in contest.tags"
                 :key="tag"
@@ -414,6 +430,7 @@ onMounted(loadContestPage);
               >
                 {{ tag }}
               </span>
+              </div>
             </div>
           </div>
 
@@ -436,14 +453,31 @@ onMounted(loadContestPage);
                   </div>
                 </div>
 
-                <ImportHealthNotice />
-
-                <div class="actions" style="margin-bottom: 18px">
-                  <button type="button" class="button button--ghost" :aria-pressed="showSpoilers"
-                    :disabled="!spoilers.loaded || spoilers.saving.includes(contestId)" @click="spoilers.toggle(contestId, touched)">
-                    {{ showSpoilers ? '剧透 · 切换为非剧透' : '非剧透 · 显示牌线、奖牌和题目标签' }}
-                  </button>
+                <section class="coverage-heatmap-card" aria-label="做题情况">
+                <h3 class="detail-section-title">做题情况</h3>
+                <div class="coverage-heatmap-shell">
+                  <table class="coverage-heatmap">
+                    <thead><tr><th>成员</th><th v-for="problem in coverage?.problems ?? []" :key="problem.problemId" :title="problem.title">{{ problem.ordinal }}</th></tr></thead>
+                    <tbody>
+                      <tr v-for="member in memberCoverageRows" :key="member.memberId">
+                        <th :title="member.displayName">{{ member.displayName }}</th>
+                        <td v-for="cell in member.cells" :key="cell.problemId">
+                          <button type="button" class="coverage-cell-button"
+                            :class="[{ 'coverage-cell-button--active': markMode }, `coverage-cell-button--${cell.status}`]"
+                            :disabled="!markMode || !!markSavingCellKey"
+                            :title="`${member.displayName} · ${cell.ordinal} ${cell.title}：${cell.status === 'solved' ? '已通过' : cell.status === 'attempted' ? '已尝试' : '未做'}`"
+                            :aria-label="`${member.displayName} ${cell.ordinal}：${cell.status === 'solved' ? '已通过' : cell.status === 'attempted' ? '已尝试' : '未做'}`"
+                            @click="applyMarkToCell(cell.problemId, member.memberId, cell.status)">
+                            <span class="heatmap-cell-symbol">{{ markSavingCellKey === buildCellKey(cell.problemId, member.memberId) ? '…' : cell.status === 'solved' ? '✓' : cell.status === 'attempted' ? '·' : '' }}</span>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <p v-if="!memberCoverageRows.length" class="muted tiny">暂无成员</p>
                 </div>
+                <div class="heatmap-legend muted tiny"><span><i class="heatmap-key heatmap-key--unseen"></i>未做</span><span><i class="heatmap-key heatmap-key--attempted"></i>尝试</span><span><i class="heatmap-key heatmap-key--solved"></i>通过</span></div>
+                </section>
                 <p v-if="spoilers.error" class="error-box">{{ spoilers.error }}</p>
                 <div
                   v-if="showSpoilers && awardCutoffs"
@@ -505,101 +539,28 @@ onMounted(loadContestPage);
                   <p class="award-cutoff-card__source">
                     来源：<a :href="awardCutoffs.sourceUrl" target="_blank" rel="noreferrer">
                       {{ awardCutoffs.sourceLabel }}
-                    </a>。{{ awardCutoffSourceLabel }}，{{ awardCutoffs.eligibleTeamCount }} official teams。
+                    </a><span v-if="awardCutoffSourceLabel"> · {{ awardCutoffSourceLabel }}</span>
                   </p>
                 </div>
                 <p v-else-if="showSpoilers" class="muted tiny" style="margin-bottom: 18px">
                   暂无预计算奖牌线。
                 </p>
 
-                <div class="actions" style="margin-top: 0; margin-bottom: 18px">
-                  <button
-                    :class="markMode ? 'button' : 'button button--ghost'"
-                    :disabled="!coverage?.trackedMembers.length || !coverage?.problemCount"
-                    @click="markMode = !markMode"
-                  >
-                    {{ markMode ? "退出标记模式" : "进入标记模式" }}
-                  </button>
-                  <button class="button button--ghost" :disabled="saving" @click="editing = !editing">
-                    {{ editing ? "关闭编辑器" : "编辑比赛信息" }}
-                  </button>
-                  <button class="button button--ghost" :disabled="deleting" @click="handleDeleteContest">
-                    {{ deleting ? "删除中..." : "删除比赛" }}
-                  </button>
-                </div>
 
-                <div v-if="editing" class="panel" style="box-shadow: none; margin-bottom: 18px">
-                  <div class="panel__body">
-                    <ContestCatalogEditor
-                      :initial-value="contestEditorInitialValue"
-                      :existing-tags="existingTags"
-                      :busy="saving"
-                      submit-label="保存比赛"
-                      @submit="saveContestMetadata"
-                    />
-                  </div>
-                </div>
 
-                <p v-if="standingsSource">
-                  <a :href="standingsSource.url" target="_blank" rel="noreferrer">查看榜单 · {{ standingsSource.label || standingsSource.provider }}</a>
-                </p>
+                <h3 class="detail-section-title">题目信息</h3>
                 <div class="table-shell">
                   <table class="coverage-table">
-                    <thead>
-                      <tr>
-                        <th class="coverage-table__title-column">标题</th>
-                        <th
-                          v-for="member in coverage?.trackedMembers ?? []"
-                          :key="member.memberId"
-                        >
-                          {{ member.displayName }}
-                        </th>
-                      </tr>
-                    </thead>
+                    <thead><tr><th class="coverage-table__title-column">题目</th><th v-if="showSpoilers" class="coverage-table__metadata-column">标签</th><th v-if="showSpoilers" class="coverage-table__rating-column">Rating</th></tr></thead>
                     <tbody>
                       <tr v-for="problem in coverage?.problems ?? []" :key="problem.problemId">
-                        <td class="coverage-table__title-column">
-                          <div class="coverage-table__problem-title">
-                            <span
-                              class="contest-problem-state coverage-table__problem-ordinal"
-                              :class="`contest-problem-state--${getProblemAggregateStatus(problem)}`"
-                            >
-                              {{ problem.ordinal }}
-                            </span>
-                            <span class="coverage-table__problem-name">{{ problem.title }}</span>
-                          </div>
-                          <details v-if="showSpoilers && problemMetadata.get(problem.problemId)?.tags?.length" class="tiny" style="margin-top: 6px">
-                            <summary>查看题目标签（可能剧透）</summary>
-                            <div class="tag-list"><span v-for="tag in problemMetadata.get(problem.problemId)?.tags" :key="tag" class="tag">{{ tag }}</span></div>
-                            <a v-if="problemMetadata.get(problem.problemId)?.sources.some(s => s.provider === 'xcpc_rating')" href="https://hei-maom.github.io/xcpcrating/#/problems" target="_blank" rel="noreferrer">来源：XCPC Rating 社区标签</a>
-                          </details>
-                        </td>
-                        <td v-for="member in problem.members" :key="`${problem.problemId}-${member.memberId}`">
-                          <button
-                            type="button"
-                            class="coverage-cell-button"
-                            :class="{ 'coverage-cell-button--active': markMode }"
-                            :disabled="!markMode || !!markSavingCellKey"
-                            @click="applyMarkToCell(problem.problemId, member.memberId, member.status)"
-                          >
-                            <span class="status-dot" :class="`status-${member.status}`">
-                              {{
-                                markSavingCellKey === buildCellKey(problem.problemId, member.memberId)
-                                  ? "..."
-                                  : member.status === "solved"
-                                    ? "+"
-                                    : member.status === "attempted"
-                                      ? "-"
-                                      : ""
-                              }}
-                            </span>
-                          </button>
-                        </td>
+                        <td class="coverage-table__title-column"><div class="coverage-table__problem-title"><span class="problem-ordinal-label">{{ problem.ordinal }}</span><span>{{ problem.title }}</span></div></td>
+                        <td v-if="showSpoilers" class="coverage-table__metadata-column"><div class="problem-metadata"><span v-for="tag in problemMetadata.get(problem.problemId)?.tags ?? []" :key="tag" class="problem-tag">{{ tag }}</span><span v-if="!problemMetadata.get(problem.problemId)?.tags?.length" class="muted">—</span></div></td>
+                        <td v-if="showSpoilers" class="coverage-table__rating-column"><span v-if="problemMetadata.get(problem.problemId)?.rating != null" class="problem-rating" :class="ratingClass(problemMetadata.get(problem.problemId)?.rating)" title="XCPC Rating">{{ Math.round(problemMetadata.get(problem.problemId)!.rating!) }}</span><span v-else class="muted">—</span></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
-
                 <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
                 <p v-if="!(coverage?.problemCount)" class="notice" style="margin-top: 16px">
                   这场比赛还没有题目列表。可以在编辑器里手动补题，或者回到 Manage 页面导入补丁 JSON。
@@ -651,33 +612,42 @@ onMounted(loadContestPage);
                   </div>
                 </div>
 
-                <p v-if="contest.notes" class="notice" style="margin-top: 16px">{{ contest.notes }}</p>
+                <p v-if="visibleContestNotes" class="notice" style="margin-top: 16px">{{ visibleContestNotes }}</p>
               </div>
             </div>
           </div>
         </template>
         <p v-else-if="error" class="error-box">{{ error }}</p>
+        <div v-if="contest && !loading" class="detail-bottom-actions">
+                <div class="actions" style="margin-top: 0; margin-bottom: 18px">
+                  <button
+                    :class="markMode ? 'button' : 'button button--ghost'"
+                    :disabled="!coverage?.trackedMembers.length || !coverage?.problemCount"
+                    @click="markMode = !markMode"
+                  >
+                    {{ markMode ? "退出标记模式" : "进入标记模式" }}
+                  </button>
+                  <button class="button button--ghost" :disabled="saving" @click="editing = !editing">
+                    {{ editing ? "关闭编辑器" : "编辑比赛信息" }}
+                  </button>
+                  <button class="button button--ghost" :disabled="deleting" @click="handleDeleteContest">
+                    {{ deleting ? "删除中..." : "删除比赛" }}
+                  </button>
+                </div>
+
+                <div v-if="editing" class="panel" style="box-shadow: none; margin-bottom: 18px">
+                  <div class="panel__body">
+                    <ContestCatalogEditor
+                      :initial-value="contestEditorInitialValue"
+                      :existing-tags="existingTags"
+                      :busy="saving"
+                      submit-label="保存比赛"
+                      @submit="saveContestMetadata"
+                    />
+                  </div>
+                </div>
+        </div>
       </div>
     </section>
   </div>
 </template>
-
-<style scoped>
-.coverage-cell-button {
-  width: 100%;
-  border: none;
-  background: transparent;
-  padding: 0;
-  text-align: left;
-  cursor: default;
-  font: inherit;
-}
-
-.coverage-cell-button--active {
-  cursor: pointer;
-}
-
-.coverage-cell-button:disabled {
-  opacity: 1;
-}
-</style>

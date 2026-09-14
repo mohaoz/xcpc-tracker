@@ -10,6 +10,7 @@ export type LocalCatalogContestRecord = {
   problemIds: string[];
   sources: CatalogSource[];
   awardCutoffs?: CatalogAwardCutoffs;
+  estimatedAwardCutoffs?: CatalogAwardCutoffs;
   notes: string | null;
   generatedFrom: string | null;
   deletedAt?: string | null;
@@ -17,6 +18,7 @@ export type LocalCatalogContestRecord = {
 
 export type LocalCatalogProblemRecord = {
   tags?: string[];
+  rating?: number;
   problemId: string;
   contestId: string;
   ordinal: string;
@@ -96,6 +98,7 @@ export type LocalDbStatus = {
 };
 
 export type LocalRuntimeSnapshot = {
+  app_settings?: {allow_medal_estimates: boolean};
   contest_preferences?: ContestPreference[];
   schemaVersion: 1;
   exportKind: "local_runtime_snapshot";

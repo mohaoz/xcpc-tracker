@@ -6,6 +6,7 @@ import { aggregateAliasesFromSources } from "../lib/catalog-sources";
 
 type ContestEditorProblem = {
   tags?: string[];
+  rating?: number;
   ordinal: string;
   title: string;
   aliases: string[];
@@ -88,6 +89,7 @@ function normalizeSources(value: CatalogSource[]) {
 function normalizeProblem(problem: ContestEditorProblem): ContestEditorProblem {
   return {
     tags: dedupe(problem.tags ?? []),
+    rating: problem.rating,
     ordinal: problem.ordinal ?? "",
     title: problem.title ?? "",
     aliases: dedupe(problem.aliases ?? []),
@@ -323,6 +325,7 @@ function parseManualProblemsJson() {
       aliases: dedupe(rawAliases),
       sources: normalizeSources(existingProblem?.sources ?? []),
       tags: dedupe(existingProblem?.tags ?? []),
+      rating: existingProblem?.rating,
     } satisfies ContestEditorProblem;
   });
 
@@ -400,6 +403,7 @@ function submit() {
         return {
           ordinal: problem.ordinal.trim(),
           tags: dedupe(problem.tags ?? []),
+          rating: problem.rating,
           title: problemTitle,
           aliases: aggregateAliasesFromSources(
             problemTitle,
