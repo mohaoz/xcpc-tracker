@@ -5,6 +5,7 @@ import type { CatalogSource } from "../lib/catalog";
 import { aggregateAliasesFromSources } from "../lib/catalog-sources";
 
 type ContestEditorProblem = {
+  tags?: string[];
   ordinal: string;
   title: string;
   aliases: string[];
@@ -69,6 +70,7 @@ function dedupe(values: string[]) {
 
 function normalizeSource(source: CatalogSource): CatalogSource {
   return {
+    is_default: source.is_default,
     provider: source.provider ?? "",
     kind: source.kind ?? "contest",
     url: source.url ?? "",
@@ -85,6 +87,7 @@ function normalizeSources(value: CatalogSource[]) {
 
 function normalizeProblem(problem: ContestEditorProblem): ContestEditorProblem {
   return {
+    tags: dedupe(problem.tags ?? []),
     ordinal: problem.ordinal ?? "",
     title: problem.title ?? "",
     aliases: dedupe(problem.aliases ?? []),
@@ -171,7 +174,7 @@ function removeSource(index: number) {
 }
 
 function buildSourceProviderOptions(currentProvider: string) {
-  const options = ["manual", "codeforces", "qoj", "xcpcio_board", "other"];
+  const options = ["manual", "codeforces", "qoj", "rankland", "xcpc_rating", "xcpcio_board", "other"];
   if (currentProvider && !options.includes(currentProvider)) {
     return [currentProvider, ...options];
   }
@@ -185,7 +188,7 @@ function buildSourceKindOptions(provider: string) {
   if (provider === "codeforces" || provider === "qoj") {
     return ["contest"];
   }
-  if (provider === "xcpcio_board") {
+  if (provider === "xcpcio_board" || provider === "rankland") {
     return ["standings"];
   }
   if (provider === "other") {
@@ -319,6 +322,7 @@ function parseManualProblemsJson() {
       title: rawTitle,
       aliases: dedupe(rawAliases),
       sources: normalizeSources(existingProblem?.sources ?? []),
+      tags: dedupe(existingProblem?.tags ?? []),
     } satisfies ContestEditorProblem;
   });
 
@@ -378,6 +382,7 @@ function submit() {
     tags: dedupe(tags.value),
     sources: sources.value
       .map((source) => ({
+        is_default: source.is_default,
         provider: source.provider.trim(),
         kind: source.kind.trim(),
         url: (source.url ?? "").trim() || undefined,
@@ -394,6 +399,7 @@ function submit() {
         const nextSources = normalizeProblemSources(problem);
         return {
           ordinal: problem.ordinal.trim(),
+          tags: dedupe(problem.tags ?? []),
           title: problemTitle,
           aliases: aggregateAliasesFromSources(
             problemTitle,

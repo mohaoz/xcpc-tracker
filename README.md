@@ -1,136 +1,37 @@
-# XCPC-Tracker
+# XCPC Tracker
 
-一个前端优先、静态部署、浏览器持久化的 XCPC 题目覆盖追踪工具。
+[在线使用](https://mohaoz.github.io/xcpc-tracker/) · 面向 ACMer 的整场 VP 选题工具。
 
-## 当前能力
+选择队员，按年份、地区、赛事标签和成员覆盖筛选比赛，再通过现有整场补题链接开始 VP。数据保存在当前浏览器，无需登录本站。
 
-- 浏览整理后的 XCPC 比赛目录
-- 在浏览器里维护比赛、成员和覆盖状态
-- 在比赛列表中直接查看每题颜色状态条
-- 返回比赛列表时保留已加载页面，成员筛选复用内存统计；本地数据变化后自动刷新
-- 用统一搜索、成员筛选和标签匹配快速挑比赛
-- 导入、导出本地成员数据
-- 通过 Codeforces handle 导入和同步成员做题状态
-- 在成员页为全部已关联 QOJ 账号生成一段批量浏览器脚本，并导入成员做题状态
+## 使用
 
-## 技术栈
+- **未做**：所选成员都没有尝试或通过本场任何题目；任何尝试都算已触及。
+- **非剧透／剧透**：列表和详情都可以逐场切换。所有有效成员均无尝试或通过记录时默认非剧透，否则默认剧透；手动选择优先，刷新后保留。打开详情和改变成员筛选不改变默认判定。
+- 非剧透隐藏牌线、奖牌信息、题目标签，奖牌搜索条件也不匹配这些比赛。普通比赛信息、成员覆盖和整场补题链接仍可使用。
+- 剧透模式可查看参考牌线与题目标签。多组别取最高组别，邀请赛兼省赛取邀请赛组；牌线只用于 VP 选题参考，不代表个人真实获奖。
+- CF 成员状态通过浏览器直接访问官方 API 同步；QOJ 使用成员页生成的浏览器脚本导出 JSON，再导入本站。关注最近同步时间和缺口提示，未匹配记录可能是目录外题目。
+- 在管理页导出成员数据作为备份，备份包含手动剧透设置。浏览器之间不会自动同步。
 
-- Vue 3 + TypeScript
-- Vite
-- Pinia
-- Dexie / IndexedDB
-- Git 管理的 `catalog/default-catalog.min.json`
+## 数据
 
-## 常用命令
+正式目录为 `catalog/default-catalog.min.json`。原有 CF、QOJ、XCPCIO 等来源继续保留；RankLand 提供核验后的榜单与部分牌线，XCPC Rating problems 提供标签及整场补题链接候选。不会根据现场成绩推断成员个人做题状态。
 
-目录校验：
+0.7.0 保留 246 场、3031 题，新增 139 场 RankLand 榜单、10 场已核验牌线和 1413 道题的社区标签。本批匹配的整场补题链接均已存在，因此没有重复添加。缺数据、组别不明或来源冲突时保留明确回退。标签来自社区，可能有误。
 
-```bash
-npm run catalog:build-final
-npm run catalog:generate-default
-npm run catalog:import-reviewed-cf-problems
-npm run catalog:import-qoj-problems
-npm run catalog:generate-web-assets
-npm run catalog:refresh
-npm run catalog:validate
-```
+来源及许可见 [catalog/README.md](catalog/README.md)。数据审核证据在 `fixtures/imports/rankland/` 和 `fixtures/imports/xcpc-rating/`；没有完整题单的候选仅保留在维护文档中，不发布到站点。
 
-目录数据链路：
+## 开发与发布
 
-1. 在浏览器里运行 `scripts/browser-fetch-contests.mjs`，导出候选 `contests.json`
-2. 将导出的文件保存为 `data/contests.json`
-3. 运行 `npm run catalog:build-final`，生成 `data/final.json`
-4. 运行 `npm run catalog:generate-default`，生成 `catalog/default-catalog.min.json`
-5. 运行 `npm run catalog:import-reviewed-cf-problems`，合并已核验的 Codeforces 比赛元数据与题单
-6. 运行 `npm run catalog:import-qoj-problems`，合并保存的 QOJ 映射及人工审核的新比赛题单（保留版本参数）
-7. 运行 `npm run catalog:generate-web-assets`，生成前端直接读取的静态索引与详情分片
-8. 或直接运行 `npm run catalog:refresh`，按上述顺序重建、补入已完成题单的比赛、刷新来源并最后生成前端资产
-
-尚无完整题单的候选比赛只记录在 [`docs/2026-contests-pending-problem-lists.md`](docs/2026-contests-pending-problem-lists.md)，不会进入公开 catalog 或站点资源。
-
-前端构建：
-
-```bash
-npm ci --prefix web
-npm run catalog:generate-web-assets
-npm run build --prefix web
-```
-
-## 部署
-
-### GitHub Pages（主站）
-
-- 地址：<https://mohaoz.github.io/xcpc-tracker/>
-- 发布分支：`release`；推送后由 `.github/workflows/github-pages.yml` 校验、构建并部署
-- GitHub 仓库 Settings → Pages → Source 使用 **GitHub Actions**
-- Pages 构建使用 `github-pages` 模式，静态资源前缀为 `/xcpc-tracker/`，页面使用 hash 路由（例如 `#/contests`），详情页可直接打开或刷新
-- 本地复现：`npm ci --prefix web && npm run deploy:build && npm run build --prefix web -- --mode github-pages`
-- 换域名不会自动迁移 IndexedDB：请在旧站 `/manage` 导出本地数据，再到新站 `#/manage` 导入
-
-### Netlify（兼容部署）
-
-- 推荐发布分支：`release`
-- 构建命令：`npm ci --prefix web && npm run deploy:build`
-- 发布目录：`web/dist`
-- 仓库已包含 [netlify.toml](./netlify.toml)
-- 部署构建会先校验 catalog，再生成 `catalog/generated/` 静态索引与详情分片，最后构建前端
-- 部署构建不会重新抓取 XCPCIO Board 或 Codeforces，只使用仓库里已提交的 catalog / data
-
-### 本地服务器
-
-- 先构建：
-
-```bash
+```sh
+npm ci
 npm ci --prefix web
 npm run deploy:build
+npm run dev --prefix web
 ```
 
-- 实际部署目录：`web/dist`
-- 默认 catalog 在部署期被切成静态资产，浏览器直接读取 `default-catalog.min.json` 与 `generated/*.json`
-- 这是一个 SPA，服务器需要把未知路径回退到 `index.html`
-- 如果站点部署在子路径下而不是域名根路径下，需要同步设置 Vite `base`，让路由和静态 JSON 请求都使用同一个前缀
-- Caddy 最小配置示例：
+`catalog:refresh` 只校验当前正式目录并生成静态资产，不重建或抓取上游。更新数据参见 [scripts/README.md](scripts/README.md)。
 
-```caddy
-:80 {
-	root * /srv/xcpc-tracker/web/dist
-	file_server
-	try_files {path} /index.html
-}
-```
+`main` 为开发主分支，`release` 为发布分支；发布所需代码、数据、工具、Schema、许可与简要说明同步到 `release`。推送 `release` 后 GitHub Actions 自动发布到现有 Pages，使用 `/xcpc-tracker/` 路径和 hash 路由。纯静态运行，不需要本地后端。
 
-- 如果只是临时在本机预览：
-
-```bash
-npm run deploy:build
-cd web
-npm run preview -- --host 0.0.0.0 --port 4173
-```
-
-## 主要页面
-
-- `/contests`
-  比赛池列表，支持统一搜索、成员筛选、分页和题号状态条
-- `/contests/:contestId`
-  比赛详情、覆盖矩阵与元数据编辑
-- `/members`
-  成员列表、Codeforces 同步，以及全部已关联 QOJ 账号的批量更新脚本入口
-- `/members/new`
-  通过 Codeforces handle 添加成员，或启动 QOJ 导入流程
-- `/manage`
-  本地成员数据导入导出工具；默认 catalog 由静态资源直接提供
-
-## QOJ 批量更新
-
-1. 在 `/members` 点击“更新 QOJ”，站点会把包含当前全部 QOJ 账号的一次性脚本复制到剪贴板、在新标签页打开 QOJ，并把 tracker 当前标签自动切到 `/manage` 的粘贴导入区域。
-2. 在已经通过 QOJ 验证或登录的页面打开开发者工具，将脚本粘贴到 Console 并运行一次。
-3. Console 会逐个输出当前读取账号；个别账号失败不会中断整批。结束时会输出 JSON 并弹出完成提示，剪贴板不可用时下载文件。
-4. 回到已经停在 tracker `/manage` 的标签页，把 JSON 粘贴到“直接粘贴 JSON”后导入。导入期间会显示当前成员与进度；完成后按钮和就近提示会保持明确的成功状态，并显示成功成员、匹配状态、未匹配状态和抓取失败账号数。
-
-## 相关文档
-
-- [AGENTS.md](./AGENTS.md)
-- [scripts/README.md](./scripts/README.md)
-- [web/README.md](./web/README.md)
-- [docs/architecture.md](./docs/architecture.md)
-- [docs/mvp-design.md](./docs/mvp-design.md)
+浏览器回归：生成静态资产并启动开发服务器后，执行 `npx playwright install chromium` 和 `npm run vp:browser`。默认构建只运行离线校验。

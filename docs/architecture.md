@@ -1,119 +1,25 @@
-# XCPC-Tracker Architecture
+# 架构与数据契约
 
-## Assumptions
+核心是整场 VP 选题。Vue/TypeScript 静态前端读取 Git 维护的目录以及浏览器本地成员状态；没有运行时后端、账户系统或云同步。
 
-- The target product is a static, frontend-first XCPC tracker.
-- The normal user flow must not require any backend service.
-- Curated contest metadata lives in Git-managed JSON files.
-- Codeforces member status comes from public API access in the frontend.
-- QOJ member status comes from userscript-exported JSON imports.
-- Candidate contests without problem lists may be collected from user-saved exports, but remain in maintainer documentation until their problem lists are reviewed.
-- Browser-local persistence is the primary runtime store.
-- `main` carries the full development and planning context, while `release` only needs deployment-relevant files and minimal release-facing docs.
+## 静态目录
 
-## Non-Goals
+`catalog/default-catalog.min.json` 是唯一正式目录。构建期生成轻量比赛索引、coverage basis 和逐场详情，浏览器按需读取，不能按版本变化触发全目录初始化。内部比赛／题目 ID、主标题和 CF/QOJ 映射保持稳定。
 
-- Rebuilding a backend service as the core runtime.
-- Remote multi-user backend, auth platform, or cloud sync.
-- Server-side scraping for QOJ.
-- Contest replay timelines, judge features, or ranking-heavy analytics before import and coverage are stable.
+RankLand 的集合配置及 SRK 从固定 Git 提交获取，页面 uniqueKey 通过公开集合和比赛元数据核验，不能猜测数据库 ID。人工审核后才应用来源和奖牌线。默认来源优先级：显式 `sources[*].is_default`、RankLand、既有榜单。奖牌线来源独立保留，不能将旧数值冒充新来源。
 
-## System Layers
+XCPC Rating 仅在构建期匹配题目，补充可选 `tags` 与整场补题入口，沿用整场链接交互。模糊或冲突记录不应用。浏览器不请求 Rating 或 SRK 数据。
 
-### 1. Catalog Source
-- Human-edited curated contest JSON in `catalog/`.
-- The built-in default catalog lives in a single bundled JSON file.
-- Every contest in the shipped bundle has at least one curated problem; metadata-only candidates live under `docs/` and are not generated into public assets.
-- Stores stable IDs, tags, aliases, problem definitions, and source links.
-- This is the canonical product dataset.
+## 本地数据与剧透
 
-### 2. Validation
-- Scripts validate curated JSON against JSON Schema in `schemas/`.
-- CI runs validation before frontend build and deployment.
+IndexedDB 使用 Dexie。v5 在 v4 基础上增加 `contestPreferences`，主键 `contest_id`，记录 `{ contest_id, spoiler_mode: "spoiler" | "non_spoiler" }`，不清空已有 stores。
 
-### 3. Import Inputs
-- Imported data can come from Codeforces API sessions, QOJ userscript exports, or one-time tooling.
-- A curator-reviewed contest-page export may populate the documentation-only candidate list; promotion into the bundled default catalog requires a reviewed problem list.
-- Imported payloads are not automatically canonical source data.
-- Import flows should produce normalized local runtime records and, when useful, reviewable draft catalog material.
+设置只保存手动覆盖；默认状态由全部有效成员的尝试／通过记录计算，打开详情或切换成员筛选不改变默认。读取设置完成前隐藏剧透信息，跨页面／标签页同步。成员备份可包含 `contest_preferences`，导入前检查取值与重复键，并在同一事务中恢复；没有该字段时保留当前设置。
 
-### 4. Frontend Import Adapters
-- Codeforces adapter fetches member submissions/status from the public API.
-- Private or access-controlled Codeforces data may require saved browser-local API credentials and still may expose incomplete results depending on the user's account access.
-- QOJ adapter imports userscript-exported JSON snapshots.
-- Catalog adapter loads the bundled default catalog JSON.
-- Adapters preserve raw import metadata and provenance alongside normalized records.
+非剧透隐藏牌线、奖牌区间、奖牌卡片、相关缺失提示与题目标签，包括正反向奖牌搜索。题目覆盖和普通比赛信息不受影响。编辑器保留标签数据，不在手动题单 JSON 中暴露标签。
 
-### 5. Browser-Local Data Layer
-- Dexie-backed IndexedDB is the main runtime store.
-- Stores local members, imported handles, problem-status records, sync records, and import provenance.
-- Stores contest problem snapshots, resolved provider-problem mappings, and local coverage inputs.
-- Manual entry provenance is recorded locally for hand-entered problem sources and hand-marked member problem status.
+## 覆盖与性能
 
-### 6. Vue SPA
-- Renders curated contest browsing, member coverage, and import workflows.
-- Reads curated dataset and local status data to compute VP-before freshness views.
-- Supports import/export of browser-local member state.
-- Can be hosted as a static site without any companion service.
+“未做”表示所选成员均无尝试也无通过。成员、账号和状态一次性批读并建立内存索引；切换筛选复用输入快照，不逐比赛重复读库。列表在返回时保留，相关写入使缓存失效；失败可重试。
 
-## Runtime Data Flow
-
-1. Curated contests with reviewed problem lists are authored in `catalog/`; metadata-only candidates stay in `docs/`.
-2. Optional import flows produce runtime data and, when needed, draft metadata for review.
-3. Scripts validate the catalog bundle against repo rules and schema.
-4. The static site ships with the bundled default catalog as a static asset.
-5. The browser loads the default catalog and stores catalog snapshots in Dexie.
-6. Codeforces API imports refresh local member-problem status.
-7. QOJ userscript JSON imports will refresh additional member-problem status records.
-8. Coverage views join locally cached contest problems with local member status records.
-
-## Why This Architecture
-
-### Static Frontend
-- Matches the narrowed product shape better than a local control-plane service.
-- Simplifies deployment, distribution, and onboarding.
-- Keeps the normal runtime entirely inside the browser.
-
-### IndexedDB
-- Fits local-only runtime persistence without introducing a backend dependency.
-- Supports structured data, indexes, and versioned migrations.
-- Makes import/export of local member state straightforward.
-
-### Dexie
-- Provides a much cleaner browser-local database layer than raw IndexedDB wrappers.
-- Fits the project well once multiple stores, joins, and import flows exist.
-- Keeps frontend import and coverage code readable while staying entirely local.
-
-### Git-Managed Catalog
-- Keeps curated contest metadata reviewable and versioned.
-- Avoids a hidden mutable database for canonical contest definitions.
-- Supports generated indexes and automated validation in CI.
-
-### Frontend Adapters Instead Of Backend Providers
-- Matches the new source model: public API in-browser and userscript JSON imports.
-- Makes runtime dependencies explicit at the UI layer where the user triggers them.
-- Avoids carrying forward server-oriented abstractions that no longer fit.
-
-## Tradeoffs
-
-- Browser-only persistence is simpler for users but requires careful import/export for backup.
-- Codeforces API access in the frontend is easy to distribute but may need rate-limit-aware batching.
-- QOJ userscript import avoids a backend scraper, but the workflow is intentionally semi-manual.
-- Generated indexes improve load performance, but introduce a build step that must stay deterministic.
-
-## Current State
-
-- Contest list, contest detail, member list, and manage tools run on the frontend-first path.
-- Catalog validation and generation are handled by repo-level scripts.
-- Codeforces member sync runs directly in the browser.
-- Contest list filters are stored locally in app state rather than in URL query parameters.
-- Default catalog is consumed through deploy-time generated static assets; browser runtime should not force local re-init based on bundled version changes.
-
-## Contest List Loading
-
-- Audit: the list previously called the detail coverage loader once per contest. For 235 contests this read the entire status table 470 times, then repeatedly filtered it for every member/problem pair. Route remounts and member selection changes repeated the work.
-- Read members, linked handles, and statuses once in a read transaction. Build an in-memory member/problem status index, preserving solved precedence, manual status provenance, and exclusion of deleted members/handles.
-- Compute list summaries directly from that index; the list does not need to allocate every contest's full member coverage matrix. Member filters reuse the same input snapshot without another database read.
-- Keep only the contest list page alive across SPA navigation. Invalidate its inputs after relevant Dexie writes (including writes from other tabs), defer reloads while it is inactive, and retain visible cards during refresh. Failed loads remain retryable.
-- Catalog and member reads start concurrently. Only local contest overrides need local problem queries; bundled catalog snapshots remain static assets.
-- These are disposable in-memory caches. IndexedDB stays at version 4 with no store, index, or persisted record changes; no migration or catalog re-import is required.
+CF 使用官方 API，QOJ 使用用户浏览器导出。保留未匹配记录及同步失败证据，失败不清空上次成功状态；界面简单提示同步时间与缺口，不保证上游可见数据完整。

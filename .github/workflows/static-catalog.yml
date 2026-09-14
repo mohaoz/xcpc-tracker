@@ -22,7 +22,11 @@ jobs:
           node-version: 20
           cache: npm
           cache-dependency-path: |
+            package-lock.json
             web/package-lock.json
+
+      - name: Install catalog tooling dependencies
+        run: npm ci
 
       - name: Install web dependencies
         run: npm ci
@@ -31,8 +35,8 @@ jobs:
       - name: Validate curated catalog
         run: npm run catalog:validate
 
-      - name: Validate coverage and list caching
-        run: npm run coverage:validate
+      - name: Validate VP state, imports and coverage
+        run: npm run vp:validate
 
       - name: Generate static catalog assets
         run: npm run catalog:generate-web-assets

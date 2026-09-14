@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+## 0.7.0
+
+- Add persistent per-contest spoiler controls across list/detail: untouched contests hide medal cutoffs, awards and problem tags; manual choices override attempted/solved defaults.
+- Correct “未做” to mean no attempted or solved problems among selected members.
+- Integrate 139 verified RankLand standings, 10 audited award cutoffs and 1413 community-tagged problems from XCPC Rating; retain whole-contest practice links and explicit source fallbacks.
+- Use the highest eligible group for VP reference awards, including invitational over provincial; remove the incorrect ICPC standings and award data from 2025 CCPC Nanchang.
+- Show simple import freshness/failure/unmatched summaries; retain CF unresolved provenance and last successful status on failure.
+- Add offline schema/data/state checks and browser regression; simplify refresh to preserve the canonical catalog and remove obsolete planning documents.
+
 ### Added
 
 - added 103 reviewed QOJ problems across eight 2026 contests, including online contest I, Shenzhen, Zhejiang, Xi’an, Wuhan/Hubei, Shandong, Shanghai, and Shenyang

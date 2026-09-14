@@ -1,12 +1,17 @@
 # xcpc-tracker Pivot AGENTS
 
 ## Product Summary
+- If deciding product priorities, then treat VP contest selection as the core feature; browsing, member coverage, import and freshness checks serve that decision.
+- If describing VP, then mean a whole-contest virtual participation; partial problem practice is out of the current scope. The "未做" filter means no selected member has any attempted or solved record, not merely no accepted submissions.
+- If reporting import completeness, then keep it to recent sync state, failures and unmatched records; leave further verification and preparation to the user.
+- If displaying spoiler information, then use a per-contest spoiler preference: untouched contests default to non-spoiler, and any active member's attempted/solved record counts as touched; opening a contest does not. Explicit user selection overrides this default. Non-spoiler mode hides medal cutoffs, medal information and problem tags across list/detail/search.
+- If a contest has multiple eligible groups, then default to the highest competition group for VP reference standings and award cutoffs; invitational plus provincial contests use the invitational group. Record the selected upstream group explicitly and do not merge groups.
 - If scope is unclear, then optimize for an XCPC tracker that ships as a static frontend-first site.
 - If choosing the first live sync source, then use Codeforces public API directly from the frontend.
 - If choosing the second source, then use QOJ userscript-assisted JSON import; do not build a Python scraper for it.
 - If seeding candidate contests from QOJ, then prefer a user-saved QOJ contests HTML or MHT export normalized into a documentation-only review list; do not publish a contest until its problem list is curated.
 - If choosing the curated data source, then keep contest and artifact metadata in Git-managed JSON files.
-- If describing the main user value, then prioritize: browse curated contests, inspect member coverage, import member status, and answer VP-before freshness questions.
+- If describing the main user value, then prioritize choosing a suitable VP contest, supported by curated browsing, member coverage, imported member status, and VP-before freshness checks.
 - If a feature does not directly help curated contest browsing, member coverage tracking, Codeforces import, QOJ import, or static deployment, then cut it from the near-term plan.
 
 ## Architecture Boundaries
@@ -16,12 +21,13 @@
 - If a feature requires a running localhost backend in normal usage, then reject it by default.
 - If a backend/tooling task is still useful, then keep it as build-time or migration-time tooling only, not as the primary runtime architecture.
 - If content is large or derived, then commit only the single bundled default catalog and keep runtime-only copies out of the repo.
+- If updating RankLand data, then follow `scripts/README.md`: use verified RankLand standings links and audited SRK snapshots at build time, keep explicit fallbacks for gaps, and preserve the Git catalog plus CF/QOJ problem and member-status ownership.
 
 ## Branch Rules
 - If working on everyday development, then treat `main` as the canonical branch for code, docs, scripts, and planning notes.
 - If preparing a GitHub Pages deployment, then treat `release` as the deploy branch rather than the canonical planning branch; publish the main site at `https://mohaoz.github.io/xcpc-tracker/` through GitHub Actions.
 - If a change affects build output, runtime behavior, bundled catalog data, required schemas, or required scripts, then it must land on `release`.
-- If a document is only release-facing, then `README.md`, `README.zh-CN.md`, and `CHANGELOG.md` are the default minimal set to keep on `release`.
+- If a document is only release-facing, then `README.md` and `CHANGELOG.md` are the default minimal set to keep on `release`; retain required licensing and source provenance documentation.
 - If a document only explains internal design, roadmap, or contributor workflow, then it may stay `main`-only unless there is a concrete release need.
 
 ## Data And Catalog Rules
@@ -34,6 +40,8 @@
 - If a curator intentionally promotes a contest-page export into the bundled default catalog, then add it only together with a reviewed problem list and keep provider provenance on `sources`.
 - If adding schema validation, then validate curated files against JSON Schema before build or deploy.
 - If adding canonical catalog fields, then prefer `id`, `title`, `aliases`, `tags`, `problems`, `sources`, and optional provenance notes; do not duplicate obvious tag semantics into separate fields without a concrete product need.
+- If enriching from XCPC Rating problems, then use verified matches for whole-contest practice links and optional problem tags; retain the existing whole-contest link interaction, show tags only in spoiler mode, preserve unresolved candidates, and never infer member status from rating data.
+- If selecting a default standings source, then prefer an explicit `sources[*].is_default`, followed by verified RankLand and existing standings; preserve other sources as fallbacks.
 - If storing external links, then use a `sources` array with objects shaped like `provider`, `kind`, and `url`.
 - If contest/problem IDs are needed, then use stable internal IDs in curated data and keep provider-scoped IDs inside source mappings.
 - If a contest or problem has multiple upstream titles, then keep curator `title` as the stable primary title and store upstream titles on `sources[*].source_title`, aggregating them into `aliases` without overwriting the primary title.
