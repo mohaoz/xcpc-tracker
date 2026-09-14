@@ -58,7 +58,16 @@ npm run build --prefix web
 
 ## 部署
 
-### Netlify
+### GitHub Pages（主站）
+
+- 地址：<https://mohaoz.github.io/xcpc-tracker/>
+- 发布分支：`release`；推送后由 `.github/workflows/github-pages.yml` 校验、构建并部署
+- GitHub 仓库 Settings → Pages → Source 使用 **GitHub Actions**
+- Pages 构建使用 `github-pages` 模式，静态资源前缀为 `/xcpc-tracker/`，页面使用 hash 路由（例如 `#/contests`），详情页可直接打开或刷新
+- 本地复现：`npm ci --prefix web && npm run deploy:build && npm run build --prefix web -- --mode github-pages`
+- 换域名不会自动迁移 IndexedDB：请在旧站 `/manage` 导出本地数据，再到新站 `#/manage` 导入
+
+### Netlify（兼容部署）
 
 - 推荐发布分支：`release`
 - 构建命令：`npm ci --prefix web && npm run deploy:build`

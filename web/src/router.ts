@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
 
 import AddMemberView from "./views/AddMemberView.vue";
 import ContestDetailView from "./views/ContestDetailView.vue";
@@ -8,7 +8,9 @@ import MemberDetailView from "./views/MemberDetailView.vue";
 import MemberListView from "./views/MemberListView.vue";
 
 export const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: import.meta.env.MODE === "github-pages"
+    ? createWebHashHistory(import.meta.env.BASE_URL)
+    : createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: "/",

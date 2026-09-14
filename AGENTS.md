@@ -20,7 +20,7 @@
 
 ## Branch Rules
 - If working on everyday development, then treat `main` as the canonical branch for code, docs, scripts, and planning notes.
-- If preparing a Netlify deployment, then treat `release` as a deploy branch rather than the canonical planning branch.
+- If preparing a GitHub Pages deployment, then treat `release` as the deploy branch rather than the canonical planning branch; publish the main site at `https://mohaoz.github.io/xcpc-tracker/` through GitHub Actions.
 - If a change affects build output, runtime behavior, bundled catalog data, required schemas, or required scripts, then it must land on `release`.
 - If a document is only release-facing, then `README.md`, `README.zh-CN.md`, and `CHANGELOG.md` are the default minimal set to keep on `release`.
 - If a document only explains internal design, roadmap, or contributor workflow, then it may stay `main`-only unless there is a concrete release need.
