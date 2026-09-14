@@ -1,26 +1,10 @@
-# schemas
+# JSON Schema 入口
 
-JSON Schema files for curated catalog data and import payload validation live here.
+按数据类型选用，不需要每次任务读取所有 Schema：
 
-Current schemas:
+- [catalog-snapshot.schema.json](catalog-snapshot.schema.json)：当前平铺正式目录，包括题目标签／Rating、来源默认项和两类牌线。
+- [catalog-bundle.schema.json](catalog-bundle.schema.json) 与 [contest.schema.json](contest.schema.json)：旧嵌套目录及相关结构的验证契约，不是当前正式文件形状。
+- [codeforces-import.schema.json](codeforces-import.schema.json)、[qoj-import.schema.json](qoj-import.schema.json)：对应原始导入样例的契约；浏览器实际接受的载荷还需遵循导入器类型和 fixture。
+- [rankland-source.schema.json](rankland-source.schema.json)、[rankland-review.schema.json](rankland-review.schema.json)、[rankland-award-review.schema.json](rankland-award-review.schema.json)：上游 SRK、映射审核和牌线审核结构。
 
-- `catalog-bundle.schema.json`
-- `contest.schema.json`
-- `qoj-import.schema.json`
-- `codeforces-import.schema.json`
-
-QOJ member import is browser-assisted:
-
-- run the browser console script on a QOJ user profile page
-- export a raw `provider = "qoj"` JSON payload
-- import that JSON through the app's member import flow
-
-Schema validation should run in CI before static deployment.
-
-Current usage notes:
-
-- `catalog-snapshot.schema.json` validates the actual flat bundled catalog, including optional problem tags, source defaults and award cutoffs; `catalog-bundle.schema.json` describes the legacy nested bundle
-- provider import schemas are for accepted raw payload examples and fixture validation
-- runtime IndexedDB records are validated by application code rather than stored as schema-authored repo data
-
-RankLand source, mapping-review and award-review schemas bind fixed Git paths and content hashes to independently reviewed links and medal groups. Node validation runs in the default build. Synthetic examples must never be applied. Optional Python schema design checks remain available for maintainers.
+`npm run catalog:validate` 执行目录和来源校验；发布流程包含该检查。运行时 IndexedDB 数据由应用校验和迁移，版本说明见[架构文档](../docs/architecture.md#本地数据与剧透)。审核包中的合成样例只供测试，不能应用到正式目录。

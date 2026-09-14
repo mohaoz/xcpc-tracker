@@ -1,103 +1,55 @@
-# xcpc-tracker Pivot AGENTS
+# XCPC Tracker
 
-## Product Summary
-- If deciding product priorities, then treat VP contest selection as the core feature; browsing, member coverage, import and freshness checks serve that decision.
-- If describing VP, then mean a whole-contest virtual participation; partial problem practice is out of the current scope. The "未做" filter means no selected member has any attempted or solved record, not merely no accepted submissions.
-- If reporting import completeness, then keep it to recent sync state, failures and unmatched records; leave further verification and preparation to the user.
-- If displaying spoiler information, then use a per-contest spoiler preference: untouched contests default to non-spoiler, and any active member's attempted/solved record counts as touched; opening a contest does not. Explicit user selection overrides this default. Non-spoiler mode hides medal cutoffs, medal information and problem tags across list/detail/search.
-- If a contest has multiple eligible groups, then default to the highest competition group for VP reference standings and award cutoffs; invitational plus provincial contests use the invitational group. Record the selected upstream group explicitly and do not merge groups.
-- If scope is unclear, then optimize for an XCPC tracker that ships as a static frontend-first site.
-- If choosing the first live sync source, then use Codeforces public API directly from the frontend.
-- If choosing the second source, then use QOJ userscript-assisted JSON import; do not build a Python scraper for it.
-- If seeding candidate contests from QOJ, then prefer a user-saved QOJ contests HTML or MHT export normalized into a documentation-only review list; do not publish a contest until its problem list is curated.
-- If choosing the curated data source, then keep contest and artifact metadata in Git-managed JSON files.
-- If describing the main user value, then prioritize choosing a suitable VP contest, supported by curated browsing, member coverage, imported member status, and VP-before freshness checks.
-- If a feature does not directly help curated contest browsing, member coverage tracking, Codeforces import, QOJ import, or static deployment, then cut it from the near-term plan.
+## Product invariants
 
-## Architecture Boundaries
-- If code runs in the browser, then it may fetch public APIs, read curated JSON, persist to IndexedDB, and compute local coverage views.
-- If durable runtime state is needed, then IndexedDB is the primary application store.
-- If data is curated and versioned, then keep it in Git as JSON files; do not treat IndexedDB as the source for curated catalog data.
-- If a feature requires a running localhost backend in normal usage, then reject it by default.
-- If a backend/tooling task is still useful, then keep it as build-time or migration-time tooling only, not as the primary runtime architecture.
-- If content is large or derived, then commit only the single bundled default catalog and keep runtime-only copies out of the repo.
-- If updating RankLand data, then follow `scripts/README.md`: use verified RankLand standings links and audited SRK snapshots at build time, keep explicit fallbacks for gaps, and preserve the Git catalog plus CF/QOJ problem and member-status ownership.
+- Core value: select a **whole-contest VP**, supported by curated browsing, member coverage and CF/QOJ imports. Partial practice, new OJs, cloud sync, multi-user backends, push notifications, mobile apps and heavy analytics are outside the near-term scope unless explicitly requested.
+- “未做” means no selected member has attempted or solved any problem in the contest. An attempt counts even without acceptance.
+- Untouched contests default to non-spoiler; any active member's attempt/solve makes a contest touched. Opening details or changing selected members does not change this default. Explicit per-contest preferences win; bulk spoilers default off and medal estimates default on, preserving saved settings.
+- Non-spoiler hides medal cutoffs, medals, problem tags and ratings, including medal-based search. Coverage and whole-contest practice links remain available.
+- For multiple eligible groups, use the verified highest group; invitational takes precedence over provincial. Record the group and never merge uncertain groups.
+- Problem ratings use verified XCPC Rating values and CF rank colors; missing values stay unset. Coverage is a compact member-row/problem-column heatmap above awards; tags/ratings belong in a separate table and bulk settings in management.
 
-## Branch Rules
-- If working on everyday development, then treat `main` as the canonical branch for code, docs, scripts, and planning notes.
-- If preparing a GitHub Pages deployment, then treat `release` as the deploy branch rather than the canonical planning branch; publish the main site at `https://mohaoz.github.io/xcpc-tracker/` through GitHub Actions.
-- If a change affects build output, runtime behavior, bundled catalog data, required schemas, or required scripts, then it must land on `release`.
-- If a document is only release-facing, then `README.md` and `CHANGELOG.md` are the default minimal set to keep on `release`; retain required licensing and source provenance documentation.
-- If a document only explains internal design, roadmap, or contributor workflow, then it may stay `main`-only unless there is a concrete release need.
+## Architecture and ownership
 
-## Data And Catalog Rules
-- If adding curated contest metadata, then keep the built-in default catalog in a single bundled JSON file under `catalog/`.
-- If a contest has no curated problems, then keep it in a maintainer document under `docs/`; do not include it in the bundled catalog or generated public assets.
-- If publishing the bundled default catalog, then require every contest to reference at least one problem and reject `contest_stub` records during validation.
-- If changing the bundled default catalog release, then keep its top-level `version` aligned with the current app release version.
-- If data is intended to be canonical and reviewable, then it must live under `catalog/` and be editable by hand.
-- If data comes from import flows, then treat it as candidate or draft input until it is normalized into curated catalog files.
-- If a curator intentionally promotes a contest-page export into the bundled default catalog, then add it only together with a reviewed problem list and keep provider provenance on `sources`.
-- If adding schema validation, then validate curated files against JSON Schema before build or deploy.
-- If adding canonical catalog fields, then prefer `id`, `title`, `aliases`, `tags`, `problems`, `sources`, and optional provenance notes; do not duplicate obvious tag semantics into separate fields without a concrete product need.
-- If enriching from XCPC Rating problems, then use verified matches for whole-contest practice links and optional problem tags; retain the existing whole-contest link interaction, show tags only in spoiler mode, preserve unresolved candidates, and never infer member status from rating data.
-- If displaying problem ratings, then use only verified XCPC Rating values with CF rank colors, leave missing values unset, and hide both tag and rating columns in non-spoiler mode. Put a compact member-row/problem-column heatmap above the problem metadata table, and put bulk spoiler and medal-estimation controls in management.
-- If using proportional medal estimates, then require the default-on user setting, prefer explicit award data, and only estimate missing awards from complete audited standings with known eligibility and highest group; gold/silver/bronze counts use floor(eligible * 10%/20%/30%) and estimates remain labelled.
-- If selecting a default standings source, then prefer an explicit `sources[*].is_default`, followed by verified RankLand and existing standings; preserve other sources as fallbacks.
-- If storing external links, then use a `sources` array with objects shaped like `provider`, `kind`, and `url`.
-- If contest/problem IDs are needed, then use stable internal IDs in curated data and keep provider-scoped IDs inside source mappings.
-- If a contest or problem has multiple upstream titles, then keep curator `title` as the stable primary title and store upstream titles on `sources[*].source_title`, aggregating them into `aliases` without overwriting the primary title.
-- If a contest is created manually, then it may have an empty contest-level `sources` array; use `provider = "manual"` primarily for hand-entered problem sources and hand-entered member problem status provenance.
+- Ship a static Vue/TypeScript frontend; no localhost backend is required in normal usage. Build-time/migration tooling belongs in `scripts/`.
+- Git-managed `catalog/default-catalog.min.json` is the single bundled canonical catalog. IndexedDB stores local members, handles, statuses, sync/import records and preferences, not curated catalog truth.
+- Consume prebuilt static indexes/details on demand; do not initialize the entire catalog in the browser on version changes. Do not commit duplicate generated/runtime catalog copies.
+- CF official API is frontend member-status sync, not a runtime contest-sync button. QOJ uses user-browser/userscript JSON exports, never a server scraper or another user's login state.
+- QOJ contest-list HTML/MHT exports provide review candidates only. Promote a contest-page export only with a reviewed problem list and source provenance.
+- RankLand standings/SRK and XCPC Rating enrichment are audited at build time. Preserve CF/QOJ problem and member-status ownership. Rating data may enrich tags, ratings and whole-contest practice links; do not change whole-contest link interaction or infer member status from standings/rating data.
+- Preserve useful coverage and local-member identity concepts when refactoring; do not reintroduce the retired Python runtime service.
 
-## Import Rules
-- If the source is Codeforces, then use official public API access from the frontend.
-- If describing current frontend import support, then treat Codeforces as member-status import/sync only, not as a runtime contest-side sync button.
-- If a Codeforces contest is private or access-controlled, then prompt the user to save API credentials and ensure their own account has permission before expecting a complete sync.
-- If the source is QOJ, then use userscript-exported JSON snapshots imported into the app.
-- If the source is a baseline QOJ contest catalog seed, then use a user-saved contests page export instead of backend scraping.
-- If import data is stored in the repository, then keep it as fixture or draft material, not as the canonical curated dataset.
-- If import logic is provider-specific, then keep it in frontend adapters/importers, not in a server-provider abstraction.
-- If import output is ambiguous, then preserve raw import payload metadata and provenance alongside normalized local records.
-- If Codeforces contest data is missing or partial, then say so explicitly instead of guessing whether the contest is public, private, or partially visible.
-- If matching imported member status to curated problems is imperfect, then keep explicit match evidence and unresolved records rather than silently dropping them.
-- If an import suggests new contest metadata, then generate a reviewable draft or patch instead of mutating curated source of truth silently.
-- If a workflow depends on user login state or browser-local permissions, then design it around the user's own browser environment instead of service-side automation.
+## Catalog and import contracts
 
-## Frontend Data Model
-- If modeling runtime entities, then define frontend-oriented records for `contest`, `problem`, `member`, `member_problem_status`, `sync_record`, and `import_source`.
-- If describing catalog bootstrap behavior, then note that the shipped default catalog is consumed as prebuilt static assets and should not trigger browser-side full initialization based on version checks.
-- If the product question is "has this member solved or tried this curated problem", then model that directly in IndexedDB.
-- If UI lists tracked people, then group by stable local member identity and treat provider handles as linked sources.
-- If upstream fields differ across providers, then keep normalized columns plus raw payload metadata.
-- If schema changes, then document IndexedDB version upgrades and migration intent before implementation.
+- Every published contest must have curated problems; reject empty lists and `contest_stub`. Keep uncurated candidates under `docs/`, outside public assets. Align bundled catalog and app versions when changing a catalog release.
+- Use stable internal contest/problem IDs. Keep provider IDs, upstream titles and provenance in `sources`; source objects use `provider`, `kind`, `url` and relevant optional mappings. Preserve the curator's primary title; aggregate upstream titles into `aliases` instead of overwriting it.
+- Preserve existing persisted field names; the shipped snapshot uses camelCase entity fields and snake_case source mappings/preferences. Use the applicable schema/type, not a mechanical naming conversion. New fields should not duplicate tag semantics without a concrete need; TypeScript uses camelCase/PascalCase.
+- Manual contests may have no contest sources; use `manual` primarily for hand-entered problem sources/status provenance.
+- Default standings source: explicit `sources[*].is_default`, then verified RankLand, then existing standings. Keep fallback sources and do not relabel old award values as a new source.
+- Prefer explicit awards. Only use proportional estimates when enabled and complete audited standings establish highest-group eligibility. Gold/silver/bronze counts are floor(eligible × 10%/20%/30%); retain an estimate label. Unknown groups or incomplete standings remain gaps.
+- Group people by stable local identity with linked provider handles. Normalize payloads while retaining raw metadata, match evidence and unresolved records. Failed imports preserve previous successful status.
+- Import payloads are drafts/fixtures, not automatically canonical. Provider-specific mapping belongs in frontend adapters/importers. Suggested catalog changes require reviewable patches.
+- Do not guess CF access scope or completeness. Private contests need the user's own authorized account/credentials. Keep failures visible in the import flow; retain unmatched evidence without restoring the removed list/detail import-gap banner.
 
-## Directory And Naming
-- If code belongs to the shipped product, then prefer TypeScript modules under the frontend app and repo-level data/tooling directories.
-- If code is only for migration or validation, then place it under `scripts/`.
-- If adding curated source data, then place it under `catalog/`.
-- If adding schemas, then place them under `schemas/`.
-- If naming JSON fields, TypeScript types, or generated file keys, then prefer `snake_case` for persisted JSON and `camelCase` / `PascalCase` for TypeScript code.
+## Task-scoped workflow
 
-## Testing And Validation
-- If adding catalog data, then add schema validation and deterministic generation checks.
-- If validating the public bundled catalog, then fail when any contest has an empty problem list or `curation_status = contest_stub`.
-- If adding provider import logic, then include fixtures for raw payloads and normalized mapping outputs.
-- If a test requires live network, browser login, or manual userscript interaction, then it is not a default CI test.
-- If CI runs, then it should validate catalog JSON, generate indexes, run frontend checks, and build the static app.
-- If changing import contracts, then add snapshot examples for accepted JSON payload shapes.
+- Inspect relevant implementation and existing changes before editing. Preserve unrelated user work. Do not require a whole-repository audit or documentation update for every change.
+- Read `docs/architecture.md` for architecture, coverage, spoiler or persistence changes; `scripts/README.md` for catalog enrichment/import tooling; `README.md` and `.github/workflows/` for deployment. Read only references needed for the task.
+- Keep durable product constraints here, runtime/persistence details in `docs/architecture.md`, maintenance commands in `scripts/README.md`, and pending work in the contest checklist. Use links instead of copying workflows; historical changelog entries are not current instructions.
+- Update product/architecture instructions when those decisions change. Document IndexedDB upgrade and migration intent before implementing schema changes. Ordinary style, copy and local UI edits do not require new design documents.
+- Complete requested implementation, relevant checks and fixes for regressions caused by the change. Resolve routine implementation choices locally. Ask when a missing fact changes product meaning, data accuracy, authority or a significant external action.
+- Diagnosis/review does not authorize implementation; a plan request ends with a plan. “Local preview, no commit” ends with a working preview and relevant checks. Git sync/deployment requires current authorization; persistence does not expand scope. Report remaining blockers honestly.
 
-## Scope Cuts
-- If a request reintroduces the Python localhost service as the core runtime, then reject it.
-- If a request adds multi-user backend, cloud sync, push notifications, mobile app, or full-text search, then defer it.
-- If a request adds heavy analytics before the import and coverage loop is stable, then defer it.
-- If a request adds new OJs before the Codeforces and QOJ flows are solid, then defer it.
-- If a request adds backend scraping for QOJ, then reject it in favor of the userscript bridge.
+## Validation
 
-## Codex Execution Rules
-- If starting work, then audit first, document second, code third.
-- If the product direction changes, then update `AGENTS.md` and architecture docs before touching implementation.
-- If preserving useful existing code is possible, then migrate it deliberately instead of rewriting by reflex.
-- If a current module encodes a useful domain concept such as coverage or local member identity, then preserve the concept even if the implementation moves layers.
-- If a runtime subsystem no longer matches the product direction, then de-emphasize it quickly and plan its removal explicitly.
-- If a decision belongs in this file, then update `AGENTS.md` in the same patch.
-- If branch policy changes, then update `AGENTS.md` and at least one user-facing repo doc in the same patch.
+- Match local checks to risk: UI changes need relevant type/interaction/visual checks; imports need raw/normalized fixtures and failure-preservation tests; awards need group, penalty and boundary cases.
+- Catalog changes require JSON Schema validation and deterministic generation checks, including rejection of empty contests/stubs. Import-contract changes include accepted JSON examples. Schema files belong in `schemas/`.
+- Run safe, relevant local tests and rerun affected checks after fixes without asking at each step. Inspect external effects before running unfamiliar scripts; do not assume every test is disposable.
+- Preserve release CI: catalog validation, static-index generation, frontend checks and static build. Live network, login and manual userscript tests are not default offline CI requirements.
+
+## Branches and delivery
+
+- `main` is canonical development; `release` deploys GitHub Pages at `https://mohaoz.github.io/xcpc-tracker/` through Actions. Runtime/build/catalog/schema/script changes must reach `release` when publishing.
+- Make all changes on main. Publish by fast-forwarding release to the same commit; do not create release-only changes or merge commits. Between releases, main may be ahead. Keep branch contents identical at publication; select website assets through the build, not branch-specific document deletion.
+- Keep `README.md`, `CHANGELOG.md`, required licenses and provenance for release. Internal design/workflow docs need not be published unless required there; check purpose before removing documents.
+- A branch-policy change updates this file and a user-facing document together. Verify the authorized delivery stage: local preview, pushed branches, or deployed site; do not confuse one with another.

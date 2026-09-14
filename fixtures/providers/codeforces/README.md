@@ -1,16 +1,5 @@
-# Codeforces Fixtures
+# Codeforces fixture 位置
 
-Fixtures under this directory should support deterministic tests for the current Codeforces Gym MVP.
+本目录是旧 provider 布局的保留入口，目前没有 API／HTML／PDF fixture，不代表项目支持比赛运行时同步或题面抓取。
 
-## Rules
-- Keep API fixtures under `api/`.
-- Keep statement/editorial/resource HTML fixtures under `html/`.
-- Keep downloaded PDFs or derived PDF metadata fixtures under `pdf/`.
-- Name fixtures by endpoint or page role plus a stable sample identifier.
-- Keep normalized expectations beside the raw fixture when parser behavior depends on it.
-
-## Recommended Coverage
-- `contest.standings` sample for a Gym contest.
-- `user.status` samples for tracked members with solved and tried outcomes.
-- samples that exercise imported contests later receiving a full sync.
-- HTML placeholder samples for statement/resource extraction.
+当前构建期题单输入在 [fixtures/imports/codeforces](../../imports/codeforces/)，成员状态导入的确定性用例见 [validate-vp-state.mjs](../../../scripts/validate-vp-state.mjs)。新增用例放到实际消费它的验证目录，保留原始响应、预期映射、尝试／通过区别和失败保留旧状态的证据；无需创建未被测试使用的占位目录。
