@@ -236,4 +236,4 @@
 
 ## RankLand 榜单与数据入口迁移
 
-- [ ] 按 [迁移计划](rankland-migration-plan.md) 完成目录盘点、试点榜单入口、SRK 数据与奖牌线核验，再分批扩展；优先结合 2025 南昌错配和西安缺题单待办。当前仅完成计划文档，尚未迁移数据。
+- [x] 完成 RankLand 目录审核与接入：139 场榜单、10 场审核牌线；修正 2025 CCPC 南昌错配。更新方法见 [维护说明](../scripts/README.md)，剩余回退、缺口与冲突见 `fixtures/imports/rankland/2026-09-audit.json`。

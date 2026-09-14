@@ -97,6 +97,7 @@ async function main() {
       awardCutoffs: contest.awardCutoffs ?? null,
       problems: (problemsByContestId.get(contest.contestId) ?? []).map((problem) => ({
         id: problem.problemId,
+        tags: problem.tags ?? [],
         ordinal: problem.ordinal,
         title: problem.title,
         aliases: problem.aliases ?? [],

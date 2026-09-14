@@ -4,12 +4,15 @@ import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 
 import ContestCatalogEditor from "../components/ContestCatalogEditor.vue";
+import ImportHealthNotice from '../components/ImportHealthNotice.vue';
 import {
   type CatalogAwardCutoffs,
   type CatalogSource,
   type CatalogContestDetail,
 } from "../lib/catalog";
 import { aggregateAliasesFromSources } from "../lib/catalog-sources";
+import { findStandingsSource } from "../lib/standings-sources";
+import { useSpoilerStore } from "../stores/spoilers";
 import { getRuntimeCatalogContestDetail, listRuntimeCatalogContests } from "../lib/catalog-runtime";
 import { emitCatalogMutated } from "../lib/catalog-events";
 import { emitMemberMutated } from "../lib/member-events";
@@ -36,6 +39,9 @@ const existingTags = ref<string[]>([]);
 const markMode = ref(false);
 const markSavingCellKey = ref("");
 const awardCutoffs = ref<CatalogAwardCutoffs | null>(null);
+const spoilers = useSpoilerStore();
+const touched = computed(() => coverage.value?.problems.some(p => p.members.some(m => m.status !== 'unseen')) ?? false);
+const showSpoilers = computed(() => !loading.value && spoilers.visible(contestId.value, touched.value));
 
 const contestId = computed(() => String(route.params.contestId ?? ""));
 const trackedMembers = computed(() => coverage.value?.trackedMembers ?? []);
@@ -52,7 +58,7 @@ const awardCutoffSourceLabel = computed(() => {
     return "";
   }
   if (awardCutoffs.value.source === "explicit") {
-    return "使用 standings 官方 medal 配置";
+    return "使用该来源的官方奖项配置（非比例估算）";
   }
   if (awardCutoffs.value.source === "inferred_official_medal_ratio_10_20_30") {
     return "按 official 队伍奖牌数量 10% / 20% / 30% 推断";
@@ -124,6 +130,8 @@ const contestEyebrow = computed(() => {
   }
   return "CURATED CONTEST";
 });
+const standingsSource = computed(() => findStandingsSource(contest.value?.sources ?? []));
+const problemMetadata = computed(() => new Map((contest.value?.problems ?? []).map(p => [p.id, p])));
 
 function loadAwardCutoffs() {
   awardCutoffs.value = contest.value?.awardCutoffs ?? null;
@@ -144,6 +152,7 @@ const contestEditorInitialValue = computed(() => {
       ordinal: problem.ordinal,
       title: problem.title,
       aliases: problem.aliases,
+      tags: problem.tags ?? [],
       sources: problem.sources,
     })),
   };
@@ -156,6 +165,7 @@ function mapLocalContestRecordToDetail(
     ordinal: string;
     title: string;
     aliases?: string[];
+    tags?: string[];
     sources?: CatalogSource[];
   }> = [],
 ): CatalogContestDetail {
@@ -173,6 +183,7 @@ function mapLocalContestRecordToDetail(
       ordinal: problem.ordinal,
       title: problem.title,
       aliases: "aliases" in problem ? (problem.aliases ?? []) : [],
+      tags: "tags" in problem ? (problem.tags ?? []) : [],
       sources: "sources" in problem ? (problem.sources ?? []) : [],
     })),
     notes: contestRecord.notes ?? undefined,
@@ -223,6 +234,7 @@ async function saveContestMetadata(payload: {
   problems?: Array<{
     ordinal: string;
     title: string;
+    tags?: string[];
     aliases?: string[];
     sources: CatalogSource[];
   }>;
@@ -245,6 +257,7 @@ async function saveContestMetadata(payload: {
       ordinal: problem.ordinal,
       title: problem.title,
       aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources),
+      tags: 'tags' in problem ? (problem.tags ?? []) : (contest.value?.problems.find(p => p.ordinal === problem.ordinal)?.tags ?? []),
       sources: problem.sources,
     }));
     const contestTitle = payload.title.trim();
@@ -423,8 +436,17 @@ onMounted(loadContestPage);
                   </div>
                 </div>
 
+                <ImportHealthNotice />
+
+                <div class="actions" style="margin-bottom: 18px">
+                  <button type="button" class="button button--ghost" :aria-pressed="showSpoilers"
+                    :disabled="!spoilers.loaded || spoilers.saving.includes(contestId)" @click="spoilers.toggle(contestId, touched)">
+                    {{ showSpoilers ? '剧透 · 切换为非剧透' : '非剧透 · 显示牌线、奖牌和题目标签' }}
+                  </button>
+                </div>
+                <p v-if="spoilers.error" class="error-box">{{ spoilers.error }}</p>
                 <div
-                  v-if="awardCutoffs"
+                  v-if="showSpoilers && awardCutoffs"
                   :class="[
                     'award-cutoff-card',
                     `award-cutoff-card--${awardPlacement?.toLowerCase() ?? 'fe'}`,
@@ -486,7 +508,7 @@ onMounted(loadContestPage);
                     </a>。{{ awardCutoffSourceLabel }}，{{ awardCutoffs.eligibleTeamCount }} official teams。
                   </p>
                 </div>
-                <p v-else class="muted tiny" style="margin-bottom: 18px">
+                <p v-else-if="showSpoilers" class="muted tiny" style="margin-bottom: 18px">
                   暂无预计算奖牌线。
                 </p>
 
@@ -518,6 +540,9 @@ onMounted(loadContestPage);
                   </div>
                 </div>
 
+                <p v-if="standingsSource">
+                  <a :href="standingsSource.url" target="_blank" rel="noreferrer">查看榜单 · {{ standingsSource.label || standingsSource.provider }}</a>
+                </p>
                 <div class="table-shell">
                   <table class="coverage-table">
                     <thead>
@@ -543,6 +568,11 @@ onMounted(loadContestPage);
                             </span>
                             <span class="coverage-table__problem-name">{{ problem.title }}</span>
                           </div>
+                          <details v-if="showSpoilers && problemMetadata.get(problem.problemId)?.tags?.length" class="tiny" style="margin-top: 6px">
+                            <summary>查看题目标签（可能剧透）</summary>
+                            <div class="tag-list"><span v-for="tag in problemMetadata.get(problem.problemId)?.tags" :key="tag" class="tag">{{ tag }}</span></div>
+                            <a v-if="problemMetadata.get(problem.problemId)?.sources.some(s => s.provider === 'xcpc_rating')" href="https://hei-maom.github.io/xcpcrating/#/problems" target="_blank" rel="noreferrer">来源：XCPC Rating 社区标签</a>
+                          </details>
                         </td>
                         <td v-for="member in problem.members" :key="`${problem.problemId}-${member.memberId}`">
                           <button

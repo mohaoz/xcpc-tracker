@@ -24,6 +24,12 @@ Rules:
 - preserve upstream provenance on `sources`
 - preserve existing optional source metadata: `variant` on contest/problem sources and `notes` on contest sources; the contest JSON Schema accepts these strings
 - keep derived award cutoff provenance in `awardCutoffs.sourceProvider`, `awardCutoffs.sourceLabel`, and `awardCutoffs.sourceUrl`
-- prefer XCPCIO Board award cutoffs when available; use Codeforces official standings as a build-time fallback for Codeforces contests without board cutoffs
+- prefer verified RankLand standings and audited official award cutoffs; preserve XCPCIO / Codeforces fallbacks where a migration is blocked or unverified
 - prefer stable internal contest and problem IDs over provider-scoped IDs
 - keep the bundled catalog `version` aligned with the current release when regenerating the file
+
+## Attribution and data license
+
+RankLand summaries derive from [algoUX / srk-collection](https://github.com/algoux/srk-collection), pinned at `a820e48181a28a1a30bfbcf965b320606e337e15`. Upstream contributors include XCPCIO and algoUX. The SRK-derived catalog data and its review evidence are provided under AGPL-3.0; see [LICENSE-SRK.txt](LICENSE-SRK.txt) and the editable catalog/source history in this repository. This data notice does not relicense unrelated application code.
+
+Problem tags and whole-contest practice-link candidates come from [XCPC Rating](https://hei-maom.github.io/xcpcrating/#/problems), by [Hei-MaoM](https://github.com/Hei-MaoM/xcpcrating). Metadata provenance is recorded on problem sources; community tags are visible only in spoiler mode. CF/QOJ problem mappings remain authoritative for individual member coverage. Other source attributions remain attached to each contest/problem.

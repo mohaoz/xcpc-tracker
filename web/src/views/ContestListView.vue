@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onActivated, onDeactivated, onMounted, onUnmounted, ref, shallowRef, watch } from "vue";
 import { RouterLink } from "vue-router";
+import ImportHealthNotice from '../components/ImportHealthNotice.vue';
 
 import type { CatalogContestIndexItem } from "../lib/catalog";
 import { listRuntimeCatalogContests, listRuntimeContestCoveragePayload, type RuntimeCatalogContestListRecord } from "../lib/catalog-runtime";
@@ -10,6 +11,8 @@ import {
 } from "../lib/local-db";
 import { summarizeCatalogCoverage, type ContestCoverageInput, type MemberCoverageInput } from "../lib/local-coverage";
 import type { LocalMemberPerson } from "../lib/local-model";
+import { isContestTouched } from "../lib/spoiler-policy";
+import { useSpoilerStore } from "../stores/spoilers";
 import { contestListModes, isContestListMode, type ContestListMode, useContestListStore } from "../stores/contest-list";
 
 const contests = shallowRef<CatalogContestIndexItem[]>([]);
@@ -27,6 +30,11 @@ let active = false;
 let needsReload = true;
 const hasLoaded = ref(false);
 const contestListStore = useContestListStore();
+const spoilers = useSpoilerStore();
+const allMemberCoverage = computed(() => new Map(coverageInput.value
+  ? summarizeCatalogCoverage(coveragePayload.value, coverageInput.value).map(s => [s.contestId, s]) : []));
+const touched = (id: string) => isContestTouched(allMemberCoverage.value.get(id));
+const showSpoilers = (id: string) => spoilers.visible(id, touched(id));
 const coverageSummaryMap = computed(() => new Map(
   coverageInput.value
     ? summarizeCatalogCoverage(coveragePayload.value, coverageInput.value, {
@@ -62,8 +70,8 @@ const listModeBadgeLabels: Record<ContestListMode, string> = {
 };
 const listModeTips: Record<ContestListMode, string> = {
   ALL: "All contests",
-  UNSEEN: "No selected member has solved any problem in this contest",
-  DONE: "At least one selected member has solved a problem in this contest",
+  UNSEEN: "所选成员均未尝试或通过本场任何题目",
+  DONE: "至少一位所选成员尝试或通过了本场题目",
 };
 
 const awardSearchAliases = {
@@ -194,10 +202,11 @@ function getContestListMode(contestId: string): ContestListMode {
   const summary = coverageSummaryMap.value.get(contestId);
   const solvedProblemCount = summary?.solvedProblemCount ?? 0;
 
-  return solvedProblemCount > 0 ? "DONE" : "UNSEEN";
+  return isContestTouched(summary) ? "DONE" : "UNSEEN";
 }
 
 function getContestAwardMode(contestId: string): ContestAwardMode | null {
+  if (!showSpoilers(contestId)) return null;
   const localContest = localContestMap.value.get(contestId);
   const summary = coverageSummaryMap.value.get(contestId);
   const solvedProblemCount = summary?.solvedProblemCount ?? 0;
@@ -205,7 +214,7 @@ function getContestAwardMode(contestId: string): ContestAwardMode | null {
   const goldSolved = getSolvedCutoff(localContest, "gold");
   const silverSolved = getSolvedCutoff(localContest, "silver");
 
-  if (solvedProblemCount === 0) {
+  if (!isContestTouched(summary)) {
     return null;
   }
   if (bronzeSolved === null) {
@@ -225,7 +234,7 @@ function getContestAwardMode(contestId: string): ContestAwardMode | null {
 
 function getContestBadgeMode(contestId: string): ContestListMode | "NONE-MEDAL-DATA" {
   const listMode = getContestListMode(contestId);
-  if (listMode === "DONE" && !getContestAwardMode(contestId)) {
+  if (showSpoilers(contestId) && listMode === "DONE" && !getContestAwardMode(contestId)) {
     return "NONE-MEDAL-DATA";
   }
   return listMode;
@@ -294,7 +303,10 @@ const filteredContests = computed(() => {
       };
 
       const queryMatch = queryGroups.value.every((group) =>
-        group.some((alternative) => alternative.negated !== matchesToken(alternative.token)),
+        group.some((alternative) => {
+          if (!showSpoilers(contest.id) && (getAwardModeFromSearchToken(alternative.token) || isNoMedalDataSearchToken(alternative.token))) return false;
+          return alternative.negated !== matchesToken(alternative.token);
+        }),
       );
       if (!queryMatch) {
         return false;
@@ -646,6 +658,8 @@ watch(() => contestListStore.selectedMode, () => {
           <button type="button" class="button button--ghost" :disabled="loading" @click="loadContests">重试</button>
         </div>
 
+        <ImportHealthNotice :member-ids="contestListStore.selectedMemberIds" />
+        <p v-if="spoilers.error" class="error-box">{{ spoilers.error }}</p>
         <div v-if="loading && !hasLoaded" class="notice">正在加载比赛…</div>
         <div v-else-if="!contests.length" class="notice">
           当前没有可显示的比赛数据。
@@ -670,6 +684,11 @@ watch(() => contestListStore.selectedMode, () => {
             <div class="contest-card__meta-row">
               <div class="contest-card__meta-main">
                 <div class="inline-tags">
+                  <button type="button" class="tag tag--neutral" :aria-pressed="showSpoilers(contest.id)"
+                    :disabled="!spoilers.loaded || spoilers.saving.includes(contest.id)"
+                    @click.prevent.stop="spoilers.toggle(contest.id, touched(contest.id))">
+                    {{ showSpoilers(contest.id) ? '剧透' : '非剧透' }}
+                  </button>
                   <button
                     v-if="getContestAwardRange(contest.id)"
                     type="button"

@@ -1,4 +1,5 @@
 import Dexie, { type ObservabilitySet, type Table } from "dexie";
+import { validatePreferences } from './spoiler-policy';
 import {
   buildContestCoverage,
   buildMemberCoverageInput,
@@ -7,6 +8,7 @@ import {
 } from "./local-coverage";
 
 import type {
+  ContestPreference,
   LocalCatalogContestRecord,
   LocalContestCoverage,
   LocalContestCoverageSummary,
@@ -24,6 +26,7 @@ import type {
 } from "./local-model";
 
 class XcpcTrackerDb extends Dexie {
+  contestPreferences!: Table<ContestPreference, string>;
   catalogContests!: Table<LocalCatalogContestRecord, string>;
   catalogProblems!: Table<LocalCatalogProblemRecord, string>;
   members!: Table<LocalMemberRecord, string>;
@@ -79,6 +82,7 @@ class XcpcTrackerDb extends Dexie {
       syncRecords: "syncId, adapter, startedAt, sourceRecordId",
       problemMatchCache: "cacheKey, [provider+externalRef], updatedAt",
     });
+    this.version(5).stores({ contestPreferences: "contest_id" });
   }
 }
 
@@ -515,6 +519,7 @@ export async function listMemberHandleProblemCountsFromDb(memberId: string): Pro
 }
 
 export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatus?: boolean }): Promise<LocalRuntimeSnapshot> {
+  const preferences = await localDb.contestPreferences.toArray();
   const [members, memberHandles, memberProblemStatus, importSources, syncRecords] = await Promise.all([
     localDb.members.toArray(),
     localDb.memberHandles.toArray(),
@@ -541,6 +546,7 @@ export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatu
   return {
     schemaVersion: 1,
     exportKind: "local_runtime_snapshot",
+    contest_preferences: preferences,
     exportedAt: new Date().toISOString(),
     members: activeMembers,
     memberHandles: activeHandles,
@@ -714,6 +720,20 @@ export async function applyLocalCatalogSnapshot(
 }
 
 export async function applyLocalRuntimeSnapshot(
+  snapshot: LocalRuntimeSnapshot,
+  options?: { mode?: "merge" | "replace"; includeProblemStatus?: boolean },
+): Promise<void> {
+  const preferences = validatePreferences(snapshot.contest_preferences);
+  await localDb.transaction('rw', [localDb.members, localDb.memberHandles, localDb.memberProblemStatus, localDb.importSources, localDb.syncRecords, localDb.contestPreferences], async () => {
+    await applyLocalRuntimeSnapshotData(snapshot, options);
+    if (snapshot.contest_preferences !== undefined) {
+      if (options?.mode === 'replace') await localDb.contestPreferences.clear();
+      if (preferences.length) await localDb.contestPreferences.bulkPut(preferences);
+    }
+  });
+}
+
+async function applyLocalRuntimeSnapshotData(
   snapshot: LocalRuntimeSnapshot,
   options?: { mode?: "merge" | "replace"; includeProblemStatus?: boolean },
 ): Promise<void> {

@@ -19,6 +19,8 @@ Schema validation should run in CI before static deployment.
 
 Current usage notes:
 
-- `catalog-bundle.schema.json` validates the bundled catalog artifact shape used at build and release time
+- `catalog-snapshot.schema.json` validates the actual flat bundled catalog, including optional problem tags, source defaults and award cutoffs; `catalog-bundle.schema.json` describes the legacy nested bundle
 - provider import schemas are for accepted raw payload examples and fixture validation
 - runtime IndexedDB records are validated by application code rather than stored as schema-authored repo data
+
+RankLand source, mapping-review and award-review schemas bind fixed Git paths and content hashes to independently reviewed links and medal groups. Node validation runs in the default build. Synthetic examples must never be applied. Optional Python schema design checks remain available for maintainers.

@@ -72,6 +72,9 @@
           },
           "label": {
             "type": "string"
+          },
+          "is_default": {
+            "type": "boolean"
           }
         },
         "allOf": [
@@ -98,6 +101,7 @@
         "required": ["id", "ordinal", "title", "aliases", "sources"],
         "additionalProperties": false,
         "properties": {
+          "tags": { "type": "array", "items": { "type": "string" } },
           "id": {
             "type": "string",
             "minLength": 1

@@ -67,6 +67,7 @@ function mapProblems(detail: CatalogContestDetail): LocalCatalogProblemRecord[] 
     contestId: detail.id,
     ordinal: problem.ordinal,
     title: problem.title,
+    tags: problem.tags ?? [],
     aliases: aggregateAliasesFromSources(problem.title, problem.aliases, problem.sources),
     sources: [
       ...problem.sources.map((source) => ({
@@ -113,6 +114,7 @@ export async function loadBundledCatalogSnapshot(options?: { forceRefresh?: bool
       contestId: problem.contestId,
       ordinal: problem.ordinal,
       title: problem.title,
+      tags: problem.tags ?? [],
       aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources ?? []),
       sources: problem.sources ?? [],
     })),

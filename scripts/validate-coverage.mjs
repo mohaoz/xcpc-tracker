@@ -25,7 +25,7 @@ export function loadModule(relativePath, overrides = {}, sourceOverride) {
   const module = { exports: {} };
   const require = (id) => {
     if (Object.hasOwn(overrides, id)) return overrides[id];
-    if (id.startsWith(".")) return loadModule(path.relative(repoRoot, path.resolve(path.dirname(filename), `${id}.ts`)), overrides);
+    if (id.startsWith(".")) return loadModule(path.relative(repoRoot, path.resolve(path.dirname(filename), id.endsWith('.vue') ? id : `${id}.ts`)), overrides);
     return webRequire(id);
   };
   new Function("require", "module", "exports", compiled.outputText)(require, module, module.exports);
@@ -59,6 +59,15 @@ export function createDbMock(records) {
 }
 
 const coverage = loadModule("web/src/lib/local-coverage.ts");
+const policy = loadModule('web/src/lib/spoiler-policy.ts');
+assert.equal(policy.isContestTouched({solvedProblemCount:0,attemptedProblemCount:1}),true);
+assert.equal(policy.isContestTouched({solvedProblemCount:0,attemptedProblemCount:0}),false);
+assert.equal(policy.shouldShowSpoilers(undefined,false),false);
+assert.equal(policy.shouldShowSpoilers(undefined,true),true);
+assert.equal(policy.shouldShowSpoilers('non_spoiler',true),false);
+assert.equal(policy.shouldShowSpoilers('spoiler',false),true);
+assert.equal(policy.shouldShowSpoilers('spoiler',true,false),false);
+assert.throws(()=>policy.validatePreferences([{contest_id:'x',spoiler_mode:'bad'}]));
 const member = (id, deletedAt = null) => ({ memberId: id, displayName: id, createdAt: "2026-01-01", updatedAt: "2026-01-01", deletedAt });
 const handle = (memberId, provider, deletedAt = null) => ({ memberId, provider, handleId: `${memberId}:${provider}`, handle: memberId, displayLabel: null, createdAt: "2026-01-01", updatedAt: "2026-01-01", deletedAt });
 const status = (memberId, problemId, provider, state, lastSeenAt = "2026-01-01") => ({ memberId, problemId, provider, status: state, lastSeenAt });
@@ -123,6 +132,7 @@ let blockNextRead;
 let currentInput = input;
 const listStoreModule = loadModule("web/src/stores/contest-list.ts");
 const listComponent = loadModule("web/src/views/ContestListView.vue", {
+  '../stores/spoilers': {useSpoilerStore: () => ({loaded:true, saving:[], error:'', visible: (_id,touched) => touched, toggle:async()=>{}})},
   "../lib/local-db": {
     readMemberCoverageInputFromDb: async () => {
       memberReads++;
@@ -167,6 +177,7 @@ app.mount({ children: [] });
 const settle = async () => { for (let i = 0; i < 12; i++) await vue.nextTick(); };
 await settle();
 const state = listInstance.setupState;
+assert.equal(state.getContestListMode('missing'), 'UNSEEN');
 assert.equal(state.hasLoaded, true);
 assert.equal(memberReads, 1, "initial member selection must not restart the load");
 assert.equal(state.coverageSummaryMap.get("c1").solvedProblemCount, 2);

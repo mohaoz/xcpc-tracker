@@ -1,0 +1,16 @@
+{
+  "type": "general",
+  "version": "0.3.13",
+  "contest": {"title": {"fallback": "Synthetic final"}, "startAt": "2026-01-01T00:00:00Z", "duration": [5, "h"], "frozenDuration": [0, "h"]},
+  "problems": [{"alias": "A"}, {"alias": "B"}, {"alias": "C"}],
+  "series": [{"title": "#", "segments": [{"style": "gold"}, {"style": "silver"}, {"style": "bronze"}], "rule": {"preset": "ICPC", "options": {"count": {"value": [1, 1, 1]}}}}],
+  "sorter": {"algorithm": "ICPC"},
+  "markers": [{"id": "invitational", "label": "Invitational"}],
+  "rows": [
+    {"user": {"id": "star", "official": false}, "score": {"value": 3, "time": [30, "s"]}, "statuses": [{"result": "AC"}, {"result": "AC"}, {"result": "AC"}]},
+    {"user": {"id": "gold", "official": true, "markers": ["invitational"]}, "score": {"value": 3, "time": [60, "s"]}, "statuses": [{"result": "AC"}, {"result": "AC"}, {"result": "AC"}]},
+    {"user": {"id": "silver", "official": true, "markers": ["invitational"]}, "score": {"value": 2, "time": [120, "s"]}, "statuses": [{"result": "AC"}, {"result": "AC"}, {}]},
+    {"user": {"id": "bronze", "official": true, "markers": ["invitational"]}, "score": {"value": 1, "time": [180, "s"]}, "statuses": [{"result": "AC"}, {}, {}]},
+    {"user": {"id": "none", "official": true}, "score": {"value": 0, "time": [0, "s"]}, "statuses": [{}, {}, {}]}
+  ]
+}

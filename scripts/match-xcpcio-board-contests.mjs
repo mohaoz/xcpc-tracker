@@ -941,6 +941,7 @@ if (applyMatches) {
   const matchesByContestId = new Map(matches.map((match) => [match.contest_id, match]));
   const cutoffsByContestId = new Map(cutoffRecords.map((cutoffRecord) => [cutoffRecord.contest_id, cutoffRecord]));
   for (const contest of catalog.contests ?? []) {
+    if (contest.sources?.some(source => source.provider === "rankland")) continue;
     const existingSources = contest.sources ?? [];
     const nextSources = existingSources.filter((source) => !isXcpcioBoardSource(source));
     if (nextSources.length !== existingSources.length) {

@@ -1,0 +1,55 @@
+{
+  "baseline_sha256": "4647470aa233efa6292a994a68178bb89604b7fd9dd449af35ac83b0c1aac535",
+  "catalog_sha256": "f5f6218b48bdae570ff1246876781da4306f3e6c537eb6627fbd8c2e964afda2",
+  "contest_count": 246,
+  "problem_count": 3031,
+  "tagged_problems": 1413,
+  "new_whole_contest_links": 0,
+  "rankland_migrated": 139,
+  "rankland_awards": 10,
+  "corrections": [
+    {
+      "contest_id": "d505e000-4947-579c-8d9b-99e31160839f",
+      "reason": "2025 CCPC Nanchang was incorrectly linked to ICPC Nanchang; verified distinct SRK and all 13 QOJ tasks",
+      "removed_sources": [
+        {
+          "provider": "xcpcio_board",
+          "kind": "standings",
+          "url": "https://board.xcpcio.com/icpc/50th/nanchang-invitational",
+          "provider_contest_id": "/icpc/50th/nanchang-invitational",
+          "source_title": "2025年icpc全国邀请赛（南昌）暨2025年（icpc）江西省大学生程序设计竞赛 - 正式赛",
+          "label": "XCPCIO Board"
+        }
+      ],
+      "removed_awards": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/icpc/50th/nanchang-invitational",
+        "eligibleTeamCount": 457,
+        "cutoffs": {
+          "gold": {
+            "rank": 39,
+            "solved": 8,
+            "penalty": 1209,
+            "teamId": "317"
+          },
+          "silver": {
+            "rank": 117,
+            "solved": 7,
+            "penalty": 1163,
+            "teamId": "135"
+          },
+          "bronze": {
+            "rank": 234,
+            "solved": 5,
+            "penalty": 671,
+            "teamId": "412"
+          }
+        }
+      }
+    }
+  ],
+  "reviewed_at": "2026-09-14T04:58:06.090Z",
+  "release_version": "0.7.0"
+}

@@ -1,0 +1,6 @@
+{
+  "synthetic": true,
+  "catalog": {"problems": [{"problemId": "c:A", "contestId": "c", "ordinal": "A", "title": "Example", "aliases": [], "sources": [{"provider": "codeforces", "kind": "problem", "url": "https://codeforces.com/gym/100000/problem/A", "provider_problem_id": "100000:A"}]}], "contests": [{"contestId": "c", "title": "Example contest", "problemIds": ["c:A"]}]},
+  "input": [{"contestSlug": "icpc__example", "alias": "A", "title": "Example", "detailTags": ["贪心"], "problemUrl": "https://codeforces.com/gym/100000/problem/A", "confidence": 0.2, "status": "classified"}],
+  "expected": {"problem_id": "c:A", "tags": ["贪心"], "evidence": "provider_problem_id_and_title"}
+}

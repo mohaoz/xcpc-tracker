@@ -1,0 +1,1626 @@
+{
+  "schema_version": 1,
+  "export_kind": "rankland_award_review",
+  "synthetic": false,
+  "catalog_sha256": "34bd8ad3f8aeff7490547ad66f82df38e021be8f3fe3e9d658a7b1281bff9ad3",
+  "entries": [
+    {
+      "entry_id": "award:srk:official/icpc/icpc2026/icpc2026invitational-shenzhen.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2026/icpc2026invitational-shenzhen.srk.json",
+      "contest_id": "fca291f3-d017-5cd3-9298-63a1b624b39e",
+      "source_content_sha256": "c32ccaa979edafed6cb3a83905d9f5a464e26da98e647a8725129d5f4774519a",
+      "status": "approved",
+      "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable",
+      "result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "all_eligible",
+          "label": "正式参赛队伍",
+          "eligibility_rule": "user.official === true",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[28,56,84]"
+          ]
+        },
+        "eligible_team_count": 276,
+        "problem_count": 13,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[28,56,84]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 6,
+            "penalty": 966,
+            "team_id": "A2-17"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 4,
+            "penalty": 389,
+            "team_id": "A3-08"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 3,
+            "penalty": 258,
+            "team_id": "A2-04"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "Codex — full contest/problem identity audit",
+        "reviewed_at": "2026-09-14T04:58:06.090Z",
+        "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable"
+      }
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2026/icpc2026invitational-xi_an.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2026/icpc2026invitational-xi_an.srk.json",
+      "contest_id": "b6069f69-bc27-5966-a6e1-467028aebdcd",
+      "source_content_sha256": "b44373fb05009bcb44787a3142877751de12edafcaa5518b0ac8fe754894cae7",
+      "status": "approved",
+      "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable",
+      "result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "all_eligible",
+          "label": "正式参赛队伍",
+          "eligibility_rule": "user.official === true",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[36,72,108]"
+          ]
+        },
+        "eligible_team_count": 354,
+        "problem_count": 14,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[36,72,108]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 36,
+            "solved": 7,
+            "penalty": 821,
+            "team_id": "Team350"
+          },
+          "silver": {
+            "rank": 108,
+            "solved": 5,
+            "penalty": 327,
+            "team_id": "Team106"
+          },
+          "bronze": {
+            "rank": 216,
+            "solved": 4,
+            "penalty": 291,
+            "team_id": "Team216"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "Codex — full contest/problem identity audit",
+        "reviewed_at": "2026-09-14T04:58:06.090Z",
+        "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable"
+      }
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2026/icpc2026invitational-nanchang.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2026/icpc2026invitational-nanchang.srk.json",
+      "contest_id": "ce44751f-d252-5bfb-a4a9-324fe2eeaa65",
+      "source_content_sha256": "b5ece7bd9620fc6fecf7572eff736e77cc30e9252344fc33065f507405b45a51",
+      "status": "approved",
+      "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable",
+      "result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "all_eligible",
+          "label": "正式参赛队伍",
+          "eligibility_rule": "user.official === true",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[37,74,111]"
+          ]
+        },
+        "eligible_team_count": 368,
+        "problem_count": 13,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[37,74,111]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 37,
+            "solved": 5,
+            "penalty": 374,
+            "team_id": "319"
+          },
+          "silver": {
+            "rank": 111,
+            "solved": 4,
+            "penalty": 223,
+            "team_id": "176"
+          },
+          "bronze": {
+            "rank": 222,
+            "solved": 4,
+            "penalty": 512,
+            "team_id": "203"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "Codex — full contest/problem identity audit",
+        "reviewed_at": "2026-09-14T04:58:06.090Z",
+        "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable"
+      }
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2026/icpc2026invitational-wuhan.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2026/icpc2026invitational-wuhan.srk.json",
+      "contest_id": "b9a24afb-e623-5fd8-b97f-d7c71de3f8b6",
+      "source_content_sha256": "29fd6dec23cc87c5784f0e7c1296d0fc42a5ce29b4a51ae558dc057775bcf8c6",
+      "status": "approved",
+      "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable",
+      "result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "selected",
+          "source_group_ids": [
+            "Invitational_participants"
+          ],
+          "label": "邀请赛",
+          "eligibility_rule": "user.official === true AND user.markers includes Invitational_participants",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[23,46,69]"
+          ]
+        },
+        "eligible_team_count": 223,
+        "problem_count": 13,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[23,46,69]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 23,
+            "solved": 5,
+            "penalty": 706,
+            "team_id": "team_063"
+          },
+          "silver": {
+            "rank": 69,
+            "solved": 4,
+            "penalty": 751,
+            "team_id": "team_179"
+          },
+          "bronze": {
+            "rank": 138,
+            "solved": 2,
+            "penalty": 70,
+            "team_id": "team_134"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "Codex — full contest/problem identity audit",
+        "reviewed_at": "2026-09-14T04:58:06.090Z",
+        "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable"
+      }
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2026/icpc2026preliminary-1.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2026/icpc2026preliminary-1.srk.json",
+      "contest_id": "3d494493-657c-5f36-ab41-74a5d7c5e05e",
+      "source_content_sha256": "3f3c1338de705915780df21d69a0d77ec979b9986c6066586a4bb1b4419db566",
+      "status": "blocked",
+      "reason": "No explicit supported medal counts"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2025/icpc2025invitational-wuhan.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2025/icpc2025invitational-wuhan.srk.json",
+      "contest_id": "2f0ed056-6a2f-5f78-9b09-bd603440088c",
+      "source_content_sha256": "80c6abe1ab0acf1fe6ea957e84babae0993b3a15045d0d75a04c0f66b5a7e961",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2025/icpc2025invitational-nanchang.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2025/icpc2025invitational-nanchang.srk.json",
+      "contest_id": "9c24593e-15cd-5d66-b041-6bb69a464fa1",
+      "source_content_sha256": "6de2a1a11ec6d44de881cbfe62ad0de9ccb4d348bde6111034fd810ccedca0f5",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2025/icpc2025xi_an.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2025/icpc2025xi_an.srk.json",
+      "contest_id": "9d9a2f76-75d7-542e-83bd-440a4454db55",
+      "source_content_sha256": "2de98ef5cf4ab7e9c760c64fb4ca51d2c031d072504ea2a89432a8b99e90e788",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2025/icpc2025chengdu.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2025/icpc2025chengdu.srk.json",
+      "contest_id": "85531b6c-d671-5ba1-903c-1b3086c738d5",
+      "source_content_sha256": "4971f5c6567d3c4e72e25a6cdacd4ea1a7d26b3415690fa2639263b61344c27f",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2025/icpc2025wuhan.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2025/icpc2025wuhan.srk.json",
+      "contest_id": "5468060e-974f-5025-babc-9c3e89aba539",
+      "source_content_sha256": "8586c42e5b3126b222b181339f926395e48125c979bc302442c438f4598390c2",
+      "status": "approved",
+      "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable",
+      "result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "all_eligible",
+          "label": "正式参赛队伍",
+          "eligibility_rule": "user.official === true",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[45,90,136]"
+          ]
+        },
+        "eligible_team_count": 446,
+        "problem_count": 13,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[45,90,136]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 45,
+            "solved": 6,
+            "penalty": 831,
+            "team_id": "R23"
+          },
+          "silver": {
+            "rank": 135,
+            "solved": 4,
+            "penalty": 452,
+            "team_id": "D26"
+          },
+          "bronze": {
+            "rank": 271,
+            "solved": 3,
+            "penalty": 312,
+            "team_id": "N13"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "Codex — full contest/problem identity audit",
+        "reviewed_at": "2026-09-14T04:58:06.090Z",
+        "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable"
+      }
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2025/icpc2025nanjing.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2025/icpc2025nanjing.srk.json",
+      "contest_id": "b17e0929-8761-50bc-af76-e8d60a1955d9",
+      "source_content_sha256": "4ddc9fbd28b70551c510033718c4af7c275fa1f934edfa60e0601776a43c0375",
+      "status": "blocked",
+      "reason": "Previous cutoff differs; preserve previous value until discrepancy is independently resolved"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2025/icpc2025shenyang.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2025/icpc2025shenyang.srk.json",
+      "contest_id": "202b66e9-6caf-5385-be88-175319cac197",
+      "source_content_sha256": "729553be09be35780635b300ce7f64edc294ea62ca9adf1c8d415512201a7146",
+      "status": "approved",
+      "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable",
+      "result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "all_eligible",
+          "label": "正式参赛队伍",
+          "eligibility_rule": "user.official === true",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[40,80,120]"
+          ]
+        },
+        "eligible_team_count": 400,
+        "problem_count": 13,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[40,80,120]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 40,
+            "solved": 5,
+            "penalty": 561,
+            "team_id": "I_F04"
+          },
+          "silver": {
+            "rank": 120,
+            "solved": 4,
+            "penalty": 482,
+            "team_id": "I_G01"
+          },
+          "bronze": {
+            "rank": 240,
+            "solved": 3,
+            "penalty": 274,
+            "team_id": "I_G07"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "Codex — full contest/problem identity audit",
+        "reviewed_at": "2026-09-14T04:58:06.090Z",
+        "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable"
+      }
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2025/icpc2025shanghai.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2025/icpc2025shanghai.srk.json",
+      "contest_id": "2b834493-ac39-5f1d-94e5-290f5c282577",
+      "source_content_sha256": "772a2101a3e8a6f9c0a29a354176be4e9d350dea43d53a8a9761ec8aa8b613a0",
+      "status": "approved",
+      "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable",
+      "result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "all_eligible",
+          "label": "正式参赛队伍",
+          "eligibility_rule": "user.official === true",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[30,60,90]"
+          ]
+        },
+        "eligible_team_count": 331,
+        "problem_count": 13,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[30,60,90]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 30,
+            "solved": 6,
+            "penalty": 1009,
+            "team_id": "C64"
+          },
+          "silver": {
+            "rank": 90,
+            "solved": 4,
+            "penalty": 523,
+            "team_id": "A52"
+          },
+          "bronze": {
+            "rank": 180,
+            "solved": 2,
+            "penalty": 281,
+            "team_id": "B14"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "Codex — full contest/problem identity audit",
+        "reviewed_at": "2026-09-14T04:58:06.090Z",
+        "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable"
+      }
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2025/icpc2025hongkong.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2025/icpc2025hongkong.srk.json",
+      "contest_id": "d673ead4-3978-52fa-a717-21c7b0e556ae",
+      "source_content_sha256": "54b8e8bc040481c84aa5d7729670d15f34b9dab84a268d532861980d8624633e",
+      "status": "approved",
+      "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable",
+      "result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "all_eligible",
+          "label": "正式参赛队伍",
+          "eligibility_rule": "user.official === true",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[13,26,39]"
+          ]
+        },
+        "eligible_team_count": 126,
+        "problem_count": 12,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[13,26,39]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 13,
+            "solved": 5,
+            "penalty": 495,
+            "team_id": "B03"
+          },
+          "silver": {
+            "rank": 39,
+            "solved": 3,
+            "penalty": 349,
+            "team_id": "J07"
+          },
+          "bronze": {
+            "rank": 78,
+            "solved": 2,
+            "penalty": 279,
+            "team_id": "J02"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "Codex — full contest/problem identity audit",
+        "reviewed_at": "2026-09-14T04:58:06.090Z",
+        "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable"
+      }
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2025/icpc2025ecfinal.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2025/icpc2025ecfinal.srk.json",
+      "contest_id": "bdf7cdde-ef00-5059-8422-f258f612e606",
+      "source_content_sha256": "90b7a6ef3063bb3631d17cbf217291dda4417e2ff787fed22a45a4192eac3eb4",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024invitational-wuhan.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024invitational-wuhan.srk.json",
+      "contest_id": "b59cbf88-45bc-5688-89cc-a6ff21bd4391",
+      "source_content_sha256": "3f2d3699a4c02a5ba5fa9c5a76a354d00178d8491b2e52bc5d161da7dcae087f",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024invitational-kunming.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024invitational-kunming.srk.json",
+      "contest_id": "f30b6e9e-6a4c-5de0-af3e-2e34bd07106b",
+      "source_content_sha256": "e9afa0cea337de6c96b82ce527dd04adda25a07286ce4a8826ed602854998611",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024preliminary-1.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024preliminary-1.srk.json",
+      "contest_id": "4b6ed0c8-36e6-5a12-9930-f2bd70ee60b8",
+      "source_content_sha256": "42140458e8f5db47cdf4be311c3a2fae250572a66949672d618f880370884233",
+      "status": "blocked",
+      "reason": "No explicit supported medal counts"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024preliminary-2.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024preliminary-2.srk.json",
+      "contest_id": "7cb8a4a0-4b89-5914-82e1-38745ae4cf87",
+      "source_content_sha256": "b5a01e159ed1b5c7d1591085ddfee3c4146bbfce7432f0091548a19c4e123916",
+      "status": "blocked",
+      "reason": "No explicit supported medal counts"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024chengdu.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024chengdu.srk.json",
+      "contest_id": "b50d1996-9f44-5f19-9835-2e2b298c2b1b",
+      "source_content_sha256": "0dc97b825c22c52e4f2e90f3faeba45381d5adeea12e1c597be73f090a9b0abc",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024nanjing.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024nanjing.srk.json",
+      "contest_id": "74a8b654-776d-5c5d-ab8b-508f1fb501d3",
+      "source_content_sha256": "c30309076832bf4f0ea64d1217d2c898ae10c198065f390a08bab85620206aeb",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024hangzhou.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024hangzhou.srk.json",
+      "contest_id": "aeaa99e4-2410-562d-b01a-1cadd26edfcf",
+      "source_content_sha256": "3a86a6e5c7e1087a8993966e7459fc77f08519b44e14382ea3d50ec57442a6c6",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024shanghai.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024shanghai.srk.json",
+      "contest_id": "c941aeb5-a938-5fb2-b42b-463cb54075c9",
+      "source_content_sha256": "1a1855f4f07338268e1f9bbb9152d76e3b62cd66e8125f4b8e199480e0131c6a",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024shenyang.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024shenyang.srk.json",
+      "contest_id": "e0a65779-7c6b-51c4-8bb1-31a427747116",
+      "source_content_sha256": "d0428270b162cd0a42937a96f395de5e3d1a48e99ac10ef36beb41c18f54b43b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024kunming.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024kunming.srk.json",
+      "contest_id": "7dc5bfb0-285b-594b-8dbd-d6103b948c9c",
+      "source_content_sha256": "29edf4c74e878d253317ce0dc07c16a23e4fa9245f42219cb25c02cc6e5364db",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024hongkong.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024hongkong.srk.json",
+      "contest_id": "3cdc2d96-852d-5744-9739-a35167a931f0",
+      "source_content_sha256": "74191b894a2fed9954f080f13b8d5cdb1de96b7499c9eb67bbd627e26b4d9d7a",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2024/icpc2024ecfinal.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2024/icpc2024ecfinal.srk.json",
+      "contest_id": "894b4784-a6a1-552f-92d7-896533b93357",
+      "source_content_sha256": "f805d4a9d5344fa6f6212cf1e5209a513575c2f842d7fd8c707affef5224c3a9",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2023/icpc2023preliminary-1.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2023/icpc2023preliminary-1.srk.json",
+      "contest_id": "f0e14f1a-5dbe-55d9-b6c8-64f09f2ac332",
+      "source_content_sha256": "ccd49c4ce7310e8772d9af3a26fccf6d877f870f9871dc45b555e09a083f2328",
+      "status": "blocked",
+      "reason": "No explicit supported medal counts"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2023/icpc2023nanjing.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2023/icpc2023nanjing.srk.json",
+      "contest_id": "72f9e764-58e1-51b4-bb8a-a088eb7ed66a",
+      "source_content_sha256": "d77d8e4c775d4f9fdfdfdc54ccda3e9e3c6aee92239f2101c1e7bf9ffe6a1f34",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2023/icpc2023shenyang.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2023/icpc2023shenyang.srk.json",
+      "contest_id": "7f54c1ce-eb4b-50ec-9a49-c8b944d1d174",
+      "source_content_sha256": "4ae8824d0584b04a1eeca991f8712e338e5b451f7a3fdb58f9a340ee30b4a39e",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2023/icpc2023macau.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2023/icpc2023macau.srk.json",
+      "contest_id": "64ee3c32-4aad-55e0-8921-dc37b82f475b",
+      "source_content_sha256": "4aab1ffc516d3a28e732433732962b1cd8d25605c5842807a83bcc04275ffddb",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2023/icpc2023hefei.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2023/icpc2023hefei.srk.json",
+      "contest_id": "df9c7da4-fb87-51c3-ac9a-59163e337e02",
+      "source_content_sha256": "121713d2ee919d4b2e3f34e8ea4f05187ad2719b73a6bcd7f593383480f2b68d",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2023/icpc2023jinan.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2023/icpc2023jinan.srk.json",
+      "contest_id": "0379daf3-46ac-5439-887f-959c8276c799",
+      "source_content_sha256": "4823e003fae13a12826da29041702760e8acd1c0c682be5123e4440d2570c7a6",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2023/icpc2023hangzhou.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2023/icpc2023hangzhou.srk.json",
+      "contest_id": "18f05535-cadc-51be-8de7-fdc26452c210",
+      "source_content_sha256": "814af38fea967d78386f20f79a45a84449047fd6f4b0d2fd2ef9c4efcabdb5cd",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2023/icpc2023ecfinal.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2023/icpc2023ecfinal.srk.json",
+      "contest_id": "ae54ca49-12f6-5fe9-ad47-2a5984625674",
+      "source_content_sha256": "533ec5795d5ac846e5bbe34b95cfbd470c1d43fd66dc2b244f60e8fc6267a411",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2022/icpc2022shenyang.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2022/icpc2022shenyang.srk.json",
+      "contest_id": "a372ed10-c268-5dc2-bd26-d5e9aa7b38bb",
+      "source_content_sha256": "7ce71c08cd27392e1a88839af1aceb442f0a0a47f12d2746f5e37dd2797669e1",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2022/icpc2022xi_an.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2022/icpc2022xi_an.srk.json",
+      "contest_id": "851a3a76-041d-522b-a96c-4aa0104cfa96",
+      "source_content_sha256": "3576034a3c653a2986424acf25d50f3daa8f20b5ea6f422de22a9b72af23706c",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2022/icpc2022jinan.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2022/icpc2022jinan.srk.json",
+      "contest_id": "d185bec8-a409-596f-b3bc-7839ef04b99a",
+      "source_content_sha256": "9919be16bf956c63d46ef9d39a3b767f792daf5dcda9f0d1aa4a342ee68c23fd",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2022/icpc2022hangzhou.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2022/icpc2022hangzhou.srk.json",
+      "contest_id": "5a52aa8b-1ea7-584e-9b08-ec21a77d1692",
+      "source_content_sha256": "8bdf8807442a55995ea3a58c85624c1fd6862a56391b777916412f97607f9fff",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2022/icpc2022nanjing.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2022/icpc2022nanjing.srk.json",
+      "contest_id": "bf22dd1f-7927-5fe4-a7d9-68f7402bcd5f",
+      "source_content_sha256": "d8403bbabc03480f9af06e284582ed1b0766483d5e61a9b1cfd8cea3a9e4460d",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2022/icpc2022hongkong.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2022/icpc2022hongkong.srk.json",
+      "contest_id": "0c921b62-9d27-5bc5-9e4e-2eea9144df73",
+      "source_content_sha256": "18facb06d516c7dbae37232267d3c2fb71a308e571a46bbff24c461a7f2d897b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2022/icpc2022ecfinal.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2022/icpc2022ecfinal.srk.json",
+      "contest_id": "754419bd-dc96-57e1-9cf4-236edd3be39b",
+      "source_content_sha256": "5301223963de1e1fe39590e265da733e628e343eef55c6eca68e0dbc213f7eb9",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2021/icpc2021shenyang.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2021/icpc2021shenyang.srk.json",
+      "contest_id": "975f0683-3fa0-5d7b-bba9-ef9e1ff6449f",
+      "source_content_sha256": "22066371d97c78778a7b48ede80cd2c32a38d5c048039207f3eb6155c34b01b9",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2021/icpc2021shanghai.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2021/icpc2021shanghai.srk.json",
+      "contest_id": "6d2c1050-2a48-512c-803a-3440f69b7412",
+      "source_content_sha256": "7145800d6c73c90a4b6a068abb16ac1702b2aae13fe5835975f7961239604afd",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "source_content_sha256": "8de970447ad9e145914ae94076caf635e998c69ab365a0bb0efb131d26aa296f",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "source_content_sha256": "2b5047db567b7d9e46081a68acbdb61a8c81158dda04cd1c96c970371dc9ffcb",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "source_content_sha256": "813d864dae129561c3e514eddc5c300110eba1869f2bf98b24d7078ffa6e564a",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2020/icpc2020yinchuan.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2020/icpc2020yinchuan.srk.json",
+      "contest_id": "a2ed781a-6f64-56cf-8bc0-d36d7d368a56",
+      "source_content_sha256": "d9a9c678100db33bc07e8afdb2c1582d49c25d737137ccb91a5e6739e9c15805",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "source_content_sha256": "ad5dc47a5a6a53111ffa496b370bf5f54b0f5e1635d9d3428f477a75c57ae4bb",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2020/icpc2020ecfinal.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2020/icpc2020ecfinal.srk.json",
+      "contest_id": "46b27d08-2d30-56e0-98ac-c02edc5deb22",
+      "source_content_sha256": "8c9b375f7302b8c2f8580daa17ea21f7f4831fd782148df37bdc4515757c9de8",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2019/icpc2019yinchuan.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2019/icpc2019yinchuan.srk.json",
+      "contest_id": "e01b3167-d048-5861-b7a8-1f48355a229e",
+      "source_content_sha256": "e7e4915123750c7485abf183896866ce1cb3c9760d8494364e5622b2ca53f181",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2019/icpc2019ecfinal.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2019/icpc2019ecfinal.srk.json",
+      "contest_id": "eb2976be-353a-59ba-93a5-adc4b20913be",
+      "source_content_sha256": "cec52189200aaf2db3b64439624c77f497d04e0eb922f93932b172285c9f67c5",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2018/icpc2018shenyang.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2018/icpc2018shenyang.srk.json",
+      "contest_id": "88c1ec18-5721-50ca-a6b8-656e6160bd46",
+      "source_content_sha256": "d81e22f5b158e43cdd4bb6db45ae9ec3982d2564bda3aae2eb70e58d31b3002a",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2018/icpc2018xuzhou.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2018/icpc2018xuzhou.srk.json",
+      "contest_id": "b84b53b2-0b01-5b1d-995e-3fff0d88cf8c",
+      "source_content_sha256": "1a97701c9e11484641d0e9f3c95401605330558e8ec84cf7017b7a0b1dec63b5",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2018/icpc2018jiaozuo.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2018/icpc2018jiaozuo.srk.json",
+      "contest_id": "fe7945d8-427d-57d6-a3df-48ae1342708a",
+      "source_content_sha256": "bc8b30e1744e0302786963b4095c306bac91b0c2e671177884a6a75d3ceeda8d",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/icpc/icpc2018/icpc2018ecfinal.srk.json",
+      "mapping_entry_id": "srk:official/icpc/icpc2018/icpc2018ecfinal.srk.json",
+      "contest_id": "4eecb6e7-820c-5482-b9e1-c4a050def7e8",
+      "source_content_sha256": "9a85c70041b4376c08c2229c6dcec9f0b790ad74677f7f04b808427fc728f26d",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2026/ccpc2026invitational-nanchang.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2026/ccpc2026invitational-nanchang.srk.json",
+      "contest_id": "48308c06-eafd-569e-bf06-c20e40a98fee",
+      "source_content_sha256": "c01a3ada5cf50c1dc0cc148cdda2f63d76a4a40543c2b7ca17e62c3fc01aed5f",
+      "status": "approved",
+      "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable",
+      "result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "selected",
+          "source_group_ids": [
+            "participant"
+          ],
+          "label": "邀请赛",
+          "eligibility_rule": "user.official === true AND user.markers includes participant",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[31,61,91]"
+          ]
+        },
+        "eligible_team_count": 307,
+        "problem_count": 13,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[31,61,91]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 31,
+            "solved": 7,
+            "penalty": 694,
+            "team_id": "team146"
+          },
+          "silver": {
+            "rank": 92,
+            "solved": 6,
+            "penalty": 994,
+            "team_id": "team322"
+          },
+          "bronze": {
+            "rank": 183,
+            "solved": 4,
+            "penalty": 247,
+            "team_id": "team218"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "Codex — full contest/problem identity audit",
+        "reviewed_at": "2026-09-14T04:58:06.090Z",
+        "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable"
+      }
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2025/ccpc2025invitational-northeast.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2025/ccpc2025invitational-northeast.srk.json",
+      "contest_id": "81cb7a42-a523-5734-8cc4-ba68a16d0b2b",
+      "source_content_sha256": "1ab0a8887361aeee25bd2de7a91d25aec9217ad95a8da53ad433aa433454e91a",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2025/ccpc2025invitational-zhengzhou.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2025/ccpc2025invitational-zhengzhou.srk.json",
+      "contest_id": "2d28130e-3c6e-527d-9ac2-597b2120d367",
+      "source_content_sha256": "9928b73f8fa4cd972f4bd04a0f9541e4519106ba483f9039496cc8e0fb6b6e92",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2025/ccpc2025invitational-fujian.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2025/ccpc2025invitational-fujian.srk.json",
+      "contest_id": "4c61e830-0179-5f48-a33d-6a2141ff7015",
+      "source_content_sha256": "8f0c9b4661e5e3bc36db5d720cfac63e11dee4c617ced56068400881a6f27c3b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2025/ccpc2025invitational-nanchang.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2025/ccpc2025invitational-nanchang.srk.json",
+      "contest_id": "d505e000-4947-579c-8d9b-99e31160839f",
+      "source_content_sha256": "b6758df45be96d724627e4e0891f1cb40906a63d9a036b1c6d6d350df8406edb",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2025/ccpc2025ladies.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2025/ccpc2025ladies.srk.json",
+      "contest_id": "a1242fee-fbe0-58d5-8f3e-3503e1dacafd",
+      "source_content_sha256": "527669f6cb383dab49294359eefdfefb1153afdc85142c3e71227c881740998b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2025/ccpc2025harbin.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2025/ccpc2025harbin.srk.json",
+      "contest_id": "90304e71-e24f-52db-ac10-905968538e15",
+      "source_content_sha256": "77114457dc5f44988788be3a7d3870a10d420bff281f599e9c55d75ffe706592",
+      "status": "blocked",
+      "reason": "Combined or unsupported medal rules"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2025/ccpc2025jinan.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2025/ccpc2025jinan.srk.json",
+      "contest_id": "3c1f14cf-3e1d-55a5-bc61-95cfb3192540",
+      "source_content_sha256": "f3de98e8be268accfbbb0fd9c8fcb25f3f3df5105b6eed2d2276ebccac40129c",
+      "status": "blocked",
+      "reason": "Combined or unsupported medal rules"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2025/ccpc2025zhengzhou.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2025/ccpc2025zhengzhou.srk.json",
+      "contest_id": "0e2f509e-0941-51bf-9ef2-a3a80deb603b",
+      "source_content_sha256": "ea58aa3ef6469052f9a8cac19d91234e575a526cdfaf9578912fc1041e887179",
+      "status": "blocked",
+      "reason": "Combined or unsupported medal rules"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2025/ccpc2025chongqing.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2025/ccpc2025chongqing.srk.json",
+      "contest_id": "e94e1e74-b0c7-5989-ad3d-a14481dd32d8",
+      "source_content_sha256": "51d00dc50e8412460a99a332a388a6ab407d76d5c1f1618741b82769e596f399",
+      "status": "blocked",
+      "reason": "Combined or unsupported medal rules"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024invitational-changchun.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024invitational-changchun.srk.json",
+      "contest_id": "341a425a-e3a3-5a18-8cc7-6380793e186c",
+      "source_content_sha256": "5331de33ab45c0bde8fad1824cb295a54481a90165baad77f9f6c7c6b4564cf8",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024invitational-northeast.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024invitational-northeast.srk.json",
+      "contest_id": "44512cc4-fbec-5ffc-9558-c692354c9b78",
+      "source_content_sha256": "de97ca942950746f1881457418d05dff6a0c8dcb25830272d98f34f3e4c3d553",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024invitational-jinan.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024invitational-jinan.srk.json",
+      "contest_id": "b3cf0765-08c2-5174-a9e6-c1794a98444f",
+      "source_content_sha256": "4c4a439df0e1281044d60b723ef3a712bdd6d28764508630f2b66f306e65bf4f",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024preliminary.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024preliminary.srk.json",
+      "contest_id": "4c825047-c0ce-5619-9be1-f27256ab6824",
+      "source_content_sha256": "73bd98bc52c1e123d0c1c3fa43060ddfc4ba5b589081673734215712f7704e19",
+      "status": "blocked",
+      "reason": "No explicit supported medal counts"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024harbin.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024harbin.srk.json",
+      "contest_id": "033094a1-9c70-5d37-969d-b7a00db88f2f",
+      "source_content_sha256": "7542bb032eee4b7968cac7f746aeb86e19f25e63e1e1c6dcc2856edf4f77989b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024jinan.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024jinan.srk.json",
+      "contest_id": "d037a863-64dc-5228-b830-fbcd818798ed",
+      "source_content_sha256": "771e2d7f4d42a51a64ccc255e80e32080984d390a6a421f8b4d8f6774b77bd13",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024hv.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024hv.srk.json",
+      "contest_id": "9c25b508-98e4-5d1e-83de-2608768f5bf0",
+      "source_content_sha256": "306013f096e3a5bde9bba9b70283c64f42c9bf966fa518129293f90afa89a5df",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024ladies.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024ladies.srk.json",
+      "contest_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff",
+      "source_content_sha256": "faeb6222a57b4f009b4dc6e1515ab3894d45e0d97e3130378a554c23f606295c",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024chongqing.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024chongqing.srk.json",
+      "contest_id": "0ec23dd3-02c5-59ae-8a3f-a33e410fabe6",
+      "source_content_sha256": "1e70c161681a1f8c90d9f7f1141315bf1df8929278c14f20fae92741d40eec9d",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024zhengzhou.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024zhengzhou.srk.json",
+      "contest_id": "3abb2c7f-0e8c-51fc-afac-fdceab5470a7",
+      "source_content_sha256": "b1bf21e5ecaad2214f2884f95b8a3434ec0a96f1161cc9901075b9593cc67e1b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2024/ccpc2024final.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2024/ccpc2024final.srk.json",
+      "contest_id": "933aa22d-7235-5a56-a24c-f01db2d6603a",
+      "source_content_sha256": "f17fbc3264e894080bf6fdd3ab0f36506547115c74aab9e60b4f1b37d6fc7313",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2023/ccpc2023invitational-xiangtan.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2023/ccpc2023invitational-xiangtan.srk.json",
+      "contest_id": "624e066e-2f47-57aa-8ba1-91de5329d750",
+      "source_content_sha256": "7abb445f053c06f27210f5f295e4ff562dbe39454e637420f501fe7d51bf853b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2023/ccpc2023preliminary.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2023/ccpc2023preliminary.srk.json",
+      "contest_id": "4e2a350c-d590-59b8-b65a-3a4c6bb7d49c",
+      "source_content_sha256": "f7f466988eb1bf1f0edddbe119066c25c98ebbc82e8d0fec04004109d24b0251",
+      "status": "blocked",
+      "reason": "No explicit supported medal counts"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2023/ccpc2023qinhuangdao.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2023/ccpc2023qinhuangdao.srk.json",
+      "contest_id": "c04eefcf-c70c-51c1-9110-e0d1d738d201",
+      "source_content_sha256": "5d9f80760a89219f053062f7766c9f7553c68b3c45bf54acf79d851cc43c73c6",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2023/ccpc2023ladies.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2023/ccpc2023ladies.srk.json",
+      "contest_id": "ebc21e05-5863-5095-a83b-87134d5c6a51",
+      "source_content_sha256": "deff033fc1db795db52d402e4a7b582e263fb6d63e3b36526889e5a7b1801991",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2023/ccpc2023guilin.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2023/ccpc2023guilin.srk.json",
+      "contest_id": "9cd0abe4-223a-5be8-a219-32c07402199f",
+      "source_content_sha256": "b687a687ec6cb43e8653dcb4e7ba1d78d8f0a768d4ce5b4de6a9b969592097a3",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2023/ccpc2023harbin.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2023/ccpc2023harbin.srk.json",
+      "contest_id": "e5bf6ecb-f1a1-5631-b168-de071ad7cb07",
+      "source_content_sha256": "019bee0c8d0e644b3b359b53d8341ec61c45e893e7470302b100fe781a32124f",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2023/ccpc2023shenzhen.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2023/ccpc2023shenzhen.srk.json",
+      "contest_id": "f2988a25-a87b-5222-ae8c-102af2090df1",
+      "source_content_sha256": "7734e5cab13eacc9ae89d979bf4881dd1f8e2c6b58aee17dd6329b3240876297",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2023/ccpc2023final.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2023/ccpc2023final.srk.json",
+      "contest_id": "227596ec-a090-53a9-8799-92b2bdd68020",
+      "source_content_sha256": "b152886493472a93c5b13f8591831a643ae78e310d92603dc4657159e193b672",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2022/ccpc2022preliminary.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2022/ccpc2022preliminary.srk.json",
+      "contest_id": "0a1c2bdb-fe56-577a-ab99-6465d9ae441d",
+      "source_content_sha256": "941e8d3c57f6958c4cc9ba1a3bd301fa7db782039d5ea9e3b68492627ccb92c8",
+      "status": "blocked",
+      "reason": "No explicit supported medal counts"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2022/ccpc2022guilin.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2022/ccpc2022guilin.srk.json",
+      "contest_id": "830a11dd-ef5f-5e5a-9b8d-656e9048b041",
+      "source_content_sha256": "21dec0c8a8dee58cf4dad7302e35107f42e57def31bfdd9465dfa2d04b1a9a21",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2022/ccpc2022weihai.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2022/ccpc2022weihai.srk.json",
+      "contest_id": "5f133fa7-f237-5750-ba30-9ee51e651bc6",
+      "source_content_sha256": "435b3021b6ac5204bf29cc4cf719415f1d007755ca567410a2c3a0139e571a6f",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2022/ccpc2022guangzhou.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2022/ccpc2022guangzhou.srk.json",
+      "contest_id": "c68771ee-2216-5543-9fb3-b60deef4e1c0",
+      "source_content_sha256": "5ac35d9f90978b1439cdbcb6ef5f0ad870c3642279f599fad3f613228b8efa56",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2022/ccpc2022mianyang.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2022/ccpc2022mianyang.srk.json",
+      "contest_id": "db44796f-a9c1-58b0-9a5a-81bfdf8c36a6",
+      "source_content_sha256": "a66449a7786a355b9dfac9a8c6a9343e3931811894373c71b4314a8703d678e7",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2022/ccpc2022ladies.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2022/ccpc2022ladies.srk.json",
+      "contest_id": "5a1301dd-3f4f-5dff-8a6f-61efa949b36e",
+      "source_content_sha256": "798b133567330d5e032bfb95b399b54163f0e70ac0ec3e5f4586cfd9db8a30d7",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2022/ccpc2022final.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2022/ccpc2022final.srk.json",
+      "contest_id": "e1c4780c-9b45-55f5-b5ec-e94428e2dcbf",
+      "source_content_sha256": "ecb79be4f02555306b4cae5a65a4ace37173f06422131740993532f8123757f2",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "source_content_sha256": "3d651f8c116f42ae92b762ee76af8931499cd27bd33407c4232ba631e600b55b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "source_content_sha256": "f9ac74f4ce25da5ffaf1989333a24b6f612a1cc6ac708ff5182ec30a94378054",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "source_content_sha256": "5678189f7c30791704146c61497f6d0cc877295ac23a7034b29bf067d5a41ccb",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "source_content_sha256": "333e368c1c6953b57b235c45ca20c3a6b8c406fa01d773658a6402b22f6d1b5b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2021/ccpc2021final.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2021/ccpc2021final.srk.json",
+      "contest_id": "2768dce1-b920-59ac-8898-9bfdf673bf29",
+      "source_content_sha256": "d9fe4839e0cac0265516213881101731db7d05385140f64ce8c36d697869a2bb",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "source_content_sha256": "a38409a290abe545cce2c88afdae96e3157bc9e8cf9fe5563592deef32740a3b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "source_content_sha256": "a427be3ec569aa1f41a305dd6a751954b2ac1d24ac75939f1687bac29b7792c1",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+      "mapping_entry_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "source_content_sha256": "3b6f3527bdd01a8db3ea1a8be3b317921402f46436e8eb313ce170823d8f4d19",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/bj/bjcpc2025.srk.json",
+      "mapping_entry_id": "srk:official/provincial/bj/bjcpc2025.srk.json",
+      "contest_id": "b48a800e-5949-5b90-97c3-b0171c0914c6",
+      "source_content_sha256": "e6d51c86ade03124aec72a41f65a47fa9a9aa30e1022cafca68b6fafb4c4fc50",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/bj/bjcpc2024.srk.json",
+      "mapping_entry_id": "srk:official/provincial/bj/bjcpc2024.srk.json",
+      "contest_id": "ddf7cc31-8a01-5f58-a4b9-8ff486e5bea8",
+      "source_content_sha256": "61b6376000002cb9d92bf61a32470ada488cb36646568f081b8be4fb0c40dc3a",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/he/hecpc9th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/he/hecpc9th.srk.json",
+      "contest_id": "f080df0d-d3ff-5fac-89e8-04cc21a337c9",
+      "source_content_sha256": "87893a608fb5807887c60a8a4f278aa9d5180fb936949b6a57db5460298c6e50",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/he/hecpc8th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/he/hecpc8th.srk.json",
+      "contest_id": "52210714-8251-5667-b174-b9720b98f308",
+      "source_content_sha256": "25ec9eb25b8fc5efcbe0e4a564054a71999040535d18573571289e4125faada0",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/he/hecpc7th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/he/hecpc7th.srk.json",
+      "contest_id": "ab802aa2-4882-5d82-9999-bec2e2d2e5fd",
+      "source_content_sha256": "c9f2aa671ce0cd9dd063cd41bdd3ffab297cb89cd62700594009d373917832b9",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/he/hecpc6th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/he/hecpc6th.srk.json",
+      "contest_id": "b697e3f2-3c78-509c-a821-a48bb73dc809",
+      "source_content_sha256": "fc2bab5be9a7ea67c98cb80e6dd09968b4234097371db29a5f8aadb5c05837a1",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/ln/lncpc6th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/ln/lncpc6th.srk.json",
+      "contest_id": "9f1d5ef1-ebaf-5300-9e98-1020bf6b95d6",
+      "source_content_sha256": "6a655bb8181322f106d0ef5cd6c3f6cd33ddec68658e920ce6944db813666c63",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/ln/lncpc5th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/ln/lncpc5th.srk.json",
+      "contest_id": "7113bc04-ec9e-53c5-8cc6-3e05f2438e44",
+      "source_content_sha256": "0da406a5c56a6456be6c9c144c6f07cd4a6b5c48fe6eed3716953c409a21d16f",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/jl/jlcpc19th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/jl/jlcpc19th.srk.json",
+      "contest_id": "2e723e83-803e-5132-8bc8-87166ad1b28a",
+      "source_content_sha256": "cde8ce3878484a7d15ac9467d8f66f2e1f1d2ccc909be025d3f21b9900877eea",
+      "status": "blocked",
+      "reason": "No explicit supported medal counts"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/jl/jlcpc15th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/jl/jlcpc15th.srk.json",
+      "contest_id": "2fc81563-266f-5759-8f23-e35435eb24e8",
+      "source_content_sha256": "e29cb28cfbb563c567503417d281aa174fc9d6b9c9cfbba6f5c347a25645c3f1",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/hl/hlcpc21st.srk.json",
+      "mapping_entry_id": "srk:official/provincial/hl/hlcpc21st.srk.json",
+      "contest_id": "411cc95d-3733-5a0b-8806-ab17b43f8838",
+      "source_content_sha256": "c7f887c9deb277cfd3d214d8e0049e6cb60042ab2f4009e84d93615651b2931f",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/sh/shcpc2025.srk.json",
+      "mapping_entry_id": "srk:official/provincial/sh/shcpc2025.srk.json",
+      "contest_id": "640e6d94-b5d8-5a13-9c03-855774ace1f5",
+      "source_content_sha256": "7fcfc965230a94f06447c62291f822c9b829f9a3786c7eb880e4dabf26a991bf",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/sh/shcpc2024.srk.json",
+      "mapping_entry_id": "srk:official/provincial/sh/shcpc2024.srk.json",
+      "contest_id": "288ae13f-a26a-5a72-9b73-cd1996bbb96b",
+      "source_content_sha256": "1cc55116fd59d11c8d46c936481b906ed4b85f5f7711bfe85562c4e01cf4a009",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/js/jscpc11th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/js/jscpc11th.srk.json",
+      "contest_id": "f1530276-8b8a-5dec-a563-060fdc7ff438",
+      "source_content_sha256": "d2788acf3488d771f24b2fd1713fc918d1bbbbe23a8f1b7d4cc7bd1b094d3b99",
+      "status": "approved",
+      "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable",
+      "result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "all_eligible",
+          "label": "正式参赛队伍",
+          "eligibility_rule": "user.official === true",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[18,35,53]"
+          ]
+        },
+        "eligible_team_count": 178,
+        "problem_count": 12,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[18,35,53]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 18,
+            "solved": 7,
+            "penalty": 808,
+            "team_id": "C-610"
+          },
+          "silver": {
+            "rank": 53,
+            "solved": 5,
+            "penalty": 447,
+            "team_id": "A-210"
+          },
+          "bronze": {
+            "rank": 106,
+            "solved": 4,
+            "penalty": 667,
+            "team_id": "A-107"
+          }
+        }
+      },
+      "review": {
+        "reviewed_by": "Codex — full contest/problem identity audit",
+        "reviewed_at": "2026-09-14T04:58:06.090Z",
+        "reason": "Explicit medal counts, final unfrozen complete rows, official eligibility, no boundary ties; highest group selected where applicable"
+      }
+    },
+    {
+      "entry_id": "award:srk:official/provincial/js/jscpc10th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/js/jscpc10th.srk.json",
+      "contest_id": "146c5860-236d-58c9-823f-97c2d2b10ca4",
+      "source_content_sha256": "71c4a08079c74ff6bcad907a41f6d02e79dcd29ee45c930412562ec2bc397e2e",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/js/jscpc7th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/js/jscpc7th.srk.json",
+      "contest_id": "14246c8f-a0e2-5ff5-b1d9-d9b1c1389118",
+      "source_content_sha256": "7d798149cf984fed7272c2efb024be55989947f3bee99acd8efae4e6e4839d34",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/zj/zjcpc23rd.srk.json",
+      "mapping_entry_id": "srk:official/provincial/zj/zjcpc23rd.srk.json",
+      "contest_id": "a9098c59-44d3-5586-8b15-837d828f90b4",
+      "source_content_sha256": "6d5265ec604fa2085797d560a3e502623b56563f032b12bac3fb6820b54a9d9b",
+      "status": "blocked",
+      "reason": "No explicit supported medal counts"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/zj/zjcpc22nd.srk.json",
+      "mapping_entry_id": "srk:official/provincial/zj/zjcpc22nd.srk.json",
+      "contest_id": "16f4adf5-7080-5acc-b1a5-a9c04f049a37",
+      "source_content_sha256": "88d73d66fd2309cbdf2588c2e5cd34d25f717dec93e8737338529a5ecbf2b6db",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/zj/zjcpc21st.srk.json",
+      "mapping_entry_id": "srk:official/provincial/zj/zjcpc21st.srk.json",
+      "contest_id": "f1418917-e78e-50ae-af2e-297f6926fb40",
+      "source_content_sha256": "add36cd4cd4a9730c6a2d8e9a0f1812c9202e9a4badcd841d845eb70da89316d",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/zj/zjcpc19th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/zj/zjcpc19th.srk.json",
+      "contest_id": "e5b39fc7-a1cd-5de1-a2a5-b60940de01bf",
+      "source_content_sha256": "2f05fc3746ce2695844c29601d89575be0ad10fddb2e0ea6f058dfb648cff5d1",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/zj/zjcpc18th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "source_content_sha256": "15451cf2121474bc15a4a05c90739e964d6e640b657fd44eb7ada2264ae82054",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/jx/jxcpc2023.srk.json",
+      "mapping_entry_id": "srk:official/provincial/jx/jxcpc2023.srk.json",
+      "contest_id": "6bf5dc05-6279-5a84-93c0-3da04882afb3",
+      "source_content_sha256": "d22efe4e18733a1c78d9723bf3a9e6c9275410823ebfd3736096315eca123259",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/sd/sdcpc16th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/sd/sdcpc16th.srk.json",
+      "contest_id": "965d670a-c551-5dda-a280-33fc2229feaf",
+      "source_content_sha256": "765b73103214d921de79ec104f925ca1493883758ad8bf6931aa5b8c28e7088d",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/sd/sdcpc15th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/sd/sdcpc15th.srk.json",
+      "contest_id": "99d7897e-30fe-5b6c-8ec6-a3e261cf4d0c",
+      "source_content_sha256": "b003676bde81f614da1895a20ace507dfd982460bc03900f0c88c189677f4c64",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/ha/haccpc6th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/ha/haccpc6th.srk.json",
+      "contest_id": "861750a2-a4bc-5c63-b06c-acece91ab757",
+      "source_content_sha256": "4b1656ac9bb1fc487bdd7374ab773205618c028495bc244157d0801e424a12eb",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/ha/haccpc5th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/ha/haccpc5th.srk.json",
+      "contest_id": "d49a6906-748c-57a9-9159-74f139bf75dc",
+      "source_content_sha256": "6394313ab2caa6d291ec025805bba2440d82671d90dd9ba4f82120b819167e21",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/ha/haccpc4th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/ha/haccpc4th.srk.json",
+      "contest_id": "7d931e77-1d2c-5bf9-8c4a-357650428d2e",
+      "source_content_sha256": "2c094c7b1168cf3b419c95291a2685bdb6a2ce8a771ced566fe246908140cdd6",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/ha/haccpc2nd.srk.json",
+      "mapping_entry_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "source_content_sha256": "308521448ab9ed77d929cde9e503de8f05aa9bd94dd0da21d2e306ebcc4404c8",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/hb/hbcpc6th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/hb/hbcpc6th.srk.json",
+      "contest_id": "0ddb3154-f147-5383-b0a1-fe6d585f7ac5",
+      "source_content_sha256": "b93c9e72d876311dd5527589941b12e4a857c056afb8f5f9ce28bd507668fa5e",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/hb/hbcpc5th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/hb/hbcpc5th.srk.json",
+      "contest_id": "042b3a9c-ac2e-5192-93b6-f85df13ec905",
+      "source_content_sha256": "bd5bf96f048830e1a9e8ee12fc2890d750b3ea22ddc8bd12f7de36d17146da1b",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/hb/hbcpc4th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/hb/hbcpc4th.srk.json",
+      "contest_id": "902618d7-caef-540d-a9c7-c548dd9a70d6",
+      "source_content_sha256": "d5c23804bcc38298092da120e386e95dec2e90f557f2a7722bb465692b842606",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/hn/hncpc20th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/hn/hncpc20th.srk.json",
+      "contest_id": "fd6fc150-2f05-5e0e-831f-dc2ff3c4e16a",
+      "source_content_sha256": "8881ec3974f1b09db2eb1b8cf56cfc8c2df28bd7e985f1e1511cdd3abb03c4cf",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/gd/gdcpc23rd.srk.json",
+      "mapping_entry_id": "srk:official/provincial/gd/gdcpc23rd.srk.json",
+      "contest_id": "b84e4298-4c66-56b3-a5e1-403d1d7c87cd",
+      "source_content_sha256": "47d63cf8ebb611fd842dde10d8d46d7869ab7dcf5b6757c69a6486893d8426f9",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/gd/gdcpc21st.srk.json",
+      "mapping_entry_id": "srk:official/provincial/gd/gdcpc21st.srk.json",
+      "contest_id": "37be7218-0651-56cc-a5cd-c5669149d6f3",
+      "source_content_sha256": "211d45c43b8b88616ecd8adc50431197fb7213fd84bf47dbe93f90d58059fb78",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/cq/cqcpc14th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/cq/cqcpc14th.srk.json",
+      "contest_id": "a218c192-1ca0-50e3-886c-95286d773f1d",
+      "source_content_sha256": "185c2d218efc52a19a2bd4cd52bdbc3e78380637c8014b6c676f1a86916b35ba",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/cq/cqcpc13th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/cq/cqcpc13th.srk.json",
+      "contest_id": "9c678c83-09b0-535d-9053-1049bd087f63",
+      "source_content_sha256": "8f8a14d529aded2576c44e4c80d1fa5796d1a5d3df73cf7535033295b178dfc9",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/sc/sccpc18th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/sc/sccpc18th.srk.json",
+      "contest_id": "351df86a-97da-50fb-9d53-f536ecd9e383",
+      "source_content_sha256": "c4e0026249139cd0eabd34aa1d562f6997edd430e07f2a1066af14a5fb3a0c88",
+      "status": "blocked",
+      "reason": "Multiple or unsupported eligible groups"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/sc/sccpc17th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/sc/sccpc17th.srk.json",
+      "contest_id": "c91ce6a1-50d3-52dc-9166-6cf36d5df834",
+      "source_content_sha256": "ac60015e6e035ab3e27a9501b4dc1a45563651237a154fae787d1aa634d0c603",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "entry_id": "award:srk:official/provincial/sc/sccpc16th.srk.json",
+      "mapping_entry_id": "srk:official/provincial/sc/sccpc16th.srk.json",
+      "contest_id": "9001e86a-0cd1-57e0-aa6b-a4e50d47d17d",
+      "source_content_sha256": "4276536261db51c7d7aa5a6f823c432fdcd385cbf60cb5ff9af94f37e2a227a8",
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    }
+  ]
+}

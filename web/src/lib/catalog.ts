@@ -23,6 +23,7 @@ export type CatalogContestIndex = {
 };
 
 export type CatalogSource = {
+  is_default?: boolean;
   provider: string;
   kind: string;
   url?: string;
@@ -49,6 +50,7 @@ export type CatalogAwardCutoffs = {
 };
 
 export type CatalogProblem = {
+  tags?: string[];
   id: string;
   ordinal: string;
   title: string;
@@ -79,6 +81,7 @@ export type GeneratedCatalogBundle = {
 };
 
 type CatalogSnapshotSource = {
+  is_default?: boolean;
   provider: string;
   kind: string;
   url?: string;
@@ -103,6 +106,7 @@ type CatalogSnapshotContest = {
 };
 
 type CatalogSnapshotProblem = {
+  tags?: string[];
   problemId: string;
   contestId: string;
   ordinal: string;
@@ -201,6 +205,7 @@ export async function fetchGeneratedCatalogBundle(options?: { forceRefresh?: boo
       const bucket = problemsByContestId.get(problem.contestId) ?? [];
       bucket.push({
         id: problem.problemId,
+        tags: problem.tags ?? [],
         ordinal: problem.ordinal,
         title: problem.title,
         aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources ?? []),

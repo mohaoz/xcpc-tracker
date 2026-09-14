@@ -18,10 +18,10 @@ const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
       <div class="shell__hero-bg"></div>
       <div class="shell__hero-inner">
         <div>
-          <p class="eyebrow">XCPC 覆盖追踪器</p>
+          <p class="eyebrow">XCPC · 整场 VP 选题</p>
           <h1>XCPC Tracker</h1>
           <p class="hero-copy">
-            整理比赛目录、导入成员状态，并直接查看队伍覆盖与题目新鲜度。
+            根据队员的尝试与通过记录挑选整场 VP，自主决定是否查看牌线和题目标签。
           </p>
         </div>
         <nav class="shell__nav" aria-label="Primary">
@@ -55,5 +55,10 @@ const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
         </KeepAlive>
       </RouterView>
     </main>
+    <footer class="muted tiny" style="padding: 16px 24px">
+      榜单数据：<a href="https://github.com/algoux/srk-collection" target="_blank" rel="noreferrer">algoUX / RankLand</a>、XCPCIO ·
+      题目标签：<a href="https://hei-maom.github.io/xcpcrating/#/problems" target="_blank" rel="noreferrer">XCPC Rating</a> ·
+      <a href="https://github.com/mohaoz/xcpc-tracker/blob/main/catalog/README.md" target="_blank" rel="noreferrer">数据来源与许可</a>
+    </footer>
   </div>
 </template>

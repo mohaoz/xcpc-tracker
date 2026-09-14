@@ -8,6 +8,7 @@ import type {
 } from "./local-model";
 import { listRuntimeCatalogProblemsForImport } from "./catalog-runtime";
 import {
+  localDb,
   listCodeforcesMemberSyncTargets,
   upsertMemberBundle,
 } from "./local-db";
@@ -169,11 +170,38 @@ export async function importCodeforcesMember(payload: {
   displayName?: string;
 }): Promise<CodeforcesImportSummary> {
   const startedAt = new Date().toISOString();
+  try { return await importCodeforcesMemberData(payload); }
+  catch (error) {
+    const finishedAt = new Date().toISOString();
+    const sourceRecordId = `codeforces:${payload.handle}:${finishedAt}:failed`;
+    const summary = {handle: payload.handle, member_id: payload.memberId, fetch_error: error instanceof Error ? error.message : String(error)};
+    await localDb.transaction('rw', [localDb.importSources, localDb.syncRecords], async () => {
+      await localDb.importSources.put({sourceRecordId, kind:'codeforces_api', label:`Codeforces sync failed: ${payload.handle}`, importedAt:finishedAt, rawMetaJson:summary});
+      await localDb.syncRecords.put({syncId:sourceRecordId, sourceRecordId, adapter:'codeforces_api', startedAt, finishedAt, status:'failed', summaryJson:summary});
+    });
+    throw error;
+  }
+}
+
+async function importCodeforcesMemberData(payload: {
+  memberId: string;
+  handle: string;
+  displayName?: string;
+}): Promise<CodeforcesImportSummary> {
+  const startedAt = new Date().toISOString();
   const submissions = await requestCodeforcesApi<CodeforcesSubmission[]>("user.status", {
     handle: payload.handle,
   });
   const normalizedStatuses = normalizeCodeforcesStatus(submissions);
   const catalogProblems = await listRuntimeCatalogProblemsForImport();
+  const problemsByProviderId = new Map<string, LocalCatalogProblemRecord[]>();
+  for (const problem of catalogProblems) for (const source of problem.sources) {
+    if (source.provider !== 'codeforces' || !source.provider_problem_id) continue;
+    const bucket = problemsByProviderId.get(source.provider_problem_id) ?? [];
+    if (!bucket.includes(problem)) bucket.push(problem);
+    problemsByProviderId.set(source.provider_problem_id, bucket);
+  }
+  const unmatchedStatuses = normalizedStatuses.filter(item => !problemsByProviderId.has(item.providerProblemId));
   const importedAt = new Date().toISOString();
   const sourceRecordId = `codeforces:${payload.handle}:${importedAt}`;
 
@@ -197,10 +225,7 @@ export async function importCodeforcesMember(payload: {
   ];
 
   const statuses: LocalMemberProblemStatusRecord[] = normalizedStatuses.flatMap((item) => {
-    const matchedProblems = findProblemsByCodeforcesProviderProblemId(
-      catalogProblems,
-      item.providerProblemId,
-    );
+    const matchedProblems = problemsByProviderId.get(item.providerProblemId) ?? [];
     return matchedProblems.map((matchedProblem) => ({
       statusId: `${payload.memberId}:${matchedProblem.problemId}:codeforces`,
       memberId: payload.memberId,
@@ -224,6 +249,8 @@ export async function importCodeforcesMember(payload: {
       member_id: payload.memberId,
       submission_count: submissions.length,
       matched_status_count: statuses.length,
+      unmatched_status_count: unmatchedStatuses.length,
+      unmatched_problem_statuses: unmatchedStatuses,
     },
   };
 
@@ -239,6 +266,7 @@ export async function importCodeforcesMember(payload: {
       member_id: payload.memberId,
       submission_count: submissions.length,
       matched_status_count: statuses.length,
+      unmatched_status_count: importSource.rawMetaJson.unmatched_status_count,
     },
   };
 

@@ -27,4 +27,4 @@ QOJ 2026 contest curation fixtures:
 - `qoj/contest-export-regression.json`: synthetic offline fixture for query parameters, relative links, and unrelated contest links.
 - `qoj/2026-retry-contests-draft.json`: historical retry input; all three contests are now curated.
 
-RankLand design fixtures live in `rankland/`: `mapping-review.example.json` and `award-review.example.json` cover review states, pinned provenance and medal group semantics. Both are synthetic and must never be applied to the catalog. See `docs/rankland-schema-design.md` for the contract and optional offline Python validation command.
+RankLand fixtures live in `rankland/`: `mapping-review.example.json` and `award-review.example.json` are synthetic and must never be applied. `2026-09-*` contains actual audited source identities, award decisions, differences, fallbacks and corrections. `xcpc-rating/2026-09-review.json` records the source snapshot hash, matches and unresolved rows. These are provenance and regression inputs, not another canonical catalog. See `scripts/README.md` for refresh and validation commands.

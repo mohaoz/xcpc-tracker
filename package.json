@@ -1,7 +1,7 @@
 {
   "name": "xcpc-tracker",
   "private": true,
-  "version": "0.6.0",
+  "version": "0.7.0",
   "type": "module",
   "scripts": {
     "catalog:build-final": "node scripts/build-final-json.mjs",
@@ -18,12 +18,24 @@
     "catalog:match-xcpcio-board": "node scripts/match-xcpcio-board-contests.mjs",
     "catalog:refresh-xcpcio-board": "node scripts/match-xcpcio-board-contests.mjs --fetch-raw --normalize && node scripts/match-xcpcio-board-contests.mjs --apply --apply-confidence=high --fetch-cutoffs",
     "catalog:refresh-codeforces-award-cutoffs": "node scripts/fetch-codeforces-award-cutoffs.mjs --apply",
-    "catalog:refresh": "node scripts/build-final-json.mjs && node scripts/generate-default-catalog.mjs && npm run catalog:import-reviewed-cf-problems && npm run catalog:import-qoj-problems && npm run catalog:refresh-xcpcio-board && npm run catalog:refresh-codeforces-award-cutoffs && npm run catalog:validate && node scripts/generate-web-catalog-assets.mjs",
+    "catalog:refresh": "npm run catalog:validate && npm run catalog:generate-web-assets",
+    "catalog:rating": "node scripts/import-xcpc-rating.mjs",
+    "catalog:rankland": "node scripts/import-rankland-standings.mjs",
+    "sources:validate": "node scripts/validate-source-tools.mjs",
+    "vp:validate": "node scripts/validate-vp-state.mjs",
+    "vp:browser": "node scripts/validate-vp-browser.mjs",
     "catalog:build-tools": "./web/node_modules/.bin/tsc -p scripts/tsconfig.catalog.json",
-    "catalog:validate": "npm run catalog:build-tools && node .catalog-tools-build/validate-catalog.js && npm run catalog:check-reviewed-cf-problems && npm run catalog:check-qoj-problems && npm run qoj:validate-contest-tools",
+    "catalog:validate": "node scripts/validate-catalog-snapshot.mjs && npm run sources:validate && npm run catalog:build-tools && node .catalog-tools-build/validate-catalog.js && npm run catalog:check-reviewed-cf-problems && npm run catalog:check-qoj-problems && npm run qoj:validate-contest-tools",
     "qoj:validate-member-script": "node scripts/validate-qoj-member-script.mjs",
     "qoj:validate-contest-tools": "node scripts/validate-qoj-contest-tools.mjs",
     "coverage:validate": "node scripts/validate-coverage.mjs",
-    "deploy:build": "npm run catalog:validate && npm run qoj:validate-member-script && npm run coverage:validate && npm run catalog:generate-web-assets && npm run build --prefix web"
+    "deploy:build": "npm run catalog:validate && npm run qoj:validate-member-script && npm run vp:validate && npm run catalog:generate-web-assets && npm run build --prefix web"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "fake-indexeddb": "^6.2.5",
+    "yaml": "^2.9.1"
   }
 }

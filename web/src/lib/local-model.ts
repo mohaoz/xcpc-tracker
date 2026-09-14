@@ -16,6 +16,7 @@ export type LocalCatalogContestRecord = {
 };
 
 export type LocalCatalogProblemRecord = {
+  tags?: string[];
   problemId: string;
   contestId: string;
   ordinal: string;
@@ -95,6 +96,7 @@ export type LocalDbStatus = {
 };
 
 export type LocalRuntimeSnapshot = {
+  contest_preferences?: ContestPreference[];
   schemaVersion: 1;
   exportKind: "local_runtime_snapshot";
   exportedAt: string;
@@ -103,6 +105,11 @@ export type LocalRuntimeSnapshot = {
   memberProblemStatus: LocalMemberProblemStatusRecord[];
   importSources: LocalImportSourceRecord[];
   syncRecords: LocalSyncRecord[];
+};
+
+export type ContestPreference = {
+  contest_id: string;
+  spoiler_mode: "spoiler" | "non_spoiler";
 };
 
 export type LocalCatalogSnapshot = {
