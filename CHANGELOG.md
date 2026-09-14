@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add Cloudflare Web Analytics to the page entry point for site traffic statistics.
+
 ## 0.7.1
 
 - Backfill five XCPCIO award datasets with audited group/penalty rules; retain explicit gaps for Shaanxi/GBA group ambiguity. Default bulk spoilers off and medal estimates on, preserving saved preferences.

@@ -6,10 +6,13 @@ const catalog = await readJson('catalog/default-catalog.min.json');
 const contest = catalog.contests.find(c => c.contestId === 'fca291f3-d017-5cd3-9298-63a1b624b39e');
 const browser = await chromium.launch({headless:true});
 const context = await browser.newContext();
+// Keep regression traffic out of analytics and avoid a live third-party dependency.
+const analyticsScript = 'https://static.cloudflareinsights.com/beacon.min.js';
+await context.route(analyticsScript, route => route.fulfill({contentType:'application/javascript',body:''}));
 const page = await context.newPage();
 const errors = []; page.on('pageerror', e => errors.push(e.message));
 const remoteRequests = [];
-page.on('request', r => {if(new URL(r.url()).origin !== new URL(base).origin) remoteRequests.push(r.url());});
+page.on('request', r => {if(r.url() !== analyticsScript && new URL(r.url()).origin !== new URL(base).origin) remoteRequests.push(r.url());});
 async function database(page, action, data) {
   return page.evaluate(async ({action,data}) => {
     const db = await new Promise((resolve,reject) => {const r=indexedDB.open('xcpc_tracker_local');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});
@@ -28,6 +31,9 @@ async function database(page, action, data) {
 try {
   const before = Date.now();
   await page.goto(`${base}/contests/${contest.contestId}`);
+  const beacon = page.locator(`script[src="${analyticsScript}"]`);
+  assert.equal(await beacon.count(),1);
+  assert.deepEqual(JSON.parse(await beacon.getAttribute('data-cf-beacon')), {token:'2023fe69240f4de0a41c271f1fe4aeff'});
   const toggle = page.getByRole('switch', {name:'显示剧透信息'});
   await toggle.waitFor(); await page.waitForFunction(() => document.querySelector('[role="switch"]')?.disabled === false);
   assert.equal(await toggle.getAttribute('aria-checked'),'false');
