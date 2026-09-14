@@ -52,6 +52,7 @@ function mapContest(detail: CatalogContestDetail): LocalCatalogContestRecord {
     problemIds: detail.problems.map((problem) => problem.id),
     sources: detail.sources,
     awardCutoffs: detail.awardCutoffs,
+    estimatedAwardCutoffs: detail.estimatedAwardCutoffs,
     notes: detail.notes ?? null,
     generatedFrom: detail.generated_from ?? null,
   };
@@ -68,6 +69,7 @@ function mapProblems(detail: CatalogContestDetail): LocalCatalogProblemRecord[] 
     ordinal: problem.ordinal,
     title: problem.title,
     tags: problem.tags ?? [],
+    rating: problem.rating,
     aliases: aggregateAliasesFromSources(problem.title, problem.aliases, problem.sources),
     sources: [
       ...problem.sources.map((source) => ({
@@ -105,6 +107,7 @@ export async function loadBundledCatalogSnapshot(options?: { forceRefresh?: bool
       problemIds: contest.problemIds ?? [],
       sources: contest.sources ?? [],
       awardCutoffs: contest.awardCutoffs,
+      estimatedAwardCutoffs: contest.estimatedAwardCutoffs,
       notes: contest.notes ?? null,
       generatedFrom: contest.generatedFrom ?? "catalog",
       deletedAt: null,
@@ -115,6 +118,7 @@ export async function loadBundledCatalogSnapshot(options?: { forceRefresh?: bool
       ordinal: problem.ordinal,
       title: problem.title,
       tags: problem.tags ?? [],
+      rating: problem.rating,
       aliases: aggregateAliasesFromSources(problem.title, problem.aliases ?? [], problem.sources ?? []),
       sources: problem.sources ?? [],
     })),

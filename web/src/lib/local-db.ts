@@ -26,6 +26,7 @@ import type {
 } from "./local-model";
 
 class XcpcTrackerDb extends Dexie {
+  appSettings!: Table<{key: string; value: boolean}, string>;
   contestPreferences!: Table<ContestPreference, string>;
   catalogContests!: Table<LocalCatalogContestRecord, string>;
   catalogProblems!: Table<LocalCatalogProblemRecord, string>;
@@ -83,6 +84,7 @@ class XcpcTrackerDb extends Dexie {
       problemMatchCache: "cacheKey, [provider+externalRef], updatedAt",
     });
     this.version(5).stores({ contestPreferences: "contest_id" });
+    this.version(6).stores({ appSettings: 'key' });
   }
 }
 
@@ -519,6 +521,7 @@ export async function listMemberHandleProblemCountsFromDb(memberId: string): Pro
 }
 
 export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatus?: boolean }): Promise<LocalRuntimeSnapshot> {
+  const allowMedalEstimates = (await localDb.appSettings.get('allow_medal_estimates'))?.value ?? true;
   const preferences = await localDb.contestPreferences.toArray();
   const [members, memberHandles, memberProblemStatus, importSources, syncRecords] = await Promise.all([
     localDb.members.toArray(),
@@ -547,6 +550,7 @@ export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatu
     schemaVersion: 1,
     exportKind: "local_runtime_snapshot",
     contest_preferences: preferences,
+    app_settings: {allow_medal_estimates: allowMedalEstimates},
     exportedAt: new Date().toISOString(),
     members: activeMembers,
     memberHandles: activeHandles,
@@ -724,12 +728,14 @@ export async function applyLocalRuntimeSnapshot(
   options?: { mode?: "merge" | "replace"; includeProblemStatus?: boolean },
 ): Promise<void> {
   const preferences = validatePreferences(snapshot.contest_preferences);
-  await localDb.transaction('rw', [localDb.members, localDb.memberHandles, localDb.memberProblemStatus, localDb.importSources, localDb.syncRecords, localDb.contestPreferences], async () => {
+  if (snapshot.app_settings !== undefined && (!snapshot.app_settings || typeof snapshot.app_settings.allow_medal_estimates !== 'boolean')) throw new Error('Invalid app settings');
+  await localDb.transaction('rw', [localDb.members, localDb.memberHandles, localDb.memberProblemStatus, localDb.importSources, localDb.syncRecords, localDb.contestPreferences, localDb.appSettings], async () => {
     await applyLocalRuntimeSnapshotData(snapshot, options);
     if (snapshot.contest_preferences !== undefined) {
       if (options?.mode === 'replace') await localDb.contestPreferences.clear();
       if (preferences.length) await localDb.contestPreferences.bulkPut(preferences);
     }
+    if (snapshot.app_settings !== undefined) await localDb.appSettings.put({key:'allow_medal_estimates',value:snapshot.app_settings.allow_medal_estimates});
   });
 }
 

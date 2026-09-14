@@ -31,6 +31,7 @@ function mapBundledIndexItemToContestRecord(item: CatalogContestIndexItem): Runt
     problemIds: [],
     sources: item.sources ?? [],
     awardCutoffs: item.awardCutoffs ?? undefined,
+    estimatedAwardCutoffs: item.estimatedAwardCutoffs ?? undefined,
     notes: item.notes ?? null,
     generatedFrom: item.generated_from ?? "catalog",
     deletedAt: null,
@@ -52,6 +53,7 @@ function mapBundledContestDetailToLocal(
       problemIds: detail.problems.map((problem) => problem.id),
       sources: detail.sources ?? [],
       awardCutoffs: detail.awardCutoffs,
+      estimatedAwardCutoffs: detail.estimatedAwardCutoffs,
       notes: detail.notes ?? null,
       generatedFrom: detail.generated_from ?? "catalog",
       deletedAt: null,
@@ -62,6 +64,7 @@ function mapBundledContestDetailToLocal(
       ordinal: problem.ordinal,
       title: problem.title,
       tags: problem.tags ?? [],
+      rating: problem.rating,
       aliases: problem.aliases ?? [],
       sources: problem.sources ?? [],
     })),
@@ -96,6 +99,7 @@ export async function listRuntimeCatalogProblemsForImport(): Promise<LocalCatalo
       tags: problem.tags ?? [],
       aliases: problem.aliases ?? [],
       sources: problem.sources ?? [],
+      rating: problem.rating,
       sourceKind: "catalog",
     });
   }

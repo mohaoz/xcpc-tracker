@@ -55,9 +55,9 @@ const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
         </KeepAlive>
       </RouterView>
     </main>
-    <footer class="muted tiny" style="padding: 16px 24px">
+    <footer class="shell__footer muted tiny">
       榜单数据：<a href="https://github.com/algoux/srk-collection" target="_blank" rel="noreferrer">algoUX / RankLand</a>、XCPCIO ·
-      题目标签：<a href="https://hei-maom.github.io/xcpcrating/#/problems" target="_blank" rel="noreferrer">XCPC Rating</a> ·
+      标签与 Rating：<a href="https://hei-maom.github.io/xcpcrating/#/problems" target="_blank" rel="noreferrer">XCPC Rating</a> ·
       <a href="https://github.com/mohaoz/xcpc-tracker/blob/main/catalog/README.md" target="_blank" rel="noreferrer">数据来源与许可</a>
     </footer>
   </div>

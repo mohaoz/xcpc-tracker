@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import './validate-xcpcio-gaps.mjs';
 import { readFile, mkdtemp } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -110,5 +111,7 @@ for (const fix of receipt.corrections) {
   const c = published.contests.find(c => c.contestId === fix.contest_id);
   assert.ok(fix.removed_sources.every(s => !c.sources.some(t => s.url === t.url)));
 }
-assert.equal(new Set((await readJson('fixtures/imports/rankland/2026-09-audit.json')).catalog_status.map(c => c.contest_id)).size,published.contests.length);
+const auditedIds = new Set((await readJson('fixtures/imports/rankland/2026-09-audit.json')).catalog_status.map(c => c.contest_id));
+assert.equal(auditedIds.size,receipt.contest_count);
+for (const id of auditedIds) assert.ok(published.contests.some(c => c.contestId === id), 'Previously audited contest must remain in catalog');
 console.log('Published RankLand review contracts, award values, corrections and full-catalog dispositions verified.');

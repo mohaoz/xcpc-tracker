@@ -1,0 +1,259 @@
+{
+  "method": "floor(eligible * 0.1/0.2/0.3); cumulative medal ranks",
+  "audit": [
+    {
+      "contest_id": "eb2976be-353a-59ba-93a5-adc4b20913be",
+      "source_sha256": "cec52189200aaf2db3b64439624c77f497d04e0eb922f93932b172285c9f67c5",
+      "group": "official",
+      "counts": [
+        37,
+        75,
+        113
+      ],
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "7d931e77-1d2c-5bf9-8c4a-357650428d2e",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "c68771ee-2216-5543-9fb3-b60deef4e1c0",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "db44796f-a9c1-58b0-9a5a-81bfdf8c36a6",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "d505e000-4947-579c-8d9b-99e31160839f",
+      "source_sha256": "b6758df45be96d724627e4e0891f1cb40906a63d9a036b1c6d6d350df8406edb",
+      "group": "official",
+      "counts": [
+        25,
+        51,
+        77
+      ],
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "contest_id": "4c61e830-0179-5f48-a33d-6a2141ff7015",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "b48a800e-5949-5b90-97c3-b0171c0914c6",
+      "source_sha256": "e6d51c86ade03124aec72a41f65a47fa9a9aa30e1022cafca68b6fafb4c4fc50",
+      "group": "official",
+      "counts": [
+        11,
+        23,
+        35
+      ],
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "contest_id": "b697e3f2-3c78-509c-a821-a48bb73dc809",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "f0e14f1a-5dbe-55d9-b6c8-64f09f2ac332",
+      "source_sha256": "ccd49c4ce7310e8772d9af3a26fccf6d877f870f9871dc45b555e09a083f2328",
+      "group": "official",
+      "counts": [
+        255,
+        510,
+        766
+      ],
+      "status": "blocked",
+      "reason": "Tied medal boundary requires explicit review"
+    },
+    {
+      "contest_id": "341a425a-e3a3-5a18-8cc7-6380793e186c",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "44512cc4-fbec-5ffc-9558-c692354c9b78",
+      "source_sha256": "de97ca942950746f1881457418d05dff6a0c8dcb25830272d98f34f3e4c3d553",
+      "group": "official",
+      "counts": [
+        39,
+        79,
+        118
+      ],
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "contest_id": "4b6ed0c8-36e6-5a12-9930-f2bd70ee60b8",
+      "source_sha256": "42140458e8f5db47cdf4be311c3a2fae250572a66949672d618f880370884233",
+      "group": "official",
+      "counts": [
+        232,
+        464,
+        696
+      ],
+      "status": "blocked",
+      "reason": "Tied medal boundary requires explicit review"
+    },
+    {
+      "contest_id": "7cb8a4a0-4b89-5914-82e1-38745ae4cf87",
+      "source_sha256": "b5a01e159ed1b5c7d1591085ddfee3c4146bbfce7432f0091548a19c4e123916",
+      "group": "official",
+      "counts": [
+        245,
+        490,
+        735
+      ],
+      "status": "blocked",
+      "reason": "Tied medal boundary requires explicit review"
+    },
+    {
+      "contest_id": "146c5860-236d-58c9-823f-97c2d2b10ca4",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "5f133fa7-f237-5750-ba30-9ee51e651bc6",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "830a11dd-ef5f-5e5a-9b8d-656e9048b041",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "a1242fee-fbe0-58d5-8f3e-3503e1dacafd",
+      "source_sha256": "527669f6cb383dab49294359eefdfefb1153afdc85142c3e71227c881740998b",
+      "group": "official",
+      "counts": [
+        19,
+        38,
+        57
+      ],
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "contest_id": "9c678c83-09b0-535d-9053-1049bd087f63",
+      "source_sha256": "8f8a14d529aded2576c44e4c80d1fa5796d1a5d3df73cf7535033295b178dfc9",
+      "group": "official",
+      "counts": [
+        21,
+        43,
+        65
+      ],
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "contest_id": "9c25b508-98e4-5d1e-83de-2608768f5bf0",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "933aa22d-7235-5a56-a24c-f01db2d6603a",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "351df86a-97da-50fb-9d53-f536ecd9e383",
+      "status": "skipped",
+      "reason": "Unknown highest group"
+    },
+    {
+      "contest_id": "2e723e83-803e-5132-8bc8-87166ad1b28a",
+      "source_sha256": "cde8ce3878484a7d15ac9467d8f66f2e1f1d2ccc909be025d3f21b9900877eea",
+      "group": "official",
+      "counts": [
+        13,
+        27,
+        40
+      ],
+      "status": "proposed"
+    },
+    {
+      "contest_id": "b84e4298-4c66-56b3-a5e1-403d1d7c87cd",
+      "source_sha256": "47d63cf8ebb611fd842dde10d8d46d7869ab7dcf5b6757c69a6486893d8426f9",
+      "group": "official",
+      "counts": [
+        23,
+        46,
+        69
+      ],
+      "status": "blocked",
+      "reason": "Frozen or unknown final state"
+    },
+    {
+      "contest_id": "411cc95d-3733-5a0b-8806-ab17b43f8838",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "a218c192-1ca0-50e3-886c-95286d773f1d",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "3d494493-657c-5f36-ab41-74a5d7c5e05e",
+      "source_sha256": "3f3c1338de705915780df21d69a0d77ec979b9986c6066586a4bb1b4419db566",
+      "group": "official",
+      "counts": [
+        253,
+        507,
+        760
+      ],
+      "status": "blocked",
+      "reason": "Tied medal boundary requires explicit review"
+    },
+    {
+      "contest_id": "965d670a-c551-5dda-a280-33fc2229feaf",
+      "status": "skipped",
+      "reason": "Has award configuration; do not replace with ratio"
+    },
+    {
+      "contest_id": "a9098c59-44d3-5586-8b15-837d828f90b4",
+      "source_sha256": "6d5265ec604fa2085797d560a3e502623b56563f032b12bac3fb6820b54a9d9b",
+      "group": "official",
+      "counts": [
+        42,
+        84,
+        126
+      ],
+      "status": "proposed"
+    }
+  ]
+}

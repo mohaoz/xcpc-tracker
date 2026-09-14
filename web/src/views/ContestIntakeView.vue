@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { nextTick, onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
+import { useSpoilerStore } from '../stores/spoilers';
+import { useSettingsStore } from '../stores/settings';
 
 import { importQojUserscriptMembers, type QojUserscriptImport } from "../lib/qoj";
 import { emitMemberMutated } from "../lib/member-events";
@@ -13,6 +15,9 @@ import {
 import type { LocalDbStatus, LocalRuntimeSnapshot } from "../lib/local-model";
 
 const route = useRoute();
+const spoilers = useSpoilerStore();
+const settings = useSettingsStore();
+const catalogContestIds = ref<string[]>([]);
 const submitting = ref(false);
 const loadingStats = ref(false);
 const error = ref("");
@@ -65,6 +70,7 @@ async function refreshStats() {
       contestCount: runtimeCatalog.contests.length,
       problemCount: runtimeCatalog.contests.reduce((sum, contest) => sum + contest.problemCount, 0),
     };
+    catalogContestIds.value = runtimeCatalog.contests.map(contest => contest.contestId);
   } finally {
     loadingStats.value = false;
   }
@@ -215,6 +221,30 @@ onMounted(async () => {
         </div>
 
         <div class="list-grid">
+          <section class="panel" style="box-shadow: none">
+            <div class="panel__body">
+              <div class="panel__header" style="margin-bottom: 0">
+                <div class="panel__title">
+                  <h3>全部剧透</h3>
+                  <p class="muted tiny">批量设置当前全部比赛，单场仍可在详情页调整。</p>
+                </div>
+                <button type="button" role="switch" class="spoiler-switch"
+                  aria-label="全部剧透" :aria-checked="spoilers.allEnabled(catalogContestIds)"
+                  :disabled="!spoilers.loaded || loadingStats || spoilers.bulkSaving || !catalogContestIds.length"
+                  @click="spoilers.setAll(catalogContestIds, !spoilers.allEnabled(catalogContestIds))">
+                  <span class="spoiler-switch__track" aria-hidden="true"><span class="spoiler-switch__thumb"></span></span>
+                </button>
+              </div>
+              <p v-if="spoilers.error" class="error-box">{{ spoilers.error }}</p>
+              <div class="panel__header" style="margin: 20px 0 0">
+                <div class="panel__title"><h3>允许比例估算</h3><p class="muted tiny">无奖牌配置时，按榜单正式队伍的 10% / 20% / 30% 估算金、银、铜牌线。</p></div>
+                <button type="button" role="switch" class="spoiler-switch" aria-label="允许比例估算"
+                  :aria-checked="settings.allowMedalEstimates" :disabled="!settings.loaded || settings.saving"
+                  @click="settings.toggleEstimates()"><span class="spoiler-switch__track" aria-hidden="true"><span class="spoiler-switch__thumb"></span></span></button>
+              </div>
+              <p v-if="settings.error" class="error-box">{{ settings.error }}</p>
+            </div>
+          </section>
           <section class="panel" style="box-shadow: none">
             <div class="panel__body">
               <div class="panel__title" style="margin-bottom: 14px">
