@@ -3,6 +3,8 @@ import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { RouterLink, useRoute, useRouter } from "vue-router";
 
 import { importCodeforcesMember } from "../lib/codeforces";
+import { useQojSyncStore } from '../stores/qoj-sync';
+const qojSync = useQojSyncStore();
 import { emitMemberMutated, subscribeMemberMutated } from "../lib/member-events";
 import {
   getMemberPersonFromDb,
@@ -50,7 +52,7 @@ function formatDateTime(value: string | null) {
 }
 
 function isHandleSyncable(provider: string) {
-  return provider === "codeforces";
+  return provider === "codeforces" || provider === 'qoj';
 }
 
 function getHandleProblemCount(handleId: string) {
@@ -95,6 +97,12 @@ async function handleSyncHandle(handle: LocalMemberPerson["handles"][number]) {
   feedback.value = "";
   syncWarning.value = "";
   try {
+    if (handle.provider === 'qoj') {
+      await qojSync.sync(true, handle.handle);
+      feedback.value = qojSync.useUserscript ? qojSync.message : '';
+      await loadMember();
+      return;
+    }
     await importCodeforcesMember({
       memberId: person.value.memberId,
       handle: handle.handle,
@@ -240,10 +248,10 @@ onUnmounted(() => {
                   <div class="actions" style="margin-top: 12px">
                     <button
                       class="button button--ghost"
-                      :disabled="!isHandleSyncable(handle.provider) || syncingHandleId === handle.handleId"
+                      :disabled="!isHandleSyncable(handle.provider) || syncingHandleId === handle.handleId || (handle.provider === 'qoj' && (!qojSync.modeLoaded || qojSync.busy))"
                       @click="handleSyncHandle(handle)"
                     >
-                      {{ syncingHandleId === handle.handleId ? "同步中..." : "同步账号" }}
+                      {{ syncingHandleId === handle.handleId ? "同步中..." : handle.provider === 'qoj' && !qojSync.useUserscript ? '手动导入' : "同步账号" }}
                     </button>
                     <button
                       class="button button--ghost"

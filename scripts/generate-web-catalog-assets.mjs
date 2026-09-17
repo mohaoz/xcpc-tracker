@@ -1,4 +1,4 @@
-import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, readFile, readdir, unlink, rename, writeFile } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -10,6 +10,12 @@ const CONTESTS_DIR = resolve(OUTPUT_DIR, "contests");
 
 function toJson(value) {
   return `${JSON.stringify(value)}\n`;
+}
+
+async function writeAsset(path,content) {
+  const temporary=`${path}.tmp-${process.pid}`;
+  await writeFile(temporary,content,'utf8');
+  await rename(temporary,path);
 }
 
 async function main() {
@@ -79,12 +85,10 @@ async function main() {
     problems: snapshot.problems ?? [],
   };
 
-  await rm(OUTPUT_DIR, { recursive: true, force: true });
   await mkdir(CONTESTS_DIR, { recursive: true });
 
-  await writeFile(resolve(OUTPUT_DIR, "contest-index.json"), toJson(contestIndex), "utf8");
-  await writeFile(resolve(OUTPUT_DIR, "coverage-basis.json"), toJson(coverageBasis), "utf8");
-  await writeFile(resolve(OUTPUT_DIR, "problem-lookup.json"), toJson(problemLookup), "utf8");
+  await writeAsset(resolve(OUTPUT_DIR, "coverage-basis.json"), toJson(coverageBasis));
+  await writeAsset(resolve(OUTPUT_DIR, "problem-lookup.json"), toJson(problemLookup));
 
   for (const contest of snapshot.contests ?? []) {
     const detail = {
@@ -111,11 +115,17 @@ async function main() {
       problem_count: contest.problemIds?.length ?? problemsByContestId.get(contest.contestId)?.length ?? 0,
     };
 
-    await writeFile(
+    await writeAsset(
       resolve(CONTESTS_DIR, `${encodeURIComponent(contest.contestId)}.json`),
       toJson(detail),
-      "utf8",
     );
+  }
+
+  // Publish the index after every referenced detail exists. Keep the directory watched by Vite.
+  await writeAsset(resolve(OUTPUT_DIR, 'contest-index.json'),toJson(contestIndex));
+  const current=new Set(snapshot.contests.map(c=>`${encodeURIComponent(c.contestId)}.json`));
+  for(const entry of await readdir(CONTESTS_DIR,{withFileTypes:true})) {
+    if(entry.isFile() && entry.name.endsWith('.json') && !current.has(entry.name))await unlink(resolve(CONTESTS_DIR,entry.name));
   }
 
   console.log(JSON.stringify({

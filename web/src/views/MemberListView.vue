@@ -1,24 +1,33 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted, ref } from "vue";
-import { RouterLink, useRouter } from "vue-router";
+import { RouterLink } from "vue-router";
 
 import { syncAllCodeforcesMembers } from "../lib/codeforces";
 import { getCatalogDbStatus, listMemberPeopleFromDb } from "../lib/local-db";
 import { subscribeMemberMutated } from "../lib/member-events";
 import type { LocalDbStatus, LocalMemberPerson } from "../lib/local-model";
-import { buildQojBatchBrowserScript } from "../lib/qoj-member-script";
+import { useQojManualStore } from "../stores/qoj-manual";
+import { useQojSyncStore } from "../stores/qoj-sync";
+import QojSyncPanel from '../components/QojSyncPanel.vue';
 
-const router = useRouter();
+const qojManual = useQojManualStore();
+const qojSync = useQojSyncStore();
+const syncingAll=ref(false);
+let allCancelled=false;
+async function handleSyncAll() {
+  if(syncingAll.value) {allCancelled=true;syncAbortController?.abort();qojSync.cancel();return;}
+  if(syncing.value || qojSync.busy || qojManual.busy)return;
+  syncingAll.value=true;allCancelled=false;
+  try {
+    if(codeforcesHandleCount.value)await handleSyncMembers();
+    if(!allCancelled && qojScriptMembers.value.length)await qojSync.sync(true);
+  } finally {syncingAll.value=false;}
+}
 const people = ref<LocalMemberPerson[]>([]);
 const dbStatus = ref<LocalDbStatus | null>(null);
 const loading = ref(false);
 const error = ref("");
 const syncing = ref(false);
-const preparingQojScript = ref(false);
-const qojScript = ref("");
-const qojScriptTargetCount = ref(0);
-const qojFeedback = ref("");
-const qojLaunchUrl = ref("https://qoj.ac/");
 const syncProgress = ref<{
   currentIndex: number;
   totalMemberCount: number;
@@ -120,72 +129,10 @@ async function handleSyncMembers() {
 }
 
 function handleInterruptSync() {
+  if(syncingAll.value)allCancelled=true;
   syncAbortController?.abort();
 }
 
-function startClipboardWrite(text: string): Promise<void> {
-  try {
-    return navigator.clipboard.writeText(text);
-  } catch (caught) {
-    return Promise.reject(caught);
-  }
-}
-
-async function copyQojScript() {
-  if (!qojScript.value) {
-    return;
-  }
-  error.value = "";
-  const copyAttempt = startClipboardWrite(qojScript.value);
-  window.open(qojLaunchUrl.value, "_blank", "noopener,noreferrer");
-  qojFeedback.value = "已在新标签页打开 QOJ，正在重新复制批量脚本…";
-  try {
-    await copyAttempt;
-    qojFeedback.value = `已重新复制包含 ${qojScriptTargetCount.value} 个 QOJ 账号的批量脚本，并在新标签页打开 QOJ。`;
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "浏览器未允许复制，请在脚本框中手动复制";
-    qojFeedback.value = "已在新标签页打开 QOJ；浏览器未允许复制，请在下方手动复制脚本。";
-    return;
-  }
-  await router.replace({ name: "manage", query: { import: "member" } });
-}
-
-async function handlePrepareQojScript() {
-  preparingQojScript.value = true;
-  error.value = "";
-  qojFeedback.value = "";
-  qojScript.value = "";
-  qojScriptTargetCount.value = 0;
-  try {
-    const firstHandle = qojScriptMembers.value[0]?.handle;
-    qojLaunchUrl.value = firstHandle
-      ? `https://qoj.ac/user/profile/${encodeURIComponent(firstHandle)}`
-      : "https://qoj.ac/";
-    qojScript.value = buildQojBatchBrowserScript({
-      members: qojScriptMembers.value,
-    });
-    qojScriptTargetCount.value = qojScriptMembers.value.length;
-    const copyAttempt = startClipboardWrite(qojScript.value);
-    window.open(qojLaunchUrl.value, "_blank", "noopener,noreferrer");
-    qojFeedback.value = "已在新标签页打开 QOJ，正在复制批量脚本…";
-    try {
-      await copyAttempt;
-      qojFeedback.value = `已复制包含 ${qojScriptTargetCount.value} 个 QOJ 账号的批量脚本，并在新标签页打开 QOJ。`;
-    } catch {
-      qojFeedback.value = `已在新标签页打开 QOJ，并生成包含 ${qojScriptTargetCount.value} 个账号的批量脚本。浏览器未允许自动复制，请在下方手动复制。`;
-      return;
-    }
-    await router.replace({ name: "manage", query: { import: "member" } });
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "生成 QOJ 批量脚本失败";
-  } finally {
-    preparingQojScript.value = false;
-  }
-}
-
-function selectQojScript(event: Event) {
-  (event.target as HTMLTextAreaElement).select();
-}
 
 onMounted(() => {
   unsubscribeMemberMutated = subscribeMemberMutated(() => {
@@ -219,59 +166,38 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <div class="member-toolbar">
-          <div class="member-toolbar__actions">
+        <QojSyncPanel :count="qojScriptMembers.length" :disabled="loading || syncingAll || syncing">
             <button
-              class="button button--ghost"
-              :disabled="loading || preparingQojScript || (!syncing && codeforcesHandleCount === 0)"
+              class="button"
+              :disabled="loading || syncingAll || qojSync.busy || (!syncing && codeforcesHandleCount === 0)"
               @click="syncing ? handleInterruptSync() : handleSyncMembers()"
             >
               {{ syncing ? "中断同步" : `同步 Codeforces (${codeforcesHandleCount})` }}
             </button>
+          <template #manual>
             <button
               class="button button--ghost"
-              :disabled="loading || syncing || preparingQojScript || qojScriptMembers.length === 0"
+              :disabled="loading || syncing || syncingAll || qojSync.busy || qojManual.busy || qojScriptMembers.length === 0"
               :title="qojScriptMembers.length ? '生成全部 QOJ 账号的批量控制台脚本' : '当前没有 QOJ 账号'"
-              @click="handlePrepareQojScript"
+              @click="qojManual.show(qojScriptMembers)"
             >
-              {{ preparingQojScript ? "正在生成..." : `更新 QOJ (${qojScriptMembers.length})` }}
+              手动导出
             </button>
+          </template>
+          <template #all>
+            <button class="button" :disabled="!syncingAll && (loading || syncing || qojSync.busy || qojManual.busy || !qojSync.modeLoaded || !people.length)" @click="handleSyncAll">
+              {{ syncingAll ? '停止全部' : '同步全部' }}
+            </button>
+          </template>
+          <template #trailing>
             <RouterLink to="/members/new" class="button">
               添加成员
             </RouterLink>
-          </div>
-        </div>
+          </template>
+        </QojSyncPanel>
 
         <p v-if="error" class="error-box" style="margin-top: 16px">{{ error }}</p>
 
-        <div v-if="qojScript" class="notice" style="margin-top: 16px; margin-bottom: 16px">
-          <p style="margin: 0">{{ qojFeedback }}</p>
-          <p class="muted tiny" style="margin: 8px 0 0">
-            脚本执行完成后会复制一份批量 JSON；回到管理页粘贴导入即可。单个账号抓取失败不会中断其他账号。
-          </p>
-          <div class="actions" style="margin-top: 12px">
-            <button class="button button--ghost" @click="copyQojScript">重新复制并打开 QOJ</button>
-            <a
-              :href="qojLaunchUrl"
-              class="button button--ghost"
-              target="_blank"
-              rel="noopener noreferrer"
-            >直接打开 QOJ</a>
-            <RouterLink to="/manage?import=member" class="button">前往管理页导入</RouterLink>
-          </div>
-          <details style="margin-top: 12px">
-            <summary>查看或手动复制脚本</summary>
-            <textarea
-              class="input-textarea"
-              :value="qojScript"
-              rows="8"
-              readonly
-              spellcheck="false"
-              style="margin-top: 10px"
-              @focus="selectQojScript"
-            />
-          </details>
-        </div>
 
         <div v-if="loading" class="notice">正在加载成员...</div>
         <div v-else-if="syncProgress" class="notice" style="margin-bottom: 16px">

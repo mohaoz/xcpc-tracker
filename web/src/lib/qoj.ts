@@ -7,7 +7,18 @@ import type {
   LocalSyncRecord,
 } from "./local-model";
 import { listRuntimeCatalogProblemsForImport } from "./catalog-runtime";
-import { recordImportSyncAttempt, upsertMemberBundle } from "./local-db";
+import { localDb, recordImportSyncAttempt, upsertMemberBundle } from "./local-db";
+
+export async function linkQojMember(memberId:string,handle:string) {
+  const at=new Date().toISOString();
+  await localDb.transaction('rw',[localDb.members,localDb.memberHandles],async()=>{
+    const existing=await localDb.memberHandles.get(`qoj:${handle}`);
+    if(existing && existing.memberId!==memberId) throw new Error('该 QOJ 账号已绑定其他成员。');
+    const member=await localDb.members.get(memberId);
+    await localDb.members.put({...member,memberId,displayName:member?.displayName || memberId,createdAt:member?.createdAt || at,updatedAt:at,deletedAt:null});
+    await localDb.memberHandles.put({...existing,handleId:`qoj:${handle}`,memberId,provider:'qoj',handle,displayLabel:existing?.displayLabel ?? null,createdAt:existing?.createdAt || at,updatedAt:at,deletedAt:null});
+  });
+}
 
 type QojUserscriptMember = {
   member_id?: string;

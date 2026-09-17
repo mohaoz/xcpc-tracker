@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+const root='web/dist';
+const source=await readFile('scripts/qoj-sync.user.js','utf8');
+const script=await readFile(`${root}/userscripts/qoj-sync.user.js`,'utf8');
+const manifest=JSON.parse(await readFile(`${root}/userscripts/qoj-sync.version.json`,'utf8'));
+const index=await readFile(`${root}/index.html`,'utf8');
+assert.equal(script,source,'Production must ship the unmodified main-site userscript');
+assert.equal(manifest.version,script.match(/^\/\/ @version\s+(\S+)/m)[1]);
+assert.equal(manifest.protocol_version,1);
+assert.match(script,/\/\/ @match\s+https:\/\/mohaoz\.github\.io\/xcpc-tracker\/\*/);
+assert.doesNotMatch(script,/localhost|127\.0\.0\.1/);
+assert.match(script,/\/\/ @connect\s+qoj\.ac/);
+assert.match(script,/\/\/ @grant\s+unsafeWindow/);
+assert.match(index,/src="\/xcpc-tracker\/assets\//);
+for(const path of ['generated/contest-index.json','generated/contests/d505e000-4947-579c-8d9b-99e31160839f.json'])JSON.parse(await readFile(`${root}/${path}`,'utf8'));
+console.log(`PASS Pages base path, production-only origin, script/manifest ${manifest.version}, and detail JSON`);

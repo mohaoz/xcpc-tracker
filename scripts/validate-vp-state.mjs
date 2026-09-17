@@ -3,6 +3,8 @@ import 'fake-indexeddb/auto';
 import {loadModule} from './validate-coverage.mjs';
 const dbModule = loadModule('web/src/lib/local-db.ts');
 const {localDb, applyLocalRuntimeSnapshot, exportLocalRuntimeSnapshot} = dbModule;
+const originalNavigator = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
+const originalFetch = globalThis.fetch;
 const {ratingClass} = loadModule('web/src/lib/rating-colors.ts');
 for (const [rating,color] of [[1199,'gray'],[1200,'green'],[1399,'green'],[1400,'cyan'],[1599,'cyan'],[1600,'blue'],[1899,'blue'],[1900,'violet'],[2099,'violet'],[2100,'orange'],[2399,'orange'],[2400,'red'],[2999,'red'],[3000,'legendary']]) assert.equal(ratingClass(rating),`rating--${color}`);
 const {selectAwardCutoffs} = loadModule('web/src/lib/award-policy.ts');
@@ -33,6 +35,12 @@ try {
     './local-db': dbModule,
     './catalog-runtime': {listRuntimeCatalogProblemsForImport: async () => [{problemId:'c:A',contestId:'c',ordinal:'A',title:'Example',aliases:[],sources:[{provider:'codeforces',provider_problem_id:'100000:A'}]}]},
   });
+  // Node 20 CI has no browser navigator. Exercise this even on newer Node.
+  Object.defineProperty(globalThis,'navigator',{configurable:true,value:undefined});
+  let automaticRequests=0;
+  globalThis.fetch=async()=>{automaticRequests++;throw new Error('Automatic sync must not run without Web Locks');};
+  await cf.importCodeforcesMember({memberId:'m',handle:'example'},{automatic:true});
+  assert.equal(automaticRequests,0);
   globalThis.fetch = async () => ({ok:true,json:async()=>({status:'OK',result:[{id:1,verdict:'WRONG_ANSWER',problem:{contestId:100000,index:'A'}},{id:2,verdict:'OK',problem:{contestId:100001,index:'B'}}]})});
   await cf.importCodeforcesMember({memberId:'m',handle:'example'});
   assert.equal((await localDb.memberProblemStatus.toArray())[0].status,'attempted');
@@ -44,4 +52,9 @@ try {
   assert.equal((await localDb.syncRecords.toArray()).filter(s=>s.status==='failed').length,1);
   assert.equal((await localDb.memberProblemStatus.toArray()).length,1,'Failure must preserve last successful status');
   console.log('VP state checks passed: persistent spoiler backup/restore, invalid import atomicity, CF unmatched provenance and failure retention.');
-} finally {await localDb.delete();}
+} finally {
+  globalThis.fetch=originalFetch;
+  if(originalNavigator)Object.defineProperty(globalThis,'navigator',originalNavigator);
+  else delete globalThis.navigator;
+  await localDb.delete();
+}

@@ -233,7 +233,7 @@ try {
   let requests = 0;
   globalThis.fetch = async () => {
     if (++requests === 1) throw new Error("offline");
-    return { ok: true, json: async () => ({ contests: [] }) };
+    return new Response(JSON.stringify({contests:[]}),{headers:{'content-type':'application/json'}});
   };
   const catalog = loadModule("web/src/lib/catalog.ts");
   await assert.rejects(catalog.fetchCatalogContestIndex(), /offline/);

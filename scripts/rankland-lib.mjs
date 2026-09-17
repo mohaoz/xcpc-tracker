@@ -50,7 +50,11 @@ export function preferredAwardGroup(srk) {
 export function calculateAwards(srk, selectedGroup) {
   const blocked = reason => ({ status: 'blocked', reason });
   if (!/^0\.3\.\d+$/.test(srk.version) || srk.type !== 'general' || srk.sorter?.algorithm !== 'ICPC') return blocked('Unsupported SRK version/type/sorter');
-  if (!srk.contest?.frozenDuration || minutes(srk.contest.frozenDuration) !== 0) return blocked('Frozen or unknown final state');
+  let freeze, duration;
+  try { freeze=minutes(srk.contest?.frozenDuration ?? [0,'s']);duration=minutes(srk.contest?.duration); }
+  catch {return blocked('Invalid contest duration');}
+  const end=Date.parse(srk.contest?.startAt)+duration*60000;
+  if(!Number.isFinite(end)||duration<=0||freeze>duration||end>Date.now())return blocked('Contest not finished or invalid schedule');
   if (!Array.isArray(srk.rows) || !srk.rows.length || !Array.isArray(srk.problems) || !srk.problems.length) return blocked('Empty standings');
   if (srk.rows.some(r => typeof r.user?.official !== 'boolean' || r.statuses?.length !== srk.problems.length || r.statuses.some(s => ['?', 'U', 'PD', 'PENDING', 'FROZEN'].includes(s.result)))) return blocked('Incomplete rows, pending results or unknown eligibility');
   if (srk.rows.some(r => r.statuses.some(s => ![undefined, null, 'AC', 'FB', 'RJ'].includes(s.result)) || r.statuses.filter(s => ['AC', 'FB'].includes(s.result)).length !== r.score?.value)) return blocked('Unknown final problem result or solved total conflict');
@@ -59,13 +63,28 @@ export function calculateAwards(srk, selectedGroup) {
   if (selectedGroup && !srk.markers?.some(m => m.id === selectedGroup)) return blocked('Selected group does not exist');
   if (series.length !== 1 || (!selectedGroup && series[0].rule.options?.filter)) return blocked('Multiple or unsupported eligible groups');
   const config = series[0].rule.options;
-  if (config?.ratio || Object.keys(config ?? {}).some(k => !['count', 'filter'].includes(k)) || (config?.filter && (Object.keys(config.filter).length !== 1 || config.filter.byMarker !== selectedGroup))) return blocked('Combined or unsupported medal rules');
-  const counts = config?.count?.value;
-  if (!Array.isArray(counts) || counts.length !== 3 || counts.some(n => !Number.isInteger(n) || n <= 0) || config.count.type && config.count.type !== 'normal') return blocked('No explicit supported medal counts');
+  if ((config?.ratio && config?.count) || Object.keys(config ?? {}).some(k => !['count', 'ratio', 'filter'].includes(k)) || (config?.filter && (Object.keys(config.filter).length !== 1 || config.filter.byMarker !== selectedGroup))) return blocked('Combined or unsupported medal rules');
+  let counts = config?.count?.value;
+  const ratio = config?.ratio;
+  if (ratio) {
+    if (Object.keys(ratio).some(k => !['value','rounding','denominator','noTied'].includes(k)) || !Array.isArray(ratio.value) || ratio.value.length !== 3 || ratio.value.some(n => !Number.isFinite(n) || n <= 0 || n > 1 || Math.round(n * 1e9) / 1e9 !== n)) return blocked('Unsupported official medal ratio');
+    if (!['ceil','floor','round'].includes(ratio.rounding ?? 'ceil') || (ratio.denominator ?? 'all') !== 'all' || ratio.noTied === true) return blocked('Unsupported official ratio denominator or tie policy');
+  } else if (!Array.isArray(counts) || counts.length !== 3 || counts.some(n => !Number.isInteger(n) || n <= 0) || config.count.type && config.count.type !== 'normal') return blocked('No explicit supported medal counts');
   if (JSON.stringify((series[0].segments ?? []).map(s => s.style)) !== JSON.stringify(['gold', 'silver', 'bronze'])) return blocked('Medal meaning is not explicit');
   const eligible = srk.rows.filter(r => r.user.official === true && (!selectedGroup || r.user.markers?.includes(selectedGroup))).map(r => ({ teamId: r.user.id, solved: r.score?.value, penalty: minutes(r.score?.time) }));
   if (eligible.some(r => typeof r.teamId !== 'string' || !Number.isInteger(r.solved) || r.solved < 0 || r.solved > srk.problems.length) || new Set(eligible.map(r => r.teamId)).size !== eligible.length) return blocked('Invalid score or duplicate team identity');
   eligible.sort((a, b) => b.solved - a.solved || a.penalty - b.penalty || a.teamId.localeCompare(b.teamId));
+  if (ratio) {
+    // SRK rounds cumulative boundaries, not each medal's size. Integer decimal
+    // arithmetic avoids ceil(0.1 + 0.2) floating-point boundary errors.
+    let cumulative = 0, previous = 0;
+    counts = ratio.value.map(value => {
+      cumulative += Math.round(value * 1e9);
+      const boundary = Math[ratio.rounding ?? 'ceil'](cumulative * eligible.length / 1e9);
+      const count = boundary - previous; previous = boundary; return count;
+    });
+    if (cumulative > 1e9 || counts.some(n => n <= 0)) return blocked('Invalid or empty official ratio segment');
+  }
   let rank = 0;
   const cutoffs = {};
   for (const [i, medal] of ['gold', 'silver', 'bronze'].entries()) {
@@ -75,7 +94,7 @@ export function calculateAwards(srk, selectedGroup) {
     if (next && next.solved === row.solved && next.penalty === row.penalty) return blocked('Tied medal boundary requires explicit review');
     cutoffs[medal] = { rank, ...row };
   }
-  return { status: 'proposed', eligible_team_count: eligible.length, cutoffs, evidence: { group: selectedGroup ?? 'user.official === true', series_index: srk.series.indexOf(series[0]), medal_counts: counts, penalty_unit: 'minutes', source_penalty_units: [...new Set(srk.rows.map(r => r.score.time[1]))], ties: 'No tied medal boundary', final: 'frozenDuration=0; complete statuses; no pending results' } };
+  return { status: 'proposed', eligible_team_count: eligible.length, cutoffs, evidence: { group: selectedGroup ?? 'user.official === true', series_index: srk.series.indexOf(series[0]), medal_counts: counts, ...(ratio ? {official_ratio:ratio,ratio_rounding:ratio.rounding ?? 'ceil',ratio_denominator:'all official teams',ratio_spec:'https://github.com/algoux/standard-ranklist/blob/master/index.d.ts'} : {}), penalty_unit: 'minutes', source_penalty_units: [...new Set(srk.rows.map(r => r.score.time[1]))], ties: 'No tied medal boundary', final: freeze===0 ? 'frozenDuration=0; complete statuses; no pending results' : 'Contest ended; complete statuses and consistent scores; no pending results; frozenDuration is schedule metadata' } };
 }
 
 export function awardResult(srk, calculation, selectedGroup) {

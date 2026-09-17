@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { nextTick, onMounted, ref } from "vue";
-import { useRoute } from "vue-router";
+import { nextTick, onMounted, onUnmounted, ref } from "vue";
 import { useSpoilerStore } from '../stores/spoilers';
 import { useSettingsStore } from '../stores/settings';
+import { useQojSyncStore } from '../stores/qoj-sync';
 
 import { importQojUserscriptMembers, type QojUserscriptImport } from "../lib/qoj";
-import { emitMemberMutated } from "../lib/member-events";
+import { emitMemberMutated, subscribeMemberMutated } from "../lib/member-events";
 import { listRuntimeCatalogContests } from "../lib/catalog-runtime";
 import {
   applyLocalRuntimeSnapshot,
@@ -14,9 +14,9 @@ import {
 } from "../lib/local-db";
 import type { LocalDbStatus, LocalRuntimeSnapshot } from "../lib/local-model";
 
-const route = useRoute();
 const spoilers = useSpoilerStore();
 const settings = useSettingsStore();
+const qojSync = useQojSyncStore();
 const catalogContestIds = ref<string[]>([]);
 const submitting = ref(false);
 const loadingStats = ref(false);
@@ -24,22 +24,18 @@ const error = ref("");
 const feedback = ref("");
 const importProgress = ref("");
 const importSucceeded = ref(false);
-const pastedImportSucceeded = ref(false);
 const importFileInput = ref<HTMLInputElement | null>(null);
-const importTextArea = ref<HTMLTextAreaElement | null>(null);
 const dbStatus = ref<LocalDbStatus | null>(null);
 
 const exportIncludeProblemStatus = ref(true);
 const importMode = ref<"merge" | "replace">("merge");
 const importIncludeProblemStatus = ref(true);
-const importText = ref("");
 
 function clearStatus() {
   error.value = "";
   feedback.value = "";
   importProgress.value = "";
   importSucceeded.value = false;
-  pastedImportSucceeded.value = false;
 }
 
 async function showImportProgress(message: string) {
@@ -93,14 +89,6 @@ function handleOpenImport() {
   importFileInput.value?.click();
 }
 
-function handleImportTextInput() {
-  if (submitting.value || !pastedImportSucceeded.value) {
-    return;
-  }
-  pastedImportSucceeded.value = false;
-  importSucceeded.value = false;
-  feedback.value = "";
-}
 
 async function importDataFromText(text: string) {
   await showImportProgress("正在解析导入内容…");
@@ -170,31 +158,12 @@ async function handleImportData(event: Event) {
   }
 }
 
-async function handleImportPastedData() {
-  submitting.value = true;
-  clearStatus();
-  try {
-    await showImportProgress("正在读取粘贴内容…");
-    await importDataFromText(importText.value);
-    importText.value = "";
-    importSucceeded.value = true;
-    pastedImportSucceeded.value = true;
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "导入数据失败";
-  } finally {
-    submitting.value = false;
-    importProgress.value = "";
-  }
-}
-
-onMounted(async () => {
+let unsubscribe: (() => void) | undefined;
+onMounted(() => {
   void refreshStats();
-  if (route.query.import === "member") {
-    await nextTick();
-    importTextArea.value?.focus({ preventScroll: true });
-    importTextArea.value?.scrollIntoView({ behavior: "smooth", block: "center" });
-  }
+  unsubscribe=subscribeMemberMutated(()=>void refreshStats());
 });
+onUnmounted(()=>unsubscribe?.());
 </script>
 
 <template>
@@ -221,7 +190,7 @@ onMounted(async () => {
         </div>
 
         <div class="list-grid">
-          <section class="panel" style="box-shadow: none">
+          <section class="panel settings-panel" style="box-shadow: none">
             <div class="panel__body">
               <div class="panel__header" style="margin-bottom: 0">
                 <div class="panel__title">
@@ -243,133 +212,89 @@ onMounted(async () => {
                   @click="settings.toggleEstimates()"><span class="spoiler-switch__track" aria-hidden="true"><span class="spoiler-switch__thumb"></span></span></button>
               </div>
               <p v-if="settings.error" class="error-box">{{ settings.error }}</p>
-            </div>
-          </section>
-          <section class="panel" style="box-shadow: none">
-            <div class="panel__body">
-              <div class="panel__title" style="margin-bottom: 14px">
-                <p class="eyebrow">导入</p>
-                <h3>成员导入</h3>
+              <div class="panel__header" style="margin: 20px 0 0">
+                <div class="panel__title"><h3>使用 QOJ 油猴脚本</h3><p class="muted tiny">统一用于添加成员和更新记录，关闭后手动导入。</p></div>
+                <button type="button" role="switch" class="spoiler-switch" aria-label="使用 QOJ 油猴脚本"
+                  :aria-checked="qojSync.useUserscript" :disabled="!qojSync.modeLoaded || qojSync.busy"
+                  @click="qojSync.setUseUserscript(!qojSync.useUserscript)"><span class="spoiler-switch__track" aria-hidden="true"><span class="spoiler-switch__thumb"></span></span></button>
               </div>
-
-              <p v-if="route.query.import === 'member'" class="notice" style="margin-bottom: 16px">
-                QOJ 导入已就绪。运行新标签页中的控制台脚本后，回到这里直接粘贴 JSON。
-              </p>
-
-              <div class="manage-io-grid">
-                <div class="field">
-                  <label>导入模式</label>
-                  <div class="choice-grid">
-                    <label class="choice-card" :class="{ 'choice-card--active': importMode === 'merge' }">
-                      <input v-model="importMode" class="choice-card__input" type="radio" value="merge" />
-                      <span class="choice-card__title">新增</span>
-                    </label>
-                    <label class="choice-card" :class="{ 'choice-card--active': importMode === 'replace' }">
-                      <input v-model="importMode" class="choice-card__input" type="radio" value="replace" />
-                      <span class="choice-card__title">覆盖</span>
-                    </label>
-                  </div>
-                </div>
-                <div class="field">
-                  <label>导入内容</label>
-                  <div class="choice-grid choice-grid--single">
-                    <label class="choice-card" :class="{ 'choice-card--active': importIncludeProblemStatus }">
-                      <input v-model="importIncludeProblemStatus" class="choice-card__input" type="checkbox" />
-                      <span class="choice-card__title">导入题目状态</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="actions">
-                <input
-                  ref="importFileInput"
-                  type="file"
-                  accept="application/json"
-                  style="display: none"
-                  @change="handleImportData"
-                />
-                <button class="button button--ghost" :disabled="submitting" @click="handleOpenImport">
-                  {{ submitting ? "正在导入…" : "导入" }}
-                </button>
-                <button
-                  class="button"
-                  :class="{ 'button--success': pastedImportSucceeded }"
-                  :disabled="submitting || !importText.trim()"
-                  @click="handleImportPastedData"
-                >
-                  {{ submitting ? "正在导入…" : pastedImportSucceeded ? "✓ 导入完成" : "粘贴内容导入" }}
-                </button>
-              </div>
-              <p
-                v-if="submitting"
-                class="notice"
-                role="status"
-                aria-live="polite"
-                style="margin-top: 12px"
-              >
-                {{ importProgress || "正在准备导入…" }}
-              </p>
-              <div
-                v-else-if="importSucceeded && feedback"
-                class="notice import-result"
-                role="status"
-                aria-live="polite"
-                style="margin-top: 12px"
-              >
-                <strong>✓ 导入完成</strong>
-                <span>{{ feedback }}</span>
-              </div>
-              <div class="field" style="margin-top: 16px">
-                <label for="import-json-text">直接粘贴 JSON</label>
-                <textarea
-                  id="import-json-text"
-                  ref="importTextArea"
-                  v-model="importText"
-                  class="input-textarea"
-                  rows="10"
-                  spellcheck="false"
-                  placeholder="把 QOJ 单账号或批量浏览器脚本复制的 JSON，或 local_runtime_snapshot，粘贴到这里"
-                  @input="handleImportTextInput"
-                />
-              </div>
-              <p class="muted tiny">
-                成员导入支持 `local_runtime_snapshot`，也支持 QOJ 控制台脚本生成的单账号或批量 `provider = qoj` JSON；批量抓取失败清单会保留在同步记录中。
-              </p>
-            </div>
-          </section>
-
-          <section class="panel" style="box-shadow: none">
-            <div class="panel__body">
-              <div class="panel__title" style="margin-bottom: 14px">
-                <p class="eyebrow">导出</p>
-                <h3>成员导出</h3>
-              </div>
-
-              <div class="manage-io-grid">
-                <div class="field">
-                  <label>导出内容</label>
-                  <div class="choice-grid choice-grid--single">
-                    <label class="choice-card" :class="{ 'choice-card--active': exportIncludeProblemStatus }">
-                      <input v-model="exportIncludeProblemStatus" class="choice-card__input" type="checkbox" />
-                      <span class="choice-card__title">包含题目状态</span>
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="actions">
-                <button class="button button--ghost" :disabled="submitting" @click="handleExportData">
-                  导出
-                </button>
+              <div class="panel__header" style="margin: 20px 0 0">
+                <div class="panel__title"><h3>自动同步</h3><p class="muted tiny">每 30 分钟同步 CF 与 QOJ；QOJ 需启用油猴脚本，页面关闭时不运行。</p></div>
+                <button type="button" role="switch" class="spoiler-switch" aria-label="自动同步"
+                  :aria-checked="qojSync.enabled" :disabled="!qojSync.modeLoaded"
+                  @click="qojSync.setEnabled(!qojSync.enabled)"><span class="spoiler-switch__track" aria-hidden="true"><span class="spoiler-switch__thumb"></span></span></button>
               </div>
             </div>
           </section>
+          <div class="transfer-grid">
+            <section class="panel transfer-card" aria-labelledby="manage-import-title">
+              <div class="panel__body">
+                <h3 id="manage-import-title">导入</h3>
+                <p class="muted tiny">从文件恢复成员数据备份</p>
+                <div class="transfer-options">
+                  <label class="status-option"><input v-model="importIncludeProblemStatus" type="checkbox" :disabled="submitting" /> 包含题目状态</label>
+                  <div class="import-mode" role="group" aria-label="导入方式">
+                    <span>导入方式</span>
+                    <div class="segmented">
+                      <button type="button" :aria-pressed="importMode==='merge'" :disabled="submitting" @click="importMode='merge'">合并</button>
+                      <button type="button" :aria-pressed="importMode==='replace'" :disabled="submitting" @click="importMode='replace'">覆盖</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="transfer-actions">
+                  <input ref="importFileInput" type="file" accept=".json,application/json" hidden @change="handleImportData" />
+                  <button class="button button--ghost" :disabled="submitting" @click="handleOpenImport">{{ submitting ? '正在导入…' : '选择备份文件' }}</button>
+                </div>
+              </div>
+            </section>
+            <section class="panel transfer-card" aria-labelledby="manage-export-title">
+              <div class="panel__body">
+                <h3 id="manage-export-title">导出</h3>
+                <p class="muted tiny">保存本地成员数据备份</p>
+                <div class="transfer-options">
+                  <label class="status-option"><input v-model="exportIncludeProblemStatus" type="checkbox" /> 包含题目状态</label>
+                </div>
+                <div class="transfer-actions">
+                  <button class="button button--ghost" :disabled="submitting" @click="handleExportData">导出备份</button>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
 
-        <p v-if="feedback && !importSucceeded" class="notice" style="margin-top: 16px">{{ feedback }}</p>
+        <p v-if="submitting" class="notice" role="status">{{ importProgress }}</p>
+        <p v-else-if="feedback" class="notice" role="status" style="margin-top: 16px">{{ feedback }}</p>
         <p v-if="error" class="error-box" style="margin-top: 16px">{{ error }}</p>
       </div>
     </section>
   </div>
 </template>
+
+<style scoped>
+.transfer-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+.transfer-card {box-shadow:none;min-width:0;display:flex;}
+.transfer-card > .panel__body {display:flex;flex-direction:column;flex:1;}
+.transfer-card h3 {margin:0;}
+.transfer-card p {margin:8px 0 0;}
+.transfer-options {display:grid;align-content:start;gap:16px;margin:22px 0;}
+.transfer-actions {display:flex;align-items:center;margin-top:auto;padding-top:2px;}
+.transfer-actions .button {min-width:144px;min-height:42px;justify-content:center;border-radius:10px;padding:10px 18px;font-size:14px;}
+.status-option {display:flex;align-items:center;gap:10px;font-size:14px;cursor:pointer;}
+.status-option input {appearance:none;width:18px;height:18px;margin:0;border:1px solid #aabeb9;border-radius:5px;background:#fff;display:grid;place-content:center;cursor:pointer;}
+.status-option input:checked {background:#146e75;border-color:#146e75;}
+.status-option input:checked::after {content:'';width:8px;height:4px;border-left:2px solid white;border-bottom:2px solid white;transform:translateY(-1px) rotate(-45deg);}
+.status-option input:focus-visible,.segmented button:focus-visible {outline:2px solid #146e75;outline-offset:3px;}
+.status-option input:disabled {opacity:.5;cursor:default;}
+.import-mode {display:flex;align-items:center;gap:16px;font-size:13px;color:#657482;}
+.segmented {display:flex;border:1px solid #d7dfdc;border-radius:8px;padding:3px;background:#f1f3ef;gap:3px;}
+.segmented button {border:0;border-radius:5px;padding:6px 16px;background:transparent;color:#657482;font:inherit;cursor:pointer;}
+.segmented button[aria-pressed=true] {background:#fffdf9;color:#146e75;box-shadow:0 1px 3px #233a361a;font-weight:600;}
+.settings-panel > .panel__body {padding-top:6px;padding-bottom:6px;}
+.settings-panel .panel__header {margin:0 !important;padding:16px 0;align-items:center;gap:24px;}
+.settings-panel .panel__header ~ .panel__header {border-top:1px solid #e6e8e1;}
+.settings-panel .panel__title {gap:0;}
+.settings-panel h3 {margin:0;font-size:15px;}
+.settings-panel .panel__title p {margin:5px 0 0;line-height:1.5;}
+.settings-panel .spoiler-switch {flex-shrink:0;}
+@media(max-width:760px) {.transfer-grid {grid-template-columns:1fr;}}
+</style>

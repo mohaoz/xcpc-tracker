@@ -614,9 +614,12 @@ function normalizeBoardCollection(value, label) {
   return Object.values(value);
 }
 
-function getEligibleTeamIds(teams) {
+function getEligibleTeamIds(config, teams) {
+  if (/本科|专科|高职|邀请|invitational|undergraduate|vocational|Track|独立学院/i.test(JSON.stringify(config.group ?? {}))) {
+    throw new Error('Separate eligible groups require audited highest-group calculation');
+  }
   const officialTeamIds = teams
-    .filter((team) => team.group?.includes("official") || team.official === true || team.official === 1)
+    .filter((team) => !team.group?.includes("unofficial") && team.unofficial !== true && team.unofficial !== 1 && team.official !== false && team.official !== 0 && (team.group?.includes("official") || team.official === true || team.official === 1))
     .map(getTeamId)
     .filter((id) => id !== null);
 
@@ -627,10 +630,7 @@ function getEligibleTeamIds(teams) {
     };
   }
 
-  return {
-    source: "inferred_all_teams_medal_ratio_10_20_30",
-    teamIds: new Set(teams.map(getTeamId).filter((id) => id !== null)),
-  };
+  throw new Error('No explicitly verified official teams; refusing all-team medal estimate');
 }
 
 function getPenaltyTimestampDivisor(config) {
@@ -644,7 +644,7 @@ function getPenaltyTimestampDivisor(config) {
 }
 
 function buildRankedTeams(config, teams, runs) {
-  const { source, teamIds } = getEligibleTeamIds(teams);
+  const { source, teamIds } = getEligibleTeamIds(config, teams);
   const rankedById = new Map([...teamIds].map((teamId) => [
     teamId,
     {

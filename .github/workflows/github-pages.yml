@@ -32,6 +32,8 @@ jobs:
         run: npm run deploy:build
       - name: Build for project Pages
         run: npm run build --prefix web -- --mode github-pages
+      - name: Validate production userscript and Pages assets
+        run: node scripts/validate-production-assets.mjs
       - uses: actions/upload-pages-artifact@v3
         with:
           path: web/dist

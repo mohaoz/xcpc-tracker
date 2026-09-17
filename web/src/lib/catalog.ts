@@ -159,8 +159,10 @@ async function requestStaticJson<T>(path: string, options?: { cacheMode?: Reques
       cache: options?.cacheMode ?? "default",
     });
     if (!response.ok) {
-      const message = await response.text();
-      throw new Error(message || `HTTP ${response.status}`);
+      throw new Error(`比赛数据加载失败（HTTP ${response.status}）：${normalizedPath}`);
+    }
+    if (response.headers.get('content-type')?.includes('text/html')) {
+      throw new Error(`比赛数据地址返回了网页，请刷新后重试：${normalizedPath}`);
     }
     return await response.json() as T;
   } catch (error) {

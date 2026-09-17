@@ -127,7 +127,7 @@ function getPenalty(row) {
 function getOfficialRows(rows) {
   const withParticipantType = rows.filter((row) => typeof row.party?.participantType === "string");
   if (withParticipantType.length === 0) {
-    return rows;
+    return [];
   }
   return rows.filter((row) => row.party?.participantType === "CONTESTANT");
 }
@@ -163,6 +163,7 @@ function getCutoff(rankedTeams, rank) {
 
 function getCutoffRecord(contest, source, standings) {
   const contestId = getCodeforcesContestId(source);
+  if (Number(contestId) >= 100000) throw new Error('Gym CONTESTANT does not verify original onsite official teams; use audited original standings');
   const officialRows = getOfficialRows(standings.rows ?? []);
   const rankedTeams = toRankedTeams(officialRows);
   if (rankedTeams.length === 0) {

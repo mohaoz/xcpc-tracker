@@ -34,7 +34,8 @@ assert.equal(minutes([1, 'h']), 60);
 assert.throws(() => minutes([1, 'unknown']));
 for (const mutate of [
   s => { s.version = '99.0.0'; },
-  s => { s.contest.frozenDuration = [1, 'h']; },
+  s => { s.contest.frozenDuration = [1, 'h']; s.rows[0].statuses[0].result='?'; },
+  s => { s.contest.startAt='2999-01-01T00:00:00Z'; },
   s => { delete s.rows[0].user.official; },
   s => { s.rows[0].statuses = []; },
   s => { s.rows[0].statuses[0].result = 'PENDING'; },
@@ -44,7 +45,25 @@ for (const mutate of [
   s => { s.rows[2].score = structuredClone(s.rows[1].score); },
   s => { s.series.push(structuredClone(s.series[0])); },
 ]) { const changed = structuredClone(srk); mutate(changed); assert.equal(calculateAwards(changed).status, 'blocked'); }
+const historicalFreeze=structuredClone(srk);
+historicalFreeze.contest.frozenDuration=[1,'h'];
+assert.equal(calculateAwards(historicalFreeze).status,'proposed');
+delete historicalFreeze.contest.frozenDuration;
+assert.equal(calculateAwards(historicalFreeze).status,'proposed');
 const grouped = structuredClone(srk);
+const ratioFixture=structuredClone(srk);
+ratioFixture.series[0].rule.options={ratio:{value:[.1,.2,.3]}};
+ratioFixture.rows=Array.from({length:10},(_,i)=>({...structuredClone(srk.rows[0]),user:{id:String(i),official:true},score:{value:srk.rows[0].score.value,time:[i+1,'min']}}));
+ratioFixture.rows.push({...structuredClone(ratioFixture.rows[0]),user:{id:'guest',official:false}});
+let ratioAwards=calculateAwards(ratioFixture);
+assert.equal(ratioAwards.eligible_team_count,10);
+assert.deepEqual(Object.values(ratioAwards.cutoffs).map(c=>c.rank),[1,3,6]);
+ratioFixture.rows.push({...structuredClone(ratioFixture.rows[0]),user:{id:'eleventh',official:true},score:{value:srk.rows[0].score.value,time:[11,'min']}});
+assert.deepEqual(Object.values(calculateAwards(ratioFixture).cutoffs).map(c=>c.rank),[2,4,7]);
+ratioFixture.series[0].rule.options.ratio.rounding='floor';
+assert.deepEqual(Object.values(calculateAwards(ratioFixture).cutoffs).map(c=>c.rank),[1,3,6]);
+ratioFixture.series[0].rule.options.ratio.denominator='submitted';
+assert.equal(calculateAwards(ratioFixture).status,'blocked');
 grouped.series[0].rule.options.filter = {byMarker: 'invitational'};
 assert.equal(calculateAwards(grouped).status, 'blocked');
 assert.equal(calculateAwards(grouped, 'invitational').eligible_team_count, 3);
@@ -115,3 +134,46 @@ const auditedIds = new Set((await readJson('fixtures/imports/rankland/2026-09-au
 assert.equal(auditedIds.size,receipt.contest_count);
 for (const id of auditedIds) assert.ok(published.contests.some(c => c.contestId === id), 'Previously audited contest must remain in catalog');
 console.log('Published RankLand review contracts, award values, corrections and full-catalog dispositions verified.');
+const refresh=await readJson('fixtures/imports/rankland/2026-09-17-refresh.json');
+assert.match(refresh.commit_sha,/^[a-f0-9]{40}$/);
+assert.equal(new Set(refresh.changes.map(c=>c.contest_id)).size,refresh.changes.length);
+for(const change of refresh.changes) {
+  const c=published.contests.find(c=>c.contestId===change.contest_id);
+  assert.deepEqual(c[change.field],change.value);
+  assert.match(change.source_sha256,/^[a-f0-9]{64}$/);
+  assert.ok(c.sources.some(s=>s.provider==='rankland'&&s.url===change.value.sourceUrl));
+  assert.equal(change.evidence.ties,'No tied medal boundary');
+}
+console.log('Refreshed cutoff receipts match published catalog and verified source mappings.');
+const ratios=await readJson('fixtures/imports/rankland/2026-09-17-official-ratios.json');
+assert.equal(ratios.changes.length,2);
+for(const change of ratios.changes) {
+  assert.equal(change.value.source,'explicit');
+  assert.deepEqual(published.contests.find(c=>c.contestId===change.contest_id).awardCutoffs,change.value);
+  assert.deepEqual(change.evidence.official_ratio.value,[.1,.2,.3]);
+}
+const eligibility=await readJson('fixtures/imports/rankland/2026-09-17-estimate-eligibility.json');
+const replacements=await readJson('fixtures/imports/rankland/2026-09-17-verified-replacements.json');
+const highest=await readJson('fixtures/imports/rankland/2026-09-17-highest-group-audit.json');
+const highestReplacement=await readJson('fixtures/imports/rankland/2026-09-17-highest-group-replacement.json');
+assert.equal(highest.removed.length,7);
+assert.equal(highestReplacement.changes.length,1);
+for(const change of highestReplacement.changes)assert.deepEqual(published.contests.find(c=>c.contestId===change.contest_id)[change.field],change.value);
+for(const row of highest.removed)assert.notDeepEqual(published.contests.find(c=>c.contestId===row.contest_id)[row.field],row.value);
+assert.equal(replacements.changes.length,3);
+for(const r of replacements.changes) {
+  assert.equal(r.value.sourceProvider,'rankland');
+  assert.deepEqual(published.contests.find(c=>c.contestId===r.contest_id)[r.field],r.value);
+  assert.equal(r.evidence.ties,'No tied medal boundary');
+}
+assert.equal(eligibility.removed.length,13);
+for(const row of eligibility.removed)assert.notDeepEqual(published.contests.find(c=>c.contestId===row.contest_id)[row.field],row.value);
+for(const c of published.contests)for(const field of ['awardCutoffs','estimatedAwardCutoffs']) {
+  const value=c[field];if(!value || value.source==='explicit')continue;
+  assert.equal(value.source,'inferred_official_medal_ratio_10_20_30');
+  assert.notEqual(value.sourceProvider,'codeforces');
+  const row=highest.verified.find(r=>r.contest_id===c.contestId && r.field===field);
+  assert.ok(row,'Every remaining estimate needs official-team eligibility evidence');
+  assert.deepEqual(value,row.value);
+}
+console.log('Official ratio rounding and all retained estimate eligibility verified.');

@@ -1,0 +1,96 @@
+// Real stores/importers + isolated IndexedDB; upstream transport is mocked.
+import assert from 'node:assert/strict';
+import {chromium,expect} from '@playwright/test';
+const base=process.env.QOJ_TEST_BASE || 'http://localhost:5173';
+const browser=await chromium.launch({headless:true});
+try {
+  const context=await browser.newContext({viewport:{width:1440,height:1000}});
+  let cfRequests=0,cfFailure=false,releaseCf,holdCf=false;
+  await context.route('https://codeforces.com/api/**',async route=>{
+    cfRequests++;
+    // Hold CF until QOJ starts: proves platform scheduling is concurrent.
+    if(cfRequests===1 || holdCf)await new Promise(resolve=>{releaseCf=resolve;});
+    await route.fulfill({status:cfFailure?503:200,contentType:'application/json',body:JSON.stringify({status:'OK',result:[]})}).catch(()=>{});
+  });
+  await context.addInitScript(()=>{
+    window.qojRequests=0;window.qojFailure=false;
+    window.addEventListener('message',event=>{
+      const m=event.data;if(m?.protocol!=='xcpc-sync'||m.direction!=='request')return;
+      let result,error;
+      if(m.method==='hello')result={version:1,connected:true,script_version:'1.0.6'};
+      else if(m.method==='syncMember') {
+        window.qojRequests++;
+        if(window.qojFailure)error={code:'AUTH_REQUIRED'};
+        else result={provider:'qoj',handle:m.params.handle,fetched_at:new Date().toISOString(),snapshot:{scope:'profile_visible',solved:[],attempted:[]}};
+      } else return;
+      window.postMessage({protocol:'xcpc-sync',version:1,direction:'response',request_id:m.request_id,result,error},location.origin);
+    });
+  });
+  const page=await context.newPage();await page.goto(base+'/manage');
+  await page.getByRole('dialog',{name:'QOJ 支持油猴同步了'}).getByRole('button',{name:'关闭',exact:true}).click();
+  await page.evaluate(async()=>{
+    const {localDb}=await import('/src/lib/local-db.ts');window.db=localDb;
+    window.store=(await import('/src/stores/qoj-sync.ts')).useQojSyncStore();
+    const at=new Date().toISOString();
+    await localDb.members.put({memberId:'auto',displayName:'Auto',createdAt:at,updatedAt:at});
+    await localDb.memberHandles.bulkPut(['qoj','codeforces'].map(provider=>({handleId:provider+':test',memberId:'auto',handle:'test',provider,createdAt:at,updatedAt:at})));
+    await window.store.setUseUserscript(true);
+  });
+  await page.getByRole('switch',{name:'自动同步',exact:true}).click();
+  await page.waitForFunction(()=>window.qojRequests===1);
+  await expect.poll(()=>cfRequests).toBe(1);releaseCf();
+  const successes=()=>page.evaluate(async()=>(await window.db.syncRecords.toArray()).filter(r=>r.status==='succeeded').map(r=>r.adapter));
+  await expect.poll(successes).toContain('codeforces_api');
+  await expect.poll(successes).toContain('qoj_userscript');
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+  await page.waitForTimeout(2200);
+  assert.equal(cfRequests,1);assert.equal(await page.evaluate(()=>window.qojRequests),1);
+  console.log('PASS simultaneous CF/QOJ scheduling and fresh-record deduplication');
+  async function age() {await page.evaluate(async()=>{await window.db.syncRecords.toCollection().modify(r=>{r.startedAt=new Date(Date.parse(r.startedAt)-3600000).toISOString();r.finishedAt=new Date(Date.parse(r.finishedAt)-3600000).toISOString();});});}
+  await age();
+  await page.evaluate(()=>{window.qojFailure=true;window.dispatchEvent(new Event('focus'));});
+  await expect.poll(()=>cfRequests).toBe(2);
+  await page.getByRole('dialog',{name:'请先登录 QOJ'}).waitFor();
+  await expect.poll(async()=> (await successes()).filter(a=>a==='codeforces_api').length).toBe(2);
+  console.log('PASS QOJ login failure does not block CF');
+  await page.getByRole('dialog').getByRole('button',{name:'关闭',exact:true}).click();
+  await page.evaluate(()=>window.store.setEnabled(false));
+  cfFailure=true;
+  await page.evaluate(async()=>{try{await (await import('/src/lib/codeforces.ts')).importCodeforcesMember({memberId:'auto',handle:'test'});}catch{}});
+  const failedCount=cfRequests;await age();
+  await page.evaluate(async()=>{await window.store.setUseUserscript(false);await window.store.setEnabled(true);});
+  await page.waitForTimeout(2200);
+  assert.equal(cfRequests,failedCount,'manual CF failure must not be retried automatically');
+  console.log('PASS manual CF failure remains paused');
+  cfFailure=false;
+  await page.evaluate(async()=>{await window.store.setEnabled(false);await window.db.syncRecords.clear();await window.store.setEnabled(true);});
+  await expect.poll(()=>cfRequests).toBe(failedCount+1);
+  await expect.poll(successes).toContain('codeforces_api');
+  assert.equal(await page.evaluate(()=>window.qojRequests),2,'manual QOJ mode must not auto-open import or request QOJ');
+  await page.evaluate(()=>window.store.setEnabled(false));await age();
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));await page.waitForTimeout(2200);
+  assert.equal(cfRequests,failedCount+1);
+  console.log('PASS CF auto-sync without userscript and unified off switch');
+  cfFailure=true;
+  await page.evaluate(async()=>{window.qojFailure=false;await window.db.syncRecords.clear();await window.store.setUseUserscript(true);await window.store.setEnabled(true);});
+  await expect.poll(successes).toContain('qoj_userscript');
+  await expect.poll(()=>page.evaluate(async()=>(await window.db.syncRecords.toArray()).some(r=>r.adapter==='codeforces_api' && r.status==='failed' && r.summaryJson.manual===false))).toBe(true);
+  console.log('PASS automatic CF failure does not block QOJ');
+  await page.evaluate(()=>window.store.setEnabled(false));
+  cfFailure=false;holdCf=true;const beforeCancel=cfRequests;
+  await page.evaluate(async()=>{await window.db.syncRecords.clear();await window.store.setUseUserscript(false);await window.store.setEnabled(true);});
+  await expect.poll(()=>cfRequests).toBe(beforeCancel+1);
+  await page.evaluate(()=>window.store.setEnabled(false));
+  await expect.poll(()=>page.evaluate(async()=>(await window.db.syncRecords.toArray()).some(r=>r.adapter==='codeforces_api' && r.status==='failed'))).toBe(true);
+  releaseCf();holdCf=false;
+  assert.equal((await successes()).filter(a=>a==='codeforces_api').length,0);
+  console.log('PASS disabling auto-sync cancels in-flight CF without saving a success');
+  await page.screenshot({path:'/tmp/xcpc-auto-sync-settings.png',fullPage:true});
+  await page.evaluate(async()=>{await window.db.appSettings.put({key:'allow_medal_estimates',value:false});await window.db.contestPreferences.put({contest_id:'d505e000-4947-579c-8d9b-99e31160839f',spoiler_mode:'spoiler'});});
+  await page.goto(base+'/contests/d505e000-4947-579c-8d9b-99e31160839f');
+  await expect(page.locator('main')).toContainText('RankLand');
+  for(const rank of [26,78,156])await expect(page.locator('main')).toContainText(`第 ${rank} 名`);
+  await expect(page.locator('main')).not.toContainText('比例估算');
+  await page.screenshot({path:'/tmp/xcpc-nanchang-official.png',fullPage:true});
+  console.log('PASS Nanchang detail renders official awards; PNGs saved');
+} finally {await browser.close();}

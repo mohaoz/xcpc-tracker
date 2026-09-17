@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute } from "vue-router";
+import { useQojSyncStore } from './stores/qoj-sync';
+import FeedbackDialog from './components/FeedbackDialog.vue';
+import QojManualDialog from './components/QojManualDialog.vue';
+useQojSyncStore().start();
 
 const route = useRoute();
 
@@ -13,6 +17,8 @@ const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
 </script>
 
 <template>
+  <FeedbackDialog />
+  <QojManualDialog />
   <div class="shell">
     <header class="shell__hero">
       <div class="shell__hero-bg"></div>

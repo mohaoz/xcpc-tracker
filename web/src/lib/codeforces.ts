@@ -164,17 +164,42 @@ function findProblemsByCodeforcesProviderProblemId(
   );
 }
 
+type SyncOptions = {automatic?: boolean; signal?: AbortSignal};
+
 export async function importCodeforcesMember(payload: {
   memberId: string;
   handle: string;
   displayName?: string;
-}): Promise<CodeforcesImportSummary> {
+}, options: SyncOptions = {}): Promise<CodeforcesImportSummary> {
+  const skipped = {memberId:payload.memberId,handle:payload.handle,matchedStatusCount:0,submissionCount:0};
+  const run = async () => {
+    options.signal?.throwIfAborted();
+    const history = (await localDb.syncRecords.toArray()).filter(r => r.adapter === 'codeforces_api');
+    const latest = history.filter(r => r.summaryJson.handle === payload.handle && r.summaryJson.member_id === payload.memberId).sort((a,b) => b.startedAt.localeCompare(a.startedAt))[0];
+    if (options.automatic && latest && (Date.now()-Date.parse(latest.startedAt)<30*60000 || (latest.status==='failed' && latest.summaryJson.manual !== false))) return skipped;
+    const recent = Math.max(0,...history.map(r=>Date.parse(r.finishedAt || r.startedAt)).filter(Number.isFinite));
+    const wait = Math.max(0,2100-(Date.now()-recent));
+    if (wait) await new Promise<void>((resolve,reject)=>{
+      const done=()=>{options.signal?.removeEventListener('abort',abort);resolve();};
+      const timer=setTimeout(done,wait);
+      const abort=()=>{clearTimeout(timer);reject(new DOMException('Cancelled','AbortError'));};
+      options.signal?.addEventListener('abort',abort,{once:true});
+      if(options.signal?.aborted)abort();
+    });
+    return performCodeforcesImport(payload,options);
+  };
+  const locks = globalThis.navigator?.locks;
+  if (!locks) return options.automatic ? skipped : run();
+  return locks.request('xcpc-codeforces-sync',{...(options.automatic ? {ifAvailable:true} : {signal:options.signal})},async lock=>lock ? run() : skipped);
+}
+
+async function performCodeforcesImport(payload: {memberId:string;handle:string;displayName?:string}, options:SyncOptions): Promise<CodeforcesImportSummary> {
   const startedAt = new Date().toISOString();
-  try { return await importCodeforcesMemberData(payload); }
+  try { return await importCodeforcesMemberData(payload,options); }
   catch (error) {
     const finishedAt = new Date().toISOString();
     const sourceRecordId = `codeforces:${payload.handle}:${finishedAt}:failed`;
-    const summary = {handle: payload.handle, member_id: payload.memberId, fetch_error: error instanceof Error ? error.message : String(error)};
+    const summary = {handle: payload.handle, member_id: payload.memberId, manual:!options.automatic, fetch_error: error instanceof Error ? error.message : String(error)};
     await localDb.transaction('rw', [localDb.importSources, localDb.syncRecords], async () => {
       await localDb.importSources.put({sourceRecordId, kind:'codeforces_api', label:`Codeforces sync failed: ${payload.handle}`, importedAt:finishedAt, rawMetaJson:summary});
       await localDb.syncRecords.put({syncId:sourceRecordId, sourceRecordId, adapter:'codeforces_api', startedAt, finishedAt, status:'failed', summaryJson:summary});
@@ -187,11 +212,11 @@ async function importCodeforcesMemberData(payload: {
   memberId: string;
   handle: string;
   displayName?: string;
-}): Promise<CodeforcesImportSummary> {
+}, options: SyncOptions): Promise<CodeforcesImportSummary> {
   const startedAt = new Date().toISOString();
   const submissions = await requestCodeforcesApi<CodeforcesSubmission[]>("user.status", {
     handle: payload.handle,
-  });
+  }, undefined, options.signal ? AbortSignal.any([options.signal,AbortSignal.timeout(30000)]) : AbortSignal.timeout(30000));
   const normalizedStatuses = normalizeCodeforcesStatus(submissions);
   const catalogProblems = await listRuntimeCatalogProblemsForImport();
   const problemsByProviderId = new Map<string, LocalCatalogProblemRecord[]>();
@@ -264,12 +289,15 @@ async function importCodeforcesMemberData(payload: {
     summaryJson: {
       handle: payload.handle,
       member_id: payload.memberId,
+      manual: !options.automatic,
       submission_count: submissions.length,
       matched_status_count: statuses.length,
       unmatched_status_count: importSource.rawMetaJson.unmatched_status_count,
     },
   };
 
+  options.signal?.throwIfAborted();
+  if (options.automatic && !(await listCodeforcesMemberSyncTargets()).some(t=>t.memberId===payload.memberId && t.handle===payload.handle)) throw new DOMException('Member removed','AbortError');
   await upsertMemberBundle({
     member,
     handles,
@@ -337,7 +365,7 @@ export async function syncAllCodeforcesMembers(options?: {
         memberId: target.memberId,
         handle: target.handle,
         displayName: target.displayName,
-      });
+      }, {signal: options?.signal});
       synced.push(result);
     } catch (error) {
       if (isAbortError(error) || options?.signal?.aborted) {

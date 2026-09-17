@@ -31,6 +31,12 @@ npm run catalog:rating -- apply tmp/sources/rating-problems.json tmp/sources/rat
 
 ## RankLand
 
+刷新已有映射：`node scripts/refresh-standings-audit.mjs <新的缓存目录>` 获取当前 SRK 提交、逐场页面及 Board 目录／配置，缺失牌线的 Board 比赛另外获取 team/run。该命令仅写缓存和审核报告；`--offline` 使用已下载数据重算。核对身份、题号、日期、组别和审核报告后，`node scripts/apply-standings-refresh.mjs <缓存目录> <新的审核附件路径>` 仅补缺失的 RankLand 牌线，不覆盖既有奖项或默认来源。已发布目录 SHA 和原始文件 SHA 必须仍与审核一致。新增映射及旧值冲突继续单独审核，不能运行旧 Board 的全量 apply 来覆盖迁移结果。
+
+2026-09-17 修正了封榜时长被当作当前封榜状态的问题，详见 `fixtures/imports/rankland/2026-09-17-refresh.json`；旧审核附件保留作为历史，不再代表最新缺口原因。
+
+官方比例规则补录见 `fixtures/imports/rankland/2026-09-17-official-ratios.json`；南昌及女生赛按 SRK 的累计比例、默认 ceil 计算，来源仍为 explicit。`node scripts/audit-estimate-eligibility.mjs <刷新缓存>` 联网核验现有估算的正式队范围，`--offline` 复用缓存，仅生成报告；审核后用 `node scripts/apply-estimate-eligibility-audit.mjs <报告> <新附件>` 撤下无法证明资格的估算，旧值完整保存在附件中。首轮 `2026-09-17-estimate-eligibility.json` 后继续做了 `2026-09-17-highest-group-audit.json` 最高组核查；当前完整缺口与替换结果见[待办清单](../docs/contest-update-todo.md#当前牌线缺口2026-09-17)。不得从历史输入重新引入全榜、跨组或 CF Gym 练习队伍估算。
+
 ```sh
 npm run catalog:rankland -- fetch tmp/sources/srk tmp/sources/rating-review.json
 npm run catalog:rankland -- inspect tmp/sources/srk tmp/sources/rating-review.json tmp/sources/rankland-review.json
@@ -41,7 +47,7 @@ npm run catalog:rankland -- apply tmp/sources/srk tmp/sources/rating-review.json
 
 固定提交在 `import-rankland-standings.mjs` 中；升级时使用新的缓存目录并重新审核。获取只处理候选榜单，失败保留上次数据；检查默认只输出报告。apply 校验原始内容哈希、页面身份、题数／题号、日期和审核绑定后原子写入。重复应用结果相同；CLI 面对已变化目录会要求重新审核。
 
-只提升明确官方金银铜名额、最终未封榜、资格明确、单位可解释、无边界并列的结果。多组取最高组：邀请赛优于省赛，本科优于高职；未知层级保持 blocked。新旧数值有未解释差异时保留旧值。旧 XCPCIO 刷新跳过已迁移 RankLand 比赛，CF fallback 不覆盖可信其他来源。
+只提升明确官方金银铜名额或支持的官方比例规则、完整终榜、资格明确、单位可解释、无边界并列的结果。多组取最高组：邀请赛优于省赛，本科优于高职；未知层级保持 blocked。新旧数值有未解释差异时保留审核证据。旧 XCPCIO 刷新跳过已迁移 RankLand 比赛，CF Gym 不提供现场奖牌估算。
 
 `fixtures/imports/rankland/2026-09-*` 保存本次映射审核、奖牌审核、全目录处理结论、差异和纠错证据；Rating 快照的哈希和逐题匹配在其目录中。大型原始 SRK 不入库。合成 fixture 明确用于测试，不得正式应用。AGPL 数据署名和许可证随公开 catalog 发布。
 

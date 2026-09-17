@@ -1,7 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.8.0
 
+- Refresh verified RankLand and XCPCIO Board sources. Correct SRK freeze-duration interpretation and support official ratio rules, including Nanchang. Remove unaudited Gym/all-team/mixed-group estimates, replace verified sources, and retain explicit unresolved gaps.
+
+- Keep QOJ manual import as the default and introduce the optional userscript in a one-time startup dialog. Preserve saved mode preferences.
+- Unify QOJ member creation and updates under a global userscript setting; keep manual export/import in one dialog and periodic sync opt-in.
+- Add browser-assisted QOJ sync, concise failure dialogs, failure-preserving imports, cross-tab locking and site-driven script update prompts.
+- One optional automatic-sync setting updates CF and QOJ concurrently. Manual failures are not retried automatically; missing browser globals no longer break Node CI.
+- Keep CF/QOJ actions together on members, manual import in a dialog, and aligned backup import/export in management. Fix generated detail JSON availability during local catalog refresh.
 - Add Cloudflare Web Analytics to the page entry point for site traffic statistics.
 
 ## 0.7.1
