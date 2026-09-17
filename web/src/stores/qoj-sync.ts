@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia';
 import { computed, ref, watch } from 'vue';
 import { liveQuery } from 'dexie';
+import { useRouter } from 'vue-router';
 import { localDb, listMemberPeopleFromDb, recordImportSyncAttempt } from '../lib/local-db';
 import { importQojUserscriptMembers } from '../lib/qoj';
 import { emitMemberMutated } from '../lib/member-events';
@@ -57,6 +58,7 @@ export function validateQojSnapshot(value: any, handle: string) {
   return value as { fetched_at: string; snapshot: { solved: string[]; attempted: string[] } };
 }
 export const useQojSyncStore = defineStore('qoj-sync', () => {
+  const router = useRouter();
   const feedback = useFeedbackStore();
   let manualRun = false;
   const announced = new Set<string>();
@@ -83,7 +85,15 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
     finally {introClaiming=false;}
   },{flush:'post'});
   async function setUseUserscript(value:boolean) {
-    try {await localDb.appSettings.put({key:'qoj_use_userscript',value});useUserscript.value=value;if(!value)controller?.abort();return true;}
+    try {
+      await localDb.transaction('rw',localDb.appSettings,async()=>{
+        await localDb.appSettings.put({key:'qoj_use_userscript',value});
+        if(!value)await localDb.appSettings.put({key:'auto_sync',value:false});
+      });
+      useUserscript.value=value;
+      if(!value){enabled.value=false;controller?.abort();cfController?.abort();}
+      return true;
+    }
     catch {report('STORAGE_ERROR');return false;}
   }
   const message = ref(''), currentHandle = ref('');
@@ -126,7 +136,7 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
     feedback.show({tone:'info',title:'QOJ 自动同步帮助',
       message:`${updateAvailable.value ? `脚本有更新：${installedVersion.value || '旧版'} → ${latestVersion.value}，更新后请刷新页面。\n\n` : ''}1. 安装 Tampermonkey，允许用户脚本运行。\n2. 安装 QOJ 同步脚本，刷新本站。\n3. 在管理页启用“使用 QOJ 油猴脚本”。\n4. 登录 QOJ，点击“同步 QOJ”。\n\n安装即授权本站读取 QOJ 做题记录。定时同步需在管理页开启，手动失败不会自动重试。`,
       detail:installedVersion.value ? `当前脚本：${installedVersion.value}\n可用版本：${latestVersion.value || '尚未检查'}\n本站检测新版并提示，由你点击更新。` : undefined,
-      actions:[{label:'安装油猴',href:'https://www.tampermonkey.net/'},{label:updateAvailable.value ? '更新脚本':'安装同步脚本',href:`${import.meta.env.BASE_URL}userscripts/qoj-sync.user.js`}]});
+      actions:[{label:'安装油猴',href:'https://www.tampermonkey.net/'},{label:updateAvailable.value ? '更新脚本':'安装同步脚本',href:`${import.meta.env.BASE_URL}userscripts/qoj-sync.user.js`},{label:'前往管理页启用',run:()=>{void router.push({name:'manage'});}}]});
   }
   function report(code: string, handle = '', retryAt = 0) {
     const issue = {code,handle,detail:labels[code] || '同步未完成，请重试或反馈下方错误代码。',retryAt,at:new Date().toISOString()};
@@ -168,7 +178,11 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
   }
   async function setEnabled(value: boolean) {
     try {
-      await localDb.appSettings.put({key:'auto_sync',value}); enabled.value = value;
+      const scriptMode=value || useUserscript.value;
+      await localDb.transaction('rw',localDb.appSettings,async()=>{
+        await localDb.appSettings.bulkPut([{key:'auto_sync',value},{key:'qoj_use_userscript',value:scriptMode}]);
+      });
+      useUserscript.value=scriptMode;enabled.value = value;
       if (!value) { controller?.abort(); cfController?.abort(); }
       else void runAutomatic();
     }
@@ -275,7 +289,7 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
     if (started) return;
     started = true;
     void check();
-    liveQuery(() => Promise.all([localDb.appSettings.get('auto_sync'),localDb.appSettings.get('qoj_auto_sync'),localDb.appSettings.get('qoj_use_userscript'),localDb.appSettings.get('qoj_script_intro_seen')])).subscribe({next([auto,legacy,mode,intro]) { enabled.value=(auto??legacy)?.value===true;useUserscript.value=mode?.value===true;modeLoaded.value=true;introPending.value=!intro?.value;if(!enabled.value){controller?.abort();cfController?.abort();}else if(!useUserscript.value)controller?.abort();void runAutomatic(); },error() {enabled.value=false;controller?.abort();cfController?.abort();}});
+    liveQuery(() => Promise.all([localDb.appSettings.get('auto_sync'),localDb.appSettings.get('qoj_auto_sync'),localDb.appSettings.get('qoj_use_userscript'),localDb.appSettings.get('qoj_script_intro_seen')])).subscribe({next([auto,legacy,mode,intro]) { enabled.value=(auto??legacy)?.value===true;useUserscript.value=enabled.value || mode?.value===true;modeLoaded.value=true;introPending.value=!intro?.value;if(!enabled.value){controller?.abort();cfController?.abort();}void runAutomatic(); },error() {enabled.value=false;controller?.abort();cfController?.abort();}});
     setInterval(() => void runAutomatic(), 60000);
     setInterval(() => { if (document.visibilityState==='visible' && connected.value && Date.now()>=nextUpdateCheck) void check(); },60000);
     const returned = () => {

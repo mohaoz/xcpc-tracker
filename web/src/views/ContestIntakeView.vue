@@ -213,13 +213,13 @@ onUnmounted(()=>unsubscribe?.());
               </div>
               <p v-if="settings.error" class="error-box">{{ settings.error }}</p>
               <div class="panel__header" style="margin: 20px 0 0">
-                <div class="panel__title"><h3>使用 QOJ 油猴脚本</h3><p class="muted tiny">统一用于添加成员和更新记录，关闭后手动导入。</p></div>
+                <div class="panel__title"><h3>使用 QOJ 油猴脚本</h3><p class="muted tiny">用于添加成员和更新记录；关闭后改为手动导入，并停止自动同步。</p></div>
                 <button type="button" role="switch" class="spoiler-switch" aria-label="使用 QOJ 油猴脚本"
                   :aria-checked="qojSync.useUserscript" :disabled="!qojSync.modeLoaded || qojSync.busy"
                   @click="qojSync.setUseUserscript(!qojSync.useUserscript)"><span class="spoiler-switch__track" aria-hidden="true"><span class="spoiler-switch__thumb"></span></span></button>
               </div>
               <div class="panel__header" style="margin: 20px 0 0">
-                <div class="panel__title"><h3>自动同步</h3><p class="muted tiny">每 30 分钟同步 CF 与 QOJ；QOJ 需启用油猴脚本，页面关闭时不运行。</p></div>
+                <div class="panel__title"><h3>自动同步</h3><p class="muted tiny">同时启用 QOJ 油猴模式，每 30 分钟同步 CF 与 QOJ，页面关闭时不运行。</p></div>
                 <button type="button" role="switch" class="spoiler-switch" aria-label="自动同步"
                   :aria-checked="qojSync.enabled" :disabled="!qojSync.modeLoaded"
                   @click="qojSync.setEnabled(!qojSync.enabled)"><span class="spoiler-switch__track" aria-hidden="true"><span class="spoiler-switch__thumb"></span></span></button>

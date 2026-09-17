@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.8.1
+
+- Enabling automatic sync also enables QOJ userscript mode for first imports and updates, including previously saved automatic-only settings. Missing scripts show installation help instead of manual import.
+- Add a management-page action to QOJ setup help. Keep script and automatic-sync settings consistent without clearing member records.
+
 ## 0.8.0
 
 - Refresh verified RankLand and XCPCIO Board sources. Correct SRK freeze-duration interpretation and support official ratio rules, including Nanchang. Remove unaudited Gym/all-team/mixed-group estimates, replace verified sources, and retain explicit unresolved gaps.
