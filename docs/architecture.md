@@ -16,6 +16,8 @@ SRK 上游明确配置的 `rule.options.ratio` 属于官方奖项，不受“允
 
 ## 本地数据与剧透
 
+删除成员或解绑账号后，账号的软删除记录不再占用平台账号，允许重新绑定到新成员；有效绑定仍禁止跨成员转移。重新绑定不继承原成员的账号显示名称、创建时间或题目状态。沿用现有 `deletedAt`，无需升级 IndexedDB 或迁移旧数据。
+
 v6 新增 `appSettings`（主键 `key`）保存 `allow_medal_estimates`，默认 true，保留旧数据。牌线选择统一用于列表与详情：官方配置优先；比例估算仅开关开启时使用。估算在构建期由完整已核验榜单生成 `estimatedAwardCutoffs`，不在浏览器抓榜。10%／20%／30% 指金银铜各自人数（累计 10%／30%／60%，向下取整）；不足一支队的档位不生成牌线。保留最高组别与正式队过滤；榜单不完整或组别不明则不估算。
 
 IndexedDB 使用 Dexie。v5 在 v4 基础上增加 `contestPreferences`，主键 `contest_id`，记录 `{ contest_id, spoiler_mode: "spoiler" | "non_spoiler" }`，不清空已有 stores。

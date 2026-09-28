@@ -7,16 +7,18 @@ import type {
   LocalSyncRecord,
 } from "./local-model";
 import { listRuntimeCatalogProblemsForImport } from "./catalog-runtime";
-import { localDb, recordImportSyncAttempt, upsertMemberBundle } from "./local-db";
+import { assertHandleOwnership, localDb, recordImportSyncAttempt, upsertMemberBundle } from "./local-db";
 
 export async function linkQojMember(memberId:string,handle:string) {
   const at=new Date().toISOString();
   await localDb.transaction('rw',[localDb.members,localDb.memberHandles],async()=>{
-    const existing=await localDb.memberHandles.get(`qoj:${handle}`);
-    if(existing && existing.memberId!==memberId) throw new Error('该 QOJ 账号已绑定其他成员。');
+    const stored=await localDb.memberHandles.get(`qoj:${handle}`);
+    const existing=stored?.memberId===memberId ? stored : undefined;
+    const account: LocalMemberHandleRecord={handleId:`qoj:${handle}`,memberId,provider:'qoj',handle,displayLabel:existing?.displayLabel ?? null,createdAt:existing?.createdAt || at,updatedAt:at,deletedAt:null};
+    await assertHandleOwnership([account]);
     const member=await localDb.members.get(memberId);
     await localDb.members.put({...member,memberId,displayName:member?.displayName || memberId,createdAt:member?.createdAt || at,updatedAt:at,deletedAt:null});
-    await localDb.memberHandles.put({...existing,handleId:`qoj:${handle}`,memberId,provider:'qoj',handle,displayLabel:existing?.displayLabel ?? null,createdAt:existing?.createdAt || at,updatedAt:at,deletedAt:null});
+    await localDb.memberHandles.put(account);
   });
 }
 

@@ -342,6 +342,20 @@ export async function upsertContestProblemSnapshot(payload: {
   );
 }
 
+// Call inside the same transaction as the write so concurrent imports cannot steal handles.
+export async function assertHandleOwnership(handles: LocalMemberHandleRecord[]): Promise<void> {
+  for (const handle of handles) {
+    const byId = await localDb.memberHandles.get(handle.handleId);
+    const byAccount = await localDb.memberHandles.where('[provider+handle]').equals([handle.provider, handle.handle]).toArray();
+    if ([byId, ...byAccount].some(existing => existing && !existing.deletedAt && existing.memberId !== handle.memberId)) {
+      throw new Error(`${handle.provider} 账号 ${handle.handle} 已绑定其他成员`);
+    }
+    if (byId && (byId.provider !== handle.provider || byId.handle !== handle.handle)) {
+      throw new Error('账号 ID 与已有平台账号不一致');
+    }
+  }
+}
+
 export async function upsertMemberBundle(payload: {
   member: LocalMemberRecord;
   handles: LocalMemberHandleRecord[];
@@ -359,6 +373,7 @@ export async function upsertMemberBundle(payload: {
       localDb.syncRecords,
     ],
     async () => {
+      await assertHandleOwnership(payload.handles);
       await localDb.members.put(payload.member);
       await localDb.memberHandles.bulkPut(payload.handles.map((handle) => ({
         ...handle,
