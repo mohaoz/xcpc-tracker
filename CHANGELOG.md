@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.8.2
+
+- Add five complete 2026 contests: CCPC Online, Beijing, CCPC Qinhuangdao/Hebei, ICPC Guizhou and Hong Kong Joint, totaling 62 problems.
+- Keep both official and unofficial CF mirrors for CCPC Nanchang, with all 13 problem mappings; add the CF mirror to the existing 12-problem ICPC Online II contest. Preserve existing IDs, QOJ sources and awards.
+- Permit explicitly reviewed CF mirrors only when their complete problem counts, ordinals and titles match.
+
 ## 0.8.1
 
 - Enabling automatic sync also enables QOJ userscript mode for first imports and updates, including previously saved automatic-only settings. Missing scripts show installation help instead of manual import.

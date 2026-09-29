@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import './validate-xcpcio-gaps.mjs';
+import './validate-codeforces-mirrors.mjs';
 import { readFile, mkdtemp } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';

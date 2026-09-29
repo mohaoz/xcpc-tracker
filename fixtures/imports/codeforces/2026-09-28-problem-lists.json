@@ -1,0 +1,718 @@
+[
+  {
+    "title": "The 2026 CCPC Online Contest",
+    "url": "https://codeforces.com/gym/106725",
+    "source_label": "Codeforces Gym",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "All the Trades Are the Best",
+        "url": "https://codeforces.com/gym/106725/problem/A",
+        "provider_problem_id": "106725:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Better Die",
+        "url": "https://codeforces.com/gym/106725/problem/B",
+        "provider_problem_id": "106725:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Cross the Road",
+        "url": "https://codeforces.com/gym/106725/problem/C",
+        "provider_problem_id": "106725:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Dodge the Car",
+        "url": "https://codeforces.com/gym/106725/problem/D",
+        "provider_problem_id": "106725:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "EPS.AC",
+        "url": "https://codeforces.com/gym/106725/problem/E",
+        "provider_problem_id": "106725:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Flight of the Night Butterfly",
+        "url": "https://codeforces.com/gym/106725/problem/F",
+        "provider_problem_id": "106725:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Growing Prefix Span",
+        "url": "https://codeforces.com/gym/106725/problem/G",
+        "provider_problem_id": "106725:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Hidden Permutation",
+        "url": "https://codeforces.com/gym/106725/problem/H",
+        "provider_problem_id": "106725:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Integer Triple",
+        "url": "https://codeforces.com/gym/106725/problem/I",
+        "provider_problem_id": "106725:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Jobs through Pipelines",
+        "url": "https://codeforces.com/gym/106725/problem/J",
+        "provider_problem_id": "106725:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Keep on the Right Track",
+        "url": "https://codeforces.com/gym/106725/problem/K",
+        "provider_problem_id": "106725:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Logging Compression",
+        "url": "https://codeforces.com/gym/106725/problem/L",
+        "provider_problem_id": "106725:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "Median Equals X",
+        "url": "https://codeforces.com/gym/106725/problem/M",
+        "provider_problem_id": "106725:M"
+      },
+      {
+        "ordinal": "N",
+        "title": "New CCPC Rule",
+        "url": "https://codeforces.com/gym/106725/problem/N",
+        "provider_problem_id": "106725:N"
+      }
+    ],
+    "review": {
+      "status": "approved",
+      "reviewed_at": "2026-09-28",
+      "method": "Reviewed complete public Codeforces problem table against contest.list metadata; no standings-derived member status.",
+      "page_url": "https://codeforces.com/gym/106725",
+      "acquisition": "Public page via web tool; direct HTTP page fetch returned 403.",
+      "expected_problem_count": 14
+    },
+    "target_contests": [
+      {
+        "contest_id": "058e6c32-7be8-5c8c-92d1-c5b597e2c0ac",
+        "title": "2026 CCPC 网络预选赛",
+        "aliases": [
+          "The 2026 CCPC Online Contest"
+        ],
+        "tags": [
+          "2026",
+          "ccpc",
+          "网络赛"
+        ],
+        "start_at": "2026-09-19T05:00:00.000Z",
+        "sources": []
+      }
+    ]
+  },
+  {
+    "title": "2026 Beijing Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106694",
+    "source_label": "Codeforces Gym",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "abc - 变换",
+        "url": "https://codeforces.com/gym/106694/problem/A",
+        "provider_problem_id": "106694:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "星战",
+        "url": "https://codeforces.com/gym/106694/problem/B",
+        "provider_problem_id": "106694:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "最小异或乘积",
+        "url": "https://codeforces.com/gym/106694/problem/C",
+        "provider_problem_id": "106694:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "序列",
+        "url": "https://codeforces.com/gym/106694/problem/D",
+        "provider_problem_id": "106694:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Fry Beef",
+        "url": "https://codeforces.com/gym/106694/problem/E",
+        "provider_problem_id": "106694:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "排列翻转",
+        "url": "https://codeforces.com/gym/106694/problem/F",
+        "provider_problem_id": "106694:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "字符串的 Porder 之和",
+        "url": "https://codeforces.com/gym/106694/problem/G",
+        "provider_problem_id": "106694:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "尖塔最强机器人",
+        "url": "https://codeforces.com/gym/106694/problem/H",
+        "provider_problem_id": "106694:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "小礼品",
+        "url": "https://codeforces.com/gym/106694/problem/I",
+        "provider_problem_id": "106694:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "草莓牛奶",
+        "url": "https://codeforces.com/gym/106694/problem/J",
+        "provider_problem_id": "106694:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "灭霸排序 I",
+        "url": "https://codeforces.com/gym/106694/problem/K",
+        "provider_problem_id": "106694:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "求求你不要再爬塔二了",
+        "url": "https://codeforces.com/gym/106694/problem/L",
+        "provider_problem_id": "106694:L"
+      }
+    ],
+    "review": {
+      "status": "approved",
+      "reviewed_at": "2026-09-28",
+      "method": "Reviewed complete public Codeforces problem table against contest.list metadata; no standings-derived member status.",
+      "page_url": "https://codeforces.com/gym/106694",
+      "acquisition": "Public page via web tool; direct HTTP page fetch returned 403.",
+      "expected_problem_count": 12
+    },
+    "target_contests": [
+      {
+        "contest_id": "ca7df4e2-916e-5382-a3f9-333c34730189",
+        "title": "2026 北京市大学生程序设计竞赛",
+        "aliases": [
+          "2026 Beijing Collegiate Programming Contest"
+        ],
+        "tags": [
+          "2026",
+          "省赛",
+          "北京"
+        ],
+        "start_at": "2026-05-10T02:00:00.000Z",
+        "sources": []
+      }
+    ]
+  },
+  {
+    "title": "2026 National Invitational of CCPC (Qinhuangdao) and the 10th Hebei Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106695",
+    "source_label": "Codeforces Gym",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "求求你不要再摔馍片了",
+        "url": "https://codeforces.com/gym/106695/problem/A",
+        "provider_problem_id": "106695:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "一句祝贺",
+        "url": "https://codeforces.com/gym/106695/problem/B",
+        "provider_problem_id": "106695:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "世界树",
+        "url": "https://codeforces.com/gym/106695/problem/C",
+        "provider_problem_id": "106695:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "简单字符串题",
+        "url": "https://codeforces.com/gym/106695/problem/D",
+        "provider_problem_id": "106695:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "电梯",
+        "url": "https://codeforces.com/gym/106695/problem/E",
+        "provider_problem_id": "106695:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "猜01序列",
+        "url": "https://codeforces.com/gym/106695/problem/F",
+        "provider_problem_id": "106695:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "建设高铁",
+        "url": "https://codeforces.com/gym/106695/problem/G",
+        "provider_problem_id": "106695:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "可能是字符串签到题",
+        "url": "https://codeforces.com/gym/106695/problem/H",
+        "provider_problem_id": "106695:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "山海关老冰糕",
+        "url": "https://codeforces.com/gym/106695/problem/I",
+        "provider_problem_id": "106695:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "海鲜大排档点生蚝",
+        "url": "https://codeforces.com/gym/106695/problem/J",
+        "provider_problem_id": "106695:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "灯带",
+        "url": "https://codeforces.com/gym/106695/problem/K",
+        "provider_problem_id": "106695:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "贪吃蛇",
+        "url": "https://codeforces.com/gym/106695/problem/L",
+        "provider_problem_id": "106695:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "拯救猫猫",
+        "url": "https://codeforces.com/gym/106695/problem/M",
+        "provider_problem_id": "106695:M"
+      }
+    ],
+    "review": {
+      "status": "approved",
+      "reviewed_at": "2026-09-28",
+      "method": "Reviewed complete public Codeforces problem table against contest.list metadata; no standings-derived member status.",
+      "page_url": "https://codeforces.com/gym/106695",
+      "acquisition": "Public page via web tool; direct HTTP page fetch returned 403.",
+      "expected_problem_count": 13
+    },
+    "target_contests": [
+      {
+        "contest_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3",
+        "title": "2026 CCPC 全国邀请赛（秦皇岛）暨第十届河北省大学生程序设计竞赛",
+        "aliases": [
+          "2026 National Invitational of CCPC (Qinhuangdao) and the 10th Hebei Collegiate Programming Contest"
+        ],
+        "tags": [
+          "2026",
+          "ccpc",
+          "邀请赛",
+          "省赛",
+          "秦皇岛",
+          "河北"
+        ],
+        "start_at": "2026-05-24T00:30:00.000Z",
+        "sources": []
+      }
+    ]
+  },
+  {
+    "title": "The 2026 ICPC China Guizhou Provincial Contest",
+    "url": "https://codeforces.com/gym/106705",
+    "source_label": "Codeforces Gym",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Guizhou Historic Cities",
+        "url": "https://codeforces.com/gym/106705/problem/A",
+        "provider_problem_id": "106705:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Aquarium Bubble Lights",
+        "url": "https://codeforces.com/gym/106705/problem/B",
+        "provider_problem_id": "106705:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Aquarium Feeding",
+        "url": "https://codeforces.com/gym/106705/problem/C",
+        "provider_problem_id": "106705:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Bacteria Culture",
+        "url": "https://codeforces.com/gym/106705/problem/D",
+        "provider_problem_id": "106705:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Charging Adapters",
+        "url": "https://codeforces.com/gym/106705/problem/E",
+        "provider_problem_id": "106705:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Circular Light Calibration",
+        "url": "https://codeforces.com/gym/106705/problem/F",
+        "provider_problem_id": "106705:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Drum Rehearsal",
+        "url": "https://codeforces.com/gym/106705/problem/G",
+        "provider_problem_id": "106705:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Edge Reversal",
+        "url": "https://codeforces.com/gym/106705/problem/H",
+        "provider_problem_id": "106705:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Revision Sequences",
+        "url": "https://codeforces.com/gym/106705/problem/I",
+        "provider_problem_id": "106705:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Tide Pool Islands",
+        "url": "https://codeforces.com/gym/106705/problem/J",
+        "provider_problem_id": "106705:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Two-Tone Palindromes",
+        "url": "https://codeforces.com/gym/106705/problem/K",
+        "provider_problem_id": "106705:K"
+      }
+    ],
+    "review": {
+      "status": "approved",
+      "reviewed_at": "2026-09-28",
+      "method": "Reviewed complete public Codeforces problem table against contest.list metadata; no standings-derived member status.",
+      "page_url": "https://codeforces.com/gym/106705",
+      "acquisition": "Public page via web tool; direct HTTP page fetch returned 403.",
+      "expected_problem_count": 11
+    },
+    "target_contests": [
+      {
+        "contest_id": "d3b1faa1-f9d2-5ea1-bd32-458e48be95d6",
+        "title": "2026 ICPC 贵州省大学生程序设计竞赛",
+        "aliases": [
+          "The 2026 ICPC China Guizhou Provincial Contest"
+        ],
+        "tags": [
+          "2026",
+          "icpc",
+          "省赛",
+          "贵州"
+        ],
+        "start_at": "2026-09-13T03:00:00.000Z",
+        "sources": []
+      }
+    ]
+  },
+  {
+    "title": "Hong Kong Joint Collegiate Programming Contest 2026",
+    "url": "https://codeforces.com/gym/106687",
+    "source_label": "Codeforces Gym",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Assigning Distinct Integers",
+        "url": "https://codeforces.com/gym/106687/problem/A",
+        "provider_problem_id": "106687:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Box Projections",
+        "url": "https://codeforces.com/gym/106687/problem/B",
+        "provider_problem_id": "106687:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Constructing Box Projections",
+        "url": "https://codeforces.com/gym/106687/problem/C",
+        "provider_problem_id": "106687:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Dynamic Connectivity Across Graphs",
+        "url": "https://codeforces.com/gym/106687/problem/D",
+        "provider_problem_id": "106687:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Encoded Shortest Paths",
+        "url": "https://codeforces.com/gym/106687/problem/E",
+        "provider_problem_id": "106687:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "First and Second Minimum",
+        "url": "https://codeforces.com/gym/106687/problem/F",
+        "provider_problem_id": "106687:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Game of Passing Cards",
+        "url": "https://codeforces.com/gym/106687/problem/G",
+        "provider_problem_id": "106687:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Human-Readable Number",
+        "url": "https://codeforces.com/gym/106687/problem/H",
+        "provider_problem_id": "106687:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Interprocess Sum and Scatter",
+        "url": "https://codeforces.com/gym/106687/problem/I",
+        "provider_problem_id": "106687:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Jumbled Block Hierarchy",
+        "url": "https://codeforces.com/gym/106687/problem/J",
+        "provider_problem_id": "106687:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Keep the Fairness",
+        "url": "https://codeforces.com/gym/106687/problem/K",
+        "provider_problem_id": "106687:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Let's Go Yum Cha",
+        "url": "https://codeforces.com/gym/106687/problem/L",
+        "provider_problem_id": "106687:L"
+      }
+    ],
+    "review": {
+      "status": "approved",
+      "reviewed_at": "2026-09-28",
+      "method": "Reviewed complete public Codeforces problem table against contest.list metadata; no standings-derived member status.",
+      "page_url": "https://codeforces.com/gym/106687",
+      "acquisition": "Public page via web tool; direct HTTP page fetch returned 403.",
+      "expected_problem_count": 12
+    },
+    "target_contests": [
+      {
+        "contest_id": "33abd0c6-e36a-5b03-a9a4-94996145b952",
+        "title": "Hong Kong Joint Collegiate Programming Contest 2026",
+        "aliases": [],
+        "tags": [
+          "2026",
+          "香港"
+        ],
+        "start_at": "2026-08-30T05:00:00.000Z",
+        "sources": []
+      }
+    ]
+  },
+  {
+    "title": "2026 CCPC National Invitational (Nanchang) and Jiangxi Provincial Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106696",
+    "source_label": "Codeforces Gym (official mirror)",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "求求你不要再摔馍片了",
+        "url": "https://codeforces.com/gym/106696/problem/A",
+        "provider_problem_id": "106696:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "世界树",
+        "url": "https://codeforces.com/gym/106696/problem/B",
+        "provider_problem_id": "106696:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "简单字符串题",
+        "url": "https://codeforces.com/gym/106696/problem/C",
+        "provider_problem_id": "106696:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "电梯",
+        "url": "https://codeforces.com/gym/106696/problem/D",
+        "provider_problem_id": "106696:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "猜01序列",
+        "url": "https://codeforces.com/gym/106696/problem/E",
+        "provider_problem_id": "106696:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "建设高铁",
+        "url": "https://codeforces.com/gym/106696/problem/F",
+        "provider_problem_id": "106696:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "可能是字符串签到题",
+        "url": "https://codeforces.com/gym/106696/problem/G",
+        "provider_problem_id": "106696:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "南昌拌粉的绝妙配比",
+        "url": "https://codeforces.com/gym/106696/problem/H",
+        "provider_problem_id": "106696:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "灯带",
+        "url": "https://codeforces.com/gym/106696/problem/I",
+        "provider_problem_id": "106696:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "贪吃蛇",
+        "url": "https://codeforces.com/gym/106696/problem/J",
+        "provider_problem_id": "106696:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "拯救猫猫",
+        "url": "https://codeforces.com/gym/106696/problem/K",
+        "provider_problem_id": "106696:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "三人成角",
+        "url": "https://codeforces.com/gym/106696/problem/L",
+        "provider_problem_id": "106696:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "最正宗的白糖糕",
+        "url": "https://codeforces.com/gym/106696/problem/M",
+        "provider_problem_id": "106696:M"
+      }
+    ],
+    "review": {
+      "status": "approved",
+      "reviewed_at": "2026-09-28",
+      "method": "Reviewed complete public Codeforces problem table against contest.list metadata; no standings-derived member status.",
+      "page_url": "https://codeforces.com/gym/106696",
+      "acquisition": "Public page via web tool; direct HTTP page fetch returned 403.",
+      "expected_problem_count": 13,
+      "mapping": "Exact full-list ordinal and title match to existing catalog; preserve local IDs and all existing sources."
+    },
+    "target_contest_ids": [
+      "48308c06-eafd-569e-bf06-c20e40a98fee"
+    ]
+  },
+  {
+    "title": "The 2026 ICPC Asia EC Regionals Online Contest (II)",
+    "url": "https://codeforces.com/gym/106701",
+    "source_label": "Codeforces Gym",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "All Closed",
+        "url": "https://codeforces.com/gym/106701/problem/A",
+        "provider_problem_id": "106701:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Bread",
+        "url": "https://codeforces.com/gym/106701/problem/B",
+        "provider_problem_id": "106701:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Cut Tree",
+        "url": "https://codeforces.com/gym/106701/problem/C",
+        "provider_problem_id": "106701:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Divide and Conquer",
+        "url": "https://codeforces.com/gym/106701/problem/D",
+        "provider_problem_id": "106701:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Exponent",
+        "url": "https://codeforces.com/gym/106701/problem/E",
+        "provider_problem_id": "106701:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Folding Game of Ohto Ai",
+        "url": "https://codeforces.com/gym/106701/problem/F",
+        "provider_problem_id": "106701:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Ghost of Tsushima",
+        "url": "https://codeforces.com/gym/106701/problem/G",
+        "provider_problem_id": "106701:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Hidden Track (Easy Version)",
+        "url": "https://codeforces.com/gym/106701/problem/H",
+        "provider_problem_id": "106701:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Island",
+        "url": "https://codeforces.com/gym/106701/problem/I",
+        "provider_problem_id": "106701:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Joker or Judger",
+        "url": "https://codeforces.com/gym/106701/problem/J",
+        "provider_problem_id": "106701:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "K-MEX",
+        "url": "https://codeforces.com/gym/106701/problem/K",
+        "provider_problem_id": "106701:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Loop",
+        "url": "https://codeforces.com/gym/106701/problem/L",
+        "provider_problem_id": "106701:L"
+      }
+    ],
+    "review": {
+      "status": "approved",
+      "reviewed_at": "2026-09-28",
+      "method": "Reviewed complete public Codeforces problem table against contest.list metadata; no standings-derived member status.",
+      "page_url": "https://codeforces.com/gym/106701",
+      "acquisition": "Public page via web tool; direct HTTP page fetch returned 403.",
+      "expected_problem_count": 12,
+      "mapping": "Exact full-list ordinal and title match to existing catalog; preserve local IDs and all existing sources."
+    },
+    "target_contest_ids": [
+      "4df2ecfa-4632-5a6b-a926-0b7667774113"
+    ]
+  }
+]

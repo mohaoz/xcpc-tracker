@@ -399,9 +399,20 @@ async function main() {
           normalizeUrl(source.url) !== importedContest.normalizedUrl,
       );
       if (conflictingCodeforcesSource) {
-        throw new Error(
-          `contest ${targetContest.contestId} already points to a different Codeforces contest: ${conflictingCodeforcesSource.url}`,
-        );
+        // A reviewed explicit target may add another mirror only when the full
+        // problem list agrees. Never infer mirror identity from a title alone.
+        const existing = problems.filter((problem) => problem.contestId === targetContest.contestId);
+        const verifiedMirror = importedContest.targetContestIds.includes(targetContest.contestId)
+          && existing.length === importedContest.problems.length
+          && importedContest.problems.every((problem) => existing.some((other) =>
+            cleanText(other.ordinal).toLowerCase() === problem.ordinal.toLowerCase()
+            && [other.title, ...(other.aliases ?? [])].some((title) =>
+              normalizeTitleKey(title) === normalizeTitleKey(problem.title))));
+        if (!verifiedMirror) {
+          throw new Error(
+            `contest ${targetContest.contestId} already points to a different Codeforces contest; an explicit target and matching complete problem list are required: ${conflictingCodeforcesSource.url}`,
+          );
+        }
       }
 
       const previousContest = JSON.stringify(targetContest);

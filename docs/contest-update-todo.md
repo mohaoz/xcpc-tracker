@@ -45,6 +45,8 @@
 
 ## 优先处理
 
+- [x] **2026-09-28 目录更新**：补录 CCPC 网络赛、北京、秦皇岛/河北、ICPC 贵州、香港联合赛五场共 62 题；补充南昌官方 CF 和网络赛 II CF 镜像。审核题单见 [本批次记录](../fixtures/imports/codeforces/2026-09-28-problem-lists.json)。QOJ 新映射与新比赛牌线另待审核，未将 72 场 Rating 元数据变化批量应用。
+
 - [x] **QOJ 4071：2026 ICPC 网络赛第一场**。比赛日期 2026-09-06，标题为 The 2026 ICPC Asia East Continent Online Contest (I)，入口为 [QOJ 4071](https://qoj.ac/contest/4071)。此前已从[公开分类](https://qoj.ac/category/763)确认 A–N 共 14 题；已按用户导出补录全部 14 题。
 - [ ] **复核原表疑似错链**。`26-07`（CCPC 河南）和 `26-15`（东北地区赛）D 列显示 `QOJ`，实际都指向 Gym 106551，与 `26-10` 相同；当前 catalog 将该 Gym 映射至 2026 ICPC 南昌邀请赛。取得两场比赛的正确入口后再导入。
 - [x] **修正 2025 南昌两场比赛的榜单错配**。CCPC 南昌已移除误挂的 ICPC 榜单，使用独立 RankLand 来源；审核证据见 [RankLand 审核目录](../fixtures/imports/rankland/)。不要重新挂回旧来源。
@@ -60,8 +62,8 @@
 - [x] **26-05 西安邀请赛**（2026-05-02；已补录）
   名称／榜单：[第 51 届 ICPC 国际大学生程序设计竞赛邀请赛西安站](https://board.xcpcio.com/icpc/51st/xian-invitational?group=official)。补题：[QOJ 3766](https://qoj.ac/contest/3766)。已补录 14 题，内部 ID 为 `b6069f69-bc27-5966-a6e1-467028aebdcd`。
 
-- [ ] **26-06 北京市赛**（2026-05-10；新增候选）
-  名称／榜单：[2026年北京市大学生程序设计竞赛](https://pintia.cn/rankings/2048682058783719424)。原表补题入口待补充；待查找可靠题单。
+- [x] **26-06 北京市赛**（2026-05-10；已补录）
+  名称／榜单：[2026年北京市大学生程序设计竞赛](https://pintia.cn/rankings/2048682058783719424)。已按 [Gym 106694](https://codeforces.com/gym/106694) 补录 12 题（2026-09-28）；QOJ 映射另待用户浏览器导出。
 
 - [ ] **26-07 CCPC河南省赛**（2026-05-10；链接冲突待核验）
   名称／榜单：[第 8 届 CCPC 河南省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/henan)。原表标 `QOJ`，实际链接为 [Gym 106551](https://codeforces.com/gym/106551)，与 ICPC 南昌冲突；先核验正确入口，再补齐题单。
@@ -84,14 +86,14 @@
 - [ ] **26-13 吉林省赛**（2026-05-23；已收录待复核）
   名称／榜单：[第 19 届吉林省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/jilin)。补题：[Gym 106567](https://codeforces.com/gym/106567)（原表标 `Gym / QOJ`）。catalog 已有 13 题；复核题单并补查 QOJ 映射。
 
-- [ ] **26-14 秦皇岛邀请赛**（2026-05-24；新增候选）
-  名称／榜单：[CCPC2026-秦皇岛全国邀请赛暨河北省赛](https://cpc.csgrandeur.cn/outrank/rank?outrank_uuid=88998553-ce66-46ec-a062-1beb357d774c)。原表补题入口待补充；待查找可靠题单。
+- [x] **26-14 秦皇岛邀请赛**（2026-05-24；已补录）
+  名称／榜单：[CCPC2026-秦皇岛全国邀请赛暨河北省赛](https://cpc.csgrandeur.cn/outrank/rank?outrank_uuid=88998553-ce66-46ec-a062-1beb357d774c)。已按 [Gym 106695](https://codeforces.com/gym/106695) 补录 13 题（2026-09-28）；尚未审核组别牌线。
 
 - [ ] **26-15 东北地区赛**（2026-05-24；链接冲突待核验）
   名称／榜单：[第二十届东北地区大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/northeastern?group=official)。原表标 `QOJ`，实际链接为 [Gym 106551](https://codeforces.com/gym/106551)，与 ICPC 南昌冲突；先核验正确入口，再补齐题单。
 
 - [ ] **26-16 CCPC南昌邀请赛**（2026-05-24；已收录待复核）
-  名称／榜单：[2026 CCPC 中国大学生程序设计竞赛全国邀请赛（南昌）](https://board.xcpcio.com/ccpc/12th/nanchang-invitational)。原表补题入口待补充；catalog 已有 [Gym 106554](https://codeforces.com/gym/106554) 与 13 题，待复核并补查 QOJ 来源。
+  名称／榜单：[2026 CCPC 中国大学生程序设计竞赛全国邀请赛（南昌）](https://board.xcpcio.com/ccpc/12th/nanchang-invitational)。原表补题入口待补充；2026-09-28 已核对并同时保留官方 [Gym 106696](https://codeforces.com/gym/106696) 和民间 [Gym 106554](https://codeforces.com/gym/106554)，两套 A–M 逐题映射共用原内部 ID；QOJ 来源仍待核验。
 
 - [ ] **26-17 ICPC河南省赛**（2026-05-24；新增候选）
   名称／榜单：[第 17 届 ICPC 河南省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/henan-icpc?group=official)。原表补题入口待补充；待查找可靠题单，注意与 CCPC 河南分开。
