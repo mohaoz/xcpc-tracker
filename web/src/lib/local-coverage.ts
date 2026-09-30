@@ -1,3 +1,4 @@
+import { statusHandleId } from './member-status';
 import type {
   LocalCatalogContestRecord,
   LocalCatalogProblemRecord,
@@ -45,7 +46,11 @@ export function buildMemberCoverageInput(
 
   for (const status of statuses) {
     if (!activeMemberIds.has(status.memberId)) continue;
-    if (status.provider !== "manual" && !providersByMember.get(status.memberId)?.has(status.provider)) continue;
+    if (status.provider !== "manual") {
+      if (!providersByMember.get(status.memberId)?.has(status.provider)) continue;
+      const owner = statusHandleId(status, handles);
+      if (owner && !handlesByMember.get(status.memberId)?.some(handle => handle.handleId === owner && handle.provider === status.provider)) continue;
+    }
     const byProblem = statusByMember.get(status.memberId) ?? new Map<string, ProblemStatus>();
     if (byProblem.get(status.problemId) !== "solved") {
       byProblem.set(status.problemId, status.status);

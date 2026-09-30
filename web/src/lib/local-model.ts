@@ -30,6 +30,7 @@ export type LocalCatalogProblemRecord = {
 
 export type LocalMemberRecord = {
   memberId: string;
+  identityRevision?: string;
   displayName: string;
   createdAt: string;
   updatedAt: string;
@@ -38,6 +39,7 @@ export type LocalMemberRecord = {
 
 export type LocalMemberHandleRecord = {
   handleId: string;
+  identityRevision?: string;
   memberId: string;
   provider: string;
   handle: string;
@@ -49,6 +51,8 @@ export type LocalMemberHandleRecord = {
 
 export type LocalMemberProblemStatusRecord = {
   statusId: string;
+  // Absent only for manual marks and legacy evidence with unknown ownership.
+  handleId?: string;
   memberId: string;
   problemId: string;
   provider: string;

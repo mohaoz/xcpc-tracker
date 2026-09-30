@@ -6,6 +6,7 @@ import type {
   LocalMemberRecord,
   LocalSyncRecord,
 } from "./local-model";
+import { accountStatusId } from './member-status';
 import { listRuntimeCatalogProblemsForImport } from "./catalog-runtime";
 import { assertHandleOwnership, localDb, recordImportSyncAttempt, upsertMemberBundle } from "./local-db";
 
@@ -13,11 +14,11 @@ export async function linkQojMember(memberId:string,handle:string) {
   const at=new Date().toISOString();
   await localDb.transaction('rw',[localDb.members,localDb.memberHandles],async()=>{
     const stored=await localDb.memberHandles.get(`qoj:${handle}`);
-    const existing=stored?.memberId===memberId ? stored : undefined;
-    const account: LocalMemberHandleRecord={handleId:`qoj:${handle}`,memberId,provider:'qoj',handle,displayLabel:existing?.displayLabel ?? null,createdAt:existing?.createdAt || at,updatedAt:at,deletedAt:null};
+    const existing=stored?.memberId===memberId && !stored.deletedAt ? stored : undefined;
+    const account: LocalMemberHandleRecord={identityRevision:existing?.identityRevision ?? crypto.randomUUID(),handleId:`qoj:${handle}`,memberId,provider:'qoj',handle,displayLabel:existing?.displayLabel ?? null,createdAt:existing?.createdAt || at,updatedAt:at,deletedAt:null};
     await assertHandleOwnership([account]);
     const member=await localDb.members.get(memberId);
-    await localDb.members.put({...member,memberId,displayName:member?.displayName || memberId,createdAt:member?.createdAt || at,updatedAt:at,deletedAt:null});
+    await localDb.members.put({...member,memberId,identityRevision:member && !member.deletedAt ? member.identityRevision ?? crypto.randomUUID() : crypto.randomUUID(),displayName:member?.displayName || memberId,createdAt:member && !member.deletedAt ? member.createdAt : at,updatedAt:at,deletedAt:null});
     await localDb.memberHandles.put(account);
   });
 }
@@ -172,7 +173,8 @@ export async function importQojUserscriptMembers(
       }
       for (const matchedProblem of matchedProblems) {
         statuses.push({
-          statusId: `${memberId}:${matchedProblem.problemId}:qoj`,
+          statusId: accountStatusId(memberId, matchedProblem.problemId, `qoj:${handle}`),
+          handleId: `qoj:${handle}`,
           memberId,
           problemId: matchedProblem.problemId,
           provider: "qoj",
@@ -195,7 +197,8 @@ export async function importQojUserscriptMembers(
       }
       for (const matchedProblem of matchedProblems) {
         statuses.push({
-          statusId: `${memberId}:${matchedProblem.problemId}:qoj`,
+          statusId: accountStatusId(memberId, matchedProblem.problemId, `qoj:${handle}`),
+          handleId: `qoj:${handle}`,
           memberId,
           problemId: matchedProblem.problemId,
           provider: "qoj",

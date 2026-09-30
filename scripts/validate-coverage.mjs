@@ -47,6 +47,7 @@ export function createDbMock(records) {
             },
           };
         }
+        return { upgrade() { return this; } };
       } };
     }
     transaction(...args) { return args.at(-1)(); }

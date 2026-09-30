@@ -2,6 +2,7 @@
 
 按数据类型选用，不需要每次任务读取所有 Schema：
 
+- [local-runtime-snapshot.schema.json](local-runtime-snapshot.schema.json)：成员备份结构；运行时另校验唯一键、引用与时间戳，兼容样例见 `fixtures/imports/local-runtime/legacy-member-backup.json`。
 - [catalog-snapshot.schema.json](catalog-snapshot.schema.json)：当前平铺正式目录，包括题目标签／Rating、来源默认项和两类牌线。
 - [catalog-bundle.schema.json](catalog-bundle.schema.json) 与 [contest.schema.json](contest.schema.json)：旧嵌套目录及相关结构的验证契约，不是当前正式文件形状。
 - [codeforces-import.schema.json](codeforces-import.schema.json)、[qoj-import.schema.json](qoj-import.schema.json)：对应原始导入样例的契约；浏览器实际接受的载荷还需遵循导入器类型和 fixture。

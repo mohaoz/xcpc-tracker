@@ -22,7 +22,7 @@
     "catalog:rating": "node scripts/import-xcpc-rating.mjs",
     "catalog:rankland": "node scripts/import-rankland-standings.mjs",
     "sources:validate": "node scripts/validate-source-tools.mjs",
-    "vp:validate": "node scripts/validate-vp-state.mjs && node scripts/validate-member-rebinding.mjs",
+    "vp:validate": "node scripts/validate-vp-state.mjs && node scripts/validate-member-rebinding.mjs && node scripts/validate-member-data-integrity.mjs && node scripts/validate-form-accessibility.mjs",
     "vp:browser": "node scripts/validate-vp-browser.mjs",
     "catalog:build-tools": "./web/node_modules/.bin/tsc -p scripts/tsconfig.catalog.json",
     "catalog:validate": "node scripts/validate-catalog-snapshot.mjs && npm run sources:validate && npm run catalog:build-tools && node .catalog-tools-build/validate-catalog.js && npm run catalog:check-reviewed-cf-problems && npm run catalog:check-qoj-problems && npm run qoj:validate-contest-tools",

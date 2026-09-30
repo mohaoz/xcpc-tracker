@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "exportKind": "local_runtime_snapshot",
+  "exportedAt": "2026-09-30T00:00:00.000Z",
+  "members": [
+    {
+      "memberId": "fixture-member",
+      "displayName": "Fixture member",
+      "createdAt": "2026-09-30T00:00:00.000Z",
+      "updatedAt": "2026-09-30T00:00:00.000Z"
+    }
+  ],
+  "memberHandles": [
+    {
+      "handleId": "qoj:fixture-account",
+      "memberId": "fixture-member",
+      "provider": "qoj",
+      "handle": "fixture-account",
+      "displayLabel": null,
+      "createdAt": "2026-09-30T00:00:00.000Z",
+      "updatedAt": "2026-09-30T00:00:00.000Z"
+    }
+  ],
+  "memberProblemStatus": [
+    {
+      "statusId": "legacy-fixture-status",
+      "memberId": "fixture-member",
+      "problemId": "fixture:A",
+      "provider": "qoj",
+      "status": "solved",
+      "firstSeenAt": "2026-09-30T00:00:00.000Z",
+      "lastSeenAt": "2026-09-30T00:00:00.000Z",
+      "sourceRecordId": "qoj:fixture-account:fixture",
+      "matchMethod": "provider_id"
+    }
+  ],
+  "importSources": [
+    {
+      "sourceRecordId": "qoj:fixture-account:fixture",
+      "kind": "qoj_userscript_json",
+      "label": "Synthetic backup compatibility fixture",
+      "importedAt": "2026-09-30T00:00:00.000Z",
+      "rawMetaJson": {
+        "handle": "fixture-account"
+      }
+    }
+  ],
+  "syncRecords": [],
+  "contest_preferences": [],
+  "app_settings": {
+    "allow_medal_estimates": true
+  }
+}

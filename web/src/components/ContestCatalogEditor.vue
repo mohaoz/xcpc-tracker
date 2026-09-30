@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref, watch } from "vue";
+import { computed, ref, useId, watch } from "vue";
 
 import type { CatalogSource } from "../lib/catalog";
 import { aggregateAliasesFromSources } from "../lib/catalog-sources";
@@ -39,6 +39,7 @@ const emit = defineEmits<{
   submit: [value: ContestEditorValue];
 }>();
 
+const editorId = useId();
 const title = ref("");
 const notes = ref("");
 const tags = ref<string[]>([]);
@@ -422,12 +423,12 @@ function submit() {
   <div class="contest-editor">
     <div class="form-grid">
       <div class="field" style="grid-column: 1 / -1">
-        <label>Title</label>
-        <input v-model="title" type="text" placeholder="Contest title" />
+        <label :for="`${editorId}-title`">Title</label>
+        <input :id="`${editorId}-title`" v-model="title" type="text" placeholder="Contest title" />
       </div>
 
       <div class="field" style="grid-column: 1 / -1">
-        <label>Tags</label>
+        <label :for="`${editorId}-tags`">Tags</label>
         <div class="tag-editor">
           <button
             v-for="tag in tags"
@@ -439,6 +440,7 @@ function submit() {
             {{ tag }} ×
           </button>
           <input
+            :id="`${editorId}-tags`"
             v-model="tagDraft"
             class="tag-editor__input"
             type="text"
@@ -449,7 +451,7 @@ function submit() {
       </div>
 
       <div class="field" style="grid-column: 1 / -1">
-        <label>Aliases</label>
+        <label :for="`${editorId}-aliases`">Aliases</label>
         <div class="tag-editor">
           <button
             v-for="alias in aliases"
@@ -461,6 +463,7 @@ function submit() {
             {{ alias }} ×
           </button>
           <input
+            :id="`${editorId}-aliases`"
             v-model="aliasDraft"
             class="tag-editor__input"
             type="text"
@@ -474,11 +477,11 @@ function submit() {
     <div class="field" style="margin-top: 16px">
       <label>Contest Sources</label>
       <div class="contest-source-list">
-        <div v-for="(source, index) in sources" :key="index" class="contest-source-card">
+        <div v-for="(source, index) in sources" :key="index" class="contest-source-card" role="group" :aria-label="`Contest source ${index + 1}`">
           <div class="form-grid">
             <div class="field">
-              <label>Provider</label>
-              <select v-model="source.provider" class="input-select" @change="handleProviderChange(index)">
+              <label :for="`${editorId}-source-${index}-provider`">Provider</label>
+              <select :id="`${editorId}-source-${index}-provider`" v-model="source.provider" class="input-select" @change="handleProviderChange(index)">
                 <option
                   v-for="provider in buildSourceProviderOptions(source.provider)"
                   :key="provider"
@@ -489,8 +492,8 @@ function submit() {
               </select>
             </div>
             <div class="field">
-              <label>Kind</label>
-              <select v-model="source.kind" class="input-select">
+              <label :for="`${editorId}-source-${index}-kind`">Kind</label>
+              <select :id="`${editorId}-source-${index}-kind`" v-model="source.kind" class="input-select">
                 <option
                   v-for="kind in buildSourceKindOptions(source.provider)"
                   :key="kind"
@@ -501,28 +504,29 @@ function submit() {
               </select>
             </div>
             <div class="field">
-              <label>Provider Contest Id</label>
-              <input v-model="source.provider_contest_id" type="text" placeholder="105922" />
+              <label :for="`${editorId}-source-${index}-contest-id`">Provider Contest Id</label>
+              <input :id="`${editorId}-source-${index}-contest-id`" v-model="source.provider_contest_id" type="text" placeholder="105922" />
             </div>
             <div class="field">
-              <label>Label</label>
-              <input v-model="source.label" type="text" placeholder="Codeforces Gym" />
+              <label :for="`${editorId}-source-${index}-label`">Label</label>
+              <input :id="`${editorId}-source-${index}-label`" v-model="source.label" type="text" placeholder="Codeforces Gym" />
             </div>
             <div class="field">
-              <label>Source Title</label>
-              <input v-model="source.source_title" type="text" placeholder="Contest title on this source" />
+              <label :for="`${editorId}-source-${index}-title`">Source Title</label>
+              <input :id="`${editorId}-source-${index}-title`" v-model="source.source_title" type="text" placeholder="Contest title on this source" />
             </div>
             <div v-if="source.provider !== 'manual'" class="field" style="grid-column: 1 / -1">
-              <label>URL</label>
-              <input v-model="source.url" type="text" placeholder="https://codeforces.com/gym/105922" />
+              <label :for="`${editorId}-source-${index}-url`">URL</label>
+              <input :id="`${editorId}-source-${index}-url`" v-model="source.url" type="text" placeholder="https://codeforces.com/gym/105922" />
             </div>
             <div
               v-if="source.provider === 'manual' && isPrimaryManualSource(index)"
               class="field"
               style="grid-column: 1 / -1"
             >
-              <label>Manual Problems JSON</label>
+              <label :for="`${editorId}-source-${index}-problems`">Manual Problems JSON</label>
               <textarea
+                :id="`${editorId}-source-${index}-problems`"
                 v-model="manualProblemsJson"
                 class="input-textarea"
                 rows="14"
@@ -552,8 +556,9 @@ function submit() {
     </div>
 
     <div class="field" style="margin-top: 16px">
-      <label>Notes</label>
+      <label :for="`${editorId}-notes`">Notes</label>
       <textarea
+        :id="`${editorId}-notes`"
         v-model="notes"
         class="input-textarea"
         rows="4"
