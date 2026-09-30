@@ -1,0 +1,314 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://xcpc-tracker.local/schemas/local-runtime-snapshot.schema.json",
+  "title": "Local member runtime backup",
+  "description": "Structural contract. Runtime validation also checks parseable timestamps, unique primary/account keys, and member/handle/source references.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "exportKind",
+    "exportedAt",
+    "members",
+    "memberHandles",
+    "memberProblemStatus",
+    "importSources",
+    "syncRecords"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "exportKind": {
+      "const": "local_runtime_snapshot"
+    },
+    "exportedAt": {
+      "type": "string",
+      "minLength": 1
+    },
+    "members": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "memberId",
+          "displayName",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "memberId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "displayName": {
+            "type": "string",
+            "minLength": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "updatedAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "identityRevision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "deletedAt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "memberHandles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "handleId",
+          "memberId",
+          "provider",
+          "handle",
+          "createdAt",
+          "updatedAt"
+        ],
+        "properties": {
+          "handleId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "memberId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "provider": {
+            "type": "string",
+            "minLength": 1
+          },
+          "handle": {
+            "type": "string",
+            "minLength": 1
+          },
+          "createdAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "updatedAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "identityRevision": {
+            "type": "string",
+            "minLength": 1
+          },
+          "displayLabel": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "deletedAt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "memberProblemStatus": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "statusId",
+          "memberId",
+          "problemId",
+          "provider",
+          "status",
+          "firstSeenAt",
+          "lastSeenAt",
+          "sourceRecordId",
+          "matchMethod"
+        ],
+        "properties": {
+          "statusId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "memberId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "problemId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "provider": {
+            "type": "string",
+            "minLength": 1
+          },
+          "firstSeenAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lastSeenAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceRecordId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "handleId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "enum": [
+              "solved",
+              "attempted"
+            ]
+          },
+          "matchMethod": {
+            "enum": [
+              "provider_id",
+              "contest_ordinal",
+              "alias",
+              "manual"
+            ]
+          }
+        }
+      }
+    },
+    "importSources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "sourceRecordId",
+          "kind",
+          "label",
+          "importedAt",
+          "rawMetaJson"
+        ],
+        "properties": {
+          "sourceRecordId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1
+          },
+          "importedAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "kind": {
+            "enum": [
+              "catalog",
+              "codeforces_api",
+              "qoj_userscript_json",
+              "manual_entry"
+            ]
+          },
+          "rawMetaJson": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "syncRecords": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "syncId",
+          "sourceRecordId",
+          "adapter",
+          "startedAt",
+          "finishedAt",
+          "status",
+          "summaryJson"
+        ],
+        "properties": {
+          "syncId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceRecordId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "startedAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "adapter": {
+            "enum": [
+              "catalog",
+              "codeforces_api",
+              "qoj_userscript",
+              "manual"
+            ]
+          },
+          "finishedAt": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "enum": [
+              "running",
+              "succeeded",
+              "failed"
+            ]
+          },
+          "summaryJson": {
+            "type": "object"
+          }
+        }
+      }
+    },
+    "contest_preferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "contest_id",
+          "spoiler_mode"
+        ],
+        "properties": {
+          "contest_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "spoiler_mode": {
+            "enum": [
+              "spoiler",
+              "non_spoiler"
+            ]
+          }
+        }
+      }
+    },
+    "app_settings": {
+      "type": "object",
+      "required": [
+        "allow_medal_estimates"
+      ],
+      "properties": {
+        "allow_medal_estimates": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

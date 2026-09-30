@@ -107,7 +107,7 @@ async function handleSyncHandle(handle: LocalMemberPerson["handles"][number]) {
       memberId: person.value.memberId,
       handle: handle.handle,
       displayName: person.value.displayName,
-    });
+    }, {requireExisting:true});
     emitMemberMutated();
     await loadMember();
     feedback.value = `已同步 ${handle.provider} / ${handle.handle}`;

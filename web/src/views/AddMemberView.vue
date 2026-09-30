@@ -22,8 +22,12 @@ const memberForm = ref({
 const submitLabel = computed(() =>
   memberForm.value.platform === "codeforces" ? "导入并同步 Codeforces" : qojSync.useUserscript ? '添加并同步 QOJ' : '添加并手动导入 QOJ',
 );
+const submitDisabled = computed(() =>
+  submitting.value || (memberForm.value.platform === "qoj" && (!qojSync.modeLoaded || qojSync.busy)),
+);
 
 async function handleSubmit() {
+  if (submitDisabled.value) return;
   const memberId = memberForm.value.memberId.trim();
   const handle = memberForm.value.handle.trim();
   if (!memberId || !handle) {
@@ -61,7 +65,7 @@ async function handleSubmit() {
 <template>
   <div class="view-stack">
     <section class="panel">
-      <div class="panel__body">
+      <form class="panel__body" @submit.prevent="handleSubmit">
         <div class="panel__header">
           <div class="panel__title">
             <p class="eyebrow">成员来源</p>
@@ -94,7 +98,7 @@ async function handleSubmit() {
         </div>
 
         <div class="actions">
-          <button class="button" :disabled="submitting || (memberForm.platform==='qoj' && (!qojSync.modeLoaded || qojSync.busy))" @click="handleSubmit">
+          <button type="submit" class="button" :disabled="submitDisabled">
             {{ submitting ? "处理中..." : submitLabel }}
           </button>
         </div>
@@ -105,7 +109,7 @@ async function handleSubmit() {
 
         <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
         <p v-if="error" class="error-box" style="margin-top: 16px">{{ error }}</p>
-      </div>
+      </form>
     </section>
   </div>
 </template>

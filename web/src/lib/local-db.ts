@@ -1,5 +1,7 @@
 import Dexie, { type ObservabilitySet, type Table } from "dexie";
 import { validatePreferences } from './spoiler-policy';
+import { validateRuntimeSnapshot } from './runtime-snapshot';
+import { statusHandleId, withStatusProvenance } from './member-status';
 import {
   buildContestCoverage,
   buildMemberCoverageInput,
@@ -85,6 +87,28 @@ class XcpcTrackerDb extends Dexie {
     });
     this.version(5).stores({ contestPreferences: "contest_id" });
     this.version(6).stores({ appSettings: 'key' });
+    this.version(7).stores({
+      memberProblemStatus: 'statusId, memberId, problemId, [memberId+problemId], [provider+problemId], lastSeenAt, handleId',
+    }).upgrade(async transaction => {
+      const handles = await transaction.table('memberHandles').toArray() as LocalMemberHandleRecord[];
+      // Rebinding receives a fresh generation, even when it happens in the same
+      // millisecond. Timestamps alone cannot safely identify an in-flight target.
+      for (const tableName of ['members', 'memberHandles']) {
+        for (const row of await transaction.table(tableName).toArray()) {
+          if (!row.identityRevision) await transaction.table(tableName).put({ ...row, identityRevision: crypto.randomUUID() });
+        }
+      }
+      const sources = new Map<string, LocalImportSourceRecord>(
+        (await transaction.table('importSources').toArray()).map(source => [source.sourceRecordId, source]),
+      );
+      const table = transaction.table('memberProblemStatus');
+      for (const row of await table.toArray() as LocalMemberProblemStatusRecord[]) {
+        const next = withStatusProvenance(row, handles, sources);
+        if (next.statusId === row.statusId) continue;
+        await table.put(mergeMemberProblemStatusRecord(await table.get(next.statusId), next));
+        await table.delete(row.statusId);
+      }
+    });
   }
 }
 
@@ -356,12 +380,54 @@ export async function assertHandleOwnership(handles: LocalMemberHandleRecord[]):
   }
 }
 
+export type MemberSyncGuard = {
+  member?: Pick<LocalMemberRecord, 'memberId' | 'identityRevision'>;
+  handle?: Pick<LocalMemberHandleRecord, 'handleId' | 'memberId' | 'identityRevision'>;
+};
+
+export async function captureMemberSyncGuard(memberId: string, provider: string, handle: string, requireExisting = false): Promise<MemberSyncGuard> {
+  return localDb.transaction('rw', localDb.members, localDb.memberHandles, async () => {
+    const member = await localDb.members.get(memberId);
+    const account = (await localDb.memberHandles.where('[provider+handle]').equals([provider, handle]).toArray())
+      .find(row => row.memberId === memberId && !row.deletedAt);
+    if (requireExisting && (!member || member.deletedAt || !account)) throw new DOMException('Sync target removed', 'AbortError');
+    if (member && !member.deletedAt && !member.identityRevision) {
+      member.identityRevision = crypto.randomUUID();
+      await localDb.members.put(member);
+    }
+    if (account && !account.identityRevision) {
+      account.identityRevision = crypto.randomUUID();
+      await localDb.memberHandles.put(account);
+    }
+    return {
+      member: member && !member.deletedAt ? { memberId, identityRevision: member.identityRevision } : undefined,
+      handle: account ? { handleId: account.handleId, memberId, identityRevision: account.identityRevision } : undefined,
+    };
+  });
+}
+
+async function assertSyncGuard(guard?: MemberSyncGuard): Promise<void> {
+  if (guard?.member) {
+    const member = await localDb.members.get(guard.member.memberId);
+    if (!member || member.deletedAt || member.identityRevision !== guard.member.identityRevision) throw new DOMException('Member removed or replaced', 'AbortError');
+  }
+  if (guard?.handle) {
+    const handle = await localDb.memberHandles.get(guard.handle.handleId);
+    if (!handle || handle.deletedAt || handle.memberId !== guard.handle.memberId || handle.identityRevision !== guard.handle.identityRevision) throw new DOMException('Account removed or rebound', 'AbortError');
+  }
+}
+
+export async function validateMemberSyncGuard(guard: MemberSyncGuard): Promise<void> {
+  await localDb.transaction('r', localDb.members, localDb.memberHandles, () => assertSyncGuard(guard));
+}
+
 export async function upsertMemberBundle(payload: {
   member: LocalMemberRecord;
   handles: LocalMemberHandleRecord[];
   statuses: LocalMemberProblemStatusRecord[];
   importSource: LocalImportSourceRecord;
   syncRecord: LocalSyncRecord;
+  syncGuard?: MemberSyncGuard;
 }): Promise<void> {
   await localDb.transaction(
     "rw",
@@ -373,12 +439,21 @@ export async function upsertMemberBundle(payload: {
       localDb.syncRecords,
     ],
     async () => {
+      await assertSyncGuard(payload.syncGuard);
       await assertHandleOwnership(payload.handles);
-      await localDb.members.put(payload.member);
-      await localDb.memberHandles.bulkPut(payload.handles.map((handle) => ({
-        ...handle,
-        deletedAt: handle.deletedAt ?? null,
-      })));
+      const existingMember = await localDb.members.get(payload.member.memberId);
+      await localDb.members.put({ ...payload.member,
+        identityRevision: existingMember && !existingMember.deletedAt ? existingMember.identityRevision ?? crypto.randomUUID() : crypto.randomUUID(),
+        createdAt: existingMember && !existingMember.deletedAt ? existingMember.createdAt : payload.member.createdAt,
+      });
+      for (const handle of payload.handles) {
+        const existing = await localDb.memberHandles.get(handle.handleId);
+        await localDb.memberHandles.put({ ...handle,
+          identityRevision: existing && !existing.deletedAt && existing.memberId === handle.memberId ? existing.identityRevision ?? crypto.randomUUID() : crypto.randomUUID(),
+          createdAt: existing && !existing.deletedAt && existing.memberId === handle.memberId ? existing.createdAt : handle.createdAt,
+          deletedAt: handle.deletedAt ?? null,
+        });
+      }
 
       for (const status of payload.statuses) {
         await upsertMemberProblemStatusWithPriority(status);
@@ -503,16 +578,13 @@ export async function listMemberHandleProblemCountsFromDb(memberId: string): Pro
 
   const result: Record<string, { solvedCount: number; attemptedCount: number; totalCount: number }> = {};
   for (const handle of activeHandles) {
-    const sourcePrefix = `${handle.provider}:${handle.handle}:`;
     const sameProviderHandles = activeHandlesByProvider.get(handle.provider) ?? [];
     const handleStatuses = statuses.filter((status) => {
       if (status.provider !== handle.provider) {
         return false;
       }
-      if (status.sourceRecordId.startsWith(sourcePrefix)) {
-        return true;
-      }
-      return sameProviderHandles.length === 1;
+      const owner = statusHandleId(status, handles);
+      return owner ? owner === handle.handleId : sameProviderHandles.length === 1;
     });
     const solvedProblemIds = new Set(
       handleStatuses
@@ -549,7 +621,8 @@ export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatu
   const activeMemberIds = new Set(activeMembers.map((member) => member.memberId));
   const activeHandles = memberHandles.filter((handle) => !handle.deletedAt && activeMemberIds.has(handle.memberId));
   const activeHandleValues = new Set(activeHandles.map((handle) => handle.handle.toLocaleLowerCase()));
-  const activeStatuses = memberProblemStatus.filter((status) => activeMemberIds.has(status.memberId));
+  const activeHandleIds = new Set(activeHandles.map(handle => handle.handleId));
+  const activeStatuses = memberProblemStatus.filter((status) => activeMemberIds.has(status.memberId) && (!status.handleId || activeHandleIds.has(status.handleId)));
   const activeSourceRecordIds = new Set(activeStatuses.map((status) => status.sourceRecordId));
   const filteredImportSources = importSources.filter((source) => {
     if (activeSourceRecordIds.has(source.sourceRecordId)) {
@@ -567,8 +640,8 @@ export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatu
     contest_preferences: preferences,
     app_settings: {allow_medal_estimates: allowMedalEstimates},
     exportedAt: new Date().toISOString(),
-    members: activeMembers,
-    memberHandles: activeHandles,
+    members: activeMembers.map(({ identityRevision: _revision, ...member }) => member),
+    memberHandles: activeHandles.map(({ identityRevision: _revision, ...handle }) => handle),
     memberProblemStatus: options?.includeProblemStatus === false ? [] : activeStatuses,
     importSources: filteredImportSources,
     syncRecords: filteredSyncRecords,
@@ -742,6 +815,11 @@ export async function applyLocalRuntimeSnapshot(
   snapshot: LocalRuntimeSnapshot,
   options?: { mode?: "merge" | "replace"; includeProblemStatus?: boolean },
 ): Promise<void> {
+  validateRuntimeSnapshot(snapshot);
+  const sourceById = new Map(snapshot.importSources.map(source => [source.sourceRecordId, source]));
+  snapshot = { ...snapshot, memberProblemStatus: snapshot.memberProblemStatus.map(status =>
+    withStatusProvenance(status, snapshot.memberHandles, sourceById)),
+  };
   const preferences = validatePreferences(snapshot.contest_preferences);
   if (snapshot.app_settings !== undefined && (!snapshot.app_settings || typeof snapshot.app_settings.allow_medal_estimates !== 'boolean')) throw new Error('Invalid app settings');
   await localDb.transaction('rw', [localDb.members, localDb.memberHandles, localDb.memberProblemStatus, localDb.importSources, localDb.syncRecords, localDb.contestPreferences, localDb.appSettings], async () => {
@@ -897,6 +975,22 @@ export async function getManualMemberProblemStatusFromDb(
   return manualStatus?.status ?? null;
 }
 
+async function putSnapshotIdentities(snapshot: LocalRuntimeSnapshot): Promise<void> {
+  for (const member of snapshot.members) {
+    const existing = await localDb.members.get(member.memberId);
+    await localDb.members.put({ ...member,
+      identityRevision: existing && !existing.deletedAt ? existing.identityRevision ?? crypto.randomUUID() : crypto.randomUUID(),
+    });
+  }
+  for (const handle of snapshot.memberHandles) {
+    const existing = await localDb.memberHandles.get(handle.handleId);
+    await localDb.memberHandles.put({ ...handle,
+      identityRevision: existing && !existing.deletedAt && existing.memberId === handle.memberId && existing.provider === handle.provider && existing.handle === handle.handle
+        ? existing.identityRevision ?? crypto.randomUUID() : crypto.randomUUID(),
+    });
+  }
+}
+
 export async function importLocalRuntimeSnapshot(snapshot: LocalRuntimeSnapshot): Promise<void> {
   await localDb.transaction(
     "rw",
@@ -914,12 +1008,7 @@ export async function importLocalRuntimeSnapshot(snapshot: LocalRuntimeSnapshot)
       await localDb.importSources.clear();
       await localDb.syncRecords.clear();
 
-      if (snapshot.members.length) {
-        await localDb.members.bulkPut(snapshot.members);
-      }
-      if (snapshot.memberHandles.length) {
-        await localDb.memberHandles.bulkPut(snapshot.memberHandles);
-      }
+      await putSnapshotIdentities(snapshot);
       if (snapshot.memberProblemStatus.length) {
         for (const status of snapshot.memberProblemStatus) {
           await upsertMemberProblemStatusWithPriority(status);
@@ -949,12 +1038,7 @@ export async function importLocalRuntimeMembersOnlySnapshot(snapshot: LocalRunti
       await localDb.members.clear();
       await localDb.memberHandles.clear();
       await localDb.memberProblemStatus.clear();
-      if (snapshot.members.length) {
-        await localDb.members.bulkPut(snapshot.members);
-      }
-      if (snapshot.memberHandles.length) {
-        await localDb.memberHandles.bulkPut(snapshot.memberHandles);
-      }
+      await putSnapshotIdentities(snapshot);
       if (snapshot.importSources.length) {
         await localDb.importSources.bulkPut(snapshot.importSources);
       }
@@ -963,6 +1047,16 @@ export async function importLocalRuntimeMembersOnlySnapshot(snapshot: LocalRunti
       }
     },
   );
+}
+
+async function assertSnapshotMergeOwnership(snapshot: LocalRuntimeSnapshot): Promise<void> {
+  await assertHandleOwnership(snapshot.memberHandles);
+  for (const status of snapshot.memberProblemStatus) {
+    const existing = await localDb.memberProblemStatus.get(status.statusId);
+    if (existing && (existing.memberId !== status.memberId || existing.problemId !== status.problemId || existing.provider !== status.provider || existing.handleId !== status.handleId)) {
+      throw new Error('做题状态 ID 与已有成员或账号不一致');
+    }
+  }
 }
 
 export async function mergeLocalRuntimeSnapshot(snapshot: LocalRuntimeSnapshot): Promise<void> {
@@ -976,12 +1070,8 @@ export async function mergeLocalRuntimeSnapshot(snapshot: LocalRuntimeSnapshot):
       localDb.syncRecords,
     ],
     async () => {
-      if (snapshot.members.length) {
-        await localDb.members.bulkPut(snapshot.members);
-      }
-      if (snapshot.memberHandles.length) {
-        await localDb.memberHandles.bulkPut(snapshot.memberHandles);
-      }
+      await assertSnapshotMergeOwnership(snapshot);
+      await putSnapshotIdentities(snapshot);
       if (snapshot.memberProblemStatus.length) {
         for (const status of snapshot.memberProblemStatus) {
           await upsertMemberProblemStatusWithPriority(status);
@@ -1007,12 +1097,8 @@ export async function mergeLocalRuntimeMembersOnlySnapshot(snapshot: LocalRuntim
       localDb.syncRecords,
     ],
     async () => {
-      if (snapshot.members.length) {
-        await localDb.members.bulkPut(snapshot.members);
-      }
-      if (snapshot.memberHandles.length) {
-        await localDb.memberHandles.bulkPut(snapshot.memberHandles);
-      }
+      await assertHandleOwnership(snapshot.memberHandles);
+      await putSnapshotIdentities(snapshot);
       if (snapshot.importSources.length) {
         await localDb.importSources.bulkPut(snapshot.importSources);
       }
@@ -1090,29 +1176,28 @@ export async function listCodeforcesMemberSyncTargets(): Promise<Array<{
   memberId: string;
   displayName: string;
   handle: string;
+  syncGuard: MemberSyncGuard;
 }>> {
-  const [members, handles] = await Promise.all([
-    localDb.members.toArray(),
-    localDb.memberHandles.toArray(),
-  ]);
-  const activeMembers = members.filter((member) => !member.deletedAt);
-  const activeMemberIds = new Set(activeMembers.map((member) => member.memberId));
-  const memberNameById = new Map(activeMembers.map((member) => [member.memberId, member.displayName]));
-
-  return handles
-    .filter((handle) => !handle.deletedAt && activeMemberIds.has(handle.memberId) && handle.provider === "codeforces")
-    .map((handle) => ({
-      memberId: handle.memberId,
-      displayName: memberNameById.get(handle.memberId) ?? handle.memberId,
-      handle: handle.handle,
-    }))
-    .sort((left, right) => left.displayName.localeCompare(right.displayName));
+  // A batch owns these identities from queue creation, not from each later
+  // request's start. Deleting/rebinding a queued account invalidates its guard.
+  return localDb.transaction('rw', localDb.members, localDb.memberHandles, async () => {
+    const [members, handles] = await Promise.all([localDb.members.toArray(), localDb.memberHandles.toArray()]);
+    const activeMembers = new Map(members.filter(member => !member.deletedAt).map(member => [member.memberId, member]));
+    const targets = [];
+    for (const handle of handles) {
+      const member = activeMembers.get(handle.memberId);
+      if (!member || handle.deletedAt || handle.provider !== 'codeforces') continue;
+      const syncGuard = await captureMemberSyncGuard(member.memberId, handle.provider, handle.handle, true);
+      targets.push({memberId: member.memberId, displayName: member.displayName, handle: handle.handle, syncGuard});
+    }
+    return targets.sort((left, right) => left.displayName.localeCompare(right.displayName));
+  });
 }
 
 export async function softDeleteMemberHandle(handleId: string): Promise<void> {
   await localDb.transaction(
     "rw",
-    [localDb.memberHandles, localDb.memberProblemStatus],
+    [localDb.memberHandles, localDb.memberProblemStatus, localDb.importSources],
     async () => {
       const handle = await localDb.memberHandles.get(handleId);
       if (!handle) {
@@ -1128,8 +1213,15 @@ export async function softDeleteMemberHandle(handleId: string): Promise<void> {
         .where("memberId")
         .equals(handle.memberId)
         .toArray();
+      const handles = await localDb.memberHandles.where('memberId').equals(handle.memberId).toArray();
+      const sources = new Map((await localDb.importSources.toArray()).map(source => [source.sourceRecordId, source]));
+      const hasOtherAccount = handles.some(other => !other.deletedAt && other.provider === handle.provider);
       const statusIds = providerStatuses
-        .filter((status) => status.provider === handle.provider && status.provider !== "manual")
+        .filter(status => {
+          if (status.provider !== handle.provider || status.provider === 'manual') return false;
+          const owner = statusHandleId(status, handles, sources);
+          return owner ? owner === handleId : !hasOtherAccount;
+        })
         .map((status) => status.statusId);
       if (statusIds.length > 0) {
         await localDb.memberProblemStatus.bulkDelete(statusIds);

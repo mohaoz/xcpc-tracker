@@ -6,9 +6,13 @@ import type {
   LocalMemberRecord,
   LocalSyncRecord,
 } from "./local-model";
+import { accountStatusId } from './member-status';
 import { listRuntimeCatalogProblemsForImport } from "./catalog-runtime";
 import {
   localDb,
+  captureMemberSyncGuard,
+  validateMemberSyncGuard,
+  type MemberSyncGuard,
   listCodeforcesMemberSyncTargets,
   upsertMemberBundle,
 } from "./local-db";
@@ -37,7 +41,8 @@ type CodeforcesImportSummary = {
 };
 
 function isAbortError(error: unknown) {
-  return error instanceof DOMException && error.name === "AbortError";
+  // Dexie can wrap a DOMException while preserving its standardized name.
+  return !!error && typeof error === "object" && "name" in error && error.name === "AbortError";
 }
 
 async function sha512Hex(value: string) {
@@ -164,7 +169,7 @@ function findProblemsByCodeforcesProviderProblemId(
   );
 }
 
-type SyncOptions = {automatic?: boolean; signal?: AbortSignal};
+type SyncOptions = {automatic?: boolean; signal?: AbortSignal; requireExisting?: boolean; syncGuard?: MemberSyncGuard};
 
 export async function importCodeforcesMember(payload: {
   memberId: string;
@@ -172,6 +177,10 @@ export async function importCodeforcesMember(payload: {
   displayName?: string;
 }, options: SyncOptions = {}): Promise<CodeforcesImportSummary> {
   const skipped = {memberId:payload.memberId,handle:payload.handle,matchedStatusCount:0,submissionCount:0};
+  const locks = globalThis.navigator?.locks;
+  if (!locks && options.automatic) return skipped;
+  // Capture before waiting for rate limits or another tab's lock.
+  const syncGuard = options.syncGuard ?? await captureMemberSyncGuard(payload.memberId, 'codeforces', payload.handle, options.requireExisting || options.automatic);
   const run = async () => {
     options.signal?.throwIfAborted();
     const history = (await localDb.syncRecords.toArray()).filter(r => r.adapter === 'codeforces_api');
@@ -186,16 +195,16 @@ export async function importCodeforcesMember(payload: {
       options.signal?.addEventListener('abort',abort,{once:true});
       if(options.signal?.aborted)abort();
     });
-    return performCodeforcesImport(payload,options);
+    await validateMemberSyncGuard(syncGuard);
+    return performCodeforcesImport(payload,options,syncGuard);
   };
-  const locks = globalThis.navigator?.locks;
-  if (!locks) return options.automatic ? skipped : run();
+  if (!locks) return run();
   return locks.request('xcpc-codeforces-sync',{...(options.automatic ? {ifAvailable:true} : {signal:options.signal})},async lock=>lock ? run() : skipped);
 }
 
-async function performCodeforcesImport(payload: {memberId:string;handle:string;displayName?:string}, options:SyncOptions): Promise<CodeforcesImportSummary> {
+async function performCodeforcesImport(payload: {memberId:string;handle:string;displayName?:string}, options:SyncOptions, syncGuard:MemberSyncGuard): Promise<CodeforcesImportSummary> {
   const startedAt = new Date().toISOString();
-  try { return await importCodeforcesMemberData(payload,options); }
+  try { return await importCodeforcesMemberData(payload,options,syncGuard); }
   catch (error) {
     const finishedAt = new Date().toISOString();
     const sourceRecordId = `codeforces:${payload.handle}:${finishedAt}:failed`;
@@ -212,7 +221,7 @@ async function importCodeforcesMemberData(payload: {
   memberId: string;
   handle: string;
   displayName?: string;
-}, options: SyncOptions): Promise<CodeforcesImportSummary> {
+}, options: SyncOptions, syncGuard: MemberSyncGuard): Promise<CodeforcesImportSummary> {
   const startedAt = new Date().toISOString();
   const submissions = await requestCodeforcesApi<CodeforcesSubmission[]>("user.status", {
     handle: payload.handle,
@@ -252,7 +261,8 @@ async function importCodeforcesMemberData(payload: {
   const statuses: LocalMemberProblemStatusRecord[] = normalizedStatuses.flatMap((item) => {
     const matchedProblems = problemsByProviderId.get(item.providerProblemId) ?? [];
     return matchedProblems.map((matchedProblem) => ({
-      statusId: `${payload.memberId}:${matchedProblem.problemId}:codeforces`,
+      statusId: accountStatusId(payload.memberId, matchedProblem.problemId, `codeforces:${payload.handle}`),
+      handleId: `codeforces:${payload.handle}`,
       memberId: payload.memberId,
       problemId: matchedProblem.problemId,
       provider: "codeforces" as const,
@@ -299,6 +309,7 @@ async function importCodeforcesMemberData(payload: {
   options.signal?.throwIfAborted();
   if (options.automatic && !(await listCodeforcesMemberSyncTargets()).some(t=>t.memberId===payload.memberId && t.handle===payload.handle)) throw new DOMException('Member removed','AbortError');
   await upsertMemberBundle({
+    syncGuard,
     member,
     handles,
     statuses,
@@ -365,7 +376,7 @@ export async function syncAllCodeforcesMembers(options?: {
         memberId: target.memberId,
         handle: target.handle,
         displayName: target.displayName,
-      }, {signal: options?.signal});
+      }, {signal: options?.signal, requireExisting:true, syncGuard:target.syncGuard});
       synced.push(result);
     } catch (error) {
       if (isAbortError(error) || options?.signal?.aborted) {
