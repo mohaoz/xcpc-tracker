@@ -879,6 +879,8 @@ export async function replaceManualCatalogContest(payload: {
 
 export async function upsertManualMemberProblemStatus(payload: {
   memberId: string;
+  // Use the displayed snapshot, never recapture identity when a stale cell is clicked.
+  memberIdentityRevision: LocalMemberRecord["identityRevision"];
   problemId: string;
   status: "solved" | "attempted" | null;
   note?: string | null;
@@ -890,11 +892,13 @@ export async function upsertManualMemberProblemStatus(payload: {
   await localDb.transaction(
     "rw",
     [
+      localDb.members,
       localDb.memberProblemStatus,
       localDb.importSources,
       localDb.syncRecords,
     ],
     async () => {
+      await assertSyncGuard({ member: { memberId: payload.memberId, identityRevision: payload.memberIdentityRevision } });
       const existingStatuses = await localDb.memberProblemStatus
         .where("[memberId+problemId]")
         .equals([payload.memberId, payload.problemId])
@@ -966,13 +970,17 @@ export async function upsertManualMemberProblemStatus(payload: {
 export async function getManualMemberProblemStatusFromDb(
   memberId: string,
   problemId: string,
+  memberIdentityRevision: LocalMemberRecord["identityRevision"],
 ): Promise<"solved" | "attempted" | null> {
-  const existingStatuses = await localDb.memberProblemStatus
-    .where("[memberId+problemId]")
-    .equals([memberId, problemId])
-    .toArray();
-  const manualStatus = existingStatuses.find((status) => status.provider === "manual");
-  return manualStatus?.status ?? null;
+  return localDb.transaction('r', localDb.members, localDb.memberProblemStatus, async () => {
+    await assertSyncGuard({ member: { memberId, identityRevision: memberIdentityRevision } });
+    const existingStatuses = await localDb.memberProblemStatus
+      .where("[memberId+problemId]")
+      .equals([memberId, problemId])
+      .toArray();
+    const manualStatus = existingStatuses.find((status) => status.provider === "manual");
+    return manualStatus?.status ?? null;
+  });
 }
 
 async function putSnapshotIdentities(snapshot: LocalRuntimeSnapshot): Promise<void> {

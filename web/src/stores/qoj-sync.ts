@@ -2,16 +2,21 @@ import { defineStore } from 'pinia';
 import { computed, ref, watch } from 'vue';
 import { liveQuery } from 'dexie';
 import { useRouter } from 'vue-router';
-import { localDb, listMemberPeopleFromDb, recordImportSyncAttempt } from '../lib/local-db';
-import { importQojUserscriptMembers } from '../lib/qoj';
+import { localDb, listMemberPeopleFromDb, recordImportSyncAttempt, validateMemberSyncGuard } from '../lib/local-db';
+import { importQojUserscriptMembers, listQojMemberSyncTargets } from '../lib/qoj';
 import { emitMemberMutated } from '../lib/member-events';
 import { useFeedbackStore, type FeedbackAction } from './feedback';
 import { compareScriptVersions } from '../lib/qoj-script-version';
 import { useQojManualStore } from './qoj-manual';
 import { importCodeforcesMember } from '../lib/codeforces';
 
+type CancellationReason = 'settings_disabled' | 'user_cancelled' | 'target_removed';
 class SyncError extends Error {
-  constructor(public code: string, public retryAfterMs = 0) { super(code); }
+  constructor(public code: string, public retryAfterMs = 0, public cancellationReason?: CancellationReason) { super(code); }
+}
+function cancellationError(signal?: AbortSignal) {
+  const reason = signal?.reason;
+  return new SyncError('CANCELLED', 0, reason === 'settings_disabled' || reason === 'user_cancelled' ? reason : undefined);
 }
 const labels: Record<string, string> = {
   BRIDGE_MISSING: '未连接脚本，请安装或启用脚本、允许用户脚本运行，然后重新检测。',
@@ -37,7 +42,7 @@ function rpc(method: string, params: object = {}, signal?: AbortSignal): Promise
       if (error) reject(error); else resolve(result);
     };
     const cancel = () => message(crypto.randomUUID(), 'cancel', {request_id:id});
-    const abort = () => { cancel(); finish(new SyncError('CANCELLED')); };
+    const abort = () => { cancel(); finish(cancellationError(signal)); };
     const receive = (event: MessageEvent) => {
       const m = event.data;
       if (event.source !== window || event.origin !== location.origin || m?.protocol !== 'xcpc-sync' || m.version !== 1 || m.direction !== 'response' || m.request_id !== id) return;
@@ -91,7 +96,7 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
         if(!value)await localDb.appSettings.put({key:'auto_sync',value:false});
       });
       useUserscript.value=value;
-      if(!value){enabled.value=false;controller?.abort();cfController?.abort();}
+      if(!value){enabled.value=false;controller?.abort('settings_disabled');cfController?.abort();}
       return true;
     }
     catch {report('STORAGE_ERROR');return false;}
@@ -159,6 +164,7 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
       detail:`错误代码：${code}\n时间：${issue.at}`,actions});
   }
   let started = false, controller: AbortController | null = null;
+  let cancelCurrent: (() => void) | null = null;
   async function check(interactive = false) {
     checking.value = true;
     try {
@@ -183,7 +189,7 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
         await localDb.appSettings.bulkPut([{key:'auto_sync',value},{key:'qoj_use_userscript',value:scriptMode}]);
       });
       useUserscript.value=scriptMode;enabled.value = value;
-      if (!value) { controller?.abort(); cfController?.abort(); }
+      if (!value) { controller?.abort('settings_disabled'); cfController?.abort(); }
       else void runAutomatic();
     }
     catch { report('STORAGE_ERROR'); }
@@ -218,26 +224,30 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
     manualRun = manual;
     if (!navigator.locks) { report('LOCK_UNAVAILABLE'); return; }
     busy.value = true;
-    controller = new AbortController();
-    const signal = controller.signal;
+    const current = new AbortController();
+    controller = current;
+    const signal = current.signal;
+    let explicitlyStopped = false;
+    cancelCurrent = () => { explicitlyStopped = true; current.abort('user_cancelled'); };
     try {
+      const targets = await listQojMemberSyncTargets(undefined,onlyHandle);
       await navigator.locks.request('xcpc-qoj-sync', {ifAvailable:true}, async lock => {
         if (!lock) { if (manual) report('BUSY'); return; }
-        if (!await check()) { report('BRIDGE_MISSING'); return; }
-        if (updateRequired.value) {
+        if (!signal.aborted && !await check() && !signal.aborted) { report('BRIDGE_MISSING'); return; }
+        if (updateRequired.value && !signal.aborted) {
           message.value='请更新 QOJ 同步脚本后重试。';
           if (manual) showUpdate();
           return;
         }
         const history = await localDb.syncRecords.toArray();
         const globalLimit = history.find(r => r.summaryJson.bridge === true && r.summaryJson.error_code === 'RATE_LIMITED' && Number(r.summaryJson.retry_at) > Date.now());
-        if (globalLimit) { report('RATE_LIMITED', String(globalLimit.summaryJson.handle || ''), Number(globalLimit.summaryJson.retry_at)); return; }
-        const people = await listMemberPeopleFromDb();
-        const targets = people.flatMap(person => person.handles.filter(h => h.provider === 'qoj' && (!onlyHandle || onlyHandle === h.handle)).map(h => ({memberId:person.memberId,displayName:person.displayName,handle:h.handle})));
+        if (globalLimit) { if (!signal.aborted) report('RATE_LIMITED', String(globalLimit.summaryJson.handle || ''), Number(globalLimit.summaryJson.retry_at)); return; }
         let count = 0, failed = 0;
         if (manual) { progress.value = {total:targets.length,completed:0,succeeded:0,failed:0}; message.value = ''; }
         for (const target of targets) {
-          if (signal.aborted || (!manual && !enabled.value)) break;
+          // Stop also applies before the first request (lock/hello waits). Keep
+          // evidence for the next target so a scheduled run cannot undo it.
+          if ((signal.aborted || (!manual && !enabled.value)) && !explicitlyStopped) break;
           const records = history.filter(r => r.summaryJson.bridge === true && r.summaryJson.handle === target.handle && r.summaryJson.member_id === target.memberId).sort((a,b) => b.startedAt.localeCompare(a.startedAt));
           const last = records[0];
           const retryAt = Number(last?.summaryJson.retry_at || 0);
@@ -247,7 +257,8 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
             if (last?.status === 'failed' && last.summaryJson.manual === true) continue;
             if (last?.status === 'succeeded' && Date.now() - Date.parse(last.startedAt) < 30 * 60000) continue;
             if (['AUTH_REQUIRED','CHALLENGE_REQUIRED'].includes(lastCode)) { if (!returning) continue; }
-            else if (['PERMISSION_REQUIRED','PARSE_ERROR','USER_NOT_FOUND','CANCELLED'].includes(lastCode)) continue;
+            else if (['PERMISSION_REQUIRED','PARSE_ERROR','USER_NOT_FOUND'].includes(lastCode)) continue;
+            else if (lastCode === 'CANCELLED' && (last?.summaryJson.manual !== false || last.summaryJson.cancellation_reason !== 'settings_disabled')) continue;
             else if (retryAt > Date.now()) continue;
           }
           currentHandle.value = target.handle;
@@ -255,27 +266,37 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
           let error: SyncError | null = null;
           let phase: 'request' | 'save' = 'request';
           try {
+            if (signal.aborted) throw cancellationError(signal);
+            await validateMemberSyncGuard(target.syncGuard);
             const data = validateQojSnapshot(await rpc('syncMember', {provider:'qoj',handle:target.handle,interactive:manual}, signal), target.handle);
-            // Do not recreate a member/handle removed while a request was in flight.
-            const stillActive = (await listMemberPeopleFromDb()).some(p => p.memberId === target.memberId && p.handles.some(h => h.provider === 'qoj' && h.handle === target.handle));
-            if (!stillActive || signal.aborted) throw new SyncError('CANCELLED');
+            if (signal.aborted) throw cancellationError(signal);
             phase = 'save';
-            await importQojUserscriptMembers({provider:'qoj',script_version:3,exported_at:data.fetched_at,members:[{member_id:target.memberId,display_name:target.displayName,handle:target.handle,...data.snapshot}]});
+            await importQojUserscriptMembers({provider:'qoj',script_version:3,exported_at:data.fetched_at,members:[{member_id:target.memberId,display_name:target.displayName,handle:target.handle,...data.snapshot}]},{requireExisting:true,syncGuards:new Map([[target.handle,target.syncGuard]]),signal});
             issues.value = issues.value.filter(i => i.handle !== target.handle && i.handle !== '');
             for (const key of announced) if (key.startsWith(`${target.handle}:`)) announced.delete(key);
             count++; emitMemberMutated();
           } catch (e) {
-            error = e instanceof SyncError ? e : new SyncError(phase === 'save' ? 'STORAGE_ERROR' : 'NETWORK_ERROR'); failed++;
+            error = e instanceof SyncError ? e : signal.aborted ? cancellationError(signal) : e && typeof e === 'object' && 'name' in e && e.name === 'AbortError' ? new SyncError('CANCELLED',0,'target_removed') : new SyncError(phase === 'save' ? 'STORAGE_ERROR' : 'NETWORK_ERROR'); failed++;
+            if (explicitlyStopped && error.cancellationReason === 'settings_disabled') error.cancellationReason = 'user_cancelled';
             message.value = `${target.handle}：${labels[error.code] || error.code}`;
           }
-          const failures = error ? Number(last?.summaryJson.failures || 0) + 1 : 0;
-          const retry = error ? Date.now() + Math.max(error.retryAfterMs, Math.min(30 * 60000, 60000 * 2 ** Math.min(failures - 1, 5))) : 0;
+          // Turning a setting off pauses work; it is not an upstream failure or a
+          // request to suppress this account after the setting is enabled again.
+          const settingsInterrupted = error?.cancellationReason === 'settings_disabled';
+          const failures = error ? Number(last?.summaryJson.failures || 0) + (settingsInterrupted ? 0 : 1) : 0;
+          const retry = error && !settingsInterrupted ? Date.now() + Math.max(error.retryAfterMs, Math.min(30 * 60000, 60000 * 2 ** Math.min(failures - 1, 5))) : 0;
           if (error) report(error.code,target.handle,retry);
           progress.value = {total:targets.length,completed:count+failed,succeeded:count,failed};
+          const summaryJson = {bridge:true,manual,handle:target.handle,member_id:target.memberId,error_code:error?.code || null,retry_at:retry,failures,...(error?.cancellationReason ? {cancellation_reason:error.cancellationReason} : {})};
           await recordImportSyncAttempt({
             importSource:{sourceRecordId:recordId,kind:'qoj_userscript_json',label:`QOJ bridge / ${target.handle}`,importedAt:at,rawMetaJson:{handle:target.handle}},
-            syncRecord:{syncId:recordId,sourceRecordId:recordId,adapter:'qoj_userscript',startedAt:at,finishedAt:new Date().toISOString(),status:error ? 'failed':'succeeded',summaryJson:{bridge:true,manual,handle:target.handle,member_id:target.memberId,error_code:error?.code || null,retry_at:retry,failures}},
+            syncRecord:{syncId:recordId,sourceRecordId:recordId,adapter:'qoj_userscript',startedAt:at,finishedAt:new Date().toISOString(),status:error ? 'failed':'succeeded',summaryJson},
           });
+          // AbortSignal keeps the first reason. An explicit Stop during the
+          // cancellation write must also suppress later scheduled recovery.
+          if (explicitlyStopped && summaryJson.cancellation_reason === 'settings_disabled') {
+            await localDb.syncRecords.update(recordId, {summaryJson:{...summaryJson,cancellation_reason:'user_cancelled'}});
+          }
           if (error && ['AUTH_REQUIRED','CHALLENGE_REQUIRED','RATE_LIMITED','PERMISSION_REQUIRED','CANCELLED'].includes(error.code)) break;
         }
         if (!failed && manual) message.value = targets.length ? `已同步 ${count} 个 QOJ 账号` : '请先添加带 QOJ 账号的成员';
@@ -283,13 +304,18 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
         if (manual && !failed) feedback.show({tone:count ? 'success':'info',title:count ? 'QOJ 同步完成':'没有可同步的账号',message:message.value});
       });
     } catch (e) { report(e instanceof SyncError ? e.code : 'STORAGE_ERROR', currentHandle.value); }
-    finally { busy.value = false; currentHandle.value = ''; controller = null; }
+    finally {
+      busy.value = false; currentHandle.value = ''; controller = null; cancelCurrent = null;
+      // A rapid off/on can attempt to restart while this run is still saving
+      // its cancellation record. Resume once that run has fully released its lock.
+      if (!manual && !explicitlyStopped && signal.aborted && signal.reason === 'settings_disabled' && enabled.value && useUserscript.value) void runAutomatic();
+    }
   }
   function start() {
     if (started) return;
     started = true;
     void check();
-    liveQuery(() => Promise.all([localDb.appSettings.get('auto_sync'),localDb.appSettings.get('qoj_auto_sync'),localDb.appSettings.get('qoj_use_userscript'),localDb.appSettings.get('qoj_script_intro_seen')])).subscribe({next([auto,legacy,mode,intro]) { enabled.value=(auto??legacy)?.value===true;useUserscript.value=enabled.value || mode?.value===true;modeLoaded.value=true;introPending.value=!intro?.value;if(!enabled.value){controller?.abort();cfController?.abort();}void runAutomatic(); },error() {enabled.value=false;controller?.abort();cfController?.abort();}});
+    liveQuery(() => Promise.all([localDb.appSettings.get('auto_sync'),localDb.appSettings.get('qoj_auto_sync'),localDb.appSettings.get('qoj_use_userscript'),localDb.appSettings.get('qoj_script_intro_seen')])).subscribe({next([auto,legacy,mode,intro]) { enabled.value=(auto??legacy)?.value===true;useUserscript.value=enabled.value || mode?.value===true;modeLoaded.value=true;introPending.value=!intro?.value;if(!enabled.value){controller?.abort('settings_disabled');cfController?.abort();}void runAutomatic(); },error() {enabled.value=false;controller?.abort();cfController?.abort();}});
     setInterval(() => void runAutomatic(), 60000);
     setInterval(() => { if (document.visibilityState==='visible' && connected.value && Date.now()>=nextUpdateCheck) void check(); },60000);
     const returned = () => {
@@ -300,5 +326,5 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
     window.addEventListener('focus', returned);
     document.addEventListener('visibilitychange', returned);
   }
-  return {enabled,connected,busy,checking,message,connectionMessage,issues,progress,currentHandle,installedVersion,latestVersion,updateAvailable,updateRequired,useUserscript,modeLoaded,setUseUserscript,showSetup,check,setEnabled,sync,start,cancel:() => controller?.abort()};
+  return {enabled,connected,busy,checking,message,connectionMessage,issues,progress,currentHandle,installedVersion,latestVersion,updateAvailable,updateRequired,useUserscript,modeLoaded,setUseUserscript,showSetup,check,setEnabled,sync,start,cancel:() => cancelCurrent?.()};
 });

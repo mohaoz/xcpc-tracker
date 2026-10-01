@@ -69,6 +69,7 @@ export function buildMemberCoverageInput(
       const memberStatuses = [...(statusByMember.get(member.memberId)?.values() ?? [])];
       return {
         memberId: member.memberId,
+        identityRevision: member.identityRevision,
         displayName: member.displayName,
         providerCount: providersByMember.get(member.memberId)?.size ?? 0,
         handleCount: memberHandles.length,

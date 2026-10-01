@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import { computed, onMounted, onUnmounted, ref, watch } from "vue";
+import { computed, onUnmounted, ref, watch } from "vue";
+import { liveQuery, type Subscription } from "dexie";
 import { RouterLink, useRoute, useRouter } from "vue-router";
 
 import { importCodeforcesMember } from "../lib/codeforces";
 import { useQojSyncStore } from '../stores/qoj-sync';
 const qojSync = useQojSyncStore();
-import { emitMemberMutated, subscribeMemberMutated } from "../lib/member-events";
+import { emitMemberMutated } from "../lib/member-events";
 import {
   getMemberPersonFromDb,
+  localDb,
   listMemberHandleProblemCountsFromDb,
   softDeleteMember,
   softDeleteMemberHandle,
@@ -29,7 +31,9 @@ const handleProblemCounts = ref<Record<string, {
   attemptedCount: number;
   totalCount: number;
 }>>({});
-let unsubscribeMemberMutated: (() => void) | null = null;
+let memberSubscription: Subscription | null = null;
+let pageGeneration = 0;
+let disposed = false;
 
 const memberId = computed(() => String(route.params.memberId ?? ""));
 
@@ -63,28 +67,45 @@ function getHandleProblemCount(handleId: string) {
   };
 }
 
-async function loadMember() {
-  if (!memberId.value) {
-    return;
-  }
-
-  loading.value = true;
+function loadMember() {
+  const id = memberId.value;
+  const generation = ++pageGeneration;
+  const isCurrent = () => !disposed && generation === pageGeneration && id === memberId.value;
+  memberSubscription?.unsubscribe();
+  memberSubscription = null;
+  person.value = null;
+  handleProblemCounts.value = {};
   error.value = "";
-  try {
-    const [personPayload, handleCountsPayload] = await Promise.all([
-      getMemberPersonFromDb(memberId.value),
-      listMemberHandleProblemCountsFromDb(memberId.value),
-    ]);
-    person.value = personPayload;
-    handleProblemCounts.value = handleCountsPayload;
-    if (!personPayload) {
-      throw new Error("member not found");
-    }
-  } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "加载成员失败";
-  } finally {
-    loading.value = false;
-  }
+  loading.value = !!id;
+  if (!id || disposed) return;
+
+  // Read both panels from one transaction and let Dexie refresh them on
+  // same-tab and cross-tab writes, including member deletion and rebinding.
+  memberSubscription = liveQuery(() => localDb.transaction('r',
+    localDb.members, localDb.memberHandles, localDb.memberProblemStatus,
+    () => Promise.all([getMemberPersonFromDb(id), listMemberHandleProblemCountsFromDb(id)]),
+  )).subscribe({
+    next([personPayload, handleCountsPayload]) {
+      if (!isCurrent()) return;
+      person.value = personPayload;
+      handleProblemCounts.value = personPayload ? handleCountsPayload : {};
+      error.value = personPayload ? "" : "member not found";
+      loading.value = false;
+    },
+    error(caught) {
+      if (!isCurrent()) return;
+      person.value = null;
+      handleProblemCounts.value = {};
+      error.value = caught instanceof Error ? caught.message : "加载成员失败";
+      loading.value = false;
+    },
+  });
+}
+
+function currentPageGuard() {
+  const id = memberId.value;
+  const generation = pageGeneration;
+  return () => !disposed && generation === pageGeneration && id === memberId.value;
 }
 
 async function handleSyncHandle(handle: LocalMemberPerson["handles"][number]) {
@@ -92,6 +113,8 @@ async function handleSyncHandle(handle: LocalMemberPerson["handles"][number]) {
     return;
   }
 
+  const isCurrent = currentPageGuard();
+  const target = person.value;
   syncingHandleId.value = handle.handleId;
   error.value = "";
   feedback.value = "";
@@ -99,23 +122,23 @@ async function handleSyncHandle(handle: LocalMemberPerson["handles"][number]) {
   try {
     if (handle.provider === 'qoj') {
       await qojSync.sync(true, handle.handle);
-      feedback.value = qojSync.useUserscript ? qojSync.message : '';
-      await loadMember();
+      if (isCurrent()) feedback.value = qojSync.useUserscript ? qojSync.message : '';
       return;
     }
     await importCodeforcesMember({
-      memberId: person.value.memberId,
+      memberId: target.memberId,
       handle: handle.handle,
-      displayName: person.value.displayName,
+      displayName: target.displayName,
     }, {requireExisting:true});
     emitMemberMutated();
-    await loadMember();
+    if (!isCurrent()) return;
     feedback.value = `已同步 ${handle.provider} / ${handle.handle}`;
   } catch (caught) {
+    if (!isCurrent()) return;
     error.value = caught instanceof Error ? caught.message : "同步账号失败";
     syncWarning.value = "如果这是 private Codeforces 数据，请先在 Manage 页面保存 API 凭据，并确认当前账号本身有访问权限。即使具备权限，返回的数据也可能仍然不完整。";
   } finally {
-    syncingHandleId.value = "";
+    if (isCurrent()) syncingHandleId.value = "";
   }
 }
 
@@ -125,18 +148,20 @@ async function handleDeleteHandle(handle: LocalMemberPerson["handles"][number]) 
     return;
   }
 
+  const isCurrent = currentPageGuard();
   deletingHandleId.value = handle.handleId;
   error.value = "";
   feedback.value = "";
   try {
     await softDeleteMemberHandle(handle.handleId);
     emitMemberMutated();
-    await loadMember();
+    if (!isCurrent()) return;
     feedback.value = `已删除 ${handle.provider} / ${handle.handle}`;
   } catch (caught) {
+    if (!isCurrent()) return;
     error.value = caught instanceof Error ? caught.message : "删除账号失败";
   } finally {
-    deletingHandleId.value = "";
+    if (isCurrent()) deletingHandleId.value = "";
   }
 }
 
@@ -149,33 +174,36 @@ async function handleDeleteMember() {
     return;
   }
 
-  deletingMemberId.value = person.value.memberId;
+  const isCurrent = currentPageGuard();
+  const targetMemberId = person.value.memberId;
+  deletingMemberId.value = targetMemberId;
   error.value = "";
   try {
-    await softDeleteMember(person.value.memberId);
+    await softDeleteMember(targetMemberId);
     emitMemberMutated();
-    await router.push("/members");
+    if (isCurrent()) await router.push("/members");
   } catch (caught) {
+    if (!isCurrent()) return;
     error.value = caught instanceof Error ? caught.message : "删除成员失败";
   } finally {
-    deletingMemberId.value = "";
+    if (isCurrent()) deletingMemberId.value = "";
   }
 }
 
 watch(memberId, () => {
-  void loadMember();
-});
-
-onMounted(() => {
-  unsubscribeMemberMutated = subscribeMemberMutated(() => {
-    void loadMember();
-  });
-  void loadMember();
-});
+  feedback.value = "";
+  syncWarning.value = "";
+  syncingHandleId.value = "";
+  deletingHandleId.value = "";
+  deletingMemberId.value = "";
+  loadMember();
+}, { immediate: true });
 
 onUnmounted(() => {
-  unsubscribeMemberMutated?.();
-  unsubscribeMemberMutated = null;
+  disposed = true;
+  pageGeneration++;
+  memberSubscription?.unsubscribe();
+  memberSubscription = null;
 });
 </script>
 

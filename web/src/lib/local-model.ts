@@ -130,6 +130,7 @@ export type LocalCatalogSnapshot = {
 
 export type LocalMemberPerson = {
   memberId: string;
+  identityRevision?: string;
   displayName: string;
   providerCount: number;
   handleCount: number;

@@ -2,7 +2,8 @@
 import { useSettingsStore } from '../stores/settings';
 import { selectAwardCutoffs } from '../lib/award-policy';
 import { ratingClass } from '../lib/rating-colors';
-import { computed, onMounted, ref, watch } from "vue";
+import { computed, onUnmounted, ref, watch } from "vue";
+import { liveQuery, type Subscription } from "dexie";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
 
@@ -24,7 +25,7 @@ import {
   replaceManualCatalogContest,
   upsertManualMemberProblemStatus,
 } from "../lib/local-db";
-import type { LocalCatalogContestRecord, LocalCatalogProblemRecord, LocalContestCoverage } from "../lib/local-model";
+import type { LocalCatalogContestRecord, LocalCatalogProblemRecord, LocalContestCoverage, LocalMemberPerson } from "../lib/local-model";
 
 const route = useRoute();
 const router = useRouter();
@@ -39,6 +40,9 @@ const deleting = ref(false);
 const existingTags = ref<string[]>([]);
 const markMode = ref(false);
 const markSavingCellKey = ref("");
+let coverageSubscription: Subscription | null = null;
+let pageGeneration = 0;
+let disposed = false;
 const settings = useSettingsStore();
 const awardCutoffs = computed(() => selectAwardCutoffs(contest.value, settings.allowMedalEstimates));
 const spoilers = useSpoilerStore();
@@ -204,35 +208,49 @@ function mapLocalContestRecordToDetail(
 }
 
 async function loadContestPage() {
-  if (!contestId.value) {
-    return;
-  }
-
-  loading.value = true;
+  const id = contestId.value;
+  const generation = ++pageGeneration;
+  const isCurrent = () => !disposed && generation === pageGeneration && id === contestId.value;
+  coverageSubscription?.unsubscribe();
+  coverageSubscription = null;
+  contest.value = null;
+  coverage.value = null;
+  markSavingCellKey.value = "";
   error.value = "";
+  loading.value = !!id;
+  if (!id || disposed) return;
+
   try {
     const [runtimeDetail, allContests] = await Promise.all([
-      getRuntimeCatalogContestDetail(contestId.value),
+      getRuntimeCatalogContestDetail(id),
       listRuntimeCatalogContests(),
     ]);
+    if (!isCurrent()) return;
     existingTags.value = [...new Set(allContests.contests.flatMap((item) => item.tags))].sort((left, right) =>
       left.localeCompare(right),
     );
-    coverage.value = await getContestCoverageForCatalog(runtimeDetail.contest, runtimeDetail.problems);
-    contest.value = mapLocalContestRecordToDetail(runtimeDetail.contest, runtimeDetail.problems);
+    // Dexie observes committed changes from this tab and other tabs. Keep this
+    // subscription tied to the loaded contest, not to mutable route parameters.
+    coverageSubscription = liveQuery(() => getContestCoverageForCatalog(runtimeDetail.contest, runtimeDetail.problems)).subscribe({
+      next(nextCoverage) {
+        if (!isCurrent()) return;
+        coverage.value = nextCoverage;
+        contest.value = mapLocalContestRecordToDetail(runtimeDetail.contest, runtimeDetail.problems);
+        loading.value = false;
+      },
+      error(caught) {
+        if (!isCurrent()) return;
+        coverage.value = null;
+        contest.value = null;
+        error.value = caught instanceof Error ? caught.message : "加载做题情况失败";
+        loading.value = false;
+      },
+    });
   } catch (caught) {
+    if (!isCurrent()) return;
     error.value = caught instanceof Error ? caught.message : "加载比赛失败";
-  } finally {
     loading.value = false;
   }
-}
-
-async function refreshCoverageOnly() {
-  if (!contestId.value || !contest.value) {
-    return;
-  }
-  const runtimeDetail = await getRuntimeCatalogContestDetail(contestId.value);
-  coverage.value = await getContestCoverageForCatalog(runtimeDetail.contest, runtimeDetail.problems);
 }
 
 async function saveContestMetadata(payload: {
@@ -257,6 +275,9 @@ async function saveContestMetadata(payload: {
     return;
   }
 
+  const id = contest.value.id;
+  let generation = pageGeneration;
+  const isCurrent = () => !disposed && generation === pageGeneration && id === contestId.value;
   saving.value = true;
   error.value = "";
   feedback.value = "";
@@ -290,13 +311,17 @@ async function saveContestMetadata(payload: {
       problems: nextProblems,
     });
     emitCatalogMutated();
-    await loadContestPage();
+    if (!isCurrent()) return;
+    const refresh = loadContestPage();
+    generation = pageGeneration;
+    await refresh;
+    if (!isCurrent()) return;
     editing.value = false;
     feedback.value = "比赛信息已更新";
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "保存比赛信息失败";
+    if (isCurrent()) error.value = caught instanceof Error ? caught.message : "保存比赛信息失败";
   } finally {
-    saving.value = false;
+    if (isCurrent()) saving.value = false;
   }
 }
 
@@ -309,17 +334,20 @@ async function handleDeleteContest() {
     return;
   }
 
+  const id = contest.value.id;
+  const generation = pageGeneration;
+  const isCurrent = () => !disposed && generation === pageGeneration && id === contestId.value;
   deleting.value = true;
   error.value = "";
   feedback.value = "";
   try {
-    await deleteCatalogContestRecord(contest.value.id);
+    await deleteCatalogContestRecord(id);
     emitCatalogMutated();
-    await router.push("/contests");
+    if (isCurrent()) await router.push("/contests");
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "删除比赛失败";
+    if (isCurrent()) error.value = caught instanceof Error ? caught.message : "删除比赛失败";
   } finally {
-    deleting.value = false;
+    if (isCurrent()) deleting.value = false;
   }
 }
 
@@ -348,48 +376,62 @@ function getNextManualStatus(payload: {
 
 async function applyMarkToCell(
   problemId: string,
-  memberId: string,
+  member: Pick<LocalMemberPerson, "memberId" | "identityRevision">,
   currentStatus: "solved" | "attempted" | "unseen",
 ) {
-  if (!markMode.value || !contest.value) {
-    return;
-  }
+  if (!markMode.value || !contest.value || markSavingCellKey.value) return;
   if (!trackedMembers.value.length || !(coverage.value?.problems.length)) {
     error.value = "当前没有可标记的成员或题目";
     return;
   }
 
-  const cellKey = buildCellKey(problemId, memberId);
-  const manualStatus = await getManualMemberProblemStatusFromDb(memberId, problemId);
-  const nextStatus = getNextManualStatus({
-    currentStatus,
-    manualStatus,
-  });
-  if (typeof nextStatus === "undefined") {
-    return;
-  }
-  markSavingCellKey.value = cellKey;
+  // Hold the identity that produced this visible row through both awaits. A
+  // deleted/recreated member can have the same memberId but is a new person.
+  const { memberId, identityRevision } = member;
+  const id = contestId.value;
+  const generation = pageGeneration;
+  const isCurrent = () => !disposed && generation === pageGeneration && id === contestId.value;
+  markSavingCellKey.value = buildCellKey(problemId, memberId);
   error.value = "";
   feedback.value = "";
   try {
+    const manualStatus = await getManualMemberProblemStatusFromDb(memberId, problemId, identityRevision);
+    if (!isCurrent()) return;
+    const nextStatus = getNextManualStatus({ currentStatus, manualStatus });
+    if (typeof nextStatus === "undefined") return;
     await upsertManualMemberProblemStatus({
       memberId,
+      memberIdentityRevision: identityRevision,
       problemId,
       status: nextStatus,
       note: null,
     });
     emitMemberMutated();
-    await refreshCoverageOnly();
-    feedback.value = `manual status set to ${nextStatus}`;
+    if (isCurrent()) feedback.value = `manual status set to ${nextStatus}`;
   } catch (caught) {
-    error.value = caught instanceof Error ? caught.message : "failed to apply manual mark";
+    if (!isCurrent()) return;
+    error.value = caught && typeof caught === "object" && "name" in caught && caught.name === "AbortError"
+      ? "成员已删除或重新创建，请使用更新后的做题情况重试"
+      : caught instanceof Error ? caught.message : "failed to apply manual mark";
   } finally {
-    markSavingCellKey.value = "";
+    if (isCurrent()) markSavingCellKey.value = "";
   }
 }
 
-watch(contestId, loadContestPage);
-onMounted(loadContestPage);
+watch(contestId, () => {
+  saving.value = false;
+  deleting.value = false;
+  markMode.value = false;
+  feedback.value = "";
+  editing.value = false;
+  void loadContestPage();
+}, { immediate: true });
+onUnmounted(() => {
+  disposed = true;
+  pageGeneration++;
+  coverageSubscription?.unsubscribe();
+  coverageSubscription = null;
+});
 </script>
 
 <template>
@@ -467,7 +509,7 @@ onMounted(loadContestPage);
                             :disabled="!markMode || !!markSavingCellKey"
                             :title="`${member.displayName} · ${cell.ordinal} ${cell.title}：${cell.status === 'solved' ? '已通过' : cell.status === 'attempted' ? '已尝试' : '未做'}`"
                             :aria-label="`${member.displayName} ${cell.ordinal}：${cell.status === 'solved' ? '已通过' : cell.status === 'attempted' ? '已尝试' : '未做'}`"
-                            @click="applyMarkToCell(cell.problemId, member.memberId, cell.status)">
+                            @click="applyMarkToCell(cell.problemId, member, cell.status)">
                             <span class="heatmap-cell-symbol">{{ markSavingCellKey === buildCellKey(cell.problemId, member.memberId) ? '…' : cell.status === 'solved' ? '✓' : cell.status === 'attempted' ? '·' : '' }}</span>
                           </button>
                         </td>
@@ -617,7 +659,7 @@ onMounted(loadContestPage);
             </div>
           </div>
         </template>
-        <p v-else-if="error" class="error-box">{{ error }}</p>
+        <p v-if="error" class="error-box">{{ error }}</p>
         <div v-if="contest && !loading" class="detail-bottom-actions">
                 <div class="actions" style="margin-top: 0; margin-bottom: 18px">
                   <button

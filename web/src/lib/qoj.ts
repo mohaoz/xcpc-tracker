@@ -8,7 +8,7 @@ import type {
 } from "./local-model";
 import { accountStatusId } from './member-status';
 import { listRuntimeCatalogProblemsForImport } from "./catalog-runtime";
-import { assertHandleOwnership, localDb, recordImportSyncAttempt, upsertMemberBundle } from "./local-db";
+import { assertHandleOwnership, captureMemberSyncGuard, validateMemberSyncGuard, type MemberSyncGuard, localDb, recordImportSyncAttempt, upsertMemberBundle } from "./local-db";
 
 export async function linkQojMember(memberId:string,handle:string) {
   const at=new Date().toISOString();
@@ -20,6 +20,29 @@ export async function linkQojMember(memberId:string,handle:string) {
     const member=await localDb.members.get(memberId);
     await localDb.members.put({...member,memberId,identityRevision:member && !member.deletedAt ? member.identityRevision ?? crypto.randomUUID() : crypto.randomUUID(),displayName:member?.displayName || memberId,createdAt:member && !member.deletedAt ? member.createdAt : at,updatedAt:at,deletedAt:null});
     await localDb.memberHandles.put(account);
+  });
+}
+
+export type QojSyncTarget = {memberId:string;handle:string;displayName?:string;syncGuard:MemberSyncGuard};
+
+// Capture the entire queue in one transaction, before bridge/lock/catalog waits.
+// An explicit Add Member first calls linkQojMember and then captures its new identity.
+export async function listQojMemberSyncTargets(selected?: Array<{memberId:string;handle:string}>, onlyHandle?: string): Promise<QojSyncTarget[]> {
+  return localDb.transaction('rw',localDb.members,localDb.memberHandles,async()=>{
+    const [members,handles]=await Promise.all([localDb.members.toArray(),localDb.memberHandles.toArray()]);
+    const activeMembers=new Map(members.filter(m=>!m.deletedAt).map(m=>[m.memberId,m]));
+    const targets:QojSyncTarget[]=[];
+    for(const account of handles) {
+      const member=activeMembers.get(account.memberId);
+      if(!member || account.deletedAt || account.provider!=='qoj' || (onlyHandle && account.handle!==onlyHandle))continue;
+      if(selected && !selected.some(t=>t.memberId===member.memberId && t.handle===account.handle))continue;
+      const syncGuard=await captureMemberSyncGuard(member.memberId,'qoj',account.handle,true);
+      targets.push({memberId:member.memberId,displayName:member.displayName,handle:account.handle,syncGuard});
+    }
+    if(selected?.some(t=>!targets.some(target=>target.memberId===t.memberId && target.handle===t.handle))) {
+      throw new DOMException('QOJ account removed or rebound','AbortError');
+    }
+    return targets.sort((a,b)=>(a.displayName || a.memberId).localeCompare(b.displayName || b.memberId) || a.handle.localeCompare(b.handle));
   });
 }
 
@@ -64,6 +87,9 @@ export type QojImportProgress = {
 
 type QojImportOptions = {
   onProgress?: (progress: QojImportProgress) => void;
+  requireExisting?: boolean;
+  syncGuards?: ReadonlyMap<string, MemberSyncGuard>;
+  signal?: AbortSignal;
 };
 
 function buildQojProblemIndex(
@@ -103,8 +129,6 @@ export async function importQojUserscriptMembers(
   payload: QojUserscriptImport,
   options: QojImportOptions = {},
 ): Promise<QojImportSummary> {
-  const catalogProblems = await listRuntimeCatalogProblemsForImport();
-  const qojProblemIndex = buildQojProblemIndex(catalogProblems);
   const importedAt = new Date().toISOString();
   const memberPayloads = Array.isArray(payload.members) ? payload.members : [];
   const fetchFailures = (Array.isArray(payload.fetch_failures) ? payload.fetch_failures : [])
@@ -117,6 +141,32 @@ export async function importQojUserscriptMembers(
   if (!memberPayloads.length && !fetchFailures.length) {
     throw new Error("QOJ JSON 中没有成员或抓取失败记录");
   }
+  // Refresh callers supply identities captured before obtaining the response.
+  // Raw file imports may create/restore members, but still guard any identity
+  // that already exists when this import starts, including later batch entries.
+  const importTargets=[
+    ...memberPayloads.map(member=>({handle:String(member.handle ?? '').trim(),memberId:String(member.member_id ?? member.handle ?? '').trim() || String(member.handle ?? '').trim()})),
+    ...fetchFailures.map(failure=>({handle:failure.handle,memberId:failure.memberId || failure.handle})),
+  ].filter(target=>target.handle);
+  if(new Set(importTargets.map(target=>target.handle)).size!==importTargets.length)throw new Error('QOJ JSON 中账号重复');
+  const syncGuards=await localDb.transaction('rw',localDb.members,localDb.memberHandles,async()=>{
+    const guards=new Map<string,MemberSyncGuard>();
+    for(const target of importTargets) {
+      const supplied=options.syncGuards?.get(target.handle);
+      if(options.syncGuards && (!supplied?.member || !supplied.handle || supplied.member.memberId!==target.memberId || supplied.handle.memberId!==target.memberId)) {
+        throw new DOMException('QOJ import target changed','AbortError');
+      }
+      const guard=supplied ?? await captureMemberSyncGuard(target.memberId,'qoj',target.handle,options.requireExisting);
+      await validateMemberSyncGuard(guard);
+      guards.set(target.handle,guard);
+    }
+    return guards;
+  });
+  const assertNotCancelled=()=>{if(options.signal?.aborted)throw new DOMException('QOJ import cancelled','AbortError');};
+  assertNotCancelled();
+  const catalogProblems = await listRuntimeCatalogProblemsForImport();
+  assertNotCancelled();
+  const qojProblemIndex = buildQojProblemIndex(catalogProblems);
   let matchedStatusCount = 0;
   let unmatchedStatusCount = 0;
   const importedHandles: string[] = [];
@@ -259,7 +309,9 @@ export async function importQojUserscriptMembers(
       },
     };
 
+    assertNotCancelled();
     await upsertMemberBundle({
+      syncGuard:syncGuards.get(handle),
       member,
       handles,
       statuses,
@@ -279,7 +331,10 @@ export async function importQojUserscriptMembers(
     });
     await new Promise<void>((resolve) => setTimeout(resolve, 0));
     const sourceRecordId = `qoj:${failure.handle}:${importedAt}:fetch-failed:${failureIndex}`;
-    await recordImportSyncAttempt({
+    assertNotCancelled();
+    await localDb.transaction('rw',localDb.members,localDb.memberHandles,localDb.importSources,localDb.syncRecords,async()=>{
+      await validateMemberSyncGuard(syncGuards.get(failure.handle)!);
+      await recordImportSyncAttempt({
       importSource: {
         sourceRecordId,
         kind: "qoj_userscript_json",
@@ -308,6 +363,7 @@ export async function importQojUserscriptMembers(
           fetch_error: failure.error,
         },
       },
+      });
     });
   }
 
