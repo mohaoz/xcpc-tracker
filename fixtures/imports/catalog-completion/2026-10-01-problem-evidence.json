@@ -1,0 +1,62 @@
+{
+  "reviewed_at": "2026-10-01T10:36:00Z",
+  "sources": [
+    {
+      "filename": "cf-contest-list.json",
+      "sha256": "47ef5722cc473c3c6835bed232b69b3eac3cae4abeaae6478ce844a37a62d404",
+      "bytes": 1032512,
+      "source_url": "https://codeforces.com/api/contest.list?gym=true"
+    },
+    {
+      "filename": "cf-106707-standings.json",
+      "sha256": "07503e0f6d8a881103477645738616d1a85f201638e8763e7a29dbd7a752b33d",
+      "bytes": 90,
+      "source_url": "https://codeforces.com/api/contest.standings?contestId=106707&from=1&count=1"
+    },
+    {
+      "filename": "cf-106707-statements.pdf",
+      "sha256": "6f7a73921a2dd36859d8982b28adc5cf5550fa706222e4eca5cc1097a4167c78",
+      "bytes": 2309294,
+      "source_url": "https://codeforces.com/gym/106707/attachments/download/39423/GXCPC2025-statements.pdf"
+    },
+    {
+      "filename": "cf-106707-statements.txt",
+      "sha256": "2f56a795761a92b63296a89e533f1d2d8779331803398c60a6a1f93fd836af09",
+      "bytes": 27351,
+      "derived_from": "cf-106707-statements.pdf",
+      "method": "pdftotext"
+    },
+    {
+      "filename": "rating-problems.json",
+      "sha256": "9c0e410348bb507b89208c8f691c7267e9e6537d8f417e8da4dbbb67d38d1f89",
+      "bytes": 2413523,
+      "source_url": "https://hei-maom.github.io/xcpcrating/data/problems-index.json"
+    },
+    {
+      "filename": "cf-106689-statements.pdf",
+      "sha256": "b2628373cdcd033647357e0c36ab7412c8be9ff7f8eeef490c44a1b21fe9ca73",
+      "bytes": 1504101,
+      "source_url": "https://codeforces.com/gym/106689/attachments/download/39338/GXCPC2023-statements.pdf"
+    },
+    {
+      "filename": "cf-106689-statements.txt",
+      "sha256": "d9fa003c1ad4006211ef002608438237a992a10a6a058febe1d4909482c16090",
+      "bytes": 27352,
+      "derived_from": "cf-106689-statements.pdf",
+      "method": "pdftotext"
+    },
+    {
+      "filename": "cf-106697-statements.pdf",
+      "sha256": "9d22f192c9f4f60d8cb0082d55619f5da33aaa91cd5b9fda5ff4ee7695b6a12e",
+      "bytes": 2701900,
+      "source_url": "https://codeforces.com/gym/106697/attachments/download/39378/GXCPC2024-statements.pdf"
+    },
+    {
+      "filename": "cf-106697-statements.txt",
+      "sha256": "dfe07ffc430d58e413007effeda383458ef681c48e48ec23b486f4045b2e9669",
+      "bytes": 30873,
+      "derived_from": "cf-106697-statements.pdf",
+      "method": "pdftotext"
+    }
+  ]
+}

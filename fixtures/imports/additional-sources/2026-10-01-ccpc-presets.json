@@ -1,0 +1,2158 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-10-01T11:53:32.991Z",
+  "input_catalog_sha256": "c2d131aa1c9180b9010290ab8f6423dcacac494e2e2ad08792057bd4b005deb9",
+  "xcpcio_core_commit": "90f8432e58965cba5a33801819e12861f34446b6",
+  "srk_collection_commit": "d00d843b0ec095c69f172407e7c1ff5d4e305adb",
+  "scope": "Exactly 13 current inferred Board awards whose raw config explicitly selects medal ccpc; read-only proposals, no repo mutations",
+  "primary_sources": [
+    {
+      "url": "https://github.com/xcpcio/xcpcio/blob/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/rank.ts",
+      "sha256": "cfc363a0eb662b52ae7f8145e28a0f996e0abfa8f185841d7346941645f079f9",
+      "path": "supporting/rank.ts",
+      "git_blob_sha1": "f6adc0f4c7035473de47d1547dc0df9f00368ab1"
+    },
+    {
+      "url": "https://github.com/xcpcio/xcpcio/blob/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/team.ts",
+      "sha256": "b6aac44a442b5771e569ebf0fcddf891abc1262113d23106a1109abd0a408f86",
+      "path": "supporting/team.ts",
+      "git_blob_sha1": "9b5960a0c311d1bed02a91077cab3b0fbc0c896a"
+    },
+    {
+      "url": "https://github.com/algoux/standard-ranklist/blob/master/index.d.ts",
+      "sha256": "d43b2568a987b9d356fe8342e790418c2b9ed0f0e7891cda8f7578f739c640e8",
+      "path": "supporting/standard-ranklist-index.d.ts",
+      "git_blob_sha1": "5856854864fcba8bb681b68b13005f71be15ab32"
+    },
+    {
+      "url": "https://github.com/xcpcio/xcpcio/blob/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/problem.ts",
+      "sha256": "17ab13f63821a83c09951dc9ec3ab07472d7f5752d12458cb61beaf8663bc854",
+      "path": "supporting/packages-libs-core-src-problem.ts",
+      "git_blob_sha1": "225444b950574efcb51135af8055bcece3a1ac11"
+    },
+    {
+      "url": "https://github.com/xcpcio/xcpcio/blob/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/contest-options.ts",
+      "sha256": "a423082ca2d3ceb56ae048abe6942ef5be1ffa7714899cbb63359530bf1f2d97",
+      "path": "supporting/packages-libs-core-src-contest-options.ts",
+      "git_blob_sha1": "94cc2758a93eb0046ec0e7130d8317123a9af8f0"
+    },
+    {
+      "url": "https://github.com/xcpcio/xcpcio/blob/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/submission.ts",
+      "sha256": "6c195c5c70de809098d8c863f88a74b54ce40cc24bedffef66a6ce9c37ccdf31",
+      "path": "supporting/packages-libs-core-src-submission.ts",
+      "git_blob_sha1": "1db49e72e4039f6a2b456ee04393cd2998dba0fa"
+    },
+    {
+      "url": "https://github.com/xcpcio/xcpcio/blob/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/types/src/team.ts",
+      "sha256": "7d3cd6fe90eb86d8fa93125d0aab9a2c812a0b26813921488e54ef1cfacee7d8",
+      "path": "supporting/packages-libs-types-src-team.ts",
+      "git_blob_sha1": "86da8b53c274a02c18167f65fbab09609d0838a0"
+    },
+    {
+      "url": "https://github.com/xcpcio/xcpcio/blob/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/contest.ts",
+      "sha256": "9d51dc2bc35640dc30808d7d35e3c844a6a0314ce8c1885bca9e93b5dd365f12",
+      "path": "supporting/packages-libs-core-src-contest.ts",
+      "git_blob_sha1": "aa9898b6cc37936e839f3881deae58d740490961"
+    },
+    {
+      "url": "https://github.com/xcpcio/xcpcio/blob/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/submission-status.ts",
+      "sha256": "38287796923f48c0cd5dbad04df9e4a71ed1f157f16f03429484c82226a3f846",
+      "path": "supporting/packages-libs-core-src-submission-status.ts",
+      "git_blob_sha1": "91ba26f4e4d6fac163d56c9d260e1324bebc5251"
+    },
+    {
+      "url": "https://github.com/xcpcio/xcpcio/blob/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/utils/dayjs.ts",
+      "sha256": "fba596341961e84852841ab1666dc82c22ae0093385e8d1d1927807071f35b75",
+      "path": "supporting/packages-libs-core-src-utils-dayjs.ts",
+      "git_blob_sha1": "95883a31d2f176531ab7f5753e0a41ca9a000ebd"
+    }
+  ],
+  "changes": [
+    {
+      "contest_id": "7113bc04-ec9e-53c5-8cc6-3e05f2438e44",
+      "title": "2024 CCPC Liaoning Provincial Contest",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2024/liaoning",
+        "eligibleTeamCount": 127,
+        "cutoffs": {
+          "gold": {
+            "rank": 12,
+            "solved": 7,
+            "penalty": 815,
+            "teamId": "team149"
+          },
+          "silver": {
+            "rank": 37,
+            "solved": 5,
+            "penalty": 677,
+            "teamId": "team142"
+          },
+          "bronze": {
+            "rank": 75,
+            "solved": 3,
+            "penalty": 229,
+            "teamId": "team152"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2024/liaoning",
+        "eligibleTeamCount": 127,
+        "cutoffs": {
+          "gold": {
+            "rank": 13,
+            "solved": 7,
+            "penalty": 818,
+            "teamId": "team19"
+          },
+          "silver": {
+            "rank": 39,
+            "solved": 5,
+            "penalty": 714,
+            "teamId": "team158"
+          },
+          "bronze": {
+            "rank": 77,
+            "solved": 3,
+            "penalty": 255,
+            "teamId": "team118"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/7113bc04-ec9e-53c5-8cc6-3e05f2438e44/config.json",
+          "sha256": "01ec9081e035959aba72f3d15f69f640597376a3881b511f4da2769f8e440bde",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2024/liaoning/config.json"
+        },
+        "team": {
+          "path": "board/7113bc04-ec9e-53c5-8cc6-3e05f2438e44/team.json",
+          "sha256": "8944debafae4259340fe6f8885ff2732b4fa17404bd60a33ff992b4e87ccc807",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2024/liaoning/team.json"
+        },
+        "run": {
+          "path": "board/7113bc04-ec9e-53c5-8cc6-3e05f2438e44/run.json",
+          "sha256": "3b22923cbbe77c2fde8e1d23067c66ce71ad53a62410fb6f78b2b49d7136b825",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2024/liaoning/run.json"
+        },
+        "srk": {
+          "path": "official/provincial/ln/lncpc5th.srk.json",
+          "sha256": "0183d9709d6d0335041e26b7b8a19cb49aa39f4e0d8e235c4947b20259eb2102",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/provincial/ln/lncpc5th.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": true,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 127,
+        "effectiveTeamCount": 127,
+        "allTeamCount": 164,
+        "runCount": 2342,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 13,
+            "actualLastPosition": 13,
+            "rank": 13,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 296,
+            "next": {
+              "id": "team5",
+              "rank": 14,
+              "solved": 7,
+              "penalty": 836,
+              "lastSolvedMinute": 292
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 39,
+            "actualLastPosition": 39,
+            "rank": 39,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 258,
+            "next": {
+              "id": "team163",
+              "rank": 40,
+              "solved": 5,
+              "penalty": 791,
+              "lastSolvedMinute": 261
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 77,
+            "actualLastPosition": 77,
+            "rank": 77,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 175,
+            "next": {
+              "id": "team17",
+              "rank": 78,
+              "solved": 3,
+              "penalty": 262,
+              "lastSolvedMinute": 143
+            }
+          }
+        ],
+        "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+        "timestamp_unit": "second",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍",
+          "girl": "女队"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "7113bc04-ec9e-53c5-8cc6-3e05f2438e44",
+          "matched_official_rows": 127,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All matched official rows agree exactly after SRK ranking-time normalization"
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "033094a1-9c70-5d37-969d-b7a00db88f2f",
+      "title": "2024 China Collegiate Programming Contest (CCPC) Harbin Onsite (The 3rd Universal Cup. Stage 14: Harbin)",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/harbin",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 8,
+            "penalty": 1044,
+            "teamId": "G12"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 5,
+            "penalty": 248,
+            "teamId": "C08"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 5,
+            "penalty": 964,
+            "teamId": "C26"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/harbin",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 8,
+            "penalty": 1044,
+            "teamId": "G12"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 5,
+            "penalty": 248,
+            "teamId": "C08"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 5,
+            "penalty": 964,
+            "teamId": "C26"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/033094a1-9c70-5d37-969d-b7a00db88f2f/config.json",
+          "sha256": "9e5b386705c154f543563cbfd33743e6fdad8c72fc6b29a3c611af568240a86e",
+          "url": "https://board.xcpcio.com/data/ccpc/10th/harbin/config.json"
+        },
+        "team": {
+          "path": "board/033094a1-9c70-5d37-969d-b7a00db88f2f/team.json",
+          "sha256": "064d8cc8bad2645052118e506a49601a0809a3fce0c3176fd4037683d4beeb65",
+          "url": "https://board.xcpcio.com/data/ccpc/10th/harbin/team.json"
+        },
+        "run": {
+          "path": "board/033094a1-9c70-5d37-969d-b7a00db88f2f/run.json",
+          "sha256": "9486b0def1580445a202710710e5920264bba695dff0529312133e097f8aa72e",
+          "url": "https://board.xcpcio.com/data/ccpc/10th/harbin/run.json"
+        },
+        "srk": {
+          "path": "official/ccpc/ccpc2024/ccpc2024harbin.srk.json",
+          "sha256": "eec2e83d6c98d283cdb0304dfe6542320edd03cda4ca2d8cbb823448ea4b9856",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/ccpc/ccpc2024/ccpc2024harbin.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": false,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 280,
+        "effectiveTeamCount": 279,
+        "allTeamCount": 302,
+        "runCount": 4485,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 28,
+            "actualLastPosition": 28,
+            "rank": 28,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 269,
+            "next": {
+              "id": "I34",
+              "rank": 29,
+              "solved": 8,
+              "penalty": 1097,
+              "lastSolvedMinute": 288
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 84,
+            "actualLastPosition": 84,
+            "rank": 84,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 94,
+            "next": {
+              "id": "A25",
+              "rank": 85,
+              "solved": 5,
+              "penalty": 293,
+              "lastSolvedMinute": 103
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 168,
+            "actualLastPosition": 168,
+            "rank": 168,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 263,
+            "next": {
+              "id": "C20",
+              "rank": 169,
+              "solved": 5,
+              "penalty": 975,
+              "lastSolvedMinute": 287
+            }
+          }
+        ],
+        "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+        "timestamp_unit": "second",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍",
+          "girl": "女队"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "033094a1-9c70-5d37-969d-b7a00db88f2f",
+          "matched_official_rows": 280,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All matched official rows agree exactly after SRK ranking-time normalization"
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "3abb2c7f-0e8c-51fc-afac-fdceab5470a7",
+      "title": "2024 China Collegiate Programming Contest (CCPC) Zhengzhou Onsite (The 3rd Universal Cup. Stage 22: Zhengzhou)",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/zhengzhou",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 6,
+            "penalty": 974,
+            "teamId": "C305"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 5,
+            "penalty": 890,
+            "teamId": "B103"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 4,
+            "penalty": 887,
+            "teamId": "A308"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/zhengzhou",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 6,
+            "penalty": 974,
+            "teamId": "C305"
+          },
+          "silver": {
+            "rank": 83,
+            "solved": 5,
+            "penalty": 886,
+            "teamId": "A202"
+          },
+          "bronze": {
+            "rank": 166,
+            "solved": 4,
+            "penalty": 856,
+            "teamId": "A509"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/3abb2c7f-0e8c-51fc-afac-fdceab5470a7/config.json",
+          "sha256": "fc391a4718c22848e040c6407fa05a14b42f3992d58d8e0cefb299db8c95cead",
+          "url": "https://board.xcpcio.com/data/ccpc/10th/zhengzhou/config.json"
+        },
+        "team": {
+          "path": "board/3abb2c7f-0e8c-51fc-afac-fdceab5470a7/team.json",
+          "sha256": "bdba319974d2d9953faa8a58a69da63f749d5a61ef3f9714c897bc96939c936b",
+          "url": "https://board.xcpcio.com/data/ccpc/10th/zhengzhou/team.json"
+        },
+        "run": {
+          "path": "board/3abb2c7f-0e8c-51fc-afac-fdceab5470a7/run.json",
+          "sha256": "173fef10d3ef0ea5af2eaa1477c57be34d21a456477a3980479ec3532bb3205d",
+          "url": "https://board.xcpcio.com/data/ccpc/10th/zhengzhou/run.json"
+        },
+        "srk": {
+          "path": "official/ccpc/ccpc2024/ccpc2024zhengzhou.srk.json",
+          "sha256": "d650188acc9d052eccb9e0e326bac3a6b072f7dc60d0a0e3e003b35d6fc62e6f",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/ccpc/ccpc2024/ccpc2024zhengzhou.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": true,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 280,
+        "effectiveTeamCount": 276,
+        "allTeamCount": 320,
+        "runCount": 4578,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 28,
+            "actualLastPosition": 28,
+            "rank": 28,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 263,
+            "next": {
+              "id": "D606",
+              "rank": 29,
+              "solved": 6,
+              "penalty": 1029,
+              "lastSolvedMinute": 266
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 83,
+            "actualLastPosition": 83,
+            "rank": 83,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 269,
+            "next": {
+              "id": "B103",
+              "rank": 84,
+              "solved": 5,
+              "penalty": 890,
+              "lastSolvedMinute": 222
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 166,
+            "actualLastPosition": 166,
+            "rank": 166,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 262,
+            "next": {
+              "id": "A210",
+              "rank": 167,
+              "solved": 4,
+              "penalty": 863,
+              "lastSolvedMinute": 259
+            }
+          }
+        ],
+        "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+        "timestamp_unit": "second",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍",
+          "girl": "女队"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "3abb2c7f-0e8c-51fc-afac-fdceab5470a7",
+          "matched_official_rows": 280,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All matched official rows agree exactly after SRK ranking-time normalization"
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "861750a2-a4bc-5c63-b06c-acece91ab757",
+      "title": "2024 National Invitational of CCPC (Zhengzhou), 2024 CCPC Henan Provincial Collegiate Programming Contest",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2024/henan",
+        "eligibleTeamCount": 424,
+        "cutoffs": {
+          "gold": {
+            "rank": 42,
+            "solved": 9,
+            "penalty": 1190,
+            "teamId": "C41N"
+          },
+          "silver": {
+            "rank": 126,
+            "solved": 7,
+            "penalty": 782,
+            "teamId": "D38N"
+          },
+          "bronze": {
+            "rank": 253,
+            "solved": 4,
+            "penalty": 307,
+            "teamId": "E48Y"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2024/henan",
+        "eligibleTeamCount": 424,
+        "cutoffs": {
+          "gold": {
+            "rank": 43,
+            "solved": 9,
+            "penalty": 1227,
+            "teamId": "H23N"
+          },
+          "silver": {
+            "rank": 128,
+            "solved": 7,
+            "penalty": 799,
+            "teamId": "E28Y"
+          },
+          "bronze": {
+            "rank": 255,
+            "solved": 4,
+            "penalty": 337,
+            "teamId": "F23Y"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/861750a2-a4bc-5c63-b06c-acece91ab757/config.json",
+          "sha256": "81d416f4e088901a6197ab1308779149320f9e084aa150a4345a65610dda9224",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2024/henan/config.json"
+        },
+        "team": {
+          "path": "board/861750a2-a4bc-5c63-b06c-acece91ab757/team.json",
+          "sha256": "64bcb2cfb9aa2c5497ae1e09b657c2c2d669bb1fb5c2a27b5a9ee909647d2bb7",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2024/henan/team.json"
+        },
+        "run": {
+          "path": "board/861750a2-a4bc-5c63-b06c-acece91ab757/run.json",
+          "sha256": "96de2245fd808088c44e6ec8d9df1d4afa7e9ac6125b5f30358c2921f7d65fcd",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2024/henan/run.json"
+        },
+        "srk": {
+          "path": "official/provincial/ha/haccpc6th.srk.json",
+          "sha256": "87ed5c2f7bc6d1a61227097783b03ea4fee94ed0cd9c32b8f95082750e94c99f",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/provincial/ha/haccpc6th.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": true,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 424,
+        "effectiveTeamCount": 424,
+        "allTeamCount": 442,
+        "runCount": 8291,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 43,
+            "actualLastPosition": 43,
+            "rank": 43,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 247,
+            "next": {
+              "id": "B41N",
+              "rank": 44,
+              "solved": 9,
+              "penalty": 1330,
+              "lastSolvedMinute": 283
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 128,
+            "actualLastPosition": 128,
+            "rank": 128,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 202,
+            "next": {
+              "id": "B27N",
+              "rank": 129,
+              "solved": 7,
+              "penalty": 806,
+              "lastSolvedMinute": 254
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 255,
+            "actualLastPosition": 255,
+            "rank": 255,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 162,
+            "next": {
+              "id": "G37Y",
+              "rank": 256,
+              "solved": 4,
+              "penalty": 358,
+              "lastSolvedMinute": 119
+            }
+          }
+        ],
+        "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+        "timestamp_unit": "second",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "861750a2-a4bc-5c63-b06c-acece91ab757",
+          "matched_official_rows": 424,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All matched official rows agree exactly after SRK ranking-time normalization"
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "2d28130e-3c6e-527d-9ac2-597b2120d367",
+      "title": "2025 National Invitational of CCPC (Zhengzhou), 2025 CCPC Henan Provincial Collegiate Programming Contest",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/zhengzhou-invitational",
+        "eligibleTeamCount": 433,
+        "cutoffs": {
+          "gold": {
+            "rank": 43,
+            "solved": 8,
+            "penalty": 880,
+            "teamId": "B1006"
+          },
+          "silver": {
+            "rank": 129,
+            "solved": 7,
+            "penalty": 767,
+            "teamId": "B1007"
+          },
+          "bronze": {
+            "rank": 258,
+            "solved": 5,
+            "penalty": 360,
+            "teamId": "B0910"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/zhengzhou-invitational",
+        "eligibleTeamCount": 433,
+        "cutoffs": {
+          "gold": {
+            "rank": 44,
+            "solved": 8,
+            "penalty": 891,
+            "teamId": "C0909"
+          },
+          "silver": {
+            "rank": 130,
+            "solved": 7,
+            "penalty": 769,
+            "teamId": "A0701"
+          },
+          "bronze": {
+            "rank": 260,
+            "solved": 5,
+            "penalty": 385,
+            "teamId": "C0204"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/2d28130e-3c6e-527d-9ac2-597b2120d367/config.json",
+          "sha256": "fd773e049672fed86bec086e4ef99b4c5e3c8e5c08a0f6a6c2ebc3d3e29ed68b",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/zhengzhou-invitational/config.json"
+        },
+        "team": {
+          "path": "board/2d28130e-3c6e-527d-9ac2-597b2120d367/team.json",
+          "sha256": "68c26586bd4939c1246c9e215cac3f20b9ec7e5a99f856df109db292f73b5eca",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/zhengzhou-invitational/team.json"
+        },
+        "run": {
+          "path": "board/2d28130e-3c6e-527d-9ac2-597b2120d367/run.json",
+          "sha256": "190bbce78a3135982191fd42ee0483e329a9854121b70eaec4259ce18c3e83c2",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/zhengzhou-invitational/run.json"
+        },
+        "srk": {
+          "path": "official/ccpc/ccpc2025/ccpc2025invitational-zhengzhou.srk.json",
+          "sha256": "e5846c98c1a3e2f2abf2ce4a41590a94332f75adf45ca82053e1f63057a6628f",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/ccpc/ccpc2025/ccpc2025invitational-zhengzhou.srk.json"
+        }
+      },
+      "highest_group": "official nationwide invitational pool; provincial is a marked subset and is not selected",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": true,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 433,
+        "effectiveTeamCount": 432,
+        "allTeamCount": 438,
+        "runCount": 7037,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 44,
+            "actualLastPosition": 44,
+            "rank": 44,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 232,
+            "next": {
+              "id": "A0205",
+              "rank": 45,
+              "solved": 8,
+              "penalty": 972,
+              "lastSolvedMinute": 287
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 130,
+            "actualLastPosition": 130,
+            "rank": 130,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 235,
+            "next": {
+              "id": "A0408",
+              "rank": 131,
+              "solved": 7,
+              "penalty": 773,
+              "lastSolvedMinute": 248
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 260,
+            "actualLastPosition": 260,
+            "rank": 260,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 231,
+            "next": {
+              "id": "C0701",
+              "rank": 261,
+              "solved": 5,
+              "penalty": 387,
+              "lastSolvedMinute": 174
+            }
+          }
+        ],
+        "penalty_rule": "in_minutes",
+        "timestamp_unit": "second",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "provincial": "省内队伍",
+          "unofficial": "打星队伍",
+          "girl": "女生队伍"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "2d28130e-3c6e-527d-9ac2-597b2120d367",
+          "matched_official_rows": 433,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All 410 penalty differences are explained by explicit source rounding: Board default floors each accepted time to minutes; SRK sums seconds then floors total to minutes. Keep Board-derived source and penalties."
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "99d7897e-30fe-5b6c-8ec6-a3e261cf4d0c",
+      "title": "The 15th Shandong CCPC Provincial Collegiate Programming Contest",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2025/shandong",
+        "eligibleTeamCount": 231,
+        "cutoffs": {
+          "gold": {
+            "rank": 23,
+            "solved": 6,
+            "penalty": 984,
+            "teamId": "405x06"
+          },
+          "silver": {
+            "rank": 69,
+            "solved": 4,
+            "penalty": 463,
+            "teamId": "303x20"
+          },
+          "bronze": {
+            "rank": 138,
+            "solved": 3,
+            "penalty": 571,
+            "teamId": "407x22"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2025/shandong",
+        "eligibleTeamCount": 231,
+        "cutoffs": {
+          "gold": {
+            "rank": 24,
+            "solved": 6,
+            "penalty": 1022,
+            "teamId": "112x02"
+          },
+          "silver": {
+            "rank": 70,
+            "solved": 4,
+            "penalty": 468,
+            "teamId": "405x01"
+          },
+          "bronze": {
+            "rank": 139,
+            "solved": 3,
+            "penalty": 609,
+            "teamId": "203x32"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/99d7897e-30fe-5b6c-8ec6-a3e261cf4d0c/config.json",
+          "sha256": "2cbef38767fe9ad74ada770e9b22a2b2acb2cd81767e82ae1708208ad23b11bb",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2025/shandong/config.json"
+        },
+        "team": {
+          "path": "board/99d7897e-30fe-5b6c-8ec6-a3e261cf4d0c/team.json",
+          "sha256": "d8389dc084c99f49e8241050e6c9a5dfe4e1cbea1b2dc0288ffbd597412da909",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2025/shandong/team.json"
+        },
+        "run": {
+          "path": "board/99d7897e-30fe-5b6c-8ec6-a3e261cf4d0c/run.json",
+          "sha256": "6c6e548462c58241e5799a85bde4c55184f328f73440904a251fa8b999c6cb2d",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2025/shandong/run.json"
+        },
+        "srk": {
+          "path": "official/provincial/sd/sdcpc15th.srk.json",
+          "sha256": "125ba2740511b35942067d1e378dd95c655790a3ff684b73adad4ee7d0083a66",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/provincial/sd/sdcpc15th.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": true,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 231,
+        "effectiveTeamCount": 231,
+        "allTeamCount": 271,
+        "runCount": 3443,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 24,
+            "actualLastPosition": 24,
+            "rank": 24,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 227,
+            "next": {
+              "id": "203x41",
+              "rank": 25,
+              "solved": 6,
+              "penalty": 1077,
+              "lastSolvedMinute": 252
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 70,
+            "actualLastPosition": 70,
+            "rank": 70,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 204,
+            "next": {
+              "id": "405x29",
+              "rank": 71,
+              "solved": 4,
+              "penalty": 469,
+              "lastSolvedMinute": 264
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 139,
+            "actualLastPosition": 139,
+            "rank": 139,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 253,
+            "next": {
+              "id": "405x09",
+              "rank": 140,
+              "solved": 2,
+              "penalty": 39,
+              "lastSolvedMinute": 32
+            }
+          }
+        ],
+        "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+        "timestamp_unit": "second",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍",
+          "girl": "女队"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "99d7897e-30fe-5b6c-8ec6-a3e261cf4d0c",
+          "matched_official_rows": 231,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "Both 20-minute differences are explained by PRESENTATION_ERROR: XCPCIO explicitly excludes it from penalty; SRK noPenaltyResults does not. Keep Board-derived source and penalties."
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "f2988a25-a87b-5222-ae8c-102af2090df1",
+      "title": "第九届中国大学生程序设计竞赛 深圳站（CCPC 2023 Shenzhen Site）",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/9th/shenzhen",
+        "eligibleTeamCount": 240,
+        "cutoffs": {
+          "gold": {
+            "rank": 24,
+            "solved": 7,
+            "penalty": 1191,
+            "teamId": "team158"
+          },
+          "silver": {
+            "rank": 72,
+            "solved": 5,
+            "penalty": 889,
+            "teamId": "team255"
+          },
+          "bronze": {
+            "rank": 144,
+            "solved": 3,
+            "penalty": 430,
+            "teamId": "team087"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/9th/shenzhen",
+        "eligibleTeamCount": 240,
+        "cutoffs": {
+          "gold": {
+            "rank": 24,
+            "solved": 7,
+            "penalty": 1191,
+            "teamId": "team158"
+          },
+          "silver": {
+            "rank": 70,
+            "solved": 5,
+            "penalty": 875,
+            "teamId": "team055"
+          },
+          "bronze": {
+            "rank": 139,
+            "solved": 3,
+            "penalty": 401,
+            "teamId": "team269"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/f2988a25-a87b-5222-ae8c-102af2090df1/config.json",
+          "sha256": "133e8628ade8fcf55768f7e840a7c06a9bc1f3db8cd71587519d85e133b2f2d9",
+          "url": "https://board.xcpcio.com/data/ccpc/9th/shenzhen/config.json"
+        },
+        "team": {
+          "path": "board/f2988a25-a87b-5222-ae8c-102af2090df1/team.json",
+          "sha256": "fab306e662a71c372a326dad9b9f5ad7dd9252d026ce274666af0df59640d50c",
+          "url": "https://board.xcpcio.com/data/ccpc/9th/shenzhen/team.json"
+        },
+        "run": {
+          "path": "board/f2988a25-a87b-5222-ae8c-102af2090df1/run.json",
+          "sha256": "c746ad2337ed5b0399212498fd49fb71331742a1b2b8920ebffa8a22ae0a8346",
+          "url": "https://board.xcpcio.com/data/ccpc/9th/shenzhen/run.json"
+        },
+        "srk": {
+          "path": "official/ccpc/ccpc2023/ccpc2023shenzhen.srk.json",
+          "sha256": "17bb3de5ce0ff80afe0228db450e88e6048ccc1e13a37db79bd41a578976b488",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/ccpc/ccpc2023/ccpc2023shenzhen.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": true,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 240,
+        "effectiveTeamCount": 231,
+        "allTeamCount": 288,
+        "runCount": 3772,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 24,
+            "actualLastPosition": 24,
+            "rank": 24,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 295,
+            "next": {
+              "id": "team257",
+              "rank": 25,
+              "solved": 7,
+              "penalty": 1283,
+              "lastSolvedMinute": 279
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 70,
+            "actualLastPosition": 70,
+            "rank": 70,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 257,
+            "next": {
+              "id": "team166",
+              "rank": 71,
+              "solved": 5,
+              "penalty": 877,
+              "lastSolvedMinute": 280
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 139,
+            "actualLastPosition": 139,
+            "rank": 139,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 191,
+            "next": {
+              "id": "team229",
+              "rank": 140,
+              "solved": 3,
+              "penalty": 418,
+              "lastSolvedMinute": 152
+            }
+          }
+        ],
+        "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+        "timestamp_unit": "second",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "f2988a25-a87b-5222-ae8c-102af2090df1",
+          "matched_official_rows": 240,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "Both 20-minute differences are explained by PRESENTATION_ERROR: XCPCIO explicitly excludes it from penalty; SRK noPenaltyResults does not. Keep Board-derived source and penalties."
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "90304e71-e24f-52db-ac10-905968538e15",
+      "title": "第十一届中国大学生程序设计竞赛 哈尔滨站（CCPC 2025 Harbin Site）",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/harbin",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 7,
+            "penalty": 865,
+            "teamId": "C06"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 6,
+            "penalty": 981,
+            "teamId": "J05"
+          },
+          "bronze": {
+            "rank": 156,
+            "solved": 4,
+            "penalty": 377,
+            "teamId": "F03"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/harbin",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 7,
+            "penalty": 865,
+            "teamId": "C06"
+          },
+          "silver": {
+            "rank": 76,
+            "solved": 6,
+            "penalty": 972,
+            "teamId": "E15"
+          },
+          "bronze": {
+            "rank": 152,
+            "solved": 4,
+            "penalty": 248,
+            "teamId": "F13"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/90304e71-e24f-52db-ac10-905968538e15/config.json",
+          "sha256": "ef7cbf8bc568ad14e065a3239744bda84d463db796883bd9da75d5107469ec9a",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/harbin/config.json"
+        },
+        "team": {
+          "path": "board/90304e71-e24f-52db-ac10-905968538e15/team.json",
+          "sha256": "930c0cfd6b97ec97d4400364df9c39e24945aac5830f6451341fe10e7b016774",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/harbin/team.json"
+        },
+        "run": {
+          "path": "board/90304e71-e24f-52db-ac10-905968538e15/run.json",
+          "sha256": "042336df8b87b2e284cc8cb1ea9138c22c3f1a744637d04ed59ce0d5918a689d",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/harbin/run.json"
+        },
+        "srk": {
+          "path": "official/ccpc/ccpc2025/ccpc2025harbin.srk.json",
+          "sha256": "2bd27db1adb9f4263b2cb6af1779a61c1efd2c26a26e20b108bac7185dbe7c77",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/ccpc/ccpc2025/ccpc2025harbin.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": true,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 260,
+        "effectiveTeamCount": 252,
+        "allTeamCount": 278,
+        "runCount": 3845,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 26,
+            "actualLastPosition": 26,
+            "rank": 26,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 285,
+            "next": {
+              "id": "G11",
+              "rank": 27,
+              "solved": 7,
+              "penalty": 875,
+              "lastSolvedMinute": 195
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 76,
+            "actualLastPosition": 76,
+            "rank": 76,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 284,
+            "next": {
+              "id": "F14",
+              "rank": 77,
+              "solved": 6,
+              "penalty": 975,
+              "lastSolvedMinute": 266
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 152,
+            "actualLastPosition": 152,
+            "rank": 152,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 95,
+            "next": {
+              "id": "P14",
+              "rank": 153,
+              "solved": 4,
+              "penalty": 348,
+              "lastSolvedMinute": 123
+            }
+          }
+        ],
+        "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+        "timestamp_unit": "millisecond",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍",
+          "girl": "女队"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "90304e71-e24f-52db-ac10-905968538e15",
+          "matched_official_rows": 260,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All matched official rows agree exactly after SRK ranking-time normalization"
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "3c1f14cf-3e1d-55a5-bc61-95cfb3192540",
+      "title": "第十一届中国大学生程序设计竞赛 济南站（CCPC 2025 Jinan Site）",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/jinan",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 6,
+            "penalty": 845,
+            "teamId": "117"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 4,
+            "penalty": 466,
+            "teamId": "78"
+          },
+          "bronze": {
+            "rank": 156,
+            "solved": 3,
+            "penalty": 377,
+            "teamId": "158"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/jinan",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 6,
+            "penalty": 845,
+            "teamId": "117"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 4,
+            "penalty": 466,
+            "teamId": "78"
+          },
+          "bronze": {
+            "rank": 156,
+            "solved": 3,
+            "penalty": 377,
+            "teamId": "158"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/3c1f14cf-3e1d-55a5-bc61-95cfb3192540/config.json",
+          "sha256": "cb13bffe89fc82f2e3962ead0cdcb27eaf9a05b68cbde0e277b47c05ab16d5ee",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/jinan/config.json"
+        },
+        "team": {
+          "path": "board/3c1f14cf-3e1d-55a5-bc61-95cfb3192540/team.json",
+          "sha256": "b58fbd7a9f15ee5b27ae7ebc1fbc6a386eda7b65edec90297d2cedb90c716a45",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/jinan/team.json"
+        },
+        "run": {
+          "path": "board/3c1f14cf-3e1d-55a5-bc61-95cfb3192540/run.json",
+          "sha256": "b00d0ea184f57389b281b3435d4760827e01fc99161a11b9f67ad23d45e49ecf",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/jinan/run.json"
+        },
+        "srk": {
+          "path": "official/ccpc/ccpc2025/ccpc2025jinan.srk.json",
+          "sha256": "3b3eecf7a8faf3a51f3325519e9619481f260b82837ffc8819fce45bcb4a9f45",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/ccpc/ccpc2025/ccpc2025jinan.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": false,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 260,
+        "effectiveTeamCount": 259,
+        "allTeamCount": 320,
+        "runCount": 3752,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 26,
+            "actualLastPosition": 26,
+            "rank": 26,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 255,
+            "next": {
+              "id": "138",
+              "rank": 27,
+              "solved": 6,
+              "penalty": 859,
+              "lastSolvedMinute": 200
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 78,
+            "actualLastPosition": 78,
+            "rank": 78,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 228,
+            "next": {
+              "id": "106",
+              "rank": 79,
+              "solved": 4,
+              "penalty": 478,
+              "lastSolvedMinute": 210
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 156,
+            "actualLastPosition": 156,
+            "rank": 156,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 197,
+            "next": {
+              "id": "175",
+              "rank": 157,
+              "solved": 3,
+              "penalty": 381,
+              "lastSolvedMinute": 150
+            }
+          }
+        ],
+        "penalty_rule": "in_minutes",
+        "timestamp_unit": "millisecond",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "3c1f14cf-3e1d-55a5-bc61-95cfb3192540",
+          "matched_official_rows": 260,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All matched official rows agree exactly after SRK ranking-time normalization"
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "0e2f509e-0941-51bf-9ef2-a3a80deb603b",
+      "title": "第十一届中国大学生程序设计竞赛 郑州站（CCPC 2025 Zhengzhou Site）",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/zhengzhou",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 6,
+            "penalty": 972,
+            "teamId": "13"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 4,
+            "penalty": 719,
+            "teamId": "165"
+          },
+          "bronze": {
+            "rank": 156,
+            "solved": 3,
+            "penalty": 778,
+            "teamId": "51"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/zhengzhou",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 25,
+            "solved": 6,
+            "penalty": 960,
+            "teamId": "186"
+          },
+          "silver": {
+            "rank": 75,
+            "solved": 4,
+            "penalty": 690,
+            "teamId": "126"
+          },
+          "bronze": {
+            "rank": 150,
+            "solved": 3,
+            "penalty": 714,
+            "teamId": "254"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/0e2f509e-0941-51bf-9ef2-a3a80deb603b/config.json",
+          "sha256": "3f6f7e5ad5c6b959fd75937505ac2ce7542f53173379af9cecccf0437f0fea68",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/zhengzhou/config.json"
+        },
+        "team": {
+          "path": "board/0e2f509e-0941-51bf-9ef2-a3a80deb603b/team.json",
+          "sha256": "2dd055b91143860b2c033729b5f2c44cdc2298b62aa1306ed1e4ab5fd230762b",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/zhengzhou/team.json"
+        },
+        "run": {
+          "path": "board/0e2f509e-0941-51bf-9ef2-a3a80deb603b/run.json",
+          "sha256": "28c122808940a91c9d9c75d3dfaa0faf692d116e233235c4a15ab026bcf2dc84",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/zhengzhou/run.json"
+        },
+        "srk": {
+          "path": "official/ccpc/ccpc2025/ccpc2025zhengzhou.srk.json",
+          "sha256": "0fba73d97d43b2ffab042a84a36585f6d37756bd54e09bd30d7f4f5adde2a04e",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/ccpc/ccpc2025/ccpc2025zhengzhou.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": true,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 260,
+        "effectiveTeamCount": 250,
+        "allTeamCount": 311,
+        "runCount": 4850,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 25,
+            "actualLastPosition": 25,
+            "rank": 25,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 244,
+            "next": {
+              "id": "13",
+              "rank": 26,
+              "solved": 6,
+              "penalty": 972,
+              "lastSolvedMinute": 298
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 75,
+            "actualLastPosition": 75,
+            "rank": 75,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 295,
+            "next": {
+              "id": "73",
+              "rank": 76,
+              "solved": 4,
+              "penalty": 708,
+              "lastSolvedMinute": 246
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 150,
+            "actualLastPosition": 150,
+            "rank": 150,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 171,
+            "next": {
+              "id": "228",
+              "rank": 151,
+              "solved": 3,
+              "penalty": 720,
+              "lastSolvedMinute": 233
+            }
+          }
+        ],
+        "penalty_rule": "in_minutes",
+        "timestamp_unit": "millisecond",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "0e2f509e-0941-51bf-9ef2-a3a80deb603b",
+          "matched_official_rows": 260,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All matched official rows agree exactly after SRK ranking-time normalization"
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "e94e1e74-b0c7-5989-ad3d-a14481dd32d8",
+      "title": "第十一届中国大学生程序设计竞赛 重庆站（CCPC 2025 Chongqing Site）",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/chongqing",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 7,
+            "penalty": 1150,
+            "teamId": "49"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 5,
+            "penalty": 640,
+            "teamId": "154"
+          },
+          "bronze": {
+            "rank": 156,
+            "solved": 4,
+            "penalty": 632,
+            "teamId": "41"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/chongqing",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 7,
+            "penalty": 1150,
+            "teamId": "49"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 5,
+            "penalty": 640,
+            "teamId": "154"
+          },
+          "bronze": {
+            "rank": 155,
+            "solved": 4,
+            "penalty": 599,
+            "teamId": "203"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/e94e1e74-b0c7-5989-ad3d-a14481dd32d8/config.json",
+          "sha256": "0f784fa97b82d9b276f5a9efe3ee908de1268adeb86ef56c01659f41c9e3579e",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/chongqing/config.json"
+        },
+        "team": {
+          "path": "board/e94e1e74-b0c7-5989-ad3d-a14481dd32d8/team.json",
+          "sha256": "315a05bbf62283cfa7b967b57d4451cb7a434d939ceadbbbaea4277e33286534",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/chongqing/team.json"
+        },
+        "run": {
+          "path": "board/e94e1e74-b0c7-5989-ad3d-a14481dd32d8/run.json",
+          "sha256": "c63f7691f74721571eee7a350c55ccf213fe75d6a2beec928afff18380806310",
+          "url": "https://board.xcpcio.com/data/ccpc/11th/chongqing/run.json"
+        },
+        "srk": {
+          "path": "official/ccpc/ccpc2025/ccpc2025chongqing.srk.json",
+          "sha256": "38af5c7eaebe0d2393f21dce886e73bf66e78f39aa32ed937f1690e806c8c070",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/ccpc/ccpc2025/ccpc2025chongqing.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": true,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 260,
+        "effectiveTeamCount": 258,
+        "allTeamCount": 324,
+        "runCount": 4026,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 26,
+            "actualLastPosition": 26,
+            "rank": 26,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 282,
+            "next": {
+              "id": "153",
+              "rank": 27,
+              "solved": 7,
+              "penalty": 1155,
+              "lastSolvedMinute": 277
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 78,
+            "actualLastPosition": 78,
+            "rank": 78,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 263,
+            "next": {
+              "id": "43",
+              "rank": 79,
+              "solved": 5,
+              "penalty": 656,
+              "lastSolvedMinute": 257
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 155,
+            "actualLastPosition": 155,
+            "rank": 155,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 293,
+            "next": {
+              "id": "41",
+              "rank": 156,
+              "solved": 4,
+              "penalty": 632,
+              "lastSolvedMinute": 257
+            }
+          }
+        ],
+        "penalty_rule": "in_minutes",
+        "timestamp_unit": "millisecond",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "e94e1e74-b0c7-5989-ad3d-a14481dd32d8",
+          "matched_official_rows": 260,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All matched official rows agree exactly after SRK ranking-time normalization"
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "d037a863-64dc-5228-b830-fbcd818798ed",
+      "title": "第十届中国大学生程序设计竞赛 济南站（CCPC 2024 Jinan Site）",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/jinan",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 7,
+            "penalty": 1083,
+            "teamId": "B74"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 5,
+            "penalty": 652,
+            "teamId": "A54"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 4,
+            "penalty": 935,
+            "teamId": "E83"
+          }
+        }
+      },
+      "action": "replace_explicit",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/jinan",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 7,
+            "penalty": 1083,
+            "teamId": "B74"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 5,
+            "penalty": 652,
+            "teamId": "A54"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 4,
+            "penalty": 935,
+            "teamId": "E83"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/d037a863-64dc-5228-b830-fbcd818798ed/config.json",
+          "sha256": "c934bda556d32d9b489cda522b3d66b37f6c534e395ffbc545c6ee253cd42d6f",
+          "url": "https://board.xcpcio.com/data/ccpc/10th/jinan/config.json"
+        },
+        "team": {
+          "path": "board/d037a863-64dc-5228-b830-fbcd818798ed/team.json",
+          "sha256": "3e4eff59607372359216cd138c8f3b200606a1019c9a44f4130e82bd0a40fdba",
+          "url": "https://board.xcpcio.com/data/ccpc/10th/jinan/team.json"
+        },
+        "run": {
+          "path": "board/d037a863-64dc-5228-b830-fbcd818798ed/run.json",
+          "sha256": "04e99a4abe9bac109f677ff8c9935d3e57288428b876b07613c8215796171341",
+          "url": "https://board.xcpcio.com/data/ccpc/10th/jinan/run.json"
+        },
+        "srk": {
+          "path": "official/ccpc/ccpc2024/ccpc2024jinan.srk.json",
+          "sha256": "6c09c0db6e4ab7f6fd88231dde93fe75392b347b9d4c831ade0ac4576f2bf660",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/ccpc/ccpc2024/ccpc2024jinan.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": false,
+      "remove_fields": [],
+      "evidence": {
+        "eligibleTeamCount": 280,
+        "effectiveTeamCount": 280,
+        "allTeamCount": 324,
+        "runCount": 4080,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 28,
+            "actualLastPosition": 28,
+            "rank": 28,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 291,
+            "next": {
+              "id": "D53",
+              "rank": 29,
+              "solved": 7,
+              "penalty": 1160,
+              "lastSolvedMinute": 289
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 84,
+            "actualLastPosition": 84,
+            "rank": 84,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 236,
+            "next": {
+              "id": "B72",
+              "rank": 85,
+              "solved": 5,
+              "penalty": 668,
+              "lastSolvedMinute": 249
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 168,
+            "actualLastPosition": 168,
+            "rank": 168,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 296,
+            "next": {
+              "id": "E86",
+              "rank": 169,
+              "solved": 3,
+              "penalty": 142,
+              "lastSolvedMinute": 56
+            }
+          }
+        ],
+        "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+        "timestamp_unit": "second",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍",
+          "girl": "女队"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "d037a863-64dc-5228-b830-fbcd818798ed",
+          "matched_official_rows": 280,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All matched official rows agree exactly after SRK ranking-time normalization"
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    },
+    {
+      "contest_id": "b84e4298-4c66-56b3-a5e1-403d1d7c87cd",
+      "title": "第二十三届广东省大学生程序设计竞赛 - 正式赛",
+      "field": "estimatedAwardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2026/guangdong",
+        "eligibleTeamCount": 236,
+        "cutoffs": {
+          "gold": {
+            "rank": 23,
+            "solved": 7,
+            "penalty": 806,
+            "teamId": "team041"
+          },
+          "silver": {
+            "rank": 70,
+            "solved": 5,
+            "penalty": 578,
+            "teamId": "team404"
+          },
+          "bronze": {
+            "rank": 140,
+            "solved": 4,
+            "penalty": 755,
+            "teamId": "team007"
+          }
+        }
+      },
+      "action": "promote_to_explicit_awardCutoffs",
+      "target_field": "awardCutoffs",
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2026/guangdong",
+        "eligibleTeamCount": 236,
+        "cutoffs": {
+          "gold": {
+            "rank": 24,
+            "solved": 7,
+            "penalty": 823,
+            "teamId": "team418"
+          },
+          "silver": {
+            "rank": 70,
+            "solved": 5,
+            "penalty": 578,
+            "teamId": "team404"
+          },
+          "bronze": {
+            "rank": 139,
+            "solved": 4,
+            "penalty": 747,
+            "teamId": "team048"
+          }
+        }
+      },
+      "source_files": {
+        "config": {
+          "path": "board/b84e4298-4c66-56b3-a5e1-403d1d7c87cd/config.json",
+          "sha256": "34ed9e260283741c94e0a6668ae69187a414ce0f22dfa5f132c4ddf9ff66a82d",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2026/guangdong/config.json"
+        },
+        "team": {
+          "path": "board/b84e4298-4c66-56b3-a5e1-403d1d7c87cd/team.json",
+          "sha256": "598fc95b555a8c1d9a985f56017a7511fc1e075a6bc3b4ea591c5e032e901db3",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2026/guangdong/team.json"
+        },
+        "run": {
+          "path": "board/b84e4298-4c66-56b3-a5e1-403d1d7c87cd/run.json",
+          "sha256": "00e9740bd8d1289eb4c8b0fc3c79d6a0eb15a84400b1db7f3c6a2248ea1a5d53",
+          "url": "https://board.xcpcio.com/data/provincial-contest/2026/guangdong/run.json"
+        },
+        "srk": {
+          "path": "official/provincial/gd/gdcpc23rd.srk.json",
+          "sha256": "44c186b55379a01896ad2e107cd7c95875a12b7d430766e5f00174396f5d0f38",
+          "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/provincial/gd/gdcpc23rd.srk.json"
+        }
+      },
+      "highest_group": "official; no alternate eligible competing highest group",
+      "denominator": "Official-group teams with solvedProblemNum > 0",
+      "rounding": "ceil(scored official teams * 0.1), ceil(* 0.3), ceil(* 0.6), cumulative",
+      "numeric_changed": true,
+      "remove_fields": [
+        "estimatedAwardCutoffs"
+      ],
+      "evidence": {
+        "eligibleTeamCount": 236,
+        "effectiveTeamCount": 231,
+        "allTeamCount": 356,
+        "runCount": 6310,
+        "boundary": [
+          {
+            "medal": "gold",
+            "threshold": 24,
+            "actualLastPosition": 24,
+            "rank": 24,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 289,
+            "next": {
+              "id": "team331",
+              "rank": 25,
+              "solved": 7,
+              "penalty": 824,
+              "lastSolvedMinute": 219
+            }
+          },
+          {
+            "medal": "silver",
+            "threshold": 70,
+            "actualLastPosition": 70,
+            "rank": 70,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 195,
+            "next": {
+              "id": "team402",
+              "rank": 71,
+              "solved": 5,
+              "penalty": 587,
+              "lastSolvedMinute": 216
+            }
+          },
+          {
+            "medal": "bronze",
+            "threshold": 139,
+            "actualLastPosition": 139,
+            "rank": 139,
+            "tieExpansion": false,
+            "sameSolvedPenaltyAcrossBoundary": false,
+            "lastSolvedMinute": 253,
+            "next": {
+              "id": "team007",
+              "rank": 140,
+              "solved": 4,
+              "penalty": 755,
+              "lastSolvedMinute": 210
+            }
+          }
+        ],
+        "penalty_rule": "accumulate_in_seconds_and_finally_to_the_minute",
+        "timestamp_unit": "millisecond",
+        "sourceGroups": {
+          "official": "正式队伍",
+          "unofficial": "打星队伍",
+          "girl": "女队",
+          "ai": "AI赛道"
+        },
+        "independent_srk_crosscheck": {
+          "contest_id": "b84e4298-4c66-56b3-a5e1-403d1d7c87cd",
+          "matched_official_rows": 233,
+          "preset_denominator_agrees": true,
+          "all_score_differences_explained": true,
+          "explanation": "All matched official rows agree exactly after SRK ranking-time normalization; Board-only official team034, team251 and team387 each solved zero and do not enter the explicit scored denominator."
+        },
+        "eligibleTeamCount_semantics": "All official teams in the selected group; effectiveTeamCount separately records the preset denominator"
+      }
+    }
+  ],
+  "withdrawals": [],
+  "validation": {
+    "verified_at": "2026-10-01T11:53:33.289Z",
+    "total_contests": 13,
+    "total_boundary_checks": 39,
+    "all_boundaries_unambiguous": true,
+    "fixture_tests": [
+      "scored-only denominator",
+      "cumulative ceil boundaries",
+      "legacy and group official flags",
+      "exclude unofficial",
+      "accepted priority at identical timestamp",
+      "millisecond whole-second flooring",
+      "per-problem and accumulated penalty modes",
+      "competition-rank tie expansion",
+      "reject unknown preset",
+      "reject conflicting eligibility",
+      "reject unfinished runs"
+    ]
+  }
+}

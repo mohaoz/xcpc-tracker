@@ -7,10 +7,21 @@ import { join } from 'node:path';
 import { readJson, atomicJson, sha256, problemIdentity } from './source-import-lib.mjs';
 import { calculateAwards, minutes, parseIndex, verifyPage, awardResult } from './rankland-lib.mjs';
 import { inspectRating, applyRating } from './import-xcpc-rating.mjs';
+import { enrichReviewedRatings } from './enrich-reviewed-ratings.mjs';
+import {latestAwardValue,stage2AwardReview} from './catalog-award-review.mjs';
+import {refreshRatingMetadata} from './refresh-xcpc-rating-metadata.mjs';
 import { applyRankland } from './import-rankland-standings.mjs';
 import { validateSchema } from './validate-source-schemas.mjs';
 import { validateSnapshot } from './validate-catalog-snapshot.mjs';
 
+
+const badMapping=(await readJson('fixtures/imports/xcpc-rating/problem-mapping-exclusions.json')).entries[0];
+const excludedRows=badMapping.upstream_problem_identities.map(r=>({contestSlug:badMapping.contest_slug,alias:r.ordinal,title:`Source ${r.ordinal}`,detailTags:['must-not-import'],problemUrl:`https://qoj.ac/problem/${r.identity.split(':')[1]}`,problemRating:1200}));
+const excludedReport=inspectRating({contests:[],problems:[]},excludedRows);
+assert.equal(excludedReport.matches.length,0);assert.equal(excludedReport.unresolved.length,excludedRows.length);
+assert.ok(excludedReport.unresolved.every(r=>r.blocked_mapping_sha256===badMapping.problem_identity_sha256));
+const fixedMapping=excludedRows.map((r,i)=>i? r:{...r,problemUrl:'https://qoj.ac/problem/999999'});
+assert.ok(inspectRating({contests:[],problems:[]},fixedMapping).unresolved.every(r=>!r.blocked_mapping_sha256),'Corrected future upstream mapping must be re-reviewable, not permanently blacklisted by slug');
 const fixture = await readJson('fixtures/imports/xcpc-rating/example.json');
 const report = inspectRating(fixture.catalog, fixture.input);
 assert.equal(report.matches.length, 1);
@@ -18,6 +29,106 @@ for (const [key, value] of Object.entries(fixture.expected)) assert.deepEqual(re
 const enriched = applyRating(fixture.catalog, report);
 assert.deepEqual(applyRating(enriched, report), enriched);
 assert.deepEqual(enriched.problems[0].sources[0], fixture.catalog.problems[0].sources[0]);
+// Reviewed numeric metadata is bound to the exact snapshot and problem identity.
+const ratingRows = fixture.input.map(row => ({ ...row, problemRating: 1725.5 }));
+const ratingRaw = JSON.stringify(ratingRows);
+const ratingReview = { ...report, source_sha256: sha256(ratingRaw), review: { status: 'approved', reviewed_by: 'synthetic regression' } };
+const rated = enrichReviewedRatings(enriched, ratingRaw, ratingReview);
+assert.equal(rated.problems[0].rating, 1725.5);
+assert.equal(enriched.problems[0].rating, undefined);
+assert.deepEqual(enrichReviewedRatings(rated, ratingRaw, ratingReview), rated);
+const populatedRating=structuredClone(enriched);populatedRating.problems[0].rating=999;
+assert.equal(enrichReviewedRatings(populatedRating,ratingRaw,ratingReview).problems[0].rating,999,'Fill missing ratings only; preserve a populated different value');
+assert.throws(() => enrichReviewedRatings(enriched, ratingRaw, { ...ratingReview, review: { status: 'pending' } }));
+assert.throws(() => enrichReviewedRatings(enriched, ratingRaw + ' ', ratingReview));
+assert.throws(() => enrichReviewedRatings(enriched, ratingRaw, { ...ratingReview, matches: [] }));
+for (const value of [null, -1, '1725.5']) {
+  const raw = JSON.stringify(ratingRows.map(row => ({ ...row, problemRating: value })));
+  assert.equal(enrichReviewedRatings(enriched, raw, { ...ratingReview, source_sha256: sha256(raw) }).problems[0].rating, undefined);
+}
+const renamedRaw = JSON.stringify(ratingRows.map(row => ({ ...row, title: 'Different title' })));
+assert.throws(() => enrichReviewedRatings(enriched, renamedRaw, { ...ratingReview, source_sha256: sha256(renamedRaw) }));
+const duplicateRaw = JSON.stringify([...ratingRows, ...ratingRows]);
+assert.throws(() => enrichReviewedRatings(enriched, duplicateRaw, { ...ratingReview, source_sha256: sha256(duplicateRaw) }));
+const conflictingRows = [...ratingRows, { ...ratingRows[0], contestSlug: 'another_contest', problemRating: 1800 }];
+const conflictingRaw = JSON.stringify(conflictingRows);
+const conflictingReport = inspectRating(fixture.catalog, conflictingRows);
+const conflictingCatalog = applyRating(fixture.catalog, conflictingReport);
+assert.equal(enrichReviewedRatings(conflictingCatalog, conflictingRaw, { ...conflictingReport, source_sha256: sha256(conflictingRaw), review: ratingReview.review }).problems[0].rating, undefined);
+// Untitled numeric rows require complete exact provider IDs AND independent
+// original-event identity/date evidence. No ordinal-only or partial-set fallback.
+const numericCatalog={contests:[{contestId:'n',title:'Verified event',aliases:[],problemIds:['n:A','n:B','n:C'],startAt:'2020-01-01T01:00:00.000Z',sources:[{provider:'rankland',kind:'standings',provider_contest_id:'srk:official/icpc/example.srk.json',url:'https://rl.algoux.cn/collection/official?rankId=example'}]}],problems:['A','B','C'].map(ordinal=>({problemId:`n:${ordinal}`,contestId:'n',ordinal,title:`Verified ${ordinal}`,aliases:[],sources:[{provider:'codeforces',kind:'problem',url:`https://codeforces.com/gym/100111/problem/${ordinal}`,provider_problem_id:`100111:${ordinal}`}]}))};
+const numericRows=['A','B','C'].map((alias,i)=>({contestSlug:'icpc__example',startAt:'2020-01-01T09:00:00+08:00',alias,title:null,detailTags:[],problemUrl:`https://codeforces.com/gym/100111/problem/${alias}`,problemRating:1200+i}));
+const numericReport=inspectRating(numericCatalog,numericRows);
+assert.equal(numericReport.matches.length,3);
+assert.ok(numericReport.matches.every(m=>m.evidence==='complete_provider_ids_and_verified_original_contest'&&m.source_title===null));
+const numericEnriched=applyRating(numericCatalog,numericReport),numericRaw=JSON.stringify(numericRows);
+const numericReview={...numericReport,source_sha256:sha256(numericRaw),review:ratingReview.review};
+assert.deepEqual(enrichReviewedRatings(numericEnriched,numericRaw,numericReview).problems.map(p=>p.rating),[1200,1201,1202]);
+// Losing a source title changes the evidence to numeric-only, never to an
+// authoritative empty tag list. Preserve prior tags even while refreshing numbers.
+const titledRows=numericRows.map((r,i)=>({...r,title:`Verified ${r.alias}`,status:'classified',detailTags:['retained-tag']}));
+const titledRaw=JSON.stringify(titledRows);
+const titledReview={...inspectRating(numericCatalog,titledRows),source_sha256:sha256(titledRaw),review:ratingReview.review};
+const titledEnriched=applyRating(numericCatalog,titledReview);
+const titleLost=refreshRatingMetadata(titledEnriched,titledRaw,JSON.stringify(titledRows.map(r=>({...r,title:null}))),[titledReview]);
+assert.deepEqual(titleLost.catalog.problems.map(p=>p.tags),titledEnriched.problems.map(p=>p.tags));
+assert.equal(titleLost.report.tag_changes.length,0);
+const populatedNumeric=structuredClone(numericEnriched);populatedNumeric.problems[0].rating=999;
+assert.equal(enrichReviewedRatings(populatedNumeric,numericRaw,numericReview).problems[0].rating,999,'Provider-ID numeric enrichment must not overwrite existing values');
+assert.ok(numericEnriched.problems.every(p=>p.sources.filter(s=>s.provider==='xcpc_rating').every(s=>s.source_title===undefined)));
+for(const mutate of [
+  c=>{c.contests[0].sources=[];},
+  c=>{c.contests[0].sources[0].provider_contest_id='srk:official/icpc/wrong.srk.json';},
+  c=>{c.contests[0].startAt=null;},
+  c=>{c.contests[0].startAt='2020-01-02T01:00:00.000Z';},
+]) { const changed=structuredClone(numericCatalog);mutate(changed);assert.equal(inspectRating(changed,numericRows).matches.length,0); }
+for(const mutate of [
+  rows=>{rows.pop();},
+  rows=>{rows[1].problemUrl=rows[0].problemUrl;},
+  rows=>{rows[1].alias=rows[0].alias;},
+  rows=>{rows[1].title='Conflicting known title';},
+  rows=>{rows[1].startAt='2020-01-02T09:00:00+08:00';},
+]) { const changed=structuredClone(numericRows);mutate(changed);assert.equal(inspectRating(numericCatalog,changed).matches.length,0); }
+const staleNumeric=structuredClone(numericEnriched);staleNumeric.contests[0].sources=[];
+assert.throws(()=>enrichReviewedRatings(staleNumeric,numericRaw,numericReview),/evidence changed/);
+const previousRows=fixture.input.map(r=>({...r,detailTags:['old','keep'],problemRating:1000}));
+const previousRaw=JSON.stringify(previousRows),previousReport=inspectRating(fixture.catalog,previousRows);
+const previousReview={...previousReport,source_sha256:sha256(previousRaw),review:ratingReview.review};
+const owned=applyRating(fixture.catalog,previousReport);owned.problems[0].rating=1000;owned.problems[0].tags.push('manual');
+const nextRows=previousRows.map(r=>({...r,detailTags:['keep','new'],problemRating:1100}));
+let refreshed=refreshRatingMetadata(owned,previousRaw,JSON.stringify(nextRows),[previousReview]);
+assert.equal(refreshed.catalog.problems[0].rating,1100);
+assert.deepEqual(refreshed.catalog.problems[0].tags,['keep','manual','new']);
+assert.deepEqual(refreshed.report.tag_changes[0].removed,['old']);
+assert.equal(refreshed.report.rating_changes[0].action,'increase');
+const previousRefresh={...refreshed.report,review:ratingReview.review,applied_at:'2026-10-01T00:00:00Z',output_catalog_sha256:sha256(JSON.stringify(refreshed.catalog))};
+const nextRefresh=refreshRatingMetadata(refreshed.catalog,JSON.stringify(nextRows),JSON.stringify(nextRows.map(r=>({...r,problemRating:1150,detailTags:['next']}))),[previousRefresh]);
+assert.equal(nextRefresh.catalog.problems[0].rating,1150);
+assert.deepEqual(nextRefresh.catalog.problems[0].tags,['manual','next']);
+assert.throws(()=>refreshRatingMetadata(refreshed.catalog,JSON.stringify(nextRows),JSON.stringify(nextRows),[{...previousRefresh,applied_at:undefined}]),/applied receipt/);
+
+refreshed=refreshRatingMetadata(owned,previousRaw,JSON.stringify(nextRows.map(r=>({...r,problemRating:900}))),[previousReview]);
+assert.equal(refreshed.catalog.problems[0].rating,900);assert.equal(refreshed.report.rating_changes[0].action,'decrease');
+const unknownRows=nextRows.map(r=>({...r,status:'unknown',detailTags:[],problemRating:null}));
+refreshed=refreshRatingMetadata(owned,previousRaw,JSON.stringify(unknownRows),[previousReview]);
+assert.equal(refreshed.catalog.problems[0].rating,1000);assert.deepEqual(refreshed.catalog.problems[0].tags,owned.problems[0].tags);
+const manualRating=structuredClone(owned);manualRating.problems[0].rating=777;
+assert.equal(refreshRatingMetadata(manualRating,previousRaw,JSON.stringify(nextRows),[previousReview]).catalog.problems[0].rating,777);
+const conflictRows=[...nextRows,{...nextRows[0],contestSlug:'other_source',problemRating:1200}];
+refreshed=refreshRatingMetadata(owned,previousRaw,JSON.stringify(conflictRows),[previousReview]);
+assert.equal(refreshed.catalog.problems[0].rating,undefined);assert.equal(refreshed.report.rating_changes[0].action,'withdraw_conflict');
+refreshed=refreshRatingMetadata(owned,previousRaw,'[]',[previousReview]);
+assert.deepEqual(refreshed.catalog.problems[0].tags,owned.problems[0].tags);assert.equal(refreshed.catalog.problems[0].rating,1000);
+const linked=structuredClone(owned);
+linked.problems[0].sources.push({provider:'qoj',kind:'problem',url:'https://qoj.ac/problem/42',provider_problem_id:'42'});
+linked.contests.push({contestId:'peer',title:'Another event',problemIds:['peer:A'],sources:[]});
+linked.problems.push({problemId:'peer:A',contestId:'peer',ordinal:'A',title:'Example',aliases:[],sources:[{provider:'qoj',kind:'problem',url:'https://qoj.ac/problem/42',provider_problem_id:'42'}]});
+const linkedRows=[...previousRows,{...previousRows[0],contestSlug:'another_event',problemUrl:'https://qoj.ac/problem/42',problemRating:1200}];
+refreshed=refreshRatingMetadata(linked,previousRaw,JSON.stringify(linkedRows),[previousReview]);
+assert.equal(refreshed.catalog.problems[0].rating,undefined);
+assert.equal(refreshed.catalog.problems[1].rating,1200,'Do not expand ownership through a transitive join; retain this entity\'s directly reviewed source');
+assert.equal(refreshed.report.conflicts.length,1);assert.equal(refreshed.report.linked_identity_differences.length,1);
 const conflict = structuredClone(fixture.input); conflict[0].title = 'Different problem';
 assert.equal(inspectRating(fixture.catalog, conflict).matches.length, 0);
 assert.equal(inspectRating(fixture.catalog, conflict).unresolved.length, 1);
@@ -65,6 +176,17 @@ ratioFixture.series[0].rule.options.ratio.rounding='floor';
 assert.deepEqual(Object.values(calculateAwards(ratioFixture).cutoffs).map(c=>c.rank),[1,3,6]);
 ratioFixture.series[0].rule.options.ratio.denominator='submitted';
 assert.equal(calculateAwards(ratioFixture).status,'blocked');
+const scoredRatio=structuredClone(ratioFixture);
+scoredRatio.series[0].rule.options.ratio.denominator='scored';
+scoredRatio.series[0].rule.options.ratio.rounding='ceil';
+for(const [i,row]of scoredRatio.rows.entries())if(i>=6){row.score.value=0;row.score.time=[0,'min'];row.statuses=row.statuses.map(()=>({}));}
+const scoredResult=calculateAwards(scoredRatio);
+assert.equal(scoredResult.status,'proposed');
+assert.equal(scoredResult.eligible_team_count,11);
+assert.equal(scoredResult.evidence.ratio_denominator_count,6);
+assert.deepEqual(Object.values(scoredResult.cutoffs).map(c=>c.rank),[1,2,4]);
+for(const row of scoredRatio.rows){row.score.value=0;row.statuses=row.statuses.map(()=>({}));}
+assert.equal(calculateAwards(scoredRatio).status,'blocked');
 grouped.series[0].rule.options.filter = {byMarker: 'invitational'};
 assert.equal(calculateAwards(grouped).status, 'blocked');
 assert.equal(calculateAwards(grouped, 'invitational').eligible_team_count, 3);
@@ -114,6 +236,7 @@ const publishedAwards = await readJson('fixtures/imports/rankland/2026-09-awards
 await validateSchema('rankland-review', publishedMapping);
 await validateSchema('rankland-award-review', publishedAwards);
 const published = await readJson('catalog/default-catalog.min.json');
+const completion = await readJson('fixtures/imports/rankland/2026-10-01-completion.json');
 for (const entry of publishedMapping.entries.filter(e => e.status === 'approved')) {
   const c = published.contests.find(c => c.contestId === entry.selection.contest_id);
   assert.ok(c.sources.some(s => s.provider === 'rankland' && s.provider_contest_id === entry.source.provider_contest_id && s.url === entry.source.page_url));
@@ -140,7 +263,7 @@ assert.match(refresh.commit_sha,/^[a-f0-9]{40}$/);
 assert.equal(new Set(refresh.changes.map(c=>c.contest_id)).size,refresh.changes.length);
 for(const change of refresh.changes) {
   const c=published.contests.find(c=>c.contestId===change.contest_id);
-  assert.deepEqual(c[change.field],change.value);
+  assert.deepEqual(c[change.field],latestAwardValue(change.contest_id,change.field,change.value));
   assert.match(change.source_sha256,/^[a-f0-9]{64}$/);
   assert.ok(c.sources.some(s=>s.provider==='rankland'&&s.url===change.value.sourceUrl));
   assert.equal(change.evidence.ties,'No tied medal boundary');
@@ -159,12 +282,12 @@ const highest=await readJson('fixtures/imports/rankland/2026-09-17-highest-group
 const highestReplacement=await readJson('fixtures/imports/rankland/2026-09-17-highest-group-replacement.json');
 assert.equal(highest.removed.length,7);
 assert.equal(highestReplacement.changes.length,1);
-for(const change of highestReplacement.changes)assert.deepEqual(published.contests.find(c=>c.contestId===change.contest_id)[change.field],change.value);
+for(const change of highestReplacement.changes)assert.deepEqual(published.contests.find(c=>c.contestId===change.contest_id)[change.field],latestAwardValue(change.contest_id,change.field,change.value));
 for(const row of highest.removed)assert.notDeepEqual(published.contests.find(c=>c.contestId===row.contest_id)[row.field],row.value);
 assert.equal(replacements.changes.length,3);
 for(const r of replacements.changes) {
   assert.equal(r.value.sourceProvider,'rankland');
-  assert.deepEqual(published.contests.find(c=>c.contestId===r.contest_id)[r.field],r.value);
+  assert.deepEqual(published.contests.find(c=>c.contestId===r.contest_id)[r.field],latestAwardValue(r.contest_id,r.field,r.value));
   assert.equal(r.evidence.ties,'No tied medal boundary');
 }
 assert.equal(eligibility.removed.length,13);
@@ -173,8 +296,12 @@ for(const c of published.contests)for(const field of ['awardCutoffs','estimatedA
   const value=c[field];if(!value || value.source==='explicit')continue;
   assert.equal(value.source,'inferred_official_medal_ratio_10_20_30');
   assert.notEqual(value.sourceProvider,'codeforces');
-  const row=highest.verified.find(r=>r.contest_id===c.contestId && r.field===field);
+  const row=stage2AwardReview.verified.find(r=>r.contest_id===c.contestId && r.field===field)??completion.verified.find(r=>r.contest_id===c.contestId && r.field===field);
   assert.ok(row,'Every remaining estimate needs official-team eligibility evidence');
   assert.deepEqual(value,row.value);
+  assert.equal(row.evidence.ties,'No tied medal boundary');
+  const counts=[.1,.2,.3].map(r=>Math.floor(value.eligibleTeamCount*r));
+  assert.deepEqual(Object.values(value.cutoffs).map(c=>c?.rank),counts.map((_,i)=>counts.slice(0,i+1).reduce((sum,n)=>sum+n,0)));
 }
 console.log('Official ratio rounding and all retained estimate eligibility verified.');
+await import('./validate-catalog-completion.mjs');

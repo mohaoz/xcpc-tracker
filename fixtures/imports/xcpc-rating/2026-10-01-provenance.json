@@ -1,0 +1,231 @@
+{
+  "audited_at": "2026-10-01T11:18:18Z",
+  "scope": "Read-only XCPC Rating provenance, rating semantics, confidence, and license audit. No catalog changes.",
+  "repository": "https://github.com/Hei-MaoM/xcpcrating",
+  "commit": "721ffdf337d876dae90280c4a1b8c460e1b997cd",
+  "commit_date": "2026-09-21T18:17:52Z",
+  "main_tree_license_scan": {
+    "entries": 3200,
+    "truncated": false,
+    "license_copying_notice_paths": []
+  },
+  "upstream_submodule_commit": "a820e48181a28a1a30bfbcf965b320606e337e15",
+  "live_generation": {
+    "url": "https://hei-maom.github.io/xcpcrating/data/meta.json",
+    "generated_at": "2026-09-28T19:57:35.521003+00:00",
+    "declared_srk_commit": "unknown",
+    "recovered_srk_commit": "d00d843b0ec095c69f172407e7c1ff5d4e305adb",
+    "recovery_evidence_url": "https://github.com/Hei-MaoM/xcpcrating/actions/runs/36474263052/job/109103917801",
+    "recovery_basis": "Successful workflow uses xcpcrating head commit; SRK_SHA and generated-data cache key contain pin; generated counts/time agree with live meta. No artifact-byte comparison was done.",
+    "source_hash": "9c0e410348bb507b89208c8f691c7267e9e6537d8f417e8da4dbbb67d38d1f89",
+    "source_url": "https://hei-maom.github.io/xcpcrating/data/problems-index.json",
+    "rows": 4335,
+    "rated_rows": 2302,
+    "classified_rows": 1678,
+    "unknown_rows": 2657
+  },
+  "manifest": {
+    "version": "problem-types-audited-v4",
+    "source_window": "2022-2026; two independent reviewer gate",
+    "rows": 1912,
+    "classified": 1678,
+    "unknown": 234
+  },
+  "catalog": {
+    "version": "problem-catalog-audited-v3",
+    "rows": 1800
+  },
+  "licenses": {
+    "xcpc_rating": "No explicit license or permission grant found in complete file tree, READMEs, pyproject.toml, web/package.json, or UI footer. No blanket redistribution permission established.",
+    "srk": "Root LICENSE is AGPL-3.0. README says derived/revised data should be released under same license, excluding upper-layer app source. package.json says ISC; conflict noted, no basis to downgrade dataset obligations.",
+    "legal_caveat": "Evidence audit, not a jurisdiction-specific legal opinion. Facts/ideas may have different copyright treatment; determine rights for original annotations and redistributed compilation."
+  },
+  "files": [
+    {
+      "path": ".github/workflows/pages.yml",
+      "git_blob_sha": "819b6ca2d0b2760f8f6298716688447223e68cb5",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/.github/workflows/pages.yml",
+      "saved_sha256": "47dc6c77b03f6340194c11a6e58ed91865039001cd8443d737ee6c666b1d688a"
+    },
+    {
+      "path": ".gitmodules",
+      "git_blob_sha": "2050a057bcbc6f483c11c408148a70e1a9e25423",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/.gitmodules",
+      "saved_sha256": "2ad37ca87e2974e21594a19eb48b572149a0b7fbc055edc73966436016997e29"
+    },
+    {
+      "path": "README.md",
+      "git_blob_sha": "133810f373038857e21eea21ec2f6be7f630cafa",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/README.md",
+      "saved_sha256": "073185b10bff3f43d82739013052a6fe80909280263e285e3c0f753c4470503b"
+    },
+    {
+      "path": "data/problem-catalog.json",
+      "git_blob_sha": "eed73251665bbca8a4a65b2b645dd5269b45ff14",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/data/problem-catalog.json",
+      "saved_sha256": "fc77f0f44298f582e0651458ea5dbcd478b3409365740298cb8330513682cb62"
+    },
+    {
+      "path": "data/problem-tags.json",
+      "git_blob_sha": "1b91b6912bd180ccd3f98a96f1b1915a0174010d",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/data/problem-tags.json",
+      "saved_sha256": "739305e9929125f56d857e460970b2fd7d6cefda8aed54107cc23878b125c358"
+    },
+    {
+      "path": "data/problem-types/2023-present-all-qoj-v2.json",
+      "git_blob_sha": "26d5ea3151bd71e1f3d3d5e7871166bc760dcee6",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/data/problem-types/2023-present-all-qoj-v2.json",
+      "saved_sha256": "db48c6992c6ea002c20829f162e455bbb2c65127c3ba6190bfe9515e27a02c80"
+    },
+    {
+      "path": "pyproject.toml",
+      "git_blob_sha": "995d41c0ab1153b4b81f57036ccba1ac67339f94",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/pyproject.toml",
+      "saved_sha256": "f8a856a778b74ad9e4fe0ebcf595dfff9e25acdb33cdfffc70033b9109c4606f"
+    },
+    {
+      "path": "scripts/finalize_problem_audit.py",
+      "git_blob_sha": "7e0aa592daa3775a82af71567f5af64606b4f004",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/scripts/finalize_problem_audit.py",
+      "saved_sha256": "323c4550792ab0d90bca3c7f062dd2a93299a956e1ef00b380b5f23f58a5f31c"
+    },
+    {
+      "path": "scripts/merge_problem_audit.py",
+      "git_blob_sha": "96819d3a3cd12187146c93ed4a42b70922ab4ae0",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/scripts/merge_problem_audit.py",
+      "saved_sha256": "adc2ad992a57e588877bd082b38c9d5799b97a2f63fc98436ec07e7de800c173"
+    },
+    {
+      "path": "scripts/sync_final_problem_metadata.py",
+      "git_blob_sha": "301d74bdf419e579200eb121f45328e1b15a4449",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/scripts/sync_final_problem_metadata.py",
+      "saved_sha256": "b3b09085f5a64532655b779719abdc19fe4dd9c83abc7fd44df9e62ba759bc19"
+    },
+    {
+      "path": "scripts/update_data.sh",
+      "git_blob_sha": "d749af2cff75ed1150a642782d947e3d8c93581d",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/scripts/update_data.sh",
+      "saved_sha256": "e61fb40ff4d1792f943e6b97bcbd962307f7dde61ff03d2a046b3c4a30239a05"
+    },
+    {
+      "path": "src/xcpc_rating/contest_metrics.py",
+      "git_blob_sha": "f3f1687e2f116e249a8a6ce8dad5cc8a36604dcb",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/src/xcpc_rating/contest_metrics.py",
+      "saved_sha256": "ec7a1c25f824deb8565516744510798dbdbb395d424d9378122b0c02c7ef4d19"
+    },
+    {
+      "path": "src/xcpc_rating/engines/incremental.py",
+      "git_blob_sha": "c77f890d18596306de64453e96ed1980a2bcbe6e",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/src/xcpc_rating/engines/incremental.py",
+      "saved_sha256": "fed08e7ded5dcd6279999151c731bed4a7f4fc74f0271519c7bc1007f7278a9d"
+    },
+    {
+      "path": "src/xcpc_rating/export_web.py",
+      "git_blob_sha": "f6a0e5741caca0a5ec0ae6d35ee0bec249744519",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/src/xcpc_rating/export_web.py",
+      "saved_sha256": "d501a195b6271317a8253678975948a3700442987cf6598c6d4fa9476b839cd1"
+    },
+    {
+      "path": "src/xcpc_rating/problem_tags.py",
+      "git_blob_sha": "1d854790e1ab6e777ba59dde0ee738586d735624",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/src/xcpc_rating/problem_tags.py",
+      "saved_sha256": "d3690f18770fc02c725565d8bf5af9ac548a6509505eed170954ed9287a7fd88"
+    },
+    {
+      "path": "src/xcpc_rating/problem_types.py",
+      "git_blob_sha": "60709a96325d0443bb7545a13d6bf26be249e97a",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/src/xcpc_rating/problem_types.py",
+      "saved_sha256": "90df965d91df4e5017210f9b31728a90e52745702cdfca32878b5ae6fbc30ef6"
+    },
+    {
+      "path": "web/README.md",
+      "git_blob_sha": "3d4015daf56f0273e8253684df2723a8c0f728a1",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/web/README.md",
+      "saved_sha256": "97d8ae8a0e1d387aa8495d4ab2223d797867052a20ead688f6bbd33c6ea0910e"
+    },
+    {
+      "path": "web/package.json",
+      "git_blob_sha": "59423d370139af08d0d82a9533cb92aef651e4d6",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/web/package.json",
+      "saved_sha256": "0b64245d07f863e9fe4f2ede6b5c6ee0a2a756be615b7521530a948405dd2db1"
+    },
+    {
+      "path": "web/public/data/README.md",
+      "git_blob_sha": "64db28e676f67393e9da32c117ba80a3fdef3b3f",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/web/public/data/README.md",
+      "saved_sha256": "1b6cd7310dee9274d09310629a2e760b4f2db5dadc45d0e4cfd74f1cc53fea83"
+    },
+    {
+      "path": "web/public/data/meta.json",
+      "git_blob_sha": "2237ba6794f67b70f46717e49826006ccdf58ad1",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/web/public/data/meta.json",
+      "saved_sha256": "75c15aa52742a333f1d49ddb25d2ea4f7c7299a4e3d377b3f206022923a7b017"
+    },
+    {
+      "path": "web/src/components/ui/Footer.tsx",
+      "git_blob_sha": "22906d1586c44a4f13ac989c1cb43dcffa638c4d",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/web/src/components/ui/Footer.tsx",
+      "saved_sha256": "dfd5ade267b54113698dc6a740195bf25fb6c85e738b662067449b3f37e62a06"
+    },
+    {
+      "path": "web/src/lib/data.ts",
+      "git_blob_sha": "329023af85efa0ecb0d8cd84e2d1871815b50d63",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/web/src/lib/data.ts",
+      "saved_sha256": "10967c7c0651ebf57b690008e9dff8cfa7a3c1686e53e41629cc55e680df3c6d"
+    },
+    {
+      "path": "web/src/pages/problems/problemsPresentation.ts",
+      "git_blob_sha": "b3c0c40f282a1be827f0a0d472664bc364990e96",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/web/src/pages/problems/problemsPresentation.ts",
+      "saved_sha256": "d70ccfa32d520b889900752774eaf6b18c61e12d5be75a311919e466e6114ec1"
+    },
+    {
+      "path": "web/src/pages/rules/RulesPage.tsx",
+      "git_blob_sha": "930a868d098783f34cddf39c60e9433c70cbdf57",
+      "url": "https://github.com/Hei-MaoM/xcpcrating/blob/721ffdf337d876dae90280c4a1b8c460e1b997cd/web/src/pages/rules/RulesPage.tsx",
+      "saved_sha256": "e408b9c9296a142dae0b258d29fb8d62c91239c0737a8c70f3824cdf529a726c"
+    }
+  ],
+  "saved_evidence": [
+    {
+      "path": "live-meta.json",
+      "sha256": "1ff4f003c3d450c13bc5e8e360ca92c201e3ca74ee8e7132c103e916743a5a67",
+      "bytes": 1096
+    },
+    {
+      "path": "live-problems-index.json",
+      "sha256": "9c0e410348bb507b89208c8f691c7267e9e6537d8f417e8da4dbbb67d38d1f89",
+      "bytes": 2413523
+    },
+    {
+      "path": "live-sample-contest.json",
+      "sha256": "a24d854cc3731d695e5c57a6a93fd4a9116baa0020c4a77a91a5d98052a7a1b8",
+      "bytes": 106849
+    },
+    {
+      "path": "deployment-provenance-extract.txt",
+      "sha256": "45355fdfb840a3516a9d18dcce2a72b8f8170934e519a100e48bad5c445194e3",
+      "bytes": 1810
+    }
+  ],
+  "srk_files": [
+    {
+      "path": "LICENSE",
+      "git_blob_sha": "0ad25db4bd1d86c452db3f9602ccdbe172438f52",
+      "url": "https://github.com/algoux/srk-collection/blob/d00d843b0ec095c69f172407e7c1ff5d4e305adb/LICENSE",
+      "unchanged_since_submodule_pin": true
+    },
+    {
+      "path": "README.md",
+      "git_blob_sha": "dbbdd228ffd7b3a3f7f73a67d98475164172b1d6",
+      "url": "https://github.com/algoux/srk-collection/blob/d00d843b0ec095c69f172407e7c1ff5d4e305adb/README.md",
+      "unchanged_since_submodule_pin": true
+    },
+    {
+      "path": "package.json",
+      "git_blob_sha": "d325213071fa6e8fc7bd53d3cd3efac944b491ba",
+      "url": "https://github.com/algoux/srk-collection/blob/d00d843b0ec095c69f172407e7c1ff5d4e305adb/package.json",
+      "unchanged_since_submodule_pin": true
+    }
+  ]
+}

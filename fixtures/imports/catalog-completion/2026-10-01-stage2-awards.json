@@ -1,0 +1,921 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-01T12:07:00Z",
+  "changes": [
+    {
+      "contest_id": "e6ff5abb-3535-563d-93d4-586cd2fc5c30",
+      "field": "awardCutoffs",
+      "previous_value": null,
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "icpc_official",
+        "sourceLabel": "ICPC Foundation 2019 brochure (2018 medal winners)",
+        "sourceUrl": "https://icpc.global/community/history/brochures/world-finals-2019-brochure.pdf",
+        "eligibleTeamCount": 140,
+        "cutoffs": {
+          "gold": {
+            "rank": 4,
+            "teamId": "team:82",
+            "solved": 8,
+            "penalty": 1566
+          },
+          "silver": {
+            "rank": 8,
+            "teamId": "team:71",
+            "solved": 7,
+            "penalty": 1016
+          },
+          "bronze": {
+            "rank": 13,
+            "teamId": "team:131",
+            "solved": 7,
+            "penalty": 1234
+          }
+        }
+      }
+    },
+    {
+      "contest_id": "7113bc04-ec9e-53c5-8cc6-3e05f2438e44",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2024/liaoning",
+        "eligibleTeamCount": 127,
+        "cutoffs": {
+          "gold": {
+            "rank": 12,
+            "solved": 7,
+            "penalty": 815,
+            "teamId": "team149"
+          },
+          "silver": {
+            "rank": 37,
+            "solved": 5,
+            "penalty": 677,
+            "teamId": "team142"
+          },
+          "bronze": {
+            "rank": 75,
+            "solved": 3,
+            "penalty": 229,
+            "teamId": "team152"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2024/liaoning",
+        "eligibleTeamCount": 127,
+        "cutoffs": {
+          "gold": {
+            "rank": 13,
+            "solved": 7,
+            "penalty": 818,
+            "teamId": "team19"
+          },
+          "silver": {
+            "rank": 39,
+            "solved": 5,
+            "penalty": 714,
+            "teamId": "team158"
+          },
+          "bronze": {
+            "rank": 77,
+            "solved": 3,
+            "penalty": 255,
+            "teamId": "team118"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "033094a1-9c70-5d37-969d-b7a00db88f2f",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/harbin",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 8,
+            "penalty": 1044,
+            "teamId": "G12"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 5,
+            "penalty": 248,
+            "teamId": "C08"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 5,
+            "penalty": 964,
+            "teamId": "C26"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/harbin",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 8,
+            "penalty": 1044,
+            "teamId": "G12"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 5,
+            "penalty": 248,
+            "teamId": "C08"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 5,
+            "penalty": 964,
+            "teamId": "C26"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "3abb2c7f-0e8c-51fc-afac-fdceab5470a7",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/zhengzhou",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 6,
+            "penalty": 974,
+            "teamId": "C305"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 5,
+            "penalty": 890,
+            "teamId": "B103"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 4,
+            "penalty": 887,
+            "teamId": "A308"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/zhengzhou",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 6,
+            "penalty": 974,
+            "teamId": "C305"
+          },
+          "silver": {
+            "rank": 83,
+            "solved": 5,
+            "penalty": 886,
+            "teamId": "A202"
+          },
+          "bronze": {
+            "rank": 166,
+            "solved": 4,
+            "penalty": 856,
+            "teamId": "A509"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "861750a2-a4bc-5c63-b06c-acece91ab757",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2024/henan",
+        "eligibleTeamCount": 424,
+        "cutoffs": {
+          "gold": {
+            "rank": 42,
+            "solved": 9,
+            "penalty": 1190,
+            "teamId": "C41N"
+          },
+          "silver": {
+            "rank": 126,
+            "solved": 7,
+            "penalty": 782,
+            "teamId": "D38N"
+          },
+          "bronze": {
+            "rank": 253,
+            "solved": 4,
+            "penalty": 307,
+            "teamId": "E48Y"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2024/henan",
+        "eligibleTeamCount": 424,
+        "cutoffs": {
+          "gold": {
+            "rank": 43,
+            "solved": 9,
+            "penalty": 1227,
+            "teamId": "H23N"
+          },
+          "silver": {
+            "rank": 128,
+            "solved": 7,
+            "penalty": 799,
+            "teamId": "E28Y"
+          },
+          "bronze": {
+            "rank": 255,
+            "solved": 4,
+            "penalty": 337,
+            "teamId": "F23Y"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "2d28130e-3c6e-527d-9ac2-597b2120d367",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/zhengzhou-invitational",
+        "eligibleTeamCount": 433,
+        "cutoffs": {
+          "gold": {
+            "rank": 43,
+            "solved": 8,
+            "penalty": 880,
+            "teamId": "B1006"
+          },
+          "silver": {
+            "rank": 129,
+            "solved": 7,
+            "penalty": 767,
+            "teamId": "B1007"
+          },
+          "bronze": {
+            "rank": 258,
+            "solved": 5,
+            "penalty": 360,
+            "teamId": "B0910"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/zhengzhou-invitational",
+        "eligibleTeamCount": 433,
+        "cutoffs": {
+          "gold": {
+            "rank": 44,
+            "solved": 8,
+            "penalty": 891,
+            "teamId": "C0909"
+          },
+          "silver": {
+            "rank": 130,
+            "solved": 7,
+            "penalty": 769,
+            "teamId": "A0701"
+          },
+          "bronze": {
+            "rank": 260,
+            "solved": 5,
+            "penalty": 385,
+            "teamId": "C0204"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "99d7897e-30fe-5b6c-8ec6-a3e261cf4d0c",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2025/shandong",
+        "eligibleTeamCount": 231,
+        "cutoffs": {
+          "gold": {
+            "rank": 23,
+            "solved": 6,
+            "penalty": 984,
+            "teamId": "405x06"
+          },
+          "silver": {
+            "rank": 69,
+            "solved": 4,
+            "penalty": 463,
+            "teamId": "303x20"
+          },
+          "bronze": {
+            "rank": 138,
+            "solved": 3,
+            "penalty": 571,
+            "teamId": "407x22"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2025/shandong",
+        "eligibleTeamCount": 231,
+        "cutoffs": {
+          "gold": {
+            "rank": 24,
+            "solved": 6,
+            "penalty": 1022,
+            "teamId": "112x02"
+          },
+          "silver": {
+            "rank": 70,
+            "solved": 4,
+            "penalty": 468,
+            "teamId": "405x01"
+          },
+          "bronze": {
+            "rank": 139,
+            "solved": 3,
+            "penalty": 609,
+            "teamId": "203x32"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "f2988a25-a87b-5222-ae8c-102af2090df1",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/9th/shenzhen",
+        "eligibleTeamCount": 240,
+        "cutoffs": {
+          "gold": {
+            "rank": 24,
+            "solved": 7,
+            "penalty": 1191,
+            "teamId": "team158"
+          },
+          "silver": {
+            "rank": 72,
+            "solved": 5,
+            "penalty": 889,
+            "teamId": "team255"
+          },
+          "bronze": {
+            "rank": 144,
+            "solved": 3,
+            "penalty": 430,
+            "teamId": "team087"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/9th/shenzhen",
+        "eligibleTeamCount": 240,
+        "cutoffs": {
+          "gold": {
+            "rank": 24,
+            "solved": 7,
+            "penalty": 1191,
+            "teamId": "team158"
+          },
+          "silver": {
+            "rank": 70,
+            "solved": 5,
+            "penalty": 875,
+            "teamId": "team055"
+          },
+          "bronze": {
+            "rank": 139,
+            "solved": 3,
+            "penalty": 401,
+            "teamId": "team269"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "90304e71-e24f-52db-ac10-905968538e15",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/harbin",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 7,
+            "penalty": 865,
+            "teamId": "C06"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 6,
+            "penalty": 981,
+            "teamId": "J05"
+          },
+          "bronze": {
+            "rank": 156,
+            "solved": 4,
+            "penalty": 377,
+            "teamId": "F03"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/harbin",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 7,
+            "penalty": 865,
+            "teamId": "C06"
+          },
+          "silver": {
+            "rank": 76,
+            "solved": 6,
+            "penalty": 972,
+            "teamId": "E15"
+          },
+          "bronze": {
+            "rank": 152,
+            "solved": 4,
+            "penalty": 248,
+            "teamId": "F13"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "3c1f14cf-3e1d-55a5-bc61-95cfb3192540",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/jinan",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 6,
+            "penalty": 845,
+            "teamId": "117"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 4,
+            "penalty": 466,
+            "teamId": "78"
+          },
+          "bronze": {
+            "rank": 156,
+            "solved": 3,
+            "penalty": 377,
+            "teamId": "158"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/jinan",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 6,
+            "penalty": 845,
+            "teamId": "117"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 4,
+            "penalty": 466,
+            "teamId": "78"
+          },
+          "bronze": {
+            "rank": 156,
+            "solved": 3,
+            "penalty": 377,
+            "teamId": "158"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "0e2f509e-0941-51bf-9ef2-a3a80deb603b",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/zhengzhou",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 6,
+            "penalty": 972,
+            "teamId": "13"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 4,
+            "penalty": 719,
+            "teamId": "165"
+          },
+          "bronze": {
+            "rank": 156,
+            "solved": 3,
+            "penalty": 778,
+            "teamId": "51"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/zhengzhou",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 25,
+            "solved": 6,
+            "penalty": 960,
+            "teamId": "186"
+          },
+          "silver": {
+            "rank": 75,
+            "solved": 4,
+            "penalty": 690,
+            "teamId": "126"
+          },
+          "bronze": {
+            "rank": 150,
+            "solved": 3,
+            "penalty": 714,
+            "teamId": "254"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "e94e1e74-b0c7-5989-ad3d-a14481dd32d8",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/chongqing",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 7,
+            "penalty": 1150,
+            "teamId": "49"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 5,
+            "penalty": 640,
+            "teamId": "154"
+          },
+          "bronze": {
+            "rank": 156,
+            "solved": 4,
+            "penalty": 632,
+            "teamId": "41"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/11th/chongqing",
+        "eligibleTeamCount": 260,
+        "cutoffs": {
+          "gold": {
+            "rank": 26,
+            "solved": 7,
+            "penalty": 1150,
+            "teamId": "49"
+          },
+          "silver": {
+            "rank": 78,
+            "solved": 5,
+            "penalty": 640,
+            "teamId": "154"
+          },
+          "bronze": {
+            "rank": 155,
+            "solved": 4,
+            "penalty": 599,
+            "teamId": "203"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "d037a863-64dc-5228-b830-fbcd818798ed",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/jinan",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 7,
+            "penalty": 1083,
+            "teamId": "B74"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 5,
+            "penalty": 652,
+            "teamId": "A54"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 4,
+            "penalty": 935,
+            "teamId": "E83"
+          }
+        }
+      },
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/10th/jinan",
+        "eligibleTeamCount": 280,
+        "cutoffs": {
+          "gold": {
+            "rank": 28,
+            "solved": 7,
+            "penalty": 1083,
+            "teamId": "B74"
+          },
+          "silver": {
+            "rank": 84,
+            "solved": 5,
+            "penalty": 652,
+            "teamId": "A54"
+          },
+          "bronze": {
+            "rank": 168,
+            "solved": 4,
+            "penalty": 935,
+            "teamId": "E83"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "b84e4298-4c66-56b3-a5e1-403d1d7c87cd",
+      "field": "awardCutoffs",
+      "previous_value": null,
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2026/guangdong",
+        "eligibleTeamCount": 236,
+        "cutoffs": {
+          "gold": {
+            "rank": 24,
+            "solved": 7,
+            "penalty": 823,
+            "teamId": "team418"
+          },
+          "silver": {
+            "rank": 70,
+            "solved": 5,
+            "penalty": 578,
+            "teamId": "team404"
+          },
+          "bronze": {
+            "rank": 139,
+            "solved": 4,
+            "penalty": 747,
+            "teamId": "team048"
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json"
+    },
+    {
+      "contest_id": "ea7d011d-81c0-5ed8-9f86-afd062079bdd",
+      "field": "awardCutoffs",
+      "previous_value": null,
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "rankland",
+        "sourceLabel": "RankLand",
+        "sourceUrl": "https://rl.algoux.cn/collection/official?rankId=ccpc2025final",
+        "eligibleTeamCount": 132,
+        "cutoffs": {
+          "gold": {
+            "rank": 14,
+            "teamId": "17",
+            "solved": 4,
+            "penalty": 670
+          },
+          "silver": {
+            "rank": 37,
+            "teamId": "23",
+            "solved": 3,
+            "penalty": 468
+          },
+          "bronze": {
+            "rank": 76,
+            "teamId": "131",
+            "solved": 2,
+            "penalty": 234
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/qoj/2026-10-01-standings-review.json"
+    },
+    {
+      "contest_id": "e33dcd2f-f3d4-5927-9bc8-0bc2a8f26093",
+      "field": "awardCutoffs",
+      "previous_value": null,
+      "value": {
+        "source": "explicit",
+        "sourceProvider": "rankland",
+        "sourceLabel": "RankLand",
+        "sourceUrl": "https://rl.algoux.cn/collection/official?rankId=haccpc8th",
+        "eligibleTeamCount": 327,
+        "cutoffs": {
+          "gold": {
+            "rank": 33,
+            "teamId": "sjl202002",
+            "solved": 5,
+            "penalty": 789
+          },
+          "silver": {
+            "rank": 97,
+            "teamId": "sjl202013",
+            "solved": 3,
+            "penalty": 262
+          },
+          "bronze": {
+            "rank": 194,
+            "teamId": "sjl202005",
+            "solved": 2,
+            "penalty": 208
+          }
+        }
+      },
+      "evidence_file": "fixtures/imports/qoj/2026-10-01-standings-review.json"
+    }
+  ],
+  "removed": [
+    {
+      "contest_id": "78427c9a-afa5-504f-a09d-576afe16f691",
+      "field": "awardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/ccpc/2020/final",
+        "eligibleTeamCount": 115,
+        "cutoffs": {
+          "gold": {
+            "rank": 11,
+            "solved": 8,
+            "penalty": 1166,
+            "teamId": "135"
+          },
+          "silver": {
+            "rank": 34,
+            "solved": 6,
+            "penalty": 539,
+            "teamId": "108"
+          },
+          "bronze": {
+            "rank": 68,
+            "solved": 5,
+            "penalty": 519,
+            "teamId": "99"
+          }
+        }
+      },
+      "reason": "The fallback assumes 10/20/30 percent of eligible teams. Official event rules instead award by school ranking with 10/20/30 schools. Existing fallback counts 11/23/34 teams and therefore lacks event-specific support. Do not infer a single cumulative team cutoff until the exact school-rank policy and final awards are verified. No runtime member-status or problem mappings should change.",
+      "source_url": "https://final.ccpc.io/rules/"
+    },
+    {
+      "contest_id": "b84e4298-4c66-56b3-a5e1-403d1d7c87cd",
+      "field": "estimatedAwardCutoffs",
+      "previous_value": {
+        "source": "inferred_official_medal_ratio_10_20_30",
+        "sourceProvider": "xcpcio_board",
+        "sourceLabel": "XCPCIO Board",
+        "sourceUrl": "https://board.xcpcio.com/provincial-contest/2026/guangdong",
+        "eligibleTeamCount": 236,
+        "cutoffs": {
+          "gold": {
+            "rank": 23,
+            "solved": 7,
+            "penalty": 806,
+            "teamId": "team041"
+          },
+          "silver": {
+            "rank": 70,
+            "solved": 5,
+            "penalty": 578,
+            "teamId": "team404"
+          },
+          "bronze": {
+            "rank": 140,
+            "solved": 4,
+            "penalty": 755,
+            "teamId": "team007"
+          }
+        }
+      },
+      "reason": "Replaced by verified explicit CCPC scored/ceil preset",
+      "source_url": "https://board.xcpcio.com/provincial-contest/2026/guangdong"
+    }
+  ],
+  "verified": [],
+  "evidence_files": [
+    "fixtures/imports/additional-sources/2026-10-01-official-awards.json",
+    "fixtures/imports/additional-sources/2026-10-01-ccpc-presets.json",
+    "fixtures/imports/qoj/2026-10-01-standings-review.json"
+  ],
+  "applied_input_catalog_sha256": "c2d131aa1c9180b9010290ab8f6423dcacac494e2e2ad08792057bd4b005deb9",
+  "output_catalog_sha256": "53466750a9eafc031d9c06080c6924cba906dea5a4220a29c0df7789bc27c0a0"
+}

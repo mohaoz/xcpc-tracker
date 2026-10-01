@@ -1,8 +1,10 @@
 import { readFile } from 'node:fs/promises';
+import { readFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 import { atomicJson, readJson, sha256, normalizeTitle, names, problemIdentity, unique, download } from './source-import-lib.mjs';
 
 export const RATING_URL = 'https://hei-maom.github.io/xcpcrating/data/problems-index.json';
+const mappingExclusions=JSON.parse(readFileSync(new URL('../fixtures/imports/xcpc-rating/problem-mapping-exclusions.json',import.meta.url),'utf8')).entries;
 export function inspectRating(catalog, rows) {
   if (!Array.isArray(rows) || rows.some(r => !r || typeof r.contestSlug !== 'string' || typeof r.alias !== 'string' || !Array.isArray(r.detailTags) || r.detailTags.some(t => typeof t !== 'string'))) throw new Error('Invalid XCPC Rating snapshot');
   const byIdentity = new Map();
@@ -15,6 +17,12 @@ export function inspectRating(catalog, rows) {
   const contestMappings = [];
   const matches = [], unresolved = [];
   for (const [slug, group] of groups) {
+    const identityHash=sha256(JSON.stringify(group.map(r=>({ordinal:r.alias,identity:problemIdentity(r.problemUrl)})).sort((a,b)=>a.ordinal.localeCompare(b.ordinal))));
+    const exclusion=mappingExclusions.find(e=>e.contest_slug===slug&&e.problem_identity_sha256===identityHash);
+    if(exclusion) {
+      for(const r of group)unresolved.push({contest_slug:slug,ordinal:r.alias,title:r.title,reason:exclusion.reason,blocked_mapping_sha256:identityHash});
+      continue;
+    }
     // Several matching题名/题号 pairs establish contest identity; a lone common title never does.
     const candidates = catalog.contests.map(c => {
       const ps = catalog.problems.filter(p => p.contestId === c.contestId);
@@ -28,8 +36,28 @@ export function inspectRating(catalog, rows) {
     }));
     // Joint contests may share all tasks. Preserve every exact target and report ambiguous standings separately.
     for (const x of compatible) contestMappings.push({ contest_slug: slug, contest_id: x.c.contestId, evidence: { exact_problem_ids: x.exact, matching_titles: x.titles, problem_count: group.length } });
+    // Some upstream rows expose a numeric rating and exact CF/QOJ IDs, but no title.
+    // Require an independently reviewed original-event mapping, matching start time,
+    // and a one-to-one COMPLETE provider-ID set before using these numeric rows.
+    const originalSourceId=`srk:official/${slug.replaceAll('__','/')}.srk.json`;
+    const numericIdentityTargets=compatible.filter(x=>
+      x.exact===group.length && new Set(group.map(r=>r.alias)).size===group.length &&
+      new Set(group.map(r=>problemIdentity(r.problemUrl))).size===group.length &&
+      group.every(r=>!r.title||r.title===r.alias||names(x.ps.find(p=>p.ordinal===r.alias)).includes(normalizeTitle(r.title))) &&
+      x.c.sources?.some(s=>s.provider==='rankland'&&s.kind==='standings'&&s.provider_contest_id===originalSourceId) &&
+      x.c.startAt && group.every(r=>Number.isFinite(Date.parse(r.startAt))&&Date.parse(r.startAt)===Date.parse(x.c.startAt))
+    );
     for (const r of group) {
-      if (!r.title || r.title === r.alias || (!r.detailTags.length && !problemIdentity(r.problemUrl))) continue;
+      if (!r.title || r.title === r.alias) {
+        if (!Number.isFinite(r.problemRating)||r.problemRating<0) continue;
+        for (const x of numericIdentityTargets) {
+          const p=x.ps.find(p=>p.ordinal===r.alias&&(byIdentity.get(problemIdentity(r.problemUrl))??[]).includes(p));
+          if (!p) continue;
+          matches.push({problem_id:p.problemId,contest_slug:slug,ordinal:r.alias,title:p.title,source_title:r.title??null,tags:[],problem_url:r.problemUrl,confidence:r.confidence,status:r.status,evidence:'complete_provider_ids_and_verified_original_contest',original_source_id:originalSourceId,original_start_at:x.c.startAt});
+        }
+        continue;
+      }
+      if (!r.detailTags.length && !problemIdentity(r.problemUrl) && !Number.isFinite(r.problemRating)) continue;
       const identityTargets = byIdentity.get(problemIdentity(r.problemUrl)) ?? [];
       const targets = identityTargets.length ? identityTargets : compatible.flatMap(x => x.ps.filter(p => p.ordinal === r.alias && names(p).includes(normalizeTitle(r.title))));
       if (!targets.length) {
@@ -53,7 +81,7 @@ export function applyRating(catalog, report) {
     const p = out.problems.find(p => p.problemId === m.problem_id);
     if (!p || !names(p).includes(normalizeTitle(m.title))) throw new Error('Stale rating match');
     p.tags = unique([...(p.tags ?? []), ...m.tags]).sort();
-    const provenance = { provider: 'xcpc_rating', kind: 'metadata', url: 'https://hei-maom.github.io/xcpcrating/#/problems', provider_problem_id: `${m.contest_slug}:${m.ordinal}`, source_title: m.title, label: 'XCPC Rating · 社区标签' };
+    const provenance = { provider: 'xcpc_rating', kind: 'metadata', url: 'https://hei-maom.github.io/xcpcrating/#/problems', provider_problem_id: `${m.contest_slug}:${m.ordinal}`, ...(m.evidence==='complete_provider_ids_and_verified_original_contest' ? {} : {source_title:m.title}), label: m.evidence==='complete_provider_ids_and_verified_original_contest' ? 'XCPC Rating · 题目评分' : 'XCPC Rating · 社区标签' };
     if (!p.sources.some(s => s.provider === provenance.provider && s.provider_problem_id === provenance.provider_problem_id)) p.sources.push(provenance);
   }
   for (const mapping of report.contest_mappings) {

@@ -1,0 +1,1097 @@
+{
+  "provider": "qoj",
+  "exported_at": "2026-10-01T11:31:50.039Z",
+  "source_type": "user_browser_same_origin_contest_pages",
+  "request_count": 12,
+  "contests": [
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/3727?v=1",
+      "provider_contest_id": "3727",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "White Night",
+          "url": "https://qoj.ac/contest/3727/problem/18001?v=1",
+          "provider_problem_id": "18001"
+        },
+        {
+          "ordinal": "B",
+          "title": "Yearning for Yonder 2",
+          "url": "https://qoj.ac/contest/3727/problem/18002?v=1",
+          "provider_problem_id": "18002"
+        },
+        {
+          "ordinal": "C",
+          "title": "Four Kubic Theorem 2",
+          "url": "https://qoj.ac/contest/3727/problem/18003?v=1",
+          "provider_problem_id": "18003"
+        },
+        {
+          "ordinal": "D",
+          "title": "Call You With Your Name",
+          "url": "https://qoj.ac/contest/3727/problem/18004?v=1",
+          "provider_problem_id": "18004"
+        },
+        {
+          "ordinal": "E",
+          "title": "Call You With Your Name 2",
+          "url": "https://qoj.ac/contest/3727/problem/18005?v=1",
+          "provider_problem_id": "18005"
+        },
+        {
+          "ordinal": "F",
+          "title": "Many Many Heads 2",
+          "url": "https://qoj.ac/contest/3727/problem/18006?v=1",
+          "provider_problem_id": "18006"
+        },
+        {
+          "ordinal": "G",
+          "title": "Puzzle: The Artisan of Glimmith",
+          "url": "https://qoj.ac/contest/3727/problem/18007?v=1",
+          "provider_problem_id": "18007"
+        },
+        {
+          "ordinal": "H",
+          "title": "Strange Sorting 2",
+          "url": "https://qoj.ac/contest/3727/problem/18008?v=1",
+          "provider_problem_id": "18008"
+        },
+        {
+          "ordinal": "I",
+          "title": "Not a Work of Idol 2",
+          "url": "https://qoj.ac/contest/3727/problem/18009?v=1",
+          "provider_problem_id": "18009"
+        },
+        {
+          "ordinal": "J",
+          "title": "Slay the Spire 2",
+          "url": "https://qoj.ac/contest/3727/problem/18010?v=1",
+          "provider_problem_id": "18010"
+        },
+        {
+          "ordinal": "K",
+          "title": "Sequence Operation",
+          "url": "https://qoj.ac/contest/3727/problem/18011?v=1",
+          "provider_problem_id": "18011"
+        },
+        {
+          "ordinal": "L",
+          "title": "Spirited Away",
+          "url": "https://qoj.ac/contest/3727/problem/18012?v=1",
+          "provider_problem_id": "18012"
+        },
+        {
+          "ordinal": "M",
+          "title": "Rectangle Flip 3",
+          "url": "https://qoj.ac/contest/3727/problem/18013?v=1",
+          "provider_problem_id": "18013"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 13,
+        "expected_problem_count": 13,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:31:50.396Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/3935",
+      "provider_contest_id": "3935",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "草莓牛奶",
+          "url": "https://qoj.ac/contest/3935/problem/18958",
+          "provider_problem_id": "18958"
+        },
+        {
+          "ordinal": "B",
+          "title": "排列翻转",
+          "url": "https://qoj.ac/contest/3935/problem/18959",
+          "provider_problem_id": "18959"
+        },
+        {
+          "ordinal": "C",
+          "title": "Fry Beef",
+          "url": "https://qoj.ac/contest/3935/problem/18960",
+          "provider_problem_id": "18960"
+        },
+        {
+          "ordinal": "D",
+          "title": "求求你不要再爬塔二了",
+          "url": "https://qoj.ac/contest/3935/problem/18961",
+          "provider_problem_id": "18961"
+        },
+        {
+          "ordinal": "E",
+          "title": "星战",
+          "url": "https://qoj.ac/contest/3935/problem/18962",
+          "provider_problem_id": "18962"
+        },
+        {
+          "ordinal": "F",
+          "title": "尖塔最强机器人",
+          "url": "https://qoj.ac/contest/3935/problem/18963",
+          "provider_problem_id": "18963"
+        },
+        {
+          "ordinal": "G",
+          "title": "灭霸排序 II",
+          "url": "https://qoj.ac/contest/3935/problem/18964",
+          "provider_problem_id": "18964"
+        },
+        {
+          "ordinal": "H",
+          "title": "最小异或乘积",
+          "url": "https://qoj.ac/contest/3935/problem/18965",
+          "provider_problem_id": "18965"
+        },
+        {
+          "ordinal": "I",
+          "title": "小礼品",
+          "url": "https://qoj.ac/contest/3935/problem/18966",
+          "provider_problem_id": "18966"
+        },
+        {
+          "ordinal": "J",
+          "title": "字符串的 Porder 之和",
+          "url": "https://qoj.ac/contest/3935/problem/18967",
+          "provider_problem_id": "18967"
+        },
+        {
+          "ordinal": "K",
+          "title": "像素8",
+          "url": "https://qoj.ac/contest/3935/problem/18968",
+          "provider_problem_id": "18968"
+        },
+        {
+          "ordinal": "L",
+          "title": "解方程",
+          "url": "https://qoj.ac/contest/3935/problem/18969",
+          "provider_problem_id": "18969"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 12,
+        "expected_problem_count": 12,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:31:54.254Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/3934",
+      "provider_contest_id": "3934",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "求求你不要再摔馍片了",
+          "url": "https://qoj.ac/contest/3934/problem/18945",
+          "provider_problem_id": "18945"
+        },
+        {
+          "ordinal": "B",
+          "title": "世界树",
+          "url": "https://qoj.ac/contest/3934/problem/18946",
+          "provider_problem_id": "18946"
+        },
+        {
+          "ordinal": "C",
+          "title": "电梯",
+          "url": "https://qoj.ac/contest/3934/problem/18948",
+          "provider_problem_id": "18948"
+        },
+        {
+          "ordinal": "D",
+          "title": "星塔",
+          "url": "https://qoj.ac/contest/3934/problem/18939",
+          "provider_problem_id": "18939"
+        },
+        {
+          "ordinal": "E",
+          "title": "猜 01 序列",
+          "url": "https://qoj.ac/contest/3934/problem/18949",
+          "provider_problem_id": "18949"
+        },
+        {
+          "ordinal": "F",
+          "title": "建设高铁",
+          "url": "https://qoj.ac/contest/3934/problem/18950",
+          "provider_problem_id": "18950"
+        },
+        {
+          "ordinal": "G",
+          "title": "冰灯配色",
+          "url": "https://qoj.ac/contest/3934/problem/18940",
+          "provider_problem_id": "18940"
+        },
+        {
+          "ordinal": "H",
+          "title": "可能是字符串签到题",
+          "url": "https://qoj.ac/contest/3934/problem/18951",
+          "provider_problem_id": "18951"
+        },
+        {
+          "ordinal": "I",
+          "title": "灯带",
+          "url": "https://qoj.ac/contest/3934/problem/18953",
+          "provider_problem_id": "18953"
+        },
+        {
+          "ordinal": "J",
+          "title": "校园乐跑",
+          "url": "https://qoj.ac/contest/3934/problem/18941",
+          "provider_problem_id": "18941"
+        },
+        {
+          "ordinal": "K",
+          "title": "贪吃蛇",
+          "url": "https://qoj.ac/contest/3934/problem/18954",
+          "provider_problem_id": "18954"
+        },
+        {
+          "ordinal": "L",
+          "title": "拯救猫猫",
+          "url": "https://qoj.ac/contest/3934/problem/18955",
+          "provider_problem_id": "18955"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 12,
+        "expected_problem_count": 12,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:31:58.114Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/4120",
+      "provider_contest_id": "4120",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "Additive Combinatorics",
+          "url": "https://qoj.ac/contest/4120/problem/19089",
+          "provider_problem_id": "19089"
+        },
+        {
+          "ordinal": "B",
+          "title": "Metronome for Corgi",
+          "url": "https://qoj.ac/contest/4120/problem/19090",
+          "provider_problem_id": "19090"
+        },
+        {
+          "ordinal": "C",
+          "title": "Call for Papers",
+          "url": "https://qoj.ac/contest/4120/problem/19091",
+          "provider_problem_id": "19091"
+        },
+        {
+          "ordinal": "D",
+          "title": "DeepSeek, DeepThink!",
+          "url": "https://qoj.ac/contest/4120/problem/19092",
+          "provider_problem_id": "19092"
+        },
+        {
+          "ordinal": "E",
+          "title": "Elimination",
+          "url": "https://qoj.ac/contest/4120/problem/19093",
+          "provider_problem_id": "19093"
+        },
+        {
+          "ordinal": "F",
+          "title": "Faster Elimination",
+          "url": "https://qoj.ac/contest/4120/problem/19094",
+          "provider_problem_id": "19094"
+        },
+        {
+          "ordinal": "G",
+          "title": "Grand XOR Counting Problem Challenge II",
+          "url": "https://qoj.ac/contest/4120/problem/19095",
+          "provider_problem_id": "19095"
+        },
+        {
+          "ordinal": "H",
+          "title": "Hollow Knight: Silksong",
+          "url": "https://qoj.ac/contest/4120/problem/19096",
+          "provider_problem_id": "19096"
+        },
+        {
+          "ordinal": "I",
+          "title": "Identify the Feasibility",
+          "url": "https://qoj.ac/contest/4120/problem/19097",
+          "provider_problem_id": "19097"
+        },
+        {
+          "ordinal": "J",
+          "title": "Join the Joint",
+          "url": "https://qoj.ac/contest/4120/problem/19098",
+          "provider_problem_id": "19098"
+        },
+        {
+          "ordinal": "K",
+          "title": "Kingdom Rush 5: Alliance",
+          "url": "https://qoj.ac/contest/4120/problem/19099",
+          "provider_problem_id": "19099"
+        },
+        {
+          "ordinal": "L",
+          "title": "Lost in MST",
+          "url": "https://qoj.ac/contest/4120/problem/19100",
+          "provider_problem_id": "19100"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 12,
+        "expected_problem_count": 12,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:32:02.604Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/4121",
+      "provider_contest_id": "4121",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "Guizhou Historic Cities",
+          "url": "https://qoj.ac/contest/4121/problem/20284",
+          "provider_problem_id": "20284"
+        },
+        {
+          "ordinal": "B",
+          "title": "Aquarium Bubble Lights",
+          "url": "https://qoj.ac/contest/4121/problem/20285",
+          "provider_problem_id": "20285"
+        },
+        {
+          "ordinal": "C",
+          "title": "Aquarium Feeding",
+          "url": "https://qoj.ac/contest/4121/problem/20286",
+          "provider_problem_id": "20286"
+        },
+        {
+          "ordinal": "D",
+          "title": "Bacteria Culture",
+          "url": "https://qoj.ac/contest/4121/problem/20287",
+          "provider_problem_id": "20287"
+        },
+        {
+          "ordinal": "E",
+          "title": "Charging Adapters",
+          "url": "https://qoj.ac/contest/4121/problem/20288",
+          "provider_problem_id": "20288"
+        },
+        {
+          "ordinal": "F",
+          "title": "Circular Light Calibration",
+          "url": "https://qoj.ac/contest/4121/problem/20289",
+          "provider_problem_id": "20289"
+        },
+        {
+          "ordinal": "G",
+          "title": "Drum Rehearsal",
+          "url": "https://qoj.ac/contest/4121/problem/20290",
+          "provider_problem_id": "20290"
+        },
+        {
+          "ordinal": "H",
+          "title": "Edge Reversal",
+          "url": "https://qoj.ac/contest/4121/problem/20291",
+          "provider_problem_id": "20291"
+        },
+        {
+          "ordinal": "I",
+          "title": "Revision Sequences",
+          "url": "https://qoj.ac/contest/4121/problem/20292",
+          "provider_problem_id": "20292"
+        },
+        {
+          "ordinal": "J",
+          "title": "Tide Pool Islands",
+          "url": "https://qoj.ac/contest/4121/problem/20293",
+          "provider_problem_id": "20293"
+        },
+        {
+          "ordinal": "K",
+          "title": "Two-Tone Palindromes",
+          "url": "https://qoj.ac/contest/4121/problem/20294",
+          "provider_problem_id": "20294"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 11,
+        "expected_problem_count": 11,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:32:06.442Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/4128",
+      "provider_contest_id": "4128",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "All the Trades Are the Best",
+          "url": "https://qoj.ac/contest/4128/problem/20715",
+          "provider_problem_id": "20715"
+        },
+        {
+          "ordinal": "B",
+          "title": "Better Dice",
+          "url": "https://qoj.ac/contest/4128/problem/20716",
+          "provider_problem_id": "20716"
+        },
+        {
+          "ordinal": "C",
+          "title": "Cross the Road",
+          "url": "https://qoj.ac/contest/4128/problem/20717",
+          "provider_problem_id": "20717"
+        },
+        {
+          "ordinal": "D",
+          "title": "Dodge the Car",
+          "url": "https://qoj.ac/contest/4128/problem/20718",
+          "provider_problem_id": "20718"
+        },
+        {
+          "ordinal": "E",
+          "title": "EPS.AC",
+          "url": "https://qoj.ac/contest/4128/problem/20719",
+          "provider_problem_id": "20719"
+        },
+        {
+          "ordinal": "F",
+          "title": "Flight of the Night Butterfly",
+          "url": "https://qoj.ac/contest/4128/problem/20720",
+          "provider_problem_id": "20720"
+        },
+        {
+          "ordinal": "G",
+          "title": "Growing Prefix Span",
+          "url": "https://qoj.ac/contest/4128/problem/20721",
+          "provider_problem_id": "20721"
+        },
+        {
+          "ordinal": "H",
+          "title": "Hidden Permutation",
+          "url": "https://qoj.ac/contest/4128/problem/20722",
+          "provider_problem_id": "20722"
+        },
+        {
+          "ordinal": "I",
+          "title": "Integer Triple",
+          "url": "https://qoj.ac/contest/4128/problem/20723",
+          "provider_problem_id": "20723"
+        },
+        {
+          "ordinal": "J",
+          "title": "Jobs through Pipelines",
+          "url": "https://qoj.ac/contest/4128/problem/20724",
+          "provider_problem_id": "20724"
+        },
+        {
+          "ordinal": "K",
+          "title": "Keep on the Right Track",
+          "url": "https://qoj.ac/contest/4128/problem/20725",
+          "provider_problem_id": "20725"
+        },
+        {
+          "ordinal": "L",
+          "title": "Logging Compression",
+          "url": "https://qoj.ac/contest/4128/problem/20726",
+          "provider_problem_id": "20726"
+        },
+        {
+          "ordinal": "M",
+          "title": "Median Equals X",
+          "url": "https://qoj.ac/contest/4128/problem/20727",
+          "provider_problem_id": "20727"
+        },
+        {
+          "ordinal": "N",
+          "title": "New CCPC Rules",
+          "url": "https://qoj.ac/contest/4128/problem/20728",
+          "provider_problem_id": "20728"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 14,
+        "expected_problem_count": 14,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:32:10.280Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/4116",
+      "provider_contest_id": "4116",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "abc - 变换",
+          "url": "https://qoj.ac/contest/4116/problem/18970",
+          "provider_problem_id": "18970"
+        },
+        {
+          "ordinal": "B",
+          "title": "星战",
+          "url": "https://qoj.ac/contest/4116/problem/18962",
+          "provider_problem_id": "18962"
+        },
+        {
+          "ordinal": "C",
+          "title": "最小异或乘积",
+          "url": "https://qoj.ac/contest/4116/problem/18965",
+          "provider_problem_id": "18965"
+        },
+        {
+          "ordinal": "D",
+          "title": "序列",
+          "url": "https://qoj.ac/contest/4116/problem/18937",
+          "provider_problem_id": "18937"
+        },
+        {
+          "ordinal": "E",
+          "title": "Fry Beef",
+          "url": "https://qoj.ac/contest/4116/problem/18960",
+          "provider_problem_id": "18960"
+        },
+        {
+          "ordinal": "F",
+          "title": "排列翻转",
+          "url": "https://qoj.ac/contest/4116/problem/18959",
+          "provider_problem_id": "18959"
+        },
+        {
+          "ordinal": "G",
+          "title": "字符串的 Porder 之和",
+          "url": "https://qoj.ac/contest/4116/problem/18967",
+          "provider_problem_id": "18967"
+        },
+        {
+          "ordinal": "H",
+          "title": "尖塔最强机器人",
+          "url": "https://qoj.ac/contest/4116/problem/18963",
+          "provider_problem_id": "18963"
+        },
+        {
+          "ordinal": "I",
+          "title": "小礼品",
+          "url": "https://qoj.ac/contest/4116/problem/18966",
+          "provider_problem_id": "18966"
+        },
+        {
+          "ordinal": "J",
+          "title": "草莓牛奶",
+          "url": "https://qoj.ac/contest/4116/problem/18958",
+          "provider_problem_id": "18958"
+        },
+        {
+          "ordinal": "K",
+          "title": "灭霸排序 I",
+          "url": "https://qoj.ac/contest/4116/problem/18938",
+          "provider_problem_id": "18938"
+        },
+        {
+          "ordinal": "L",
+          "title": "求求你不要再爬塔二了",
+          "url": "https://qoj.ac/contest/4116/problem/18961",
+          "provider_problem_id": "18961"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 12,
+        "expected_problem_count": 12,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:32:14.120Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/4072",
+      "provider_contest_id": "4072",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "Assigning Distinct Integers",
+          "url": "https://qoj.ac/contest/4072/problem/20101",
+          "provider_problem_id": "20101"
+        },
+        {
+          "ordinal": "B",
+          "title": "Box Projections",
+          "url": "https://qoj.ac/contest/4072/problem/20102",
+          "provider_problem_id": "20102"
+        },
+        {
+          "ordinal": "C",
+          "title": "Constructing Box Projections",
+          "url": "https://qoj.ac/contest/4072/problem/20103",
+          "provider_problem_id": "20103"
+        },
+        {
+          "ordinal": "D",
+          "title": "Dynamic Connectivity Across Graphs",
+          "url": "https://qoj.ac/contest/4072/problem/20104",
+          "provider_problem_id": "20104"
+        },
+        {
+          "ordinal": "E",
+          "title": "Encoded Shortest Paths",
+          "url": "https://qoj.ac/contest/4072/problem/20105",
+          "provider_problem_id": "20105"
+        },
+        {
+          "ordinal": "F",
+          "title": "First and Second Minimum",
+          "url": "https://qoj.ac/contest/4072/problem/20106",
+          "provider_problem_id": "20106"
+        },
+        {
+          "ordinal": "G",
+          "title": "Game of Passing Cards",
+          "url": "https://qoj.ac/contest/4072/problem/20107",
+          "provider_problem_id": "20107"
+        },
+        {
+          "ordinal": "H",
+          "title": "Human-Readable Number",
+          "url": "https://qoj.ac/contest/4072/problem/20108",
+          "provider_problem_id": "20108"
+        },
+        {
+          "ordinal": "I",
+          "title": "Interprocess Sum and Scatter",
+          "url": "https://qoj.ac/contest/4072/problem/20109",
+          "provider_problem_id": "20109"
+        },
+        {
+          "ordinal": "J",
+          "title": "Jumbled Block Hierarchy",
+          "url": "https://qoj.ac/contest/4072/problem/20110",
+          "provider_problem_id": "20110"
+        },
+        {
+          "ordinal": "K",
+          "title": "Keep the Fairness",
+          "url": "https://qoj.ac/contest/4072/problem/20111",
+          "provider_problem_id": "20111"
+        },
+        {
+          "ordinal": "L",
+          "title": "Let’s Go Yum Cha",
+          "url": "https://qoj.ac/contest/4072/problem/20112",
+          "provider_problem_id": "20112"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 12,
+        "expected_problem_count": 12,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:32:17.977Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/3933",
+      "provider_contest_id": "3933",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "求求你不要再摔馍片了",
+          "url": "https://qoj.ac/contest/3933/problem/18945",
+          "provider_problem_id": "18945"
+        },
+        {
+          "ordinal": "B",
+          "title": "一句祝贺",
+          "url": "https://qoj.ac/contest/3933/problem/18942",
+          "provider_problem_id": "18942"
+        },
+        {
+          "ordinal": "C",
+          "title": "世界树",
+          "url": "https://qoj.ac/contest/3933/problem/18946",
+          "provider_problem_id": "18946"
+        },
+        {
+          "ordinal": "D",
+          "title": "简单字符串题",
+          "url": "https://qoj.ac/contest/3933/problem/18947",
+          "provider_problem_id": "18947"
+        },
+        {
+          "ordinal": "E",
+          "title": "电梯",
+          "url": "https://qoj.ac/contest/3933/problem/18948",
+          "provider_problem_id": "18948"
+        },
+        {
+          "ordinal": "F",
+          "title": "猜 01 序列",
+          "url": "https://qoj.ac/contest/3933/problem/18949",
+          "provider_problem_id": "18949"
+        },
+        {
+          "ordinal": "G",
+          "title": "建设高铁",
+          "url": "https://qoj.ac/contest/3933/problem/18950",
+          "provider_problem_id": "18950"
+        },
+        {
+          "ordinal": "H",
+          "title": "可能是字符串签到题",
+          "url": "https://qoj.ac/contest/3933/problem/18951",
+          "provider_problem_id": "18951"
+        },
+        {
+          "ordinal": "I",
+          "title": "山海关老冰糕",
+          "url": "https://qoj.ac/contest/3933/problem/18943",
+          "provider_problem_id": "18943"
+        },
+        {
+          "ordinal": "J",
+          "title": "海鲜大排档点生蚝",
+          "url": "https://qoj.ac/contest/3933/problem/18944",
+          "provider_problem_id": "18944"
+        },
+        {
+          "ordinal": "K",
+          "title": "灯带",
+          "url": "https://qoj.ac/contest/3933/problem/18953",
+          "provider_problem_id": "18953"
+        },
+        {
+          "ordinal": "L",
+          "title": "贪吃蛇",
+          "url": "https://qoj.ac/contest/3933/problem/18954",
+          "provider_problem_id": "18954"
+        },
+        {
+          "ordinal": "M",
+          "title": "拯救猫猫",
+          "url": "https://qoj.ac/contest/3933/problem/18955",
+          "provider_problem_id": "18955"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 13,
+        "expected_problem_count": 13,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:32:21.835Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/3929",
+      "provider_contest_id": "3929",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "求求你不要再摔馍片了",
+          "url": "https://qoj.ac/contest/3929/problem/18945",
+          "provider_problem_id": "18945"
+        },
+        {
+          "ordinal": "B",
+          "title": "世界树",
+          "url": "https://qoj.ac/contest/3929/problem/18946",
+          "provider_problem_id": "18946"
+        },
+        {
+          "ordinal": "C",
+          "title": "简单字符串题",
+          "url": "https://qoj.ac/contest/3929/problem/18947",
+          "provider_problem_id": "18947"
+        },
+        {
+          "ordinal": "D",
+          "title": "电梯",
+          "url": "https://qoj.ac/contest/3929/problem/18948",
+          "provider_problem_id": "18948"
+        },
+        {
+          "ordinal": "E",
+          "title": "猜 01 序列",
+          "url": "https://qoj.ac/contest/3929/problem/18949",
+          "provider_problem_id": "18949"
+        },
+        {
+          "ordinal": "F",
+          "title": "建设高铁",
+          "url": "https://qoj.ac/contest/3929/problem/18950",
+          "provider_problem_id": "18950"
+        },
+        {
+          "ordinal": "G",
+          "title": "可能是字符串签到题",
+          "url": "https://qoj.ac/contest/3929/problem/18951",
+          "provider_problem_id": "18951"
+        },
+        {
+          "ordinal": "H",
+          "title": "南昌拌粉的绝妙配比",
+          "url": "https://qoj.ac/contest/3929/problem/18952",
+          "provider_problem_id": "18952"
+        },
+        {
+          "ordinal": "I",
+          "title": "灯带",
+          "url": "https://qoj.ac/contest/3929/problem/18953",
+          "provider_problem_id": "18953"
+        },
+        {
+          "ordinal": "J",
+          "title": "贪吃蛇",
+          "url": "https://qoj.ac/contest/3929/problem/18954",
+          "provider_problem_id": "18954"
+        },
+        {
+          "ordinal": "K",
+          "title": "拯救猫猫",
+          "url": "https://qoj.ac/contest/3929/problem/18955",
+          "provider_problem_id": "18955"
+        },
+        {
+          "ordinal": "L",
+          "title": "三人成角",
+          "url": "https://qoj.ac/contest/3929/problem/18956",
+          "provider_problem_id": "18956"
+        },
+        {
+          "ordinal": "M",
+          "title": "最正宗的白糖糕",
+          "url": "https://qoj.ac/contest/3929/problem/18957",
+          "provider_problem_id": "18957"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 13,
+        "expected_problem_count": 13,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:32:25.670Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/4119",
+      "provider_contest_id": "4119",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "Alpha, Beta, Omega",
+          "url": "https://qoj.ac/contest/4119/problem/20271",
+          "provider_problem_id": "20271"
+        },
+        {
+          "ordinal": "B",
+          "title": "Brilliant Idea",
+          "url": "https://qoj.ac/contest/4119/problem/20272",
+          "provider_problem_id": "20272"
+        },
+        {
+          "ordinal": "C",
+          "title": "Chasing Game",
+          "url": "https://qoj.ac/contest/4119/problem/20273",
+          "provider_problem_id": "20273"
+        },
+        {
+          "ordinal": "D",
+          "title": "Dream Team",
+          "url": "https://qoj.ac/contest/4119/problem/20274",
+          "provider_problem_id": "20274"
+        },
+        {
+          "ordinal": "E",
+          "title": "Evil Capitalist",
+          "url": "https://qoj.ac/contest/4119/problem/20275",
+          "provider_problem_id": "20275"
+        },
+        {
+          "ordinal": "F",
+          "title": "Forever Young",
+          "url": "https://qoj.ac/contest/4119/problem/20276",
+          "provider_problem_id": "20276"
+        },
+        {
+          "ordinal": "G",
+          "title": "GCD Spanning Tree",
+          "url": "https://qoj.ac/contest/4119/problem/20277",
+          "provider_problem_id": "20277"
+        },
+        {
+          "ordinal": "H",
+          "title": "Hide and Seek",
+          "url": "https://qoj.ac/contest/4119/problem/20278",
+          "provider_problem_id": "20278"
+        },
+        {
+          "ordinal": "I",
+          "title": "Indivisible Partition",
+          "url": "https://qoj.ac/contest/4119/problem/20279",
+          "provider_problem_id": "20279"
+        },
+        {
+          "ordinal": "J",
+          "title": "June",
+          "url": "https://qoj.ac/contest/4119/problem/20280",
+          "provider_problem_id": "20280"
+        },
+        {
+          "ordinal": "K",
+          "title": "Keyboard",
+          "url": "https://qoj.ac/contest/4119/problem/20281",
+          "provider_problem_id": "20281"
+        },
+        {
+          "ordinal": "L",
+          "title": "Love Choice",
+          "url": "https://qoj.ac/contest/4119/problem/20282",
+          "provider_problem_id": "20282"
+        },
+        {
+          "ordinal": "M",
+          "title": "Meteor Shower",
+          "url": "https://qoj.ac/contest/4119/problem/20283",
+          "provider_problem_id": "20283"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 13,
+        "expected_problem_count": 13,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:32:29.538Z"
+    },
+    {
+      "title": "QOJ.ac",
+      "url": "https://qoj.ac/contest/4118",
+      "provider_contest_id": "4118",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "Ascending Random Number Sequence",
+          "url": "https://qoj.ac/contest/4118/problem/20075",
+          "provider_problem_id": "20075"
+        },
+        {
+          "ordinal": "B",
+          "title": "Black Friday",
+          "url": "https://qoj.ac/contest/4118/problem/20076",
+          "provider_problem_id": "20076"
+        },
+        {
+          "ordinal": "C",
+          "title": "Finding Cyclic Isomorphism",
+          "url": "https://qoj.ac/contest/4118/problem/20077",
+          "provider_problem_id": "20077"
+        },
+        {
+          "ordinal": "D",
+          "title": "Dune",
+          "url": "https://qoj.ac/contest/4118/problem/20078",
+          "provider_problem_id": "20078"
+        },
+        {
+          "ordinal": "E",
+          "title": "Epsilon Estuary",
+          "url": "https://qoj.ac/contest/4118/problem/20079",
+          "provider_problem_id": "20079"
+        },
+        {
+          "ordinal": "F",
+          "title": "Farewell GXCPC!",
+          "url": "https://qoj.ac/contest/4118/problem/20080",
+          "provider_problem_id": "20080"
+        },
+        {
+          "ordinal": "G",
+          "title": "Grand XOR Counting Problem Challenge",
+          "url": "https://qoj.ac/contest/4118/problem/20081",
+          "provider_problem_id": "20081"
+        },
+        {
+          "ordinal": "H",
+          "title": "Hashing Collision",
+          "url": "https://qoj.ac/contest/4118/problem/20082",
+          "provider_problem_id": "20082"
+        },
+        {
+          "ordinal": "I",
+          "title": "Ice Skating",
+          "url": "https://qoj.ac/contest/4118/problem/20083",
+          "provider_problem_id": "20083"
+        },
+        {
+          "ordinal": "J",
+          "title": "Judge System with Random",
+          "url": "https://qoj.ac/contest/4118/problem/20084",
+          "provider_problem_id": "20084"
+        },
+        {
+          "ordinal": "K",
+          "title": "Kingdom Rush: Vengeance",
+          "url": "https://qoj.ac/contest/4118/problem/20085",
+          "provider_problem_id": "20085"
+        },
+        {
+          "ordinal": "L",
+          "title": "Loong",
+          "url": "https://qoj.ac/contest/4118/problem/20086",
+          "provider_problem_id": "20086"
+        },
+        {
+          "ordinal": "M",
+          "title": "Matching on a Tree",
+          "url": "https://qoj.ac/contest/4118/problem/20087",
+          "provider_problem_id": "20087"
+        }
+      ],
+      "validation": {
+        "parsed_problem_count": 13,
+        "expected_problem_count": 13,
+        "consecutive_ordinals": true,
+        "single_problem_table": true,
+        "completeness": "Matches reviewed reference count; final curator identity review still required"
+      },
+      "fetched_at": "2026-10-01T11:32:33.369Z"
+    }
+  ],
+  "failed": [],
+  "unattempted": [],
+  "complete": true,
+  "summary": {
+    "successful": 12,
+    "failed": 0,
+    "unattempted": 0,
+    "problems": 150
+  }
+}

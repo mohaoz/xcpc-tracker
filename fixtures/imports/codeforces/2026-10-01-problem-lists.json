@@ -1,0 +1,408 @@
+[
+  {
+    "title": "The 8th Guangxi Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106707",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Additive Combinatorics",
+        "url": "https://codeforces.com/gym/106707/problem/A",
+        "provider_problem_id": "106707:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Metronome for Corgi",
+        "url": "https://codeforces.com/gym/106707/problem/B",
+        "provider_problem_id": "106707:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Call for Papers",
+        "url": "https://codeforces.com/gym/106707/problem/C",
+        "provider_problem_id": "106707:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "DeepSeek, DeepThink!",
+        "url": "https://codeforces.com/gym/106707/problem/D",
+        "provider_problem_id": "106707:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Elimination",
+        "url": "https://codeforces.com/gym/106707/problem/E",
+        "provider_problem_id": "106707:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Faster Elimination",
+        "url": "https://codeforces.com/gym/106707/problem/F",
+        "provider_problem_id": "106707:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Grand XOR Counting Problem Challenge II",
+        "url": "https://codeforces.com/gym/106707/problem/G",
+        "provider_problem_id": "106707:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Hollow Knight: Silksong",
+        "url": "https://codeforces.com/gym/106707/problem/H",
+        "provider_problem_id": "106707:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Identify the Feasibility",
+        "url": "https://codeforces.com/gym/106707/problem/I",
+        "provider_problem_id": "106707:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Join the Joint",
+        "url": "https://codeforces.com/gym/106707/problem/J",
+        "provider_problem_id": "106707:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Kingdom Rush 5: Alliance",
+        "url": "https://codeforces.com/gym/106707/problem/K",
+        "provider_problem_id": "106707:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Lost in MST",
+        "url": "https://codeforces.com/gym/106707/problem/L",
+        "provider_problem_id": "106707:L"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "ea3a1d82-1043-5335-9e46-965624960072",
+        "title": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+        "aliases": [
+          "The 8th Guangxi Collegiate Programming Contest",
+          "The 2025 China-ASEAN International Collegiate Programming Contest",
+          "第八届广西大学生程序设计大赛暨2025邀请赛"
+        ],
+        "tags": [
+          "2025",
+          "邀请赛",
+          "省赛",
+          "广西"
+        ],
+        "start_at": "2025-05-25T01:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106707",
+            "provider_contest_id": "106707",
+            "source_title": "The 8th Guangxi Collegiate Programming Contest",
+            "label": "Codeforces Gym"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  },
+  {
+    "title": "The 6th Guangxi Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106689",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Alpha, Beta, Omega",
+        "url": "https://codeforces.com/gym/106689/problem/A",
+        "provider_problem_id": "106689:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Brilliant Idea",
+        "url": "https://codeforces.com/gym/106689/problem/B",
+        "provider_problem_id": "106689:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Chasing Game",
+        "url": "https://codeforces.com/gym/106689/problem/C",
+        "provider_problem_id": "106689:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Dream Team",
+        "url": "https://codeforces.com/gym/106689/problem/D",
+        "provider_problem_id": "106689:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Evil Capitalist",
+        "url": "https://codeforces.com/gym/106689/problem/E",
+        "provider_problem_id": "106689:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Forever Young",
+        "url": "https://codeforces.com/gym/106689/problem/F",
+        "provider_problem_id": "106689:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "GCD Spanning Tree",
+        "url": "https://codeforces.com/gym/106689/problem/G",
+        "provider_problem_id": "106689:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Hide and Seek",
+        "url": "https://codeforces.com/gym/106689/problem/H",
+        "provider_problem_id": "106689:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Indivisible Partition",
+        "url": "https://codeforces.com/gym/106689/problem/I",
+        "provider_problem_id": "106689:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "June",
+        "url": "https://codeforces.com/gym/106689/problem/J",
+        "provider_problem_id": "106689:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Keyboard",
+        "url": "https://codeforces.com/gym/106689/problem/K",
+        "provider_problem_id": "106689:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Love Choice",
+        "url": "https://codeforces.com/gym/106689/problem/L",
+        "provider_problem_id": "106689:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "Meteor Shower",
+        "url": "https://codeforces.com/gym/106689/problem/M",
+        "provider_problem_id": "106689:M"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "0c765171-ae1e-5965-a6c2-3a7e36d8265e",
+        "title": "2023 年第六届广西大学生程序设计竞赛",
+        "aliases": [
+          "The 6th Guangxi Collegiate Programming Contest"
+        ],
+        "tags": [
+          "2023",
+          "省赛",
+          "广西"
+        ],
+        "start_at": "2023-06-04T01:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106689",
+            "provider_contest_id": "106689",
+            "source_title": "The 6th Guangxi Collegiate Programming Contest",
+            "label": "Codeforces Gym"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  },
+  {
+    "title": "The 7th Guangxi Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106697",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Ascending Random Number Sequence",
+        "url": "https://codeforces.com/gym/106697/problem/A",
+        "provider_problem_id": "106697:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Black Friday",
+        "url": "https://codeforces.com/gym/106697/problem/B",
+        "provider_problem_id": "106697:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Finding Cyclic Isomorphism",
+        "url": "https://codeforces.com/gym/106697/problem/C",
+        "provider_problem_id": "106697:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Dune",
+        "url": "https://codeforces.com/gym/106697/problem/D",
+        "provider_problem_id": "106697:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Epsilon Estuary",
+        "url": "https://codeforces.com/gym/106697/problem/E",
+        "provider_problem_id": "106697:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Farewell GXCPC!",
+        "url": "https://codeforces.com/gym/106697/problem/F",
+        "provider_problem_id": "106697:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Grand XOR Counting Problem Challenge",
+        "url": "https://codeforces.com/gym/106697/problem/G",
+        "provider_problem_id": "106697:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Hashing Collision",
+        "url": "https://codeforces.com/gym/106697/problem/H",
+        "provider_problem_id": "106697:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Ice Skating",
+        "url": "https://codeforces.com/gym/106697/problem/I",
+        "provider_problem_id": "106697:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Judge System with Random",
+        "url": "https://codeforces.com/gym/106697/problem/J",
+        "provider_problem_id": "106697:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Kingdom Rush: Vengeance",
+        "url": "https://codeforces.com/gym/106697/problem/K",
+        "provider_problem_id": "106697:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Loong",
+        "url": "https://codeforces.com/gym/106697/problem/L",
+        "provider_problem_id": "106697:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "Matching on a Tree",
+        "url": "https://codeforces.com/gym/106697/problem/M",
+        "provider_problem_id": "106697:M"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3",
+        "title": "第七届广西大学生程序设计大赛",
+        "aliases": [
+          "The 7th Guangxi Collegiate Programming Contest",
+          "第七届广西大学生程序设计大赛",
+          "The 2024 China-ASEAN International Collegiate Programming Competition"
+        ],
+        "tags": [
+          "2024",
+          "邀请赛",
+          "省赛",
+          "广西"
+        ],
+        "start_at": "2024-05-19T01:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106697",
+            "provider_contest_id": "106697",
+            "source_title": "The 7th Guangxi Collegiate Programming Contest",
+            "label": "Codeforces Gym"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  },
+  {
+    "title": "2018 ACM-ICPC World Finals",
+    "url": "https://codeforces.com/gym/102482",
+    "source_label": "Codeforces Gym",
+    "target_contest_ids": [
+      "e6ff5abb-3535-563d-93d4-586cd2fc5c30"
+    ],
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Catch the Plane",
+        "url": "https://codeforces.com/gym/102482/problem/A",
+        "provider_problem_id": "102482:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Comma Sprinkler",
+        "url": "https://codeforces.com/gym/102482/problem/B",
+        "provider_problem_id": "102482:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Conquer the World",
+        "url": "https://codeforces.com/gym/102482/problem/C",
+        "provider_problem_id": "102482:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Gem Island",
+        "url": "https://codeforces.com/gym/102482/problem/D",
+        "provider_problem_id": "102482:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Getting a Jump on Crime",
+        "url": "https://codeforces.com/gym/102482/problem/E",
+        "provider_problem_id": "102482:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Go with the Flow",
+        "url": "https://codeforces.com/gym/102482/problem/F",
+        "provider_problem_id": "102482:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Panda Preserve",
+        "url": "https://codeforces.com/gym/102482/problem/G",
+        "provider_problem_id": "102482:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Single Cut of Failure",
+        "url": "https://codeforces.com/gym/102482/problem/H",
+        "provider_problem_id": "102482:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Triangles",
+        "url": "https://codeforces.com/gym/102482/problem/I",
+        "provider_problem_id": "102482:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Uncrossed Knight's Tour",
+        "url": "https://codeforces.com/gym/102482/problem/J",
+        "provider_problem_id": "102482:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Wireless is the New Fiber",
+        "url": "https://codeforces.com/gym/102482/problem/K",
+        "provider_problem_id": "102482:K"
+      }
+    ]
+  }
+]

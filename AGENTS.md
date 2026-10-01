@@ -7,7 +7,9 @@
 - Untouched contests default to non-spoiler; any active member's attempt/solve makes a contest touched. Opening details or changing selected members does not change this default. Explicit per-contest preferences win; bulk spoilers default off and medal estimates default on, preserving saved settings.
 - Non-spoiler hides medal cutoffs, medals, problem tags and ratings, including medal-based search. Coverage and whole-contest practice links remain available.
 - For multiple eligible groups, use the verified highest group; invitational takes precedence over provincial. Record the group and never merge uncertain groups.
+- A full metadata refresh compares existing populated fields, not only gaps. Remove tags only with approved historical source ownership and current explicit classified replacement evidence; absent/null/unknown or numeric-only matches do not authorize deletion. Preserve manual/other-source values, keep old/new hashes and direct-source conflicts, and do not infer transitive ownership through shared problem IDs.
 - Problem ratings use verified XCPC Rating values and CF rank colors; missing values stay unset. Coverage is a compact member-row/problem-column heatmap above awards; tags/ratings belong in a separate table and bulk settings in management.
+- A numeric XCPC Rating row without a title may be used only when every problem in its contest has a one-to-one exact CF/QOJ ID match, the catalog already has the reviewed original-event RankLand path, and original start times agree. Keep the absent upstream title absent in provenance; do not infer numeric values or use ordinal-only/partial-list matching.
 
 ## Architecture and ownership
 

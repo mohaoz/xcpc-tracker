@@ -1,0 +1,74 @@
+[
+  {
+    "title": "CCPC Final 2025",
+    "url": "https://qoj.ac/contest/3727?v=1",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "第八届 CCPC 河南省大学生程序设计竞赛",
+    "url": "https://qoj.ac/contest/3935",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "第二十届东北地区大学生程序设计竞赛",
+    "url": "https://qoj.ac/contest/3934",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "The 8th Guangxi Collegiate Programming Contest (GXCPC 2025)",
+    "url": "https://qoj.ac/contest/4120",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "The 2026 ICPC Guizhou Provincial Contest",
+    "url": "https://qoj.ac/contest/4121",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "CCPC Online 2026",
+    "url": "https://qoj.ac/contest/4128",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "2026 Beijing Collegiate Programming Contest",
+    "url": "https://qoj.ac/contest/4116",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "Hong Kong Joint Collegiate Programming Contest 2026",
+    "url": "https://qoj.ac/contest/4072",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "The 10th Hebei Collegiate Programming Contest (CCPC 2026 河北省赛)",
+    "url": "https://qoj.ac/contest/3933",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "2026 年 CCPC 全国邀请赛(南昌)暨江西省赛",
+    "url": "https://qoj.ac/contest/3929",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "The 6th Guangxi Collegiate Programming Contest (GXCPC 2023)",
+    "url": "https://qoj.ac/contest/4119",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  },
+  {
+    "title": "The 7th Guangxi Collegiate Programming Contest (GXCPC 2024)",
+    "url": "https://qoj.ac/contest/4118",
+    "status": "completed_verified",
+    "evidence": "../fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+  }
+]

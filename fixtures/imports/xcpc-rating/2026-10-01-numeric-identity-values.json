@@ -1,0 +1,3494 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-01T11:20:30Z",
+  "source_sha256": "9c0e410348bb507b89208c8f691c7267e9e6537d8f417e8da4dbbb67d38d1f89",
+  "input_catalog_sha256": "9108ff44fb51cd72253afdf63e0ad5b1620430a10accba32b47643c7fd13ea5f",
+  "policy": "Untitled upstream numeric rows only: complete one-to-one exact provider problem IDs, independently verified original-event RankLand source path, and identical original-event start time. No numeric inference, no replacing populated values, no new member-status mappings.",
+  "changes": [
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:A",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Oops, It's Yesterday Twice More",
+      "previous_value": null,
+      "value": 656.763224,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/A",
+          "value": 656.763224,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:B",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Puzzle in Inazuma",
+      "previous_value": null,
+      "value": 2727.537115,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/B",
+          "value": 2727.537115,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:C",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Klee in Solitary Confinement",
+      "previous_value": null,
+      "value": 1512.509135,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/C",
+          "value": 1512.509135,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:D",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Paimon Sorting",
+      "previous_value": null,
+      "value": 1840.881788,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/D",
+          "value": 1840.881788,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:E",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Paimon Segment Tree",
+      "previous_value": null,
+      "value": 2113.680285,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/E",
+          "value": 2113.680285,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:F",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Paimon Polygon",
+      "previous_value": null,
+      "value": 2820.116006,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/F",
+          "value": 2820.116006,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:G",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Paimon's Tree",
+      "previous_value": null,
+      "value": 2386.461306,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/G",
+          "value": 2386.461306,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:H",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Crystalfly",
+      "previous_value": null,
+      "value": 1696.746959,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/H",
+          "value": 1696.746959,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:I",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Cloud Retainer's Game",
+      "previous_value": null,
+      "value": 2121.296452,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/I",
+          "value": 2121.296452,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:J",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Xingqiu's Joke",
+      "previous_value": null,
+      "value": 1934.803852,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/J",
+          "value": 1934.803852,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:K",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Ancient Magic Circle in Teyvat",
+      "previous_value": null,
+      "value": 2727.537115,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/K",
+          "value": 2727.537115,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:L",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Secret of Tianqiu Valley",
+      "previous_value": null,
+      "value": 2576.387085,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/L",
+          "value": 2576.387085,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67:M",
+      "contest_id": "021e191e-18e8-5c16-a678-1cbc2ed7ee67",
+      "title": "Windblume Festival",
+      "previous_value": null,
+      "value": 1201.601027,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2021__icpc2021nanjing:M",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103470/problem/M",
+          "value": 1201.601027,
+          "original_source_id": "srk:official/icpc/icpc2021/icpc2021nanjing.srk.json",
+          "original_start_at": "2021-12-04T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:A",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "A Hero Named Magnus",
+      "previous_value": null,
+      "value": 573.444743,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/A",
+          "value": 573.444743,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:B",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "A Plus B Problem",
+      "previous_value": null,
+      "value": 1792.629338,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/B",
+          "value": 1792.629338,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:C",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "AC Automaton",
+      "previous_value": null,
+      "value": 2841.562645,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/C",
+          "value": 2841.562645,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:D",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "Assumption is All You Need",
+      "previous_value": null,
+      "value": 1582.060837,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/D",
+          "value": 1582.060837,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:E",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "Buy and Delete",
+      "previous_value": null,
+      "value": 1575.816719,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/E",
+          "value": 1575.816719,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:F",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "Illuminations II",
+      "previous_value": null,
+      "value": 2188.976141,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/F",
+          "value": 2188.976141,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:G",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "Occupy the Cities",
+      "previous_value": null,
+      "value": 1399.446294,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/G",
+          "value": 1399.446294,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:H",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "Popcount Words",
+      "previous_value": null,
+      "value": 2841.562645,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/H",
+          "value": 2841.562645,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:I",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "PTSD",
+      "previous_value": null,
+      "value": 745.918733,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/I",
+          "value": 745.918733,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:J",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "Suffix Automaton",
+      "previous_value": null,
+      "value": 2174.711994,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/J",
+          "value": 2174.711994,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:K",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "Tax",
+      "previous_value": null,
+      "value": 2035.097377,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/K",
+          "value": 2035.097377,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce:L",
+      "contest_id": "0f21bb5a-eb9b-511c-bd45-800dce5cf2ce",
+      "title": "Wiring Engineering",
+      "previous_value": null,
+      "value": 2655.312882,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guilin:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103409/problem/L",
+          "value": 2655.312882,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guilin.srk.json",
+          "original_start_at": "2021-11-07T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:A",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Krypton",
+      "previous_value": null,
+      "value": 805.170978,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/A",
+          "value": 805.170978,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:B",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "The Tortoise and the Hare",
+      "previous_value": null,
+      "value": 2428.10876,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/B",
+          "value": 2428.10876,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:C",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Quantum Geometry",
+      "previous_value": null,
+      "value": 2579.939894,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/C",
+          "value": 2579.939894,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:D",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Meaningless Sequence",
+      "previous_value": null,
+      "value": 1289.335602,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/D",
+          "value": 1289.335602,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:E",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Defense of Valor League",
+      "previous_value": null,
+      "value": 2428.10876,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/E",
+          "value": 2428.10876,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:F",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Strange Memory",
+      "previous_value": null,
+      "value": 1681.678003,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/F",
+          "value": 1681.678003,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:G",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Monkey's Keyboard",
+      "previous_value": null,
+      "value": 2579.939894,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/G",
+          "value": 2579.939894,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:H",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Combination Lock",
+      "previous_value": null,
+      "value": 2345.008711,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/H",
+          "value": 2345.008711,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:I",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Kawaii Courier",
+      "previous_value": null,
+      "value": 2382.065771,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/I",
+          "value": 2382.065771,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:J",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Abstract Painting",
+      "previous_value": null,
+      "value": 1871.271816,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/J",
+          "value": 1871.271816,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:K",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Ragdoll",
+      "previous_value": null,
+      "value": 1979.152927,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/K",
+          "value": 1979.152927,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b:L",
+      "contest_id": "19f9eb07-410c-5e7c-8ac4-78b05065da1b",
+      "title": "Coordinate Paper",
+      "previous_value": null,
+      "value": 2113.322026,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020changchun:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102832/problem/L",
+          "value": 2113.322026,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020changchun.srk.json",
+          "original_start_at": "2020-11-08T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:A",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Who Can Win",
+      "previous_value": null,
+      "value": 1462.164857,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:A",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14301",
+          "value": 1462.164857,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:B",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Creating Chaos",
+      "previous_value": null,
+      "value": 1371.275335,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:B",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14302",
+          "value": 1371.275335,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:C",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Canvas Painting",
+      "previous_value": null,
+      "value": 1850.697054,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:C",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14303",
+          "value": 1850.697054,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:D",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Min-Max Tree",
+      "previous_value": null,
+      "value": 1802.443665,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:D",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14304",
+          "value": 1802.443665,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:E",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "tetrart",
+      "previous_value": null,
+      "value": 3283.604405,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:E",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14305",
+          "value": 3283.604405,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:F",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Robot",
+      "previous_value": null,
+      "value": 2429.913169,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:F",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14306",
+          "value": 2429.913169,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:G",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Sorting",
+      "previous_value": null,
+      "value": 1195.262175,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:G",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14307",
+          "value": 1195.262175,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:H",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Walk",
+      "previous_value": null,
+      "value": 2682.658172,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:H",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14308",
+          "value": 2682.658172,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:I",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Knapsack Problem",
+      "previous_value": null,
+      "value": 1547.453795,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:I",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14309",
+          "value": 1547.453795,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:J",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Moving on the Plane",
+      "previous_value": null,
+      "value": 2199.804313,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:J",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14310",
+          "value": 2199.804313,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:K",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Counting",
+      "previous_value": null,
+      "value": 2763.486428,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:K",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14311",
+          "value": 2763.486428,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:L",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "cover",
+      "previous_value": null,
+      "value": 3141.819358,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:L",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14312",
+          "value": 3141.819358,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "2068f408-bdda-5b32-80aa-d1ce46573261:M",
+      "contest_id": "2068f408-bdda-5b32-80aa-d1ce46573261",
+      "title": "Teleporter",
+      "previous_value": null,
+      "value": 1796.442105,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-1:M",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14313",
+          "value": 1796.442105,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-1.srk.json",
+          "original_start_at": "2025-09-07T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:A",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "So Many Lucky Strings",
+      "previous_value": null,
+      "value": 2472.520902,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/A",
+          "value": 2472.520902,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:B",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "Magical Subsequence",
+      "previous_value": null,
+      "value": 1198.698509,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/B",
+          "value": 1198.698509,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:C",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "Colorful Tree",
+      "previous_value": null,
+      "value": 1949.918175,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/C",
+          "value": 1949.918175,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:D",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "Math master",
+      "previous_value": null,
+      "value": 1671.259185,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/D",
+          "value": 1671.259185,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:E",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "Power and Modulo",
+      "previous_value": null,
+      "value": 1164.835234,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/E",
+          "value": 1164.835234,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:F",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "Master Spark",
+      "previous_value": null,
+      "value": 2626.697611,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/F",
+          "value": 2626.697611,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:G",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "Damaged Bicycle",
+      "previous_value": null,
+      "value": 1792.065272,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/G",
+          "value": 1792.065272,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:H",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "What logic for?",
+      "previous_value": null,
+      "value": 2180.061612,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/H",
+          "value": 2180.061612,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:I",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "Power and Zero",
+      "previous_value": null,
+      "value": 1448.152811,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/I",
+          "value": 1448.152811,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:J",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "Local Minimum",
+      "previous_value": null,
+      "value": 892.559198,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/J",
+          "value": 892.559198,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:K",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "Wonder Egg Priority",
+      "previous_value": null,
+      "value": 2804.151907,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/K",
+          "value": 2804.151907,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e:L",
+      "contest_id": "32e72dd7-50a6-5f57-952e-3503f9770f0e",
+      "title": "Karshilov's Matching Problem",
+      "previous_value": null,
+      "value": 2472.520902,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021harbin:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103447/problem/L",
+          "value": 2472.520902,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021harbin.srk.json",
+          "original_start_at": "2021-11-28T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:A",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "整点正方形计数2",
+      "previous_value": null,
+      "value": 1532.921118,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:A",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14547",
+          "value": 1532.921118,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:B",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "魔塔",
+      "previous_value": null,
+      "value": 2537.58489,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:B",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14548",
+          "value": 2537.58489,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:C",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "造桥与砍树",
+      "previous_value": null,
+      "value": 1883.250991,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:C",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14549",
+          "value": 1883.250991,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:D",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "通配符匹配",
+      "previous_value": null,
+      "value": 1991.382426,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:D",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14550",
+          "value": 1991.382426,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:E",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "看比赛回放",
+      "previous_value": null,
+      "value": 577.465307,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:E",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14551",
+          "value": 577.465307,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:F",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "连线博弈",
+      "previous_value": null,
+      "value": 2226.363218,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:F",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14552",
+          "value": 2226.363218,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:G",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "序列与整数对",
+      "previous_value": null,
+      "value": 1700.279652,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:G",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14553",
+          "value": 1700.279652,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:H",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "教师",
+      "previous_value": null,
+      "value": 2296.7143,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:H",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14554",
+          "value": 2296.7143,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:I",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "矩形",
+      "previous_value": null,
+      "value": 3046.715384,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:I",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14555",
+          "value": 3046.715384,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:J",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "最小生成树",
+      "previous_value": null,
+      "value": 3199.838391,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:J",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14556",
+          "value": 3199.838391,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:K",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "置换环",
+      "previous_value": null,
+      "value": 1146.960596,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:K",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14557",
+          "value": 1146.960596,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:L",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "拯救大香蕉",
+      "previous_value": null,
+      "value": 2957.748355,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:L",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14558",
+          "value": 2957.748355,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210:M",
+      "contest_id": "353723de-7e07-5a2b-9d8a-0fd4b7174210",
+      "title": "并行计算",
+      "previous_value": null,
+      "value": 2267.477744,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025preliminary:M",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14559",
+          "value": 2267.477744,
+          "original_source_id": "srk:official/ccpc/ccpc2025/ccpc2025preliminary.srk.json",
+          "original_start_at": "2025-09-20T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:A",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "Angry Birds",
+      "previous_value": null,
+      "value": 2165.395553,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:A",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14314",
+          "value": 2165.395553,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:B",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "Rectangular Wooden Block",
+      "previous_value": null,
+      "value": 2609.285686,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:B",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14315",
+          "value": 2609.285686,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:C",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "Jiaxun!",
+      "previous_value": null,
+      "value": 1577.556749,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:C",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14316",
+          "value": 1577.556749,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:D",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "Arcane Behemoths",
+      "previous_value": null,
+      "value": 1509.371167,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:D",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14317",
+          "value": 1509.371167,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:E",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "Zero",
+      "previous_value": null,
+      "value": 1748.268692,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:E",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14318",
+          "value": 1748.268692,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:F",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "Square Permutation I",
+      "previous_value": null,
+      "value": 3418.411163,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:F",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14319",
+          "value": 3418.411163,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:G",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "Square Permutation II",
+      "previous_value": null,
+      "value": 2848.19232,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:G",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14320",
+          "value": 2848.19232,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:H",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "Tree Shuffling",
+      "previous_value": null,
+      "value": 1864.45775,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:H",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14321",
+          "value": 1864.45775,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:I",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "DAG Query",
+      "previous_value": null,
+      "value": 1970.878495,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:I",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14322",
+          "value": 1970.878495,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:J",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "Reconstruct the tree",
+      "previous_value": null,
+      "value": 2044.491028,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:J",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14323",
+          "value": 2044.491028,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:K",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "The Only Heart",
+      "previous_value": null,
+      "value": 2124.231643,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:K",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14324",
+          "value": 2124.231643,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "408dad8d-e041-506a-a371-0893ef8cb8ef:L",
+      "contest_id": "408dad8d-e041-506a-a371-0893ef8cb8ef",
+      "title": "Xor Mirror",
+      "previous_value": null,
+      "value": 2600.592494,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025preliminary-2:L",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14325",
+          "value": 2600.592494,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025preliminary-2.srk.json",
+          "original_start_at": "2025-09-14T05:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:A",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "League of Legends",
+      "previous_value": null,
+      "value": 970.019856,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/A",
+          "value": 970.019856,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:B",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Restore Atlantis",
+      "previous_value": null,
+      "value": 2598.886039,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/B",
+          "value": 2598.886039,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:C",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Cube",
+      "previous_value": null,
+      "value": 1452.39328,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/C",
+          "value": 1452.39328,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:D",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Shortest Path Query",
+      "previous_value": null,
+      "value": 2217.318047,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/D",
+          "value": 2217.318047,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:E",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Specially Super Rare",
+      "previous_value": null,
+      "value": 2776.107595,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/E",
+          "value": 2776.107595,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:F",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Fair Distribution",
+      "previous_value": null,
+      "value": 1847.263227,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/F",
+          "value": 1847.263227,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:G",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Wall Game",
+      "previous_value": null,
+      "value": 1832.870444,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/G",
+          "value": 1832.870444,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:H",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Grammy and HearthStone",
+      "previous_value": null,
+      "value": 2598.886039,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/H",
+          "value": 2598.886039,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:I",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Grammy and Ropes",
+      "previous_value": null,
+      "value": 2005.785994,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/I",
+          "value": 2005.785994,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:J",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Grammy and Jewelry",
+      "previous_value": null,
+      "value": 1604.739063,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/J",
+          "value": 1604.739063,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:K",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Grammy's Kingdom",
+      "previous_value": null,
+      "value": 2776.107595,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/K",
+          "value": 2776.107595,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:L",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "String Freshman",
+      "previous_value": null,
+      "value": 1650.661506,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/L",
+          "value": 1650.661506,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c:M",
+      "contest_id": "43f6dda4-c948-5ae8-a20a-df2bff45ee7c",
+      "title": "Game Theory",
+      "previous_value": null,
+      "value": 1487.412374,
+      "sources": [
+        {
+          "source_identity": "provincial__zj__zjcpc18th:M",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103055/problem/M",
+          "value": 1487.412374,
+          "original_source_id": "srk:official/provincial/zj/zjcpc18th.srk.json",
+          "original_start_at": "2021-04-17T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "52210714-8251-5667-b174-b9720b98f308:D",
+      "contest_id": "52210714-8251-5667-b174-b9720b98f308",
+      "title": "CCPC",
+      "previous_value": null,
+      "value": 2473.945595,
+      "sources": [
+        {
+          "source_identity": "provincial__he__hecpc8th:D",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/15222",
+          "value": 2473.945595,
+          "original_source_id": "srk:official/provincial/he/hecpc8th.srk.json",
+          "original_start_at": "2024-05-26T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:A",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "班委竞选",
+      "previous_value": null,
+      "value": 876.996253,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/A",
+          "value": 876.996253,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:B",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "广告投放",
+      "previous_value": null,
+      "value": 2222.215368,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/B",
+          "value": 2222.215368,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:C",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "我得重新集结部队",
+      "previous_value": null,
+      "value": 1607.192351,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/C",
+          "value": 1607.192351,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:D",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "园艺大师",
+      "previous_value": null,
+      "value": 2650.397711,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/D",
+          "value": 2650.397711,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:E",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "发通知",
+      "previous_value": null,
+      "value": 1793.059382,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/E",
+          "value": 1793.059382,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:F",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "旅游胜地",
+      "previous_value": null,
+      "value": 2459.835812,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/F",
+          "value": 2459.835812,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:G",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "vvvvvvvim",
+      "previous_value": null,
+      "value": 2459.835812,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/G",
+          "value": 2459.835812,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:H",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "林克与翻转排列",
+      "previous_value": null,
+      "value": 2650.397711,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/H",
+          "value": 2650.397711,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:I",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "太阳轰炸",
+      "previous_value": null,
+      "value": 1862.030908,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/I",
+          "value": 1862.030908,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:J",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "二进制与、平方和",
+      "previous_value": null,
+      "value": 2259.13186,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/J",
+          "value": 2259.13186,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:K",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "子串翻转回文串",
+      "previous_value": null,
+      "value": 2366.848516,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/K",
+          "value": 2366.848516,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1:L",
+      "contest_id": "5254c79d-a63d-5ec1-95ac-50103f2287c1",
+      "title": "送外卖",
+      "previous_value": null,
+      "value": 2459.835812,
+      "sources": [
+        {
+          "source_identity": "provincial__ha__haccpc2nd:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/104095/problem/L",
+          "value": 2459.835812,
+          "original_source_id": "srk:official/provincial/ha/haccpc2nd.srk.json",
+          "original_start_at": "2020-11-21T04:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5468060e-974f-5025-babc-9c3e89aba539:L",
+      "contest_id": "5468060e-974f-5025-babc-9c3e89aba539",
+      "title": "ICPC",
+      "previous_value": null,
+      "value": 3275.995694,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2025__icpc2025wuhan:L",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/14730",
+          "value": 3275.995694,
+          "original_source_id": "srk:official/icpc/icpc2025/icpc2025wuhan.srk.json",
+          "original_start_at": "2025-11-02T01:30:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff:C",
+      "contest_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff",
+      "title": "CCPC",
+      "previous_value": null,
+      "value": 862.28864,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024ladies:C",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/9741",
+          "value": 862.28864,
+          "original_source_id": "srk:official/ccpc/ccpc2024/ccpc2024ladies.srk.json",
+          "original_start_at": "2024-11-03T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:A",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "Golden Spirit",
+      "previous_value": null,
+      "value": 707.888647,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/A",
+          "value": 707.888647,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:B",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "Labyrinth",
+      "previous_value": null,
+      "value": 1894.518173,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/B",
+          "value": 1894.518173,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:C",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "Rencontre",
+      "previous_value": null,
+      "value": 1685.561281,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/C",
+          "value": 1685.561281,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:D",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "ABC Conjecture",
+      "previous_value": null,
+      "value": 1376.029638,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/D",
+          "value": 1376.029638,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:E",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "So Many Possibilities...",
+      "previous_value": null,
+      "value": 2457.974925,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/E",
+          "value": 2457.974925,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:F",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "Skeleton Dynamization",
+      "previous_value": null,
+      "value": 2730.868969,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/F",
+          "value": 2730.868969,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:G",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "Caesar Cipher",
+      "previous_value": null,
+      "value": 1750.111325,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/G",
+          "value": 1750.111325,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:H",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "Message Bomb",
+      "previous_value": null,
+      "value": 1146.197226,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/H",
+          "value": 1146.197226,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:I",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "Sean the Cuber",
+      "previous_value": null,
+      "value": 2548.94008,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/I",
+          "value": 2548.94008,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:J",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "Steins;Game",
+      "previous_value": null,
+      "value": 2147.912681,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/J",
+          "value": 2147.912681,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:K",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "Tree Tweaking",
+      "previous_value": null,
+      "value": 2397.219018,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/K",
+          "value": 2397.219018,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "5ad023a6-3ab5-5d54-87cc-216b85397262:L",
+      "contest_id": "5ad023a6-3ab5-5d54-87cc-216b85397262",
+      "title": "Clock Master",
+      "previous_value": null,
+      "value": 1607.476332,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020weihai:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102798/problem/L",
+          "value": 1607.476332,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020weihai.srk.json",
+          "original_start_at": "2020-10-25T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:A",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Wowoear",
+      "previous_value": null,
+      "value": 2864.888798,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/A",
+          "value": 2864.888798,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:B",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Mine Sweeper II",
+      "previous_value": null,
+      "value": 1517.031966,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/B",
+          "value": 1517.031966,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:C",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Sum of Log",
+      "previous_value": null,
+      "value": 1942.442143,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/C",
+          "value": 1942.442143,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:D",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Walker",
+      "previous_value": null,
+      "value": 1721.122937,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/D",
+          "value": 1721.122937,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:E",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "The Journey of Geor Autumn",
+      "previous_value": null,
+      "value": 1938.146313,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/E",
+          "value": 1938.146313,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:F",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Fountains",
+      "previous_value": null,
+      "value": 2469.508543,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/F",
+          "value": 2469.508543,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:G",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Fibonacci",
+      "previous_value": null,
+      "value": 640.115525,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/G",
+          "value": 640.115525,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:H",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Rice Arrangement",
+      "previous_value": null,
+      "value": 2057.357111,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/H",
+          "value": 2057.357111,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:I",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Sky Garden",
+      "previous_value": null,
+      "value": 1892.225906,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/I",
+          "value": 1892.225906,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:J",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Octasection",
+      "previous_value": null,
+      "value": 2864.888798,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/J",
+          "value": 2864.888798,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:K",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Traveling Merchant",
+      "previous_value": null,
+      "value": 2505.260645,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/K",
+          "value": 2505.260645,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:L",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Traveling in the Grid World",
+      "previous_value": null,
+      "value": 2189.124879,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/L",
+          "value": 2189.124879,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "8cebaf11-d19b-5431-9736-ecc3d866077c:M",
+      "contest_id": "8cebaf11-d19b-5431-9736-ecc3d866077c",
+      "title": "Gitignore",
+      "previous_value": null,
+      "value": 1428.834938,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shanghai:M",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102900/problem/M",
+          "value": 1428.834938,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shanghai.srk.json",
+          "original_start_at": "2020-12-13T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "9c25b508-98e4-5d1e-83de-2608768f5bf0:C",
+      "contest_id": "9c25b508-98e4-5d1e-83de-2608768f5bf0",
+      "title": "CCPC",
+      "previous_value": null,
+      "value": 862.28864,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024hv:C",
+          "source_title": null,
+          "provider_problem_url": "https://qoj.ac/problem/9741",
+          "value": 862.28864,
+          "original_source_id": "srk:official/ccpc/ccpc2024/ccpc2024hv.srk.json",
+          "original_start_at": "2024-11-03T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:A",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Math Ball",
+      "previous_value": null,
+      "value": 2660.15204,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/A",
+          "value": 2660.15204,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:B",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Sweeping Robots",
+      "previous_value": null,
+      "value": 2568.917937,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/B",
+          "value": 2568.917937,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:C",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Necklace",
+      "previous_value": null,
+      "value": 1607.904402,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/C",
+          "value": 1607.904402,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:D",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Unnamed Easy Problem",
+      "previous_value": null,
+      "value": 2660.15204,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/D",
+          "value": 2660.15204,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:E",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Mathlab",
+      "previous_value": null,
+      "value": 2568.917937,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/E",
+          "value": 2568.917937,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:F",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Cactus",
+      "previous_value": null,
+      "value": 1805.800606,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/F",
+          "value": 1805.800606,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:G",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Slope",
+      "previous_value": null,
+      "value": 2660.15204,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/G",
+          "value": 2660.15204,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:H",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Three Integers",
+      "previous_value": null,
+      "value": 1337.990684,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/H",
+          "value": 1337.990684,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:I",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Pudding Store",
+      "previous_value": null,
+      "value": 1141.879569,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/I",
+          "value": 1141.879569,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:J",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Cafeteria",
+      "previous_value": null,
+      "value": 2568.917937,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/J",
+          "value": 2568.917937,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:K",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Magus Night",
+      "previous_value": null,
+      "value": 2068.16868,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/K",
+          "value": 2068.16868,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534:L",
+      "contest_id": "b33305f7-1ed2-56e3-af11-f16d9a6e1534",
+      "title": "Dynamic Convex Hull",
+      "previous_value": null,
+      "value": 2660.15204,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021guangzhou:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103415/problem/L",
+          "value": 2660.15204,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021guangzhou.srk.json",
+          "original_start_at": "2021-11-14T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:A",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "A Colorful Grid",
+      "previous_value": null,
+      "value": 2555.234963,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/A",
+          "value": 2555.234963,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:B",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Building Blocks",
+      "previous_value": null,
+      "value": 2146.983754,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/B",
+          "value": 2146.983754,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:C",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Code a Trie",
+      "previous_value": null,
+      "value": 2260.145301,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/C",
+          "value": 2260.145301,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:D",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Defuse the Bombs",
+      "previous_value": null,
+      "value": 1097.869745,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/D",
+          "value": 1097.869745,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:E",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Escape from the Island",
+      "previous_value": null,
+      "value": 2236.368125,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/E",
+          "value": 2236.368125,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:F",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Fracture Ray",
+      "previous_value": null,
+      "value": 2555.234963,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/F",
+          "value": 2555.234963,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:G",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Game of Cards",
+      "previous_value": null,
+      "value": 1698.78304,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/G",
+          "value": 1698.78304,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:H",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Hide and Seek",
+      "previous_value": null,
+      "value": 2107.315012,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/H",
+          "value": 2107.315012,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:I",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Invaluable Assets",
+      "previous_value": null,
+      "value": 2555.234963,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/I",
+          "value": 2555.234963,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:J",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Joy of Handcraft",
+      "previous_value": null,
+      "value": 1550.154123,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/J",
+          "value": 1550.154123,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:K",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Knowledge is Power",
+      "previous_value": null,
+      "value": 1004.311,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/K",
+          "value": 1004.311,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b423911e-acf8-50fa-848f-d5dee39f617c:L",
+      "contest_id": "b423911e-acf8-50fa-848f-d5dee39f617c",
+      "title": "Lottery",
+      "previous_value": null,
+      "value": 1692.841323,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2020__ccpc2020mianyang:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102822/problem/L",
+          "value": 1692.841323,
+          "original_source_id": "srk:official/ccpc/ccpc2020/ccpc2020mianyang.srk.json",
+          "original_start_at": "2020-11-01T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:A",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "The Grand Tournament",
+      "previous_value": null,
+      "value": 2472.499255,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/A",
+          "value": 2472.499255,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:B",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "Whispers of the Old Gods",
+      "previous_value": null,
+      "value": 2687.847024,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/B",
+          "value": 2687.847024,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:C",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "Mean Streets of Gadgetzan",
+      "previous_value": null,
+      "value": 2257.891091,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/C",
+          "value": 2257.891091,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:D",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "Journey to Un'Goro",
+      "previous_value": null,
+      "value": 1808.715128,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/D",
+          "value": 1808.715128,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:E",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "Knights of the Frozen Throne",
+      "previous_value": null,
+      "value": 2396.372291,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/E",
+          "value": 2396.372291,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:F",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "Kobolds and Catacombs",
+      "previous_value": null,
+      "value": 1235.32734,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/F",
+          "value": 1235.32734,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:G",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "The Witchwood",
+      "previous_value": null,
+      "value": 1084.313374,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/G",
+          "value": 1084.313374,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:H",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "The Boomsday Project",
+      "previous_value": null,
+      "value": 1965.662949,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/H",
+          "value": 1965.662949,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:I",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "Rise of Shadows",
+      "previous_value": null,
+      "value": 1829.686878,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/I",
+          "value": 1829.686878,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:J",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "Descent of Dragons",
+      "previous_value": null,
+      "value": 2687.847024,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/J",
+          "value": 2687.847024,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:K",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "Scholomance Academy",
+      "previous_value": null,
+      "value": 1523.525663,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/K",
+          "value": 1523.525663,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:L",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "Forged in the Barrens",
+      "previous_value": null,
+      "value": 2868.116831,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/L",
+          "value": 2868.116831,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90:M",
+      "contest_id": "b592433d-2ab9-5d3e-aa4a-6bb847855b90",
+      "title": "United in Stormwind",
+      "previous_value": null,
+      "value": 1972.285332,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020shenyang:M",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103202/problem/M",
+          "value": 1972.285332,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020shenyang.srk.json",
+          "original_start_at": "2021-07-18T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "b59cbf88-45bc-5688-89cc-a6ff21bd4391:D",
+      "contest_id": "b59cbf88-45bc-5688-89cc-a6ff21bd4391",
+      "title": "ICPC",
+      "previous_value": null,
+      "value": 2014.185185,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2024__icpc2024invitational-wuhan:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/105143/problem/D",
+          "value": 2014.185185,
+          "original_source_id": "srk:official/icpc/icpc2024/icpc2024invitational-wuhan.srk.json",
+          "original_start_at": "2024-05-02T01:40:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:A",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "Goodbye, Ziyin!",
+      "previous_value": null,
+      "value": 585.417001,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/A",
+          "value": 585.417001,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:B",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "Subset",
+      "previous_value": null,
+      "value": 2689.082989,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/B",
+          "value": 2689.082989,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:C",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "Assign or Multiply",
+      "previous_value": null,
+      "value": 2587.279699,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/C",
+          "value": 2587.279699,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:D",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "Period",
+      "previous_value": null,
+      "value": 1329.935112,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/D",
+          "value": 1329.935112,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:E",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "CHASE!",
+      "previous_value": null,
+      "value": 1821.597532,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/E",
+          "value": 1821.597532,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:F",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "Stone",
+      "previous_value": null,
+      "value": 1939.918523,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/F",
+          "value": 1939.918523,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:G",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "Shinyruo and KFC",
+      "previous_value": null,
+      "value": 1463.463978,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/G",
+          "value": 1463.463978,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:H",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "city safety",
+      "previous_value": null,
+      "value": 1827.412426,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/H",
+          "value": 1827.412426,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:I",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "Distance",
+      "previous_value": null,
+      "value": 2270.698853,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/I",
+          "value": 2270.698853,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:J",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "Circular Billiard Table",
+      "previous_value": null,
+      "value": 1045.174185,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/J",
+          "value": 1045.174185,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:K",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "Tiny Stars",
+      "previous_value": null,
+      "value": 2270.698853,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/K",
+          "value": 2270.698853,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:L",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "shake hands",
+      "previous_value": null,
+      "value": 2876.574831,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/L",
+          "value": 2876.574831,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "db8af22c-5d46-5645-a366-6d59b1955627:M",
+      "contest_id": "db8af22c-5d46-5645-a366-6d59b1955627",
+      "title": "810975",
+      "previous_value": null,
+      "value": 1846.511898,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2021__ccpc2021weihai:M",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/103428/problem/M",
+          "value": 1846.511898,
+          "original_source_id": "srk:official/ccpc/ccpc2021/ccpc2021weihai.srk.json",
+          "original_start_at": "2021-11-21T01:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:A",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Ah, It's Yesterday Once More",
+      "previous_value": null,
+      "value": 2426.22575,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:A",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/A",
+          "value": 2426.22575,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:B",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Baby's First Suffix Array Problem",
+      "previous_value": null,
+      "value": 2858.412551,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:B",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/B",
+          "value": 2858.412551,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:C",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Certain Scientific Railgun",
+      "previous_value": null,
+      "value": 2687.765989,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:C",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/C",
+          "value": 2687.765989,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:D",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Degree of Spanning Tree",
+      "previous_value": null,
+      "value": 2399.761519,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:D",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/D",
+          "value": 2399.761519,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:E",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Evil Coordinate",
+      "previous_value": null,
+      "value": 1548.839694,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:E",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/E",
+          "value": 1548.839694,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:F",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Fireworks",
+      "previous_value": null,
+      "value": 1657.024344,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:F",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/F",
+          "value": 1657.024344,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:G",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Go",
+      "previous_value": null,
+      "value": 2599.127655,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:G",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/G",
+          "value": 2599.127655,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:H",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Harmonious Rectangle",
+      "previous_value": null,
+      "value": 1994.504589,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:H",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/H",
+          "value": 1994.504589,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:I",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Interested in Skiing",
+      "previous_value": null,
+      "value": 2687.765989,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:I",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/I",
+          "value": 2687.765989,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:J",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Just Another Game of Stones",
+      "previous_value": null,
+      "value": 2276.103323,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:J",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/J",
+          "value": 2276.103323,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:K",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "K Co-prime Permutation",
+      "previous_value": null,
+      "value": 895.929465,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:K",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/K",
+          "value": 895.929465,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:L",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Let's Play Curling",
+      "previous_value": null,
+      "value": 1340.631246,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:L",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/L",
+          "value": 1340.631246,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    },
+    {
+      "problem_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503:M",
+      "contest_id": "e4d6f841-a7d7-5662-ba9a-a9a32bb28503",
+      "title": "Monster Hunter",
+      "previous_value": null,
+      "value": 1956.396564,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2020__icpc2020nanjing:M",
+          "source_title": null,
+          "provider_problem_url": "https://codeforces.com/gym/102992/problem/M",
+          "value": 1956.396564,
+          "original_source_id": "srk:official/icpc/icpc2020/icpc2020nanjing.srk.json",
+          "original_start_at": "2020-12-20T03:00:00.000Z"
+        }
+      ]
+    }
+  ]
+}

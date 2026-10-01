@@ -196,6 +196,12 @@ try {
   const reusedId = structuredClone(reviewed[0]);
   reusedId.target_contest.contest_id = reviewed[1].target_contest.contest_id;
   await assertRejected(reusedId, /another curated contest|different QOJ URL/u);
+  const conflictingTitle = structuredClone(reviewed[0]);
+  conflictingTitle.problems[0].title = "Different unreviewed problem";
+  await assertRejected(conflictingTitle, /complete reviewed ordinal\/title match/u);
+  const partialMirror = structuredClone(reviewed[0]);
+  partialMirror.problems.pop();
+  await assertRejected(partialMirror, /complete reviewed ordinal\/title match/u);
   const duplicateUrl = structuredClone(reviewed[0]);
   duplicateUrl.target_contest.contest_id = "different-curated-id";
   await assertRejected(duplicateUrl, /another curated contest/u);

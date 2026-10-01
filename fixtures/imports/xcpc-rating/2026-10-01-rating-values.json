@@ -1,0 +1,1172 @@
+{
+  "source_sha256": "9c0e410348bb507b89208c8f691c7267e9e6537d8f417e8da4dbbb67d38d1f89",
+  "reviewed_at": "2026-10-01T10:45:51Z",
+  "policy": "Finite nonnegative values only; all reviewed source identities must agree; no estimates or overwrite of previously populated numeric ratings",
+  "added": [
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:A",
+      "title": "求求你不要再摔馍片了",
+      "previous_value": null,
+      "value": 1769.859751,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:A",
+          "source_title": "求求你不要再摔馍片了",
+          "value": 1769.859751
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:B",
+      "title": "一句祝贺",
+      "previous_value": null,
+      "value": 477.356202,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:B",
+          "source_title": "一句祝贺",
+          "value": 477.356202
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:C",
+      "title": "世界树",
+      "previous_value": null,
+      "value": 2510.452669,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:C",
+          "source_title": "世界树",
+          "value": 2510.452669
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:D",
+      "title": "简单字符串题",
+      "previous_value": null,
+      "value": 2360.356079,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:D",
+          "source_title": "简单字符串题",
+          "value": 2360.356079
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:E",
+      "title": "电梯",
+      "previous_value": null,
+      "value": 1393.501121,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:E",
+          "source_title": "电梯",
+          "value": 1393.501121
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:F",
+      "title": "猜01序列",
+      "previous_value": null,
+      "value": 1970.124358,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:F",
+          "source_title": "猜01序列",
+          "value": 1970.124358
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:G",
+      "title": "建设高铁",
+      "previous_value": null,
+      "value": 2510.452669,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:G",
+          "source_title": "建设高铁",
+          "value": 2510.452669
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:H",
+      "title": "可能是字符串签到题",
+      "previous_value": null,
+      "value": 1280.24217,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:H",
+          "source_title": "可能是字符串签到题",
+          "value": 1280.24217
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:I",
+      "title": "山海关老冰糕",
+      "previous_value": null,
+      "value": 1228.975461,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:I",
+          "source_title": "山海关老冰糕",
+          "value": 1228.975461
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:J",
+      "title": "海鲜大排档点生蚝",
+      "previous_value": null,
+      "value": 1073.518871,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:J",
+          "source_title": "海鲜大排档点生蚝",
+          "value": 1073.518871
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:K",
+      "title": "灯带",
+      "previous_value": null,
+      "value": 1654.891667,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:K",
+          "source_title": "灯带",
+          "value": 1654.891667
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:L",
+      "title": "贪吃蛇",
+      "previous_value": null,
+      "value": 2239.98663,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:L",
+          "source_title": "贪吃蛇",
+          "value": 2239.98663
+        }
+      ]
+    },
+    {
+      "problem_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3:M",
+      "title": "拯救猫猫",
+      "previous_value": null,
+      "value": 2389.082074,
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2026__ccpc2026invitational-qinhuangdao:M",
+          "source_title": "拯救猫猫",
+          "value": 2389.082074
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:A",
+      "title": "Ascending Random Number Sequence",
+      "previous_value": null,
+      "value": 2315.674012,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:A",
+          "source_title": "Ascending Random Number Sequence",
+          "value": 2315.674012
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:B",
+      "title": "Black Friday",
+      "previous_value": null,
+      "value": 866.181434,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:B",
+          "source_title": "Black Friday",
+          "value": 866.181434
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:C",
+      "title": "Finding Cyclic Isomorphism",
+      "previous_value": null,
+      "value": 2606.409299,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:C",
+          "source_title": "Finding Cyclic Isomorphism",
+          "value": 2606.409299
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:D",
+      "title": "Dune",
+      "previous_value": null,
+      "value": 2253.124468,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:D",
+          "source_title": "Dune",
+          "value": 2253.124468
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:E",
+      "title": "Epsilon Estuary",
+      "previous_value": null,
+      "value": 1317.711471,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:E",
+          "source_title": "Epsilon Estuary",
+          "value": 1317.711471
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:F",
+      "title": "Farewell GXCPC!",
+      "previous_value": null,
+      "value": 1664.98968,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:F",
+          "source_title": "Farewell GXCPC!",
+          "value": 1664.98968
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:G",
+      "title": "Grand XOR Counting Problem Challenge",
+      "previous_value": null,
+      "value": 2606.409299,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:G",
+          "source_title": "Grand XOR Counting Problem Challenge",
+          "value": 2606.409299
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:H",
+      "title": "Hashing Collision",
+      "previous_value": null,
+      "value": 2253.124468,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:H",
+          "source_title": "Hashing Collision",
+          "value": 2253.124468
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:I",
+      "title": "Ice Skating",
+      "previous_value": null,
+      "value": 2606.409299,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:I",
+          "source_title": "Ice Skating",
+          "value": 2606.409299
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:J",
+      "title": "Judge System with Random",
+      "previous_value": null,
+      "value": 1651.316111,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:J",
+          "source_title": "Judge System with Random",
+          "value": 1651.316111
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:K",
+      "title": "Kingdom Rush: Vengeance",
+      "previous_value": null,
+      "value": 2315.674012,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:K",
+          "source_title": "Kingdom Rush: Vengeance",
+          "value": 2315.674012
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:L",
+      "title": "Loong",
+      "previous_value": null,
+      "value": 601.307757,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:L",
+          "source_title": "Loong",
+          "value": 601.307757
+        }
+      ]
+    },
+    {
+      "problem_id": "0a7a9b26-ae80-580d-9e26-4fa948c116a3:M",
+      "title": "Matching on a Tree",
+      "previous_value": null,
+      "value": 2606.409299,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc7th:M",
+          "source_title": "Matching on a Tree",
+          "value": 2606.409299
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:A",
+      "title": "All Closed",
+      "previous_value": null,
+      "value": 2250.089313,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:A",
+          "source_title": "All Closed",
+          "value": 2250.089313
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:B",
+      "title": "Bread",
+      "previous_value": null,
+      "value": 3412.758054,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:B",
+          "source_title": "Bread",
+          "value": 3412.758054
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:C",
+      "title": "Cut Tree",
+      "previous_value": null,
+      "value": 3190.717963,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:C",
+          "source_title": "Cut Tree",
+          "value": 3190.717963
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:D",
+      "title": "Divide and Conquer",
+      "previous_value": null,
+      "value": 1879.81879,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:D",
+          "source_title": "Divide and Conquer",
+          "value": 1879.81879
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:E",
+      "title": "Exponent",
+      "previous_value": null,
+      "value": 2341.596175,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:E",
+          "source_title": "Exponent",
+          "value": 2341.596175
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:F",
+      "title": "Folding Game of Ohto Ai",
+      "previous_value": null,
+      "value": 2804.072438,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:F",
+          "source_title": "Folding Game of Ohto Ai",
+          "value": 2804.072438
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:G",
+      "title": "Ghost of Tsushima",
+      "previous_value": null,
+      "value": 3412.758054,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:G",
+          "source_title": "Ghost of Tsushima",
+          "value": 3412.758054
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:H",
+      "title": "Hidden Track (Easy Version)",
+      "previous_value": null,
+      "value": 2366.878615,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:H",
+          "source_title": "Hidden Track (Easy Version)",
+          "value": 2366.878615
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:I",
+      "title": "Island",
+      "previous_value": null,
+      "value": 2492.50711,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:I",
+          "source_title": "Island",
+          "value": 2492.50711
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:J",
+      "title": "Joker or Judger",
+      "previous_value": null,
+      "value": 1075.864946,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:J",
+          "source_title": "Joker or Judger",
+          "value": 1075.864946
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:K",
+      "title": "K-MEX",
+      "previous_value": null,
+      "value": 1720.065852,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:K",
+          "source_title": "K-MEX",
+          "value": 1720.065852
+        }
+      ]
+    },
+    {
+      "problem_id": "4df2ecfa-4632-5a6b-a926-0b7667774113:L",
+      "title": "Loop",
+      "previous_value": null,
+      "value": 1300.624975,
+      "sources": [
+        {
+          "source_identity": "icpc__icpc2026__icpc2026preliminary-2:L",
+          "source_title": "Loop",
+          "value": 1300.624975
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:A",
+      "title": "abc - 变换",
+      "previous_value": null,
+      "value": 1552.667699,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:A",
+          "source_title": "abc - 变换",
+          "value": 1552.667699
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:B",
+      "title": "星战",
+      "previous_value": null,
+      "value": 1484.195407,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:B",
+          "source_title": "星战",
+          "value": 1484.195407
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:C",
+      "title": "最小异或乘积",
+      "previous_value": null,
+      "value": 2239.457072,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:C",
+          "source_title": "最小异或乘积",
+          "value": 2239.457072
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:D",
+      "title": "序列",
+      "previous_value": null,
+      "value": 2630.393542,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:D",
+          "source_title": "序列",
+          "value": 2630.393542
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:E",
+      "title": "Fry Beef",
+      "previous_value": null,
+      "value": 731.582011,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:E",
+          "source_title": "Fry Beef",
+          "value": 731.582011
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:F",
+      "title": "排列翻转",
+      "previous_value": null,
+      "value": 1829.039838,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:F",
+          "source_title": "排列翻转",
+          "value": 1829.039838
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:G",
+      "title": "字符串的 Porder 之和",
+      "previous_value": null,
+      "value": 2406.710224,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:G",
+          "source_title": "字符串的 Porder 之和",
+          "value": 2406.710224
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:H",
+      "title": "尖塔最强机器人",
+      "previous_value": null,
+      "value": 1687.935169,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:H",
+          "source_title": "尖塔最强机器人",
+          "value": 1687.935169
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:I",
+      "title": "小礼品",
+      "previous_value": null,
+      "value": 2187.102256,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:I",
+          "source_title": "小礼品",
+          "value": 2187.102256
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:J",
+      "title": "草莓牛奶",
+      "previous_value": null,
+      "value": 2630.393542,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:J",
+          "source_title": "草莓牛奶",
+          "value": 2630.393542
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:K",
+      "title": "灭霸排序 I",
+      "previous_value": null,
+      "value": 1903.917776,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:K",
+          "source_title": "灭霸排序 I",
+          "value": 1903.917776
+        }
+      ]
+    },
+    {
+      "problem_id": "ca7df4e2-916e-5382-a3f9-333c34730189:L",
+      "title": "求求你不要再爬塔二了",
+      "previous_value": null,
+      "value": 1404.911955,
+      "sources": [
+        {
+          "source_identity": "provincial__bj__bjcpc2026:L",
+          "source_title": "求求你不要再爬塔二了",
+          "value": 1404.911955
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:A",
+      "title": "Additive Combinatorics",
+      "previous_value": null,
+      "value": 1192.97918,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:A",
+          "source_title": "Additive Combinatorics",
+          "value": 1192.97918
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:B",
+      "title": "Metronome for Corgi",
+      "previous_value": null,
+      "value": 1586.320265,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:B",
+          "source_title": "Beats",
+          "value": 1586.320265
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:C",
+      "title": "Call for Papers",
+      "previous_value": null,
+      "value": 2692.269651,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:C",
+          "source_title": "Call for Papers",
+          "value": 2692.269651
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:D",
+      "title": "DeepSeek, DeepThink!",
+      "previous_value": null,
+      "value": 952.46271,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:D",
+          "source_title": "DeepSeek, DeepThink!",
+          "value": 952.46271
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:E",
+      "title": "Elimination",
+      "previous_value": null,
+      "value": 2015.485524,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:E",
+          "source_title": "Elimination",
+          "value": 2015.485524
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:F",
+      "title": "Faster Elimination",
+      "previous_value": null,
+      "value": 2504.842761,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:F",
+          "source_title": "Faster Elimination",
+          "value": 2504.842761
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:G",
+      "title": "Grand XOR Counting Problem Challenge II",
+      "previous_value": null,
+      "value": 2158.789847,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:G",
+          "source_title": "Grand XOR Counting Problem Challenge II",
+          "value": 2158.789847
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:H",
+      "title": "Hollow Knight: Silksong",
+      "previous_value": null,
+      "value": 1187.650296,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:H",
+          "source_title": "Hollow Knight: Silksong",
+          "value": 1187.650296
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:I",
+      "title": "Identify the Feasibility",
+      "previous_value": null,
+      "value": 2692.269651,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:I",
+          "source_title": "Identify the Feasibility",
+          "value": 2692.269651
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:J",
+      "title": "Join the Joint",
+      "previous_value": null,
+      "value": 2231.963341,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:J",
+          "source_title": "Join the Joint",
+          "value": 2231.963341
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:K",
+      "title": "Kingdom Rush 5: Alliance",
+      "previous_value": null,
+      "value": 2026.251944,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:K",
+          "source_title": "Kingdom Rush 5: Alliance",
+          "value": 2026.251944
+        }
+      ]
+    },
+    {
+      "problem_id": "ea3a1d82-1043-5335-9e46-965624960072:L",
+      "title": "Lost in MST",
+      "previous_value": null,
+      "value": 2504.842761,
+      "sources": [
+        {
+          "source_identity": "provincial__gx__gxcpc8th:L",
+          "source_title": "Lost in MST",
+          "value": 2504.842761
+        }
+      ]
+    }
+  ],
+  "conflicts": [
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:A",
+      "title": "Matrix Game",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:A",
+          "source_title": "Matrix Game",
+          "value": 2174.74922
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:A",
+          "source_title": "Matrix Game",
+          "value": 2184.861487
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:B",
+      "title": "Integer Generator",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:B",
+          "source_title": "Integer Generator",
+          "value": 2913.264225
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:B",
+          "source_title": "Integer Generator",
+          "value": 2717.545268
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:C",
+      "title": "Cutting Cards",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:C",
+          "source_title": "Cutting Cards",
+          "value": 2442.994808
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:C",
+          "source_title": "Cutting Cards",
+          "value": 2458.187848
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:D",
+      "title": "Spell Generation",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:D",
+          "source_title": "Spell Generation",
+          "value": 758.206521
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:D",
+          "source_title": "Spell Generation",
+          "value": 869.665784
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:E",
+      "title": "Grid Coloring",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:E",
+          "source_title": "Grid Coloring",
+          "value": 2913.264225
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:E",
+          "source_title": "Grid Coloring",
+          "value": 2892.796548
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:F",
+      "title": "Ranking Prediction",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:F",
+          "source_title": "Ranking Prediction",
+          "value": 1374.20086
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:F",
+          "source_title": "Ranking Prediction",
+          "value": 1353.509973
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:G",
+      "title": "Monetary System",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:G",
+          "source_title": "Monetary System",
+          "value": 1642.257388
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:G",
+          "source_title": "Monetary System",
+          "value": 1695.834902
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:H",
+      "title": "Loose Subsequences",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:H",
+          "source_title": "Loose Subsequences",
+          "value": 1754.894269
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:H",
+          "source_title": "Loose Subsequences",
+          "value": 1622.213007
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:I",
+      "title": "Team Naming",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:I",
+          "source_title": "Team Naming",
+          "value": 1822.477915
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:I",
+          "source_title": "Team Naming",
+          "value": 1813.832866
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:J",
+      "title": "Puzzle Competition",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:J",
+          "source_title": "Puzzle Competition",
+          "value": 1660.601591
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:J",
+          "source_title": "Puzzle Competition",
+          "value": 1675.386783
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:K",
+      "title": "Typewriter",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:K",
+          "source_title": "Typewriter",
+          "value": 2207.729506
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:K",
+          "source_title": "Typewriter",
+          "value": 1993.254127
+        }
+      ]
+    },
+    {
+      "problem_id": "146c5860-236d-58c9-823f-97c2d2b10ca4:L",
+      "title": "Route Selection",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "provincial__js__jscpc10th:L",
+          "source_title": "Route Selection",
+          "value": 2913.264225
+        },
+        {
+          "source_identity": "ccpc__ccpc2025__ccpc2025invitational-guangdong-preliminary:L",
+          "source_title": "Route Selection",
+          "value": 2892.796548
+        }
+      ]
+    },
+    {
+      "problem_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff:A",
+      "title": "Box",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024hv:A",
+          "source_title": "盒子",
+          "value": 1003.499766
+        },
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024ladies:A",
+          "source_title": "Box",
+          "value": 891.098539
+        }
+      ]
+    },
+    {
+      "problem_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff:E",
+      "title": "Centroid Tree",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024hv:D",
+          "source_title": "重心树",
+          "value": 2042.421244
+        },
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024ladies:E",
+          "source_title": "Centroid Tree",
+          "value": 1819.860083
+        }
+      ]
+    },
+    {
+      "problem_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff:G",
+      "title": "Increasing Sequence",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024hv:B",
+          "source_title": "递增序列",
+          "value": 2042.421244
+        },
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024ladies:G",
+          "source_title": "Increasing Sequence",
+          "value": 1809.297019
+        }
+      ]
+    },
+    {
+      "problem_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff:H",
+      "title": "Square Root",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024hv:H",
+          "source_title": "平方根",
+          "value": 1050.728928
+        },
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024ladies:H",
+          "source_title": "Square Root",
+          "value": 891.098539
+        }
+      ]
+    },
+    {
+      "problem_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff:I",
+      "title": "String Duplication",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024hv:I",
+          "source_title": "字符串复制",
+          "value": 2471.777054
+        },
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024ladies:I",
+          "source_title": "String Duplication",
+          "value": 2454.134203
+        }
+      ]
+    },
+    {
+      "problem_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff:J",
+      "title": "Sum of Squares of GCDs",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024hv:J",
+          "source_title": "最大公因数的平方和",
+          "value": 2471.777054
+        },
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024ladies:J",
+          "source_title": "Sum of Squares of GCDs",
+          "value": 2739.857723
+        }
+      ]
+    },
+    {
+      "problem_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff:K",
+      "title": "Xiao Kai's Dream of Provincial Scholarship",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024hv:K",
+          "source_title": "小凯的省奖之梦",
+          "value": 2003.043872
+        },
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024ladies:K",
+          "source_title": "Xiao Kai's Dream of Provincial Scholarship",
+          "value": 2007.148281
+        }
+      ]
+    },
+    {
+      "problem_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff:L",
+      "title": "Puzzle",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024hv:F",
+          "source_title": "拼图",
+          "value": 1605.986287
+        },
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024ladies:L",
+          "source_title": "Puzzle",
+          "value": 1579.696586
+        }
+      ]
+    },
+    {
+      "problem_id": "55b9a83b-afd9-5652-8b58-d860f37d16ff:M",
+      "title": "Covering a Tree",
+      "result": "left_unset",
+      "sources": [
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024hv:E",
+          "source_title": "覆盖一棵树",
+          "value": 1539.422498
+        },
+        {
+          "source_identity": "ccpc__ccpc2024__ccpc2024ladies:M",
+          "source_title": "Covering a Tree",
+          "value": 1432.537833
+        }
+      ]
+    }
+  ]
+}

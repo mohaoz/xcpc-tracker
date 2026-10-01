@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.8.3
+
+- Add Guangxi 2023–2025 with 38 reviewed problems and the 11-problem CF mirror for the existing 2018 World Finals. Preserve existing contest/problem IDs, titles and mappings.
+- Fill 14 standings source entries, 127 original-event dates, 62 verified problem ratings and additional community tags on 682 problems. Keep conflicting ratings unset.
+- Add cutoffs for eight contests; replace eight old estimates with verified explicit awards and correct 31 estimates. Withdraw 12 estimates with tied boundaries, incomplete feeds or unresolved highest groups, retaining all previous values and source evidence.
+- Correct Board per-medal rounding, boundary ties, highest-group selection, legacy timestamp/status/official-marker compatibility; validate the completion receipts in offline release checks. Keep candidates without verified complete lists outside the published catalog.
+
+- Integrate the user’s reviewed 12-contest/150-problem QOJ export: add three contests/37 problems and 113 existing-problem mirrors; preserve exact QOJ versions and curated primary titles.
+- Audit XCPC Rating numeric-only full-ID matches, then refresh populated source-owned metadata: final 1706 ratings, with old/new ownership receipts, stale-tag removals, manual-value preservation and direct-source conflict handling.
+- Verify original DOMjudge/ICPC World Finals awards, CCPC school-ranked rules, CCPC preset semantics and all public RankLand/Board snapshots. Correct nine additional explicit cutoffs and add four, reaching 123 explicit awards and 28 labeled estimates.
+- Track the remaining full-QOJ export, authenticated CF problem lists and incomplete Pintia standings separately; no incomplete source is represented as fully refreshed.
+
 ## 0.8.2
 
 - Add five complete 2026 contests: CCPC Online, Beijing, CCPC Qinhuangdao/Hebei, ICPC Guizhou and Hong Kong Joint, totaling 62 problems.

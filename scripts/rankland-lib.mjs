@@ -68,19 +68,22 @@ export function calculateAwards(srk, selectedGroup) {
   const ratio = config?.ratio;
   if (ratio) {
     if (Object.keys(ratio).some(k => !['value','rounding','denominator','noTied'].includes(k)) || !Array.isArray(ratio.value) || ratio.value.length !== 3 || ratio.value.some(n => !Number.isFinite(n) || n <= 0 || n > 1 || Math.round(n * 1e9) / 1e9 !== n)) return blocked('Unsupported official medal ratio');
-    if (!['ceil','floor','round'].includes(ratio.rounding ?? 'ceil') || (ratio.denominator ?? 'all') !== 'all' || ratio.noTied === true) return blocked('Unsupported official ratio denominator or tie policy');
+    if (!['ceil','floor','round'].includes(ratio.rounding ?? 'ceil') || !['all','scored'].includes(ratio.denominator ?? 'all') || ratio.noTied === true) return blocked('Unsupported official ratio denominator or tie policy');
   } else if (!Array.isArray(counts) || counts.length !== 3 || counts.some(n => !Number.isInteger(n) || n <= 0) || config.count.type && config.count.type !== 'normal') return blocked('No explicit supported medal counts');
   if (JSON.stringify((series[0].segments ?? []).map(s => s.style)) !== JSON.stringify(['gold', 'silver', 'bronze'])) return blocked('Medal meaning is not explicit');
   const eligible = srk.rows.filter(r => r.user.official === true && (!selectedGroup || r.user.markers?.includes(selectedGroup))).map(r => ({ teamId: r.user.id, solved: r.score?.value, penalty: minutes(r.score?.time) }));
   if (eligible.some(r => typeof r.teamId !== 'string' || !Number.isInteger(r.solved) || r.solved < 0 || r.solved > srk.problems.length) || new Set(eligible.map(r => r.teamId)).size !== eligible.length) return blocked('Invalid score or duplicate team identity');
   eligible.sort((a, b) => b.solved - a.solved || a.penalty - b.penalty || a.teamId.localeCompare(b.teamId));
+  // SRK's scored denominator counts only eligible rows with score.value > 0.
+  // It changes the ratio denominator, not the original official-team population.
+  const ratioDenominator=ratio?.denominator==='scored' ? eligible.filter(r=>r.solved>0).length : eligible.length;
   if (ratio) {
     // SRK rounds cumulative boundaries, not each medal's size. Integer decimal
     // arithmetic avoids ceil(0.1 + 0.2) floating-point boundary errors.
     let cumulative = 0, previous = 0;
     counts = ratio.value.map(value => {
       cumulative += Math.round(value * 1e9);
-      const boundary = Math[ratio.rounding ?? 'ceil'](cumulative * eligible.length / 1e9);
+      const boundary = Math[ratio.rounding ?? 'ceil'](cumulative * ratioDenominator / 1e9);
       const count = boundary - previous; previous = boundary; return count;
     });
     if (cumulative > 1e9 || counts.some(n => n <= 0)) return blocked('Invalid or empty official ratio segment');
@@ -94,7 +97,7 @@ export function calculateAwards(srk, selectedGroup) {
     if (next && next.solved === row.solved && next.penalty === row.penalty) return blocked('Tied medal boundary requires explicit review');
     cutoffs[medal] = { rank, ...row };
   }
-  return { status: 'proposed', eligible_team_count: eligible.length, cutoffs, evidence: { group: selectedGroup ?? 'user.official === true', series_index: srk.series.indexOf(series[0]), medal_counts: counts, ...(ratio ? {official_ratio:ratio,ratio_rounding:ratio.rounding ?? 'ceil',ratio_denominator:'all official teams',ratio_spec:'https://github.com/algoux/standard-ranklist/blob/master/index.d.ts'} : {}), penalty_unit: 'minutes', source_penalty_units: [...new Set(srk.rows.map(r => r.score.time[1]))], ties: 'No tied medal boundary', final: freeze===0 ? 'frozenDuration=0; complete statuses; no pending results' : 'Contest ended; complete statuses and consistent scores; no pending results; frozenDuration is schedule metadata' } };
+  return { status: 'proposed', eligible_team_count: eligible.length, cutoffs, evidence: { group: selectedGroup ?? 'user.official === true', series_index: srk.series.indexOf(series[0]), medal_counts: counts, ...(ratio ? {official_ratio:ratio,ratio_rounding:ratio.rounding ?? 'ceil',ratio_denominator:ratio.denominator==='scored'?'official teams with score.value > 0':'all official teams',ratio_denominator_count:ratioDenominator,ratio_spec:'https://github.com/algoux/standard-ranklist/blob/master/index.d.ts'} : {}), penalty_unit: 'minutes', source_penalty_units: [...new Set(srk.rows.map(r => r.score.time[1]))], ties: 'No tied medal boundary', final: freeze===0 ? 'frozenDuration=0; complete statuses; no pending results' : 'Contest ended; complete statuses and consistent scores; no pending results; frozenDuration is schedule metadata' } };
 }
 
 export function awardResult(srk, calculation, selectedGroup) {

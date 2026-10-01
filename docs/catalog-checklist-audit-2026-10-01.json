@@ -1,0 +1,4816 @@
+{
+  "checked_at": "2026-10-01",
+  "note": "49 reference rows:39 present/10 lacking a supported complete problem list. Current source refresh coverage is separately recorded; presence never implies all enrichments complete.",
+  "rows": [
+    {
+      "reference": "26-03",
+      "title": "深圳邀请赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2026-04-11；已补录）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/icpc/51st/shenzhen-invitational?group=official",
+        "https://qoj.ac/contest/3588?v=1"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "fca291f3-d017-5cd3-9298-63a1b624b39e",
+          "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（深圳）",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-04",
+      "title": "浙江省赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2026-04-25；已补录）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2026/zhejiang?group=undergraduate",
+        "https://qoj.ac/contest/3749?v=1"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "a9098c59-44d3-5586-8b15-837d828f90b4",
+          "title": "「睿琪杯」浙江省第 23 届大学生程序设计竞赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-05",
+      "title": "西安邀请赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2026-05-02；已补录）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/icpc/51st/xian-invitational?group=official",
+        "https://qoj.ac/contest/3766"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "b6069f69-bc27-5966-a6e1-467028aebdcd",
+          "title": "第 51 届 ICPC 国际大学生程序设计竞赛邀请赛西安站",
+          "problem_count": 14
+        }
+      ]
+    },
+    {
+      "reference": "26-06",
+      "title": "北京市赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2026-05-10；已补录）",
+      "known_source_urls": [
+        "https://pintia.cn/rankings/2048682058783719424",
+        "https://codeforces.com/gym/106694"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "ca7df4e2-916e-5382-a3f9-333c34730189",
+          "title": "2026 北京市大学生程序设计竞赛",
+          "problem_count": 12
+        }
+      ]
+    },
+    {
+      "reference": "26-07",
+      "title": "CCPC河南省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-10；链接冲突待核验）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2026/henan",
+        "https://codeforces.com/gym/106551"
+      ],
+      "status": "present_verified_user_qoj_export",
+      "catalog_matches": [
+        {
+          "contest_id": "e33dcd2f-f3d4-5927-9bc8-0bc2a8f26093",
+          "title": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "problem_count": 12
+        }
+      ],
+      "candidate_urls": [
+        "https://qoj.ac/contest/3935"
+      ],
+      "reason": "Correct QOJ candidate found. Gym 106551 belongs to ICPC Nanchang; do not reuse Beijing problem order, which differs.",
+      "rating_slug": "provincial__ha__haccpc8th",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": "草莓牛奶",
+          "canonicalId": "qoj:18958",
+          "typeKeys": [
+            "dp",
+            "math"
+          ],
+          "typeLabels": [
+            "动态规划",
+            "数学"
+          ],
+          "detailTags": [
+            "组合数学",
+            "计数DP"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18958",
+          "status": "classified",
+          "confidence": 0.84,
+          "solveRate": 0.002532,
+          "problemRating": 2724.473103,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 36,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": "排列翻转",
+          "canonicalId": "qoj:18959",
+          "typeKeys": [
+            "dataStructure",
+            "dp"
+          ],
+          "typeLabels": [
+            "数据结构",
+            "动态规划"
+          ],
+          "detailTags": [
+            "树形DP",
+            "笛卡尔树"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18959",
+          "status": "classified",
+          "confidence": 0.82,
+          "solveRate": 0.005063,
+          "problemRating": 2541.46548,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 23,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": "Fry Beef",
+          "canonicalId": "qoj:18960",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "贪心"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18960",
+          "status": "classified",
+          "confidence": 0.98,
+          "solveRate": 0.967089,
+          "problemRating": 862.179482,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 381,
+          "submitted": 1105,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": "求求你不要再爬塔二了",
+          "canonicalId": "qoj:18961",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "排序",
+            "贪心"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18961",
+          "status": "classified",
+          "confidence": 0.8,
+          "solveRate": 0.336709,
+          "problemRating": 1716.851306,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 132,
+          "submitted": 2107,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": "星战",
+          "canonicalId": "qoj:18962",
+          "typeKeys": [
+            "probability"
+          ],
+          "typeLabels": [
+            "概率与博弈"
+          ],
+          "detailTags": [
+            "博弈论"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18962",
+          "status": "classified",
+          "confidence": 0.9,
+          "solveRate": 0.197468,
+          "problemRating": 1806.153943,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 77,
+          "submitted": 1276,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": "尖塔最强机器人",
+          "canonicalId": "qoj:18963",
+          "typeKeys": [
+            "dp"
+          ],
+          "typeLabels": [
+            "动态规划"
+          ],
+          "detailTags": [
+            "线性DP"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18963",
+          "status": "classified",
+          "confidence": 0.86,
+          "solveRate": 0.068354,
+          "problemRating": 2101.248329,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 26,
+          "submitted": 130,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": "灭霸排序 II",
+          "canonicalId": "qoj:18964",
+          "typeKeys": [
+            "dp",
+            "probability"
+          ],
+          "typeLabels": [
+            "动态规划",
+            "概率与博弈"
+          ],
+          "detailTags": [
+            "概率与期望",
+            "计数DP"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18964",
+          "status": "classified",
+          "confidence": 0.84,
+          "solveRate": 0.005063,
+          "problemRating": 2724.473103,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 20,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": "最小异或乘积",
+          "canonicalId": "qoj:18965",
+          "typeKeys": [
+            "adhoc",
+            "technique"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "基础技巧"
+          ],
+          "detailTags": [
+            "位运算",
+            "构造"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18965",
+          "status": "classified",
+          "confidence": 0.94,
+          "solveRate": 0.005063,
+          "problemRating": 2541.46548,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 71,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": "小礼品",
+          "canonicalId": "qoj:18966",
+          "typeKeys": [
+            "adhoc",
+            "search"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "搜索"
+          ],
+          "detailTags": [
+            "DFS/BFS",
+            "构造"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18966",
+          "status": "classified",
+          "confidence": 0.8,
+          "solveRate": 0.027848,
+          "problemRating": 2275.278518,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 10,
+          "submitted": 145,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": "字符串的 Porder 之和",
+          "canonicalId": "qoj:18967",
+          "typeKeys": [
+            "string"
+          ],
+          "typeLabels": [
+            "字符串"
+          ],
+          "detailTags": [
+            "后缀自动机",
+            "回文算法"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18967",
+          "status": "classified",
+          "confidence": 0.83,
+          "solveRate": 0.002532,
+          "problemRating": 2724.473103,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 41,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "K",
+          "title": "像素8",
+          "canonicalId": "qoj:18968",
+          "typeKeys": [
+            "search"
+          ],
+          "typeLabels": [
+            "搜索"
+          ],
+          "detailTags": [
+            "DFS/BFS"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18968",
+          "status": "classified",
+          "confidence": 0.98,
+          "solveRate": 0.729114,
+          "problemRating": 1360.821373,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 287,
+          "submitted": 748,
+          "eligibleTeams": 393
+        },
+        {
+          "contestSlug": "provincial__ha__haccpc8th",
+          "contestTitle": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-10T10:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "L",
+          "title": "解方程",
+          "canonicalId": "qoj:18969",
+          "typeKeys": [
+            "adhoc",
+            "dataStructure"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "数据结构"
+          ],
+          "detailTags": [
+            "哈希表",
+            "枚举"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18969",
+          "status": "classified",
+          "confidence": 0.88,
+          "solveRate": 0.329114,
+          "problemRating": 1704.953989,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 129,
+          "submitted": 411,
+          "eligibleTeams": 393
+        }
+      ],
+      "evidence": "fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+    },
+    {
+      "reference": "26-08",
+      "title": "黑龙江省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（原表日期 2026-05-10；已补录，日期／QOJ 待核验）",
+      "known_source_urls": [
+        "https://pintia.cn/rankings/2049414294076952576",
+        "https://codeforces.com/gym/106534"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "411cc95d-3733-5a0b-8806-ab17b43f8838",
+          "title": "第二十一届黑龙江省大学生程序设计竞赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-09",
+      "title": "陕西省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-16；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2026/shaanxi",
+        "https://codeforces.com/gym/106532"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "51ea566e-015d-50c9-a1a0-8efe98a119c8",
+          "title": "第 14 届陕西省国际大学生程序设计竞赛 - 正式赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-10",
+      "title": "ICPC南昌邀请赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-17；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/icpc/51st/jiangxi-invitational",
+        "https://codeforces.com/gym/106551"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "ce44751f-d252-5bfb-a4a9-324fe2eeaa65",
+          "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（南昌）暨江西省赛 - 正式赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-11",
+      "title": "武汉邀请赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2026-05-17；已补录）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/icpc/51st/wuhan-invitational",
+        "https://qoj.ac/contest/3799?v=1"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "b9a24afb-e623-5fd8-b97f-d7c71de3f8b6",
+          "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（武汉）暨湖北省赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-12",
+      "title": "江苏省赛/广东省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-17；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2026/jiangsu?group=official",
+        "https://codeforces.com/gym/106550"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "f1530276-8b8a-5dec-a563-060fdc7ff438",
+          "title": "2026 年江苏省大学生程序设计竞赛",
+          "problem_count": 12
+        },
+        {
+          "contest_id": "b84e4298-4c66-56b3-a5e1-403d1d7c87cd",
+          "title": "第二十三届广东省大学生程序设计竞赛 - 正式赛",
+          "problem_count": 12
+        }
+      ]
+    },
+    {
+      "reference": "26-13",
+      "title": "吉林省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-23；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2026/jilin",
+        "https://codeforces.com/gym/106567"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "2e723e83-803e-5132-8bc8-87166ad1b28a",
+          "title": "第 19 届吉林省大学生程序设计竞赛 - 正式赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-14",
+      "title": "秦皇岛邀请赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2026-05-24；已补录）",
+      "known_source_urls": [
+        "https://cpc.csgrandeur.cn/outrank/rank?outrank_uuid=88998553-ce66-46ec-a062-1beb357d774c",
+        "https://codeforces.com/gym/106695"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "02eab79c-f50a-5587-933a-7bfaf19b30a3",
+          "title": "2026 CCPC 全国邀请赛（秦皇岛）暨第十届河北省大学生程序设计竞赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-15",
+      "title": "东北地区赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-24；链接冲突待核验）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2026/northeastern?group=official",
+        "https://codeforces.com/gym/106551"
+      ],
+      "status": "present_verified_user_qoj_export",
+      "catalog_matches": [
+        {
+          "contest_id": "254425d8-66f5-5324-bd72-9e94fe5c131e",
+          "title": "第二十届东北地区大学生程序设计竞赛",
+          "problem_count": 12
+        }
+      ],
+      "candidate_urls": [
+        "https://qoj.ac/contest/3934"
+      ],
+      "reason": "Correct QOJ candidate found. Gym 106551 belongs to ICPC Nanchang.",
+      "rating_slug": "provincial__northeast__northeastcpc20th",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": "求求你不要再摔馍片了",
+          "canonicalId": "qoj:18945",
+          "typeKeys": [
+            "dp"
+          ],
+          "typeLabels": [
+            "动态规划"
+          ],
+          "detailTags": [
+            "线性DP"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18945",
+          "status": "classified",
+          "confidence": 0.95,
+          "solveRate": 0.217391,
+          "problemRating": 1880.614334,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 39,
+          "submitted": 223,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": "世界树",
+          "canonicalId": "qoj:18946",
+          "typeKeys": [
+            "graph"
+          ],
+          "typeLabels": [
+            "图论"
+          ],
+          "detailTags": [
+            "树链剖分"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18946",
+          "status": "classified",
+          "confidence": 0.25,
+          "solveRate": 0.048913,
+          "problemRating": 2297.451708,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 8,
+          "submitted": 55,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": "简单字符串题",
+          "canonicalId": "qoj:18947",
+          "typeKeys": [
+            "math"
+          ],
+          "typeLabels": [
+            "数学"
+          ],
+          "detailTags": [
+            "多项式与NTT",
+            "计数"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18947",
+          "status": "classified",
+          "confidence": 0.25,
+          "solveRate": 0.782609,
+          "problemRating": 1414.647628,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 143,
+          "submitted": 348,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": "电梯",
+          "canonicalId": "qoj:18948",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "构造",
+            "贪心"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18948",
+          "status": "classified",
+          "confidence": 0.95,
+          "solveRate": 0.005435,
+          "problemRating": 2906.462359,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 8,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": "猜01序列",
+          "canonicalId": "qoj:18949",
+          "typeKeys": [
+            "adhoc",
+            "technique"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "基础技巧"
+          ],
+          "detailTags": [
+            "二分查找",
+            "交互"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18949",
+          "status": "classified",
+          "confidence": 0.95,
+          "solveRate": 0.070652,
+          "problemRating": 2191.844726,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 12,
+          "submitted": 275,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": "建设高铁",
+          "canonicalId": "qoj:18950",
+          "typeKeys": [
+            "dataStructure",
+            "graph"
+          ],
+          "typeLabels": [
+            "数据结构",
+            "图论"
+          ],
+          "detailTags": [
+            "平衡树",
+            "最小生成树"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18950",
+          "status": "classified",
+          "confidence": 0.25,
+          "solveRate": 0.027174,
+          "problemRating": 2468.836165,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 4,
+          "submitted": 20,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": "可能是字符串签到题",
+          "canonicalId": "qoj:18951",
+          "typeKeys": [
+            "technique"
+          ],
+          "typeLabels": [
+            "基础技巧"
+          ],
+          "detailTags": [
+            "前缀和"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18951",
+          "status": "classified",
+          "confidence": 0.95,
+          "solveRate": 0.994565,
+          "problemRating": 588.529864,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 182,
+          "submitted": 222,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": "南昌拌粉的绝妙配比",
+          "canonicalId": "qoj:18952",
+          "typeKeys": [
+            "adhoc",
+            "offline"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "分治与离线"
+          ],
+          "detailTags": [
+            "分治",
+            "枚举"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18952",
+          "status": "classified",
+          "confidence": 0.87,
+          "solveRate": 0.88587,
+          "problemRating": 1224.417402,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 162,
+          "submitted": 430,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": "灯带",
+          "canonicalId": "qoj:18953",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "构造",
+            "贪心"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18953",
+          "status": "classified",
+          "confidence": 0.9,
+          "solveRate": 0.217391,
+          "problemRating": 1862.850594,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 39,
+          "submitted": 182,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": "贪吃蛇",
+          "canonicalId": "qoj:18954",
+          "typeKeys": [
+            "adhoc",
+            "technique"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "基础技巧"
+          ],
+          "detailTags": [
+            "双指针",
+            "排序"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18954",
+          "status": "classified",
+          "confidence": 0.25,
+          "solveRate": 0.032609,
+          "problemRating": 2416.043593,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 5,
+          "submitted": 10,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "K",
+          "title": "拯救猫猫",
+          "canonicalId": "qoj:18955",
+          "typeKeys": [
+            "search"
+          ],
+          "typeLabels": [
+            "搜索"
+          ],
+          "detailTags": [
+            "DFS/BFS"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18955",
+          "status": "classified",
+          "confidence": 0.9,
+          "solveRate": 0.065217,
+          "problemRating": 2214.545573,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 11,
+          "submitted": 208,
+          "eligibleTeams": 182
+        },
+        {
+          "contestSlug": "provincial__northeast__northeastcpc20th",
+          "contestTitle": "第二十届东北地区大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "L",
+          "title": "三人成角",
+          "canonicalId": "qoj:18956",
+          "typeKeys": [
+            "math"
+          ],
+          "typeLabels": [
+            "数学"
+          ],
+          "detailTags": [
+            "组合数学"
+          ],
+          "problemUrl": "https://qoj.ac/problem/18956",
+          "status": "classified",
+          "confidence": 0.9,
+          "solveRate": 0.054348,
+          "problemRating": 2266.869685,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 9,
+          "submitted": 117,
+          "eligibleTeams": 182
+        }
+      ],
+      "evidence": "fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json"
+    },
+    {
+      "reference": "26-16",
+      "title": "CCPC南昌邀请赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-24；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/ccpc/12th/nanchang-invitational",
+        "https://codeforces.com/gym/106696",
+        "https://codeforces.com/gym/106554"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "48308c06-eafd-569e-bf06-c20e40a98fee",
+          "title": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（南昌） - 正式赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-17",
+      "title": "ICPC河南省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-24；新增候选）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2026/henan-icpc?group=official"
+      ],
+      "status": "no_supported_complete_list",
+      "catalog_matches": [],
+      "candidate_urls": [],
+      "reason": "Rating references a COGS host with all 13 titles; no verified CF/QOJ mirror identified. COGS is outside supported providers.",
+      "rating_slug": "provincial__ha__haicpc17th",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": "来点离线做法",
+          "canonicalId": "event:provincial/ha/haicpc17th:A",
+          "typeKeys": [
+            "dataStructure"
+          ],
+          "typeLabels": [
+            "数据结构"
+          ],
+          "detailTags": [
+            "分块"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vJizxqqkj",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.024096,
+          "problemRating": 2347.26252,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 5,
+          "submitted": 159,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": "停车难题",
+          "canonicalId": "event:provincial/ha/haicpc17th:B",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "模拟"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vQzmNqqkq",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.991968,
+          "problemRating": 704.452542,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 246,
+          "submitted": 361,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": "数学的大厦崩塌了",
+          "canonicalId": "event:provincial/ha/haicpc17th:C",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "模拟"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vzNXiqqkg",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.032129,
+          "problemRating": 2347.26252,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 7,
+          "submitted": 15,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": "贪玩迷宫",
+          "canonicalId": "event:provincial/ha/haicpc17th:D",
+          "typeKeys": [
+            "dp"
+          ],
+          "typeLabels": [
+            "动态规划"
+          ],
+          "detailTags": [
+            "树形DP"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vyXxyqqke",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.008032,
+          "problemRating": 2502.578269,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 47,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": "赚的越多，赚的越少",
+          "canonicalId": "event:provincial/ha/haicpc17th:E",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "模拟"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vXQyQqqkW",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.919679,
+          "problemRating": 1144.591674,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 228,
+          "submitted": 379,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": "阶乘的和",
+          "canonicalId": "event:provincial/ha/haicpc17th:F",
+          "typeKeys": [
+            "math"
+          ],
+          "typeLabels": [
+            "数学"
+          ],
+          "detailTags": [
+            "模运算"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vixJmqqkU",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.955823,
+          "problemRating": 1049.05386,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 237,
+          "submitted": 404,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": "球",
+          "canonicalId": "event:provincial/ha/haicpc17th:G",
+          "typeKeys": [
+            "geometry"
+          ],
+          "typeLabels": [
+            "计算几何"
+          ],
+          "detailTags": [
+            "立体几何"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vxSziqqkP",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.11245,
+          "problemRating": 1878.495684,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 27,
+          "submitted": 161,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": "关注火花花喵",
+          "canonicalId": "event:provincial/ha/haicpc17th:H",
+          "typeKeys": [
+            "dp"
+          ],
+          "typeLabels": [
+            "动态规划"
+          ],
+          "detailTags": [
+            "概率DP"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vmyNSqqVa",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.012048,
+          "problemRating": 2409.455451,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 2,
+          "submitted": 7,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": "收益",
+          "canonicalId": "event:provincial/ha/haicpc17th:I",
+          "typeKeys": [
+            "dataStructure"
+          ],
+          "typeLabels": [
+            "数据结构"
+          ],
+          "detailTags": [
+            "堆"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=viyiQqqVk",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.092369,
+          "problemRating": 2009.507634,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 22,
+          "submitted": 197,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": "神经网络图染色",
+          "canonicalId": "event:provincial/ha/haicpc17th:J",
+          "typeKeys": [
+            "dp"
+          ],
+          "typeLabels": [
+            "动态规划"
+          ],
+          "detailTags": [
+            "计数DP"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vXzxzqqVV",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.024096,
+          "problemRating": 2347.26252,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 5,
+          "submitted": 7,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "K",
+          "title": "取石子",
+          "canonicalId": "event:provincial/ha/haicpc17th:K",
+          "typeKeys": [
+            "probability"
+          ],
+          "typeLabels": [
+            "概率与博弈"
+          ],
+          "detailTags": [
+            "博弈论"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vimyJqqVj",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.835341,
+          "problemRating": 1344.242932,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 207,
+          "submitted": 485,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "L",
+          "title": "最小生成图",
+          "canonicalId": "event:provincial/ha/haicpc17th:L",
+          "typeKeys": [
+            "graph"
+          ],
+          "typeLabels": [
+            "图论"
+          ],
+          "detailTags": [
+            "最小生成树"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vxNixqqVq",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.506024,
+          "problemRating": 1593.77383,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 125,
+          "submitted": 499,
+          "eligibleTeams": 247
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc17th",
+          "contestTitle": "第 17 届 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2026-05-24T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "M",
+          "title": "蜗牛养殖",
+          "canonicalId": "event:provincial/ha/haicpc17th:M",
+          "typeKeys": [
+            "graph"
+          ],
+          "typeLabels": [
+            "图论"
+          ],
+          "detailTags": [
+            "虚树"
+          ],
+          "problemUrl": "http://218.28.19.228:8081/cogs/problem/problem.php?pid=vNXzNqqVg",
+          "status": "classified",
+          "confidence": 0.35,
+          "solveRate": 0.008032,
+          "problemRating": 2689.982419,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 6,
+          "eligibleTeams": 247
+        }
+      ]
+    },
+    {
+      "reference": "26-18",
+      "title": "山东省赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2026-05-24；已补录）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2026/shandong?group=official",
+        "https://qoj.ac/contest/3767"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "965d670a-c551-5dda-a280-33fc2229feaf",
+          "title": "2026 年山东省大学生程序设计竞赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-19",
+      "title": "福州邀请赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-30；已补录，QOJ 待补查）",
+      "known_source_urls": [
+        "https://pintia.cn/rankings/2056635464310784000",
+        "https://codeforces.com/gym/106565"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "abb72fec-deb3-5d04-9ca3-2b16d6c83ed9",
+          "title": "第十三届福建省大学生程序设计竞赛暨2026年CCPC全国邀请赛（福州）",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-20",
+      "title": "四川省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-31；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2026/sichuan?group=official",
+        "https://codeforces.com/gym/106570"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "351df86a-97da-50fb-9d53-f536ecd9e383",
+          "title": "第十八届四川省大学生程序设计竞赛 - 正式赛",
+          "problem_count": 12
+        }
+      ]
+    },
+    {
+      "reference": "26-21",
+      "title": "广西邀请赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-31；新增候选）",
+      "known_source_urls": [
+        "https://ac.nowcoder.com/acm/contest/136164#rank",
+        "https://ac.nowcoder.com/acm/contest/136164#question"
+      ],
+      "status": "no_supported_complete_list",
+      "catalog_matches": [],
+      "candidate_urls": [
+        "https://ac.nowcoder.com/acm/contest/136164"
+      ],
+      "reason": "Rating has 11 named Nowcoder problems. No verified CF/QOJ mirror identified; do not add a new OJ integration.",
+      "rating_slug": "provincial__gx__gxcpc9th",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": "大户爱的幂和",
+          "canonicalId": "nowcoder:136164:A",
+          "typeKeys": [
+            "adhoc",
+            "math"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "数学"
+          ],
+          "detailTags": [
+            "模运算",
+            "贪心"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/A",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.955414,
+          "problemRating": 1054.910572,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 299,
+          "submitted": 552,
+          "eligibleTeams": 312
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": "大户爱的期望",
+          "canonicalId": "nowcoder:136164:B",
+          "typeKeys": [
+            "probability"
+          ],
+          "typeLabels": [
+            "概率与博弈"
+          ],
+          "detailTags": [
+            "博弈论",
+            "概率与期望"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/B",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.210191,
+          "problemRating": 1734.912418,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 65,
+          "submitted": 942,
+          "eligibleTeams": 312
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": "盒先生的星星",
+          "canonicalId": "nowcoder:136164:C",
+          "typeKeys": [
+            "dp",
+            "math"
+          ],
+          "typeLabels": [
+            "动态规划",
+            "数学"
+          ],
+          "detailTags": [
+            "容斥",
+            "状压DP"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/C",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.003185,
+          "problemRating": 2745.697491,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 16,
+          "eligibleTeams": 312
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": "歪歪做旗帜",
+          "canonicalId": "nowcoder:136164:D",
+          "typeKeys": [
+            "math"
+          ],
+          "typeLabels": [
+            "数学"
+          ],
+          "detailTags": [
+            "计数"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/D",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.990446,
+          "problemRating": 799.919322,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 310,
+          "submitted": 369,
+          "eligibleTeams": 312
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": "八奇炼桃都",
+          "canonicalId": "nowcoder:136164:E",
+          "typeKeys": [
+            "math"
+          ],
+          "typeLabels": [
+            "数学"
+          ],
+          "detailTags": [
+            "多项式与NTT",
+            "计数"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/E",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.038217,
+          "problemRating": 2222.4969,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 11,
+          "submitted": 111,
+          "eligibleTeams": 312
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": "屏峰",
+          "canonicalId": "nowcoder:136164:F",
+          "typeKeys": [
+            "flow",
+            "search"
+          ],
+          "typeLabels": [
+            "网络流与匹配",
+            "搜索"
+          ],
+          "detailTags": [
+            "DFS/BFS",
+            "二分图"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/F",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.579618,
+          "problemRating": 1533.158711,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 181,
+          "submitted": 1016,
+          "eligibleTeams": 312
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": "歪歪学数学",
+          "canonicalId": "nowcoder:136164:G",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "枚举"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/G",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.980892,
+          "problemRating": 909.440445,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 307,
+          "submitted": 537,
+          "eligibleTeams": 312
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": "小 Z 怎么又在打游戏",
+          "canonicalId": "nowcoder:136164:H",
+          "typeKeys": [
+            "dp",
+            "math"
+          ],
+          "typeLabels": [
+            "动态规划",
+            "数学"
+          ],
+          "detailTags": [
+            "组合数学",
+            "计数DP"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/H",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.165605,
+          "problemRating": 1898.390085,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 51,
+          "submitted": 279,
+          "eligibleTeams": 312
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": "雨阶共鸣",
+          "canonicalId": "nowcoder:136164:I",
+          "typeKeys": [
+            "string"
+          ],
+          "typeLabels": [
+            "字符串"
+          ],
+          "detailTags": [
+            "KMP",
+            "字符串哈希"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/I",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.006369,
+          "problemRating": 2745.697491,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 20,
+          "eligibleTeams": 312
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": "山脊封锁",
+          "canonicalId": "nowcoder:136164:J",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "枚举",
+            "贪心"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/J",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.219745,
+          "problemRating": 1829.62928,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 68,
+          "submitted": 878,
+          "eligibleTeams": 312
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc9th",
+          "contestTitle": "第九届广西大学生程序设计大赛暨2026中国-东盟国际大学生程序设计大赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "K",
+          "title": "三角形广场",
+          "canonicalId": "nowcoder:136164:K",
+          "typeKeys": [
+            "geometry",
+            "technique"
+          ],
+          "typeLabels": [
+            "计算几何",
+            "基础技巧"
+          ],
+          "detailTags": [
+            "叉积与方向",
+            "双指针"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/136164/K",
+          "status": "classified",
+          "confidence": 0.55,
+          "solveRate": 0.06051,
+          "problemRating": 2140.712785,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 18,
+          "submitted": 140,
+          "eligibleTeams": 312
+        }
+      ]
+    },
+    {
+      "reference": "26-22",
+      "title": "内蒙古区赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-05-31；新增候选）",
+      "known_source_urls": [
+        "https://pintia.cn/rankings/2057393074358124544",
+        "https://pintia.cn/market/item/2061646727891632128"
+      ],
+      "status": "no_supported_complete_list",
+      "catalog_matches": [],
+      "candidate_urls": [
+        "https://pintia.cn/market/item/2061646727891632128"
+      ],
+      "reason": "Rating has 11 anonymous ordinals pointing to PTA rankings, no complete supported list.",
+      "rating_slug": "provincial__nm__nmcpc19th",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:A",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.565217,
+          "problemRating": 1511.60006,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 51,
+          "submitted": 371,
+          "eligibleTeams": 90
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:B",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.032609,
+          "problemRating": 2278.680859,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 2,
+          "submitted": 66,
+          "eligibleTeams": 90
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:C",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.01087,
+          "problemRating": 2491.015062,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 8,
+          "eligibleTeams": 90
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:D",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.826087,
+          "problemRating": 1221.957783,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 75,
+          "submitted": 163,
+          "eligibleTeams": 90
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:E",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.01087,
+          "problemRating": 2491.015062,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 33,
+          "eligibleTeams": 90
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:F",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.043478,
+          "problemRating": 2278.680859,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 3,
+          "submitted": 13,
+          "eligibleTeams": 90
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:G",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.717391,
+          "problemRating": 1376.413468,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 65,
+          "submitted": 293,
+          "eligibleTeams": 90
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:H",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.032609,
+          "problemRating": 2278.680859,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 2,
+          "submitted": 14,
+          "eligibleTeams": 90
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:I",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.130435,
+          "problemRating": 1964.939744,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 11,
+          "submitted": 67,
+          "eligibleTeams": 90
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:J",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.021739,
+          "problemRating": 2278.680859,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 1,
+          "submitted": 92,
+          "eligibleTeams": 90
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc19th",
+          "contestTitle": "“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛",
+          "startAt": "2026-05-31T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "K",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc19th:K",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/2057393074358124544",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.869565,
+          "problemRating": 1098.055817,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 79,
+          "submitted": 164,
+          "eligibleTeams": 90
+        }
+      ]
+    },
+    {
+      "reference": "26-23",
+      "title": "贵州邀请赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2026-06-07；新增候选）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/ccpc/12th/guizhou-invitational?group=official"
+      ],
+      "status": "inaccessible_cf_candidate",
+      "catalog_matches": [],
+      "candidate_urls": [
+        "https://codeforces.com/gym/695551"
+      ],
+      "reason": "Third-party problem article links Gym 695551/J. CF Gym is not present in current public contest.list and web open was inaccessible. Rating only knows B and J titles. Needs user-authorized accessible export, not inference from 106705 ICPC Guizhou.",
+      "rating_slug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "A",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:A",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.348214,
+          "problemRating": 1757.207339,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 77,
+          "submitted": 248,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "B",
+          "title": "娄山关扫雷",
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:B",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.441964,
+          "problemRating": 1672.716408,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 98,
+          "submitted": 621,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "C",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:C",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.776786,
+          "problemRating": 1434.630901,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 173,
+          "submitted": 658,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "D",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:D",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.040179,
+          "problemRating": 2284.172541,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 8,
+          "submitted": 48,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "E",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:E",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.263393,
+          "problemRating": 1785.849931,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 58,
+          "submitted": 288,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "F",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:F",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.799107,
+          "problemRating": 1388.222987,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 178,
+          "submitted": 952,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "G",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:G",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.973214,
+          "problemRating": 566.569389,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 217,
+          "submitted": 253,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "H",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:H",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.022321,
+          "problemRating": 2417.085737,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 4,
+          "submitted": 25,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "I",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:I",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.852679,
+          "problemRating": 1305.178213,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 190,
+          "submitted": 574,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "J",
+          "title": "AI模型的优化",
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:J",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.008929,
+          "problemRating": 2628.057467,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 15,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "K",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:K",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.0625,
+          "problemRating": 2218.012818,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 13,
+          "submitted": 30,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "L",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:L",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.017857,
+          "problemRating": 2467.415318,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 3,
+          "submitted": 13,
+          "eligibleTeams": 222
+        },
+        {
+          "contestSlug": "ccpc__ccpc2026__ccpc2026invitational-guizhou",
+          "contestTitle": "2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛",
+          "startAt": "2026-06-07T12:00:00+08:00",
+          "category": "ccpc",
+          "tier": "invitational",
+          "alias": "M",
+          "title": null,
+          "canonicalId": "event:ccpc/ccpc2026/ccpc2026invitational-guizhou:M",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.245536,
+          "problemRating": 1784.280449,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 54,
+          "submitted": 421,
+          "eligibleTeams": 222
+        }
+      ]
+    },
+    {
+      "reference": "26-24",
+      "title": "重庆市赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2026-06-14；已补录）",
+      "known_source_urls": [
+        "https://pintia.cn/rankings/2064240000901931008",
+        "https://codeforces.com/gym/106589"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "a218c192-1ca0-50e3-886c-95286d773f1d",
+          "title": "重庆市第十四届大学生程序设计大赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "26-25",
+      "title": "上海市赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2026-07-26；已补录）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2026/shanghai",
+        "https://qoj.ac/contest/3944"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "e7f754fb-7c45-5a17-8549-5fc0c7bde688",
+          "title": "“华为智联杯”无线程序设计大赛暨2026年上海市大学生程序设计竞赛",
+          "problem_count": 10
+        }
+      ]
+    },
+    {
+      "reference": "26-26",
+      "title": "沈阳邀请赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2026-07-29；已补录）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/icpc/51st/shenyang-invitational?group=official",
+        "https://qoj.ac/contest/3945"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "f6802fb9-74a6-5029-9a19-e0f5cfaf7645",
+          "title": "2026 年 ICPC 国际大学生程序设计竞赛全国邀请赛（沈阳）",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-03",
+      "title": "北京市赛/小米邀请赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-04-20；已收录待复核）",
+      "known_source_urls": [
+        "https://pintia.cn/rankings/1911705434392723456",
+        "https://codeforces.com/gym/105851"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "b48a800e-5949-5b90-97c3-b0171c0914c6",
+          "title": "2025 北京市大学生程序设计竞赛暨“小米杯”全国邀请赛",
+          "problem_count": 11
+        }
+      ]
+    },
+    {
+      "reference": "25-04",
+      "title": "浙江省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-04-26；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest%2F2025%2Fzhejiang?group=official",
+        "https://qoj.ac/contest/2021?v=1"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "16f4adf5-7080-5acc-b1a5-a9c04f049a37",
+          "title": "The 2025 ICPC China Zhejiang Province Programming Contest (22nd)",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-05",
+      "title": "武汉邀请赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-04-27；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/icpc%2F50th%2Fwuhan-invitational?group=official",
+        "https://codeforces.com/gym/105901"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "2f0ed056-6a2f-5f78-9b09-bd603440088c",
+          "title": "The 2025 ICPC China Hubei(Wuhan) National Invitational Programming Contest",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-06",
+      "title": "西安邀请赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-04；新增候选）",
+      "known_source_urls": [
+        "https://rl.algoux.cn/collection/official?rankId=icpc2025invitational-xi_an"
+      ],
+      "status": "unreliable_cf_candidate",
+      "catalog_matches": [],
+      "candidate_urls": [
+        "https://codeforces.com/gym/106714"
+      ],
+      "reason": "Public complete A–M practice mirror explicitly declares AI-generated tests/checkers and possible weak data or false solutions. Not promoted as curated reliable VP source.",
+      "rating_slug": null,
+      "rating_problem_reference_not_export": []
+    },
+    {
+      "reference": "25-07",
+      "title": "重庆市赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-10；已收录待复核）",
+      "known_source_urls": [
+        "https://pintia.cn/rankings/1917126683478355968",
+        "https://codeforces.com/gym/105887"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "9c678c83-09b0-535d-9053-1049bd087f63",
+          "title": "第十三届重庆市大学生程序设计竞赛",
+          "problem_count": 12
+        }
+      ]
+    },
+    {
+      "reference": "25-08",
+      "title": "陕西省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-10；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest%2F2025%2Fshaanxi?group=official",
+        "https://codeforces.com/gym/105891"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "8a102ede-16fe-59e1-b739-ed8f243fdf40",
+          "title": "The 13th Shaanxi Provincial Collegiate Programming Contest",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-09",
+      "title": "河南省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-10；新增候选）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest%2F2025%2Fhenan?group=official",
+        "https://ac.nowcoder.com/acm/contest/110308"
+      ],
+      "status": "no_supported_complete_list",
+      "catalog_matches": [],
+      "candidate_urls": [
+        "https://ac.nowcoder.com/acm/contest/110308"
+      ],
+      "reason": "Rating has 13 named Nowcoder problems; no verified CF/QOJ mirror. Date conflict: checklist 2025-05-10 vs Rating 2025-05-11; must verify before canonical date.",
+      "rating_slug": "provincial__ha__haicpc16th",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": "区间异或第k大",
+          "canonicalId": "nowcoder:110308:A",
+          "typeKeys": [
+            "dataStructure",
+            "math"
+          ],
+          "typeLabels": [
+            "数据结构",
+            "数学"
+          ],
+          "detailTags": [
+            "线性基",
+            "线段树"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/A",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.007905,
+          "problemRating": 2668.634646,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 18,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": "最大popcount",
+          "canonicalId": "nowcoder:110308:B",
+          "typeKeys": [
+            "adhoc",
+            "technique"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "基础技巧"
+          ],
+          "detailTags": [
+            "位运算",
+            "贪心"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/B",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.972332,
+          "problemRating": 937.712004,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 245,
+          "submitted": 438,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": "点对统计",
+          "canonicalId": "nowcoder:110308:C",
+          "typeKeys": [
+            "dataStructure"
+          ],
+          "typeLabels": [
+            "数据结构"
+          ],
+          "detailTags": [
+            "哈希表",
+            "并查集"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/C",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.051383,
+          "problemRating": 2163.289521,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 12,
+          "submitted": 313,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": "万剑归一",
+          "canonicalId": "nowcoder:110308:D",
+          "typeKeys": [
+            "dp",
+            "math"
+          ],
+          "typeLabels": [
+            "动态规划",
+            "数学"
+          ],
+          "detailTags": [
+            "组合数学",
+            "计数DP"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/D",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.003953,
+          "problemRating": 2668.634646,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 3,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": "最小生成树",
+          "canonicalId": "nowcoder:110308:E",
+          "typeKeys": [
+            "graph",
+            "technique"
+          ],
+          "typeLabels": [
+            "图论",
+            "基础技巧"
+          ],
+          "detailTags": [
+            "二分查找",
+            "最小生成树"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/E",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.12253,
+          "problemRating": 1926.784469,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 30,
+          "submitted": 192,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": "传送带",
+          "canonicalId": "nowcoder:110308:F",
+          "typeKeys": [
+            "adhoc",
+            "graph"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "图论"
+          ],
+          "detailTags": [
+            "排序",
+            "最近公共祖先"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/F",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.075099,
+          "problemRating": 2063.21273,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 18,
+          "submitted": 67,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": "组合数的奇偶",
+          "canonicalId": "nowcoder:110308:G",
+          "typeKeys": [
+            "dp"
+          ],
+          "typeLabels": [
+            "动态规划"
+          ],
+          "detailTags": [
+            "数位DP",
+            "计数DP"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/G",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.043478,
+          "problemRating": 2142.628314,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 10,
+          "submitted": 33,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": "最小树成本",
+          "canonicalId": "nowcoder:110308:H",
+          "typeKeys": [
+            "adhoc",
+            "dp"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "动态规划"
+          ],
+          "detailTags": [
+            "树形DP",
+            "贪心"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/H",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.003953,
+          "problemRating": 2668.634646,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 3,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": "挡雨布",
+          "canonicalId": "nowcoder:110308:I",
+          "typeKeys": [
+            "geometry"
+          ],
+          "typeLabels": [
+            "计算几何"
+          ],
+          "detailTags": [
+            "凸包",
+            "叉积与方向"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/I",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.300395,
+          "problemRating": 1702.144395,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 75,
+          "submitted": 1110,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": "输入距离",
+          "canonicalId": "nowcoder:110308:J",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "排序",
+            "贪心"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/J",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.980237,
+          "problemRating": 871.8984,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 247,
+          "submitted": 329,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "K",
+          "title": "圆",
+          "canonicalId": "nowcoder:110308:K",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "构造",
+            "枚举"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/K",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.711462,
+          "problemRating": 1378.237173,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 179,
+          "submitted": 503,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "L",
+          "title": "编辑器",
+          "canonicalId": "nowcoder:110308:L",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "模拟"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/L",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.086957,
+          "problemRating": 2038.5779,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 21,
+          "submitted": 193,
+          "eligibleTeams": 251
+        },
+        {
+          "contestSlug": "provincial__ha__haicpc16th",
+          "contestTitle": "2025 ICPC 河南省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "M",
+          "title": "内存溢出",
+          "canonicalId": "nowcoder:110308:M",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "模拟"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110308/M",
+          "status": "classified",
+          "confidence": 0.2,
+          "solveRate": 0.992095,
+          "problemRating": 681.654703,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 250,
+          "submitted": 268,
+          "eligibleTeams": 251
+        }
+      ]
+    },
+    {
+      "reference": "25-10",
+      "title": "黑龙江省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-11；新增候选）",
+      "known_source_urls": [
+        "https://pintia.cn/rankings/1915280742287147008",
+        "https://pintia.cn/market/item/1939947583086477312"
+      ],
+      "status": "no_supported_complete_list",
+      "catalog_matches": [],
+      "candidate_urls": [
+        "https://pintia.cn/market/item/1939947583086477312"
+      ],
+      "reason": "Rating has 13 anonymous ordinals pointing to PTA standings, no complete supported list.",
+      "rating_slug": "provincial__hl__hlcpc20th",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:A",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.835979,
+          "problemRating": 1284.080668,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 157,
+          "submitted": 384,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:B",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.164021,
+          "problemRating": 1835.152972,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 30,
+          "submitted": 337,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:C",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.010582,
+          "problemRating": 2437.635351,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 78,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:D",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.100529,
+          "problemRating": 2022.139037,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 18,
+          "submitted": 156,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:E",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.031746,
+          "problemRating": 2227.482764,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 5,
+          "submitted": 14,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:F",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.010582,
+          "problemRating": 2437.635351,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 17,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:G",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.486772,
+          "problemRating": 1616.173904,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 91,
+          "submitted": 540,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:H",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.968254,
+          "problemRating": 883.591062,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 182,
+          "submitted": 232,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:I",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.164021,
+          "problemRating": 1827.731021,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 30,
+          "submitted": 177,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:J",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.015873,
+          "problemRating": 2341.061289,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 2,
+          "submitted": 39,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "K",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:K",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.005291,
+          "problemRating": 2633.299255,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 5,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "L",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:L",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.941799,
+          "problemRating": 989.713754,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 177,
+          "submitted": 218,
+          "eligibleTeams": 187
+        },
+        {
+          "contestSlug": "provincial__hl__hlcpc20th",
+          "contestTitle": "第二十届黑龙江省大学生程序设计竞赛",
+          "startAt": "2025-05-11T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "M",
+          "title": null,
+          "canonicalId": "event:provincial/hl/hlcpc20th:M",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1915280742287147008",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.063492,
+          "problemRating": 2101.134835,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 11,
+          "submitted": 28,
+          "eligibleTeams": 187
+        }
+      ]
+    },
+    {
+      "reference": "25-11",
+      "title": "河北省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-17；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest%2F2025%2Fhebei?group=official",
+        "https://codeforces.com/gym/105909"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "f080df0d-d3ff-5fac-89e8-04cc21a337c9",
+          "title": "The 9th Hebei Collegiate Programming Contest",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-12",
+      "title": "新疆省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-17；新增候选）",
+      "known_source_urls": [
+        "https://ac.nowcoder.com/acm/contest/109791#rank",
+        "https://ac.nowcoder.com/acm/contest/109791#question"
+      ],
+      "status": "no_supported_complete_list",
+      "catalog_matches": [],
+      "candidate_urls": [
+        "https://ac.nowcoder.com/acm/contest/109791"
+      ],
+      "reason": "Rating has 10 anonymous ordinals pointing to Nowcoder contest root. No verified CF/QOJ mirror.",
+      "rating_slug": "provincial__xj__xjcpc2025",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__xj__xjcpc2025",
+          "contestTitle": "2025年ICPC新疆维吾尔自治区大学生程序设计竞赛",
+          "startAt": "2025-05-17T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": null,
+          "canonicalId": null,
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/109791",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.90678,
+          "problemRating": null,
+          "accepted": 106,
+          "submitted": 192,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__xj__xjcpc2025",
+          "contestTitle": "2025年ICPC新疆维吾尔自治区大学生程序设计竞赛",
+          "startAt": "2025-05-17T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": null,
+          "canonicalId": null,
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/109791",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.084746,
+          "problemRating": null,
+          "accepted": 9,
+          "submitted": 37,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__xj__xjcpc2025",
+          "contestTitle": "2025年ICPC新疆维吾尔自治区大学生程序设计竞赛",
+          "startAt": "2025-05-17T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": null,
+          "canonicalId": null,
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/109791",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.152542,
+          "problemRating": null,
+          "accepted": 17,
+          "submitted": 72,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__xj__xjcpc2025",
+          "contestTitle": "2025年ICPC新疆维吾尔自治区大学生程序设计竞赛",
+          "startAt": "2025-05-17T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": null,
+          "canonicalId": null,
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/109791",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.305085,
+          "problemRating": null,
+          "accepted": 35,
+          "submitted": 133,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__xj__xjcpc2025",
+          "contestTitle": "2025年ICPC新疆维吾尔自治区大学生程序设计竞赛",
+          "startAt": "2025-05-17T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": null,
+          "canonicalId": null,
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/109791",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.330508,
+          "problemRating": null,
+          "accepted": 38,
+          "submitted": 382,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__xj__xjcpc2025",
+          "contestTitle": "2025年ICPC新疆维吾尔自治区大学生程序设计竞赛",
+          "startAt": "2025-05-17T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": null,
+          "canonicalId": null,
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/109791",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.288136,
+          "problemRating": null,
+          "accepted": 33,
+          "submitted": 135,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__xj__xjcpc2025",
+          "contestTitle": "2025年ICPC新疆维吾尔自治区大学生程序设计竞赛",
+          "startAt": "2025-05-17T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": null,
+          "canonicalId": null,
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/109791",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.59322,
+          "problemRating": null,
+          "accepted": 69,
+          "submitted": 304,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__xj__xjcpc2025",
+          "contestTitle": "2025年ICPC新疆维吾尔自治区大学生程序设计竞赛",
+          "startAt": "2025-05-17T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": null,
+          "canonicalId": null,
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/109791",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.432203,
+          "problemRating": null,
+          "accepted": 50,
+          "submitted": 197,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__xj__xjcpc2025",
+          "contestTitle": "2025年ICPC新疆维吾尔自治区大学生程序设计竞赛",
+          "startAt": "2025-05-17T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": null,
+          "canonicalId": null,
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/109791",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.127119,
+          "problemRating": null,
+          "accepted": 14,
+          "submitted": 76,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__xj__xjcpc2025",
+          "contestTitle": "2025年ICPC新疆维吾尔自治区大学生程序设计竞赛",
+          "startAt": "2025-05-17T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": null,
+          "canonicalId": null,
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/109791",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.025424,
+          "problemRating": null,
+          "accepted": 2,
+          "submitted": 70,
+          "eligibleTeams": 116
+        }
+      ]
+    },
+    {
+      "reference": "25-13",
+      "title": "南昌邀请赛/江西省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-18；已收录待复核，榜单映射冲突）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/icpc%2F50th%2Fnanchang-invitational?group=icpc",
+        "https://codeforces.com/gym/105911"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "9c24593e-15cd-5d66-b041-6bb69a464fa1",
+          "title": "2025 ICPC Nanchang Invitational and Jiangxi Provincial Collegiate Programming Contest",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-14",
+      "title": "吉林省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-24；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest%2F2025%2Fjilin?group=A",
+        "https://codeforces.com/gym/105922"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "e607087b-5fba-5e93-91c9-3309b9fafbe6",
+          "title": "The 18th Jilin Provincial Collegiate Programming Contest",
+          "problem_count": 12
+        }
+      ]
+    },
+    {
+      "reference": "25-15",
+      "title": "东北邀请赛/东北省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-25；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/ccpc/11th/northeastern?group=NE-A",
+        "https://codeforces.com/gym/105924"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "81cb7a42-a523-5734-8cc4-ba68a16d0b2b",
+          "title": "The 2025 CCPC National Invitational Contest (Northeast), The 19th Northeast Collegiate Programming Contest",
+          "problem_count": 12
+        }
+      ]
+    },
+    {
+      "reference": "25-16",
+      "title": "山东省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-05-25；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest%2F2025%2Fshandong?group=official",
+        "https://codeforces.com/gym/105930"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "99d7897e-30fe-5b6c-8ec6-a3e261cf4d0c",
+          "title": "The 15th Shandong CCPC Provincial Collegiate Programming Contest",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-17",
+      "title": "广西邀请赛暨省赛",
+      "checklist_marked_complete": true,
+      "reference_metadata": "（2025-05-25；新增候选）",
+      "known_source_urls": [
+        "https://ac.nowcoder.com/acm/contest/110811#rank",
+        "https://ac.nowcoder.com/acm/contest/110811#question"
+      ],
+      "status": "added_reviewed_cf_catalog",
+      "catalog_matches": [
+        {
+          "contest_id": "ea3a1d82-1043-5335-9e46-965624960072",
+          "title": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "problem_count": 12
+        }
+      ],
+      "candidate_urls": [
+        "https://codeforces.com/gym/106707",
+        "https://qoj.ac/contest/4120"
+      ],
+      "reason": "Added with reviewed CF106707 complete list, originalPDF identity/date, verified Beats rename alias and original-event standings. QOJ4120 remains export-only candidate.",
+      "rating_slug": "provincial__gx__gxcpc8th",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": "Additive Combinatorics",
+          "canonicalId": "nowcoder:110811:A",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "排序",
+            "枚举"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/A",
+          "status": "classified",
+          "confidence": 0.9,
+          "solveRate": 0.905405,
+          "problemRating": 1192.97918,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 200,
+          "submitted": 456,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": "Beats",
+          "canonicalId": "nowcoder:110811:B",
+          "typeKeys": [
+            "adhoc",
+            "dataStructure",
+            "technique"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "数据结构",
+            "基础技巧"
+          ],
+          "detailTags": [
+            "前缀和",
+            "哈希表",
+            "枚举"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/B",
+          "status": "classified",
+          "confidence": 0.85,
+          "solveRate": 0.527027,
+          "problemRating": 1586.320265,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 116,
+          "submitted": 539,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": "Call for Papers",
+          "canonicalId": "nowcoder:110811:C",
+          "typeKeys": [
+            "math",
+            "probability",
+            "technique"
+          ],
+          "typeLabels": [
+            "数学",
+            "概率与博弈",
+            "基础技巧"
+          ],
+          "detailTags": [
+            "扫描线",
+            "概率与期望",
+            "模运算"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/C",
+          "status": "classified",
+          "confidence": 0.85,
+          "solveRate": 0.009009,
+          "problemRating": 2692.269651,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 62,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": "DeepSeek, DeepThink!",
+          "canonicalId": "nowcoder:110811:D",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "模拟"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/D",
+          "status": "classified",
+          "confidence": 0.95,
+          "solveRate": 0.972973,
+          "problemRating": 952.46271,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 215,
+          "submitted": 278,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": "Elimination",
+          "canonicalId": "nowcoder:110811:E",
+          "typeKeys": [
+            "adhoc",
+            "dataStructure",
+            "string"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "数据结构",
+            "字符串"
+          ],
+          "detailTags": [
+            "哈希表",
+            "字符串哈希",
+            "枚举"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/E",
+          "status": "classified",
+          "confidence": 0.7,
+          "solveRate": 0.108108,
+          "problemRating": 2015.485524,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 23,
+          "submitted": 368,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": "Faster Elimination",
+          "canonicalId": "nowcoder:110811:F",
+          "typeKeys": [
+            "string",
+            "dataStructure",
+            "graph"
+          ],
+          "typeLabels": [
+            "字符串",
+            "数据结构",
+            "图论"
+          ],
+          "detailTags": [
+            "后缀数组",
+            "后缀自动机",
+            "哈希表",
+            "字符串哈希",
+            "树链剖分",
+            "线段树"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/F",
+          "status": "classified",
+          "confidence": 0.85,
+          "solveRate": 0.013514,
+          "problemRating": 2504.842761,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 2,
+          "submitted": 54,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": "Grand XOR Counting Problem Challenge II",
+          "canonicalId": "nowcoder:110811:G",
+          "typeKeys": [
+            "adhoc",
+            "math",
+            "string",
+            "technique"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "数学",
+            "字符串",
+            "基础技巧"
+          ],
+          "detailTags": [
+            "位运算",
+            "字典树",
+            "枚举",
+            "计数"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/G",
+          "status": "classified",
+          "confidence": 0.85,
+          "solveRate": 0.063063,
+          "problemRating": 2158.789847,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 13,
+          "submitted": 94,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": "Hollow Knight: Silksong",
+          "canonicalId": "nowcoder:110811:H",
+          "typeKeys": [
+            "adhoc"
+          ],
+          "typeLabels": [
+            "思维与模拟"
+          ],
+          "detailTags": [
+            "模拟"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/H",
+          "status": "classified",
+          "confidence": 0.95,
+          "solveRate": 0.90991,
+          "problemRating": 1187.650296,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 201,
+          "submitted": 456,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": "Identify the Feasibility",
+          "canonicalId": "nowcoder:110811:I",
+          "typeKeys": [
+            "math",
+            "adhoc",
+            "technique"
+          ],
+          "typeLabels": [
+            "数学",
+            "思维与模拟",
+            "基础技巧"
+          ],
+          "detailTags": [
+            "位运算",
+            "多项式与NTT",
+            "枚举",
+            "计数"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/I",
+          "status": "classified",
+          "confidence": 0.85,
+          "solveRate": 0.009009,
+          "problemRating": 2692.269651,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 11,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": "Join the Joint",
+          "canonicalId": "nowcoder:110811:J",
+          "typeKeys": [
+            "adhoc",
+            "graph",
+            "search"
+          ],
+          "typeLabels": [
+            "思维与模拟",
+            "图论",
+            "搜索"
+          ],
+          "detailTags": [
+            "DFS/BFS",
+            "最近公共祖先",
+            "枚举"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/J",
+          "status": "classified",
+          "confidence": 0.8,
+          "solveRate": 0.04955,
+          "problemRating": 2231.963341,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 10,
+          "submitted": 57,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "K",
+          "title": "Kingdom Rush 5: Alliance",
+          "canonicalId": "nowcoder:110811:K",
+          "typeKeys": [
+            "geometry",
+            "math"
+          ],
+          "typeLabels": [
+            "计算几何",
+            "数学"
+          ],
+          "detailTags": [
+            "叉积与方向",
+            "容斥"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/K",
+          "status": "classified",
+          "confidence": 0.85,
+          "solveRate": 0.108108,
+          "problemRating": 2026.251944,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 23,
+          "submitted": 245,
+          "eligibleTeams": 220
+        },
+        {
+          "contestSlug": "provincial__gx__gxcpc8th",
+          "contestTitle": "第八届广西大学生程序设计大赛暨2025中国-东盟国际大学生程序设计大赛",
+          "startAt": "2025-05-25T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "L",
+          "title": "Lost in MST",
+          "canonicalId": "nowcoder:110811:L",
+          "typeKeys": [
+            "math",
+            "adhoc",
+            "dataStructure",
+            "graph"
+          ],
+          "typeLabels": [
+            "数学",
+            "思维与模拟",
+            "数据结构",
+            "图论"
+          ],
+          "detailTags": [
+            "并查集",
+            "数论",
+            "最大公约数",
+            "最小生成树",
+            "枚举"
+          ],
+          "problemUrl": "https://ac.nowcoder.com/acm/contest/110811/L",
+          "status": "classified",
+          "confidence": 0.8,
+          "solveRate": 0.022523,
+          "problemRating": 2504.842761,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 4,
+          "submitted": 144,
+          "eligibleTeams": 220
+        }
+      ]
+    },
+    {
+      "reference": "25-18",
+      "title": "江苏省赛/广东省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-06-02；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest%2F2025%2Fjiangsu?group=official",
+        "https://codeforces.com/gym/105945"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "146c5860-236d-58c9-823f-97c2d2b10ca4",
+          "title": "The 2025 Jiangsu Collegiate Programming Contest, The 2025 Guangdong Provincial Collegiate Programming Contest",
+          "problem_count": 12
+        }
+      ]
+    },
+    {
+      "reference": "25-19",
+      "title": "郑州邀请赛/CCPC河南省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-06-02；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/ccpc%2F11st%2Fzhengzhou-invitational?group=official",
+        "https://codeforces.com/gym/105941"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "2d28130e-3c6e-527d-9ac2-597b2120d367",
+          "title": "2025 National Invitational of CCPC (Zhengzhou), 2025 CCPC Henan Provincial Collegiate Programming Contest",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-20",
+      "title": "四川省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-06-08；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest%2F2025%2Fsichuan?group=official",
+        "https://codeforces.com/gym/105949"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "c91ce6a1-50d3-52dc-9166-6cf36d5df834",
+          "title": "The 2025 ICPC China Sichuan Provincial Programming Contest",
+          "problem_count": 12
+        }
+      ]
+    },
+    {
+      "reference": "25-21",
+      "title": "贵州省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-06-08；新增候选）",
+      "known_source_urls": [
+        "https://codeforces.com/gym/615540"
+      ],
+      "status": "inaccessible_cf_candidate",
+      "catalog_matches": [],
+      "candidate_urls": [
+        "https://codeforces.com/gym/615540"
+      ],
+      "reason": "Existing repo candidate; absent from current public contest.list, current web open inaccessible, earlier repo evidence login redirect. Rating has 13 titles but no problem URLs. Do not confuse with 2026 ICPC Guizhou.",
+      "rating_slug": "provincial__gz__gzcpc2025",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": "青岩密室",
+          "canonicalId": "event:provincial/gz/gzcpc2025:A",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.423729,
+          "problemRating": 1651.167658,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 49,
+          "submitted": 246,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": "黔灵猕猴",
+          "canonicalId": "event:provincial/gz/gzcpc2025:B",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.084746,
+          "problemRating": 2084.660015,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 9,
+          "submitted": 15,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": "数据存储",
+          "canonicalId": "event:provincial/gz/gzcpc2025:C",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.20339,
+          "problemRating": 1865.988292,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 23,
+          "submitted": 147,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": "苗岭通途",
+          "canonicalId": "event:provincial/gz/gzcpc2025:D",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.016949,
+          "problemRating": 2414.640891,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 18,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": "梯田漫步",
+          "canonicalId": "event:provincial/gz/gzcpc2025:E",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.016949,
+          "problemRating": 2616.071921,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 18,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": "彝族银饰",
+          "canonicalId": "event:provincial/gz/gzcpc2025:F",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.067797,
+          "problemRating": 2193.597222,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 7,
+          "submitted": 78,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": "青云美食",
+          "canonicalId": "event:provincial/gz/gzcpc2025:G",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.661017,
+          "problemRating": 1466.364641,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 77,
+          "submitted": 367,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": "FAST信号树",
+          "canonicalId": "event:provincial/gz/gzcpc2025:H",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.084746,
+          "problemRating": 2084.660015,
+          "difficultyKey": "midHard",
+          "difficultyLabel": "中等-困难",
+          "accepted": 9,
+          "submitted": 18,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": "红色旅游",
+          "canonicalId": "event:provincial/gz/gzcpc2025:I",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.169492,
+          "problemRating": 1892.163241,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 19,
+          "submitted": 185,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": "夜郎弈棋",
+          "canonicalId": "event:provincial/gz/gzcpc2025:J",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.525424,
+          "problemRating": 1575.530383,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 61,
+          "submitted": 244,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "K",
+          "title": "瀑布密码",
+          "canonicalId": "event:provincial/gz/gzcpc2025:K",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.423729,
+          "problemRating": 1674.647829,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 49,
+          "submitted": 306,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "L",
+          "title": "民族大联欢",
+          "canonicalId": "event:provincial/gz/gzcpc2025:L",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.016949,
+          "problemRating": 2414.640891,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 1,
+          "submitted": 14,
+          "eligibleTeams": 116
+        },
+        {
+          "contestSlug": "provincial__gz__gzcpc2025",
+          "contestTitle": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+          "startAt": "2025-06-08T12:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "M",
+          "title": "苗寨快递",
+          "canonicalId": "event:provincial/gz/gzcpc2025:M",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": null,
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.830508,
+          "problemRating": 1291.430024,
+          "difficultyKey": "veryEasy",
+          "difficultyLabel": "极易",
+          "accepted": 97,
+          "submitted": 198,
+          "eligibleTeams": 116
+        }
+      ]
+    },
+    {
+      "reference": "25-22",
+      "title": "福建邀请赛暨省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-06-21；已收录待复核）",
+      "known_source_urls": [
+        "https://pintia.cn/rankings/1934898936967766016",
+        "https://codeforces.com/gym/105977"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "4c61e830-0179-5f48-a33d-6a2141ff7015",
+          "title": "2025 National Invitational of CCPC (Fujian), The 12th Fujian Collegiate Programming Contest",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-23",
+      "title": "内蒙古区赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-06-22；新增候选）",
+      "known_source_urls": [
+        "https://rl.algoux.cn/collection/official?rankId=nmcpc18th",
+        "https://pintia.cn/market/item/1939950898541187072"
+      ],
+      "status": "no_supported_complete_list",
+      "catalog_matches": [],
+      "candidate_urls": [
+        "https://pintia.cn/market/item/1939950898541187072"
+      ],
+      "reason": "Rating has 11 anonymous ordinals pointing to PTA rankings, no complete supported list.",
+      "rating_slug": "provincial__nm__nmcpc18th",
+      "rating_problem_reference_not_export": [
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "A",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:A",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.568182,
+          "problemRating": 1524.307322,
+          "difficultyKey": "easyMid",
+          "difficultyLabel": "简单-中等",
+          "accepted": 49,
+          "submitted": 245,
+          "eligibleTeams": 86
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "B",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:B",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.034091,
+          "problemRating": 2209.292655,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 2,
+          "submitted": 67,
+          "eligibleTeams": 86
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "C",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:C",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.795455,
+          "problemRating": 1317.833907,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 69,
+          "submitted": 218,
+          "eligibleTeams": 86
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "D",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:D",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.011364,
+          "problemRating": 2515.778078,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 13,
+          "eligibleTeams": 86
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "E",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:E",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.147727,
+          "problemRating": 1894.004523,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 12,
+          "submitted": 240,
+          "eligibleTeams": 86
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "F",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:F",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.034091,
+          "problemRating": 2209.292655,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 2,
+          "submitted": 78,
+          "eligibleTeams": 86
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "G",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:G",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.136364,
+          "problemRating": 1911.299367,
+          "difficultyKey": "mid",
+          "difficultyLabel": "中等",
+          "accepted": 11,
+          "submitted": 282,
+          "eligibleTeams": 86
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "H",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:H",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.022727,
+          "problemRating": 2307.25558,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 1,
+          "submitted": 55,
+          "eligibleTeams": 86
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "I",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:I",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.034091,
+          "problemRating": 2209.292655,
+          "difficultyKey": "hard",
+          "difficultyLabel": "困难",
+          "accepted": 2,
+          "submitted": 59,
+          "eligibleTeams": 86
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "J",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:J",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.011364,
+          "problemRating": 2515.778078,
+          "difficultyKey": "veryHard",
+          "difficultyLabel": "极难",
+          "accepted": 0,
+          "submitted": 5,
+          "eligibleTeams": 86
+        },
+        {
+          "contestSlug": "provincial__nm__nmcpc18th",
+          "contestTitle": "“华讯杯”内蒙古自治区第十八届大学生程序设计竞赛",
+          "startAt": "2025-06-22T09:00:00+08:00",
+          "category": "provincial",
+          "tier": "provincial",
+          "alias": "K",
+          "title": null,
+          "canonicalId": "event:provincial/nm/nmcpc18th:K",
+          "typeKeys": [],
+          "typeLabels": [],
+          "detailTags": [],
+          "problemUrl": "https://pintia.cn/rankings/1935575958119424000",
+          "status": "unknown",
+          "confidence": 0,
+          "solveRate": 0.647727,
+          "problemRating": 1462.153503,
+          "difficultyKey": "easy",
+          "difficultyLabel": "简单",
+          "accepted": 56,
+          "submitted": 254,
+          "eligibleTeams": 86
+        }
+      ]
+    },
+    {
+      "reference": "25-24",
+      "title": "上海市赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-07-05；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest%2F2025%2Fshanghai?group=official",
+        "https://codeforces.com/gym/105992"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "640e6d94-b5d8-5a13-9c03-855774ace1f5",
+          "title": "“华为智联杯”无线程序设计大赛暨2025年上海市大学生程序设计竞赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-25",
+      "title": "CCPC南昌邀请赛/江西省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-09-13；已收录，旧榜单错配已修正，逐题映射待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/ccpc%2F11st%2Fnanchang-invitational?group=official",
+        "https://qoj.ac/contest/2521"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "d505e000-4947-579c-8d9b-99e31160839f",
+          "title": "2025 CCPC 全国邀请赛（南昌）暨第二届江西省赛",
+          "problem_count": 13
+        }
+      ]
+    },
+    {
+      "reference": "25-26",
+      "title": "湖南省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-10-12；已收录待复核）",
+      "known_source_urls": [
+        "https://codeforces.com/gym/106139"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "3e561dbb-360a-5cb4-8670-30f0ce40167d",
+          "title": "The 21st Hunan Provincial Collegiate Programming Contest",
+          "problem_count": 11
+        }
+      ]
+    },
+    {
+      "reference": "25-27",
+      "title": "辽宁省赛",
+      "checklist_marked_complete": false,
+      "reference_metadata": "（2025-11-15；已收录待复核）",
+      "known_source_urls": [
+        "https://board.xcpcio.com/provincial-contest/2025/liaoning?group=official",
+        "https://codeforces.com/gym/106380"
+      ],
+      "status": "present_existing_enrichment_out_of_research_scope",
+      "catalog_matches": [
+        {
+          "contest_id": "9f1d5ef1-ebaf-5300-9e98-1020bf6b95d6",
+          "title": "（2025）第六届辽宁省大学生程序设计竞赛 (沈阳)",
+          "problem_count": 13
+        }
+      ]
+    }
+  ],
+  "extra_gaps": [
+    {
+      "title": "CCPC Final 2025",
+      "date": "2026-04-26",
+      "status": "qoj_export_required",
+      "url": "https://qoj.ac/contest/3727?v=1"
+    },
+    {
+      "title": "2026 ICPC 新疆省赛",
+      "date": "2026-04-25",
+      "status": "no_supported_complete_list",
+      "url": "https://ac.nowcoder.com/acm/contest/133536",
+      "reason": "Rating reports 10 anonymous ordinals; absent from 49-row reference checklist."
+    }
+  ],
+  "stale_pending_rows": [
+    "2026-05-24 Qinhuangdao/Hebei already in catalog via CF 106695",
+    "2026-09-19 CCPC Online already in catalog via CF 106725"
+  ],
+  "excluded_future_rows": "2026-10-10 onward schedule rows are future to 2026-10-01; no contest stubs proposed.",
+  "baseline_catalog_sha256": "e2117cf174a67c5caff969912cca0b704df776d4ba33224c047b7f8aa612410a",
+  "statistics": {
+    "reference_rows": 49,
+    "present_after": 39,
+    "missing_after": 10
+  }
+}

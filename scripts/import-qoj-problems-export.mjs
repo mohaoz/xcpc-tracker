@@ -1,6 +1,7 @@
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import { names, normalizeTitle } from './source-import-lib.mjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const repoRoot = resolve(__dirname, "..");
@@ -351,6 +352,13 @@ async function main() {
         source.provider === "qoj" && source.kind === "contest" && normalizeExactUrl(source.url) !== importedContest.exactUrl
       )) {
         throw new Error(`target contest ${definition.contestId} already has a different QOJ URL`);
+      }
+      if (existing) {
+        const curated=problems.filter(p=>p.contestId===existing.contestId);
+        if (curated.length && (curated.length!==importedContest.problems.length || importedContest.problems.some(p=>{
+          const prior=curated.find(q=>q.ordinal===p.ordinal);
+          return !prior || !names(prior).includes(normalizeTitle(p.title));
+        }))) throw new Error(`Explicit QOJ mirror requires a complete reviewed ordinal/title match: ${importedContest.url}`);
       }
       let target = existing;
       if (!target) {

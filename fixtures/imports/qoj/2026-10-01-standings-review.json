@@ -1,0 +1,1188 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-10-01T11:48:07.302Z",
+  "input_export_sha256": "b75901851be53ae440f6bef8fc4ca86bff8070f9e7cb89290a56c58b2cb82857",
+  "srk_commit_sha": "d00d843b0ec095c69f172407e7c1ff5d4e305adb",
+  "index_sha256": "8ebad1f3a3b7ed6cf445de0a8a25de28e11b52754071ab276d50ba4ad645409b",
+  "scope": "Read-only original-event audit of three newly admitted QOJ contest exports. QOJ was not fetched. No catalog mutation. Safe QOJ URL version is preserved. No medal estimates proposed.",
+  "entries": {
+    "https://qoj.ac/contest/3727?v=1": {
+      "qoj_url": "https://qoj.ac/contest/3727?v=1",
+      "contest_id": "ea7d011d-81c0-5ed8-9f86-afd062079bdd",
+      "identity_status": "approved",
+      "title": "第十一届中国大学生程序设计竞赛总决赛",
+      "problem_identity": [
+        {
+          "ordinal": "A",
+          "qoj_problem_id": "18001",
+          "qoj_title": "White Night",
+          "srk_ordinal": "A",
+          "srk_problem_id": "18001",
+          "srk_title": "White Night"
+        },
+        {
+          "ordinal": "B",
+          "qoj_problem_id": "18002",
+          "qoj_title": "Yearning for Yonder 2",
+          "srk_ordinal": "B",
+          "srk_problem_id": "18002",
+          "srk_title": "Yearning for Yonder 2"
+        },
+        {
+          "ordinal": "C",
+          "qoj_problem_id": "18003",
+          "qoj_title": "Four Kubic Theorem 2",
+          "srk_ordinal": "C",
+          "srk_problem_id": "18003",
+          "srk_title": "Four Kubic Theorem 2"
+        },
+        {
+          "ordinal": "D",
+          "qoj_problem_id": "18004",
+          "qoj_title": "Call You With Your Name",
+          "srk_ordinal": "D",
+          "srk_problem_id": "18004",
+          "srk_title": "Call You With Your Name"
+        },
+        {
+          "ordinal": "E",
+          "qoj_problem_id": "18005",
+          "qoj_title": "Call You With Your Name 2",
+          "srk_ordinal": "E",
+          "srk_problem_id": "18005",
+          "srk_title": "Call You With Your Name 2"
+        },
+        {
+          "ordinal": "F",
+          "qoj_problem_id": "18006",
+          "qoj_title": "Many Many Heads 2",
+          "srk_ordinal": "F",
+          "srk_problem_id": "18006",
+          "srk_title": "Many Many Heads 2"
+        },
+        {
+          "ordinal": "G",
+          "qoj_problem_id": "18007",
+          "qoj_title": "Puzzle: The Artisan of Glimmith",
+          "srk_ordinal": "G",
+          "srk_problem_id": "18007",
+          "srk_title": "Puzzle: The Artisan of Glimmith"
+        },
+        {
+          "ordinal": "H",
+          "qoj_problem_id": "18008",
+          "qoj_title": "Strange Sorting 2",
+          "srk_ordinal": "H",
+          "srk_problem_id": "18008",
+          "srk_title": "Strange Sorting 2"
+        },
+        {
+          "ordinal": "I",
+          "qoj_problem_id": "18009",
+          "qoj_title": "Not a Work of Idol 2",
+          "srk_ordinal": "I",
+          "srk_problem_id": "18009",
+          "srk_title": "Not a Work of Idol 2"
+        },
+        {
+          "ordinal": "J",
+          "qoj_problem_id": "18010",
+          "qoj_title": "Slay the Spire 2",
+          "srk_ordinal": "J",
+          "srk_problem_id": "18010",
+          "srk_title": "Slay the Spire 2"
+        },
+        {
+          "ordinal": "K",
+          "qoj_problem_id": "18011",
+          "qoj_title": "Sequence Operation",
+          "srk_ordinal": "K",
+          "srk_problem_id": "18011",
+          "srk_title": "Sequence Operation"
+        },
+        {
+          "ordinal": "L",
+          "qoj_problem_id": "18012",
+          "qoj_title": "Spirited Away",
+          "srk_ordinal": "L",
+          "srk_problem_id": "18012",
+          "srk_title": "Spirited Away"
+        },
+        {
+          "ordinal": "M",
+          "qoj_problem_id": "18013",
+          "qoj_title": "Rectangle Flip 3",
+          "srk_ordinal": "M",
+          "srk_problem_id": "18013",
+          "srk_title": "Rectangle Flip 3"
+        }
+      ],
+      "problem_count": 13,
+      "source_event_start_at": "2026-04-26T09:00:00+08:00",
+      "source": {
+        "provider": "rankland",
+        "collection": "official",
+        "provider_contest_id": "srk:official/ccpc/ccpc2025/ccpc2025final.srk.json",
+        "srk_path": "official/ccpc/ccpc2025/ccpc2025final.srk.json",
+        "repository_url": "https://github.com/algoux/srk-collection",
+        "commit_sha": "d00d843b0ec095c69f172407e7c1ff5d4e305adb",
+        "content_sha256": "21e66dba87fa6652560f89c98ffe3bd8ed4d5b31678b117424e8fa98ab619b08",
+        "index_sha256": "8ebad1f3a3b7ed6cf445de0a8a25de28e11b52754071ab276d50ba4ad645409b",
+        "srk_version": "0.3.12",
+        "fetched_at": "2026-10-01T11:38:25.154893+00:00",
+        "page_url": "https://rl.algoux.cn/collection/official?rankId=ccpc2025final",
+        "page_verified_at": "2026-10-01T11:48:07.313Z",
+        "source_title": "第十一届中国大学生程序设计竞赛总决赛",
+        "attribution": {
+          "name": "algoUX (https://algoux.org); HeiMaoM",
+          "license_url": "https://github.com/algoux/srk-collection/blob/d00d843b0ec095c69f172407e7c1ff5d4e305adb/LICENSE"
+        }
+      },
+      "row_count": 138,
+      "official_count": 132,
+      "unofficial_count": 6,
+      "scored_official_count": 132,
+      "official_highest_group_evidence": {
+        "icpc_series": [
+          {
+            "title": "#",
+            "segments": [
+              {
+                "style": "gold",
+                "title": "Gold Award"
+              },
+              {
+                "style": "silver",
+                "title": "Silver Award"
+              },
+              {
+                "style": "bronze",
+                "title": "Bronze Award"
+              }
+            ],
+            "rule": {
+              "preset": "ICPC",
+              "options": {
+                "count": {
+                  "value": [
+                    14,
+                    23,
+                    39
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "markers": [
+          {
+            "id": "2",
+            "label": "普通队",
+            "style": "blue"
+          },
+          {
+            "id": "female",
+            "label": "女队",
+            "style": "pink"
+          }
+        ],
+        "rule": "Use user.official === true. One ICPC medal series; no ranked invitational/undergraduate divisions exist. Female marker is a display flag within this same official group."
+      },
+      "raw_helper_result": {
+        "status": "proposed",
+        "eligible_team_count": 132,
+        "cutoffs": {
+          "gold": {
+            "rank": 14,
+            "teamId": "17",
+            "solved": 4,
+            "penalty": 670
+          },
+          "silver": {
+            "rank": 37,
+            "teamId": "23",
+            "solved": 3,
+            "penalty": 468
+          },
+          "bronze": {
+            "rank": 76,
+            "teamId": "131",
+            "solved": 2,
+            "penalty": 234
+          }
+        },
+        "evidence": {
+          "group": "user.official === true",
+          "series_index": 0,
+          "medal_counts": [
+            14,
+            23,
+            39
+          ],
+          "penalty_unit": "minutes",
+          "source_penalty_units": [
+            "min"
+          ],
+          "ties": "No tied medal boundary",
+          "final": "Contest ended; complete statuses and consistent scores; no pending results; frozenDuration is schedule metadata"
+        }
+      },
+      "proposed_changes": {
+        "startAt": "2026-04-26T01:00:00.000Z",
+        "sources": [
+          {
+            "provider": "rankland",
+            "kind": "standings",
+            "url": "https://rl.algoux.cn/collection/official?rankId=ccpc2025final",
+            "provider_contest_id": "srk:official/ccpc/ccpc2025/ccpc2025final.srk.json",
+            "source_title": "第十一届中国大学生程序设计竞赛总决赛",
+            "label": "RankLand",
+            "is_default": true
+          }
+        ],
+        "awardCutoffs": {
+          "source": "explicit",
+          "sourceProvider": "rankland",
+          "sourceLabel": "RankLand",
+          "sourceUrl": "https://rl.algoux.cn/collection/official?rankId=ccpc2025final",
+          "eligibleTeamCount": 132,
+          "cutoffs": {
+            "gold": {
+              "rank": 14,
+              "teamId": "17",
+              "solved": 4,
+              "penalty": 670
+            },
+            "silver": {
+              "rank": 37,
+              "teamId": "23",
+              "solved": 3,
+              "penalty": 468
+            },
+            "bronze": {
+              "rank": 76,
+              "teamId": "131",
+              "solved": 2,
+              "penalty": 234
+            }
+          }
+        }
+      },
+      "rejected_changes": [],
+      "final_penalty_audit": "All138 row score totals independently recomputed from final solution histories using declared SRK minute precision/20-minute penalty;0 conflicts, no unresolved statuses. frozenDuration60min is schedule metadata, not current frozen state.",
+      "boundary_neighbors": [
+        {
+          "rank": 14,
+          "previous": {
+            "teamId": "61",
+            "solved": 4,
+            "penalty": 646
+          },
+          "boundary": {
+            "teamId": "17",
+            "solved": 4,
+            "penalty": 670
+          },
+          "next": {
+            "teamId": "125",
+            "solved": 4,
+            "penalty": 678
+          },
+          "split_tie": false
+        },
+        {
+          "rank": 37,
+          "previous": {
+            "teamId": "65",
+            "solved": 3,
+            "penalty": 450
+          },
+          "boundary": {
+            "teamId": "23",
+            "solved": 3,
+            "penalty": 468
+          },
+          "next": {
+            "teamId": "31",
+            "solved": 3,
+            "penalty": 474
+          },
+          "split_tie": false
+        },
+        {
+          "rank": 76,
+          "previous": {
+            "teamId": "118",
+            "solved": 2,
+            "penalty": 224
+          },
+          "boundary": {
+            "teamId": "131",
+            "solved": 2,
+            "penalty": 234
+          },
+          "next": {
+            "teamId": "83",
+            "solved": 2,
+            "penalty": 237
+          },
+          "split_tie": false
+        }
+      ],
+      "award_review_result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "all_eligible",
+          "label": "正式参赛队伍",
+          "eligibility_rule": "user.official === true",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[14,23,39]"
+          ]
+        },
+        "eligible_team_count": 132,
+        "problem_count": 13,
+        "source_penalty_unit": "minutes",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding",
+        "method_evidence": [
+          "Contest ended; complete statuses and consistent scores; no pending results; frozenDuration is schedule metadata",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[14,23,39]"
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 14,
+            "solved": 4,
+            "penalty": 670,
+            "team_id": "17"
+          },
+          "silver": {
+            "rank": 37,
+            "solved": 3,
+            "penalty": 468,
+            "team_id": "23"
+          },
+          "bronze": {
+            "rank": 76,
+            "solved": 2,
+            "penalty": 234,
+            "team_id": "131"
+          }
+        }
+      },
+      "award_status": "proposed"
+    },
+    "https://qoj.ac/contest/3935": {
+      "qoj_url": "https://qoj.ac/contest/3935",
+      "contest_id": "e33dcd2f-f3d4-5927-9bc8-0bc2a8f26093",
+      "identity_status": "approved",
+      "title": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+      "problem_identity": [
+        {
+          "ordinal": "A",
+          "qoj_problem_id": "18958",
+          "qoj_title": "草莓牛奶",
+          "srk_ordinal": "A",
+          "srk_problem_id": "18958",
+          "srk_title": "草莓牛奶"
+        },
+        {
+          "ordinal": "B",
+          "qoj_problem_id": "18959",
+          "qoj_title": "排列翻转",
+          "srk_ordinal": "B",
+          "srk_problem_id": "18959",
+          "srk_title": "排列翻转"
+        },
+        {
+          "ordinal": "C",
+          "qoj_problem_id": "18960",
+          "qoj_title": "Fry Beef",
+          "srk_ordinal": "C",
+          "srk_problem_id": "18960",
+          "srk_title": "Fry Beef"
+        },
+        {
+          "ordinal": "D",
+          "qoj_problem_id": "18961",
+          "qoj_title": "求求你不要再爬塔二了",
+          "srk_ordinal": "D",
+          "srk_problem_id": "18961",
+          "srk_title": "求求你不要再爬塔二了"
+        },
+        {
+          "ordinal": "E",
+          "qoj_problem_id": "18962",
+          "qoj_title": "星战",
+          "srk_ordinal": "E",
+          "srk_problem_id": "18962",
+          "srk_title": "星战"
+        },
+        {
+          "ordinal": "F",
+          "qoj_problem_id": "18963",
+          "qoj_title": "尖塔最强机器人",
+          "srk_ordinal": "F",
+          "srk_problem_id": "18963",
+          "srk_title": "尖塔最强机器人"
+        },
+        {
+          "ordinal": "G",
+          "qoj_problem_id": "18964",
+          "qoj_title": "灭霸排序 II",
+          "srk_ordinal": "G",
+          "srk_problem_id": "18964",
+          "srk_title": "灭霸排序 II"
+        },
+        {
+          "ordinal": "H",
+          "qoj_problem_id": "18965",
+          "qoj_title": "最小异或乘积",
+          "srk_ordinal": "H",
+          "srk_problem_id": "18965",
+          "srk_title": "最小异或乘积"
+        },
+        {
+          "ordinal": "I",
+          "qoj_problem_id": "18966",
+          "qoj_title": "小礼品",
+          "srk_ordinal": "I",
+          "srk_problem_id": "18966",
+          "srk_title": "小礼品"
+        },
+        {
+          "ordinal": "J",
+          "qoj_problem_id": "18967",
+          "qoj_title": "字符串的 Porder 之和",
+          "srk_ordinal": "J",
+          "srk_problem_id": "18967",
+          "srk_title": "字符串的 Porder 之和"
+        },
+        {
+          "ordinal": "K",
+          "qoj_problem_id": "18968",
+          "qoj_title": "像素8",
+          "srk_ordinal": "K",
+          "srk_problem_id": "18968",
+          "srk_title": "像素8"
+        },
+        {
+          "ordinal": "L",
+          "qoj_problem_id": "18969",
+          "qoj_title": "解方程",
+          "srk_ordinal": "L",
+          "srk_problem_id": "18969",
+          "srk_title": "解方程"
+        }
+      ],
+      "problem_count": 12,
+      "source_event_start_at": "2026-05-10T10:00:00+08:00",
+      "source": {
+        "provider": "rankland",
+        "collection": "official",
+        "provider_contest_id": "srk:official/provincial/ha/haccpc8th.srk.json",
+        "srk_path": "official/provincial/ha/haccpc8th.srk.json",
+        "repository_url": "https://github.com/algoux/srk-collection",
+        "commit_sha": "d00d843b0ec095c69f172407e7c1ff5d4e305adb",
+        "content_sha256": "3d848a01e6ca173939b9c05f9e693f1ada2516f0f244891e5fd03337302423da",
+        "index_sha256": "8ebad1f3a3b7ed6cf445de0a8a25de28e11b52754071ab276d50ba4ad645409b",
+        "srk_version": "0.3.9",
+        "fetched_at": "2026-10-01T11:39:38.326079+00:00",
+        "page_url": "https://rl.algoux.cn/collection/official?rankId=haccpc8th",
+        "page_verified_at": "2026-10-01T11:48:07.329Z",
+        "source_title": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+        "attribution": {
+          "name": "XCPCIO (https://xcpcio.com); algoUX (https://algoux.org); HeiMaoM",
+          "license_url": "https://github.com/algoux/srk-collection/blob/d00d843b0ec095c69f172407e7c1ff5d4e305adb/LICENSE"
+        }
+      },
+      "row_count": 393,
+      "official_count": 327,
+      "unofficial_count": 66,
+      "scored_official_count": 322,
+      "official_highest_group_evidence": {
+        "icpc_series": [
+          {
+            "title": "#",
+            "segments": [
+              {
+                "title": "金奖",
+                "style": "gold"
+              },
+              {
+                "title": "银奖",
+                "style": "silver"
+              },
+              {
+                "title": "铜奖",
+                "style": "bronze"
+              }
+            ],
+            "rule": {
+              "preset": "ICPC",
+              "options": {
+                "ratio": {
+                  "value": [
+                    0.1,
+                    0.2,
+                    0.3
+                  ],
+                  "denominator": "scored"
+                }
+              }
+            }
+          }
+        ],
+        "markers": [
+          {
+            "id": "girl",
+            "label": "女队",
+            "style": "pink"
+          }
+        ],
+        "rule": "Use user.official === true. One ICPC medal series; no ranked invitational/undergraduate divisions exist. Female marker is a display flag within this same official group."
+      },
+      "raw_helper_result": {
+        "status": "proposed",
+        "eligible_team_count": 327,
+        "cutoffs": {
+          "gold": {
+            "rank": 33,
+            "teamId": "sjl202002",
+            "solved": 5,
+            "penalty": 789
+          },
+          "silver": {
+            "rank": 97,
+            "teamId": "sjl202013",
+            "solved": 3,
+            "penalty": 262
+          },
+          "bronze": {
+            "rank": 194,
+            "teamId": "sjl202005",
+            "solved": 2,
+            "penalty": 208
+          }
+        },
+        "evidence": {
+          "group": "user.official === true",
+          "series_index": 0,
+          "medal_counts": [
+            33,
+            64,
+            97
+          ],
+          "official_ratio": {
+            "value": [
+              0.1,
+              0.2,
+              0.3
+            ],
+            "denominator": "scored"
+          },
+          "ratio_rounding": "ceil",
+          "ratio_denominator": "official teams with score.value > 0",
+          "ratio_denominator_count": 322,
+          "ratio_spec": "https://github.com/algoux/standard-ranklist/blob/master/index.d.ts",
+          "penalty_unit": "minutes",
+          "source_penalty_units": [
+            "s"
+          ],
+          "ties": "No tied medal boundary",
+          "final": "frozenDuration=0; complete statuses; no pending results"
+        }
+      },
+      "proposed_changes": {
+        "startAt": "2026-05-10T02:00:00.000Z",
+        "sources": [
+          {
+            "provider": "rankland",
+            "kind": "standings",
+            "url": "https://rl.algoux.cn/collection/official?rankId=haccpc8th",
+            "provider_contest_id": "srk:official/provincial/ha/haccpc8th.srk.json",
+            "source_title": "第 8 届 CCPC 河南省大学生程序设计竞赛",
+            "label": "RankLand",
+            "is_default": true
+          }
+        ],
+        "awardCutoffs": {
+          "source": "explicit",
+          "sourceProvider": "rankland",
+          "sourceLabel": "RankLand",
+          "sourceUrl": "https://rl.algoux.cn/collection/official?rankId=haccpc8th",
+          "eligibleTeamCount": 327,
+          "cutoffs": {
+            "gold": {
+              "rank": 33,
+              "teamId": "sjl202002",
+              "solved": 5,
+              "penalty": 789
+            },
+            "silver": {
+              "rank": 97,
+              "teamId": "sjl202013",
+              "solved": 3,
+              "penalty": 262
+            },
+            "bronze": {
+              "rank": 194,
+              "teamId": "sjl202005",
+              "solved": 2,
+              "penalty": 208
+            }
+          }
+        }
+      },
+      "rejected_changes": [
+        {
+          "method": "estimated10/20/30 floor",
+          "reason": "Explicit Board medal=\"ccpc\" and SRK scored ratio already exist. It is unsafe to treat string preset as missing configuration; guessed estimates are forbidden."
+        }
+      ],
+      "board_parity": {
+        "row_count": 393,
+        "official_count": 327,
+        "scored_official_count": 322,
+        "board_srk_score_or_eligibility_mismatches": [],
+        "boundary_neighbors": {
+          "33": [
+            {
+              "id": "sjl301014",
+              "official": true,
+              "solved": 5,
+              "penalty": 752
+            },
+            {
+              "id": "sjl202002",
+              "official": true,
+              "solved": 5,
+              "penalty": 789
+            },
+            {
+              "id": "scl110005",
+              "official": true,
+              "solved": 5,
+              "penalty": 798
+            }
+          ],
+          "97": [
+            {
+              "id": "jsj111019",
+              "official": true,
+              "solved": 3,
+              "penalty": 262
+            },
+            {
+              "id": "sjl202013",
+              "official": true,
+              "solved": 3,
+              "penalty": 262
+            },
+            {
+              "id": "rjl402027",
+              "official": true,
+              "solved": 3,
+              "penalty": 271
+            }
+          ],
+          "194": [
+            {
+              "id": "jsj120002",
+              "official": true,
+              "solved": 2,
+              "penalty": 207
+            },
+            {
+              "id": "sjl202005",
+              "official": true,
+              "solved": 2,
+              "penalty": 208
+            },
+            {
+              "id": "rjl402033",
+              "official": true,
+              "solved": 2,
+              "penalty": 214
+            }
+          ]
+        },
+        "rule": "Board uses seconds/milliseconds to floor each accepted submission time to minutes, adds20 for each preceding penalty result, ignores CE and PE; compares all rows to SRK score and official flags"
+      },
+      "official_ratio_semantics": {
+        "ratio": [
+          0.1,
+          0.2,
+          0.3
+        ],
+        "denominator": "scored",
+        "denominator_count": 322,
+        "rounding": "ceil",
+        "cumulative_boundaries": [
+          33,
+          97,
+          194
+        ],
+        "medal_counts": [
+          33,
+          64,
+          97
+        ],
+        "definition": "Official users with score.value>0 form denominator; apply default ceil to cumulative0.1/0.3/0.6 proportions; zero-score official rows remain in official standings below awards.",
+        "spec": "https://github.com/algoux/standard-ranklist/blob/e1cdc3b776638dab381e910201c2652d3d6b1d0c/index.d.ts#L436-L458",
+        "implementation": "https://github.com/algoux/standard-ranklist-utils/blob/a4d3a7303b8d30cbb7ee7dbef58c1d9587c62bd7/js/src/ranklist.ts#L519-L611",
+        "implementation_evidence": "ICPC rule filters official rows at521, scored denominator checks score.value>0 at597-598, accumulated ratios600-608, defaultceil592 and611. Board preset was used only as evidence of explicit configuration; Board raw submissions independently verify penalties and eligibility."
+      },
+      "normalized_count_helper_crosscheck": {
+        "status": "proposed",
+        "eligible_team_count": 327,
+        "cutoffs": {
+          "gold": {
+            "rank": 33,
+            "teamId": "sjl202002",
+            "solved": 5,
+            "penalty": 789
+          },
+          "silver": {
+            "rank": 97,
+            "teamId": "sjl202013",
+            "solved": 3,
+            "penalty": 262
+          },
+          "bronze": {
+            "rank": 194,
+            "teamId": "sjl202005",
+            "solved": 2,
+            "penalty": 208
+          }
+        },
+        "evidence": {
+          "group": "user.official === true",
+          "series_index": 0,
+          "medal_counts": [
+            33,
+            64,
+            97
+          ],
+          "penalty_unit": "minutes",
+          "source_penalty_units": [
+            "s"
+          ],
+          "ties": "No tied medal boundary",
+          "final": "frozenDuration=0; complete statuses; no pending results"
+        }
+      },
+      "final_penalty_audit": "All393 Board rows independently recomputed; exact agreement with all SRK solved totals, penalties, official flags. Board ignores CE/PE. Raw SRK noPenaltyResults omits PE, which causes3 discrepancies if recomputing literally from SRK metadata; totals agree with authoritative Board semantics. Do not alter raw source.",
+      "boundary_neighbors": [
+        {
+          "rank": 33,
+          "previous": {
+            "teamId": "sjl301014",
+            "solved": 5,
+            "penalty": 752
+          },
+          "boundary": {
+            "teamId": "sjl202002",
+            "solved": 5,
+            "penalty": 789
+          },
+          "next": {
+            "teamId": "scl110005",
+            "solved": 5,
+            "penalty": 798
+          },
+          "split_tie": false
+        },
+        {
+          "rank": 97,
+          "previous": {
+            "teamId": "jsj111019",
+            "solved": 3,
+            "penalty": 262
+          },
+          "boundary": {
+            "teamId": "sjl202013",
+            "solved": 3,
+            "penalty": 262
+          },
+          "next": {
+            "teamId": "rjl402027",
+            "solved": 3,
+            "penalty": 271
+          },
+          "split_tie": false
+        },
+        {
+          "rank": 194,
+          "previous": {
+            "teamId": "jsj120002",
+            "solved": 2,
+            "penalty": 207
+          },
+          "boundary": {
+            "teamId": "sjl202005",
+            "solved": 2,
+            "penalty": 208
+          },
+          "next": {
+            "teamId": "rjl402033",
+            "solved": 2,
+            "penalty": 214
+          },
+          "split_tie": false
+        }
+      ],
+      "award_review_result": {
+        "standings_state": "final",
+        "method": "official_medal_config",
+        "group": {
+          "scope": "all_eligible",
+          "label": "正式参赛队伍",
+          "eligibility_rule": "user.official === true",
+          "exclusion_rule": "Exclude unofficial users and users outside selected group",
+          "tie_policy": "No tied medal boundary",
+          "evidence": [
+            "series[0].rule.options",
+            "[33,64,97]"
+          ]
+        },
+        "eligible_team_count": 327,
+        "problem_count": 12,
+        "source_penalty_unit": "seconds",
+        "penalty_unit": "minutes",
+        "normalization_notes": "Convert each score.time tuple to minutes before sorting; no rounding All393 totals verified against Board run/config/team, including CE and PE non-penalty semantics.",
+        "method_evidence": [
+          "frozenDuration=0; complete statuses; no pending results",
+          "series[0].segments = gold/silver/bronze",
+          "counts=[33,64,97]",
+          "Raw official ratio [0.1,0.2,0.3], denominator=scored, default ceil;322 scored official teams; cumulative boundaries33/97/194. Counts33/64/97 are derived from official rule, not source-authored counts."
+        ],
+        "cutoffs": {
+          "gold": {
+            "rank": 33,
+            "solved": 5,
+            "penalty": 789,
+            "team_id": "sjl202002"
+          },
+          "silver": {
+            "rank": 97,
+            "solved": 3,
+            "penalty": 262,
+            "team_id": "sjl202013"
+          },
+          "bronze": {
+            "rank": 194,
+            "solved": 2,
+            "penalty": 208,
+            "team_id": "sjl202005"
+          }
+        }
+      },
+      "award_status": "proposed"
+    },
+    "https://qoj.ac/contest/3934": {
+      "qoj_url": "https://qoj.ac/contest/3934",
+      "contest_id": "254425d8-66f5-5324-bd72-9e94fe5c131e",
+      "identity_status": "rejected",
+      "title": "第二十届东北地区大学生程序设计竞赛",
+      "problem_identity": [
+        {
+          "ordinal": "A",
+          "qoj_problem_id": "18945",
+          "qoj_title": "求求你不要再摔馍片了",
+          "srk_ordinal": "A",
+          "srk_problem_id": "18945",
+          "srk_title": "求求你不要再摔馍片了"
+        },
+        {
+          "ordinal": "B",
+          "qoj_problem_id": "18946",
+          "qoj_title": "世界树",
+          "srk_ordinal": "B",
+          "srk_problem_id": "18946",
+          "srk_title": "世界树"
+        },
+        {
+          "ordinal": "C",
+          "qoj_problem_id": "18948",
+          "qoj_title": "电梯",
+          "srk_ordinal": "C",
+          "srk_problem_id": "18947",
+          "srk_title": "简单字符串题"
+        },
+        {
+          "ordinal": "D",
+          "qoj_problem_id": "18939",
+          "qoj_title": "星塔",
+          "srk_ordinal": "D",
+          "srk_problem_id": "18948",
+          "srk_title": "电梯"
+        },
+        {
+          "ordinal": "E",
+          "qoj_problem_id": "18949",
+          "qoj_title": "猜 01 序列",
+          "srk_ordinal": "E",
+          "srk_problem_id": "18949",
+          "srk_title": "猜 01 序列"
+        },
+        {
+          "ordinal": "F",
+          "qoj_problem_id": "18950",
+          "qoj_title": "建设高铁",
+          "srk_ordinal": "F",
+          "srk_problem_id": "18950",
+          "srk_title": "建设高铁"
+        },
+        {
+          "ordinal": "G",
+          "qoj_problem_id": "18940",
+          "qoj_title": "冰灯配色",
+          "srk_ordinal": "G",
+          "srk_problem_id": "18951",
+          "srk_title": "可能是字符串签到题"
+        },
+        {
+          "ordinal": "H",
+          "qoj_problem_id": "18951",
+          "qoj_title": "可能是字符串签到题",
+          "srk_ordinal": "H",
+          "srk_problem_id": "18952",
+          "srk_title": "南昌拌粉的绝妙配比"
+        },
+        {
+          "ordinal": "I",
+          "qoj_problem_id": "18953",
+          "qoj_title": "灯带",
+          "srk_ordinal": "I",
+          "srk_problem_id": "18953",
+          "srk_title": "灯带"
+        },
+        {
+          "ordinal": "J",
+          "qoj_problem_id": "18941",
+          "qoj_title": "校园乐跑",
+          "srk_ordinal": "J",
+          "srk_problem_id": "18954",
+          "srk_title": "贪吃蛇"
+        },
+        {
+          "ordinal": "K",
+          "qoj_problem_id": "18954",
+          "qoj_title": "贪吃蛇",
+          "srk_ordinal": "K",
+          "srk_problem_id": "18955",
+          "srk_title": "拯救猫猫"
+        },
+        {
+          "ordinal": "L",
+          "qoj_problem_id": "18955",
+          "qoj_title": "拯救猫猫",
+          "srk_ordinal": "L",
+          "srk_problem_id": "18956",
+          "srk_title": "三人成角"
+        }
+      ],
+      "problem_count": 12,
+      "source_event_start_at": "2026-05-24T09:00:00+08:00",
+      "source": {
+        "provider": "rankland",
+        "collection": "official",
+        "provider_contest_id": "srk:official/provincial/northeast/northeastcpc20th.srk.json",
+        "srk_path": "official/provincial/northeast/northeastcpc20th.srk.json",
+        "repository_url": "https://github.com/algoux/srk-collection",
+        "commit_sha": "d00d843b0ec095c69f172407e7c1ff5d4e305adb",
+        "content_sha256": "f3550c7a50ef45c647644ef0f3a5d3fa74f7345bf4a0fc9dfbe8021f205d5ec0",
+        "index_sha256": "8ebad1f3a3b7ed6cf445de0a8a25de28e11b52754071ab276d50ba4ad645409b",
+        "srk_version": "0.3.9",
+        "fetched_at": "2026-10-01T11:39:37.875986+00:00",
+        "page_url": "https://rl.algoux.cn/collection/official?rankId=northeastcpc20th",
+        "page_verified_at": "2026-10-01T11:48:07.368Z",
+        "source_title": "第二十届东北地区大学生程序设计竞赛",
+        "attribution": {
+          "name": "XCPCIO (https://xcpcio.com); algoUX (https://algoux.org); HeiMaoM",
+          "license_url": "https://github.com/algoux/srk-collection/blob/d00d843b0ec095c69f172407e7c1ff5d4e305adb/LICENSE"
+        }
+      },
+      "row_count": 182,
+      "official_count": 175,
+      "unofficial_count": 7,
+      "scored_official_count": 175,
+      "official_highest_group_evidence": {
+        "icpc_series": [
+          {
+            "title": "#",
+            "segments": [
+              {
+                "title": "金奖",
+                "style": "gold"
+              },
+              {
+                "title": "银奖",
+                "style": "silver"
+              },
+              {
+                "title": "铜奖",
+                "style": "bronze"
+              }
+            ],
+            "rule": {
+              "preset": "ICPC",
+              "options": {
+                "count": {
+                  "value": [
+                    18,
+                    36,
+                    54
+                  ]
+                }
+              }
+            }
+          }
+        ],
+        "markers": [],
+        "rule": "Use user.official === true. One ICPC medal series; no ranked invitational/undergraduate divisions exist. Female marker is a display flag within this same official group."
+      },
+      "raw_helper_result": {
+        "status": "proposed",
+        "eligible_team_count": 175,
+        "cutoffs": {
+          "gold": {
+            "rank": 18,
+            "teamId": "team-dongbei-l06",
+            "solved": 5,
+            "penalty": 362
+          },
+          "silver": {
+            "rank": 54,
+            "teamId": "team-dongbei-h05",
+            "solved": 4,
+            "penalty": 454
+          },
+          "bronze": {
+            "rank": 108,
+            "teamId": "team-dongbei-j06",
+            "solved": 3,
+            "penalty": 231
+          }
+        },
+        "evidence": {
+          "group": "user.official === true",
+          "series_index": 0,
+          "medal_counts": [
+            18,
+            36,
+            54
+          ],
+          "penalty_unit": "minutes",
+          "source_penalty_units": [
+            "s"
+          ],
+          "ties": "No tied medal boundary",
+          "final": "frozenDuration=0; complete statuses; no pending results"
+        }
+      },
+      "proposed_changes": {},
+      "rejected_changes": [
+        {
+          "fields": [
+            "startAt",
+            "sources:rankland",
+            "sources:xcpcio_board",
+            "awardCutoffs",
+            "estimatedAwardCutoffs"
+          ],
+          "reason": "SRK and live RankLand page share the wrong problem map. Only9/12 QOJ IDs overlap and5/12 ordinal/ID/title triples agree. Board lacks problem titles/provider IDs, so original event cannot be bound by full list. Same title, date and A–L count are insufficient. Keep public QOJ identity and safe actual problem list only; original-event date/standings/awards remain unset."
+        }
+      ],
+      "board_parity": {
+        "row_count": 182,
+        "official_count": 175,
+        "scored_official_count": 175,
+        "board_srk_score_or_eligibility_mismatches": [],
+        "boundary_neighbors": {
+          "18": [
+            {
+              "id": "team-dongbei-p05",
+              "official": true,
+              "solved": 5,
+              "penalty": 332
+            },
+            {
+              "id": "team-dongbei-l06",
+              "official": true,
+              "solved": 5,
+              "penalty": 362
+            },
+            {
+              "id": "team-dongbei-g11",
+              "official": true,
+              "solved": 5,
+              "penalty": 390
+            }
+          ],
+          "54": [
+            {
+              "id": "team-dongbei-g10",
+              "official": true,
+              "solved": 4,
+              "penalty": 452
+            },
+            {
+              "id": "team-dongbei-h05",
+              "official": true,
+              "solved": 4,
+              "penalty": 454
+            },
+            {
+              "id": "team-dongbei-p08",
+              "official": true,
+              "solved": 4,
+              "penalty": 497
+            }
+          ],
+          "108": [
+            {
+              "id": "team-dongbei-p02",
+              "official": true,
+              "solved": 3,
+              "penalty": 230
+            },
+            {
+              "id": "team-dongbei-j06",
+              "official": true,
+              "solved": 3,
+              "penalty": 231
+            },
+            {
+              "id": "team-dongbei-d08",
+              "official": true,
+              "solved": 3,
+              "penalty": 236
+            }
+          ]
+        },
+        "rule": "Board uses seconds/milliseconds to floor each accepted submission time to minutes, adds20 for each preceding penalty result, ignores CE and PE; compares all rows to SRK score and official flags"
+      },
+      "identity_conflict": {
+        "qoj_only": [
+          "18939",
+          "18940",
+          "18941"
+        ],
+        "srk_only": [
+          "18947",
+          "18952",
+          "18956"
+        ],
+        "matching_ordinal_id_title_count": 5,
+        "shared_id_count": 9
+      },
+      "award_status": "blocked"
+    }
+  }
+}

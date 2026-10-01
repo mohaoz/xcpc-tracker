@@ -1,0 +1,177 @@
+[
+  {
+    "path": "ccpc2025final.srk.json",
+    "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/ccpc/ccpc2025/ccpc2025final.srk.json",
+    "sha256": "21e66dba87fa6652560f89c98ffe3bd8ed4d5b31678b117424e8fa98ab619b08",
+    "bytes": 476183,
+    "fetched_at": "2026-10-01T11:38:25.154893+00:00"
+  },
+  {
+    "path": "ccpc2025final.info.json",
+    "url": "https://rl.algoux.cn/api/v2/public/contests/ccpc2025final",
+    "sha256": "30e585b04111073a2df8f11d4517c0303cf9300e968ddbed186247d99728fa91",
+    "bytes": 3405,
+    "fetched_at": "2026-10-01T11:38:26.105274+00:00"
+  },
+  {
+    "path": "henan/config.json",
+    "url": "https://board.xcpcio.com/data/provincial-contest/2026/henan/config.json",
+    "sha256": "c0598e827a2907e03a8c3964ccb84c5ca122990ad1e198e2de882850c00a6ede",
+    "bytes": 1777,
+    "fetched_at": "2026-10-01T11:38:23.188165+00:00"
+  },
+  {
+    "path": "henan/team.json",
+    "url": "https://board.xcpcio.com/data/provincial-contest/2026/henan/team.json",
+    "sha256": "6d1a9047a548c8b541fbaed98275bb646786a2ac76dc3e1cf44b38ca8cec0790",
+    "bytes": 94090,
+    "fetched_at": "2026-10-01T11:38:24.236233+00:00"
+  },
+  {
+    "path": "henan/run.json",
+    "url": "https://board.xcpcio.com/data/provincial-contest/2026/henan/run.json",
+    "sha256": "06fe237a245c2840549e23b21d50a62ab9a623fc9df410f925366b1d1a2a44a7",
+    "bytes": 853518,
+    "fetched_at": "2026-10-01T11:38:34.198091+00:00"
+  },
+  {
+    "path": "northeastern/config.json",
+    "url": "https://board.xcpcio.com/data/provincial-contest/2026/northeastern/config.json",
+    "sha256": "9ba714c8b0a5e2111ef480baad947a8868644f0b68a3d35b178b18cc34b22a4a",
+    "bytes": 1787,
+    "fetched_at": "2026-10-01T11:38:31.208713+00:00"
+  },
+  {
+    "path": "northeastern/team.json",
+    "url": "https://board.xcpcio.com/data/provincial-contest/2026/northeastern/team.json",
+    "sha256": "d1847dd0c88b0d0e63a8a5edd667e6c607709a0eb86a2e2b989bc0cfb03638da",
+    "bytes": 92303,
+    "fetched_at": "2026-10-01T11:38:33.380849+00:00"
+  },
+  {
+    "path": "northeastern/run.json",
+    "url": "https://board.xcpcio.com/data/provincial-contest/2026/northeastern/run.json",
+    "sha256": "6e090baaa517b14bb6f927f1b353908534299f703ca0639eb087432965e54f75",
+    "bytes": 282038,
+    "fetched_at": "2026-10-01T11:38:31.727916+00:00"
+  },
+  {
+    "path": "haccpc8th.srk.json",
+    "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/provincial/ha/haccpc8th.srk.json",
+    "sha256": "3d848a01e6ca173939b9c05f9e693f1ada2516f0f244891e5fd03337302423da",
+    "bytes": 1789100,
+    "fetched_at": "2026-10-01T11:39:38.326079+00:00"
+  },
+  {
+    "path": "haccpc8th.info.json",
+    "url": "https://rl.algoux.cn/api/v2/public/contests/haccpc8th",
+    "sha256": "8aa2adc7a2ae43182ae61e7abc51a8949cd087a720316d661b43ee49177594ba",
+    "bytes": 3361,
+    "fetched_at": "2026-10-01T11:39:37.651428+00:00"
+  },
+  {
+    "path": "northeastcpc20th.srk.json",
+    "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/provincial/northeast/northeastcpc20th.srk.json",
+    "sha256": "f3550c7a50ef45c647644ef0f3a5d3fa74f7345bf4a0fc9dfbe8021f205d5ec0",
+    "bytes": 739826,
+    "fetched_at": "2026-10-01T11:39:37.875986+00:00"
+  },
+  {
+    "path": "northeastcpc20th.info.json",
+    "url": "https://rl.algoux.cn/api/v2/public/contests/northeastcpc20th",
+    "sha256": "5530f4578f500e02b6b0445bea122257bd02ab971f476017b063fd8a9e4b5030",
+    "bytes": 3301,
+    "fetched_at": "2026-10-01T11:39:37.401186+00:00"
+  },
+  {
+    "path": "spec-head.json",
+    "url": "https://api.github.com/repos/algoux/standard-ranklist/commits/HEAD",
+    "sha256": "3d02d7476eb5434a72f1f1d4d7bbdb040d69a073e2cd59fd4f15589478f45482",
+    "bytes": 17961,
+    "fetched_at": "2026-10-01T11:42:46.194515+00:00"
+  },
+  {
+    "path": "spec-readme.md",
+    "url": "https://raw.githubusercontent.com/algoux/standard-ranklist/master/README.md",
+    "sha256": "c3b68f0bf6622551435f02b1242358efe17797c4030d5e7fd119aab5d01be754",
+    "bytes": 1196,
+    "fetched_at": "2026-10-01T11:42:46.975143+00:00"
+  },
+  {
+    "path": "board-award.ts",
+    "url": "https://raw.githubusercontent.com/xcpcio/xcpcio/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/award.ts",
+    "sha256": "1702ac97c0819b39ee7b9fa27e0b2c710890e209175820966687864eb5f7f695",
+    "bytes": 600,
+    "fetched_at": "2026-10-01T11:42:47.121223+00:00"
+  },
+  {
+    "path": "board-rank.ts",
+    "url": "https://raw.githubusercontent.com/xcpcio/xcpcio/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/rank.ts",
+    "sha256": "cfc363a0eb662b52ae7f8145e28a0f996e0abfa8f185841d7346941645f079f9",
+    "bytes": 17908,
+    "fetched_at": "2026-10-01T11:42:46.993832+00:00"
+  },
+  {
+    "path": "standard-ranklist-index.d.ts",
+    "url": "https://raw.githubusercontent.com/algoux/standard-ranklist/e1cdc3b776638dab381e910201c2652d3d6b1d0c/index.d.ts",
+    "sha256": "d43b2568a987b9d356fe8342e790418c2b9ed0f0e7891cda8f7578f739c640e8",
+    "bytes": 16556,
+    "fetched_at": "2026-10-01T11:43:23.543217+00:00"
+  },
+  {
+    "path": "utils-head.json",
+    "url": "https://api.github.com/repos/algoux/standard-ranklist-utils/commits/HEAD",
+    "sha256": "9d4ab83d51ce98c4234ebcdde2a8ac0d5be4b623562b26d885c16af18713ca4c",
+    "bytes": 5030,
+    "fetched_at": "2026-10-01T11:43:24.446205+00:00"
+  },
+  {
+    "path": "utils-tree.json",
+    "url": "https://api.github.com/repos/algoux/standard-ranklist-utils/git/trees/master?recursive=1",
+    "sha256": "31db64c2af35ef62c0cc127420ce8c493f9d1a835041336558d1069082aa3f7c",
+    "bytes": 21789,
+    "fetched_at": "2026-10-01T11:43:24.359979+00:00"
+  },
+  {
+    "path": "board-rank-statistics.ts",
+    "url": "https://raw.githubusercontent.com/xcpcio/xcpcio/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/rank-statistics.ts",
+    "sha256": "fb846bce5fee66df53013c47decf7db16f735fe07b09fe1ea959b726722f8a29",
+    "bytes": 644,
+    "fetched_at": "2026-10-01T11:43:23.529943+00:00"
+  },
+  {
+    "path": "srk-utils-ranklist.ts",
+    "url": "https://raw.githubusercontent.com/algoux/standard-ranklist-utils/a4d3a7303b8d30cbb7ee7dbef58c1d9587c62bd7/js/src/ranklist.ts",
+    "sha256": "5adae31ef4f3bb91b5cb9af7285ab08b69f7286ddf9d6c885206def1a077dd68",
+    "bytes": 27137,
+    "fetched_at": "2026-10-01T11:45:20.252741+00:00"
+  },
+  {
+    "path": "srk-index.yaml",
+    "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/config.yaml",
+    "sha256": "8ebad1f3a3b7ed6cf445de0a8a25de28e11b52754071ab276d50ba4ad645409b",
+    "bytes": 48192,
+    "cache_origin": "/workspace/shared/xcpc-standings-oct1/config.yaml"
+  },
+  {
+    "path": "rankland-collection.json",
+    "url": "https://rl.algoux.cn/api/v2/public/collections/official",
+    "sha256": "f1b368ae81dd9be7c67d4db76101a378938c54df3fc3ddd8a019f95545430fdb",
+    "bytes": 33840,
+    "cache_origin": "/workspace/shared/xcpc-standings-oct1/collection.json"
+  },
+  {
+    "path": "board-submission-status.ts",
+    "url": "https://raw.githubusercontent.com/xcpcio/xcpcio/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/submission-status.ts",
+    "sha256": "38287796923f48c0cd5dbad04df9e4a71ed1f157f16f03429484c82226a3f846",
+    "bytes": 4767,
+    "cache_origin": "/workspace/shared/xcpc-standings-oct1/supporting/packages-libs-core-src-submission-status.ts"
+  },
+  {
+    "path": "board-team.ts",
+    "url": "https://raw.githubusercontent.com/xcpcio/xcpcio/90f8432e58965cba5a33801819e12861f34446b6/packages/libs/core/src/team.ts",
+    "sha256": "b6aac44a442b5771e569ebf0fcddf891abc1262113d23106a1109abd0a408f86",
+    "bytes": 8381,
+    "cache_origin": "/workspace/shared/xcpc-standings-oct1/supporting/packages-libs-core-src-team.ts"
+  }
+]

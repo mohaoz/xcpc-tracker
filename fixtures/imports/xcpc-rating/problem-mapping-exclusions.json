@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "entries": [
+    {
+      "contest_slug": "provincial__northeast__northeastcpc20th",
+      "problem_identity_sha256": "5762dcd3dbc4715d92da280bd8f3672d77571f568027196dbd430247bff08522",
+      "reason": "Known original-event problem mapping conflict: upstream reuses/reorders a partial Nanchang set; verified QOJ3934 has Star Tower, Ice Lantern Coloring and Campus Running instead. Do not propagate its per-ordinal tags/ratings through shared problem IDs.",
+      "source_snapshot_sha256": "9c0e410348bb507b89208c8f691c7267e9e6537d8f417e8da4dbbb67d38d1f89",
+      "raw_export_sha256": "b75901851be53ae440f6bef8fc4ca86bff8070f9e7cb89290a56c58b2cb82857",
+      "reviewed_at": "2026-10-01T11:43:30Z",
+      "upstream_problem_identities": [
+        {
+          "ordinal": "A",
+          "identity": "qoj:18945"
+        },
+        {
+          "ordinal": "B",
+          "identity": "qoj:18946"
+        },
+        {
+          "ordinal": "C",
+          "identity": "qoj:18947"
+        },
+        {
+          "ordinal": "D",
+          "identity": "qoj:18948"
+        },
+        {
+          "ordinal": "E",
+          "identity": "qoj:18949"
+        },
+        {
+          "ordinal": "F",
+          "identity": "qoj:18950"
+        },
+        {
+          "ordinal": "G",
+          "identity": "qoj:18951"
+        },
+        {
+          "ordinal": "H",
+          "identity": "qoj:18952"
+        },
+        {
+          "ordinal": "I",
+          "identity": "qoj:18953"
+        },
+        {
+          "ordinal": "J",
+          "identity": "qoj:18954"
+        },
+        {
+          "ordinal": "K",
+          "identity": "qoj:18955"
+        },
+        {
+          "ordinal": "L",
+          "identity": "qoj:18956"
+        }
+      ],
+      "verified_qoj_problem_identities": [
+        {
+          "ordinal": "A",
+          "identity": "qoj:18945",
+          "title": "求求你不要再摔馍片了"
+        },
+        {
+          "ordinal": "B",
+          "identity": "qoj:18946",
+          "title": "世界树"
+        },
+        {
+          "ordinal": "C",
+          "identity": "qoj:18948",
+          "title": "电梯"
+        },
+        {
+          "ordinal": "D",
+          "identity": "qoj:18939",
+          "title": "星塔"
+        },
+        {
+          "ordinal": "E",
+          "identity": "qoj:18949",
+          "title": "猜 01 序列"
+        },
+        {
+          "ordinal": "F",
+          "identity": "qoj:18950",
+          "title": "建设高铁"
+        },
+        {
+          "ordinal": "G",
+          "identity": "qoj:18940",
+          "title": "冰灯配色"
+        },
+        {
+          "ordinal": "H",
+          "identity": "qoj:18951",
+          "title": "可能是字符串签到题"
+        },
+        {
+          "ordinal": "I",
+          "identity": "qoj:18953",
+          "title": "灯带"
+        },
+        {
+          "ordinal": "J",
+          "identity": "qoj:18941",
+          "title": "校园乐跑"
+        },
+        {
+          "ordinal": "K",
+          "identity": "qoj:18954",
+          "title": "贪吃蛇"
+        },
+        {
+          "ordinal": "L",
+          "identity": "qoj:18955",
+          "title": "拯救猫猫"
+        }
+      ]
+    }
+  ]
+}

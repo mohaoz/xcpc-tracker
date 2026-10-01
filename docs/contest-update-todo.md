@@ -6,6 +6,9 @@
 
 ## 已完成批次
 
+- 2026-10-01 后续：用户QOJ12场150题新增3场37题及113个镜像映射；全部公开RankLand152场／Board143场重新获取，Rating既有数值与标签重审。累计258场3180题，1706个Rating，123场明确奖项／28场估算。全目录QOJ204导出、CF需认证题单及品题完整榜单仍单独标为未完成，见[当前覆盖与回执](catalog-completion-2026-10-01.md#后续-qojrating-与全来源刷新当前结果)。
+
+- 2026-10-01：补入 2023／2024／2025 广西三场 38 题、2018 World Finals 的 11 题 CF 映射；补 14 条榜源、127 个原赛时间、62 个 Rating，并更新 682 题标签。8 场补牌线、8 条估算替换为明确奖项、31 条估算校正；12 条资格／终榜／并列无法证明的估算撤下并保留旧值。完整口径、来源及剩余阻塞见[本轮结论](catalog-completion-2026-10-01.md)。
 - 2026-09-08：黑龙江、福建邀请赛、重庆，3 场／39 题，见 [CF 审核题单](../fixtures/imports/codeforces/2026-xcpc-problem-lists.json)。
 - 2026-09-09：网络赛 I、深圳、浙江、西安、武汉、山东、上海、沈阳，8 场／103 题，见 [QOJ 审核题单](../fixtures/imports/qoj/2026-xcpc-problem-lists.json)。带 `?v=` 的重试及空题单错误已修复；原始导出保存在同目录。
 - 2026-09-14：网络赛 II，QOJ 4113 A–L 共 12 题，见 [用户保存页面的审核结果](../fixtures/imports/qoj/2026-online-ii-problem-list.json)。未导入保存页面中的个人状态。
@@ -14,6 +17,8 @@
 西安保留 QOJ 3766 默认 Universal Cup 镜像题单，未替换为 `?v=1`。黑龙江参考表与 Gym 日期不同，现场日期仍待核验；重庆只记录已知日期，未推断开赛时刻。
 
 ## 当前牌线缺口（2026-09-17）
+
+本节保留 9 月 17 日的历史审计说明；10 月 1 日全量复核后当前为 36 场有榜源但无可发布牌线、71 场尚无已核实独立原赛榜源，详见[最新结论](catalog-completion-2026-10-01.md)。不能将下列旧计数当作当前完整状态。
 
 已补南昌、2025 CCPC 女生赛的官方比例规则；2025 东北邀请赛采用最高邀请赛组的官方名额；2018 焦作、沈阳改用原赛正式队估算。结果见[规则补录](../fixtures/imports/rankland/2026-09-17-official-ratios.json)、[可信替换](../fixtures/imports/rankland/2026-09-17-verified-replacements.json)。
 
@@ -48,7 +53,7 @@
 - [x] **2026-09-28 目录更新**：补录 CCPC 网络赛、北京、秦皇岛/河北、ICPC 贵州、香港联合赛五场共 62 题；补充南昌官方 CF 和网络赛 II CF 镜像。审核题单见 [本批次记录](../fixtures/imports/codeforces/2026-09-28-problem-lists.json)。QOJ 新映射与新比赛牌线另待审核，未将 72 场 Rating 元数据变化批量应用。
 
 - [x] **QOJ 4071：2026 ICPC 网络赛第一场**。比赛日期 2026-09-06，标题为 The 2026 ICPC Asia East Continent Online Contest (I)，入口为 [QOJ 4071](https://qoj.ac/contest/4071)。此前已从[公开分类](https://qoj.ac/category/763)确认 A–N 共 14 题；已按用户导出补录全部 14 题。
-- [ ] **复核原表疑似错链**。`26-07`（CCPC 河南）和 `26-15`（东北地区赛）D 列显示 `QOJ`，实际都指向 Gym 106551，与 `26-10` 相同；当前 catalog 将该 Gym 映射至 2026 ICPC 南昌邀请赛。取得两场比赛的正确入口后再导入。
+- [x] **复核原表疑似错链**。`26-07`（CCPC 河南）和 `26-15`（东北地区赛）D 列错误指向 Gym 106551，属于 ICPC 南昌。2026-10-01 已从公开 QOJ 列表／题页核实正确入口分别为 [3935](https://qoj.ac/contest/3935) 和 [3934](https://qoj.ac/contest/3934)；两场完整题单已由用户浏览器导出并审核入库；东北原赛榜单存在题目映射冲突，仍单独阻塞。
 - [x] **修正 2025 南昌两场比赛的榜单错配**。CCPC 南昌已移除误挂的 ICPC 榜单，使用独立 RankLand 来源；审核证据见 [RankLand 审核目录](../fixtures/imports/rankland/)。不要重新挂回旧来源。
 
 ## 2026 赛季：24 条
@@ -65,8 +70,8 @@
 - [x] **26-06 北京市赛**（2026-05-10；已补录）
   名称／榜单：[2026年北京市大学生程序设计竞赛](https://pintia.cn/rankings/2048682058783719424)。已按 [Gym 106694](https://codeforces.com/gym/106694) 补录 12 题（2026-09-28）；QOJ 映射另待用户浏览器导出。
 
-- [ ] **26-07 CCPC河南省赛**（2026-05-10；链接冲突待核验）
-  名称／榜单：[第 8 届 CCPC 河南省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/henan)。原表标 `QOJ`，实际链接为 [Gym 106551](https://codeforces.com/gym/106551)，与 ICPC 南昌冲突；先核验正确入口，再补齐题单。
+- [x] **26-07 CCPC河南省赛**（2026-05-10；12题、原赛榜单与明确奖项已核验）
+  名称／榜单：[第 8 届 CCPC 河南省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/henan)。原表 Gym 106551 属于 ICPC 南昌；正确入口已核实为 [QOJ 3935](https://qoj.ac/contest/3935)。待用户浏览器完整比赛页导出后审核 A–L，不直接使用列表页候选导入。
 
 - [ ] **26-08 黑龙江省赛**（原表日期 2026-05-10；已补录，日期／QOJ 待核验）
   名称／榜单：[第二十一届黑龙江省大学生程序设计竞赛](https://pintia.cn/rankings/2049414294076952576)。补题：[Gym 106534](https://codeforces.com/gym/106534)（原表标 `Gym / QOJ`）。2026-09-08 已补录 A–M 共 13 题及 PTA 榜单，内部 ID 为 `411cc95d-3733-5a0b-8806-ab17b43f8838`；因参考表与 Gym 日期不同，`startAt` 暂留空，待核验现场日期并补查 QOJ 来源。
@@ -89,8 +94,8 @@
 - [x] **26-14 秦皇岛邀请赛**（2026-05-24；已补录）
   名称／榜单：[CCPC2026-秦皇岛全国邀请赛暨河北省赛](https://cpc.csgrandeur.cn/outrank/rank?outrank_uuid=88998553-ce66-46ec-a062-1beb357d774c)。已按 [Gym 106695](https://codeforces.com/gym/106695) 补录 13 题（2026-09-28）；尚未审核组别牌线。
 
-- [ ] **26-15 东北地区赛**（2026-05-24；链接冲突待核验）
-  名称／榜单：[第二十届东北地区大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/northeastern?group=official)。原表标 `QOJ`，实际链接为 [Gym 106551](https://codeforces.com/gym/106551)，与 ICPC 南昌冲突；先核验正确入口，再补齐题单。
+- [x] **26-15 东北地区赛**（2026；12题已收录，原赛时间／榜单身份仍待复核）
+  名称／榜单：[第二十届东北地区大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest/2026/northeastern?group=official)。原表 Gym 106551 属于 ICPC 南昌；正确入口已核实为 [QOJ 3934](https://qoj.ac/contest/3934)。用户完整导出A–L已审核；SRK／Rating原赛题号与实题不符，不能沿用其榜单与日期。
 
 - [ ] **26-16 CCPC南昌邀请赛**（2026-05-24；已收录待复核）
   名称／榜单：[2026 CCPC 中国大学生程序设计竞赛全国邀请赛（南昌）](https://board.xcpcio.com/ccpc/12th/nanchang-invitational)。原表补题入口待补充；2026-09-28 已核对并同时保留官方 [Gym 106696](https://codeforces.com/gym/106696) 和民间 [Gym 106554](https://codeforces.com/gym/106554)，两套 A–M 逐题映射共用原内部 ID；QOJ 来源仍待核验。
@@ -169,8 +174,8 @@
 - [ ] **25-16 山东省赛**（2025-05-25；已收录待复核）
   名称／榜单：[2025年山东省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest%2F2025%2Fshandong?group=official)。补题：[Gym 105930](https://codeforces.com/gym/105930)。catalog 已有 13 题及 QOJ 2040 来源；复核逐题映射。
 
-- [ ] **25-17 广西邀请赛暨省赛**（2025-05-25；新增候选）
-  名称／榜单：[第八届广西大学生程序设计大赛暨2025邀请赛](https://ac.nowcoder.com/acm/contest/110811#rank)。补题：[牛客 110811](https://ac.nowcoder.com/acm/contest/110811#question)。先保留参考，查找 CF／QOJ 镜像或可人工核验的完整题单。
+- [x] **25-17 广西邀请赛暨省赛**（2025-05-25；已补录）
+  2026-10-01 按 [Gym 106707](https://codeforces.com/gym/106707) 和原始比赛 PDF 补 A–L 共 12 题、核实比赛时间及原赛榜单。B 题现名 Metronome for Corgi，保留原名 Beats 为已核实别名。QOJ 4120 仅列入待导出候选，未猜测 QOJ 题目映射。原 [牛客 110811](https://ac.nowcoder.com/acm/contest/110811) 保留为赛程／名称证据。
 
 - [ ] **25-18 江苏省赛/广东省赛**（2025-06-02；已收录待复核）
   名称／榜单：[「华为杯」2025 年江苏省大学生程序设计竞赛 / 2025 年广东省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest%2F2025%2Fjiangsu?group=official)。补题：[Gym 105945](https://codeforces.com/gym/105945)。catalog 目前合为一条记录，共 12 题，并有 QOJ 2058?v=1 来源；复核共用题单、日期和两省榜单的表达。

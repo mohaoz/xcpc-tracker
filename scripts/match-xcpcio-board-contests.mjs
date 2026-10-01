@@ -1,14 +1,13 @@
 #!/usr/bin/env node
 
 import fs from "node:fs/promises";
+import {calculateBoardAwards} from "./xcpcio-gap-awards.mjs";
 
 const DEFAULT_CATALOG_PATH = "catalog/default-catalog.min.json";
 const DEFAULT_BOARD_INDEX_URL = "https://board.xcpcio.com/data/index/contest_list.json";
 const DEFAULT_RAW_OUTPUT_PATH = "data/xcpcio-board-raw.json";
 const DEFAULT_NORMALIZED_OUTPUT_PATH = "data/xcpcio-board-contests.json";
 const DEFAULT_CUTOFFS_OUTPUT_PATH = "data/xcpcio-board-award-cutoffs.json";
-const acceptedStatuses = new Set(["ACCEPTED", "CORRECT", "OK"]);
-const pendingStatuses = new Set(["PENDING"]);
 
 const genericTags = new Set([
   "icpc",
@@ -614,122 +613,9 @@ function normalizeBoardCollection(value, label) {
   return Object.values(value);
 }
 
-function getEligibleTeamIds(config, teams) {
-  if (/本科|专科|高职|邀请|invitational|undergraduate|vocational|Track|独立学院/i.test(JSON.stringify(config.group ?? {}))) {
-    throw new Error('Separate eligible groups require audited highest-group calculation');
-  }
-  const officialTeamIds = teams
-    .filter((team) => !team.group?.includes("unofficial") && team.unofficial !== true && team.unofficial !== 1 && team.official !== false && team.official !== 0 && (team.group?.includes("official") || team.official === true || team.official === 1))
-    .map(getTeamId)
-    .filter((id) => id !== null);
-
-  if (officialTeamIds.length > 0) {
-    return {
-      source: "inferred_official_medal_ratio_10_20_30",
-      teamIds: new Set(officialTeamIds),
-    };
-  }
-
-  throw new Error('No explicitly verified official teams; refusing all-team medal estimate');
-}
-
-function getPenaltyTimestampDivisor(config) {
-  if (config.options?.submission_timestamp_unit === "millisecond") {
-    return 60_000;
-  }
-  if (config.options?.submission_timestamp_unit === "minute") {
-    return 1;
-  }
-  return 60;
-}
-
-function buildRankedTeams(config, teams, runs) {
-  const { source, teamIds } = getEligibleTeamIds(config, teams);
-  const rankedById = new Map([...teamIds].map((teamId) => [
-    teamId,
-    {
-      id: teamId,
-      solved: 0,
-      penalty: 0,
-      problems: new Map(),
-    },
-  ]));
-  const timestampDivisor = getPenaltyTimestampDivisor(config);
-
-  for (const run of [...runs].sort((left, right) => Number(left.timestamp ?? 0) - Number(right.timestamp ?? 0))) {
-    const teamId = typeof run.team_id === "string" || typeof run.team_id === "number" ? String(run.team_id) : null;
-    const problemId = typeof run.problem_id === "string" || typeof run.problem_id === "number" ? String(run.problem_id) : null;
-    const status = String(run.status ?? "").toUpperCase();
-    const team = teamId ? rankedById.get(teamId) : null;
-    if (!team || !problemId) {
-      continue;
-    }
-
-    const problem = team.problems.get(problemId) ?? {
-      wrongAttempts: 0,
-      solved: false,
-    };
-    team.problems.set(problemId, problem);
-    if (problem.solved) {
-      continue;
-    }
-
-    if (acceptedStatuses.has(status)) {
-      const penalty = Math.floor(Number(run.timestamp ?? 0) / timestampDivisor) + problem.wrongAttempts * 20;
-      problem.solved = true;
-      team.solved += 1;
-      team.penalty += penalty;
-    } else if (!pendingStatuses.has(status)) {
-      problem.wrongAttempts += 1;
-    }
-  }
-
-  return {
-    source,
-    rankedTeams: [...rankedById.values()].sort(
-      (left, right) =>
-        right.solved - left.solved ||
-        left.penalty - right.penalty ||
-        left.id.localeCompare(right.id),
-    ),
-  };
-}
-
-function getCutoffRanks(config, teamCount) {
-  const officialMedals = config.medal?.official;
-  if (officialMedals?.gold && officialMedals.silver && officialMedals.bronze) {
-    return {
-      source: "explicit",
-      ranks: {
-        gold: officialMedals.gold,
-        silver: officialMedals.gold + officialMedals.silver,
-        bronze: officialMedals.gold + officialMedals.silver + officialMedals.bronze,
-      },
-    };
-  }
-  return {
-    source: null,
-    ranks: {
-      gold: Math.floor(teamCount * 0.1),
-      silver: Math.floor(teamCount * 0.3),
-      bronze: Math.floor(teamCount * 0.6),
-    },
-  };
-}
-
-function getCutoff(rankedTeams, rank) {
-  const team = rankedTeams[rank - 1];
-  return team
-    ? {
-        rank,
-        solved: team.solved,
-        penalty: team.penalty,
-        teamId: team.id,
-      }
-    : null;
-}
-
 async function fetchAwardCutoffs(match) {
+  const existing=catalog.contests.find(c=>c.contestId===match.contest_id);
+  if(existing?.sources?.some(s=>s.kind==="award_rules"))throw new Error("Contest has separately reviewed primary award rules; automatic Board replacement requires explicit review");
   const boardPath = toBoardPath(match.suggested_source.provider_contest_id ?? match.suggested_source.url);
   const baseUrl = `https://board.xcpcio.com/data/${boardPath}`;
   const [config, teams, runs] = await Promise.all([
@@ -737,12 +623,11 @@ async function fetchAwardCutoffs(match) {
     fetchJson(`${baseUrl}/team.json`),
     fetchJson(`${baseUrl}/run.json`),
   ]);
-  const { source: inferredSource, rankedTeams } = buildRankedTeams(
+  const calculated = calculateBoardAwards(
     config,
     normalizeBoardCollection(teams, "team"),
     normalizeBoardCollection(runs, "run"),
   );
-  const cutoffRanks = getCutoffRanks(config, rankedTeams.length);
   return {
     contest_id: match.contest_id,
     title: match.title,
@@ -750,13 +635,10 @@ async function fetchAwardCutoffs(match) {
     source_url: match.suggested_source.url,
     source_provider: match.suggested_source.provider,
     source_label: match.suggested_source.label ?? "XCPCIO Board",
-    cutoff_source: cutoffRanks.source ?? inferredSource,
-    eligible_team_count: rankedTeams.length,
-    cutoffs: {
-      gold: getCutoff(rankedTeams, cutoffRanks.ranks.gold),
-      silver: getCutoff(rankedTeams, cutoffRanks.ranks.silver),
-      bronze: getCutoff(rankedTeams, cutoffRanks.ranks.bronze),
-    },
+    cutoff_source: calculated.source,
+    eligible_team_count: calculated.eligibleTeamCount,
+    cutoffs: calculated.cutoffs,
+    calculation_evidence: {group:calculated.group,penalty_rule:calculated.penalty_rule},
   };
 }
 
