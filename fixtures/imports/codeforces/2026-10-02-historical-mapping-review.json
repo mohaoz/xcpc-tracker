@@ -1,0 +1,2162 @@
+{
+  "schema_version": 1,
+  "base_commit": "b0fc2e4b52c1e468683cb1263ac2276e4b6b899a",
+  "reviewed_at": "2026-10-02",
+  "before_catalog_sha256": "d44dea65e4db1a688e6365c5927854c6a57d462be91454f0de52dd8439f71c75",
+  "after_catalog_sha256": "587d3d5dd0d21d81a47166f1c56f000fa897994e2111f652f860ed9d54c9ee93",
+  "scope": "Exact correction of verified provider ownership and false cross-problem aliases; preserve all canonical identities and member state.",
+  "counts": {
+    "source_withdrawals": 11,
+    "source_reassignments": 7,
+    "false_alias_removals": 18,
+    "affected_problems": 18
+  },
+  "before_problems": [
+    {
+      "problemId": "2d702eeb-69bd-504d-a7b7-554ebab5b940:A",
+      "contestId": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "ordinal": "A",
+      "title": "Number Theory Problem",
+      "aliases": [
+        "Mr. Panda and Strips"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2028/problem/11226",
+          "provider_problem_id": "11226",
+          "source_title": "Number Theory Problem",
+          "label": "QOJ A"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101194/problem/A",
+          "provider_problem_id": "101194:A",
+          "source_title": "Mr. Panda and Strips",
+          "label": "Codeforces A"
+        }
+      ]
+    },
+    {
+      "problemId": "2d702eeb-69bd-504d-a7b7-554ebab5b940:C",
+      "contestId": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "ordinal": "C",
+      "title": "Mr. Panda and Strips",
+      "aliases": [
+        "World Cup"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2028/problem/11228",
+          "provider_problem_id": "11228",
+          "source_title": "Mr. Panda and Strips",
+          "label": "QOJ C"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101194/problem/C",
+          "provider_problem_id": "101194:C",
+          "source_title": "World Cup",
+          "label": "Codeforces C"
+        }
+      ]
+    },
+    {
+      "problemId": "2d702eeb-69bd-504d-a7b7-554ebab5b940:D",
+      "contestId": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "ordinal": "D",
+      "title": "Ice Cream Tower",
+      "aliases": [
+        "Great Cells"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2028/problem/11229",
+          "provider_problem_id": "11229",
+          "source_title": "Ice Cream Tower",
+          "label": "QOJ D"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101194/problem/D",
+          "provider_problem_id": "101194:D",
+          "source_title": "Great Cells",
+          "label": "Codeforces D"
+        }
+      ]
+    },
+    {
+      "problemId": "2d702eeb-69bd-504d-a7b7-554ebab5b940:H",
+      "contestId": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "ordinal": "H",
+      "title": "Great Cells",
+      "aliases": [
+        "Ice Cream Tower"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2028/problem/11233",
+          "provider_problem_id": "11233",
+          "source_title": "Great Cells",
+          "label": "QOJ H"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101194/problem/H",
+          "provider_problem_id": "101194:H",
+          "source_title": "Ice Cream Tower",
+          "label": "Codeforces H"
+        }
+      ]
+    },
+    {
+      "problemId": "2d702eeb-69bd-504d-a7b7-554ebab5b940:L",
+      "contestId": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "ordinal": "L",
+      "title": "World Cup",
+      "aliases": [
+        "Number Theory Problem"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2028/problem/11237",
+          "provider_problem_id": "11237",
+          "source_title": "World Cup",
+          "label": "QOJ L"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101194/problem/L",
+          "provider_problem_id": "101194:L",
+          "source_title": "Number Theory Problem",
+          "label": "Codeforces L"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:A",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "A",
+      "title": "Sequence and Sequence",
+      "aliases": [
+        "Live Love"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6126",
+          "provider_problem_id": "6126",
+          "source_title": "Sequence and Sequence",
+          "label": "QOJ A"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/A",
+          "provider_problem_id": "104270:A",
+          "source_title": "Sequence and Sequence",
+          "label": "Codeforces A"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/A",
+          "provider_problem_id": "104566:A",
+          "source_title": "Live Love",
+          "label": "Codeforces A"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:B",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "B",
+      "title": "Kawa Exam",
+      "aliases": [
+        "Red Black Tree"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6127",
+          "provider_problem_id": "6127",
+          "source_title": "Kawa Exam",
+          "label": "QOJ B"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/B",
+          "provider_problem_id": "104270:B",
+          "source_title": "Kawa Exam",
+          "label": "Codeforces B"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/B",
+          "provider_problem_id": "104566:B",
+          "source_title": "Red Black Tree",
+          "label": "Codeforces B"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:C",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "C",
+      "title": "Flippy Sequence",
+      "aliases": [
+        "Halting Problem"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6128",
+          "provider_problem_id": "6128",
+          "source_title": "Flippy Sequence",
+          "label": "QOJ C"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/C",
+          "provider_problem_id": "104270:C",
+          "source_title": "Flippy Sequence",
+          "label": "Codeforces C"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/C",
+          "provider_problem_id": "104566:C",
+          "source_title": "Halting Problem",
+          "label": "Codeforces C"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:D",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "D",
+      "title": "Magic Multiplication",
+      "aliases": [
+        "Pixel Art"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6129",
+          "provider_problem_id": "6129",
+          "source_title": "Magic Multiplication",
+          "label": "QOJ D"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/D",
+          "provider_problem_id": "104270:D",
+          "source_title": "Magic Multiplication",
+          "label": "Codeforces D"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/D",
+          "provider_problem_id": "104566:D",
+          "source_title": "Pixel Art",
+          "label": "Codeforces D"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:E",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "E",
+      "title": "Plants vs. Zombies",
+      "aliases": [
+        "Infinite Parenthesis Sequence"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6130",
+          "provider_problem_id": "6130",
+          "source_title": "Plants vs. Zombies",
+          "label": "QOJ E"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/E",
+          "provider_problem_id": "104270:E",
+          "source_title": "Plants vs. Zombies",
+          "label": "Codeforces E"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/E",
+          "provider_problem_id": "104566:E",
+          "source_title": "Infinite Parenthesis Sequence",
+          "label": "Codeforces E"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:F",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "F",
+      "title": "Tournament",
+      "aliases": [
+        "Chaleur"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6131",
+          "provider_problem_id": "6131",
+          "source_title": "Tournament",
+          "label": "QOJ F"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/F",
+          "provider_problem_id": "104270:F",
+          "source_title": "Tournament",
+          "label": "Codeforces F"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/F",
+          "provider_problem_id": "104566:F",
+          "source_title": "Chaleur",
+          "label": "Codeforces F"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:G",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "G",
+      "title": "Repair the Artwork",
+      "aliases": [
+        "Couleur"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6132",
+          "provider_problem_id": "6132",
+          "source_title": "Repair the Artwork",
+          "label": "QOJ G"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/G",
+          "provider_problem_id": "104270:G",
+          "source_title": "Repair the Artwork",
+          "label": "Codeforces G"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/G",
+          "provider_problem_id": "104566:G",
+          "source_title": "Couleur",
+          "label": "Codeforces G"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:H",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "H",
+      "title": "Mirror",
+      "aliases": [
+        "Traveling on the Axis"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6133",
+          "provider_problem_id": "6133",
+          "source_title": "Mirror",
+          "label": "QOJ H"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/H",
+          "provider_problem_id": "104270:H",
+          "source_title": "Mirror",
+          "label": "Codeforces H"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/H",
+          "provider_problem_id": "104566:H",
+          "source_title": "Traveling on the Axis",
+          "label": "Codeforces H"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:I",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "I",
+      "title": "Soldier Game",
+      "aliases": [
+        "Kuririn MIRACLE"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6134",
+          "provider_problem_id": "6134",
+          "source_title": "Soldier Game",
+          "label": "QOJ I"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/I",
+          "provider_problem_id": "104270:I",
+          "source_title": "Soldier Game",
+          "label": "Codeforces I"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/I",
+          "provider_problem_id": "104566:I",
+          "source_title": "Kuririn MIRACLE",
+          "label": "Codeforces I"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:J",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "J",
+      "title": "Books",
+      "aliases": [
+        "Press the Button"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6135",
+          "provider_problem_id": "6135",
+          "source_title": "Books",
+          "label": "QOJ J"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/J",
+          "provider_problem_id": "104270:J",
+          "source_title": "Books",
+          "label": "Codeforces J"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/J",
+          "provider_problem_id": "104566:J",
+          "source_title": "Press the Button",
+          "label": "Codeforces J"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:K",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "K",
+      "title": "Airdrop",
+      "aliases": [
+        "XOR Clique"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6136",
+          "provider_problem_id": "6136",
+          "source_title": "Airdrop",
+          "label": "QOJ K"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/K",
+          "provider_problem_id": "104270:K",
+          "source_title": "Airdrop",
+          "label": "Codeforces K"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104566/problem/K",
+          "provider_problem_id": "104566:K",
+          "source_title": "XOR Clique",
+          "label": "Codeforces K"
+        }
+      ]
+    },
+    {
+      "problemId": "db8c80b3-ad5d-5d52-940b-60c051243a3b:A",
+      "contestId": "db8c80b3-ad5d-5d52-940b-60c051243a3b",
+      "ordinal": "A",
+      "title": "Chat Group",
+      "aliases": [
+        "World Cup"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2026/problem/11201",
+          "provider_problem_id": "11201",
+          "source_title": "Chat Group",
+          "label": "QOJ A"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101775/problem/A",
+          "provider_problem_id": "101775:A",
+          "source_title": "World Cup",
+          "label": "Codeforces A"
+        }
+      ]
+    },
+    {
+      "problemId": "db8c80b3-ad5d-5d52-940b-60c051243a3b:M",
+      "contestId": "db8c80b3-ad5d-5d52-940b-60c051243a3b",
+      "ordinal": "M",
+      "title": "World Cup",
+      "aliases": [
+        "Chat Group"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2026/problem/11213",
+          "provider_problem_id": "11213",
+          "source_title": "World Cup",
+          "label": "QOJ M"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101775/problem/M",
+          "provider_problem_id": "101775:M",
+          "source_title": "Chat Group",
+          "label": "Codeforces M"
+        }
+      ]
+    }
+  ],
+  "after_problems": [
+    {
+      "problemId": "2d702eeb-69bd-504d-a7b7-554ebab5b940:A",
+      "contestId": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "ordinal": "A",
+      "title": "Number Theory Problem",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2028/problem/11226",
+          "provider_problem_id": "11226",
+          "source_title": "Number Theory Problem",
+          "label": "QOJ A"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101194/problem/L",
+          "provider_problem_id": "101194:L",
+          "source_title": "Number Theory Problem",
+          "label": "Codeforces L"
+        }
+      ]
+    },
+    {
+      "problemId": "2d702eeb-69bd-504d-a7b7-554ebab5b940:C",
+      "contestId": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "ordinal": "C",
+      "title": "Mr. Panda and Strips",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2028/problem/11228",
+          "provider_problem_id": "11228",
+          "source_title": "Mr. Panda and Strips",
+          "label": "QOJ C"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101194/problem/A",
+          "provider_problem_id": "101194:A",
+          "source_title": "Mr. Panda and Strips",
+          "label": "Codeforces A"
+        }
+      ]
+    },
+    {
+      "problemId": "2d702eeb-69bd-504d-a7b7-554ebab5b940:D",
+      "contestId": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "ordinal": "D",
+      "title": "Ice Cream Tower",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2028/problem/11229",
+          "provider_problem_id": "11229",
+          "source_title": "Ice Cream Tower",
+          "label": "QOJ D"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101194/problem/H",
+          "provider_problem_id": "101194:H",
+          "source_title": "Ice Cream Tower",
+          "label": "Codeforces H"
+        }
+      ]
+    },
+    {
+      "problemId": "2d702eeb-69bd-504d-a7b7-554ebab5b940:H",
+      "contestId": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "ordinal": "H",
+      "title": "Great Cells",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2028/problem/11233",
+          "provider_problem_id": "11233",
+          "source_title": "Great Cells",
+          "label": "QOJ H"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101194/problem/D",
+          "provider_problem_id": "101194:D",
+          "source_title": "Great Cells",
+          "label": "Codeforces D"
+        }
+      ]
+    },
+    {
+      "problemId": "2d702eeb-69bd-504d-a7b7-554ebab5b940:L",
+      "contestId": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "ordinal": "L",
+      "title": "World Cup",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2028/problem/11237",
+          "provider_problem_id": "11237",
+          "source_title": "World Cup",
+          "label": "QOJ L"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101194/problem/C",
+          "provider_problem_id": "101194:C",
+          "source_title": "World Cup",
+          "label": "Codeforces C"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:A",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "A",
+      "title": "Sequence and Sequence",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6126",
+          "provider_problem_id": "6126",
+          "source_title": "Sequence and Sequence",
+          "label": "QOJ A"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/A",
+          "provider_problem_id": "104270:A",
+          "source_title": "Sequence and Sequence",
+          "label": "Codeforces A"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:B",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "B",
+      "title": "Kawa Exam",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6127",
+          "provider_problem_id": "6127",
+          "source_title": "Kawa Exam",
+          "label": "QOJ B"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/B",
+          "provider_problem_id": "104270:B",
+          "source_title": "Kawa Exam",
+          "label": "Codeforces B"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:C",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "C",
+      "title": "Flippy Sequence",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6128",
+          "provider_problem_id": "6128",
+          "source_title": "Flippy Sequence",
+          "label": "QOJ C"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/C",
+          "provider_problem_id": "104270:C",
+          "source_title": "Flippy Sequence",
+          "label": "Codeforces C"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:D",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "D",
+      "title": "Magic Multiplication",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6129",
+          "provider_problem_id": "6129",
+          "source_title": "Magic Multiplication",
+          "label": "QOJ D"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/D",
+          "provider_problem_id": "104270:D",
+          "source_title": "Magic Multiplication",
+          "label": "Codeforces D"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:E",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "E",
+      "title": "Plants vs. Zombies",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6130",
+          "provider_problem_id": "6130",
+          "source_title": "Plants vs. Zombies",
+          "label": "QOJ E"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/E",
+          "provider_problem_id": "104270:E",
+          "source_title": "Plants vs. Zombies",
+          "label": "Codeforces E"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:F",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "F",
+      "title": "Tournament",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6131",
+          "provider_problem_id": "6131",
+          "source_title": "Tournament",
+          "label": "QOJ F"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/F",
+          "provider_problem_id": "104270:F",
+          "source_title": "Tournament",
+          "label": "Codeforces F"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:G",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "G",
+      "title": "Repair the Artwork",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6132",
+          "provider_problem_id": "6132",
+          "source_title": "Repair the Artwork",
+          "label": "QOJ G"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/G",
+          "provider_problem_id": "104270:G",
+          "source_title": "Repair the Artwork",
+          "label": "Codeforces G"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:H",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "H",
+      "title": "Mirror",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6133",
+          "provider_problem_id": "6133",
+          "source_title": "Mirror",
+          "label": "QOJ H"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/H",
+          "provider_problem_id": "104270:H",
+          "source_title": "Mirror",
+          "label": "Codeforces H"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:I",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "I",
+      "title": "Soldier Game",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6134",
+          "provider_problem_id": "6134",
+          "source_title": "Soldier Game",
+          "label": "QOJ I"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/I",
+          "provider_problem_id": "104270:I",
+          "source_title": "Soldier Game",
+          "label": "Codeforces I"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:J",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "J",
+      "title": "Books",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6135",
+          "provider_problem_id": "6135",
+          "source_title": "Books",
+          "label": "QOJ J"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/J",
+          "provider_problem_id": "104270:J",
+          "source_title": "Books",
+          "label": "Codeforces J"
+        }
+      ]
+    },
+    {
+      "problemId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:K",
+      "contestId": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "ordinal": "K",
+      "title": "Airdrop",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1187/problem/6136",
+          "provider_problem_id": "6136",
+          "source_title": "Airdrop",
+          "label": "QOJ K"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/104270/problem/K",
+          "provider_problem_id": "104270:K",
+          "source_title": "Airdrop",
+          "label": "Codeforces K"
+        }
+      ]
+    },
+    {
+      "problemId": "db8c80b3-ad5d-5d52-940b-60c051243a3b:A",
+      "contestId": "db8c80b3-ad5d-5d52-940b-60c051243a3b",
+      "ordinal": "A",
+      "title": "Chat Group",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2026/problem/11201",
+          "provider_problem_id": "11201",
+          "source_title": "Chat Group",
+          "label": "QOJ A"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101775/problem/M",
+          "provider_problem_id": "101775:M",
+          "source_title": "Chat Group",
+          "label": "Codeforces M"
+        }
+      ]
+    },
+    {
+      "problemId": "db8c80b3-ad5d-5d52-940b-60c051243a3b:M",
+      "contestId": "db8c80b3-ad5d-5d52-940b-60c051243a3b",
+      "ordinal": "M",
+      "title": "World Cup",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/2026/problem/11213",
+          "provider_problem_id": "11213",
+          "source_title": "World Cup",
+          "label": "QOJ M"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/101775/problem/A",
+          "provider_problem_id": "101775:A",
+          "source_title": "World Cup",
+          "label": "Codeforces A"
+        }
+      ]
+    }
+  ],
+  "reassignments": [
+    {
+      "provider_problem_id": "101194:A",
+      "from_problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:A",
+      "to_problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:C",
+      "source": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/101194/problem/A",
+        "provider_problem_id": "101194:A",
+        "source_title": "Mr. Panda and Strips",
+        "label": "Codeforces A"
+      },
+      "removed_false_alias": "Mr. Panda and Strips"
+    },
+    {
+      "provider_problem_id": "101194:C",
+      "from_problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:C",
+      "to_problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:L",
+      "source": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/101194/problem/C",
+        "provider_problem_id": "101194:C",
+        "source_title": "World Cup",
+        "label": "Codeforces C"
+      },
+      "removed_false_alias": "World Cup"
+    },
+    {
+      "provider_problem_id": "101194:D",
+      "from_problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:D",
+      "to_problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:H",
+      "source": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/101194/problem/D",
+        "provider_problem_id": "101194:D",
+        "source_title": "Great Cells",
+        "label": "Codeforces D"
+      },
+      "removed_false_alias": "Great Cells"
+    },
+    {
+      "provider_problem_id": "101194:H",
+      "from_problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:H",
+      "to_problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:D",
+      "source": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/101194/problem/H",
+        "provider_problem_id": "101194:H",
+        "source_title": "Ice Cream Tower",
+        "label": "Codeforces H"
+      },
+      "removed_false_alias": "Ice Cream Tower"
+    },
+    {
+      "provider_problem_id": "101194:L",
+      "from_problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:L",
+      "to_problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:A",
+      "source": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/101194/problem/L",
+        "provider_problem_id": "101194:L",
+        "source_title": "Number Theory Problem",
+        "label": "Codeforces L"
+      },
+      "removed_false_alias": "Number Theory Problem"
+    },
+    {
+      "provider_problem_id": "101775:A",
+      "from_problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:A",
+      "to_problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:M",
+      "source": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/101775/problem/A",
+        "provider_problem_id": "101775:A",
+        "source_title": "World Cup",
+        "label": "Codeforces A"
+      },
+      "removed_false_alias": "World Cup"
+    },
+    {
+      "provider_problem_id": "101775:M",
+      "from_problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:M",
+      "to_problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:A",
+      "source": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/101775/problem/M",
+        "provider_problem_id": "101775:M",
+        "source_title": "Chat Group",
+        "label": "Codeforces M"
+      },
+      "removed_false_alias": "Chat Group"
+    }
+  ],
+  "withdrawals": [
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:A",
+      "catalogTitle": "Sequence and Sequence",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/A",
+        "provider_problem_id": "104566:A",
+        "source_title": "Live Love",
+        "label": "Codeforces A"
+      },
+      "removeFalseAlias": "Live Love",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:A",
+      "retainOwnerTitle": "Live Love",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/A",
+        "provider_problem_id": "104270:A",
+        "source_title": "Sequence and Sequence",
+        "label": "Codeforces A"
+      }
+    },
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:B",
+      "catalogTitle": "Kawa Exam",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/B",
+        "provider_problem_id": "104566:B",
+        "source_title": "Red Black Tree",
+        "label": "Codeforces B"
+      },
+      "removeFalseAlias": "Red Black Tree",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:B",
+      "retainOwnerTitle": "Red Black Tree",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/B",
+        "provider_problem_id": "104270:B",
+        "source_title": "Kawa Exam",
+        "label": "Codeforces B"
+      }
+    },
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:C",
+      "catalogTitle": "Flippy Sequence",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/C",
+        "provider_problem_id": "104566:C",
+        "source_title": "Halting Problem",
+        "label": "Codeforces C"
+      },
+      "removeFalseAlias": "Halting Problem",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:C",
+      "retainOwnerTitle": "Halting Problem",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/C",
+        "provider_problem_id": "104270:C",
+        "source_title": "Flippy Sequence",
+        "label": "Codeforces C"
+      }
+    },
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:D",
+      "catalogTitle": "Magic Multiplication",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/D",
+        "provider_problem_id": "104566:D",
+        "source_title": "Pixel Art",
+        "label": "Codeforces D"
+      },
+      "removeFalseAlias": "Pixel Art",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:D",
+      "retainOwnerTitle": "Pixel Art",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/D",
+        "provider_problem_id": "104270:D",
+        "source_title": "Magic Multiplication",
+        "label": "Codeforces D"
+      }
+    },
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:E",
+      "catalogTitle": "Plants vs. Zombies",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/E",
+        "provider_problem_id": "104566:E",
+        "source_title": "Infinite Parenthesis Sequence",
+        "label": "Codeforces E"
+      },
+      "removeFalseAlias": "Infinite Parenthesis Sequence",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:E",
+      "retainOwnerTitle": "Infinite Parenthesis Sequence",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/E",
+        "provider_problem_id": "104270:E",
+        "source_title": "Plants vs. Zombies",
+        "label": "Codeforces E"
+      }
+    },
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:F",
+      "catalogTitle": "Tournament",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/F",
+        "provider_problem_id": "104566:F",
+        "source_title": "Chaleur",
+        "label": "Codeforces F"
+      },
+      "removeFalseAlias": "Chaleur",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:F",
+      "retainOwnerTitle": "Chaleur",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/F",
+        "provider_problem_id": "104270:F",
+        "source_title": "Tournament",
+        "label": "Codeforces F"
+      }
+    },
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:G",
+      "catalogTitle": "Repair the Artwork",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/G",
+        "provider_problem_id": "104566:G",
+        "source_title": "Couleur",
+        "label": "Codeforces G"
+      },
+      "removeFalseAlias": "Couleur",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:G",
+      "retainOwnerTitle": "Couleur",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/G",
+        "provider_problem_id": "104270:G",
+        "source_title": "Repair the Artwork",
+        "label": "Codeforces G"
+      }
+    },
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:H",
+      "catalogTitle": "Mirror",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/H",
+        "provider_problem_id": "104566:H",
+        "source_title": "Traveling on the Axis",
+        "label": "Codeforces H"
+      },
+      "removeFalseAlias": "Traveling on the Axis",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:H",
+      "retainOwnerTitle": "Traveling on the Axis",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/H",
+        "provider_problem_id": "104270:H",
+        "source_title": "Mirror",
+        "label": "Codeforces H"
+      }
+    },
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:I",
+      "catalogTitle": "Soldier Game",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/I",
+        "provider_problem_id": "104566:I",
+        "source_title": "Kuririn MIRACLE",
+        "label": "Codeforces I"
+      },
+      "removeFalseAlias": "Kuririn MIRACLE",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:I",
+      "retainOwnerTitle": "Kuririn MIRACLE",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/I",
+        "provider_problem_id": "104270:I",
+        "source_title": "Soldier Game",
+        "label": "Codeforces I"
+      }
+    },
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:J",
+      "catalogTitle": "Books",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/J",
+        "provider_problem_id": "104566:J",
+        "source_title": "Press the Button",
+        "label": "Codeforces J"
+      },
+      "removeFalseAlias": "Press the Button",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:J",
+      "retainOwnerTitle": "Press the Button",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/J",
+        "provider_problem_id": "104270:J",
+        "source_title": "Books",
+        "label": "Codeforces J"
+      }
+    },
+    {
+      "removeFrom": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:K",
+      "catalogTitle": "Airdrop",
+      "wrongSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104566/problem/K",
+        "provider_problem_id": "104566:K",
+        "source_title": "XOR Clique",
+        "label": "Codeforces K"
+      },
+      "removeFalseAlias": "XOR Clique",
+      "retainOwner": "debbf310-76b3-5322-bbf9-3edee9d5cad1:K",
+      "retainOwnerTitle": "XOR Clique",
+      "retainCorrectSource": {
+        "provider": "codeforces",
+        "kind": "problem",
+        "url": "https://codeforces.com/gym/104270/problem/K",
+        "provider_problem_id": "104270:K",
+        "source_title": "Airdrop",
+        "label": "Codeforces K"
+      }
+    }
+  ],
+  "source_inputs": [
+    {
+      "contest_id": "101194",
+      "url": "https://codeforces.com/gym/101194",
+      "source_type": "user-saved Codeforces dashboard HTML",
+      "captured_at": null,
+      "received_at": "2026-10-02",
+      "sha256": "15d600c839b35d7ba8e6b91573040dfccbc8b0504c3a8e237b1762757cf874db",
+      "bytes": 274846,
+      "problem_count": 12,
+      "raw_html_included": false
+    },
+    {
+      "contest_id": "101775",
+      "url": "https://codeforces.com/gym/101775",
+      "source_type": "user-saved Codeforces dashboard HTML",
+      "captured_at": null,
+      "received_at": "2026-10-02",
+      "sha256": "9319afe9399dd87d01073a6ff57e7b0786b2bf2de4348998bca2ae8e58b12dff",
+      "bytes": 282175,
+      "problem_count": 13,
+      "raw_html_included": false
+    },
+    {
+      "contest_id": "104270",
+      "url": "https://codeforces.com/gym/104270",
+      "source_type": "user-saved Codeforces dashboard HTML",
+      "captured_at": null,
+      "received_at": "2026-10-02",
+      "sha256": "a09a1e6b7f98bd7e0d47d3b84fe45e0a85b94d066bfc71f4511f552ad108dcf5",
+      "bytes": 285873,
+      "problem_count": 13,
+      "raw_html_included": false
+    }
+  ],
+  "original_identity": [
+    {
+      "contest_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940",
+      "cf_contest_id": "101194",
+      "qoj_contest_id": "2028",
+      "problem_count": 12,
+      "original_booklet": {
+        "url": "https://codeforces.com/gym/101194/attachments/download/5009/20162017-acmicpc-china-final-en.pdf",
+        "sha256": "136a1746500aa425204117b277b6b221069774f3d196d0c511165186c5693e09",
+        "bytes": 546816
+      },
+      "problems": [
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:A",
+          "title": "Number Theory Problem",
+          "original_ordinal": "A",
+          "original_pdf_page": 2,
+          "qoj_problem": {
+            "ordinal": "A",
+            "title": "Number Theory Problem",
+            "url": "https://qoj.ac/contest/2028/problem/11226",
+            "provider_problem_id": "11226"
+          },
+          "cf_problem": {
+            "ordinal": "L",
+            "title": "Number Theory Problem",
+            "providerProblemId": "101194:L",
+            "url": "https://codeforces.com/gym/101194/problem/L"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:B",
+          "title": "Hemi Palindrome",
+          "original_ordinal": "B",
+          "original_pdf_page": 3,
+          "qoj_problem": {
+            "ordinal": "B",
+            "title": "Hemi Palindrome",
+            "url": "https://qoj.ac/contest/2028/problem/11227",
+            "provider_problem_id": "11227"
+          },
+          "cf_problem": {
+            "ordinal": "B",
+            "title": "Hemi Palindrome",
+            "providerProblemId": "101194:B",
+            "url": "https://codeforces.com/gym/101194/problem/B"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:C",
+          "title": "Mr. Panda and Strips",
+          "original_ordinal": "C",
+          "original_pdf_page": 4,
+          "qoj_problem": {
+            "ordinal": "C",
+            "title": "Mr. Panda and Strips",
+            "url": "https://qoj.ac/contest/2028/problem/11228",
+            "provider_problem_id": "11228"
+          },
+          "cf_problem": {
+            "ordinal": "A",
+            "title": "Mr. Panda and Strips",
+            "providerProblemId": "101194:A",
+            "url": "https://codeforces.com/gym/101194/problem/A"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:D",
+          "title": "Ice Cream Tower",
+          "original_ordinal": "D",
+          "original_pdf_page": 6,
+          "qoj_problem": {
+            "ordinal": "D",
+            "title": "Ice Cream Tower",
+            "url": "https://qoj.ac/contest/2028/problem/11229",
+            "provider_problem_id": "11229"
+          },
+          "cf_problem": {
+            "ordinal": "H",
+            "title": "Ice Cream Tower",
+            "providerProblemId": "101194:H",
+            "url": "https://codeforces.com/gym/101194/problem/H"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:E",
+          "title": "Bet",
+          "original_ordinal": "E",
+          "original_pdf_page": 7,
+          "qoj_problem": {
+            "ordinal": "E",
+            "title": "Bet",
+            "url": "https://qoj.ac/contest/2028/problem/11230",
+            "provider_problem_id": "11230"
+          },
+          "cf_problem": {
+            "ordinal": "E",
+            "title": "Bet",
+            "providerProblemId": "101194:E",
+            "url": "https://codeforces.com/gym/101194/problem/E"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:F",
+          "title": "Mr. Panda and Fantastic Beasts",
+          "original_ordinal": "F",
+          "original_pdf_page": 9,
+          "qoj_problem": {
+            "ordinal": "F",
+            "title": "Mr. Panda and Fantastic Beasts",
+            "url": "https://qoj.ac/contest/2028/problem/11231",
+            "provider_problem_id": "11231"
+          },
+          "cf_problem": {
+            "ordinal": "F",
+            "title": "Mr. Panda and Fantastic Beasts",
+            "providerProblemId": "101194:F",
+            "url": "https://codeforces.com/gym/101194/problem/F"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:G",
+          "title": "Pandaria",
+          "original_ordinal": "G",
+          "original_pdf_page": 10,
+          "qoj_problem": {
+            "ordinal": "G",
+            "title": "Pandaria",
+            "url": "https://qoj.ac/contest/2028/problem/11232",
+            "provider_problem_id": "11232"
+          },
+          "cf_problem": {
+            "ordinal": "G",
+            "title": "Pandaria",
+            "providerProblemId": "101194:G",
+            "url": "https://codeforces.com/gym/101194/problem/G"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:H",
+          "title": "Great Cells",
+          "original_ordinal": "H",
+          "original_pdf_page": 12,
+          "qoj_problem": {
+            "ordinal": "H",
+            "title": "Great Cells",
+            "url": "https://qoj.ac/contest/2028/problem/11233",
+            "provider_problem_id": "11233"
+          },
+          "cf_problem": {
+            "ordinal": "D",
+            "title": "Great Cells",
+            "providerProblemId": "101194:D",
+            "url": "https://codeforces.com/gym/101194/problem/D"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:I",
+          "title": "Cherry Pick",
+          "original_ordinal": "I",
+          "original_pdf_page": 14,
+          "qoj_problem": {
+            "ordinal": "I",
+            "title": "Cherry Pick",
+            "url": "https://qoj.ac/contest/2028/problem/11234",
+            "provider_problem_id": "11234"
+          },
+          "cf_problem": {
+            "ordinal": "I",
+            "title": "Cherry Pick",
+            "providerProblemId": "101194:I",
+            "url": "https://codeforces.com/gym/101194/problem/I"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:J",
+          "title": "Mr.Panda and TubeMaster",
+          "original_ordinal": "J",
+          "original_pdf_page": 16,
+          "qoj_problem": {
+            "ordinal": "J",
+            "title": "Mr.Panda and TubeMaster",
+            "url": "https://qoj.ac/contest/2028/problem/11235",
+            "provider_problem_id": "11235"
+          },
+          "cf_problem": {
+            "ordinal": "J",
+            "title": "Mr.Panda and TubeMaster",
+            "providerProblemId": "101194:J",
+            "url": "https://codeforces.com/gym/101194/problem/J"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:K",
+          "title": "Justice Rains From Above",
+          "original_ordinal": "K",
+          "original_pdf_page": 19,
+          "qoj_problem": {
+            "ordinal": "K",
+            "title": "Justice Rains From Above",
+            "url": "https://qoj.ac/contest/2028/problem/11236",
+            "provider_problem_id": "11236"
+          },
+          "cf_problem": {
+            "ordinal": "K",
+            "title": "Justice Rains From Above",
+            "providerProblemId": "101194:K",
+            "url": "https://codeforces.com/gym/101194/problem/K"
+          }
+        },
+        {
+          "problem_id": "2d702eeb-69bd-504d-a7b7-554ebab5b940:L",
+          "title": "World Cup",
+          "original_ordinal": "L",
+          "original_pdf_page": 21,
+          "qoj_problem": {
+            "ordinal": "L",
+            "title": "World Cup",
+            "url": "https://qoj.ac/contest/2028/problem/11237",
+            "provider_problem_id": "11237"
+          },
+          "cf_problem": {
+            "ordinal": "C",
+            "title": "World Cup",
+            "providerProblemId": "101194:C",
+            "url": "https://codeforces.com/gym/101194/problem/C"
+          }
+        }
+      ]
+    },
+    {
+      "contest_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b",
+      "cf_contest_id": "101775",
+      "qoj_contest_id": "2026",
+      "problem_count": 13,
+      "original_booklet": {
+        "url": "https://codeforces.com/gym/101775/attachments/download/6913/20172018-asia-east-continent-league-final-en.pdf",
+        "sha256": "b5240a883874925165e7de8a3a90c01542e8bcd15c5af2aeb0c0aa9214f68b1d",
+        "bytes": 342930
+      },
+      "problems": [
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:A",
+          "title": "Chat Group",
+          "original_ordinal": "A",
+          "original_pdf_page": 1,
+          "qoj_problem": {
+            "ordinal": "A",
+            "title": "Chat Group",
+            "url": "https://qoj.ac/contest/2026/problem/11201",
+            "provider_problem_id": "11201"
+          },
+          "cf_problem": {
+            "ordinal": "M",
+            "title": "Chat Group",
+            "providerProblemId": "101775:M",
+            "url": "https://codeforces.com/gym/101775/problem/M"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:B",
+          "title": "Scapegoat",
+          "original_ordinal": "B",
+          "original_pdf_page": 2,
+          "qoj_problem": {
+            "ordinal": "B",
+            "title": "Scapegoat",
+            "url": "https://qoj.ac/contest/2026/problem/11202",
+            "provider_problem_id": "11202"
+          },
+          "cf_problem": {
+            "ordinal": "B",
+            "title": "Scapegoat",
+            "providerProblemId": "101775:B",
+            "url": "https://codeforces.com/gym/101775/problem/B"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:C",
+          "title": "Traffic Light",
+          "original_ordinal": "C",
+          "original_pdf_page": 3,
+          "qoj_problem": {
+            "ordinal": "C",
+            "title": "Traffic Light",
+            "url": "https://qoj.ac/contest/2026/problem/11203",
+            "provider_problem_id": "11203"
+          },
+          "cf_problem": {
+            "ordinal": "C",
+            "title": "Traffic Light",
+            "providerProblemId": "101775:C",
+            "url": "https://codeforces.com/gym/101775/problem/C"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:D",
+          "title": "Mr. Panda and Geometric Sequence",
+          "original_ordinal": "D",
+          "original_pdf_page": 5,
+          "qoj_problem": {
+            "ordinal": "D",
+            "title": "Mr. Panda and Geometric Sequence",
+            "url": "https://qoj.ac/contest/2026/problem/11204",
+            "provider_problem_id": "11204"
+          },
+          "cf_problem": {
+            "ordinal": "D",
+            "title": "Mr. Panda and Geometric Sequence",
+            "providerProblemId": "101775:D",
+            "url": "https://codeforces.com/gym/101775/problem/D"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:E",
+          "title": "Snakebird",
+          "original_ordinal": "E",
+          "original_pdf_page": 6,
+          "qoj_problem": {
+            "ordinal": "E",
+            "title": "Snakebird",
+            "url": "https://qoj.ac/contest/2026/problem/11205",
+            "provider_problem_id": "11205"
+          },
+          "cf_problem": {
+            "ordinal": "E",
+            "title": "Snakebird",
+            "providerProblemId": "101775:E",
+            "url": "https://codeforces.com/gym/101775/problem/E"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:F",
+          "title": "Good Number",
+          "original_ordinal": "F",
+          "original_pdf_page": 10,
+          "qoj_problem": {
+            "ordinal": "F",
+            "title": "Good Number",
+            "url": "https://qoj.ac/contest/2026/problem/11206",
+            "provider_problem_id": "11206"
+          },
+          "cf_problem": {
+            "ordinal": "F",
+            "title": "Good Number",
+            "providerProblemId": "101775:F",
+            "url": "https://codeforces.com/gym/101775/problem/F"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:G",
+          "title": "Image Recognition",
+          "original_ordinal": "G",
+          "original_pdf_page": 11,
+          "qoj_problem": {
+            "ordinal": "G",
+            "title": "Image Recognition",
+            "url": "https://qoj.ac/contest/2026/problem/11207",
+            "provider_problem_id": "11207"
+          },
+          "cf_problem": {
+            "ordinal": "G",
+            "title": "Image Recognition",
+            "providerProblemId": "101775:G",
+            "url": "https://codeforces.com/gym/101775/problem/G"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:H",
+          "title": "Mr. Panda and Birthday Song",
+          "original_ordinal": "H",
+          "original_pdf_page": 12,
+          "qoj_problem": {
+            "ordinal": "H",
+            "title": "Mr. Panda and Birthday Song",
+            "url": "https://qoj.ac/contest/2026/problem/11208",
+            "provider_problem_id": "11208"
+          },
+          "cf_problem": {
+            "ordinal": "H",
+            "title": "Mr. Panda and Birthday Song",
+            "providerProblemId": "101775:H",
+            "url": "https://codeforces.com/gym/101775/problem/H"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:I",
+          "title": "PLAYERUNKNOWN’S BATTLEGROUNDS",
+          "original_ordinal": "I",
+          "original_pdf_page": 14,
+          "qoj_problem": {
+            "ordinal": "I",
+            "title": "PLAYERUNKNOWN’S BATTLEGROUNDS",
+            "url": "https://qoj.ac/contest/2026/problem/11209",
+            "provider_problem_id": "11209"
+          },
+          "cf_problem": {
+            "ordinal": "I",
+            "title": "PLAYERUNKNOWN'S BATTLEGROUNDS",
+            "providerProblemId": "101775:I",
+            "url": "https://codeforces.com/gym/101775/problem/I"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:J",
+          "title": "Straight Master",
+          "original_ordinal": "J",
+          "original_pdf_page": 16,
+          "qoj_problem": {
+            "ordinal": "J",
+            "title": "Straight Master",
+            "url": "https://qoj.ac/contest/2026/problem/11210",
+            "provider_problem_id": "11210"
+          },
+          "cf_problem": {
+            "ordinal": "J",
+            "title": "Straight Master",
+            "providerProblemId": "101775:J",
+            "url": "https://codeforces.com/gym/101775/problem/J"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:K",
+          "title": "Downgrade",
+          "original_ordinal": "K",
+          "original_pdf_page": 17,
+          "qoj_problem": {
+            "ordinal": "K",
+            "title": "Downgrade",
+            "url": "https://qoj.ac/contest/2026/problem/11211",
+            "provider_problem_id": "11211"
+          },
+          "cf_problem": {
+            "ordinal": "K",
+            "title": "Downgrade",
+            "providerProblemId": "101775:K",
+            "url": "https://codeforces.com/gym/101775/problem/K"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:L",
+          "title": "SOS",
+          "original_ordinal": "L",
+          "original_pdf_page": 18,
+          "qoj_problem": {
+            "ordinal": "L",
+            "title": "SOS",
+            "url": "https://qoj.ac/contest/2026/problem/11212",
+            "provider_problem_id": "11212"
+          },
+          "cf_problem": {
+            "ordinal": "L",
+            "title": "SOS",
+            "providerProblemId": "101775:L",
+            "url": "https://codeforces.com/gym/101775/problem/L"
+          }
+        },
+        {
+          "problem_id": "db8c80b3-ad5d-5d52-940b-60c051243a3b:M",
+          "title": "World Cup",
+          "original_ordinal": "M",
+          "original_pdf_page": 19,
+          "qoj_problem": {
+            "ordinal": "M",
+            "title": "World Cup",
+            "url": "https://qoj.ac/contest/2026/problem/11213",
+            "provider_problem_id": "11213"
+          },
+          "cf_problem": {
+            "ordinal": "A",
+            "title": "World Cup",
+            "providerProblemId": "101775:A",
+            "url": "https://codeforces.com/gym/101775/problem/A"
+          }
+        }
+      ]
+    },
+    {
+      "contest_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0",
+      "cf_contest_id": "104270",
+      "qoj_contest_id": "1187",
+      "problem_count": 13,
+      "original_booklet": {
+        "url": "https://codeforces.com/gym/104270/attachments/download/19460/contest-en.pdf",
+        "sha256": "39b7e722da338713188e9163d64df8c69b523f76200725e43b81575f2169ecc6",
+        "bytes": 1047850
+      },
+      "problems": [
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:A",
+          "title": "Sequence and Sequence",
+          "original_ordinal": "A",
+          "original_pdf_page": 3,
+          "qoj_problem": {
+            "ordinal": "A",
+            "title": "Sequence and Sequence",
+            "url": "https://qoj.ac/contest/1187/problem/6126",
+            "provider_problem_id": "6126"
+          },
+          "cf_problem": {
+            "ordinal": "A",
+            "title": "Sequence and Sequence",
+            "providerProblemId": "104270:A",
+            "url": "https://codeforces.com/gym/104270/problem/A"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:B",
+          "title": "Kawa Exam",
+          "original_ordinal": "B",
+          "original_pdf_page": 4,
+          "qoj_problem": {
+            "ordinal": "B",
+            "title": "Kawa Exam",
+            "url": "https://qoj.ac/contest/1187/problem/6127",
+            "provider_problem_id": "6127"
+          },
+          "cf_problem": {
+            "ordinal": "B",
+            "title": "Kawa Exam",
+            "providerProblemId": "104270:B",
+            "url": "https://codeforces.com/gym/104270/problem/B"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:C",
+          "title": "Flippy Sequence",
+          "original_ordinal": "C",
+          "original_pdf_page": 6,
+          "qoj_problem": {
+            "ordinal": "C",
+            "title": "Flippy Sequence",
+            "url": "https://qoj.ac/contest/1187/problem/6128",
+            "provider_problem_id": "6128"
+          },
+          "cf_problem": {
+            "ordinal": "C",
+            "title": "Flippy Sequence",
+            "providerProblemId": "104270:C",
+            "url": "https://codeforces.com/gym/104270/problem/C"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:D",
+          "title": "Magic Multiplication",
+          "original_ordinal": "D",
+          "original_pdf_page": 7,
+          "qoj_problem": {
+            "ordinal": "D",
+            "title": "Magic Multiplication",
+            "url": "https://qoj.ac/contest/1187/problem/6129",
+            "provider_problem_id": "6129"
+          },
+          "cf_problem": {
+            "ordinal": "D",
+            "title": "Magic Multiplication",
+            "providerProblemId": "104270:D",
+            "url": "https://codeforces.com/gym/104270/problem/D"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:E",
+          "title": "Plants vs. Zombies",
+          "original_ordinal": "E",
+          "original_pdf_page": 8,
+          "qoj_problem": {
+            "ordinal": "E",
+            "title": "Plants vs. Zombies",
+            "url": "https://qoj.ac/contest/1187/problem/6130",
+            "provider_problem_id": "6130"
+          },
+          "cf_problem": {
+            "ordinal": "E",
+            "title": "Plants vs. Zombies",
+            "providerProblemId": "104270:E",
+            "url": "https://codeforces.com/gym/104270/problem/E"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:F",
+          "title": "Tournament",
+          "original_ordinal": "F",
+          "original_pdf_page": 10,
+          "qoj_problem": {
+            "ordinal": "F",
+            "title": "Tournament",
+            "url": "https://qoj.ac/contest/1187/problem/6131",
+            "provider_problem_id": "6131"
+          },
+          "cf_problem": {
+            "ordinal": "F",
+            "title": "Tournament",
+            "providerProblemId": "104270:F",
+            "url": "https://codeforces.com/gym/104270/problem/F"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:G",
+          "title": "Repair the Artwork",
+          "original_ordinal": "G",
+          "original_pdf_page": 11,
+          "qoj_problem": {
+            "ordinal": "G",
+            "title": "Repair the Artwork",
+            "url": "https://qoj.ac/contest/1187/problem/6132",
+            "provider_problem_id": "6132"
+          },
+          "cf_problem": {
+            "ordinal": "G",
+            "title": "Repair the Artwork",
+            "providerProblemId": "104270:G",
+            "url": "https://codeforces.com/gym/104270/problem/G"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:H",
+          "title": "Mirror",
+          "original_ordinal": "H",
+          "original_pdf_page": 12,
+          "qoj_problem": {
+            "ordinal": "H",
+            "title": "Mirror",
+            "url": "https://qoj.ac/contest/1187/problem/6133",
+            "provider_problem_id": "6133"
+          },
+          "cf_problem": {
+            "ordinal": "H",
+            "title": "Mirror",
+            "providerProblemId": "104270:H",
+            "url": "https://codeforces.com/gym/104270/problem/H"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:I",
+          "title": "Soldier Game",
+          "original_ordinal": "I",
+          "original_pdf_page": 14,
+          "qoj_problem": {
+            "ordinal": "I",
+            "title": "Soldier Game",
+            "url": "https://qoj.ac/contest/1187/problem/6134",
+            "provider_problem_id": "6134"
+          },
+          "cf_problem": {
+            "ordinal": "I",
+            "title": "Soldier Game",
+            "providerProblemId": "104270:I",
+            "url": "https://codeforces.com/gym/104270/problem/I"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:J",
+          "title": "Books",
+          "original_ordinal": "J",
+          "original_pdf_page": 15,
+          "qoj_problem": {
+            "ordinal": "J",
+            "title": "Books",
+            "url": "https://qoj.ac/contest/1187/problem/6135",
+            "provider_problem_id": "6135"
+          },
+          "cf_problem": {
+            "ordinal": "J",
+            "title": "Books",
+            "providerProblemId": "104270:J",
+            "url": "https://codeforces.com/gym/104270/problem/J"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:K",
+          "title": "Airdrop",
+          "original_ordinal": "K",
+          "original_pdf_page": 16,
+          "qoj_problem": {
+            "ordinal": "K",
+            "title": "Airdrop",
+            "url": "https://qoj.ac/contest/1187/problem/6136",
+            "provider_problem_id": "6136"
+          },
+          "cf_problem": {
+            "ordinal": "K",
+            "title": "Airdrop",
+            "providerProblemId": "104270:K",
+            "url": "https://codeforces.com/gym/104270/problem/K"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:L",
+          "title": "Sub-cycle Graph",
+          "original_ordinal": "L",
+          "original_pdf_page": 18,
+          "qoj_problem": {
+            "ordinal": "L",
+            "title": "Sub-cycle Graph",
+            "url": "https://qoj.ac/contest/1187/problem/6137",
+            "provider_problem_id": "6137"
+          },
+          "cf_problem": {
+            "ordinal": "L",
+            "title": "Sub-cycle Graph",
+            "providerProblemId": "104270:L",
+            "url": "https://codeforces.com/gym/104270/problem/L"
+          }
+        },
+        {
+          "problem_id": "6ba3c9df-0575-5f10-a871-4e684e5c01b0:M",
+          "title": "Function and Function",
+          "original_ordinal": "M",
+          "original_pdf_page": 19,
+          "qoj_problem": {
+            "ordinal": "M",
+            "title": "Function and Function",
+            "url": "https://qoj.ac/contest/1187/problem/6138",
+            "provider_problem_id": "6138"
+          },
+          "cf_problem": {
+            "ordinal": "M",
+            "title": "Function and Function",
+            "providerProblemId": "104270:M",
+            "url": "https://codeforces.com/gym/104270/problem/M"
+          }
+        }
+      ]
+    }
+  ],
+  "privacy": "Only public problem metadata, exact links and input hashes retained. Raw HTML, scripts, account fields and session tokens are not included.",
+  "limitations": [
+    "No proof that a historical member status can be moved or removed; no user-state migration is performed.",
+    "Original PDFs are hosted by Codeforces and linked by the corresponding Gym; printed original numbering is checked independently of dashboard ordering."
+  ]
+}

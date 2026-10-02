@@ -1,14 +1,14 @@
 {
   "name": "xcpc-tracker",
   "private": true,
-  "version": "0.8.3",
+  "version": "0.8.4",
   "type": "module",
   "scripts": {
     "catalog:build-final": "node scripts/build-final-json.mjs",
     "catalog:fetch-cf-problems": "node scripts/fetch-codeforces-problems.mjs",
     "catalog:generate-default": "node scripts/generate-default-catalog.mjs",
     "catalog:generate-web-assets": "node scripts/generate-web-catalog-assets.mjs",
-    "catalog:check-reviewed-cf-problems": "node scripts/import-codeforces-problems-export.mjs fixtures/imports/codeforces/2026-xcpc-problem-lists.json --check && node scripts/import-codeforces-problems-export.mjs fixtures/imports/codeforces/2026-10-01-problem-lists.json --check",
+    "catalog:check-reviewed-cf-problems": "node scripts/import-codeforces-problems-export.mjs fixtures/imports/codeforces/2026-xcpc-problem-lists.json --check && node scripts/import-codeforces-problems-export.mjs fixtures/imports/codeforces/2026-10-01-problem-lists.json --check && node scripts/import-codeforces-problems-export.mjs fixtures/imports/codeforces/2026-10-02-reviewed-problem-lists.json --check && node scripts/import-codeforces-problems-export.mjs fixtures/imports/codeforces/2026-10-02-historical-problem-lists.json --check",
     "catalog:check-reviewed-qoj-problems": "node scripts/import-qoj-problems-export.mjs fixtures/imports/qoj/2026-xcpc-problem-lists.json --check && node scripts/import-qoj-problems-export.mjs fixtures/imports/qoj/2026-online-ii-problem-list.json --check && node scripts/import-qoj-problems-export.mjs fixtures/imports/qoj/2026-10-01-reviewed-problem-lists.json --check",
     "catalog:check-qoj-problems": "node scripts/import-qoj-problems-export.mjs data/qoj-problems-a.json --check && node scripts/import-qoj-problems-export.mjs data/qoj-problems-b.json --check && npm run catalog:check-reviewed-qoj-problems",
     "catalog:import-cf-problems": "node scripts/import-codeforces-problems-export.mjs",
@@ -36,7 +36,8 @@
     "sync:validate-auto": "node scripts/validate-auto-sync.mjs",
     "qoj:validate-contest-tools": "node scripts/validate-qoj-contest-tools.mjs",
     "coverage:validate": "node scripts/validate-coverage.mjs",
-    "deploy:build": "npm run catalog:validate && npm run qoj:validate-member-script && npm run vp:validate && npm run catalog:generate-web-assets && npm run build --prefix web"
+    "deploy:build": "npm run catalog:validate && npm run qoj:validate-member-script && npm run vp:validate && npm run catalog:generate-web-assets && npm run catalog:validate-generated-mappings && npm run build --prefix web",
+    "catalog:validate-generated-mappings": "node scripts/validate-codeforces-catalog-repairs.mjs --generated"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

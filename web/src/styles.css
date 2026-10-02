@@ -119,6 +119,19 @@ h1 {
   line-height: 0.98;
 }
 
+.shell__brand {
+  display: flex;
+  align-items: center;
+  gap: clamp(10px, 1.5vw, 16px);
+}
+
+.shell__brand-icon {
+  display: block;
+  flex: none;
+  width: clamp(40px, 5vw, 64px);
+  height: auto;
+}
+
 .hero-copy {
   max-width: 42rem;
   margin: 12px 0 0;

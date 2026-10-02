@@ -1,0 +1,364 @@
+{
+  "schema_version": 1,
+  "export_kind": "codeforces_contest_metadata_draft",
+  "exported_at": "2026-10-02T01:40:59Z",
+  "authentication": "Locally prompted, per-run API signing; no credentials exported",
+  "scope": [
+    {
+      "id": 103117,
+      "url": "https://codeforces.com/gym/103117",
+      "reason": "Current catalog maps only 11 of 13 curated tasks to this Gym; inspect I/J and C/J title alignment rather than assume same ordinal means same problem"
+    },
+    {
+      "id": 615540,
+      "url": "https://codeforces.com/gym/615540",
+      "reason": "Existing candidate absent from the public Gym index; complete problem IDs/list and contest identity are still unverified"
+    },
+    {
+      "id": 695551,
+      "url": "https://codeforces.com/gym/695551",
+      "reason": "Candidate linked by a problem article; absent from public Gym index; candidate identity and complete problem list remain unverified"
+    }
+  ],
+  "contests": [
+    {
+      "title": "The 2021 Sichuan Provincial Collegiate Programming Contest",
+      "url": "https://codeforces.com/gym/103117",
+      "provider_contest_id": "103117",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "Chuanpai",
+          "url": "https://codeforces.com/gym/103117/problem/A",
+          "provider_problem_id": "103117:A",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "B",
+          "title": "Hotpot",
+          "url": "https://codeforces.com/gym/103117/problem/B",
+          "provider_problem_id": "103117:B",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "C",
+          "title": "Ants",
+          "url": "https://codeforces.com/gym/103117/problem/C",
+          "provider_problem_id": "103117:C",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "D",
+          "title": "Rock Paper Scissors",
+          "url": "https://codeforces.com/gym/103117/problem/D",
+          "provider_problem_id": "103117:D",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "E",
+          "title": "Don't Really Like How The Story Ends",
+          "url": "https://codeforces.com/gym/103117/problem/E",
+          "provider_problem_id": "103117:E",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "F",
+          "title": "Direction Setting",
+          "url": "https://codeforces.com/gym/103117/problem/F",
+          "provider_problem_id": "103117:F",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "G",
+          "title": "Hourly Coding Problem",
+          "url": "https://codeforces.com/gym/103117/problem/G",
+          "provider_problem_id": "103117:G",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "H",
+          "title": "Nihongo wa Muzukashii Desu",
+          "url": "https://codeforces.com/gym/103117/problem/H",
+          "provider_problem_id": "103117:H",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "I",
+          "title": "Monster Hunter",
+          "url": "https://codeforces.com/gym/103117/problem/I",
+          "provider_problem_id": "103117:I",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "K",
+          "title": "K-skip Permutation",
+          "url": "https://codeforces.com/gym/103117/problem/K",
+          "provider_problem_id": "103117:K",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "L",
+          "title": "Spicy Restaurant",
+          "url": "https://codeforces.com/gym/103117/problem/L",
+          "provider_problem_id": "103117:L",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "M",
+          "title": "True Story",
+          "url": "https://codeforces.com/gym/103117/problem/M",
+          "provider_problem_id": "103117:M",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        }
+      ],
+      "api_contest": {
+        "id": 103117,
+        "name": "The 2021 Sichuan Provincial Collegiate Programming Contest",
+        "phase": "FINISHED",
+        "type": "ICPC",
+        "kind": "School/University/City/Region Championship",
+        "country": "China",
+        "city": "Chengdu",
+        "season": "2020-2021",
+        "durationSeconds": 18000,
+        "frozen": false
+      },
+      "provenance": {
+        "provider": "codeforces",
+        "method": "contest.standings",
+        "unsigned_parameters": {
+          "contestId": 103117,
+          "from": 1,
+          "count": 1
+        },
+        "fetched_at": "2026-10-02T01:41:00Z",
+        "metadata_sha256": "4ad74bd8eea589bdae35d83b7cb0293cd798fbf961b6d4e9b76715adac506f05",
+        "hash_scope": "Only retained contest/problem metadata; raw response and rows are not saved"
+      },
+      "review": {
+        "required": true,
+        "target_reason": "Current catalog maps only 11 of 13 curated tasks to this Gym; inspect I/J and C/J title alignment rather than assume same ordinal means same problem",
+        "expected_problem_count_reference": 13,
+        "problem_count_differs_from_reference": true,
+        "completeness": "All entries of API result.problems retained. Documentation describes count as the number of standings rows, so problem-array independence is inferred; hidden/original-event completeness still needs review.",
+        "public_redistribution": "Authentication does not prove that this contest is public; review candidate visibility and source rights before publishing."
+      }
+    },
+    {
+      "title": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+      "url": "https://codeforces.com/gym/615540",
+      "provider_contest_id": "615540",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "青岩密室",
+          "url": "https://codeforces.com/gym/615540/problem/A",
+          "provider_problem_id": "615540:A",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "B",
+          "title": "黔灵猕猴",
+          "url": "https://codeforces.com/gym/615540/problem/B",
+          "provider_problem_id": "615540:B",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "C",
+          "title": "数据存储",
+          "url": "https://codeforces.com/gym/615540/problem/C",
+          "provider_problem_id": "615540:C",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "D",
+          "title": "苗岭通途",
+          "url": "https://codeforces.com/gym/615540/problem/D",
+          "provider_problem_id": "615540:D",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "E",
+          "title": "梯田漫步",
+          "url": "https://codeforces.com/gym/615540/problem/E",
+          "provider_problem_id": "615540:E",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "F",
+          "title": "彝族银饰",
+          "url": "https://codeforces.com/gym/615540/problem/F",
+          "provider_problem_id": "615540:F",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "G",
+          "title": "青云美食",
+          "url": "https://codeforces.com/gym/615540/problem/G",
+          "provider_problem_id": "615540:G",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "H",
+          "title": "FAST信号树",
+          "url": "https://codeforces.com/gym/615540/problem/H",
+          "provider_problem_id": "615540:H",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "I",
+          "title": "红色旅游",
+          "url": "https://codeforces.com/gym/615540/problem/I",
+          "provider_problem_id": "615540:I",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "J",
+          "title": "夜郎弈棋",
+          "url": "https://codeforces.com/gym/615540/problem/J",
+          "provider_problem_id": "615540:J",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "K",
+          "title": "瀑布密码",
+          "url": "https://codeforces.com/gym/615540/problem/K",
+          "provider_problem_id": "615540:K",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "L",
+          "title": "民族大联欢",
+          "url": "https://codeforces.com/gym/615540/problem/L",
+          "provider_problem_id": "615540:L",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        },
+        {
+          "ordinal": "M",
+          "title": "苗寨快递",
+          "url": "https://codeforces.com/gym/615540/problem/M",
+          "provider_problem_id": "615540:M",
+          "codeforces_metadata": {
+            "type": "PROGRAMMING",
+            "tags": []
+          }
+        }
+      ],
+      "api_contest": {
+        "id": 615540,
+        "name": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+        "phase": "FINISHED",
+        "type": "ICPC",
+        "durationSeconds": 18000,
+        "frozen": false
+      },
+      "provenance": {
+        "provider": "codeforces",
+        "method": "contest.standings",
+        "unsigned_parameters": {
+          "contestId": 615540,
+          "from": 1,
+          "count": 1
+        },
+        "fetched_at": "2026-10-02T01:41:03Z",
+        "metadata_sha256": "265de05b54d0b744ca71459957bf539544cad618197ce811286c27c3f94aca38",
+        "hash_scope": "Only retained contest/problem metadata; raw response and rows are not saved"
+      },
+      "review": {
+        "required": true,
+        "target_reason": "Existing candidate absent from the public Gym index; complete problem IDs/list and contest identity are still unverified",
+        "expected_problem_count_reference": 13,
+        "problem_count_differs_from_reference": false,
+        "completeness": "All entries of API result.problems retained. Documentation describes count as the number of standings rows, so problem-array independence is inferred; hidden/original-event completeness still needs review.",
+        "public_redistribution": "Authentication does not prove that this contest is public; review candidate visibility and source rights before publishing."
+      }
+    }
+  ],
+  "failures": [
+    {
+      "id": 695551,
+      "code": "target_unavailable",
+      "stopped_batch": false
+    }
+  ],
+  "unattempted": [],
+  "summary": {
+    "requested": 3,
+    "succeeded": 2,
+    "failed": 1,
+    "unattempted": 0,
+    "problems": 25
+  }
+}

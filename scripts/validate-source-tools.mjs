@@ -305,3 +305,6 @@ for(const c of published.contests)for(const field of ['awardCutoffs','estimatedA
 }
 console.log('Official ratio rounding and all retained estimate eligibility verified.');
 await import('./validate-catalog-completion.mjs');
+await import('./validate-cf-metadata-refresh.mjs');
+await import('./validate-codeforces-catalog-repairs.mjs');
+await import('./validate-codeforces-import-safety.mjs');

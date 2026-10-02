@@ -26,6 +26,7 @@
 
 - Every published contest must have curated problems; reject empty lists and `contest_stub`. Keep uncurated candidates under `docs/`, outside public assets. Align bundled catalog and app versions when changing a catalog release.
 - Use stable internal contest/problem IDs. Keep provider IDs, upstream titles and provenance in `sources`; source objects use `provider`, `kind`, `url` and relevant optional mappings. Preserve the curator's primary title; aggregate upstream titles into `aliases` instead of overwriting it.
+- A provider's problem letter is not an original problem identity. Require a unique reviewed title/provider mapping and complete source list before importing; reject conflicting owners, unknown title changes and incomplete lists atomically. An unrelated primary title must never become an alias through ordinal fallback. Legitimate cross-contest mirrors require explicit reviewed targets.
 - Preserve existing persisted field names; the shipped snapshot uses camelCase entity fields and snake_case source mappings/preferences. Use the applicable schema/type, not a mechanical naming conversion. New fields should not duplicate tag semantics without a concrete need; TypeScript uses camelCase/PascalCase.
 - Manual contests may have no contest sources; use `manual` primarily for hand-entered problem sources/status provenance.
 - Default standings source: explicit `sources[*].is_default`, then verified RankLand, then existing standings. Keep fallback sources and do not relabel old award values as a new source.

@@ -1,0 +1,248 @@
+[
+  {
+    "title": "2016-2017 ACM-ICPC CHINA-Final",
+    "url": "https://codeforces.com/gym/101194",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Mr. Panda and Strips",
+        "url": "https://codeforces.com/gym/101194/problem/A",
+        "provider_problem_id": "101194:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Hemi Palindrome",
+        "url": "https://codeforces.com/gym/101194/problem/B",
+        "provider_problem_id": "101194:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "World Cup",
+        "url": "https://codeforces.com/gym/101194/problem/C",
+        "provider_problem_id": "101194:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Great Cells",
+        "url": "https://codeforces.com/gym/101194/problem/D",
+        "provider_problem_id": "101194:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Bet",
+        "url": "https://codeforces.com/gym/101194/problem/E",
+        "provider_problem_id": "101194:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Mr. Panda and Fantastic Beasts",
+        "url": "https://codeforces.com/gym/101194/problem/F",
+        "provider_problem_id": "101194:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Pandaria",
+        "url": "https://codeforces.com/gym/101194/problem/G",
+        "provider_problem_id": "101194:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Ice Cream Tower",
+        "url": "https://codeforces.com/gym/101194/problem/H",
+        "provider_problem_id": "101194:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Cherry Pick",
+        "url": "https://codeforces.com/gym/101194/problem/I",
+        "provider_problem_id": "101194:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Mr.Panda and TubeMaster",
+        "url": "https://codeforces.com/gym/101194/problem/J",
+        "provider_problem_id": "101194:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Justice Rains From Above",
+        "url": "https://codeforces.com/gym/101194/problem/K",
+        "provider_problem_id": "101194:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Number Theory Problem",
+        "url": "https://codeforces.com/gym/101194/problem/L",
+        "provider_problem_id": "101194:L"
+      }
+    ]
+  },
+  {
+    "title": "2017-2018 ACM-ICPC Asia East Continent League Final (ECL-Final 2017)",
+    "url": "https://codeforces.com/gym/101775",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "World Cup",
+        "url": "https://codeforces.com/gym/101775/problem/A",
+        "provider_problem_id": "101775:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Scapegoat",
+        "url": "https://codeforces.com/gym/101775/problem/B",
+        "provider_problem_id": "101775:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Traffic Light",
+        "url": "https://codeforces.com/gym/101775/problem/C",
+        "provider_problem_id": "101775:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Mr. Panda and Geometric Sequence",
+        "url": "https://codeforces.com/gym/101775/problem/D",
+        "provider_problem_id": "101775:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Snakebird",
+        "url": "https://codeforces.com/gym/101775/problem/E",
+        "provider_problem_id": "101775:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Good Number",
+        "url": "https://codeforces.com/gym/101775/problem/F",
+        "provider_problem_id": "101775:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Image Recognition",
+        "url": "https://codeforces.com/gym/101775/problem/G",
+        "provider_problem_id": "101775:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Mr. Panda and Birthday Song",
+        "url": "https://codeforces.com/gym/101775/problem/H",
+        "provider_problem_id": "101775:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "PLAYERUNKNOWN'S BATTLEGROUNDS",
+        "url": "https://codeforces.com/gym/101775/problem/I",
+        "provider_problem_id": "101775:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Straight Master",
+        "url": "https://codeforces.com/gym/101775/problem/J",
+        "provider_problem_id": "101775:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Downgrade",
+        "url": "https://codeforces.com/gym/101775/problem/K",
+        "provider_problem_id": "101775:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "SOS",
+        "url": "https://codeforces.com/gym/101775/problem/L",
+        "provider_problem_id": "101775:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "Chat Group",
+        "url": "https://codeforces.com/gym/101775/problem/M",
+        "provider_problem_id": "101775:M"
+      }
+    ]
+  },
+  {
+    "title": "The 2018 ICPC Asia Qingdao Regional Programming Contest (The 1st Universal Cup, Stage 9: Qingdao)",
+    "url": "https://codeforces.com/gym/104270",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Sequence and Sequence",
+        "url": "https://codeforces.com/gym/104270/problem/A",
+        "provider_problem_id": "104270:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Kawa Exam",
+        "url": "https://codeforces.com/gym/104270/problem/B",
+        "provider_problem_id": "104270:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Flippy Sequence",
+        "url": "https://codeforces.com/gym/104270/problem/C",
+        "provider_problem_id": "104270:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Magic Multiplication",
+        "url": "https://codeforces.com/gym/104270/problem/D",
+        "provider_problem_id": "104270:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Plants vs. Zombies",
+        "url": "https://codeforces.com/gym/104270/problem/E",
+        "provider_problem_id": "104270:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Tournament",
+        "url": "https://codeforces.com/gym/104270/problem/F",
+        "provider_problem_id": "104270:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Repair the Artwork",
+        "url": "https://codeforces.com/gym/104270/problem/G",
+        "provider_problem_id": "104270:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Mirror",
+        "url": "https://codeforces.com/gym/104270/problem/H",
+        "provider_problem_id": "104270:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Soldier Game",
+        "url": "https://codeforces.com/gym/104270/problem/I",
+        "provider_problem_id": "104270:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Books",
+        "url": "https://codeforces.com/gym/104270/problem/J",
+        "provider_problem_id": "104270:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Airdrop",
+        "url": "https://codeforces.com/gym/104270/problem/K",
+        "provider_problem_id": "104270:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Sub-cycle Graph",
+        "url": "https://codeforces.com/gym/104270/problem/L",
+        "provider_problem_id": "104270:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "Function and Function",
+        "url": "https://codeforces.com/gym/104270/problem/M",
+        "provider_problem_id": "104270:M"
+      }
+    ]
+  }
+]

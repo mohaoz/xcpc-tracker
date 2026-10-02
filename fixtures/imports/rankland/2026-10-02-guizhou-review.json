@@ -1,0 +1,1876 @@
+{
+  "checked_at": "2026-10-02T02:00:39.867034+00:00",
+  "status": "verified_identity_and_full_problem_mapping",
+  "title": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+  "startAt": "2025-06-08T04:00:00.000Z",
+  "local_startAt": "2025-06-08T12:00:00+08:00",
+  "duration_seconds": 18000,
+  "rating_slug": "provincial__gz__gzcpc2025",
+  "rankland_page": "https://rl.algoux.cn/collection/official?rankId=gzcpc2025",
+  "rankland_provider_contest_id": "srk:official/provincial/gz/gzcpc2025.srk.json",
+  "public_rankland_identity_verified_by_existing_verifyPage": true,
+  "problem_count": 13,
+  "exact_title_ordinal_matches": 13,
+  "correspondence": [
+    {
+      "ordinal": "A",
+      "cf_title": "青岩密室",
+      "srk_title": "青岩密室",
+      "rating_title": "青岩密室",
+      "all_equal": true,
+      "provider_problem_id": "615540:A",
+      "problemRating": 1651.167658
+    },
+    {
+      "ordinal": "B",
+      "cf_title": "黔灵猕猴",
+      "srk_title": "黔灵猕猴",
+      "rating_title": "黔灵猕猴",
+      "all_equal": true,
+      "provider_problem_id": "615540:B",
+      "problemRating": 2084.660015
+    },
+    {
+      "ordinal": "C",
+      "cf_title": "数据存储",
+      "srk_title": "数据存储",
+      "rating_title": "数据存储",
+      "all_equal": true,
+      "provider_problem_id": "615540:C",
+      "problemRating": 1865.988292
+    },
+    {
+      "ordinal": "D",
+      "cf_title": "苗岭通途",
+      "srk_title": "苗岭通途",
+      "rating_title": "苗岭通途",
+      "all_equal": true,
+      "provider_problem_id": "615540:D",
+      "problemRating": 2414.640891
+    },
+    {
+      "ordinal": "E",
+      "cf_title": "梯田漫步",
+      "srk_title": "梯田漫步",
+      "rating_title": "梯田漫步",
+      "all_equal": true,
+      "provider_problem_id": "615540:E",
+      "problemRating": 2616.071921
+    },
+    {
+      "ordinal": "F",
+      "cf_title": "彝族银饰",
+      "srk_title": "彝族银饰",
+      "rating_title": "彝族银饰",
+      "all_equal": true,
+      "provider_problem_id": "615540:F",
+      "problemRating": 2193.597222
+    },
+    {
+      "ordinal": "G",
+      "cf_title": "青云美食",
+      "srk_title": "青云美食",
+      "rating_title": "青云美食",
+      "all_equal": true,
+      "provider_problem_id": "615540:G",
+      "problemRating": 1466.364641
+    },
+    {
+      "ordinal": "H",
+      "cf_title": "FAST信号树",
+      "srk_title": "FAST信号树",
+      "rating_title": "FAST信号树",
+      "all_equal": true,
+      "provider_problem_id": "615540:H",
+      "problemRating": 2084.660015
+    },
+    {
+      "ordinal": "I",
+      "cf_title": "红色旅游",
+      "srk_title": "红色旅游",
+      "rating_title": "红色旅游",
+      "all_equal": true,
+      "provider_problem_id": "615540:I",
+      "problemRating": 1892.163241
+    },
+    {
+      "ordinal": "J",
+      "cf_title": "夜郎弈棋",
+      "srk_title": "夜郎弈棋",
+      "rating_title": "夜郎弈棋",
+      "all_equal": true,
+      "provider_problem_id": "615540:J",
+      "problemRating": 1575.530383
+    },
+    {
+      "ordinal": "K",
+      "cf_title": "瀑布密码",
+      "srk_title": "瀑布密码",
+      "rating_title": "瀑布密码",
+      "all_equal": true,
+      "provider_problem_id": "615540:K",
+      "problemRating": 1674.647829
+    },
+    {
+      "ordinal": "L",
+      "cf_title": "民族大联欢",
+      "srk_title": "民族大联欢",
+      "rating_title": "民族大联欢",
+      "all_equal": true,
+      "provider_problem_id": "615540:L",
+      "problemRating": 2414.640891
+    },
+    {
+      "ordinal": "M",
+      "cf_title": "苗寨快递",
+      "srk_title": "苗寨快递",
+      "rating_title": "苗寨快递",
+      "all_equal": true,
+      "provider_problem_id": "615540:M",
+      "problemRating": 1291.430024
+    }
+  ],
+  "awards": {
+    "raw_total_teams": 116,
+    "raw_user_official_absent": 99,
+    "raw_user_official_false": 17,
+    "version": "0.3.12",
+    "normalization": "Only absent user.official -> true on a clone, per upstream v0.3.12 documented default. Null or nonboolean flags are not authorized by this rule. Preserve raw bytes/hash.",
+    "raw_calculateAwards_status": "blocked: missing eligibility boolean",
+    "normalized_calculation": {
+      "status": "proposed",
+      "eligible_team_count": 99,
+      "cutoffs": {
+        "gold": {
+          "rank": 9,
+          "teamId": "team49",
+          "solved": 7,
+          "penalty": 696
+        },
+        "silver": {
+          "rank": 26,
+          "teamId": "team20",
+          "solved": 5,
+          "penalty": 493
+        },
+        "bronze": {
+          "rank": 52,
+          "teamId": "team53",
+          "solved": 3,
+          "penalty": 505
+        }
+      },
+      "evidence": {
+        "group": "user.official === true",
+        "series_index": 0,
+        "medal_counts": [
+          9,
+          17,
+          26
+        ],
+        "penalty_unit": "minutes",
+        "source_penalty_units": [
+          "min"
+        ],
+        "ties": "No tied medal boundary",
+        "final": "Contest ended; complete statuses and consistent scores; no pending results; frozenDuration is schedule metadata"
+      }
+    },
+    "boundary_neighbors": {
+      "gold": [
+        {
+          "rank": 8,
+          "team_id": "team51",
+          "solved": 8,
+          "penalty": 1333
+        },
+        {
+          "rank": 9,
+          "team_id": "team49",
+          "solved": 7,
+          "penalty": 696
+        },
+        {
+          "rank": 10,
+          "team_id": "team23",
+          "solved": 7,
+          "penalty": 741
+        }
+      ],
+      "silver": [
+        {
+          "rank": 25,
+          "team_id": "team25",
+          "solved": 5,
+          "penalty": 490
+        },
+        {
+          "rank": 26,
+          "team_id": "team20",
+          "solved": 5,
+          "penalty": 493
+        },
+        {
+          "rank": 27,
+          "team_id": "team42",
+          "solved": 5,
+          "penalty": 567
+        }
+      ],
+      "bronze": [
+        {
+          "rank": 51,
+          "team_id": "team16",
+          "solved": 3,
+          "penalty": 504
+        },
+        {
+          "rank": 52,
+          "team_id": "team53",
+          "solved": 3,
+          "penalty": 505
+        },
+        {
+          "rank": 53,
+          "team_id": "team59",
+          "solved": 3,
+          "penalty": 506
+        }
+      ]
+    },
+    "independent_penalty_check": {
+      "rows_verified": 116,
+      "problem_cells": 1508,
+      "rule": "Sum accepted/first-blood solve minutes + 20*(tries-1), per source sorter.config.penalty [20,min]",
+      "score_or_penalty_conflicts": [
+        {
+          "team_id": "team19",
+          "computed": 939,
+          "stored": 943
+        },
+        {
+          "team_id": "team44",
+          "computed": 1428,
+          "stored": 1432
+        },
+        {
+          "team_id": "team101",
+          "computed": 1040,
+          "stored": 1044
+        },
+        {
+          "team_id": "team18",
+          "computed": 1151,
+          "stored": 1154
+        },
+        {
+          "team_id": "team47",
+          "computed": 775,
+          "stored": 778
+        },
+        {
+          "team_id": "team113",
+          "computed": 1270,
+          "stored": 1275
+        },
+        {
+          "team_id": "team10",
+          "computed": 769,
+          "stored": 772
+        },
+        {
+          "team_id": "team114",
+          "computed": 890,
+          "stored": 892
+        },
+        {
+          "team_id": "team35",
+          "computed": 1126,
+          "stored": 1130
+        },
+        {
+          "team_id": "team50",
+          "computed": 1247,
+          "stored": 1252
+        },
+        {
+          "team_id": "team51",
+          "computed": 1331,
+          "stored": 1333
+        },
+        {
+          "team_id": "team49",
+          "computed": 692,
+          "stored": 696
+        },
+        {
+          "team_id": "team23",
+          "computed": 739,
+          "stored": 741
+        },
+        {
+          "team_id": "team61",
+          "computed": 807,
+          "stored": 811
+        },
+        {
+          "team_id": "team36",
+          "computed": 900,
+          "stored": 903
+        },
+        {
+          "team_id": "team5",
+          "computed": 921,
+          "stored": 923
+        },
+        {
+          "team_id": "team80",
+          "computed": 1105,
+          "stored": 1108
+        },
+        {
+          "team_id": "team11",
+          "computed": 1184,
+          "stored": 1187
+        },
+        {
+          "team_id": "team52",
+          "computed": 425,
+          "stored": 428
+        },
+        {
+          "team_id": "team100",
+          "computed": 514,
+          "stored": 516
+        },
+        {
+          "team_id": "team45",
+          "computed": 776,
+          "stored": 778
+        },
+        {
+          "team_id": "team65",
+          "computed": 839,
+          "stored": 842
+        },
+        {
+          "team_id": "team115",
+          "computed": 959,
+          "stored": 962
+        },
+        {
+          "team_id": "team69",
+          "computed": 1028,
+          "stored": 1032
+        },
+        {
+          "team_id": "team14",
+          "computed": 1073,
+          "stored": 1076
+        },
+        {
+          "team_id": "team21",
+          "computed": 1141,
+          "stored": 1144
+        },
+        {
+          "team_id": "team63",
+          "computed": 326,
+          "stored": 328
+        },
+        {
+          "team_id": "team15",
+          "computed": 335,
+          "stored": 336
+        },
+        {
+          "team_id": "team48",
+          "computed": 431,
+          "stored": 432
+        },
+        {
+          "team_id": "team25",
+          "computed": 487,
+          "stored": 490
+        },
+        {
+          "team_id": "team20",
+          "computed": 490,
+          "stored": 493
+        },
+        {
+          "team_id": "team42",
+          "computed": 565,
+          "stored": 567
+        },
+        {
+          "team_id": "team57",
+          "computed": 572,
+          "stored": 573
+        },
+        {
+          "team_id": "team28",
+          "computed": 586,
+          "stored": 588
+        },
+        {
+          "team_id": "team55",
+          "computed": 592,
+          "stored": 594
+        },
+        {
+          "team_id": "team4",
+          "computed": 647,
+          "stored": 649
+        },
+        {
+          "team_id": "team31",
+          "computed": 761,
+          "stored": 763
+        },
+        {
+          "team_id": "team29",
+          "computed": 765,
+          "stored": 767
+        },
+        {
+          "team_id": "team41",
+          "computed": 767,
+          "stored": 769
+        },
+        {
+          "team_id": "team56",
+          "computed": 826,
+          "stored": 828
+        },
+        {
+          "team_id": "team30",
+          "computed": 912,
+          "stored": 914
+        },
+        {
+          "team_id": "team112",
+          "computed": 1313,
+          "stored": 1315
+        },
+        {
+          "team_id": "team60",
+          "computed": 226,
+          "stored": 227
+        },
+        {
+          "team_id": "team6",
+          "computed": 242,
+          "stored": 243
+        },
+        {
+          "team_id": "team39",
+          "computed": 334,
+          "stored": 337
+        },
+        {
+          "team_id": "team24",
+          "computed": 466,
+          "stored": 467
+        },
+        {
+          "team_id": "team12",
+          "computed": 491,
+          "stored": 492
+        },
+        {
+          "team_id": "team38",
+          "computed": 502,
+          "stored": 503
+        },
+        {
+          "team_id": "team13",
+          "computed": 526,
+          "stored": 527
+        },
+        {
+          "team_id": "team22",
+          "computed": 527,
+          "stored": 528
+        },
+        {
+          "team_id": "team111",
+          "computed": 574,
+          "stored": 576
+        },
+        {
+          "team_id": "team46",
+          "computed": 609,
+          "stored": 611
+        },
+        {
+          "team_id": "team103",
+          "computed": 661,
+          "stored": 662
+        },
+        {
+          "team_id": "team43",
+          "computed": 150,
+          "stored": 151
+        },
+        {
+          "team_id": "team58",
+          "computed": 259,
+          "stored": 260
+        },
+        {
+          "team_id": "team104",
+          "computed": 292,
+          "stored": 294
+        },
+        {
+          "team_id": "team62",
+          "computed": 470,
+          "stored": 471
+        },
+        {
+          "team_id": "team33",
+          "computed": 477,
+          "stored": 479
+        },
+        {
+          "team_id": "team53",
+          "computed": 504,
+          "stored": 505
+        },
+        {
+          "team_id": "team59",
+          "computed": 504,
+          "stored": 506
+        },
+        {
+          "team_id": "team54",
+          "computed": 581,
+          "stored": 582
+        },
+        {
+          "team_id": "team79",
+          "computed": 100,
+          "stored": 101
+        },
+        {
+          "team_id": "team26",
+          "computed": 114,
+          "stored": 115
+        },
+        {
+          "team_id": "team74",
+          "computed": 199,
+          "stored": 200
+        },
+        {
+          "team_id": "team110",
+          "computed": 203,
+          "stored": 204
+        },
+        {
+          "team_id": "team93",
+          "computed": 337,
+          "stored": 338
+        },
+        {
+          "team_id": "team76",
+          "computed": 600,
+          "stored": 601
+        }
+      ],
+      "status_counts": {
+        "FB": 14,
+        "AC": 389,
+        "RJ": 255,
+        "None": 850
+      },
+      "conflict_count": 67,
+      "solved_total_conflict_count": 0,
+      "observed_total_minus_sum_distribution": {
+        "1": 22,
+        "2": 22,
+        "3": 14,
+        "4": 7,
+        "5": 2
+      },
+      "interpretation": "The supplied RankScore.time is the total under the upstream schema, separate from per-problem display timestamps. Existing calculateAwards sorts the supplied total. Cause of 1-5 minute differences cannot be independently established without original finer-resolution data; do not overwrite stored totals or claim full independent penalty reconstruction."
+    }
+  },
+  "conflicts_and_limits": [
+    "No title, ordinal, count, date or duration conflict found among matching evidence",
+    "Codeforces API export omits original start time; source it from verified original-event RankLand/SRK",
+    "CF615540 is absent from cached public Gym index; authorized API metadata proves identity and complete problem list but does not prove anonymous practice access or gym_public visibility",
+    "Rating eligibleTeams=116 equals total rows and includes 17 unofficial rows; do not copy to award eligibleTeamCount; official medal denominator is 99",
+    "Existing strict calculateAwards needs explicit, documented v0.3.12-default normalization before awards pass; do not silently mutate raw source",
+    "No QOJ mapping or problem statements/test content proposed",
+    "67/116 supplied total penalties exceed sums from displayed problem times by 1-5 min; all solved totals match. Stored totals are explicit RankScore.time per upstream schema lines528-534, and current calculator uses them. Independent raw-run score reconstruction is unavailable; preserve discrepancy and supplied totals, especially bronze where displayed times collapse the boundary into a tie."
+  ],
+  "safe_proposal": {
+    "add_contest": true,
+    "add_problems": 13,
+    "add_original_start_and_standings": true,
+    "add_rating_values": 13,
+    "add_tags": 0,
+    "add_explicit_awards_after_audited_normalization": true,
+    "source_variant": "Use neutral/authorized-export provenance; do not assert gym_public while public visibility unverified"
+  },
+  "remaining_checklist": {
+    "current_reference_rows": 49,
+    "existing_before_addition": 39,
+    "missing_before_addition": 10,
+    "missing_after_615540_addition": 9,
+    "other_verified_missing_cf_targets": [],
+    "excluded_cf_targets": {
+      "106714": "Unreliable AI-generated tests/checkers; intentional exclusion",
+      "695551": "Weak, unverified contest identity; no authorized full list in this input"
+    },
+    "prior_verified_additions_now_present": [
+      "106689",
+      "106697",
+      "106707",
+      "102482"
+    ],
+    "currently_missing_rows": [
+      "26-17",
+      "26-21",
+      "26-22",
+      "26-23",
+      "25-06",
+      "25-09",
+      "25-10",
+      "25-12",
+      "25-21",
+      "25-23"
+    ]
+  },
+  "sources": [
+    {
+      "url": "https://hei-maom.github.io/xcpcrating/data/problems-index.json",
+      "sha256": "9c0e410348bb507b89208c8f691c7267e9e6537d8f417e8da4dbbb67d38d1f89",
+      "bytes": 2413523
+    },
+    {
+      "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/config.yaml",
+      "sha256": "8ebad1f3a3b7ed6cf445de0a8a25de28e11b52754071ab276d50ba4ad645409b",
+      "bytes": 48192
+    },
+    {
+      "url": "https://rl.algoux.cn/api/v2/public/collections/official",
+      "sha256": "f1b368ae81dd9be7c67d4db76101a378938c54df3fc3ddd8a019f95545430fdb",
+      "bytes": 33840
+    },
+    {
+      "url": "https://raw.githubusercontent.com/algoux/srk-collection/d00d843b0ec095c69f172407e7c1ff5d4e305adb/official/provincial/gz/gzcpc2025.srk.json",
+      "sha256": "ec06c630482e4a9613a586a4e2f454a20dd51bfa7058f4947e349081e79ba575",
+      "bytes": 191997
+    },
+    {
+      "url": "https://rl.algoux.cn/api/v2/public/contests/gzcpc2025",
+      "sha256": "8628d0b6434ffcaeeb14254e8105e361f751aecd0624b89328440d24369ad34b",
+      "bytes": 542
+    },
+    {
+      "url": "https://raw.githubusercontent.com/algoux/standard-ranklist/3b7013633937e0328d5e7528acf808684e6a9e29/index.d.ts",
+      "sha256": "f6283dd773cd628b7c61028b5d19123cd06204b797b268b39e74547aba09341a",
+      "bytes": 16361
+    },
+    {
+      "url": "https://codeforces.com/api/contest.list?gym=true",
+      "sha256": "d3a09d03279ad61baf0decb51c955d4c8cdcaede74a69a3836d3890ff0c505a9",
+      "bytes": 1032512
+    }
+  ],
+  "contest_id": "e5152638-df78-560b-9a61-9914acb2a12c",
+  "rating_fetched_at": "2026-10-02T02:02:59.688Z",
+  "srk_commit_sha": "d00d843b0ec095c69f172407e7c1ff5d4e305adb",
+  "teams": [
+    {
+      "team_id": "team19",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 11,
+      "penalty": 943,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team44",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 11,
+      "penalty": 1432,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team101",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 10,
+      "penalty": 1044,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team18",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 10,
+      "penalty": 1154,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team47",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 9,
+      "penalty": 778,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team113",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 9,
+      "penalty": 1275,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team10",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 8,
+      "penalty": 772,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team114",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 8,
+      "penalty": 892,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team35",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 8,
+      "penalty": 1130,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team50",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 8,
+      "penalty": 1252,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team51",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 8,
+      "penalty": 1333,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team49",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 7,
+      "penalty": 696,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team23",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 7,
+      "penalty": 741,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team61",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 7,
+      "penalty": 811,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team36",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 7,
+      "penalty": 903,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team5",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 7,
+      "penalty": 923,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team80",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 7,
+      "penalty": 1108,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team11",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 7,
+      "penalty": 1187,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team52",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 6,
+      "penalty": 428,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team100",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 6,
+      "penalty": 516,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team45",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 6,
+      "penalty": 778,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team65",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 6,
+      "penalty": 842,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team115",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 6,
+      "penalty": 962,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team69",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 6,
+      "penalty": 1032,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team14",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 6,
+      "penalty": 1076,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team21",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 6,
+      "penalty": 1144,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team63",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 328,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team15",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 336,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team48",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 432,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team25",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 490,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team20",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 493,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team42",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 567,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team57",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 573,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team28",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 588,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team55",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 594,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team4",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 649,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team31",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 763,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team29",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 767,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team41",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 769,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team56",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 828,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team30",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 5,
+      "penalty": 914,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team112",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 5,
+      "penalty": 1315,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team60",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 4,
+      "penalty": 227,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team6",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 4,
+      "penalty": 243,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team39",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 4,
+      "penalty": 337,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team24",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 4,
+      "penalty": 467,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team12",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 4,
+      "penalty": 492,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team38",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 4,
+      "penalty": 503,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team13",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 4,
+      "penalty": 527,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team22",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 4,
+      "penalty": 528,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team111",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 4,
+      "penalty": 576,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team46",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 4,
+      "penalty": 611,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team103",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 4,
+      "penalty": 662,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team43",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 151,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team58",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 260,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team104",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 3,
+      "penalty": 294,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team27",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 345,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team62",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 471,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team33",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 479,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team16",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 504,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team53",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 505,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team59",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 506,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team40",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 547,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team54",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 582,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team66",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 3,
+      "penalty": 748,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team79",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 101,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team37",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 109,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team26",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 115,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team9",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 128,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team17",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 151,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team106",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 2,
+      "penalty": 176,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team74",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 200,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team110",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 2,
+      "penalty": 204,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team1",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 217,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team8",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 286,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team93",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 338,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team3",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 501,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team81",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 560,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team76",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 2,
+      "penalty": 601,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team64",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 43,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team116",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 1,
+      "penalty": 101,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team7",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 118,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team68",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 119,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team73",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 124,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team75",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 138,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team78",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 138,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team89",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 144,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team2",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 165,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team91",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 170,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team109",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 1,
+      "penalty": 178,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team71",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 178,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team86",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 202,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team72",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 214,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team85",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 243,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team70",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 270,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team83",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 317,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team34",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 1,
+      "penalty": 341,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team107",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team92",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team105",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team67",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team108",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team88",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team82",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team32",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team97",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team94",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team84",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team90",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team77",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team98",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team87",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team99",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team96",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team95",
+      "official": null,
+      "official_field_absent": true,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    },
+    {
+      "team_id": "team102",
+      "official": false,
+      "official_field_absent": false,
+      "solved": 0,
+      "penalty": 0,
+      "penalty_unit": "min",
+      "problem_cells": 13,
+      "pending": 0
+    }
+  ],
+  "value": {
+    "source": "explicit",
+    "sourceProvider": "rankland",
+    "sourceLabel": "RankLand / algoUX · 官方奖项配置",
+    "sourceUrl": "https://rl.algoux.cn/collection/official?rankId=gzcpc2025",
+    "eligibleTeamCount": 99,
+    "cutoffs": {
+      "gold": {
+        "rank": 9,
+        "teamId": "team49",
+        "solved": 7,
+        "penalty": 696
+      },
+      "silver": {
+        "rank": 26,
+        "teamId": "team20",
+        "solved": 5,
+        "penalty": 493
+      },
+      "bronze": {
+        "rank": 52,
+        "teamId": "team53",
+        "solved": 3,
+        "penalty": 505
+      }
+    }
+  }
+}

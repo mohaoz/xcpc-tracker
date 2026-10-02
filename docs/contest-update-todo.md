@@ -119,7 +119,7 @@
   名称／榜单：[“绿盟杯”内蒙古自治区第十九届大学生程序设计竞赛](https://pintia.cn/rankings/2057393074358124544)。补题：[PTA 题集入口](https://pintia.cn/market/item/2061646727891632128)。先保留参考，查找 CF／QOJ 镜像或可人工核验的完整题单。
 
 - [ ] **26-23 贵州邀请赛**（2026-06-07；新增候选）
-  名称／榜单：[2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛](https://board.xcpcio.com/ccpc/12th/guizhou-invitational?group=official)。D23 为 Gym 邀请入口，待确认比赛 ID 与可访问题单。原表 E23 备注“题目质量较差且有错题”，作为未核实反馈保留，待核验具体题目及修正情况。
+  名称／榜单：[2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛](https://board.xcpcio.com/ccpc/12th/guizhou-invitational?group=official)。D23 为 Gym 邀请入口，待确认比赛 ID 与可访问题单。第三方文章指向的 695551 在 2026-10-02 用户 API 导出中返回 target_unavailable，仅保留未核实线索，不要求重复尝试。原表 E23 备注“题目质量较差且有错题”，作为未核实反馈保留，待核验具体题目及修正情况。
 
 - [x] **26-24 重庆市赛**（2026-06-14；已补录）
   名称／榜单：[重庆市第十四届大学生程序设计大赛](https://pintia.cn/rankings/2064240000901931008)。补题：[Gym 106589](https://codeforces.com/gym/106589)。2026-09-08 已补录 A–M 共 13 题及 PTA 榜单，内部 ID 为 `a218c192-1ca0-50e3-886c-95286d773f1d`；仅记录参考表提供的日期，没有推断开赛时刻。
@@ -186,8 +186,8 @@
 - [ ] **25-20 四川省赛**（2025-06-08；已收录待复核）
   名称／榜单：[2025 四川省大学生程序设计竞赛](https://board.xcpcio.com/provincial-contest%2F2025%2Fsichuan?group=official)。补题：[Gym 105949](https://codeforces.com/gym/105949)。catalog 已有 12 题及 QOJ 2152 来源；复核逐题映射。
 
-- [ ] **25-21 贵州省赛**（2025-06-08；新增候选）
-  官方名称：2025-2026 ICPC 国际大学生程序设计竞赛贵州省赛。原表没有榜单超链接；D21 为 Gym 邀请入口，待确认比赛 ID、举办日期与赛季归属，补齐题单及榜单来源。仓库旧候选数据另指向 [Gym 615540](https://codeforces.com/gym/615540)，2026-09-08 匿名访问跳转登录页，仍未取得可核验题单。
+- [x] **25-21 贵州省赛**（2025-06-08；新增候选）
+  2026-10-02 已审核用户授权导出的 [Gym 615540](https://codeforces.com/gym/615540) 完整 A–M 13 题，与 [RankLand 原赛](https://rl.algoux.cn/collection/official?rankId=gzcpc2025) 及 XCPC Rating 全部题名／题号一致。补录 2025-06-08 原赛、13 个 Rating 和明确奖项；CF 匿名可访问性仍未确认，不标记公开 Gym。见 [审核记录](cf-metadata-import-2026-10-02.md)。
 
 - [ ] **25-22 福建邀请赛暨省赛**（2025-06-21；已收录待复核）
   名称／榜单：[第十二届福建省大学生程序设计竞赛暨2025年CCPC福建邀请赛](https://pintia.cn/rankings/1934898936967766016)。补题：[Gym 105977](https://codeforces.com/gym/105977)。catalog 已有 13 题；复核题单与榜单，并补查 QOJ 来源。

@@ -59,6 +59,10 @@ npm run catalog:rankland -- apply tmp/sources/srk tmp/sources/rating-review.json
 
 ## CF / QOJ
 
+2026-10-02 的 CF 增补与历史来源纠正见 [审核说明](../docs/cf-metadata-import-2026-10-02.md)。四川原赛 13 题与当前 CF 12 题的差异保留精确审核例外；2016 China Final、2017 EC Final 的 CF 镜像字母与原题册不同，按已核实身份保留原题 ID。青岛现场赛不再挂入网赛的 11 条来源。
+
+CF 导入先验证整份题单、既有来源的全部归属和已审核题名，再一次性写入。仅字母相同不足以匹配；未知题名、重复归属、空／部分题单不会被静默接受或变成新别名。新镜像须明确完整目标，已有多个比赛共享相同来源时也不能依赖遍历顺序选中一个。`validate-codeforces-import-safety.mjs` 验证失败原子性和重复应用；`validate-codeforces-catalog-repairs.mjs` 校验原题册映射与模拟成员同步，`--generated` 校验生成详情和 lookup。
+
 `catalog:import-reviewed-cf-problems` 和 `catalog:import-reviewed-qoj-problems` 应用各自命令指定的审核题单；后者只导入原八场 QOJ 批次。网络赛 II 使用 `node scripts/import-qoj-problems-export.mjs fixtures/imports/qoj/2026-online-ii-problem-list.json`。`catalog:check-reviewed-qoj-problems` 同时校验两个批次；`catalog:check-*` 离线检查映射完整及重复导入无变更，不写入目录。导出含 `target_contest(s)` 时才允许添加已有完整题单的新比赛。
 
 新增 QOJ 题单：在用户自己的浏览器登录 QOJ，运行下述单场或批量导出脚本；批量导出需选择本次候选 URL 清单。审核返回 JSON 中的比赛身份、题号、标题、链接和版本后，补充明确目标，再调用 `scripts/import-qoj-problems-export.mjs <已审核 JSON>`。`catalog:refresh` 只验证与生成资产，不执行导入或联网抓取。

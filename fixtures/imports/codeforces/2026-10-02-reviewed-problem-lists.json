@@ -1,0 +1,189 @@
+[
+  {
+    "title": "The 2021 Sichuan Provincial Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/103117",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Chuanpai",
+        "url": "https://codeforces.com/gym/103117/problem/A",
+        "provider_problem_id": "103117:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Hotpot",
+        "url": "https://codeforces.com/gym/103117/problem/B",
+        "provider_problem_id": "103117:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Ants",
+        "url": "https://codeforces.com/gym/103117/problem/C",
+        "provider_problem_id": "103117:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Rock Paper Scissors",
+        "url": "https://codeforces.com/gym/103117/problem/D",
+        "provider_problem_id": "103117:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Don't Really Like How The Story Ends",
+        "url": "https://codeforces.com/gym/103117/problem/E",
+        "provider_problem_id": "103117:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Direction Setting",
+        "url": "https://codeforces.com/gym/103117/problem/F",
+        "provider_problem_id": "103117:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Hourly Coding Problem",
+        "url": "https://codeforces.com/gym/103117/problem/G",
+        "provider_problem_id": "103117:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Nihongo wa Muzukashii Desu",
+        "url": "https://codeforces.com/gym/103117/problem/H",
+        "provider_problem_id": "103117:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Monster Hunter",
+        "url": "https://codeforces.com/gym/103117/problem/I",
+        "provider_problem_id": "103117:I"
+      },
+      {
+        "ordinal": "K",
+        "title": "K-skip Permutation",
+        "url": "https://codeforces.com/gym/103117/problem/K",
+        "provider_problem_id": "103117:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "Spicy Restaurant",
+        "url": "https://codeforces.com/gym/103117/problem/L",
+        "provider_problem_id": "103117:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "True Story",
+        "url": "https://codeforces.com/gym/103117/problem/M",
+        "provider_problem_id": "103117:M"
+      }
+    ]
+  },
+  {
+    "title": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+    "url": "https://codeforces.com/gym/615540",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "青岩密室",
+        "url": "https://codeforces.com/gym/615540/problem/A",
+        "provider_problem_id": "615540:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "黔灵猕猴",
+        "url": "https://codeforces.com/gym/615540/problem/B",
+        "provider_problem_id": "615540:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "数据存储",
+        "url": "https://codeforces.com/gym/615540/problem/C",
+        "provider_problem_id": "615540:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "苗岭通途",
+        "url": "https://codeforces.com/gym/615540/problem/D",
+        "provider_problem_id": "615540:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "梯田漫步",
+        "url": "https://codeforces.com/gym/615540/problem/E",
+        "provider_problem_id": "615540:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "彝族银饰",
+        "url": "https://codeforces.com/gym/615540/problem/F",
+        "provider_problem_id": "615540:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "青云美食",
+        "url": "https://codeforces.com/gym/615540/problem/G",
+        "provider_problem_id": "615540:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "FAST信号树",
+        "url": "https://codeforces.com/gym/615540/problem/H",
+        "provider_problem_id": "615540:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "红色旅游",
+        "url": "https://codeforces.com/gym/615540/problem/I",
+        "provider_problem_id": "615540:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "夜郎弈棋",
+        "url": "https://codeforces.com/gym/615540/problem/J",
+        "provider_problem_id": "615540:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "瀑布密码",
+        "url": "https://codeforces.com/gym/615540/problem/K",
+        "provider_problem_id": "615540:K"
+      },
+      {
+        "ordinal": "L",
+        "title": "民族大联欢",
+        "url": "https://codeforces.com/gym/615540/problem/L",
+        "provider_problem_id": "615540:L"
+      },
+      {
+        "ordinal": "M",
+        "title": "苗寨快递",
+        "url": "https://codeforces.com/gym/615540/problem/M",
+        "provider_problem_id": "615540:M"
+      }
+    ],
+    "target_contests": [
+      {
+        "contest_id": "e5152638-df78-560b-9a61-9914acb2a12c",
+        "title": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+        "aliases": [],
+        "tags": [
+          "2025",
+          "icpc",
+          "省赛",
+          "贵州"
+        ],
+        "start_at": "2025-06-08T04:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/615540",
+            "provider_contest_id": "615540",
+            "source_title": "2025-2026 国际大学生程序设计竞赛贵州省赛",
+            "label": "Codeforces Gym"
+          }
+        ],
+        "notes": null
+      }
+    ]
+  }
+]

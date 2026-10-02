@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute } from "vue-router";
+import trackerIcon from './assets/xcpc-tracker.svg';
 import { useQojSyncStore } from './stores/qoj-sync';
 import FeedbackDialog from './components/FeedbackDialog.vue';
 import QojManualDialog from './components/QojManualDialog.vue';
@@ -25,7 +26,10 @@ const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
       <div class="shell__hero-inner">
         <div>
           <p class="eyebrow">XCPC · 整场 VP 选题</p>
-          <h1>XCPC Tracker</h1>
+          <h1 class="shell__brand">
+            <img class="shell__brand-icon" :src="trackerIcon" alt="" width="64" height="64" />
+            <span>XCPC Tracker</span>
+          </h1>
           <p class="hero-copy">
             根据队员的尝试与通过记录挑选整场 VP，自主决定是否查看牌线和题目标签。
           </p>

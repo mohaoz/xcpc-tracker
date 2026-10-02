@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title desc">
+  <title id="title">XCPC Tracker</title>
+  <desc id="desc">A teal contest-coverage grid with an amber problem tile and a bold accepted checkmark.</desc>
+  <rect width="64" height="64" rx="16" fill="#0F766E"/>
+  <g fill="#FFFDF8">
+    <rect x="13" y="13" width="9" height="9" rx="2"/>
+    <rect x="27" y="13" width="9" height="9" rx="2"/>
+    <rect x="13" y="27" width="9" height="9" rx="2"/>
+    <rect x="27" y="27" width="9" height="9" rx="2"/>
+    <rect x="13" y="41" width="9" height="9" rx="2"/>
+  </g>
+  <rect x="41" y="13" width="9" height="9" rx="2" fill="#F5B65B"/>
+  <path d="M29 44L36 51L51 33" stroke="#FFFDF8" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

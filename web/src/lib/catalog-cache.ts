@@ -59,10 +59,6 @@ function mapContest(detail: CatalogContestDetail): LocalCatalogContestRecord {
 }
 
 function mapProblems(detail: CatalogContestDetail): LocalCatalogProblemRecord[] {
-  const primaryCodeforcesContestSource = detail.sources.find(
-    (contestSource) => contestSource.provider === "codeforces" && contestSource.kind === "contest" && contestSource.provider_contest_id,
-  );
-
   return detail.problems.map((problem) => ({
     problemId: problem.id,
     contestId: detail.id,
@@ -71,22 +67,9 @@ function mapProblems(detail: CatalogContestDetail): LocalCatalogProblemRecord[] 
     tags: problem.tags ?? [],
     rating: problem.rating,
     aliases: aggregateAliasesFromSources(problem.title, problem.aliases, problem.sources),
-    sources: [
-      ...problem.sources.map((source) => ({
-        ...source,
-      })),
-      ...(!problem.sources.some((source) => source.provider === "codeforces" && source.kind === "problem") && primaryCodeforcesContestSource?.provider_contest_id
-        ? [
-            {
-              provider: "codeforces",
-              kind: "problem",
-              url: `https://codeforces.com/gym/${primaryCodeforcesContestSource.provider_contest_id}/problem/${problem.ordinal}`,
-              provider_problem_id: `${primaryCodeforcesContestSource.provider_contest_id}:${problem.ordinal}`,
-              label: `Codeforces ${problem.ordinal}`,
-            },
-          ]
-        : []),
-    ],
+    // Mirrors can omit or reorder tasks. Only reviewed per-problem sources
+    // establish identity; a contest URL and original ordinal do not.
+    sources: problem.sources.map((source) => ({ ...source })),
   }));
 }
 

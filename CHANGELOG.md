@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.8.4
+
+- Add the verified 2025 Guizhou provincial contest with 13 problems, 13 XCPC Rating values, original date and explicit awards. Review the user's CF export without inferring anonymous Gym access.
+- Correct Sichuan 2021's CF C mapping to original J (Ants), add the existing I mirror, and keep the original 13-problem identity despite the current 12-problem CF list.
+- Remove 11 Qingdao online-contest sources accidentally attached to onsite problems; correct five China Final 2016 and two EC Final 2017 mirror mappings. Remove 18 false cross-problem aliases using uploaded dashboards and original contest booklets.
+- Reject ambiguous ownership, ordinal-only title mismatches and incomplete CF imports atomically; verify idempotence and generated lookup ownership. Stop fabricating missing CF problem URLs from contest IDs and original letters.
+- Apply corrected mappings to future imports while retaining historical member evidence; no inferred status migration or database schema upgrade is included.
+
 ## 0.8.3
 
 - Add Guangxi 2023–2025 with 38 reviewed problems and the 11-problem CF mirror for the existing 2018 World Finals. Preserve existing contest/problem IDs, titles and mappings.

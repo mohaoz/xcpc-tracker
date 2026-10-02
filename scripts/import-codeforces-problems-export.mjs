@@ -1,4 +1,5 @@
-import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { readFile, writeFile, mkdir, rename, rm } from "node:fs/promises";
+import { randomUUID } from "node:crypto";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -8,6 +9,14 @@ const repoRoot = resolve(__dirname, "..");
 const DEFAULT_INPUT_PATH = resolve(repoRoot, "data", "codeforces-problems.json");
 const DEFAULT_CATALOG_PATH = resolve(repoRoot, "catalog", "default-catalog.min.json");
 const DEFAULT_OUTPUT_PATH = DEFAULT_CATALOG_PATH;
+// Original SUA/QOJ J is CF C; original C has no current CF mirror.
+// Evidence: fixtures/imports/codeforces/2026-10-02-mapping-review.json.
+const REVIEWED_PROBLEM_REMAPS = new Map([
+  ["103117:C", { problemId: "8bd18c44-77b5-5f30-938a-83d2fe690a46:J", title: "Ants" }],
+]);
+const REVIEWED_UNMIRRORED_PROBLEMS = new Map([
+  ["103117", [{ problemId: "8bd18c44-77b5-5f30-938a-83d2fe690a46:C", title: "Triangle Pendant" }]],
+]);
 const CONTEST_URL_REMAPS = new Map([
   [
     "https://codeforces.com/gym/104459",
@@ -78,16 +87,6 @@ function getCodeforcesProblemOrdinal(value) {
   }
 }
 
-function getSourcePriority(source) {
-  if (source?.provider === "qoj") return 0;
-  if (source?.provider === "codeforces") return 1;
-  return 2;
-}
-
-function orderSources(sources) {
-  return [...(sources ?? [])].sort((left, right) => getSourcePriority(left) - getSourcePriority(right));
-}
-
 function mergeSourceList(existingSources, nextSource) {
   const items = [...(existingSources ?? [])];
   const nextKey = [
@@ -105,7 +104,7 @@ function mergeSourceList(existingSources, nextSource) {
   });
   if (index < 0) {
     items.push(nextSource);
-    return orderSources(items);
+    return items;
   }
   items[index] = {
     ...items[index],
@@ -113,7 +112,7 @@ function mergeSourceList(existingSources, nextSource) {
     source_title: nextSource.source_title || items[index].source_title,
     label: nextSource.label || items[index].label,
   };
-  return orderSources(items);
+  return items;
 }
 
 function normalizeTargetContest(raw, label) {
@@ -153,13 +152,16 @@ function normalizeTargetContest(raw, label) {
 }
 
 function normalizeInputContests(raw) {
-  if (!Array.isArray(raw)) {
-    throw new Error("input JSON must be an array");
+  if (!Array.isArray(raw) || raw.length === 0) {
+    throw new Error("input JSON must be a non-empty array");
   }
+  const contestIds = new Set();
   return raw
-    .filter((contest) => Array.isArray(contest?.problems) && contest.problems.length > 0)
     .map((contest, contestIndex) => {
       const label = `contests[${contestIndex}]`;
+      if (!Array.isArray(contest?.problems) || contest.problems.length === 0) {
+        throw new Error(`${label}.problems must be a complete, non-empty problem list`);
+      }
       const title = cleanText(contest.title);
       const url = cleanText(contest.url);
       const normalizedUrl = normalizeUrl(url);
@@ -167,6 +169,10 @@ function normalizeInputContests(raw) {
       if (!title || !url || !providerContestId) {
         throw new Error(`${label} requires a title and a Codeforces gym/contest URL`);
       }
+      if (contestIds.has(providerContestId)) {
+        throw new Error(`${label} duplicates Codeforces contest ${providerContestId}`);
+      }
+      contestIds.add(providerContestId);
 
       const rawTargetContestIds = contest.target_contest_ids ?? [];
       if (!Array.isArray(rawTargetContestIds)) {
@@ -267,6 +273,127 @@ function buildProblemId(contestId, ordinal, providerProblemId, usedProblemIds) {
   }
 }
 
+function addOwner(index, key, owner) {
+  const owners = index.get(key) ?? new Set();
+  owners.add(owner);
+  index.set(key, owners);
+}
+
+function hasTitle(problem, title) {
+  const key = normalizeTitleKey(title);
+  return [problem.title, ...(problem.aliases ?? [])].some((candidate) => normalizeTitleKey(candidate) === key);
+}
+
+// Validate the whole incoming source graph before merging any of its rows.
+// In particular, neither catalog order nor a previous row may establish identity.
+function planProblemMappings(importedContest, targetContests, problems, remap) {
+  const targetIds = new Set(targetContests.map((contest) => contest.contestId));
+  const explicitIds = new Set(importedContest.targetContestIds);
+  const incomingIds = new Set(importedContest.problems.map((problem) => problem.provider_problem_id));
+  const ownersById = new Map();
+  for (const problem of problems) {
+    for (const source of problem.sources ?? []) {
+      if (source?.provider !== "codeforces" || source?.kind !== "problem") continue;
+      const providerId = cleanText(source.provider_problem_id);
+      const urlContestId = getCodeforcesContestId(source.url);
+      if (providerId.split(":")[0] !== importedContest.providerContestId
+        && urlContestId !== importedContest.providerContestId) continue;
+      const urlId = `${urlContestId}:${getCodeforcesProblemOrdinal(source.url)}`;
+      if (providerId !== urlId || !incomingIds.has(providerId)) {
+        throw new Error(`Incomplete or conflicting CF source list: ${providerId || source.url}`);
+      }
+      addOwner(ownersById, providerId, problem);
+    }
+  }
+
+  if (targetIds.size > 1 && [...targetIds].some((id) => !explicitIds.has(id))) {
+    throw new Error(`Shared Codeforces contest ${importedContest.providerContestId} requires explicit targets`);
+  }
+  for (const [providerId, owners] of ownersById) {
+    const ownerContestIds = new Set();
+    for (const owner of owners) {
+      if (ownerContestIds.has(owner.contestId) || !targetIds.has(owner.contestId)) {
+        throw new Error(`Ambiguous CF problem ownership: ${providerId}`);
+      }
+      ownerContestIds.add(owner.contestId);
+    }
+    if (owners.size > 1 && [...ownerContestIds].some((id) => !explicitIds.has(id))) {
+      throw new Error(`Shared CF problem ${providerId} requires explicit targets`);
+    }
+  }
+
+  return targetContests.map((targetContest) => {
+    const existing = problems.filter((problem) => problem.contestId === targetContest.contestId);
+    const matchedIds = new Set();
+    const rows = importedContest.problems.map((importedProblem) => {
+      const providerId = importedProblem.provider_problem_id;
+      const owners = [...(ownersById.get(providerId) ?? [])];
+      const previousOwner = owners.find((problem) => problem.contestId === targetContest.contestId);
+      const reviewedRemap = REVIEWED_PROBLEM_REMAPS.get(providerId);
+      const remappedProblem = reviewedRemap
+        ? existing.find((problem) => problem.problemId === reviewedRemap.problemId)
+        : null;
+      if (reviewedRemap && (!remappedProblem
+        || remappedProblem.title !== reviewedRemap.title
+        || importedProblem.title !== reviewedRemap.title)) {
+        throw new Error(`Reviewed CF problem identity changed: ${providerId}`);
+      }
+      if (reviewedRemap && previousOwner && previousOwner !== remappedProblem) {
+        throw new Error(`Apply the reviewed source correction before importing ${providerId}`);
+      }
+      const titleMatches = existing.filter((problem) => hasTitle(problem, importedProblem.title));
+      const ordinalMatches = existing.filter((problem) =>
+        cleanText(problem.ordinal).toLowerCase() === importedProblem.ordinal.toLowerCase());
+      if (titleMatches.length > 1 || (!previousOwner && !remappedProblem && !remap && ordinalMatches.length > 1)) {
+        throw new Error(`Ambiguous CF problem identity: ${providerId}`);
+      }
+      const matched = remappedProblem ?? previousOwner
+        ?? (remap ? titleMatches[0] : ordinalMatches[0]) ?? null;
+      if (existing.length > 0 && (!matched || !hasTitle(matched, importedProblem.title))) {
+        throw new Error(`CF problem title/identity mismatch: ${providerId}`);
+      }
+      if (matched && matchedIds.has(matched.problemId)) {
+        throw new Error(`Multiple CF problems claim ${matched.problemId}`);
+      }
+      if (matched) matchedIds.add(matched.problemId);
+      return { importedProblem, matched };
+    });
+
+    const reviewedOmissions = REVIEWED_UNMIRRORED_PROBLEMS.get(importedContest.providerContestId) ?? [];
+    for (const omission of reviewedOmissions) {
+      const problem = existing.find((candidate) => candidate.problemId === omission.problemId);
+      if (!problem || problem.title !== omission.title || matchedIds.has(problem.problemId)) {
+        throw new Error(`Reviewed unmirrored problem identity changed: ${omission.problemId}`);
+      }
+    }
+    const omittedIds = new Set(reviewedOmissions.map((problem) => problem.problemId));
+    if (existing.some((problem) => !matchedIds.has(problem.problemId) && !omittedIds.has(problem.problemId))) {
+      throw new Error(`Incomplete CF problem list for contest ${targetContest.contestId}`);
+    }
+
+    const conflictingSource = (targetContest.sources ?? []).find((source) =>
+      source?.provider === "codeforces" && source?.kind === "contest"
+      && normalizeUrl(source.url) !== importedContest.normalizedUrl);
+    if (conflictingSource && (!explicitIds.has(targetContest.contestId) || existing.length === 0)) {
+      throw new Error(
+        `contest ${targetContest.contestId} already points to a different Codeforces contest; an explicit target and matching complete problem list are required: ${conflictingSource.url}`,
+      );
+    }
+    return { targetContest, rows };
+  });
+}
+
+async function writeCatalogAtomically(path, catalog) {
+  await mkdir(dirname(path), { recursive: true });
+  const temporaryPath = `${path}.${randomUUID()}.tmp`;
+  try {
+    await writeFile(temporaryPath, `${JSON.stringify(catalog, null, 2)}\n`, { encoding: "utf8", flag: "wx" });
+    await rename(temporaryPath, path);
+  } finally {
+    await rm(temporaryPath, { force: true });
+  }
+}
+
 async function main() {
   const checkOnly = process.argv.includes("--check");
   const positionalArgs = process.argv.slice(2).filter((argument) => !argument.startsWith("--"));
@@ -291,11 +418,14 @@ async function main() {
   const contestsBySourceKey = new Map();
   const contestsById = new Map();
   for (const contest of catalog.contests ?? []) {
+    if (contestsById.has(contest.contestId)) {
+      throw new Error(`Duplicate catalog contest ID: ${contest.contestId}`);
+    }
     contestsById.set(contest.contestId, contest);
     for (const source of contest.sources ?? []) {
       const providerContestId = cleanText(source?.provider_contest_id);
       if (source?.provider && source?.kind === "contest" && providerContestId) {
-        contestsBySourceKey.set(`${source.provider}:${providerContestId}`, contest);
+        addOwner(contestsBySourceKey, `${source.provider}:${providerContestId}`, contest);
       }
       if (source?.provider === "codeforces" && source?.kind === "contest" && source?.url) {
         const normalizedUrl = normalizeUrl(source.url);
@@ -308,6 +438,9 @@ async function main() {
 
   const problems = Array.isArray(catalog.problems) ? [...catalog.problems] : [];
   const usedProblemIds = new Set(problems.map((problem) => problem.problemId));
+  if (usedProblemIds.size !== problems.length) {
+    throw new Error("Duplicate catalog problem ID");
+  }
   const insertedContestIds = new Set();
   const updatedContestIds = new Set();
   let matchedContestCount = 0;
@@ -340,7 +473,7 @@ async function main() {
         for (const source of targetContest.sources) {
           const providerContestId = cleanText(source?.provider_contest_id);
           if (source?.provider && source?.kind === "contest" && providerContestId) {
-            contestsBySourceKey.set(`${source.provider}:${providerContestId}`, targetContest);
+            addOwner(contestsBySourceKey, `${source.provider}:${providerContestId}`, targetContest);
           }
         }
         continue;
@@ -377,8 +510,7 @@ async function main() {
         return target;
       });
     } else if (remap) {
-      const target = contestsBySourceKey.get(`${remap.provider}:${remap.provider_contest_id}`);
-      targetContests = target ? [target] : [];
+      targetContests = [...(contestsBySourceKey.get(`${remap.provider}:${remap.provider_contest_id}`) ?? [])];
     } else {
       targetContests = contestsByCodeforcesUrl.get(importedContest.normalizedUrl) ?? [];
     }
@@ -391,30 +523,8 @@ async function main() {
 
     matchedInputContestCount += 1;
     matchedContestCount += targetContests.length;
-    for (const targetContest of targetContests) {
-      const conflictingCodeforcesSource = (targetContest.sources ?? []).find(
-        (source) =>
-          source?.provider === "codeforces" &&
-          source?.kind === "contest" &&
-          normalizeUrl(source.url) !== importedContest.normalizedUrl,
-      );
-      if (conflictingCodeforcesSource) {
-        // A reviewed explicit target may add another mirror only when the full
-        // problem list agrees. Never infer mirror identity from a title alone.
-        const existing = problems.filter((problem) => problem.contestId === targetContest.contestId);
-        const verifiedMirror = importedContest.targetContestIds.includes(targetContest.contestId)
-          && existing.length === importedContest.problems.length
-          && importedContest.problems.every((problem) => existing.some((other) =>
-            cleanText(other.ordinal).toLowerCase() === problem.ordinal.toLowerCase()
-            && [other.title, ...(other.aliases ?? [])].some((title) =>
-              normalizeTitleKey(title) === normalizeTitleKey(problem.title))));
-        if (!verifiedMirror) {
-          throw new Error(
-            `contest ${targetContest.contestId} already points to a different Codeforces contest; an explicit target and matching complete problem list are required: ${conflictingCodeforcesSource.url}`,
-          );
-        }
-      }
-
+    const plans = planProblemMappings(importedContest, targetContests, problems, remap);
+    for (const { targetContest, rows } of plans) {
       const previousContest = JSON.stringify(targetContest);
       targetContest.aliases = dedupeStrings([
         ...(targetContest.aliases ?? []),
@@ -434,23 +544,7 @@ async function main() {
         }
       }
 
-      const existingProblems = problems.filter((problem) => problem.contestId === targetContest.contestId);
-      const existingByOrdinal = new Map(
-        existingProblems.map((problem) => [cleanText(problem.ordinal).toLowerCase(), problem]),
-      );
-      const existingByTitle = new Map(
-        existingProblems.map((problem) => [normalizeTitleKey(problem.title), problem]),
-      );
-      const existingByProviderProblemId = new Map();
-      for (const problem of existingProblems) {
-        for (const source of problem.sources ?? []) {
-          if (source?.provider === "codeforces" && source?.kind === "problem" && source?.provider_problem_id) {
-            existingByProviderProblemId.set(cleanText(source.provider_problem_id), problem);
-          }
-        }
-      }
-
-      for (const importedProblem of importedContest.problems) {
+      for (const { importedProblem, matched } of rows) {
         const source = {
           provider: "codeforces",
           kind: "problem",
@@ -459,12 +553,6 @@ async function main() {
           source_title: importedProblem.title,
           label: `Codeforces ${importedProblem.ordinal}`,
         };
-        const matched =
-          existingByProviderProblemId.get(importedProblem.provider_problem_id) ??
-          (remap ? existingByTitle.get(normalizeTitleKey(importedProblem.title)) : null) ??
-          existingByOrdinal.get(importedProblem.ordinal.toLowerCase()) ??
-          null;
-
         if (matched) {
           const previousProblem = JSON.stringify(matched);
           matched.ordinal = matched.ordinal || importedProblem.ordinal;
@@ -497,9 +585,6 @@ async function main() {
           sources: [source],
         };
         problems.push(problem);
-        existingByOrdinal.set(importedProblem.ordinal.toLowerCase(), problem);
-        existingByTitle.set(normalizeTitleKey(importedProblem.title), problem);
-        existingByProviderProblemId.set(importedProblem.provider_problem_id, problem);
         insertedProblemCount += 1;
       }
     }
@@ -535,8 +620,7 @@ async function main() {
   }
 
   if (!checkOnly && (changed || outputPath !== catalogPath)) {
-    await mkdir(dirname(outputPath), { recursive: true });
-    await writeFile(outputPath, `${JSON.stringify(catalog, null, 2)}\n`, "utf8");
+    await writeCatalogAtomically(outputPath, catalog);
   }
 
   console.log(

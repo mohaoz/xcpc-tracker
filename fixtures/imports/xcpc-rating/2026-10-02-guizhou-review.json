@@ -1,0 +1,246 @@
+{
+  "review": {
+    "status": "approved",
+    "reviewed_by": "CF export / original RankLand / XCPC Rating exact 13-title and ordinal audit"
+  },
+  "source_url": "https://hei-maom.github.io/xcpcrating/data/problems-index.json",
+  "source_sha256": "9c0e410348bb507b89208c8f691c7267e9e6537d8f417e8da4dbbb67d38d1f89",
+  "catalog_sha256": "4f2abbef46bd3d1caa0e094ed2adf600c7f3872d6c5bd932aafce87d472540d1",
+  "fetched_at": "2026-10-02T02:02:59.688Z",
+  "matches": [
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:A",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "A",
+      "title": "青岩密室",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:B",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "B",
+      "title": "黔灵猕猴",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:C",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "C",
+      "title": "数据存储",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:D",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "D",
+      "title": "苗岭通途",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:E",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "E",
+      "title": "梯田漫步",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:F",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "F",
+      "title": "彝族银饰",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:G",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "G",
+      "title": "青云美食",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:H",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "H",
+      "title": "FAST信号树",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:I",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "I",
+      "title": "红色旅游",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:J",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "J",
+      "title": "夜郎弈棋",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:K",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "K",
+      "title": "瀑布密码",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:L",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "L",
+      "title": "民族大联欢",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:M",
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "ordinal": "M",
+      "title": "苗寨快递",
+      "tags": [],
+      "problem_url": null,
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "complete_contest_mapping_ordinal_and_title"
+    }
+  ],
+  "contest_mappings": [
+    {
+      "contest_slug": "provincial__gz__gzcpc2025",
+      "contest_id": "e5152638-df78-560b-9a61-9914acb2a12c",
+      "evidence": {
+        "exact_problem_ids": 0,
+        "matching_titles": 13,
+        "problem_count": 13
+      }
+    }
+  ],
+  "values": [
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:A",
+      "source_identity": "provincial__gz__gzcpc2025:A",
+      "title": "青岩密室",
+      "value": 1651.167658
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:B",
+      "source_identity": "provincial__gz__gzcpc2025:B",
+      "title": "黔灵猕猴",
+      "value": 2084.660015
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:C",
+      "source_identity": "provincial__gz__gzcpc2025:C",
+      "title": "数据存储",
+      "value": 1865.988292
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:D",
+      "source_identity": "provincial__gz__gzcpc2025:D",
+      "title": "苗岭通途",
+      "value": 2414.640891
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:E",
+      "source_identity": "provincial__gz__gzcpc2025:E",
+      "title": "梯田漫步",
+      "value": 2616.071921
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:F",
+      "source_identity": "provincial__gz__gzcpc2025:F",
+      "title": "彝族银饰",
+      "value": 2193.597222
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:G",
+      "source_identity": "provincial__gz__gzcpc2025:G",
+      "title": "青云美食",
+      "value": 1466.364641
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:H",
+      "source_identity": "provincial__gz__gzcpc2025:H",
+      "title": "FAST信号树",
+      "value": 2084.660015
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:I",
+      "source_identity": "provincial__gz__gzcpc2025:I",
+      "title": "红色旅游",
+      "value": 1892.163241
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:J",
+      "source_identity": "provincial__gz__gzcpc2025:J",
+      "title": "夜郎弈棋",
+      "value": 1575.530383
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:K",
+      "source_identity": "provincial__gz__gzcpc2025:K",
+      "title": "瀑布密码",
+      "value": 1674.647829
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:L",
+      "source_identity": "provincial__gz__gzcpc2025:L",
+      "title": "民族大联欢",
+      "value": 2414.640891
+    },
+    {
+      "problem_id": "e5152638-df78-560b-9a61-9914acb2a12c:M",
+      "source_identity": "provincial__gz__gzcpc2025:M",
+      "title": "苗寨快递",
+      "value": 1291.430024
+    }
+  ]
+}

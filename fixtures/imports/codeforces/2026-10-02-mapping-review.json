@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "base_commit": "b0fc2e4b52c1e468683cb1263ac2276e4b6b899a",
+  "user_export_sha256": "706b58615eadf0bf617e50cfc71dad1bdee69991466558e7e9610705e0f83f0e",
+  "before_problems": [
+    {
+      "problemId": "8bd18c44-77b5-5f30-938a-83d2fe690a46:C",
+      "contestId": "8bd18c44-77b5-5f30-938a-83d2fe690a46",
+      "ordinal": "C",
+      "title": "Triangle Pendant",
+      "aliases": [
+        "Ants"
+      ],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1292/problem/6763",
+          "provider_problem_id": "6763",
+          "source_title": "Triangle Pendant",
+          "label": "QOJ C"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/103117/problem/C",
+          "provider_problem_id": "103117:C",
+          "source_title": "Ants",
+          "label": "Codeforces C"
+        }
+      ]
+    },
+    {
+      "problemId": "8bd18c44-77b5-5f30-938a-83d2fe690a46:I",
+      "contestId": "8bd18c44-77b5-5f30-938a-83d2fe690a46",
+      "ordinal": "I",
+      "title": "Monster Hunter",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1292/problem/6769",
+          "provider_problem_id": "6769",
+          "source_title": "Monster Hunter",
+          "label": "QOJ I"
+        }
+      ]
+    },
+    {
+      "problemId": "8bd18c44-77b5-5f30-938a-83d2fe690a46:J",
+      "contestId": "8bd18c44-77b5-5f30-938a-83d2fe690a46",
+      "ordinal": "J",
+      "title": "Ants",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1292/problem/6770",
+          "provider_problem_id": "6770",
+          "source_title": "Ants",
+          "label": "QOJ J"
+        }
+      ]
+    }
+  ],
+  "mapping_correction": {
+    "provider": "codeforces",
+    "provider_problem_id": "103117:C",
+    "from_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:C",
+    "to_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:J",
+    "source": {
+      "provider": "codeforces",
+      "kind": "problem",
+      "url": "https://codeforces.com/gym/103117/problem/C",
+      "provider_problem_id": "103117:C",
+      "source_title": "Ants",
+      "label": "Codeforces C"
+    },
+    "removed_false_alias": "Ants"
+  },
+  "added_mapping": {
+    "provider_problem_id": "103117:I",
+    "problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:I"
+  },
+  "excluded_targets": [
+    {
+      "id": "695551",
+      "reason": "Unverified third-party link; user API returned target_unavailable. No cause inferred."
+    }
+  ],
+  "primary_sources": [
+    {
+      "url": "https://sua.ac/wiki/2021-provincial-sichuan/",
+      "role": "Original problem setter archive; gives date and links original PDF and Codeforces Gym"
+    },
+    {
+      "url": "https://sua.ac/wiki/2021-provincial-sichuan/contest-en.pdf",
+      "role": "Original 13-problem set, full list PDF page 1; C on physical PDF page 5, I page 12, J page 13"
+    },
+    {
+      "url": "https://codeforces.com/gym/103117",
+      "role": "Public indexed dashboard, retrieved 2026-10-02, lists 12 tasks A-I and K-M; C Ants, I Monster Hunter, no J"
+    },
+    {
+      "url": "https://codeforces.com/gym/103117/problem/C",
+      "role": "Public indexed statement, retrieved 2026-10-02; current C is Ants, body matches original J including obstacles and sample result 4000000001"
+    }
+  ],
+  "mapping": [
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:A",
+      "original_ordinal": "A",
+      "title": "Chuanpai",
+      "qoj_problem_id": "6761",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6761",
+      "current_cf_ordinal": "A",
+      "current_cf_problem_id": "103117:A",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/A",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:B",
+      "original_ordinal": "B",
+      "title": "Hotpot",
+      "qoj_problem_id": "6762",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6762",
+      "current_cf_ordinal": "B",
+      "current_cf_problem_id": "103117:B",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/B",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:C",
+      "original_ordinal": "C",
+      "title": "Triangle Pendant",
+      "qoj_problem_id": "6763",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6763",
+      "current_cf_ordinal": null,
+      "current_cf_problem_id": null,
+      "current_cf_url": null,
+      "certainty": "absent_from_current_cf_list"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:D",
+      "original_ordinal": "D",
+      "title": "Rock Paper Scissors",
+      "qoj_problem_id": "6764",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6764",
+      "current_cf_ordinal": "D",
+      "current_cf_problem_id": "103117:D",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/D",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:E",
+      "original_ordinal": "E",
+      "title": "Don't Really Like How The Story Ends",
+      "qoj_problem_id": "6765",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6765",
+      "current_cf_ordinal": "E",
+      "current_cf_problem_id": "103117:E",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/E",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:F",
+      "original_ordinal": "F",
+      "title": "Direction Setting",
+      "qoj_problem_id": "6766",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6766",
+      "current_cf_ordinal": "F",
+      "current_cf_problem_id": "103117:F",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/F",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:G",
+      "original_ordinal": "G",
+      "title": "Hourly Coding Problem",
+      "qoj_problem_id": "6767",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6767",
+      "current_cf_ordinal": "G",
+      "current_cf_problem_id": "103117:G",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/G",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:H",
+      "original_ordinal": "H",
+      "title": "Nihongo wa Muzukashii Desu",
+      "qoj_problem_id": "6768",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6768",
+      "current_cf_ordinal": "H",
+      "current_cf_problem_id": "103117:H",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/H",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:I",
+      "original_ordinal": "I",
+      "title": "Monster Hunter",
+      "qoj_problem_id": "6769",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6769",
+      "current_cf_ordinal": "I",
+      "current_cf_problem_id": "103117:I",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/I",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:J",
+      "original_ordinal": "J",
+      "title": "Ants",
+      "qoj_problem_id": "6770",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6770",
+      "current_cf_ordinal": "C",
+      "current_cf_problem_id": "103117:C",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/C",
+      "certainty": "statement_identity_confirmed"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:K",
+      "original_ordinal": "K",
+      "title": "K-skip Permutation",
+      "qoj_problem_id": "6771",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6771",
+      "current_cf_ordinal": "K",
+      "current_cf_problem_id": "103117:K",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/K",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:L",
+      "original_ordinal": "L",
+      "title": "Spicy Restaurant",
+      "qoj_problem_id": "6772",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6772",
+      "current_cf_ordinal": "L",
+      "current_cf_problem_id": "103117:L",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/L",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    },
+    {
+      "canonical_problem_id": "8bd18c44-77b5-5f30-938a-83d2fe690a46:M",
+      "original_ordinal": "M",
+      "title": "True Story",
+      "qoj_problem_id": "6773",
+      "qoj_url": "https://qoj.ac/contest/1292/problem/6773",
+      "current_cf_ordinal": "M",
+      "current_cf_problem_id": "103117:M",
+      "current_cf_url": "https://codeforces.com/gym/103117/problem/M",
+      "certainty": "original_and_provider_title_and_ordinal_match"
+    }
+  ],
+  "false_alias_provenance": [
+    {
+      "commit": "73967f6",
+      "author_time": "2026-04-07T10:31:48+08:00",
+      "effect": "First catalog version attaching CF103117:C source titled Ants to canonical C titled Triangle Pendant; alias still empty"
+    },
+    {
+      "commit": "b341088",
+      "author_time": "2026-04-08T00:32:01+08:00",
+      "effect": "First catalog version adding false alias Ants to canonical C; incorrect source retained"
+    }
+  ],
+  "enrichment_audit": {
+    "canonical_C_fields": [
+      "problemId",
+      "contestId",
+      "ordinal",
+      "title",
+      "aliases",
+      "sources"
+    ],
+    "C_I_J_have_rating": false,
+    "C_I_J_have_problem_tags": false,
+    "C_I_J_have_xcpc_rating_source": false,
+    "uploaded_C_and_I_metadata": [
+      {
+        "ordinal": "C",
+        "title": "Ants",
+        "type": "PROGRAMMING",
+        "tags": [],
+        "rating_present": false
+      },
+      {
+        "ordinal": "I",
+        "title": "Monster Hunter",
+        "type": "PROGRAMMING",
+        "tags": [],
+        "rating_present": false
+      }
+    ],
+    "conclusion": "No rating or tag cleanup is evidenced; preserve all contest tags and unrelated enrichment."
+  },
+  "limitations": [
+    "Public web tool responses for CF are indexed snapshots (dashboard server time September 14, 2026; C page server time August 15, 2026), independently agreeing with the user export dated October 2, 2026.",
+    "No cause or exact date of the upstream CF reassignment was proven.",
+    "No QOJ network requests, account actions, credential use, repository writes, or member-data inspection occurred."
+  ],
+  "review": {
+    "status": "approved",
+    "reviewed_by": "Original SUA PDF and CF statement identity with independent title/provider review"
+  },
+  "after_problems": [
+    {
+      "problemId": "8bd18c44-77b5-5f30-938a-83d2fe690a46:C",
+      "contestId": "8bd18c44-77b5-5f30-938a-83d2fe690a46",
+      "ordinal": "C",
+      "title": "Triangle Pendant",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1292/problem/6763",
+          "provider_problem_id": "6763",
+          "source_title": "Triangle Pendant",
+          "label": "QOJ C"
+        }
+      ]
+    },
+    {
+      "problemId": "8bd18c44-77b5-5f30-938a-83d2fe690a46:I",
+      "contestId": "8bd18c44-77b5-5f30-938a-83d2fe690a46",
+      "ordinal": "I",
+      "title": "Monster Hunter",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1292/problem/6769",
+          "provider_problem_id": "6769",
+          "source_title": "Monster Hunter",
+          "label": "QOJ I"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/103117/problem/I",
+          "provider_problem_id": "103117:I",
+          "source_title": "Monster Hunter",
+          "label": "Codeforces I"
+        }
+      ]
+    },
+    {
+      "problemId": "8bd18c44-77b5-5f30-938a-83d2fe690a46:J",
+      "contestId": "8bd18c44-77b5-5f30-938a-83d2fe690a46",
+      "ordinal": "J",
+      "title": "Ants",
+      "aliases": [],
+      "sources": [
+        {
+          "provider": "qoj",
+          "kind": "problem",
+          "url": "https://qoj.ac/contest/1292/problem/6770",
+          "provider_problem_id": "6770",
+          "source_title": "Ants",
+          "label": "QOJ J"
+        },
+        {
+          "provider": "codeforces",
+          "kind": "problem",
+          "url": "https://codeforces.com/gym/103117/problem/C",
+          "provider_problem_id": "103117:C",
+          "source_title": "Ants",
+          "label": "Codeforces C"
+        }
+      ]
+    }
+  ],
+  "original_problem_count": 13,
+  "current_cf_problem_count": 12
+}
