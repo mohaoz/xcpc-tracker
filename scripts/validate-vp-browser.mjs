@@ -31,6 +31,7 @@ async function database(page, action, data) {
 try {
   const before = Date.now();
   await page.goto(`${base}/contests/${contest.contestId}`);
+  await page.getByRole('dialog', {name:'QOJ 支持油猴同步了'}).getByRole('button', {name:'关闭', exact:true}).click();
   const beacon = page.locator(`script[src="${analyticsScript}"]`);
   assert.equal(await beacon.count(),1);
   assert.deepEqual(JSON.parse(await beacon.getAttribute('data-cf-beacon')), {token:'2023fe69240f4de0a41c271f1fe4aeff'});
@@ -103,6 +104,38 @@ try {
   await page.waitForFunction(() => document.querySelector('[aria-label="允许比例估算"]')?.getAttribute('aria-checked') === 'false');
   await page.goto(`${base}/contests/${estimatedContest.contestId}`);await toggle.waitFor();
   assert.equal(await page.locator('.award-cutoff-card').count(),0);
+  await page.goto(`${base}/manage`);
+  await page.getByRole('button',{name:'覆盖',exact:true}).click();
+  const importSection=page.getByRole('region',{name:'导入',exact:true});
+  await importSection.getByRole('checkbox',{name:'包含题目状态'}).uncheck();
+  assert.ok(await importSection.getByText(/恢复后没有题目状态/).isVisible());
+  const backup=await readJson('fixtures/imports/member-backup.example.json');
+  const upload=payload=>importSection.locator('input[type=file]').setInputFiles({name:'backup.json',mimeType:'application/json',buffer:Buffer.from(JSON.stringify(payload))});
+  const readState=()=>page.evaluate(async()=>{
+    const {exportLocalRuntimeSnapshot}=await import('/src/lib/local-db.ts');
+    const snapshot=await exportLocalRuntimeSnapshot();
+    delete snapshot.exportedAt;
+    return snapshot;
+  });
+  const beforeRestore=await readState();
+  assert.ok(beforeRestore.memberProblemStatus.length>0);
+  page.once('dialog',async dialog=>{
+    assert.match(dialog.message(),/恢复为备份中的 1 名成员、0 条状态/);
+    await dialog.dismiss();
+  });
+  await upload(backup);
+  await page.getByText('已取消导入，原数据未改变').waitFor();
+  assert.deepEqual(await readState(),beforeRestore);
+  await upload({...backup,schemaVersion:999});
+  await page.getByText('成员备份格式不正确：schemaVersion / exportKind').waitFor();
+  assert.deepEqual(await readState(),beforeRestore);
+  page.once('dialog',dialog=>dialog.accept());
+  await upload(backup);
+  await page.getByText('已导入 1 名成员、0 条题目状态').waitFor();
+  const restored=await readState();
+  assert.deepEqual(restored.members,backup.members);
+  assert.equal(restored.memberProblemStatus.length,0);
+  console.log('PASS backup UI: explicit replacement warning, cancel/invalid input preservation, confirmed replacement without statuses');
   assert.deepEqual(errors,[]);
   assert.deepEqual(remoteRequests,[], 'VP browsing must not fetch upstream SRK, Rating or OJ data');
   console.log(`VP browser checks passed: untouched default, tags/awards gating, manual override, attempt-only touched, reload/navigation, cross-tab sync, no-spoiler search and whole-contest links (${Date.now()-before}ms).`);

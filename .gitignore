@@ -13,6 +13,7 @@ dist/
 .vite/
 .catalog-tools-build/
 catalog/generated/
+docs/discovery/generated/
 
 # Local data
 var/

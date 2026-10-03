@@ -29,3 +29,7 @@ QOJ 2026 contest curation fixtures:
 - `qoj/2026-retry-contests-draft.json`: historical retry input; all three contests are now curated.
 
 RankLand fixtures live in `rankland/`: `mapping-review.example.json` and `award-review.example.json` are synthetic and must never be applied. `2026-09-*` contains actual audited source identities, award decisions, differences, fallbacks and corrections. `xcpc-rating/2026-09-review.json` records the source snapshot hash, matches and unresolved rows. `xcpcio-2026-gap-awards.json` records the later XCPCIO award backfill and blocked groups. These are provenance and regression inputs, not another canonical catalog. See [maintenance instructions](../../scripts/README.md) for commands.
+
+## 成员备份示例
+
+[`member-backup.example.json`](member-backup.example.json) 是可接受的 v1 成员备份示例，仅用于导入契约测试。备份中各账号和状态必须引用同一备份中的成员；有效平台账号不得重复；合并模式不得改绑已有成员。旧备份可省略 `contest_preferences` 和 `app_settings`，恢复时保留当前设置。覆盖模式会替换成员和状态；不包含题目状态时清空状态，写入前由页面确认。合并且不包含状态则保留原状态。

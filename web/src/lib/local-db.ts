@@ -385,17 +385,17 @@ export type MemberSyncGuard = {
   handle?: Pick<LocalMemberHandleRecord, 'handleId' | 'memberId' | 'identityRevision'>;
 };
 
-export async function captureMemberSyncGuard(memberId: string, provider: string, handle: string, requireExisting = false): Promise<MemberSyncGuard> {
-  return localDb.transaction('rw', localDb.members, localDb.memberHandles, async () => {
+export async function captureMemberSyncGuard(memberId: string, provider: string, handle: string, requireExisting = false, initializeIdentity = true): Promise<MemberSyncGuard> {
+  return localDb.transaction(initializeIdentity ? 'rw' : 'r', localDb.members, localDb.memberHandles, async () => {
     const member = await localDb.members.get(memberId);
     const account = (await localDb.memberHandles.where('[provider+handle]').equals([provider, handle]).toArray())
       .find(row => row.memberId === memberId && !row.deletedAt);
     if (requireExisting && (!member || member.deletedAt || !account)) throw new DOMException('Sync target removed', 'AbortError');
-    if (member && !member.deletedAt && !member.identityRevision) {
+    if (initializeIdentity && member && !member.deletedAt && !member.identityRevision) {
       member.identityRevision = crypto.randomUUID();
       await localDb.members.put(member);
     }
-    if (account && !account.identityRevision) {
+    if (initializeIdentity && account && !account.identityRevision) {
       account.identityRevision = crypto.randomUUID();
       await localDb.memberHandles.put(account);
     }
@@ -443,12 +443,14 @@ export async function upsertMemberBundle(payload: {
       await assertHandleOwnership(payload.handles);
       const existingMember = await localDb.members.get(payload.member.memberId);
       await localDb.members.put({ ...payload.member,
+        displayName: existingMember && !existingMember.deletedAt ? existingMember.displayName : payload.member.displayName,
         identityRevision: existingMember && !existingMember.deletedAt ? existingMember.identityRevision ?? crypto.randomUUID() : crypto.randomUUID(),
         createdAt: existingMember && !existingMember.deletedAt ? existingMember.createdAt : payload.member.createdAt,
       });
       for (const handle of payload.handles) {
         const existing = await localDb.memberHandles.get(handle.handleId);
         await localDb.memberHandles.put({ ...handle,
+          displayLabel: existing && !existing.deletedAt && existing.memberId === handle.memberId ? existing.displayLabel ?? handle.displayLabel : handle.displayLabel,
           identityRevision: existing && !existing.deletedAt && existing.memberId === handle.memberId ? existing.identityRevision ?? crypto.randomUUID() : crypto.randomUUID(),
           createdAt: existing && !existing.deletedAt && existing.memberId === handle.memberId ? existing.createdAt : handle.createdAt,
           deletedAt: handle.deletedAt ?? null,

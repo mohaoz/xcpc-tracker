@@ -14,6 +14,8 @@ XCPCIO 缺口补录：保存目标比赛的 `config/team/run.json` 后，使用 
 
 ## 日常命令
 
+手动发现新比赛、题单线索和榜单／Rating 变化：`npm run catalog:discover`。只生成待审核报告，不直接应用到目录；缓存和失败保留见[发现工具说明](../docs/discovery/README.md)。`catalog:validate-discovery` 使用离线 fixture，不访问上游；发现工具暂不接入定时任务或 CI。
+
 ```sh
 npm run catalog:refresh        # 校验现有目录并生成静态资产，无网络获取
 npm run deploy:build           # Schema、来源、CF/QOJ、覆盖与状态回归，静态构建

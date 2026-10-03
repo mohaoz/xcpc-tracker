@@ -1,0 +1,18 @@
+{
+  "synthetic": true,
+  "rating": [
+    {"contestSlug":"example","contestTitle":"Example contest","alias":"A","title":"Example A","problemUrl":"https://qoj.ac/contest/123/problem/456?v=2","detailTags":["dp"],"problemRating":1700},
+    {"contestSlug":"candidate","contestTitle":"Unreviewed candidate","alias":"A","title":"Candidate A","problemUrl":"https://qoj.ac/contest/123/problem/789?v=1","detailTags":[],"problemRating":null},
+    {"contestSlug":"candidate","contestTitle":"Unreviewed candidate","alias":"B","title":"Candidate B","problemUrl":"https://qoj.ac/problem/999","detailTags":[],"problemRating":null}
+  ],
+  "board": {"example":{"config":{"contest_name":"Example contest","start_time":1700000000},"board_link":"/icpc/example"}},
+  "rankland": {
+    "revision":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "config":"root:\n  children:\n    - path: example\n      name: Example contest\n      format: srk.json\n",
+    "tree":{"truncated":false,"tree":[{"path":"official/example.srk.json","type":"blob","sha":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"}]}
+  },
+  "catalog": {
+    "contests":[{"contestId":"c","title":"Example contest","aliases":[],"sources":[{"provider":"rankland","kind":"standings","provider_contest_id":"srk:official/example.srk.json"},{"provider":"xcpcio_board","kind":"standings","url":"https://board.xcpcio.com/icpc/example?group=official"}]}],
+    "problems":[{"problemId":"c:A","contestId":"c","ordinal":"A","title":"Example A","aliases":[],"tags":[],"rating":1600,"sources":[{"provider":"xcpc_rating","kind":"metadata","provider_problem_id":"example:A"}]}]
+  }
+}

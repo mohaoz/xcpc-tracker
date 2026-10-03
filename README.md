@@ -35,6 +35,8 @@ npm run dev --prefix web
 
 `catalog:refresh` 只校验当前正式目录并生成静态资产，不重建或抓取上游。更新数据参见 [scripts/README.md](scripts/README.md)。
 
+手动运行 `npm run catalog:discover` 可发现公开比赛与题单／榜单／Rating 变化，生成待审核列表；不定时运行，也不直接修改或发布目录。使用方式见[发现工具说明](docs/discovery/README.md)。
+
 `main` 为开发主分支，`release` 标记线上发布版本。所有修改先进入 main，发布时将 release 快进到 main 的同一提交，不再单独修改 release 或产生发布合并提交；未发布时 main 可以领先。两个分支发布时内容一致，网站包含哪些文件由构建决定。推送 release 后 GitHub Actions 自动发布到现有 Pages，使用 `/xcpc-tracker/` 路径和 hash 路由。纯静态运行，不需要本地后端。
 
 浏览器回归：生成静态资产并启动开发服务器后，执行 `npx playwright install chromium` 和 `npm run vp:browser`。默认构建只运行离线校验。

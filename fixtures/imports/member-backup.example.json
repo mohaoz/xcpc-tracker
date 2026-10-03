@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "exportKind": "local_runtime_snapshot",
+  "exportedAt": "2026-09-21T00:00:00.000Z",
+  "members": [{"memberId":"example-member","displayName":"示例成员","createdAt":"2026-09-21T00:00:00.000Z","updatedAt":"2026-09-21T00:00:00.000Z"}],
+  "memberHandles": [{"handleId":"codeforces:example","memberId":"example-member","provider":"codeforces","handle":"example","displayLabel":null,"createdAt":"2026-09-21T00:00:00.000Z","updatedAt":"2026-09-21T00:00:00.000Z"}],
+  "memberProblemStatus": [],
+  "importSources": [],
+  "syncRecords": [],
+  "contest_preferences": [],
+  "app_settings": {"allow_medal_estimates": true}
+}

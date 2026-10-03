@@ -13,6 +13,7 @@ import {
   getCatalogDbStatus,
 } from "../lib/local-db";
 import type { LocalDbStatus, LocalRuntimeSnapshot } from "../lib/local-model";
+import { validateRuntimeSnapshot } from '../lib/runtime-snapshot';
 
 const spoilers = useSpoilerStore();
 const settings = useSettingsStore();
@@ -122,12 +123,21 @@ async function importDataFromText(text: string) {
     await refreshStats();
   } else {
     const payload = rawPayload as LocalRuntimeSnapshot;
+    validateRuntimeSnapshot(payload);
+    if (importMode.value === 'replace') {
+      const current = await getCatalogDbStatus();
+      const statuses = importIncludeProblemStatus.value ? payload.memberProblemStatus.length : 0;
+      if (!window.confirm(`将替换本地 ${current.memberCount} 名成员和 ${current.statusCount} 条题目状态，恢复为备份中的 ${payload.members.length} 名成员、${statuses} 条状态。备份中未包含的成员将移除。建议先导出备份。是否继续？`)) {
+        feedback.value = '已取消导入，原数据未改变';
+        return;
+      }
+    }
     await showImportProgress(`正在导入 ${payload.members?.length ?? 0} 名成员…`);
     await applyLocalRuntimeSnapshot(payload, {
       mode: importMode.value,
       includeProblemStatus: importIncludeProblemStatus.value,
     });
-    feedback.value = `imported member data: ${payload.members.length} members, ${payload.memberProblemStatus.length} statuses`;
+    feedback.value = `已导入 ${payload.members.length} 名成员、${importIncludeProblemStatus.value ? payload.memberProblemStatus.length : 0} 条题目状态`;
     emitMemberMutated();
     importProgress.value = "导入完成，正在刷新统计…";
     await refreshStats();
@@ -241,6 +251,7 @@ onUnmounted(()=>unsubscribe?.());
                     </div>
                   </div>
                 </div>
+                <p v-if="importMode === 'replace'" class="muted tiny">覆盖会移除现有成员和题目状态，再恢复备份。未勾选「包含题目状态」时，恢复后没有题目状态。若要保留原数据，请使用合并。</p>
                 <div class="transfer-actions">
                   <input ref="importFileInput" type="file" accept=".json,application/json" hidden @change="handleImportData" />
                   <button class="button button--ghost" :disabled="submitting" @click="handleOpenImport">{{ submitting ? '正在导入…' : '选择备份文件' }}</button>

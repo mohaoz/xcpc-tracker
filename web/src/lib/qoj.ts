@@ -129,6 +129,23 @@ export async function importQojUserscriptMembers(
   payload: QojUserscriptImport,
   options: QojImportOptions = {},
 ): Promise<QojImportSummary> {
+  if (payload?.provider !== 'qoj' || !Array.isArray(payload.members) ||
+      (payload.fetch_failures !== undefined && !Array.isArray(payload.fetch_failures))) {
+    throw new Error('QOJ 导入格式无效');
+  }
+  for (const entry of [...payload.members, ...(payload.fetch_failures ?? [])]) {
+    if (!entry || typeof entry.handle !== 'string' || !entry.handle.trim() ||
+        (entry.member_id !== undefined && (typeof entry.member_id !== 'string' || !entry.member_id.trim()))) {
+      throw new Error('QOJ 账号或成员 ID 无效');
+    }
+  }
+  for (const member of payload.members) {
+    if (!Array.isArray(member.solved) || !Array.isArray(member.attempted) ||
+        ![...member.solved, ...member.attempted].every(id => typeof id === 'string' && /^\d+$/.test(id))) {
+      throw new Error('QOJ 做题记录缺失或格式无效，请重新导出');
+    }
+    if (member.display_name !== undefined && typeof member.display_name !== 'string') throw new Error('QOJ 成员名称无效');
+  }
   const importedAt = new Date().toISOString();
   const memberPayloads = Array.isArray(payload.members) ? payload.members : [];
   const fetchFailures = (Array.isArray(payload.fetch_failures) ? payload.fetch_failures : [])
@@ -149,14 +166,14 @@ export async function importQojUserscriptMembers(
     ...fetchFailures.map(failure=>({handle:failure.handle,memberId:failure.memberId || failure.handle})),
   ].filter(target=>target.handle);
   if(new Set(importTargets.map(target=>target.handle)).size!==importTargets.length)throw new Error('QOJ JSON 中账号重复');
-  const syncGuards=await localDb.transaction('rw',localDb.members,localDb.memberHandles,async()=>{
+  const syncGuards=await localDb.transaction('r',localDb.members,localDb.memberHandles,async()=>{
     const guards=new Map<string,MemberSyncGuard>();
     for(const target of importTargets) {
       const supplied=options.syncGuards?.get(target.handle);
       if(options.syncGuards && (!supplied?.member || !supplied.handle || supplied.member.memberId!==target.memberId || supplied.handle.memberId!==target.memberId)) {
         throw new DOMException('QOJ import target changed','AbortError');
       }
-      const guard=supplied ?? await captureMemberSyncGuard(target.memberId,'qoj',target.handle,options.requireExisting);
+      const guard=supplied ?? await captureMemberSyncGuard(target.memberId,'qoj',target.handle,options.requireExisting,false);
       await validateMemberSyncGuard(guard);
       guards.set(target.handle,guard);
     }
@@ -175,6 +192,8 @@ export async function importQojUserscriptMembers(
   ).length;
   const totalCount = importableMemberCount + fetchFailures.length;
   let currentIndex = 0;
+  const bundles: Parameters<typeof upsertMemberBundle>[0][] = [];
+  const failures: Parameters<typeof recordImportSyncAttempt>[0][] = [];
 
   for (const memberPayload of memberPayloads) {
     const handle = String(memberPayload.handle ?? "").trim();
@@ -310,8 +329,7 @@ export async function importQojUserscriptMembers(
     };
 
     assertNotCancelled();
-    await upsertMemberBundle({
-      syncGuard:syncGuards.get(handle),
+    bundles.push({
       member,
       handles,
       statuses,
@@ -332,9 +350,7 @@ export async function importQojUserscriptMembers(
     await new Promise<void>((resolve) => setTimeout(resolve, 0));
     const sourceRecordId = `qoj:${failure.handle}:${importedAt}:fetch-failed:${failureIndex}`;
     assertNotCancelled();
-    await localDb.transaction('rw',localDb.members,localDb.memberHandles,localDb.importSources,localDb.syncRecords,async()=>{
-      await validateMemberSyncGuard(syncGuards.get(failure.handle)!);
-      await recordImportSyncAttempt({
+    failures.push({
       importSource: {
         sourceRecordId,
         kind: "qoj_userscript_json",
@@ -363,9 +379,26 @@ export async function importQojUserscriptMembers(
           fetch_error: failure.error,
         },
       },
-      });
     });
   }
+
+  // Mapping, progress callbacks and timers finish before opening the transaction.
+  // Validate every original identity before writing any bundle, including multiple
+  // accounts of the same member. Nested writes share this all-or-nothing transaction.
+  await localDb.transaction('rw', [localDb.members, localDb.memberHandles,
+    localDb.memberProblemStatus, localDb.importSources, localDb.syncRecords], async () => {
+    assertNotCancelled();
+    for (const guard of syncGuards.values()) await validateMemberSyncGuard(guard);
+    for (const bundle of bundles) {
+      assertNotCancelled();
+      await upsertMemberBundle(bundle);
+    }
+    for (const failure of failures) {
+      assertNotCancelled();
+      await recordImportSyncAttempt(failure);
+    }
+    assertNotCancelled();
+  });
 
   return {
     memberCount: importedHandles.length,
