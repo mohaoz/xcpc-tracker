@@ -52,6 +52,16 @@ textarea {
   font: inherit;
 }
 
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+
 .shell {
   min-height: 100vh;
   overflow-x: clip;
@@ -1271,8 +1281,9 @@ h1 {
 }
 
 .contest-problem-state--unseen {
-  background: #6b7280;
-  color: #f8fafc;
+  background: #e8edf3;
+  color: #64748b;
+  border: 1px solid #cbd5e1;
 }
 
 .contest-problem-state--attempted {

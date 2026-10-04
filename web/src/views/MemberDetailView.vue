@@ -143,7 +143,7 @@ async function handleSyncHandle(handle: LocalMemberPerson["handles"][number]) {
 }
 
 async function handleDeleteHandle(handle: LocalMemberPerson["handles"][number]) {
-  const confirmed = window.confirm(`删除 handle "${handle.provider} / ${handle.handle}"？`);
+  const confirmed = window.confirm(`确定要删除账号「${handle.provider} / ${handle.handle}」吗？\n\n删除后可通过重新绑定同一账号恢复。`);
   if (!confirmed) {
     return;
   }
@@ -169,7 +169,7 @@ async function handleDeleteMember() {
   if (!person.value) {
     return;
   }
-  const confirmed = window.confirm(`删除成员 "${person.value.displayName}"？`);
+  const confirmed = window.confirm(`确定要删除成员「${person.value.displayName}」吗？\n\n删除后可通过添加成员页面重新创建同名成员恢复。`);
   if (!confirmed) {
     return;
   }

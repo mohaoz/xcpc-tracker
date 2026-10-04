@@ -329,7 +329,7 @@ async function handleDeleteContest() {
   if (!contest.value) {
     return;
   }
-  const confirmed = window.confirm(`Delete contest "${contest.value.title}" from local catalog?`);
+  const confirmed = window.confirm(`确定要从本地目录删除「${contest.value.title}」吗？`);
   if (!confirmed) {
     return;
   }
@@ -438,7 +438,7 @@ onUnmounted(() => {
   <div class="view-stack">
     <section class="panel">
       <div class="panel__body">
-        <div v-if="loading" class="notice">catalog loading...</div>
+        <div v-if="loading" class="notice">正在加载比赛目录...</div>
         <template v-else-if="contest">
           <div class="panel__header">
             <div class="panel__title">

@@ -2,7 +2,7 @@
 import { useSettingsStore } from '../stores/settings';
 import { selectAwardCutoffs } from '../lib/award-policy';
 import { computed, onActivated, onDeactivated, onMounted, onUnmounted, ref, shallowRef, watch } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 
 import type { CatalogContestIndexItem } from "../lib/catalog";
 import { listRuntimeCatalogContests, listRuntimeContestCoveragePayload, type RuntimeCatalogContestListRecord } from "../lib/catalog-runtime";
@@ -33,6 +33,8 @@ const hasLoaded = ref(false);
 const contestListStore = useContestListStore();
 const spoilers = useSpoilerStore();
 const settings = useSettingsStore();
+const route = useRoute();
+const router = useRouter();
 const allMemberCoverage = computed(() => new Map(coverageInput.value
   ? summarizeCatalogCoverage(coveragePayload.value, coverageInput.value).map(s => [s.contestId, s]) : []));
 const touched = (id: string) => isContestTouched(allMemberCoverage.value.get(id));
@@ -71,7 +73,7 @@ const listModeBadgeLabels: Record<ContestListMode, string> = {
   DONE: "✓",
 };
 const listModeTips: Record<ContestListMode, string> = {
-  ALL: "All contests",
+  ALL: "全部比赛",
   UNSEEN: "所选成员均未尝试或通过本场任何题目",
   DONE: "至少一位所选成员尝试或通过了本场题目",
 };
@@ -86,10 +88,10 @@ const awardSearchAliases = {
 type ContestAwardMode = keyof typeof awardSearchAliases;
 
 const awardModeTips: Record<ContestAwardMode, string> = {
-  FE: "The selected members have solved problems, but combined coverage is below the bronze cutoff",
-  CU: "The selected members' combined coverage reached the bronze cutoff",
-  AG: "The selected members' combined coverage reached the silver cutoff",
-  AU: "The selected members' combined coverage reached the gold cutoff",
+  FE: "所选成员已通过题目,但组合覆盖低于铜牌线",
+  CU: "所选成员组合覆盖达到铜牌线",
+  AG: "所选成员组合覆盖达到银牌线",
+  AU: "所选成员组合覆盖达到金牌线",
 };
 
 function getAwardModeFromSearchToken(token: string): ContestAwardMode | null {
@@ -248,7 +250,7 @@ function getContestBadgeLabel(contestId: string) {
 
 function getContestBadgeTitle(contestId: string) {
   return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA"
-    ? "No medal cutoff data"
+    ? "暂无奖牌线数据"
     : listModeTips[getContestListMode(contestId)];
 }
 
@@ -517,6 +519,8 @@ function goToPage(nextPage: number) {
 
 function clearQuery() {
   contestListStore.query = "";
+  contestListStore.selectedMode = "ALL";
+  contestListStore.page = 1;
 }
 
 function appendSearchToken(rawToken: string) {
@@ -531,7 +535,50 @@ function appendSearchToken(rawToken: string) {
   contestListStore.query = [contestListStore.query.trim(), normalized].filter(Boolean).join(" ");
 }
 
+// Sync store state to/from URL query parameters
+function syncFromUrl() {
+  const q = route.query.q;
+  if (typeof q === 'string') contestListStore.query = q;
+
+  const mode = route.query.mode;
+  if (typeof mode === 'string' && isContestListMode(mode)) contestListStore.selectedMode = mode;
+
+  const page = route.query.page;
+  if (typeof page === 'string') {
+    const parsed = Number.parseInt(page, 10);
+    if (Number.isFinite(parsed) && parsed >= 1) contestListStore.page = parsed;
+  }
+
+  const members = route.query.members;
+  if (typeof members === 'string' && members) {
+    contestListStore.selectedMemberIds = members.split(',').filter(Boolean);
+  }
+}
+
+function syncToUrl() {
+  const query: Record<string, string> = {};
+  if (contestListStore.query) query.q = contestListStore.query;
+  if (contestListStore.selectedMode !== 'ALL') query.mode = contestListStore.selectedMode;
+  if (contestListStore.page > 1) query.page = String(contestListStore.page);
+  if (contestListStore.selectedMemberIds.length && contestListStore.selectedMemberIds.length !== memberOptions.value.length) {
+    query.members = contestListStore.selectedMemberIds.join(',');
+  }
+
+  router.replace({ query }).catch(() => {});
+}
+
+let urlSyncScheduled = false;
+function scheduleUrlSync() {
+  if (urlSyncScheduled) return;
+  urlSyncScheduled = true;
+  requestAnimationFrame(() => {
+    urlSyncScheduled = false;
+    syncToUrl();
+  });
+}
+
 onMounted(() => {
+  syncFromUrl();
   normalizeContestListState();
   unsubscribeCoverageDataMutated = subscribeCoverageDataMutated(invalidateCoverageData);
 });
@@ -550,16 +597,22 @@ watch(queryTokens, () => {
   if (contestListStore.page !== 1) {
     contestListStore.page = 1;
   }
+  scheduleUrlSync();
 });
 watch(() => contestListStore.selectedMemberIds, () => {
   if (contestListStore.page !== 1) {
     contestListStore.page = 1;
   }
+  scheduleUrlSync();
 }, { deep: true });
 watch(() => contestListStore.selectedMode, () => {
   if (contestListStore.page !== 1) {
     contestListStore.page = 1;
   }
+  scheduleUrlSync();
+});
+watch(() => contestListStore.page, () => {
+  scheduleUrlSync();
 });
 </script>
 
