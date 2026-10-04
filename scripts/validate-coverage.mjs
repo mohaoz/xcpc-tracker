@@ -10,6 +10,7 @@ const webRequire = createRequire(path.join(repoRoot, "web/package.json"));
 const { parse, compileScript } = webRequire("@vue/compiler-sfc");
 const vue = webRequire("vue");
 const { createPinia } = webRequire("pinia");
+const { createRouter, createMemoryHistory } = webRequire("vue-router");
 
 export function loadModule(relativePath, overrides = {}, sourceOverride) {
   const filename = path.resolve(repoRoot, relativePath);
@@ -28,7 +29,9 @@ export function loadModule(relativePath, overrides = {}, sourceOverride) {
     if (id.startsWith(".")) return loadModule(path.relative(repoRoot, path.resolve(path.dirname(filename), id.endsWith('.vue') ? id : `${id}.ts`)), overrides);
     return webRequire(id);
   };
-  new Function("require", "module", "exports", compiled.outputText)(require, module, module.exports);
+  new Function("require", "module", "exports", "requestAnimationFrame", compiled.outputText)(
+    require, module, module.exports, callback => queueMicrotask(() => callback(performance.now())),
+  );
   return module.exports;
 }
 
@@ -175,6 +178,9 @@ const showList = vue.ref(true);
 const otherComponent = { name: "OtherView", render: () => vue.h("other") };
 const app = renderer.createApp({ render: () => vue.h(vue.KeepAlive, { include: "ContestListView" }, { default: () => vue.h(showList.value ? listComponent : otherComponent) }) });
 app.use(createPinia());
+const router = createRouter({ history: createMemoryHistory(), routes: [{ path: '/contests', component: listComponent }] });
+app.use(router);
+await router.push('/contests');
 app.mount({ children: [] });
 const settle = async () => { for (let i = 0; i < 12; i++) await vue.nextTick(); };
 await settle();
