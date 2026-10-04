@@ -1281,9 +1281,9 @@ h1 {
 }
 
 .contest-problem-state--unseen {
-  background: #f1f5f9;
+  background: #e8edf3;
   color: #64748b;
-  border: 1px solid #e2e8f0;
+  border: 1px solid #cbd5e1;
 }
 
 .contest-problem-state--attempted {
