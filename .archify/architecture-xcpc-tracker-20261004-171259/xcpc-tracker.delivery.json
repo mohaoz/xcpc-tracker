@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "d89df859-1e32-4666-8696-65021be2608a",
+  "status": "current",
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/home/mohao/xcpc-tracker/.archify/architecture-xcpc-tracker-20261004-171259/candidate.json",
+  "output": "/home/mohao/xcpc-tracker/.archify/architecture-xcpc-tracker-20261004-171259/xcpc-tracker.html",
+  "specification": {
+    "sha256": "828512eaf2b8769fef337413a2a23cce1ddd6b33c05e1fe452ea693e787822a0",
+    "bytes": 8097
+  },
+  "artifact": {
+    "sha256": "184cbee08f54e5454905b4ddfcd9820e3cd8ffd9ccd2e3acd2af05c7ec2eaf2f",
+    "bytes": 766355
+  }
+}

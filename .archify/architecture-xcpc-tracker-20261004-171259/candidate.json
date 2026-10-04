@@ -1,0 +1,378 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "XCPC Tracker 项目架构",
+    "locale": "zh-CN",
+    "output": ".archify/architecture-xcpc-tracker-20261004-171259/xcpc-tracker.html",
+    "quality_profile": "showcase",
+    "repository": {
+      "url": "git@github.com:mohaoz/xcpc-tracker",
+      "revision": "25d5594cc4c3e5cc681d3b762d712086d274d979",
+      "link_mode": "local-only"
+    }
+  },
+  "components": [
+    {
+      "id": "catalog",
+      "type": "database",
+      "label": "正式比赛目录",
+      "sublabel": "Git 管理的唯一目录",
+      "pos": [
+        40,
+        40
+      ],
+      "size": [
+        220,
+        76
+      ],
+      "sources": [
+        {
+          "path": "scripts/generate-web-catalog-assets.mjs",
+          "line": 7,
+          "end_line": 23
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "type": "backend",
+      "label": "构建与发布",
+      "sublabel": "校验 · 生成 JSON · Vite",
+      "pos": [
+        40,
+        245
+      ],
+      "size": [
+        220,
+        76
+      ],
+      "sources": [
+        {
+          "path": "scripts/generate-web-catalog-assets.mjs",
+          "line": 21,
+          "end_line": 44
+        },
+        {
+          "path": ".github/workflows/github-pages.yml",
+          "line": 17,
+          "end_line": 40
+        }
+      ]
+    },
+    {
+      "id": "assets",
+      "type": "cloud",
+      "label": "GitHub Pages",
+      "sublabel": "前端资源与静态比赛 JSON",
+      "pos": [
+        40,
+        450
+      ],
+      "size": [
+        220,
+        76
+      ],
+      "sources": [
+        {
+          "path": ".github/workflows/github-pages.yml",
+          "line": 37,
+          "end_line": 53
+        },
+        {
+          "path": "web/src/lib/catalog.ts",
+          "line": 251,
+          "end_line": 282
+        }
+      ]
+    },
+    {
+      "id": "db",
+      "type": "database",
+      "label": "本机 IndexedDB",
+      "sublabel": "成员 · 状态 · 偏好 · 手工目录",
+      "pos": [
+        415,
+        245
+      ],
+      "size": [
+        220,
+        76
+      ],
+      "sources": [
+        {
+          "path": "web/src/lib/local-db.ts",
+          "line": 30,
+          "end_line": 65
+        },
+        {
+          "path": "web/src/lib/local-db.ts",
+          "line": 432,
+          "end_line": 465
+        }
+      ]
+    },
+    {
+      "id": "app",
+      "type": "frontend",
+      "label": "Vue / TypeScript",
+      "sublabel": "浏览比赛 · 覆盖热力图 · 整场 VP",
+      "pos": [
+        415,
+        450
+      ],
+      "size": [
+        220,
+        76
+      ],
+      "sources": [
+        {
+          "path": "web/src/main.ts",
+          "line": 1,
+          "end_line": 8
+        },
+        {
+          "path": "web/src/views/ContestListView.vue",
+          "line": 384,
+          "end_line": 425
+        },
+        {
+          "path": "web/src/lib/spoiler-policy.ts",
+          "line": 3,
+          "end_line": 9
+        }
+      ]
+    },
+    {
+      "id": "user",
+      "type": "external",
+      "label": "使用者",
+      "sublabel": "选择成员与整场练习",
+      "pos": [
+        415,
+        655
+      ],
+      "size": [
+        220,
+        76
+      ],
+      "sources": [
+        {
+          "path": "web/src/views/ContestListView.vue",
+          "line": 397,
+          "end_line": 405
+        }
+      ]
+    },
+    {
+      "id": "cf",
+      "type": "external",
+      "label": "Codeforces 官方 API",
+      "sublabel": "成员提交与做题状态",
+      "pos": [
+        790,
+        40
+      ],
+      "size": [
+        220,
+        76
+      ],
+      "sources": [
+        {
+          "path": "web/src/lib/codeforces.ts",
+          "line": 95,
+          "end_line": 120
+        },
+        {
+          "path": "web/src/lib/codeforces.ts",
+          "line": 123,
+          "end_line": 156
+        }
+      ]
+    },
+    {
+      "id": "sync",
+      "type": "frontend",
+      "label": "成员导入与同步",
+      "sublabel": "映射校验 · 身份保护 · 事务写入",
+      "pos": [
+        790,
+        245
+      ],
+      "size": [
+        220,
+        76
+      ],
+      "sources": [
+        {
+          "path": "web/src/lib/codeforces.ts",
+          "line": 261,
+          "end_line": 318
+        },
+        {
+          "path": "web/src/lib/qoj.ts",
+          "line": 385,
+          "end_line": 395
+        },
+        {
+          "path": "web/src/stores/qoj-sync.ts",
+          "line": 185,
+          "end_line": 213
+        }
+      ]
+    },
+    {
+      "id": "bridge",
+      "type": "security",
+      "label": "QOJ 油猴桥接",
+      "sublabel": "用户安装后通过同源消息调用",
+      "pos": [
+        790,
+        450
+      ],
+      "size": [
+        220,
+        76
+      ],
+      "sources": [
+        {
+          "path": "scripts/qoj-sync.user.js",
+          "line": 16,
+          "end_line": 27
+        },
+        {
+          "path": "scripts/qoj-sync.user.js",
+          "line": 68,
+          "end_line": 98
+        }
+      ]
+    },
+    {
+      "id": "qoj",
+      "type": "external",
+      "label": "QOJ 用户主页",
+      "sublabel": "使用用户浏览器登录会话",
+      "pos": [
+        790,
+        655
+      ],
+      "size": [
+        220,
+        76
+      ],
+      "sources": [
+        {
+          "path": "scripts/qoj-sync.user.js",
+          "line": 29,
+          "end_line": 66
+        },
+        {
+          "path": "scripts/qoj-sync.user.js",
+          "line": 89,
+          "end_line": 98
+        }
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "catalog-build",
+      "from": "catalog",
+      "to": "build",
+      "label": "读取目录",
+      "variant": "default"
+    },
+    {
+      "id": "build-assets",
+      "from": "build",
+      "to": "assets",
+      "label": "发布静态资产",
+      "variant": "default"
+    },
+    {
+      "id": "app-assets",
+      "from": "app",
+      "to": "assets",
+      "label": "按需读取 JSON",
+      "variant": "default"
+    },
+    {
+      "id": "app-db",
+      "from": "app",
+      "to": "db",
+      "label": "读取 / 本地编辑",
+      "variant": "default"
+    },
+    {
+      "id": "user-app",
+      "from": "user",
+      "to": "app",
+      "label": "选整场 VP",
+      "variant": "emphasis"
+    },
+    {
+      "id": "app-sync",
+      "from": "app",
+      "to": "sync",
+      "label": "手动 / 自动同步",
+      "variant": "default"
+    },
+    {
+      "id": "sync-db",
+      "from": "sync",
+      "to": "db",
+      "label": "校验后提交",
+      "variant": "default"
+    },
+    {
+      "id": "sync-cf",
+      "from": "sync",
+      "to": "cf",
+      "label": "HTTPS API",
+      "variant": "default"
+    },
+    {
+      "id": "sync-bridge",
+      "from": "sync",
+      "to": "bridge",
+      "label": "启用后消息调用",
+      "variant": "security"
+    },
+    {
+      "id": "bridge-qoj",
+      "from": "bridge",
+      "to": "qoj",
+      "label": "授权会话请求",
+      "variant": "security"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "目录与构建期",
+      "items": [
+        "唯一正式目录：catalog/default-catalog.min.json。",
+        "生成比赛索引、coverage basis、逐场详情与导入映射。",
+        "RankLand / XCPC Rating 经审核后在构建期补充牌线、标签与 Rating。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "浏览器本地使用",
+      "items": [
+        "静态前端无运行时后端；目录按需加载。",
+        "成员账号、通过/尝试记录、偏好与手工比赛保存在本机。",
+        "所选成员均无尝试和通过才是“未做”；非剧透隐藏牌线、标签和 Rating。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "同步与授权边界",
+      "items": [
+        "QOJ 默认手动 JSON 导入，油猴模式须用户安装并启用。",
+        "自动同步默认关闭，开启后同时调度 CF 与 QOJ；可见页面才运行。",
+        "导入校验目录映射和本地身份，失败保留上次成功状态；不导出 Cookie。"
+      ]
+    }
+  ]
+}
