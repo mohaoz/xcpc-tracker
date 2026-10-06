@@ -558,10 +558,7 @@ onUnmounted(() => {
                       v-if="nextAwardTarget"
                       class="award-cutoff-card__progress"
                     >
-                      <span>
-                        NEXT +{{ nextAwardTarget.remaining }}
-                        {{ nextAwardTarget.remaining === 1 ? "prob" : "probs" }}
-                      </span>
+                      <span>+{{ nextAwardTarget.remaining }} → {{ nextAwardTarget.label }}</span>
                     </div>
                     <div v-if="awardPlacement === 'Au'" class="award-cutoff-card__next">
                       <span class="award-cutoff-card__next-crown">★</span>
@@ -584,9 +581,8 @@ onUnmounted(() => {
                       </span>
                       <div>
                         <strong>{{ row.cutoff ? `${row.cutoff.solved} solved` : "—" }}</strong>
-                        <p v-if="row.cutoff" class="muted tiny">
-                          第 {{ row.cutoff.rank }} 名，罚时 {{ row.cutoff.penalty }}
-                        </p>
+                        <p v-if="row.cutoff" class="muted tiny">第 {{ row.cutoff.rank }} 名</p>
+                        <p v-if="row.cutoff" class="muted tiny">罚时 {{ row.cutoff.penalty }}</p>
                       </div>
                     </div>
                   </div>
