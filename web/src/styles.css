@@ -542,31 +542,95 @@ h1 {
 .award-strip--cu .award-strip__bar-fill { background: #b87333; }
 .award-strip--fe .award-strip__bar-fill { background: #7c2d12; }
 
-/* Three-row cutoff table */
-.award-strip__table {
-  display: grid;
+/* Horizontal axis showing solved position relative to Cu/Ag/Au thresholds */
+.award-axis {
+  padding: 12px 16px 4px;
   border-top: 1px solid rgba(41, 55, 81, 0.08);
 }
 
-.award-strip__row {
-  display: grid;
-  grid-template-columns: 40px 1fr 1fr 1fr;
+.award-axis__track {
+  position: relative;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(41, 55, 81, 0.08);
+  margin-bottom: 32px;
+}
+
+.award-axis__fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  border-radius: 4px;
+  background: rgba(41, 55, 81, 0.18);
+  transition: width 300ms ease;
+}
+
+.award-axis__marker {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 14px;
+  border-radius: 1px;
+  transform: translateX(-50%);
+}
+
+.award-axis__marker--cu { background: #b87333; }
+.award-axis__marker--ag { background: #9ca3af; }
+.award-axis__marker--au { background: #ca8a04; }
+
+/* Needle showing current solved position */
+.award-axis__needle {
+  position: absolute;
+  top: -5px;
+  width: 4px;
+  height: 18px;
+  border-radius: 2px;
+  background: var(--ink);
+  transform: translateX(-50%);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.8);
+  transition: left 300ms ease;
+}
+
+.award-axis__labels {
+  position: relative;
+  height: 42px;
+}
+
+.award-axis__label {
+  position: absolute;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-bottom: 1px solid rgba(41, 55, 81, 0.06);
+  gap: 1px;
 }
 
-.award-strip__row:last-child { border-bottom: 0; }
-
-.award-strip__solved {
+.award-axis__label-tier {
   font-family: "Space Grotesk", sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 1px 5px;
+  border-radius: 4px;
+  color: #f8fafc;
 }
 
-.award-strip__detail {
-  text-align: right;
+.award-axis__label-tier--cu { background: #b87333; }
+.award-axis__label-tier--ag { background: #9ca3af; color: #1f2937; }
+.award-axis__label-tier--au { background: #ca8a04; }
+
+.award-axis__label-val {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.award-axis__label-pen {
+  font-size: 0.72rem;
+  white-space: nowrap;
 }
 
 .award-strip__source {
@@ -579,13 +643,6 @@ h1 {
   color: var(--brand-strong);
   text-decoration: underline;
   text-underline-offset: 2px;
-}
-
-@media (max-width: 900px) {
-  .award-strip__row {
-    grid-template-columns: 40px 1fr 1fr;
-  }
-  .award-strip__detail:last-child { display: none; }
 }
 
 .form-grid {
