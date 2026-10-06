@@ -218,7 +218,6 @@ onUnmounted(() => {
           >
             <div class="member-card__top">
               <div>
-                <p class="eyebrow">成员</p>
                 <h3>{{ person.displayName }}</h3>
                 <div class="inline-tags" style="margin-top: 10px">
                   <span class="tag tag--neutral">{{ person.providerCount }} 个平台</span>
