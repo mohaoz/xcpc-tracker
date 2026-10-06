@@ -457,8 +457,8 @@ onUnmounted(() => {
               <p class="eyebrow">{{ contestEyebrow }}</p>
               <h2>{{ contest.title }}</h2>
               <div class="inline-meta muted tiny">
-                <span>{{ coverage?.problemCount ?? contest.problems.length }} 题</span>
-                <span v-if="(coverage?.freshProblemCount ?? 0) > 0">队伍未做 {{ coverage?.freshProblemCount }}</span>
+                <span>{{ coverage?.problemCount ?? contest.problems.length }} problems</span>
+                <span>{{ coverage?.freshProblemCount ?? 0 }} fresh</span>
                 <span v-if="contestDateLabel">{{ contestDateLabel }}</span>
               </div>
             </div>
@@ -551,20 +551,23 @@ onUnmounted(() => {
                         {{ awardPlacement }}
                       </span>
                       <div>
-                        <strong>{{ solvedProblemCount }} 题已通过</strong>
+                        <strong>{{ solvedProblemCount }} solved</strong>
                       </div>
                     </div>
                     <div
                       v-if="nextAwardTarget"
                       class="award-cutoff-card__progress"
                     >
-                      <span>再做 {{ nextAwardTarget.remaining }} 题 → {{ nextAwardTarget.label }}</span>
+                      <span>
+                        NEXT +{{ nextAwardTarget.remaining }}
+                        {{ nextAwardTarget.remaining === 1 ? "prob" : "probs" }}
+                      </span>
                     </div>
                     <div v-if="awardPlacement === 'Au'" class="award-cutoff-card__next">
                       <span class="award-cutoff-card__next-crown">★</span>
                     </div>
                     <div v-else-if="nextAwardTarget" class="award-cutoff-card__next">
-                      <span class="award-cutoff-card__next-count">{{ nextAwardTarget.solved }} 题</span>
+                      <span class="award-cutoff-card__next-count">{{ nextAwardTarget.solved }} solved</span>
                       <span :class="`contest-medal-badge contest-medal-badge--${nextAwardTarget.label.toLowerCase()}`">
                         {{ nextAwardTarget.label }}
                       </span>
