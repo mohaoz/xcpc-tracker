@@ -642,6 +642,7 @@ watch(() => contestListStore.page, () => {
                     type="button"
                     class="mode-switch__option"
                     :class="{ 'mode-switch__option--active': contestListStore.selectedMode === mode }"
+                    :aria-pressed="contestListStore.selectedMode === mode"
                     @click="setListMode(mode)"
                   >
                     {{ listModeButtonLabels[mode] }}
