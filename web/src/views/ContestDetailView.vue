@@ -554,86 +554,41 @@ onUnmounted(() => {
                 </section>
                 <p v-if="spoilers.error" class="error-box">{{ spoilers.error }}</p>
                 <div
-                  v-if="showSpoilers && awardCutoffs && awardAxis"
+                  v-if="showSpoilers && awardCutoffs"
                   class="award-strip"
-                  :class="`award-strip--${awardPlacement?.toLowerCase() ?? 'fe'}`"
                 >
-                  <!-- Header: current solved + nudge -->
+                  <!-- Current solved count header -->
                   <div class="award-strip__head">
-                    <div class="award-strip__current">
-                      <span
-                        v-if="awardPlacement"
-                        :class="`contest-medal-badge contest-medal-badge--${awardPlacement.toLowerCase()}`"
-                      >{{ awardPlacement }}</span>
-                      <strong>{{ solvedProblemCount }} solved</strong>
-                    </div>
-                    <div v-if="nextAwardTarget" class="award-strip__nudge">
+                    <strong>{{ solvedProblemCount }} solved</strong>
+                    <span v-if="nextAwardTarget" class="award-strip__nudge">
                       +{{ nextAwardTarget.remaining }} → {{ nextAwardTarget.label }}
+                    </span>
+                  </div>
+                  <!-- Tier rows: Au / Ag / Cu, current tier highlighted -->
+                  <div class="award-strip__tiers">
+                    <div
+                      v-for="row in [...awardCutoffRows].reverse()"
+                      :key="row.key"
+                      class="award-strip__tier"
+                      :class="[
+                        `award-strip__tier--${row.label.toLowerCase()}`,
+                        awardPlacement?.toLowerCase() === row.label.toLowerCase() ? 'award-strip__tier--active' : ''
+                      ]"
+                    >
+                      <span class="award-strip__tier-label">{{ row.label }}</span>
+                      <span class="award-strip__tier-solved">{{ row.cutoff ? `${row.cutoff.solved} solved` : '—' }}</span>
+                      <span v-if="row.cutoff" class="award-strip__tier-detail">rank {{ row.cutoff.rank }}</span>
+                      <span v-if="row.cutoff" class="award-strip__tier-detail">{{ row.cutoff.penalty }}</span>
                     </div>
-                    <div v-else-if="awardPlacement === 'Au'" class="award-strip__nudge award-strip__nudge--gold">
-                      ★ Au
+                    <!-- Fe row (no cutoff, just shows current if in Fe) -->
+                    <div
+                      class="award-strip__tier award-strip__tier--fe"
+                      :class="awardPlacement === 'Fe' ? 'award-strip__tier--active' : ''"
+                    >
+                      <span class="award-strip__tier-label">Fe</span>
+                      <span class="award-strip__tier-solved muted">below Cu</span>
                     </div>
                   </div>
-
-                  <!-- Axis: horizontal line with Cu/Ag/Au markers and current-position needle -->
-                  <div class="award-axis" aria-hidden="true">
-                    <div class="award-axis__track">
-                      <!-- Filled region up to current solved -->
-                      <div class="award-axis__fill" :style="{ width: `${awardAxis.current.pct}%` }"></div>
-                      <!-- Tier markers -->
-                      <div
-                        v-if="awardAxis.cu"
-                        class="award-axis__marker award-axis__marker--cu"
-                        :style="{ left: `${awardAxis.cu.pct}%` }"
-                      ></div>
-                      <div
-                        v-if="awardAxis.ag"
-                        class="award-axis__marker award-axis__marker--ag"
-                        :style="{ left: `${awardAxis.ag.pct}%` }"
-                      ></div>
-                      <div
-                        v-if="awardAxis.au"
-                        class="award-axis__marker award-axis__marker--au"
-                        :style="{ left: `${awardAxis.au.pct}%` }"
-                      ></div>
-                      <!-- Current position needle -->
-                      <div
-                        class="award-axis__needle"
-                        :style="{ left: `${awardAxis.current.pct}%` }"
-                      ></div>
-                    </div>
-                    <!-- Labels below the axis -->
-                    <div class="award-axis__labels">
-                      <div
-                        v-if="awardAxis.cu"
-                        class="award-axis__label"
-                        :style="{ left: `${awardAxis.cu.pct}%` }"
-                      >
-                        <span class="award-axis__label-tier award-axis__label-tier--cu">Cu</span>
-                        <span class="award-axis__label-val">{{ awardAxis.cu.solved }}</span>
-                        <span v-if="awardAxis.cu.penalty != null" class="award-axis__label-pen muted">{{ awardAxis.cu.penalty }}</span>
-                      </div>
-                      <div
-                        v-if="awardAxis.ag"
-                        class="award-axis__label"
-                        :style="{ left: `${awardAxis.ag.pct}%` }"
-                      >
-                        <span class="award-axis__label-tier award-axis__label-tier--ag">Ag</span>
-                        <span class="award-axis__label-val">{{ awardAxis.ag.solved }}</span>
-                        <span v-if="awardAxis.ag.penalty != null" class="award-axis__label-pen muted">{{ awardAxis.ag.penalty }}</span>
-                      </div>
-                      <div
-                        v-if="awardAxis.au"
-                        class="award-axis__label"
-                        :style="{ left: `${awardAxis.au.pct}%` }"
-                      >
-                        <span class="award-axis__label-tier award-axis__label-tier--au">Au</span>
-                        <span class="award-axis__label-val">{{ awardAxis.au.solved }}</span>
-                        <span v-if="awardAxis.au.penalty != null" class="award-axis__label-pen muted">{{ awardAxis.au.penalty }}</span>
-                      </div>
-                    </div>
-                  </div>
-
                   <p class="award-strip__source muted tiny">
                     <a :href="awardCutoffs.sourceUrl" target="_blank" rel="noreferrer">{{ awardCutoffs.sourceLabel }}</a>
                     <span v-if="awardCutoffSourceLabel"> · {{ awardCutoffSourceLabel }}</span>
