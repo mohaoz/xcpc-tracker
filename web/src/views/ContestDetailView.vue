@@ -137,26 +137,6 @@ const nextAwardTarget = computed(() => {
     progressPercent: 50 + Math.round((solvedWithinLevel / targetGap) * 50),
   };
 });
-
-// Axis positions for the award timeline.
-// Maps each tier to a percentage along [0, axisMax] where axisMax = Au + 20%.
-const awardAxis = computed(() => {
-  const cutoffs = awardCutoffs.value?.cutoffs;
-  if (!cutoffs) return null;
-  const cu = cutoffs.bronze?.solved ?? null;
-  const ag = cutoffs.silver?.solved ?? null;
-  const au = cutoffs.gold?.solved ?? null;
-  const max = au != null ? Math.ceil(au * 1.2) : ag != null ? Math.ceil(ag * 1.5) : cu != null ? Math.ceil(cu * 2) : null;
-  if (max == null || max === 0) return null;
-  const pct = (n: number) => Math.min(100, Math.round((n / max) * 100));
-  return {
-    max,
-    cu: cu != null ? { solved: cu, pct: pct(cu), rank: cutoffs.bronze?.rank, penalty: cutoffs.bronze?.penalty } : null,
-    ag: ag != null ? { solved: ag, pct: pct(ag), rank: cutoffs.silver?.rank, penalty: cutoffs.silver?.penalty } : null,
-    au: au != null ? { solved: au, pct: pct(au), rank: cutoffs.gold?.rank, penalty: cutoffs.gold?.penalty } : null,
-    current: { solved: solvedProblemCount.value, pct: pct(solvedProblemCount.value) },
-  };
-});
 const contestEyebrow = computed(() => {
   const sources = contest.value?.sources ?? [];
   const preferredSources = sources.some((item) => item.kind === "contest")
@@ -555,43 +535,65 @@ onUnmounted(() => {
                 <p v-if="spoilers.error" class="error-box">{{ spoilers.error }}</p>
                 <div
                   v-if="showSpoilers && awardCutoffs"
-                  class="award-strip"
+                  :class="[
+                    'award-cutoff-card',
+                    `award-cutoff-card--${awardPlacement?.toLowerCase() ?? 'fe'}`,
+                    `award-cutoff-card--target-${nextAwardTarget?.label.toLowerCase() ?? awardPlacement?.toLowerCase() ?? 'fe'}`,
+                  ]"
+                  :style="{ '--award-progress': awardPlacement === 'Au' ? '100%' : nextAwardTarget ? `${nextAwardTarget.progressPercent}%` : '0%' }"
                 >
-                  <!-- Current solved count header -->
-                  <div class="award-strip__head">
-                    <strong>{{ solvedProblemCount }} solved</strong>
-                    <span v-if="nextAwardTarget" class="award-strip__nudge">
-                      +{{ nextAwardTarget.remaining }} → {{ nextAwardTarget.label }}
-                    </span>
-                  </div>
-                  <!-- Tier rows: Au / Ag / Cu, current tier highlighted -->
-                  <div class="award-strip__tiers">
+                  <div class="award-cutoff-card__header">
+                    <div class="award-cutoff-card__current">
+                      <span
+                        v-if="awardPlacement"
+                        :class="`contest-medal-badge contest-medal-badge--${awardPlacement.toLowerCase()}`"
+                      >
+                        {{ awardPlacement }}
+                      </span>
+                      <div>
+                        <strong>{{ solvedProblemCount }} solved</strong>
+                      </div>
+                    </div>
                     <div
-                      v-for="row in [...awardCutoffRows].reverse()"
+                      v-if="nextAwardTarget"
+                      class="award-cutoff-card__progress"
+                    >
+                      <span>
+                        NEXT +{{ nextAwardTarget.remaining }}
+                        {{ nextAwardTarget.remaining === 1 ? "prob" : "probs" }}
+                      </span>
+                    </div>
+                    <div v-if="awardPlacement === 'Au'" class="award-cutoff-card__next">
+                      <span class="award-cutoff-card__next-crown">★</span>
+                    </div>
+                    <div v-else-if="nextAwardTarget" class="award-cutoff-card__next">
+                      <span class="award-cutoff-card__next-count">{{ nextAwardTarget.solved }} solved</span>
+                      <span :class="`contest-medal-badge contest-medal-badge--${nextAwardTarget.label.toLowerCase()}`">
+                        {{ nextAwardTarget.label }}
+                      </span>
+                    </div>
+                  </div>
+                  <div class="award-cutoff-card__grid">
+                    <div
+                      v-for="row in awardCutoffRows"
                       :key="row.key"
-                      class="award-strip__tier"
-                      :class="[
-                        `award-strip__tier--${row.label.toLowerCase()}`,
-                        awardPlacement?.toLowerCase() === row.label.toLowerCase() ? 'award-strip__tier--active' : ''
-                      ]"
+                      class="award-cutoff-card__item"
                     >
-                      <span class="award-strip__tier-label">{{ row.label }}</span>
-                      <span class="award-strip__tier-solved">{{ row.cutoff ? `${row.cutoff.solved} solved` : '—' }}</span>
-                      <span v-if="row.cutoff" class="award-strip__tier-detail">rank {{ row.cutoff.rank }}</span>
-                      <span v-if="row.cutoff" class="award-strip__tier-detail">{{ row.cutoff.penalty }}</span>
-                    </div>
-                    <!-- Fe row (no cutoff, just shows current if in Fe) -->
-                    <div
-                      class="award-strip__tier award-strip__tier--fe"
-                      :class="awardPlacement === 'Fe' ? 'award-strip__tier--active' : ''"
-                    >
-                      <span class="award-strip__tier-label">Fe</span>
-                      <span class="award-strip__tier-solved muted">below Cu</span>
+                      <span :class="`contest-medal-badge contest-medal-badge--${row.label.toLowerCase()}`">
+                        {{ row.label }}
+                      </span>
+                      <div>
+                        <strong>{{ row.cutoff ? `${row.cutoff.solved} solved` : "—" }}</strong>
+                        <p v-if="row.cutoff" class="muted tiny">
+                          第 {{ row.cutoff.rank }} 名，罚时 {{ row.cutoff.penalty }}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                  <p class="award-strip__source muted tiny">
-                    <a :href="awardCutoffs.sourceUrl" target="_blank" rel="noreferrer">{{ awardCutoffs.sourceLabel }}</a>
-                    <span v-if="awardCutoffSourceLabel"> · {{ awardCutoffSourceLabel }}</span>
+                  <p class="award-cutoff-card__source">
+                    来源：<a :href="awardCutoffs.sourceUrl" target="_blank" rel="noreferrer">
+                      {{ awardCutoffs.sourceLabel }}
+                    </a><span v-if="awardCutoffSourceLabel"> · {{ awardCutoffSourceLabel }}</span>
                   </p>
                 </div>
                 <p v-else-if="showSpoilers" class="muted tiny" style="margin-bottom: 18px">
