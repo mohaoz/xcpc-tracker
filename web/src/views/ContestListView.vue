@@ -204,8 +204,6 @@ function getSolvedCutoff(
 
 function getContestListMode(contestId: string): ContestListMode {
   const summary = coverageSummaryMap.value.get(contestId);
-  const solvedProblemCount = summary?.solvedProblemCount ?? 0;
-
   return isContestTouched(summary) ? "DONE" : "UNSEEN";
 }
 
@@ -283,6 +281,36 @@ function getContestAwardRange(contestId: string) {
   }
   return null;
 }
+
+// Pre-compute award range and source label for each contest once per
+// render cycle so the template doesn't call these functions repeatedly
+// for every card binding.
+const contestAwardRangeMap = computed(() => {
+  const map = new Map<string, ReturnType<typeof getContestAwardRange>>();
+  for (const contest of contests.value) {
+    map.set(contest.id, getContestAwardRange(contest.id));
+  }
+  return map;
+});
+
+const contestSourceLabelMap = computed(() => {
+  const map = new Map<string, string>();
+  for (const [id, contest] of localContestMap.value) {
+    const sources = contest.sources ?? [];
+    const preferred = sources.some(s => s.kind === "contest")
+      ? sources.filter(s => s.kind === "contest")
+      : sources;
+    const labels = preferred.map(s => {
+      const provider = s.provider.trim().toUpperCase();
+      const pid = (s.provider_contest_id ?? "").trim();
+      if (pid) return `${provider} / ${pid}`;
+      const title = (s.source_title ?? s.label ?? "").trim();
+      return title ? `${provider} / ${title}` : provider;
+    });
+    map.set(id, labels.length ? labels.join(" | ") : "CURATED CONTEST");
+  }
+  return map;
+});
 
 const filteredContests = computed(() => {
   return contests.value.filter((contest) => {
@@ -483,35 +511,8 @@ function awardRangeTitle(contestId: string) {
   return mode ? awardModeTips[mode] : "";
 }
 
-function getContestAwardSearchToken(contestId: string) {
-  return getContestAwardRange(contestId)?.label ?? null;
-}
-
 function problemStateClass(status: "solved" | "attempted" | "unseen") {
   return `contest-problem-state--${status}`;
-}
-
-function contestSourceLabel(contestId: string) {
-  const contest = localContestMap.value.get(contestId);
-  const sources = contest?.sources ?? [];
-  const preferredSources = sources.some((item) => item.kind === "contest")
-    ? sources.filter((item) => item.kind === "contest")
-    : sources;
-  const sourceLabels = preferredSources
-    .map((item) => {
-      const provider = item.provider.trim().toUpperCase();
-      const providerId = (item.provider_contest_id ?? "").trim();
-      if (providerId) {
-        return `${provider} / ${providerId}`;
-      }
-      const sourceTitle = (item.source_title ?? item.label ?? "").trim();
-      return sourceTitle ? `${provider} / ${sourceTitle}` : provider;
-    });
-
-  if (sourceLabels.length) {
-    return sourceLabels.join(" | ");
-  }
-  return "CURATED CONTEST";
 }
 
 function goToPage(nextPage: number) {
@@ -730,7 +731,7 @@ watch(() => contestListStore.page, () => {
           >
             <div class="contest-card__top">
               <div>
-                <p class="eyebrow">{{ contestSourceLabel(contest.id) }}</p>
+                <p class="contest-source-label">{{ contestSourceLabelMap.get(contest.id) }}</p>
                 <h3>{{ contest.title }}</h3>
               </div>
             </div>
@@ -739,34 +740,28 @@ watch(() => contestListStore.page, () => {
               <div class="contest-card__meta-main">
                 <div class="inline-tags">
                   <button
-                    v-if="getContestAwardRange(contest.id)"
+                    v-if="contestAwardRangeMap.get(contest.id)"
                     type="button"
                     class="contest-award-range"
                     :class="[
-                      awardRangeClass(getContestAwardRange(contest.id)?.mode ?? 'FE'),
+                      awardRangeClass(contestAwardRangeMap.get(contest.id)!.mode),
                       {
-                        'contest-award-range--no-lower': getContestAwardRange(contest.id)?.lower === null,
-                        'contest-award-range--no-upper': getContestAwardRange(contest.id)?.upper === null,
+                        'contest-award-range--no-lower': contestAwardRangeMap.get(contest.id)!.lower === null,
+                        'contest-award-range--no-upper': contestAwardRangeMap.get(contest.id)!.upper === null,
                       },
                     ]"
                     :title="awardRangeTitle(contest.id)"
-                    @click.prevent.stop="appendSearchToken(getContestAwardSearchToken(contest.id) ?? '')"
+                    @click.prevent.stop="appendSearchToken(contestAwardRangeMap.get(contest.id)!.label ?? '')"
                   >
                     <sub
-                      v-if="getContestAwardRange(contest.id)?.lower !== null"
+                      v-if="contestAwardRangeMap.get(contest.id)!.lower !== null"
                       class="contest-award-range__bound contest-award-range__bound--lower"
-                    >
-                      {{ getContestAwardRange(contest.id)?.lower }}
-                    </sub>
-                    <span class="contest-award-range__label">
-                      {{ getContestAwardRange(contest.id)?.label }}
-                    </span>
+                    >{{ contestAwardRangeMap.get(contest.id)!.lower }}</sub>
+                    <span class="contest-award-range__label">{{ contestAwardRangeMap.get(contest.id)!.label }}</span>
                     <sup
-                      v-if="getContestAwardRange(contest.id)?.upper !== null"
+                      v-if="contestAwardRangeMap.get(contest.id)!.upper !== null"
                       class="contest-award-range__bound contest-award-range__bound--upper"
-                    >
-                      {{ getContestAwardRange(contest.id)?.upper }}
-                    </sup>
+                    >{{ contestAwardRangeMap.get(contest.id)!.upper }}</sup>
                   </button>
                   <button
                     v-else

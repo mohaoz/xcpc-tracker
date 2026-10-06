@@ -51,13 +51,25 @@ const showSpoilers = computed(() => !loading.value && spoilers.visible(contestId
 
 const contestId = computed(() => String(route.params.contestId ?? ""));
 const trackedMembers = computed(() => coverage.value?.trackedMembers ?? []);
-const memberCoverageRows = computed(() => trackedMembers.value.map(member => ({
-  ...member,
-  cells: (coverage.value?.problems ?? []).map(problem => ({
-    problemId: problem.problemId, ordinal: problem.ordinal, title: problem.title,
-    status: problem.members.find(m => m.memberId === member.memberId)?.status ?? 'unseen',
-  })),
-})));
+const memberCoverageRows = computed(() => {
+  const problems = coverage.value?.problems ?? [];
+  // Build a per-problem member→status index once so each row lookup is O(1).
+  const statusByProblem = new Map(
+    problems.map(p => [
+      p.problemId,
+      new Map(p.members.map(m => [m.memberId, m.status])),
+    ]),
+  );
+  return trackedMembers.value.map(member => ({
+    ...member,
+    cells: problems.map(problem => ({
+      problemId: problem.problemId,
+      ordinal: problem.ordinal,
+      title: problem.title,
+      status: statusByProblem.get(problem.problemId)?.get(member.memberId) ?? 'unseen',
+    })),
+  }));
+});
 const awardCutoffRows = computed(() => {
   const cutoffs = awardCutoffs.value?.cutoffs;
   return [

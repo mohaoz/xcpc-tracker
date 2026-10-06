@@ -27,7 +27,7 @@ const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
           <img :src="trackerIcon" alt="" width="32" height="32" aria-hidden="true" />
           <span>XCPC Tracker</span>
         </RouterLink>
-        <p class="shell__tagline">根据队员记录挑选整场 VP</p>
+        <p class="shell__tagline">XCPC 做题情况追踪</p>
         <nav class="shell__nav" aria-label="主导航">
           <RouterLink
             v-for="item in navItems"
