@@ -25,7 +25,6 @@ const error = ref("");
 const generatedAt = ref("");
 const memberOptions = shallowRef<LocalMemberPerson[]>([]);
 let latestLoadRequestId = 0;
-const pageSize = 12;
 let unsubscribeCoverageDataMutated: (() => void) | null = null;
 let active = false;
 let needsReload = true;
@@ -50,9 +49,6 @@ const coverageSummaryMap = computed(() => new Map(
 function normalizeContestListState() {
   if (!isContestListMode(contestListStore.selectedMode)) {
     contestListStore.selectedMode = "ALL";
-  }
-  if (!Number.isFinite(contestListStore.page) || contestListStore.page < 1) {
-    contestListStore.page = 1;
   }
   if (!Array.isArray(contestListStore.selectedMemberIds)) {
     contestListStore.selectedMemberIds = [];
@@ -345,50 +341,10 @@ const filteredContests = computed(() => {
   });
 });
 const totalCount = computed(() => filteredContests.value.length);
-const totalPages = computed(() => Math.max(1, Math.ceil(totalCount.value / pageSize)));
-const pageButtons = computed<(number | string)[]>(() => {
-  const total = totalPages.value;
-  if (total <= 7) {
-    return Array.from({ length: total }, (_, index) => index + 1);
-  }
-  const current = contestListStore.page;
-  const pages = new Set<number>([1, total, current, current - 1, current + 1]);
-  if (current <= 3) {
-    pages.add(2);
-    pages.add(3);
-    pages.add(4);
-  }
-  if (current >= total - 2) {
-    pages.add(total - 1);
-    pages.add(total - 2);
-    pages.add(total - 3);
-  }
-  const sorted = [...pages]
-    .filter((value) => value >= 1 && value <= total)
-    .sort((left, right) => left - right);
-  const result: Array<number | string> = [];
-  for (const value of sorted) {
-    const previous = result[result.length - 1];
-    if (typeof previous === "number" && value - previous > 1) {
-      result.push("...");
-    }
-    result.push(value);
-  }
-  return result;
-});
-
-const visibleContests = computed(() => {
-  const start = (contestListStore.page - 1) * pageSize;
-  return filteredContests.value.slice(start, start + pageSize);
-});
 
 const pageLabel = computed(() => {
-  if (!totalCount.value) {
-    return "0 场";
-  }
-  const start = (contestListStore.page - 1) * pageSize + 1;
-  const end = Math.min(contestListStore.page * pageSize, totalCount.value);
-  return `第 ${start}–${end} 场，共 ${totalCount.value} 场`;
+  if (!totalCount.value) return "0 场";
+  return `${totalCount.value} 场`;
 });
 
 const latestSyncLabel = computed(() => {
@@ -457,9 +413,6 @@ async function loadContests() {
     })).sort(compareContestsByTime);
     generatedAt.value = runtimeCatalog.generatedAt ?? "";
     hasLoaded.value = true;
-    if (contestListStore.page > totalPages.value) {
-      contestListStore.page = totalPages.value;
-    }
   } catch (caught) {
     if (requestId !== latestLoadRequestId) return;
     needsReload = true;
@@ -515,17 +468,9 @@ function problemStateClass(status: "solved" | "attempted" | "unseen") {
   return `contest-problem-state--${status}`;
 }
 
-function goToPage(nextPage: number) {
-  if (nextPage < 1 || nextPage > totalPages.value || nextPage === contestListStore.page) {
-    return;
-  }
-  contestListStore.page = nextPage;
-}
-
 function clearQuery() {
   contestListStore.query = "";
   contestListStore.selectedMode = "ALL";
-  contestListStore.page = 1;
 }
 
 function appendSearchToken(rawToken: string) {
@@ -548,12 +493,6 @@ function syncFromUrl() {
   const mode = route.query.mode;
   if (typeof mode === 'string' && isContestListMode(mode)) contestListStore.selectedMode = mode;
 
-  const page = route.query.page;
-  if (typeof page === 'string') {
-    const parsed = Number.parseInt(page, 10);
-    if (Number.isFinite(parsed) && parsed >= 1) contestListStore.page = parsed;
-  }
-
   const members = route.query.members;
   if (typeof members === 'string' && members) {
     contestListStore.selectedMemberIds = members.split(',').filter(Boolean);
@@ -564,7 +503,6 @@ function syncToUrl() {
   const query: Record<string, string> = {};
   if (contestListStore.query) query.q = contestListStore.query;
   if (contestListStore.selectedMode !== 'ALL') query.mode = contestListStore.selectedMode;
-  if (contestListStore.page > 1) query.page = String(contestListStore.page);
   if (contestListStore.selectedMemberIds.length && contestListStore.selectedMemberIds.length !== memberOptions.value.length) {
     query.members = contestListStore.selectedMemberIds.join(',');
   }
@@ -598,27 +536,9 @@ onUnmounted(() => {
   ++latestLoadRequestId;
   unsubscribeCoverageDataMutated?.();
 });
-watch(queryTokens, () => {
-  if (contestListStore.page !== 1) {
-    contestListStore.page = 1;
-  }
-  scheduleUrlSync();
-});
-watch(() => contestListStore.selectedMemberIds, () => {
-  if (contestListStore.page !== 1) {
-    contestListStore.page = 1;
-  }
-  scheduleUrlSync();
-}, { deep: true });
-watch(() => contestListStore.selectedMode, () => {
-  if (contestListStore.page !== 1) {
-    contestListStore.page = 1;
-  }
-  scheduleUrlSync();
-});
-watch(() => contestListStore.page, () => {
-  scheduleUrlSync();
-});
+watch(queryTokens, () => { scheduleUrlSync(); });
+watch(() => contestListStore.selectedMemberIds, () => { scheduleUrlSync(); }, { deep: true });
+watch(() => contestListStore.selectedMode, () => { scheduleUrlSync(); });
 </script>
 
 <template>
@@ -720,13 +640,14 @@ watch(() => contestListStore.page, () => {
         <div v-else-if="!contests.length" class="notice">
           当前没有可显示的比赛数据。
         </div>
-        <div v-else-if="!visibleContests.length" class="notice">
+        <div v-else-if="!filteredContests.length" class="notice">
           当前标签筛选下没有匹配的比赛。
         </div>
         <div v-else class="list-grid">
           <RouterLink
-            v-for="contest in visibleContests"
+            v-for="contest in filteredContests"
             :key="contest.id"
+            v-memo="[contest.id, coverageSummaryMap.get(contest.id), contestAwardRangeMap.get(contest.id), showSpoilers(contest.id)]"
             :to="`/contests/${contest.id}`"
             class="contest-card"
           >
@@ -814,26 +735,6 @@ watch(() => contestListStore.page, () => {
           </RouterLink>
         </div>
 
-        <div v-if="totalPages > 1" class="pagination-bar">
-          <button class="button button--ghost" :disabled="loading || contestListStore.page <= 1" @click="goToPage(contestListStore.page - 1)">
-            上一页
-          </button>
-          <div class="pagination-pages">
-            <button
-              v-for="(item, index) in pageButtons"
-              :key="`${item}-${index}`"
-              class="pagination-page"
-              :class="{ 'pagination-page--active': item === contestListStore.page, 'pagination-page--ellipsis': item === '...' }"
-              :disabled="loading || item === '...'"
-              @click="typeof item === 'number' && goToPage(item)"
-            >
-              {{ item }}
-            </button>
-          </div>
-          <button class="button button--ghost" :disabled="loading || contestListStore.page >= totalPages" @click="goToPage(contestListStore.page + 1)">
-            下一页
-          </button>
-        </div>
       </div>
     </section>
   </div>

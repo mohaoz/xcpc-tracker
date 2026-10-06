@@ -11,7 +11,6 @@ export const useContestListStore = defineStore("contest-list", {
   state: () => ({
     query: "",
     selectedMode: "ALL" as ContestListMode,
-    page: 1,
     selectedMemberIds: [] as string[],
     memberSelectionInitialized: false,
   }),
