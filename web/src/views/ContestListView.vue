@@ -356,11 +356,11 @@ const visibleContests = computed(() => {
 
 const pageLabel = computed(() => {
   if (!totalCount.value) {
-    return "0 of 0";
+    return "0 场";
   }
   const start = (contestListStore.page - 1) * pageSize + 1;
   const end = Math.min(contestListStore.page * pageSize, totalCount.value);
-  return `${start}-${end} of ${totalCount.value}`;
+  return `第 ${start}–${end} 场，共 ${totalCount.value} 场`;
 });
 
 const latestSyncLabel = computed(() => {
@@ -399,12 +399,16 @@ async function loadContests() {
     const localMembers = membersInput.members;
     memberOptions.value = localMembers;
     const availableMemberIds = new Set(localMembers.map((member) => member.memberId));
-    const hasInvalidSelection = contestListStore.selectedMemberIds.some((memberId) => !availableMemberIds.has(memberId));
     const shouldInitializeSelection =
       !contestListStore.memberSelectionInitialized && localMembers.length > 0;
-    if (shouldInitializeSelection || hasInvalidSelection) {
+    if (shouldInitializeSelection) {
       contestListStore.selectedMemberIds = localMembers.map((member) => member.memberId);
       contestListStore.memberSelectionInitialized = true;
+    } else {
+      // Drop any stale IDs (deleted members) while preserving the user's current selection.
+      contestListStore.selectedMemberIds = contestListStore.selectedMemberIds.filter(
+        (id) => availableMemberIds.has(id),
+      );
     }
     coverageInput.value = membersInput;
     coveragePayload.value = nextCoveragePayload;
@@ -668,7 +672,7 @@ watch(() => contestListStore.page, () => {
             </div>
 
             <div class="field">
-              <label>Members</label>
+              <label>成员筛选</label>
               <div class="member-filter-picker">
                 <button
                   type="button"

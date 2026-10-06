@@ -67,22 +67,64 @@ textarea:focus-visible,
   overflow-x: clip;
 }
 
-.shell__hero {
-  position: relative;
-  overflow: clip;
-  padding: 32px 24px 16px;
-}
-
-.shell__hero-bg {
-  position: absolute;
-  inset: 0;
+/* Compact header — replaces the full-bleed hero */
+.shell__header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background:
-    linear-gradient(135deg, rgba(15, 118, 110, 0.14), rgba(217, 119, 6, 0.14)),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0));
-  border-bottom: 1px solid rgba(41, 55, 81, 0.08);
+    linear-gradient(135deg, rgba(15, 118, 110, 0.10), rgba(217, 119, 6, 0.10)),
+    rgba(247, 242, 232, 0.94);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(41, 55, 81, 0.10);
 }
 
-.shell__hero-inner,
+.shell__header-inner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: min(1180px, calc(100% - 32px));
+  max-width: calc(100% - 32px);
+  margin: 0 auto;
+  min-height: 58px;
+  padding: 8px 0;
+}
+
+.shell__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.12rem;
+  font-weight: 700;
+  color: var(--ink);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.shell__brand img {
+  flex: none;
+}
+
+.shell__tagline {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.84rem;
+  white-space: nowrap;
+  flex-shrink: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.shell__nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-left: auto;
+}
+
 .shell__main,
 .shell__footer {
   position: relative;
@@ -91,14 +133,8 @@ textarea:focus-visible,
   margin: 0 auto;
 }
 
-.shell__hero-inner {
-  display: grid;
-  gap: 20px;
-  align-items: end;
-}
-
 .shell__main {
-  padding: 20px 0 48px;
+  padding: 24px 0 48px;
 }
 
 .shell__footer {
@@ -129,39 +165,6 @@ h1 {
   line-height: 0.98;
 }
 
-.shell__brand {
-  display: flex;
-  align-items: center;
-  gap: clamp(10px, 1.5vw, 16px);
-}
-
-.shell__brand-icon {
-  display: block;
-  flex: none;
-  width: clamp(40px, 5vw, 64px);
-  height: auto;
-}
-
-.hero-copy {
-  max-width: 42rem;
-  margin: 12px 0 0;
-  color: var(--ink-soft);
-  font-size: 1rem;
-}
-
-.shell__nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  width: 100%;
-}
-
-.shell__nav-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
 
 .nav-pill {
   padding: 10px 16px;
@@ -1506,13 +1509,13 @@ h1 {
     grid-template-columns: 1fr;
   }
 
-  .shell__hero {
-    padding-inline: 16px;
-  }
-
-  .shell__hero-inner,
+  .shell__header-inner,
   .shell__main {
     width: min(1180px, calc(100vw - 20px));
+  }
+
+  .shell__tagline {
+    display: none;
   }
 
   .panel__body {
