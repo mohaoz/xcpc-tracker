@@ -480,6 +480,114 @@ h1 {
   font-size: 0.9rem;
 }
 
+/* ── Award strip (replaces award-cutoff-card in ContestDetailView) ─────────── */
+.award-strip {
+  margin-bottom: 18px;
+  border: 1px solid rgba(41, 55, 81, 0.10);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.56);
+  overflow: hidden;
+}
+
+.award-strip--fe { border-color: rgba(124, 45, 18, 0.22); }
+.award-strip--cu { border-color: rgba(184, 115, 51, 0.24); }
+.award-strip--ag { border-color: rgba(156, 163, 175, 0.28); }
+.award-strip--au { border-color: rgba(202, 138, 4, 0.28); }
+
+.award-strip__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.award-strip__current {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.award-strip__current strong {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem;
+}
+
+.award-strip__nudge {
+  margin-left: auto;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.award-strip__nudge--gold {
+  color: #8a5a0a;
+}
+
+/* Thin progress bar at the bottom of the header */
+.award-strip__bar {
+  height: 3px;
+  background: rgba(41, 55, 81, 0.08);
+}
+
+.award-strip__bar-fill {
+  height: 100%;
+  background: var(--brand);
+  transition: width 300ms ease;
+}
+
+.award-strip--au .award-strip__bar-fill { background: #ca8a04; }
+.award-strip--ag .award-strip__bar-fill { background: #9ca3af; }
+.award-strip--cu .award-strip__bar-fill { background: #b87333; }
+.award-strip--fe .award-strip__bar-fill { background: #7c2d12; }
+
+/* Three-row cutoff table */
+.award-strip__table {
+  display: grid;
+  border-top: 1px solid rgba(41, 55, 81, 0.08);
+}
+
+.award-strip__row {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 1fr;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid rgba(41, 55, 81, 0.06);
+}
+
+.award-strip__row:last-child { border-bottom: 0; }
+
+.award-strip__solved {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.award-strip__detail {
+  text-align: right;
+}
+
+.award-strip__source {
+  padding: 8px 16px;
+  border-top: 1px solid rgba(41, 55, 81, 0.06);
+  margin: 0;
+}
+
+.award-strip__source a {
+  color: var(--brand-strong);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 900px) {
+  .award-strip__row {
+    grid-template-columns: 40px 1fr 1fr;
+  }
+  .award-strip__detail:last-child { display: none; }
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));

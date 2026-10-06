@@ -535,61 +535,48 @@ onUnmounted(() => {
                 <p v-if="spoilers.error" class="error-box">{{ spoilers.error }}</p>
                 <div
                   v-if="showSpoilers && awardCutoffs"
-                  :class="[
-                    'award-cutoff-card',
-                    `award-cutoff-card--${awardPlacement?.toLowerCase() ?? 'fe'}`,
-                    `award-cutoff-card--target-${nextAwardTarget?.label.toLowerCase() ?? awardPlacement?.toLowerCase() ?? 'fe'}`,
-                  ]"
-                  :style="{ '--award-progress': awardPlacement === 'Au' ? '100%' : nextAwardTarget ? `${nextAwardTarget.progressPercent}%` : '0%' }"
+                  class="award-strip"
+                  :class="`award-strip--${awardPlacement?.toLowerCase() ?? 'fe'}`"
                 >
-                  <div class="award-cutoff-card__header">
-                    <div class="award-cutoff-card__current">
+                  <!-- Top row: current placement + progress nudge + next target -->
+                  <div class="award-strip__head">
+                    <div class="award-strip__current">
                       <span
                         v-if="awardPlacement"
                         :class="`contest-medal-badge contest-medal-badge--${awardPlacement.toLowerCase()}`"
-                      >
-                        {{ awardPlacement }}
-                      </span>
-                      <div>
-                        <strong>{{ solvedProblemCount }} solved</strong>
-                      </div>
+                      >{{ awardPlacement }}</span>
+                      <strong>{{ solvedProblemCount }} solved</strong>
                     </div>
-                    <div
-                      v-if="nextAwardTarget"
-                      class="award-cutoff-card__progress"
-                    >
-                      <span>+{{ nextAwardTarget.remaining }} → {{ nextAwardTarget.label }}</span>
+                    <div v-if="nextAwardTarget" class="award-strip__nudge">
+                      +{{ nextAwardTarget.remaining }} → {{ nextAwardTarget.label }}
                     </div>
-                    <div v-if="awardPlacement === 'Au'" class="award-cutoff-card__next">
-                      <span class="award-cutoff-card__next-crown">★</span>
-                    </div>
-                    <div v-else-if="nextAwardTarget" class="award-cutoff-card__next">
-                      <span class="award-cutoff-card__next-count">{{ nextAwardTarget.solved }} solved</span>
-                      <span :class="`contest-medal-badge contest-medal-badge--${nextAwardTarget.label.toLowerCase()}`">
-                        {{ nextAwardTarget.label }}
-                      </span>
+                    <div v-else-if="awardPlacement === 'Au'" class="award-strip__nudge award-strip__nudge--gold">
+                      ★ Au
                     </div>
                   </div>
-                  <div class="award-cutoff-card__grid">
+                  <!-- Progress bar -->
+                  <div class="award-strip__bar" aria-hidden="true">
+                    <div
+                      class="award-strip__bar-fill"
+                      :style="{ width: awardPlacement === 'Au' ? '100%' : nextAwardTarget ? `${nextAwardTarget.progressPercent}%` : '0%' }"
+                    ></div>
+                  </div>
+                  <!-- Cutoff table: Cu / Ag / Au in one line each -->
+                  <div class="award-strip__table">
                     <div
                       v-for="row in awardCutoffRows"
                       :key="row.key"
-                      class="award-cutoff-card__item"
+                      class="award-strip__row"
                     >
-                      <span :class="`contest-medal-badge contest-medal-badge--${row.label.toLowerCase()}`">
-                        {{ row.label }}
-                      </span>
-                      <div>
-                        <strong>{{ row.cutoff ? `${row.cutoff.solved} solved` : "—" }}</strong>
-                        <p v-if="row.cutoff" class="muted tiny">第 {{ row.cutoff.rank }} 名</p>
-                        <p v-if="row.cutoff" class="muted tiny">罚时 {{ row.cutoff.penalty }}</p>
-                      </div>
+                      <span :class="`contest-medal-badge contest-medal-badge--${row.label.toLowerCase()}`">{{ row.label }}</span>
+                      <span class="award-strip__solved">{{ row.cutoff ? `${row.cutoff.solved} solved` : '—' }}</span>
+                      <span v-if="row.cutoff" class="award-strip__detail muted tiny">rank {{ row.cutoff.rank }}</span>
+                      <span v-if="row.cutoff" class="award-strip__detail muted tiny">{{ row.cutoff.penalty }}</span>
                     </div>
                   </div>
-                  <p class="award-cutoff-card__source">
-                    来源：<a :href="awardCutoffs.sourceUrl" target="_blank" rel="noreferrer">
-                      {{ awardCutoffs.sourceLabel }}
-                    </a><span v-if="awardCutoffSourceLabel"> · {{ awardCutoffSourceLabel }}</span>
+                  <p class="award-strip__source muted tiny">
+                    <a :href="awardCutoffs.sourceUrl" target="_blank" rel="noreferrer">{{ awardCutoffs.sourceLabel }}</a>
+                    <span v-if="awardCutoffSourceLabel"> · {{ awardCutoffSourceLabel }}</span>
                   </p>
                 </div>
                 <p v-else-if="showSpoilers" class="muted tiny" style="margin-bottom: 18px">
