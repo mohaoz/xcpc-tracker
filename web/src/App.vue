@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute } from "vue-router";
+import { ref, onMounted, onUnmounted } from "vue";
 import trackerIcon from './assets/xcpc-tracker.svg';
 import { useQojSyncStore } from './stores/qoj-sync';
 import FeedbackDialog from './components/FeedbackDialog.vue';
@@ -15,6 +16,16 @@ const navItems = [
 ];
 
 const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
+
+const showBackToTop = ref(false);
+function onScroll() {
+  showBackToTop.value = window.scrollY > 400;
+}
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+onMounted(() => window.addEventListener("scroll", onScroll, { passive: true }));
+onUnmounted(() => window.removeEventListener("scroll", onScroll));
 </script>
 
 <template>
@@ -63,5 +74,17 @@ const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
       标签与 Rating：<a href="https://hei-maom.github.io/xcpcrating/#/problems" target="_blank" rel="noreferrer">XCPC Rating</a> ·
       <a href="https://github.com/mohaoz/xcpc-tracker/blob/main/catalog/README.md" target="_blank" rel="noreferrer">数据来源与许可</a>
     </footer>
+    <Transition name="back-to-top">
+      <button
+        v-if="showBackToTop"
+        type="button"
+        class="back-to-top"
+        aria-label="回到顶部"
+        title="回到顶部"
+        @click="scrollToTop"
+      >
+        ↑
+      </button>
+    </Transition>
   </div>
 </template>

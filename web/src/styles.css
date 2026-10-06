@@ -1053,7 +1053,7 @@ h1 {
 .member-card {
   padding: 18px;
   border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.66);
+  background: var(--paper-strong);
   border: 1px solid rgba(41, 55, 81, 0.09);
   transition: transform 120ms ease, border-color 120ms ease;
 }
@@ -1538,4 +1538,46 @@ h1 {
   .contest-card__meta-row {
     align-items: flex-start;
   }
+}
+
+/* ── Back to top button ─────────────────────────────────────────────────── */
+.back-to-top {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 200;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(41, 55, 81, 0.16);
+  border-radius: 50%;
+  background: var(--paper-strong);
+  color: var(--ink-soft);
+  font-size: 1.1rem;
+  font-weight: 700;
+  box-shadow: 0 4px 16px rgba(34, 53, 79, 0.12);
+  cursor: pointer;
+  transition: transform 120ms ease, box-shadow 120ms ease, color 120ms ease;
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(34, 53, 79, 0.18);
+  color: var(--brand-strong);
+}
+
+.back-to-top-enter-active,
+.back-to-top-leave-active {
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.back-to-top-enter-from,
+.back-to-top-leave-to {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .back-to-top { transition: none; }
+  .back-to-top-enter-active,
+  .back-to-top-leave-active { transition: none; }
 }
