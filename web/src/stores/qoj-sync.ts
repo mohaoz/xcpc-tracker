@@ -321,7 +321,9 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
     if (started) return;
     started = true;
     void check();
-    liveQuery(() => Promise.all([localDb.appSettings.get('auto_sync'),localDb.appSettings.get('qoj_auto_sync'),localDb.appSettings.get('qoj_use_userscript'),localDb.appSettings.get('qoj_script_intro_seen')])).subscribe({next([auto,legacy,mode,intro]) { enabled.value=(auto??legacy)?.value===true;useUserscript.value=enabled.value || mode?.value===true;modeLoaded.value=true;introPending.value=!intro?.value;if(!enabled.value){controller?.abort('settings_disabled');cfController?.abort();}void runAutomatic(); },error() {enabled.value=false;controller?.abort();cfController?.abort();}});
+    liveQuery(() => Promise.all([localDb.appSettings.get('auto_sync'),localDb.appSettings.get('qoj_auto_sync'),localDb.appSettings.get('qoj_use_userscript'),localDb.appSettings.get('qoj_script_intro_seen')])).subscribe({next([auto,legacy,mode,intro]) { enabled.value=(auto??legacy)?.value===true;useUserscript.value=enabled.value || mode?.value===true;modeLoaded.value=true;introPending.value=!intro?.value;// A settings write (e.g. enabling userscript mode right before a manual sync)
+      // must not cancel that manual run; explicit disabling goes through setEnabled.
+      if(!enabled.value){if(!manualRun)controller?.abort('settings_disabled');cfController?.abort();}void runAutomatic(); },error() {enabled.value=false;controller?.abort();cfController?.abort();}});
     setInterval(() => void runAutomatic(), 60000);
     setInterval(() => { if (document.visibilityState==='visible' && connected.value && Date.now()>=nextUpdateCheck) void check(); },60000);
     const returned = () => {

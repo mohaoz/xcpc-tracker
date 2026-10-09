@@ -100,5 +100,5 @@ Database `xcpc_tracker_local`, current Dexie version 7. Schema history that affe
 
 ## Testing notes
 
-- `npm run qoj:validate-bridge` needs the dev server on port 5173. It uses isolated browser storage and a mocked QOJ transport to test the script, importers, scheduling, dialogs and cross-tab locks; it never contacts QOJ or touches user data.
+- `tests/e2e/qoj-userscript-bridge.spec.ts` (run with `npm run test:e2e`, which starts the dev server) uses isolated browser storage and a mocked QOJ transport to test the script, importers, scheduling, dialogs and cross-tab locks; it never contacts QOJ or touches user data. Frontend logic is covered by Vitest in `web/tests/unit/`, tools and catalog data by Vitest in `tests/tools/`.
 - Cross-origin behavior, real login state and userscript-manager permissions must be checked in a real browser with the userscript installed; mocked responses do not replace that. Auto sync does not bypass QOJ challenges and does not run while the site is closed.

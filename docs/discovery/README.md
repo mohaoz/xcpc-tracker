@@ -7,7 +7,7 @@
 ```sh
 npm run catalog:discover
 npm run catalog:discover -- --offline
-npm run catalog:validate-discovery
+npx vitest run tests/tools/catalog-discovery.test.ts
 ```
 
 首次运行建立观察基线；后续运行比较变化。`first_seen` 只表示首次观察，不保证是新举办的比赛。来源消失只报告 `missing_upstream`，不删除目录。不同来源的同名比赛仅作为候选，不自动合并或推断组别。

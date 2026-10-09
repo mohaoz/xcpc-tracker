@@ -56,4 +56,13 @@ npm run dev --prefix web
 
 `main` 为开发主分支，`release` 标记线上发布版本。所有修改先进入 main，发布时将 release 快进到 main 的同一提交，不再单独修改 release 或产生发布合并提交；未发布时 main 可以领先。两个分支发布时内容一致，网站包含哪些文件由构建决定。推送 release 后 GitHub Actions 自动发布到现有 Pages，使用 `/xcpc-tracker/` 路径和 hash 路由。纯静态运行，不需要本地后端。
 
-浏览器回归：生成静态资产并启动开发服务器后，执行 `npx playwright install chromium` 和 `npm run vp:browser`。默认构建只运行离线校验。
+## 测试
+
+```sh
+npm test                      # 单元测试（web/tests/unit）与工具、数据测试（tests/tools），离线
+npx playwright install chromium
+npm run test:e2e              # 浏览器测试（tests/e2e），自动启动开发服务器
+npm run test:e2e:live         # 访问线上站点的检查，默认不运行
+```
+
+`scripts/` 只放构建和数据维护工具；测试在 `web/tests/`、`tests/tools/` 和 `tests/e2e/`。默认构建只运行离线测试。

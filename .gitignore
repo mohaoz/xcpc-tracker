@@ -27,3 +27,7 @@ artifacts/
 
 # Generated architecture reports
 .archify/
+
+# Test output
+test-results/
+playwright-report/

@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 import { atomicJson, readJson, sha256, download, parallel, normalizeTitle, unique } from './source-import-lib.mjs';
 import { parseIndex, verifyPage, calculateAwards, awardResult, preferredAwardGroup } from './rankland-lib.mjs';
-import { validateSchema } from './validate-source-schemas.mjs';
+import { validateSchema } from './source-schemas.mjs';
 
 export const SRK_COMMIT = 'a820e48181a28a1a30bfbcf965b320606e337e15';
 const base = `https://raw.githubusercontent.com/algoux/srk-collection/${SRK_COMMIT}`;

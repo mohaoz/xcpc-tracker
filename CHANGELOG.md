@@ -6,6 +6,8 @@
 - Contest detail: whole-contest practice links under the title; heatmap with per-member totals and a merged "全队" row; mark mode next to the heatmap with an explanation; sources and edit/delete in a collapsed "来源与维护" section; no horizontal page overflow on phones.
 - Member detail links to that member's contests and can add another account to the member. Visible search syntax help, readable list badges, one color for "attempted", and stale or internal messages removed.
 - QOJ help is now a linkable page (`/help/qoj`) covering both sync modes, live script status, auto sync, error codes and privacy.
+- Fix: "启动自动导入" in the QOJ manual dialog no longer cancels the sync it just started.
+- Tests moved out of `scripts/` into Vitest (`web/tests/unit`, `tests/tools`) and Playwright Test (`tests/e2e`); `scripts/` holds only tools.
 - Docs: English agent/maintainer docs, product constraints and a roadmap. Removed the generated `.archify` report.
 
 ## 0.8.4

@@ -44,8 +44,8 @@ A team is syntactic sugar over the member selection; coverage, "未做", placeme
 
 ### Maintenance
 
-- Move tests out of `scripts/` into a real TypeScript test setup (unit tests with a test runner, browser tests with Playwright Test), so `scripts/` holds only build and data tools; then convert the remaining `.mjs` tools to TypeScript.
-- One step of `validate-qoj-manual.mjs` (manual-to-userscript handoff with no script) fails because something answers the bridge `hello` in that test; the failure predates current work.
+- Convert the remaining `scripts/*.mjs` tools to TypeScript, and type-check the test suites (Vitest does not type-check).
+- `web/src/lib/catalog-cache.ts` is no longer imported by the app; only `web/tests/unit/cf-metadata-refresh.test.ts` exercises it. Decide whether to delete the module together with that check.
 
 ## Not planned
 

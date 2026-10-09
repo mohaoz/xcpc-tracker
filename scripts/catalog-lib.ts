@@ -166,7 +166,7 @@ export function validateContest(contest: CatalogContest, filePath: string): stri
   return errors.map((error) => `${filePath}: ${error}`);
 }
 
-function validatePublishedContest(contest: CatalogContest, filePath: string): string[] {
+export function validatePublishedContest(contest: CatalogContest, filePath: string): string[] {
   const errors: string[] = [];
   if (contest.curation_status === "contest_stub") {
     errors.push(`${filePath}: published catalog must not contain contest_stub records`);
