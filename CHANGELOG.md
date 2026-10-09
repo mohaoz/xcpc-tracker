@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.9.0
 
 - The contest list and contest detail share one member selection, editable on both pages and kept in the `members` URL. Coverage, "未做", placement and spoiler defaults all follow the selected members; attempts without solves place at Fe, untouched contests have no placement.
 - Wider content column (up to 1680px) for large displays; detail keeps its two-column layout with problems in the left column and bigger heatmap cells on wide screens.
