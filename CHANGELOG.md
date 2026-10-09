@@ -3,8 +3,10 @@
 ## Unreleased
 
 - The contest list and contest detail share one member selection, editable on both pages and kept in the `members` URL. Coverage, "未做", placement and spoiler defaults all follow the selected members; attempts without solves place at Fe, untouched contests have no placement.
-- Contest detail: whole-contest practice links under the title; heatmap with per-member totals and a merged "全队" row; mark mode next to the heatmap with an explanation; sources and edit/delete in a collapsed "来源与维护" section; no horizontal page overflow on phones.
+- Wider content column (up to 1680px) for large displays; detail keeps its two-column layout with problems in the left column and bigger heatmap cells on wide screens.
+- Contest detail: heatmap with per-member totals and a merged "全队" row; mark mode next to the heatmap with an explanation; contest and standings links stay visible in the right-hand source column as before; edit/delete in a collapsed "维护" section; no horizontal page overflow on phones.
 - Member detail links to that member's contests and can add another account to the member. Visible search syntax help, readable list badges, one color for "attempted", and stale or internal messages removed.
+- Site-wide help page (`/help`, in the header nav) covering the four uses, 未做, member selection, search syntax, placement, spoilers, sync, backups and data sources.
 - QOJ help is now a linkable page (`/help/qoj`) covering both sync modes, live script status, auto sync, error codes and privacy.
 - Fix: "启动自动导入" in the QOJ manual dialog no longer cancels the sync it just started.
 - Tests moved out of `scripts/` into Vitest (`web/tests/unit`, `tests/tools`) and Playwright Test (`tests/e2e`); `scripts/` holds only tools.

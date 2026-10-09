@@ -18,6 +18,8 @@
   --radius-xl: 28px;
   --radius-lg: 20px;
   --radius-md: 14px;
+  /* Content column; wide enough for large displays without ultra-long lines. */
+  --content-width: 1680px;
 }
 
 * {
@@ -78,7 +80,7 @@ textarea:focus-visible,
   display: flex;
   align-items: center;
   gap: 20px;
-  width: min(1180px, calc(100% - 32px));
+  width: min(var(--content-width), calc(100% - 32px));
   max-width: calc(100% - 32px);
   margin: 0 auto;
   min-height: 58px;
@@ -122,7 +124,7 @@ textarea:focus-visible,
 .shell__main,
 .shell__footer {
   position: relative;
-  width: min(1180px, calc(100% - 32px));
+  width: min(var(--content-width), calc(100% - 32px));
   max-width: calc(100% - 32px);
   margin: 0 auto;
 }
@@ -1356,7 +1358,7 @@ h1 {
 .coverage-table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 680px;
+  min-width: 560px;
   table-layout: auto;
   background: rgba(255, 255, 255, 0.74);
 }
@@ -1715,5 +1717,97 @@ h1 {
 
   .award-cutoff-card__grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Help pages (/help, /help/qoj) */
+.help-doc { display: grid; gap: 8px; }
+.help-doc__header { display: grid; gap: 6px; }
+.help-doc__header h2 { font-size: 1.6rem; }
+.help-doc__toc { display: flex; flex-wrap: wrap; gap: 6px 16px; padding: 12px 0 4px; border-bottom: 1px solid var(--line); font-size: 0.9rem; }
+.help-doc__toc a { color: var(--brand-strong); padding: 4px 0; }
+.help-doc__toc a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.help-doc__section { padding: 22px 0 6px; border-bottom: 1px solid var(--line); scroll-margin-top: 80px; }
+.help-doc__section:last-child { border-bottom: 0; }
+.help-doc__section h3 { margin-bottom: 12px; font-size: 1.15rem; }
+.help-doc__section p { margin: 8px 0; line-height: 1.7; }
+.help-doc__section a:not(.button) { color: var(--brand-strong); text-decoration: underline; text-underline-offset: 3px; }
+.help-doc__compare { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.help-doc__option { padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.66); }
+.help-doc__option--current { border-color: rgba(15, 118, 110, 0.4); }
+.help-doc__option h4 { margin: 0 0 6px; display: flex; align-items: center; gap: 8px; }
+.help-doc__option p { margin: 0; color: var(--ink-soft); font-size: 0.92rem; }
+.help-doc__current { padding: 1px 8px; border-radius: 999px; background: rgba(15, 118, 110, 0.12); color: var(--brand-strong); font-size: 0.75rem; font-weight: 700; }
+.help-doc__steps, .help-doc__list { margin: 0; padding-left: 1.4em; display: grid; gap: 10px; line-height: 1.7; }
+.help-doc__steps .actions { margin-top: 8px; }
+.help-doc__status { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-bottom: 14px; padding: 10px 14px; border-radius: var(--radius-md); background: rgba(255, 255, 255, 0.66); border: 1px solid var(--line); font-size: 0.92rem; }
+.help-doc__recheck { margin-left: auto; padding: 6px 12px; font-size: 0.85rem; }
+.help-doc__dot { width: 8px; height: 8px; border-radius: 50%; background: #aebcbe; }
+.help-doc__status--ok .help-doc__dot { background: #259765; }
+.help-doc__status--warn .help-doc__dot { background: #d68a24; }
+.help-doc__status--pending .help-doc__dot { background: #b6c8c7; }
+.help-doc__faq { display: grid; grid-template-columns: minmax(150px, 220px) 1fr; gap: 10px 20px; margin: 12px 0 0; }
+.help-doc__faq dt { font-weight: 600; }
+.help-doc__faq dt code { display: block; margin-top: 2px; color: var(--ink-soft); font-size: 0.72rem; font-weight: 400; }
+.help-doc__faq dd { margin: 0; color: var(--ink-soft); line-height: 1.7; }
+.help-doc kbd, .help-doc code { padding: 1px 5px; border: 1px solid var(--line); border-radius: 4px; background: rgba(255, 255, 255, 0.7); font-family: ui-monospace, monospace; font-size: 0.85em; }
+.help-doc__faq dt code { border: 0; padding: 0; background: none; }
+@media (max-width: 640px) {
+  .help-doc__faq { grid-template-columns: 1fr; gap: 4px; }
+  .help-doc__faq dd { margin-bottom: 10px; }
+}
+
+@media (max-width: 440px) {
+  /* Keep all nav items on one row: show only the brand icon. */
+  .shell__brand span {
+    display: none;
+  }
+
+  .shell__nav {
+    flex-wrap: nowrap;
+  }
+}
+
+/* Two-column detail layout: let both columns shrink so inner scroll areas work. */
+.section-split > * {
+  min-width: 0;
+}
+
+/* Detail: two columns (coverage, awards and problems | sources); each column
+   keeps its own height. */
+.section-split {
+  align-items: start;
+}
+
+.detail-sources .list-grid {
+  gap: 10px;
+}
+
+.detail-sources .contest-card {
+  padding: 12px 14px;
+}
+
+.detail-sources .contest-card .eyebrow {
+  margin-bottom: 4px;
+  font-size: 0.74rem;
+}
+
+.detail-sources .contest-card h3 {
+  font-size: 0.98rem;
+}
+
+.detail-sources .contest-card .muted.tiny {
+  margin: 4px 0 0;
+}
+
+/* Large displays: bigger heatmap cells and totals. */
+@media (min-width: 1600px) {
+  .coverage-heatmap .coverage-cell-button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .coverage-heatmap__total {
+    line-height: 28px;
   }
 }

@@ -196,16 +196,6 @@ const contestEyebrow = computed(() => {
   }
   return "CURATED CONTEST";
 });
-// Whole-contest practice entries (CF Gym / QOJ contest pages), surfaced next to
-// the title. Standings stay on the award card so toggling spoilers never shifts
-// the layout above the heatmap.
-const practiceLinks = computed(() => (contest.value?.sources ?? [])
-  .filter((source) => source.kind === "contest" && ["codeforces", "qoj"].includes(source.provider) && isSafeExternalUrl(source.url))
-  .map((source) => ({
-    key: `${source.provider}-${source.provider_contest_id ?? source.url}`,
-    url: source.url!,
-    label: `${source.provider === "codeforces" ? "Codeforces" : "QOJ"}${source.provider_contest_id ? ` ${source.provider_contest_id}` : ""}`,
-  })));
 const problemMetadata = computed(() => new Map((contest.value?.problems ?? []).map(p => [p.id, p])));
 
 const contestEditorInitialValue = computed(() => {
@@ -527,9 +517,6 @@ onUnmounted(() => {
                 <span>{{ coverage?.freshProblemCount ?? 0 }} fresh</span>
                 <span v-if="contestDateLabel">{{ contestDateLabel }}</span>
               </div>
-              <div v-if="practiceLinks.length" class="contest-detail-links">
-                <a v-for="link in practiceLinks" :key="link.key" class="button" :href="link.url" target="_blank" rel="noreferrer">整场练习 · {{ link.label }} ↗</a>
-              </div>
             </div>
             <div class="contest-detail-controls">
               <button
@@ -557,6 +544,8 @@ onUnmounted(() => {
             </div>
           </div>
 
+          <div class="section-split">
+            <div class="detail-main">
                 <section class="coverage-heatmap-card" aria-label="做题情况">
                 <div class="detail-section-head">
                   <h3 class="detail-section-title">做题情况</h3>
@@ -705,38 +694,52 @@ onUnmounted(() => {
                 </div>
                 <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
                 <p v-if="!(coverage?.problemCount)" class="notice" style="margin-top: 16px">
-                  这场比赛还没有题目列表，可以在下方“来源与维护”中编辑比赛信息手动补题。
+                  这场比赛还没有题目列表，可以在下方“维护”中编辑比赛信息手动补题。
                 </p>
                 <p v-if="visibleContestNotes" class="notice" style="margin-top: 16px">{{ visibleContestNotes }}</p>
+            </div>
+            <aside class="panel detail-sources" style="box-shadow: none" aria-label="来源">
+              <div class="panel__body">
+                <div class="panel__title" style="margin-bottom: 16px">
+                  <p class="eyebrow">来源</p>
+                  <h3>来源与整理说明</h3>
+                </div>
+                  <div class="field">
+                    <span class="field-label">别名</span>
+                    <div class="inline-tags" style="margin-top: 10px">
+                      <span v-for="alias in contest.aliases" :key="alias" class="tag">{{ alias }}</span>
+                      <span v-if="!contest.aliases.length" class="muted tiny">暂无别名</span>
+                    </div>
+                  </div>
+                  <div class="field" style="margin-top: 14px">
+                    <span class="field-label">来源链接</span>
+                    <div class="list-grid" style="margin-top: 12px">
+                      <component
+                        v-for="source in contest.sources"
+                        :key="`${source.provider}-${source.kind}-${source.provider_contest_id || source.provider_problem_id || source.url}`"
+                        :is="isSafeExternalUrl(source.url) ? 'a' : 'div'"
+                        class="contest-card"
+                        :href="isSafeExternalUrl(source.url) ? source.url : undefined"
+                        :target="isSafeExternalUrl(source.url) ? '_blank' : undefined"
+                        :rel="isSafeExternalUrl(source.url) ? 'noreferrer' : undefined"
+                      >
+                        <div class="contest-card__top">
+                          <div>
+                            <p class="eyebrow">{{ source.provider }} / {{ source.kind }}</p>
+                            <h3>{{ source.label || source.url || "手动来源" }}</h3>
+                            <p v-if="source.source_title" class="muted tiny">{{ source.source_title }}</p>
+                          </div>
+                        </div>
+                      </component>
+                    </div>
+                  </div>
+              </div>
+            </aside>
+          </div>
         </template>
         <p v-if="error" class="error-box">{{ error }}</p>
         <details v-if="contest && !loading" class="detail-maintenance" :open="editing">
-          <summary>来源与维护</summary>
-          <div class="field" style="margin-top: 14px">
-            <span class="field-label">别名</span>
-            <div class="inline-tags" style="margin-top: 10px">
-              <span v-for="alias in contest.aliases" :key="alias" class="tag">{{ alias }}</span>
-              <span v-if="!contest.aliases.length" class="muted tiny">暂无别名</span>
-            </div>
-          </div>
-          <div class="field" style="margin-top: 14px">
-            <span class="field-label">来源链接</span>
-            <div class="list-grid" style="margin-top: 12px">
-              <component
-                v-for="source in contest.sources"
-                :key="`${source.provider}-${source.kind}-${source.provider_contest_id || source.provider_problem_id || source.url}`"
-                :is="source.url ? 'a' : 'div'"
-                class="contest-source-card"
-                :href="source.url"
-                :target="source.url ? '_blank' : undefined"
-                :rel="source.url ? 'noreferrer' : undefined"
-              >
-                <p class="eyebrow">{{ source.provider }} / {{ source.kind }}</p>
-                <strong>{{ source.label || source.url || "手动来源" }}</strong>
-                <p v-if="source.source_title" class="muted tiny">{{ source.source_title }}</p>
-              </component>
-            </div>
-          </div>
+          <summary>维护</summary>
           <div class="actions">
             <button class="button button--ghost" :disabled="saving" @click="editing = !editing">
               {{ editing ? "关闭编辑器" : "编辑比赛信息" }}

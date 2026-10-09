@@ -6,6 +6,7 @@ import ContestIntakeView from "./views/ContestIntakeView.vue";
 import ContestListView from "./views/ContestListView.vue";
 import MemberDetailView from "./views/MemberDetailView.vue";
 import MemberListView from "./views/MemberListView.vue";
+import HelpView from "./views/HelpView.vue";
 import QojHelpView from "./views/QojHelpView.vue";
 
 export const router = createRouter({
@@ -52,6 +53,11 @@ export const router = createRouter({
       path: "/members/new",
       name: "member-add",
       component: AddMemberView,
+    },
+    {
+      path: "/help",
+      name: "help",
+      component: HelpView,
     },
     {
       path: "/help/qoj",

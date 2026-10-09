@@ -13,6 +13,7 @@ const navItems = [
   { to: "/contests", label: "比赛", activeWhen: (path: string) => path === "/contests" || (path.startsWith("/contests/") && !path.startsWith("/contests/intake")) },
   { to: "/members", label: "成员", activeWhen: (path: string) => path.startsWith("/members") },
   { to: "/manage", label: "管理", activeWhen: (path: string) => path.startsWith("/manage") || path.startsWith("/contests/intake") },
+  { to: "/help", label: "帮助", activeWhen: (path: string) => path.startsWith("/help") },
 ];
 
 const githubProjectUrl = "https://github.com/mohaoz/xcpc-tracker";
@@ -72,8 +73,7 @@ onUnmounted(() => window.removeEventListener("scroll", onScroll));
     <footer class="shell__footer muted tiny">
       榜单数据：<a href="https://github.com/algoux/srk-collection" target="_blank" rel="noreferrer">algoUX / RankLand</a>、XCPCIO ·
       标签与 Rating：<a href="https://hei-maom.github.io/xcpcrating/#/problems" target="_blank" rel="noreferrer">XCPC Rating</a> ·
-      <a href="https://github.com/mohaoz/xcpc-tracker/blob/main/catalog/README.md" target="_blank" rel="noreferrer">数据来源与许可</a> ·
-      <RouterLink to="/help/qoj">QOJ 同步帮助</RouterLink>
+      <a href="https://github.com/mohaoz/xcpc-tracker/blob/main/catalog/README.md" target="_blank" rel="noreferrer">数据来源与许可</a>
     </footer>
     <Transition name="back-to-top">
       <button

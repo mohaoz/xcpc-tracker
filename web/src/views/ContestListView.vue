@@ -85,7 +85,7 @@ const awardSearchAliases = {
 type ContestAwardMode = keyof typeof awardSearchAliases;
 
 const awardModeTips: Record<ContestAwardMode, string> = {
-  FE: "所选成员已通过题目,但组合覆盖低于铜牌线",
+  FE: "所选成员碰过本场，但通过数低于铜牌线（只有尝试也算）",
   CU: "所选成员组合覆盖达到铜牌线",
   AG: "所选成员组合覆盖达到银牌线",
   AU: "所选成员组合覆盖达到金牌线",
