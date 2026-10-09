@@ -4,9 +4,32 @@ export function isContestTouched(summary?: { solvedProblemCount: number; attempt
   return !!summary && (summary.solvedProblemCount > 0 || summary.attemptedProblemCount > 0);
 }
 
-export function shouldShowSpoilers(mode: ContestPreference['spoiler_mode'] | undefined, touched: boolean, loaded = true): boolean {
+/** Global spoiler default: every contest, only touched contests, or none. */
+export type SpoilerDefault = 'all' | 'touched' | 'none';
+export const SPOILER_DEFAULTS: readonly SpoilerDefault[] = ['all', 'touched', 'none'];
+
+export function isSpoilerDefault(value: unknown): value is SpoilerDefault {
+  return typeof value === 'string' && (SPOILER_DEFAULTS as readonly string[]).includes(value);
+}
+
+/**
+ * A manual per-contest preference wins. Otherwise the global default applies:
+ * `all` → every contest shows spoilers; `touched` → only contests touched by
+ * the selected members do; `none` → no contest does.
+ */
+export function shouldShowSpoilers(
+  mode: ContestPreference['spoiler_mode'] | undefined,
+  touched: boolean,
+  loaded = true,
+  spoilerDefault: SpoilerDefault = 'touched',
+): boolean {
   if (!loaded) return false;
-  return mode ? mode === 'spoiler' : touched;
+  return mode ? mode === 'spoiler' : defaultSpoilerMode(touched, spoilerDefault) === 'spoiler';
+}
+
+/** The mode a contest would have without a manual preference. */
+export function defaultSpoilerMode(touched: boolean, spoilerDefault: SpoilerDefault): ContestPreference['spoiler_mode'] {
+  return spoilerDefault === 'all' || (spoilerDefault === 'touched' && touched) ? 'spoiler' : 'non_spoiler';
 }
 
 export function validatePreferences(value: unknown): ContestPreference[] {

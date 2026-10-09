@@ -24,7 +24,8 @@
 
 ### Spoilers
 
-- Untouched contests default to non-spoiler; an attempt or solve by any selected member makes a contest touched, so the default follows the member selection. Opening details does not change it. Explicit per-contest preferences win; bulk spoilers default off and medal estimates default on, preserving saved settings.
+- Spoilers have a global default plus manual per-contest choices. The global "默认剧透" setting has three values: 全部剧透 (every contest shows spoilers), 默认 (the default; only contests touched by the selected members, where an attempt or solve by any selected member makes a contest touched) and 全部不剧透 (none; touched contests show ✓ in the list). Opening details does not change it.
+- Every manual flip on a contest detail page is stored separately and wins over the default until the user resets it ("恢复默认" per contest, or clearing all manual choices in management). Changing the global default never rewrites manual choices. Medal estimates default on, preserving saved settings.
 - Non-spoiler hides medal cutoffs, medals, problem tags and ratings, including medal-based search. Coverage and whole-contest practice links remain available.
 
 ### Data rules

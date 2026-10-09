@@ -1,5 +1,5 @@
 import type { LocalRuntimeSnapshot } from './local-model';
-import { validatePreferences } from './spoiler-policy';
+import { isSpoilerDefault, validatePreferences } from './spoiler-policy';
 
 type Row = Record<string, unknown>;
 const invalid = (path: string): never => { throw new Error(`成员备份格式不正确：${path}`); };
@@ -86,4 +86,5 @@ export function validateRuntimeSnapshot(value: unknown): asserts value is LocalR
   });
   validatePreferences(root.contest_preferences);
   if (root.app_settings !== undefined && typeof object(root.app_settings, 'app_settings').allow_medal_estimates !== 'boolean') invalid('app_settings.allow_medal_estimates');
+  if (root.app_settings !== undefined && object(root.app_settings, 'app_settings').spoiler_default !== undefined && !isSpoilerDefault(object(root.app_settings, 'app_settings').spoiler_default)) invalid('app_settings.spoiler_default');
 }

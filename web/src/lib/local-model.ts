@@ -1,5 +1,6 @@
 import type { CatalogAwardCutoffs, CatalogSource } from "./catalog";
 
+import type { SpoilerDefault } from "./spoiler-policy";
 export type LocalCatalogContestRecord = {
   contestId: string;
   title: string;
@@ -102,7 +103,7 @@ export type LocalDbStatus = {
 };
 
 export type LocalRuntimeSnapshot = {
-  app_settings?: {allow_medal_estimates: boolean};
+  app_settings?: {allow_medal_estimates: boolean; spoiler_default?: SpoilerDefault};
   contest_preferences?: ContestPreference[];
   schemaVersion: 1;
   exportKind: "local_runtime_snapshot";

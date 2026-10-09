@@ -42,7 +42,7 @@ vi.mock("vue-router", () => ({
 vi.mock("../../src/stores/contest-list", () => ({ useContestListStore: () => env.selection }));
 vi.mock("../../src/components/MemberPicker.vue", () => ({ default: { render: () => null } }));
 vi.mock("../../src/stores/settings", () => ({ useSettingsStore: () => ({ allowMedalEstimates: true }) }));
-vi.mock("../../src/stores/spoilers", () => ({ useSpoilerStore: () => ({ visible: () => false }) }));
+vi.mock("../../src/stores/spoilers", () => ({ useSpoilerStore: () => ({ visible: () => false, hasOverride: () => false, saving: [] }) }));
 vi.mock("../../src/lib/member-events", () => ({ emitMemberMutated() {} }));
 vi.mock("../../src/lib/catalog-events", () => ({ emitCatalogMutated() {} }));
 vi.mock("../../src/lib/local-db", () => ({

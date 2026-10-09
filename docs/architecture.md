@@ -25,8 +25,8 @@ RankLand/SRK, XCPC Rating and onsite standings are fetched, matched and reviewed
 
 Database `xcpc_tracker_local`, current Dexie version 7. Schema history that affects existing data:
 
-- v5 adds `contestPreferences` (key `contest_id`): `{ contest_id, spoiler_mode: "spoiler" | "non_spoiler" }`. Only manual overrides are stored.
-- v6 adds `appSettings` (key `key`) for boolean settings: `allow_medal_estimates` (default true), `auto_sync` (legacy `qoj_auto_sync` is read when missing), `qoj_use_userscript` (default false) and `qoj_script_intro_seen`.
+- v5 adds `contestPreferences` (key `contest_id`): `{ contest_id, spoiler_mode: "spoiler" | "non_spoiler" }`. Only manual per-contest choices are stored.
+- v6 adds `appSettings` (key `key`) for settings: `allow_medal_estimates` (default true), `auto_sync` (legacy `qoj_auto_sync` is read when missing), `qoj_use_userscript` (default false), `spoiler_default` (string `all` / `touched` / `none`, default `touched`; the only non-boolean value, unknown values read as `touched`), `spoiler_prefs_v2` (one-time cleanup flag, see Coverage, list and spoilers) and `qoj_script_intro_seen`.
 - v7 adds an optional `handleId` index to `memberProblemStatus`. Statuses are stored per member, problem and account, and merged per member for display (solved beats attempted). The upgrade only re-keys legacy rows whose account can be determined from `sourceRecordId` or import metadata; unattributable rows are kept as-is. Overlapping multi-account evidence already merged by older versions cannot be recovered; re-syncing the remaining accounts restores it.
 
 ### Identity
@@ -47,7 +47,7 @@ Database `xcpc_tracker_local`, current Dexie version 7. Schema history that affe
 ## Backups
 
 - Member backups use `schemaVersion: 1` ([schema](../schemas/local-runtime-snapshot.schema.json)). `handleId` is optional for compatibility; legacy statuses without it use the v7 attribution rule, and unknown ownership is never guessed.
-- Backups may include `contest_preferences` and `app_settings: { allow_medal_estimates }`. A backup missing either keeps the current value. `identityRevision` is never exported; restores generate new revisions (overwrite/re-link) or keep local ones for still-valid identities (merge).
+- Backups may include `contest_preferences` and `app_settings: { allow_medal_estimates, spoiler_default }`. A backup missing a setting keeps the current value. `contest_preferences` are restored only from backups that contain `spoiler_default`; older backups may hold bulk-written rows for every contest, so their per-contest rows are ignored. `identityRevision` is never exported; restores generate new revisions (overwrite/re-link) or keep local ones for still-valid identities (merge).
 - Restores validate structure, enums, timestamps, unique keys and references before writing, then apply in one transaction.
 - **Overwrite** replaces members and statuses; with "include statuses" unchecked it clears statuses. The UI states this and confirms current vs. imported counts before writing. **Merge** never transfers an active account binding; without statuses it keeps existing statuses.
 
@@ -61,9 +61,11 @@ Database `xcpc_tracker_local`, current Dexie version 7. Schema history that affe
 - The contest list and contest detail share one member selection (`selectedMemberIds` in the contest-list store). Coverage, "未做", placement and the spoiler default are all computed from it. The store keeps an explicit "follow all members" intent, so members added later, or recreated after the pool was empty, are selected automatically; a deliberate subset only loses deleted members.
 - The selection is mirrored to a `members` URL parameter on both pages (omitted while following all members), and list links to detail carry it. URLs are read when a page first loads (a detail URL's own `members` wins there); while the app runs, the shared selection is authoritative, so browser back to the list keeps changes made on detail and the list rewrites its URL on re-activation. The list only writes its URL while it is the active page, because it stays alive behind detail. Member detail's "查看 TA 的比赛" sets the selection directly.
 - Detail subscribes to member data with `liveQuery` and derives coverage in memory from the selection, so changing members needs no new subscription. Placement requires the selected members to have touched the contest: attempts without solves place at Fe; no attempts (including an empty selection) means no placement.
-- Spoiler default: contests untouched by the selected members are non-spoiler; manual per-contest preferences win. Changing the selection can change the default; opening a detail page does not. Until preferences load, spoilers stay hidden. Preferences sync across pages and tabs.
+- Spoilers: a manual per-contest choice wins; otherwise `spoiler_default` decides (`all`: every contest shows spoilers; `touched`: only contests touched by the selected members; `none`: no contest, and touched contests show ✓ in the list). Changing the selection can change the default; opening a detail page does not. Until preferences and the setting load, spoilers stay hidden. Both sync across pages and tabs.
+- Every flip of a detail page's spoiler switch is stored in `contestPreferences` and kept until reset: "恢复默认" next to the switch removes one row (the button keeps its space when idle so the layout above the heatmap never shifts), and management's "全部恢复默认" clears all rows. The list's `✓` badge marks a touched contest whose spoilers are hidden by such a manual choice.
+- Earlier versions implemented the bulk switch by writing a row for every contest, which cannot be told apart from manual choices. On first load `migrateSpoilerPreferencesOnce` clears `contestPreferences` once and sets `spoiler_prefs_v2` in the same transaction, so everyone starts from the default. This deliberately avoids a schema version bump, which would disconnect open tabs running older code and prevent rolling the site back.
 - Non-spoiler hides award cutoffs, award ranges, the award card, related gap notices, problem tags and Rating, and makes award search tokens not match. Coverage, practice links and general contest info stay visible. The editor keeps tag data but does not expose tags in the manual problem-list JSON.
-- The management page's bulk spoiler switch writes a manual preference for every current catalog contest; each contest can still be overridden from its detail page.
+- The management page's "默认剧透" selector only writes `spoiler_default`; it never touches manual choices.
 
 ## CF and QOJ sync
 

@@ -55,9 +55,34 @@ describe("VP state persistence and CF import", () => {
     expect((await localDb.appSettings.get("allow_medal_estimates"))!.value).toBe(true);
     expect((await localDb.contestPreferences.get("c"))!.spoiler_mode).toBe("non_spoiler");
 
+    expect((snapshot as any).app_settings.spoiler_default).toBe("touched");
+
     const bad = { ...snapshot, contest_preferences: [{ contest_id: "c", spoiler_mode: "invalid" }] };
     await expect(applyLocalRuntimeSnapshot(bad as any, { mode: "replace" })).rejects.toThrow();
     expect((await localDb.contestPreferences.get("c"))!.spoiler_mode).toBe("non_spoiler");
+  });
+
+  it("restores the global spoiler default and ignores per-contest rows from legacy backups", async () => {
+    await localDb.appSettings.put({ key: "spoiler_default", value: "none" });
+    await localDb.contestPreferences.put({ contest_id: "manual", spoiler_mode: "spoiler" } as any);
+    const snapshot = await exportLocalRuntimeSnapshot();
+    expect((snapshot as any).app_settings.spoiler_default).toBe("none");
+    await localDb.appSettings.put({ key: "spoiler_default", value: "all" });
+    await localDb.contestPreferences.clear();
+    await applyLocalRuntimeSnapshot(snapshot, { mode: "replace" });
+    expect((await localDb.appSettings.get("spoiler_default"))!.value).toBe("none");
+    expect((await localDb.contestPreferences.get("manual"))!.spoiler_mode).toBe("spoiler");
+
+    // A backup from before spoiler_default: its bulk-written rows are not restored,
+    // and the current global default is kept.
+    const legacy = { ...snapshot, app_settings: { allow_medal_estimates: true }, contest_preferences: [{ contest_id: "bulk", spoiler_mode: "non_spoiler" }] };
+    await localDb.contestPreferences.clear();
+    await applyLocalRuntimeSnapshot(legacy as any, { mode: "replace" });
+    expect(await localDb.contestPreferences.get("bulk")).toBeUndefined();
+
+    const invalid = { ...snapshot, app_settings: { allow_medal_estimates: true, spoiler_default: "maybe" } };
+    await expect(applyLocalRuntimeSnapshot(invalid as any, { mode: "replace" })).rejects.toThrow();
+    expect((await localDb.appSettings.get("spoiler_default"))!.value).toBe("none");
   });
 
   it("skips automatic sync without Web Locks", async () => {

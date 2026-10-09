@@ -105,7 +105,7 @@ function statusLabel(status: 'solved' | 'attempted' | 'unseen') {
   return status === 'solved' ? '已通过' : status === 'attempted' ? '已尝试' : '未做';
 }
 function statusSymbol(status: 'solved' | 'attempted' | 'unseen') {
-  return status === 'solved' ? '✓' : status === 'attempted' ? '·' : '';
+  return status === 'solved' ? '✓' : status === 'attempted' ? '✕' : '';
 }
 const awardCutoffRows = computed(() => {
   const cutoffs = awardCutoffs.value?.cutoffs;
@@ -531,6 +531,20 @@ onUnmounted(() => {
               >
                 <span class="spoiler-switch__label">{{ showSpoilers ? '剧透' : '非剧透' }}</span>
                 <span class="spoiler-switch__track" aria-hidden="true"><span class="spoiler-switch__thumb"></span></span>
+              </button>
+              <!-- Always laid out so toggling spoilers never shifts the page;
+                   invisible (and out of the accessibility tree) without a manual choice. -->
+              <button
+                type="button"
+                class="spoiler-reset"
+                :class="{ 'spoiler-reset--idle': !spoilers.hasOverride(contestId) }"
+                :aria-hidden="!spoilers.hasOverride(contestId)"
+                :tabindex="spoilers.hasOverride(contestId) ? undefined : -1"
+                title="清除这场比赛的单独设置，按全局设置显示"
+                :disabled="spoilers.saving.includes(contestId)"
+                @click="spoilers.resetContest(contestId)"
+              >
+                恢复默认
               </button>
               <div class="inline-tags">
               <span

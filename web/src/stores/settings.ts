@@ -6,7 +6,7 @@ export const useSettingsStore = defineStore('settings', () => {
   const allowMedalEstimates = ref(true);
   const loaded = ref(false), saving = ref(false), error = ref('');
   liveQuery(() => localDb.appSettings.get('allow_medal_estimates')).subscribe({
-    next(row) { allowMedalEstimates.value = row?.value ?? true; loaded.value = true; error.value = ''; },
+    next(row) { allowMedalEstimates.value = row?.value !== false; loaded.value = true; error.value = ''; },
     error() { allowMedalEstimates.value = false; loaded.value = false; error.value = '无法读取估算设置'; },
   });
   async function toggleEstimates() {

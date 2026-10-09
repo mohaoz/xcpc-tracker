@@ -52,7 +52,7 @@ vi.mock("../../src/lib/catalog-runtime", async () => {
 });
 
 vi.mock("../../src/stores/spoilers", () => ({
-  useSpoilerStore: () => ({ loaded: true, saving: [], error: "", visible: (_id: string, touched: boolean) => touched, toggle: async () => {} }),
+  useSpoilerStore: () => ({ loaded: true, saving: [], error: "", visible: (_id: string, touched: boolean) => touched, hasOverride: () => false, toggle: async () => {} }),
 }));
 vi.mock("../../src/stores/settings", () => ({ useSettingsStore: () => ({ allowMedalEstimates: false }) }));
 

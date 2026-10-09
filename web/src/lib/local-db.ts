@@ -1,5 +1,5 @@
 import Dexie, { type ObservabilitySet, type Table } from "dexie";
-import { validatePreferences } from './spoiler-policy';
+import { isSpoilerDefault, validatePreferences } from './spoiler-policy';
 import { validateRuntimeSnapshot } from './runtime-snapshot';
 import { statusHandleId, withStatusProvenance } from './member-status';
 import {
@@ -28,7 +28,7 @@ import type {
 } from "./local-model";
 
 class XcpcTrackerDb extends Dexie {
-  appSettings!: Table<{key: string; value: boolean}, string>;
+  appSettings!: Table<{key: string; value: boolean | string}, string>;
   contestPreferences!: Table<ContestPreference, string>;
   catalogContests!: Table<LocalCatalogContestRecord, string>;
   catalogProblems!: Table<LocalCatalogProblemRecord, string>;
@@ -610,7 +610,9 @@ export async function listMemberHandleProblemCountsFromDb(memberId: string): Pro
 }
 
 export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatus?: boolean }): Promise<LocalRuntimeSnapshot> {
-  const allowMedalEstimates = (await localDb.appSettings.get('allow_medal_estimates'))?.value ?? true;
+  const allowMedalEstimates = (await localDb.appSettings.get('allow_medal_estimates'))?.value !== false;
+  const storedSpoilerDefault = (await localDb.appSettings.get('spoiler_default'))?.value;
+  const spoilerDefault = isSpoilerDefault(storedSpoilerDefault) ? storedSpoilerDefault : 'touched';
   const preferences = await localDb.contestPreferences.toArray();
   const [members, memberHandles, memberProblemStatus, importSources, syncRecords] = await Promise.all([
     localDb.members.toArray(),
@@ -640,7 +642,7 @@ export async function exportLocalRuntimeSnapshot(options?: { includeProblemStatu
     schemaVersion: 1,
     exportKind: "local_runtime_snapshot",
     contest_preferences: preferences,
-    app_settings: {allow_medal_estimates: allowMedalEstimates},
+    app_settings: {allow_medal_estimates: allowMedalEstimates, spoiler_default: spoilerDefault},
     exportedAt: new Date().toISOString(),
     members: activeMembers.map(({ identityRevision: _revision, ...member }) => member),
     memberHandles: activeHandles.map(({ identityRevision: _revision, ...handle }) => handle),
@@ -823,14 +825,23 @@ export async function applyLocalRuntimeSnapshot(
     withStatusProvenance(status, snapshot.memberHandles, sourceById)),
   };
   const preferences = validatePreferences(snapshot.contest_preferences);
-  if (snapshot.app_settings !== undefined && (!snapshot.app_settings || typeof snapshot.app_settings.allow_medal_estimates !== 'boolean')) throw new Error('Invalid app settings');
+  if (snapshot.app_settings !== undefined && (!snapshot.app_settings || typeof snapshot.app_settings.allow_medal_estimates !== 'boolean'
+    || (snapshot.app_settings.spoiler_default !== undefined && !isSpoilerDefault(snapshot.app_settings.spoiler_default)))) throw new Error('Invalid app settings');
   await localDb.transaction('rw', [localDb.members, localDb.memberHandles, localDb.memberProblemStatus, localDb.importSources, localDb.syncRecords, localDb.contestPreferences, localDb.appSettings], async () => {
     await applyLocalRuntimeSnapshotData(snapshot, options);
-    if (snapshot.contest_preferences !== undefined) {
+    // Backups written before spoiler_default existed may carry bulk-written
+    // rows for every contest; like local data, they are not restored (see
+    // migrateSpoilerPreferencesOnce). Newer backups hold manual choices only.
+    const legacyPreferences = snapshot.app_settings?.spoiler_default === undefined;
+    if (snapshot.contest_preferences !== undefined && !legacyPreferences) {
       if (options?.mode === 'replace') await localDb.contestPreferences.clear();
       if (preferences.length) await localDb.contestPreferences.bulkPut(preferences);
     }
-    if (snapshot.app_settings !== undefined) await localDb.appSettings.put({key:'allow_medal_estimates',value:snapshot.app_settings.allow_medal_estimates});
+    if (snapshot.app_settings !== undefined) {
+      await localDb.appSettings.put({key:'allow_medal_estimates',value:snapshot.app_settings.allow_medal_estimates});
+      // Older backups have no spoiler_default; keep the current default then.
+      if (snapshot.app_settings.spoiler_default !== undefined) await localDb.appSettings.put({key:'spoiler_default',value:snapshot.app_settings.spoiler_default});
+    }
   });
 }
 
@@ -1361,4 +1372,21 @@ export async function listContestCoverageSummariesForCatalog(
 ): Promise<LocalContestCoverageSummary[]> {
   const input = await readMemberCoverageInputFromDb();
   return summarizeCatalogCoverage(payload, input, options);
+}
+
+/**
+ * contestPreferences now hold manual per-contest choices only, and the
+ * "全部剧透" switch became the appSettings `spoiler_default` setting. Earlier bulk
+ * toggles wrote a row for every contest, indistinguishable from manual ones,
+ * so all rows are cleared once and everyone starts from the default
+ * (spoilers only for touched contests). Done in one transaction guarded by a
+ * flag instead of a schema version bump, so open tabs and rollbacks keep
+ * working.
+ */
+export async function migrateSpoilerPreferencesOnce(): Promise<void> {
+  await localDb.transaction('rw', localDb.contestPreferences, localDb.appSettings, async () => {
+    if ((await localDb.appSettings.get('spoiler_prefs_v2'))?.value === true) return;
+    await localDb.contestPreferences.clear();
+    await localDb.appSettings.put({ key: 'spoiler_prefs_v2', value: true });
+  });
 }

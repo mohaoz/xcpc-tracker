@@ -101,23 +101,74 @@ test.describe('contest browsing', () => {
 
     await test.step('bulk spoilers on/off and attempted heatmap cell', async () => {
       await page.goto('/manage');
-      const allSpoilers = page.getByRole('switch', { name: '全部剧透', exact: true });
-      await expect(allSpoilers).toHaveAttribute('aria-checked', 'false');
+      const allSpoilers = page.getByRole('button', { name: '全部剧透', exact: true });
+      const touchedSpoilers = page.getByRole('button', { name: '默认', exact: true });
+      await expect(touchedSpoilers).toHaveAttribute('aria-pressed', 'true');
       await allSpoilers.click();
-      await expect(allSpoilers).toHaveAttribute('aria-checked', 'true');
+      await expect(allSpoilers).toHaveAttribute('aria-pressed', 'true');
       await page.goto(`/contests/${contest.contestId}`);
       await expect(page.locator('.problem-rating').first()).toBeVisible();
       const attempted = page.locator('.coverage-cell-button--attempted');
       await expect(attempted).toHaveCount(1);
-      expect(await attempted.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(239, 187, 102)');
+      expect(await attempted.evaluate(el => getComputedStyle(el).backgroundColor)).toBe('rgb(214, 69, 69)');
       await expect(page.locator('.coverage-heatmap tbody tr')).toHaveCount(1);
       await expect(page.locator('.coverage-heatmap tbody td:not(.coverage-heatmap__total)')).toHaveCount(contest.problemIds.length);
       await page.goto('/manage');
-      await allSpoilers.click();
-      await expect(allSpoilers).toHaveAttribute('aria-checked', 'false');
+      await touchedSpoilers.click();
+      await expect(touchedSpoilers).toHaveAttribute('aria-pressed', 'true');
+      // The touched default shows spoilers for a touched contest.
       await page.goto(`/contests/${contest.contestId}`);
-      await expect(toggle).toBeVisible();
+      await expect(toggle).toHaveAttribute('aria-checked', 'true');
+      await expect(page.locator('.problem-rating').first()).toBeVisible();
+    });
+
+    await test.step('manual spoiler choices survive the global default and can be reset', async () => {
+      const reset = page.getByRole('button', { name: '恢复默认', exact: true });
+      // Earlier steps flipped this contest by hand; reset returns it to the default.
+      if (await reset.isVisible()) await reset.click();
+      await expect(reset).toHaveCount(0);
+      await expect(toggle).toHaveAttribute('aria-checked', 'true');
+      await toggle.click();
+      await expect(toggle).toHaveAttribute('aria-checked', 'false');
       await expect(page.locator('.problem-tag, .problem-rating')).toHaveCount(0);
+      await expect(reset).toBeVisible();
+
+      await page.goto('/manage');
+      await expect(page.getByText('有 1 场比赛在详情页被单独切换过剧透。')).toBeVisible();
+      const allSpoilers = page.getByRole('button', { name: '全部剧透', exact: true });
+      await allSpoilers.click();
+      await expect(allSpoilers).toHaveAttribute('aria-pressed', 'true');
+      await page.goto(`/contests/${contest.contestId}`);
+      await expect(toggle, 'a manual off wins over the global default').toHaveAttribute('aria-checked', 'false');
+
+      await reset.click();
+      await expect(toggle).toHaveAttribute('aria-checked', 'true');
+      await expect(reset).toHaveCount(0);
+
+      await toggle.click();
+      await expect(toggle).toHaveAttribute('aria-checked', 'false');
+      await expect(reset).toBeVisible();
+      await page.goto('/manage');
+      page.once('dialog', dialog => dialog.accept());
+      await page.getByRole('button', { name: '全部恢复默认' }).click();
+      await expect(page.getByText('没有单独切换过剧透的比赛。', { exact: false })).toBeVisible();
+
+      // 全部不剧透: even a touched contest hides spoilers; the list shows ✓.
+      const noSpoilers = page.getByRole('button', { name: '全部不剧透', exact: true });
+      await noSpoilers.click();
+      await expect(noSpoilers).toHaveAttribute('aria-pressed', 'true');
+      await page.goto(`/contests/${contest.contestId}`);
+      await expect(toggle).toHaveAttribute('aria-checked', 'false');
+      await expect(page.locator('.problem-tag, .problem-rating')).toHaveCount(0);
+      await page.goto('/contests');
+      await page.getByLabel('搜索', { exact: true }).fill('2026 深圳');
+      const card = page.locator(`a.contest-card[href$="/contests/${contest.contestId}"]`);
+      await expect(card.locator('.contest-medal-badge')).toHaveText('✓');
+
+      await page.goto('/manage');
+      const touchedSpoilers = page.getByRole('button', { name: '默认', exact: true });
+      await touchedSpoilers.click();
+      await expect(touchedSpoilers).toHaveAttribute('aria-pressed', 'true');
     });
 
     await test.step('medal estimates default on, persist, and gate estimated cutoffs', async () => {

@@ -58,7 +58,7 @@ const xcpcRatingProblems = "https://hei-maom.github.io/xcpcrating/#/problems";
           <ul class="help-doc__list">
             <li><RouterLink to="/members">成员页</RouterLink> 显示每个人的通过 / 尝试数和上次同步时间；成员详情可以按账号同步、添加或删除账号。</li>
             <li>成员详情里的“查看 TA 的比赛”会打开只选中这名成员的比赛列表。</li>
-            <li>比赛详情的热力图以成员为行、题目为列：绿色 ✓ 为通过，黄色 · 为尝试；每行末尾是该成员的通过 / 尝试数，底部“全队”一行是所选成员合并后的结果。</li>
+            <li>比赛详情的热力图以成员为行、题目为列：绿色 ✓ 为通过，红色 ✕ 为尝试（WA 等未通过）；每行末尾是该成员的通过 / 尝试数，底部“全队”一行是所选成员合并后的结果。</li>
           </ul>
         </section>
 
@@ -93,7 +93,15 @@ const xcpcRatingProblems = "https://hei-maom.github.io/xcpcrating/#/problems";
           <ul class="help-doc__list">
             <li>队伍成绩只按<strong>过题数</strong>对照牌线，不考虑罚时（本站没有罚时数据）。</li>
             <li>所选成员合计的通过数达到哪条线，就落在哪一档：Au / Ag / Cu；碰过本场但不到铜牌线（包括只有尝试、没有通过）为 Fe；完全没碰过，或这场没有牌线，不显示档位。</li>
-            <li>比赛列表的徽章显示每场的区间；搜索 <code>au</code> 等奖牌条件，再配合“已做”模式和场数统计，就能看到各档分别有几场。</li>
+            <li>比赛列表每张卡片左下角的徽章：
+              <ul class="help-doc__list">
+                <li><code>-</code>：所选成员都没碰过这场（未做）。</li>
+                <li><code>✓</code>：碰过，但这场不显示剧透（默认剧透选了“全部不剧透”，或你在详情页手动关掉了），所以不显示档位。</li>
+                <li><code>?</code>：碰过，但这场没有可用的牌线。</li>
+                <li><code>Fe</code> / <code>Cu</code> / <code>Ag</code> / <code>Au</code>：当前档位；左下和右上的小数字是这一档所需过题数的下界和上界。</li>
+              </ul>
+              鼠标悬停在徽章上也会显示说明；点击徽章会把对应条件加进搜索。</li>
+            <li>搜索 <code>au</code> 等奖牌条件，再配合“已做”模式和场数统计，就能看到各档分别有几场。</li>
             <li>比赛详情的牌线卡片显示当前档位、到下一档还差几题（NEXT +N probs），以及各档的过题数、名次和罚时。</li>
           </ul>
           <h4>牌线从哪来</h4>
@@ -107,9 +115,10 @@ const xcpcRatingProblems = "https://hei-maom.github.io/xcpcrating/#/problems";
         <section id="spoilers" class="help-doc__section">
           <h3>剧透</h3>
           <ul class="help-doc__list">
-            <li>所选成员都没碰过的比赛默认<strong>非剧透</strong>，碰过之后默认剧透；切换成员会随之改变默认值，打开详情不会。</li>
+            <li>默认规则由 <RouterLink to="/manage">管理</RouterLink> 里的“默认剧透”决定：“全部剧透”时所有比赛都显示；“默认”时只有所选成员碰过的比赛显示；“全部不剧透”时都不显示，碰过的比赛在列表里显示 <code>✓</code>。选“默认”时，切换成员会随之改变默认值，打开详情不会。</li>
             <li>非剧透会隐藏牌线、奖牌区间、题目标签和 Rating，奖牌搜索条件也不匹配这些比赛；做题覆盖和整场练习链接照常可用。</li>
-            <li>比赛详情标题旁的开关可以逐场切换，手动设置优先且会保留；<RouterLink to="/manage">管理</RouterLink> 里的“全部剧透”可以批量设置。</li>
+            <li>比赛详情标题旁的开关可以逐场手动切换。手动设置单独保存，优先于默认规则，修改“默认剧透”也不会改动它。</li>
+            <li>想让某场重新按默认规则显示，点开关旁的“恢复默认”；管理页的“全部恢复默认”会清除所有手动设置。</li>
           </ul>
         </section>
 

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { nextTick, onMounted, onUnmounted, ref } from "vue";
 import { useSpoilerStore } from '../stores/spoilers';
+import type { SpoilerDefault } from '../lib/spoiler-policy';
 import { useSettingsStore } from '../stores/settings';
 import { useQojSyncStore } from '../stores/qoj-sync';
 
@@ -18,7 +19,6 @@ import { validateRuntimeSnapshot } from '../lib/runtime-snapshot';
 const spoilers = useSpoilerStore();
 const settings = useSettingsStore();
 const qojSync = useQojSyncStore();
-const catalogContestIds = ref<string[]>([]);
 const submitting = ref(false);
 const loadingStats = ref(false);
 const error = ref("");
@@ -67,7 +67,6 @@ async function refreshStats() {
       contestCount: runtimeCatalog.contests.length,
       problemCount: runtimeCatalog.contests.reduce((sum, contest) => sum + contest.problemCount, 0),
     };
-    catalogContestIds.value = runtimeCatalog.contests.map(contest => contest.contestId);
   } finally {
     loadingStats.value = false;
   }
@@ -168,6 +167,22 @@ async function handleImportData(event: Event) {
   }
 }
 
+const spoilerDefaultOptions: { value: SpoilerDefault; label: string }[] = [
+  { value: 'all', label: '全部剧透' },
+  { value: 'touched', label: '默认' },
+  { value: 'none', label: '全部不剧透' },
+];
+const spoilerDefaultHints: Record<SpoilerDefault, string> = {
+  all: '所有比赛默认显示剧透。',
+  touched: '只有所选成员碰过的比赛默认显示剧透。',
+  none: '所有比赛默认不显示剧透；碰过的比赛在列表中显示 ✓。',
+};
+
+async function resetSpoilerOverrides() {
+  if (!window.confirm(`将清除 ${spoilers.overrideCount} 场比赛的单独剧透设置，它们会按全局设置显示。是否继续？`)) return;
+  await spoilers.resetAll();
+}
+
 let unsubscribe: (() => void) | undefined;
 onMounted(() => {
   void refreshStats();
@@ -202,17 +217,27 @@ onUnmounted(()=>unsubscribe?.());
         <div class="list-grid">
           <section class="panel settings-panel" style="box-shadow: none">
             <div class="panel__body">
-              <div class="panel__header" style="margin-bottom: 0">
+              <div class="panel__header settings-choice" style="margin-bottom: 0">
                 <div class="panel__title">
-                  <h3>全部剧透</h3>
-                  <p class="muted tiny">批量设置当前全部比赛，单场仍可在详情页调整。</p>
+                  <h3>默认剧透</h3>
+                  <p class="muted tiny">{{ spoilerDefaultHints[spoilers.spoilerDefault] }}你在详情页单独切换过的比赛不受影响。</p>
                 </div>
-                <button type="button" role="switch" class="spoiler-switch"
-                  aria-label="全部剧透" :aria-checked="spoilers.allEnabled(catalogContestIds)"
-                  :disabled="!spoilers.loaded || loadingStats || spoilers.bulkSaving || !catalogContestIds.length"
-                  @click="spoilers.setAll(catalogContestIds, !spoilers.allEnabled(catalogContestIds))">
-                  <span class="spoiler-switch__track" aria-hidden="true"><span class="spoiler-switch__thumb"></span></span>
-                </button>
+                <div class="segmented" role="group" aria-label="默认剧透">
+                  <button v-for="option in spoilerDefaultOptions" :key="option.value" type="button"
+                    :aria-pressed="spoilers.spoilerDefault === option.value"
+                    :disabled="!spoilers.loaded || spoilers.bulkSaving"
+                    @click="spoilers.setSpoilerDefault(option.value)">{{ option.label }}</button>
+                </div>
+              </div>
+              <div class="panel__header" style="margin: 20px 0 0">
+                <div class="panel__title">
+                  <h3>单场剧透设置</h3>
+                  <p class="muted tiny">{{ spoilers.overrideCount ? `有 ${spoilers.overrideCount} 场比赛在详情页被单独切换过剧透。` : '没有单独切换过剧透的比赛。' }}恢复默认后，它们按上面的全局设置显示。</p>
+                </div>
+                <button type="button" class="button button--ghost"
+                  :disabled="!spoilers.loaded || spoilers.bulkSaving || !spoilers.overrideCount"
+                  style="white-space: nowrap"
+                  @click="resetSpoilerOverrides">全部恢复默认</button>
               </div>
               <p v-if="spoilers.error" class="error-box">{{ spoilers.error }}</p>
               <div class="panel__header" style="margin: 20px 0 0">
@@ -298,11 +323,12 @@ onUnmounted(()=>unsubscribe?.());
 .status-option input:disabled {opacity:.5;cursor:default;}
 .import-mode {display:flex;align-items:center;gap:16px;font-size:13px;color:#657482;}
 .segmented {display:flex;border:1px solid #d7dfdc;border-radius:8px;padding:3px;background:#f1f3ef;gap:3px;}
-.segmented button {border:0;border-radius:5px;padding:6px 16px;background:transparent;color:#657482;font:inherit;cursor:pointer;}
+.segmented button {white-space:nowrap;border:0;border-radius:5px;padding:6px 16px;background:transparent;color:#657482;font:inherit;cursor:pointer;}
 .segmented button[aria-pressed=true] {background:#fffdf9;color:#146e75;box-shadow:0 1px 3px #233a361a;font-weight:600;}
 .settings-panel > .panel__body {padding-top:6px;padding-bottom:6px;}
 .settings-panel .panel__header {margin:0 !important;padding:16px 0;align-items:center;gap:24px;}
 .settings-panel .panel__header ~ .panel__header {border-top:1px solid #e6e8e1;}
+@media (max-width:640px){.settings-choice{flex-wrap:wrap;}.settings-choice .segmented{width:100%;}.settings-choice .segmented button{flex:1;padding:6px 8px;}}
 .settings-panel .panel__title {gap:0;}
 .settings-panel h3 {margin:0;font-size:15px;}
 .settings-panel .panel__title p {margin:5px 0 0;line-height:1.5;}

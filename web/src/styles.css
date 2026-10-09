@@ -1142,13 +1142,13 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 40px;
   min-width: 40px;
   height: 28px;
-  padding: 0 8px;
+  padding: 0;
   border-radius: 7px;
   color: #f8fafc;
   font-family: "Space Grotesk", sans-serif;
-  white-space: nowrap;
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.02em;
@@ -1299,8 +1299,8 @@ h1 {
 }
 
 .contest-problem-state--attempted {
-  background: #efbb66;
-  color: #6a4204;
+  background: #d64545;
+  color: #fff5f5;
 }
 
 .contest-problem-state--solved {
@@ -1425,12 +1425,12 @@ h1 {
 .coverage-heatmap .coverage-cell-button { display: block; width: 23px; height: 23px; border-radius: 2px; }
 .heatmap-cell-symbol { color: #64748b; font-size: 12px; }
 .coverage-cell-button--solved .heatmap-cell-symbol { color: white; }
-.coverage-cell-button--attempted .heatmap-cell-symbol { color: #6a4204; }
+.coverage-cell-button--attempted .heatmap-cell-symbol { color: white; }
 .heatmap-legend { display: flex; justify-content: flex-end; gap: 12px; margin: 8px 0 20px; }
 .heatmap-legend span { display: inline-flex; align-items: center; gap: 5px; }
 .heatmap-key { width: 10px; height: 10px; display: inline-block; border-radius: 1px; }
 .heatmap-key--unseen { background: #edf0f2; }
-.heatmap-key--attempted { background: #efbb66; }
+.heatmap-key--attempted { background: #d64545; }
 .heatmap-key--solved { background: #21865d; }
 .problem-ordinal-label { min-width: 18px; font-weight: 600; color: var(--ink-soft); }
 .detail-bottom-actions { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); }
@@ -1438,9 +1438,9 @@ h1 {
 .coverage-table .coverage-table__member-column { width: 42px; max-width: 60px; text-align: center; padding: 8px 4px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; }
 .coverage-cell-button { width: 24px; height: 24px; padding: 0; border: 1px solid rgba(41,55,81,.07); border-radius: 4px; background: #edf0f2; font: inherit; }
 .coverage-cell-button--solved { background: #21865d; }
-.coverage-cell-button--attempted { background: #efbb66; }
+.coverage-cell-button--attempted { background: #d64545; }
 .coverage-cell-button--solved .status-dot { color: white; }
-.coverage-cell-button--attempted .status-dot { color: #6a4204; }
+.coverage-cell-button--attempted .status-dot { color: white; }
 .coverage-cell-button:disabled { opacity: 1; }
 .coverage-cell-button--active { cursor: pointer; }
 .coverage-cell-button--active:hover { outline: 2px solid var(--brand); outline-offset: 2px; }
@@ -1810,4 +1810,46 @@ h1 {
   .coverage-heatmap__total {
     line-height: 28px;
   }
+}
+
+/* Large screens: keep ~10% side margins on each side (content ≤ 80% of the
+   viewport, still capped at --content-width). */
+@media (min-width: 1440px) {
+  .shell__header-inner,
+  .shell__main,
+  .shell__footer {
+    width: min(var(--content-width), 80%);
+  }
+}
+
+/* Detail: sources keep the narrow side-column width of the original layout;
+   the main column takes the remaining space. */
+.section-split {
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+}
+
+@media (max-width: 900px) {
+  .section-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.spoiler-reset {
+  padding: 2px 0;
+  border: 0;
+  background: transparent;
+  color: var(--brand-strong);
+  font-size: 0.8rem;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.spoiler-reset:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
+.spoiler-reset--idle {
+  visibility: hidden;
 }

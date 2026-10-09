@@ -64,10 +64,12 @@ const listModeButtonLabels: Record<ContestListMode, string> = {
   UNSEEN: "未做",
   DONE: "已做",
 };
+// Compact symbols that share the 40px slot with the Fe/Cu/Ag/Au range badges;
+// their meaning is explained in the hover title and on the help page.
 const listModeBadgeLabels: Record<ContestListMode, string> = {
-  ALL: "全部",
-  UNSEEN: "未做",
-  DONE: "已做",
+  ALL: "·",
+  UNSEEN: "-",
+  DONE: "✓",
 };
 const listModeTips: Record<ContestListMode, string> = {
   ALL: "全部比赛",
@@ -234,7 +236,7 @@ function getContestBadgeMode(contestId: string): ContestListMode | "NONE-MEDAL-D
 }
 
 function getContestBadgeLabel(contestId: string) {
-  return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA" ? "无牌线" : listModeBadgeLabels[getContestListMode(contestId)];
+  return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA" ? "?" : listModeBadgeLabels[getContestListMode(contestId)];
 }
 
 function getContestBadgeTitle(contestId: string) {
