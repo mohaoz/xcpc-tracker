@@ -18,7 +18,7 @@ onMounted(() => void sync.check());
         {{ sync.busy ? '停止同步' : `同步 QOJ (${count})` }}
       </button>
       <slot v-if="sync.useUserscript" name="manual" />
-      <button v-if="sync.useUserscript" class="qoj-sync-help" aria-label="QOJ 自动同步帮助" title="QOJ 自动同步帮助" @click="sync.showSetup()">
+      <button class="qoj-sync-help" aria-label="QOJ 同步帮助" title="QOJ 同步帮助" @click="sync.openHelp(sync.useUserscript ? 'userscript' : 'manual')">
         <svg width="17" height="17" viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.25" stroke="currentColor" stroke-width="1.4"/><path d="M8.2 7.6a1.85 1.85 0 0 1 3.6.5c0 1.3-1.8 1.5-1.8 2.9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="10" cy="13.5" r=".85" fill="currentColor"/></svg>
       </button>
       </div>

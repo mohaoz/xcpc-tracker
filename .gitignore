@@ -24,3 +24,6 @@ artifacts/
 .DS_Store
 .idea/
 .vscode/
+
+# Generated architecture reports
+.archify/

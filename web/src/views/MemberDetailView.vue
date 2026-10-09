@@ -6,6 +6,8 @@ import { RouterLink, useRoute, useRouter } from "vue-router";
 import { importCodeforcesMember } from "../lib/codeforces";
 import { useQojSyncStore } from '../stores/qoj-sync';
 const qojSync = useQojSyncStore();
+import { useContestListStore } from "../stores/contest-list";
+const selection = useContestListStore();
 import { emitMemberMutated } from "../lib/member-events";
 import {
   getMemberPersonFromDb,
@@ -136,7 +138,7 @@ async function handleSyncHandle(handle: LocalMemberPerson["handles"][number]) {
   } catch (caught) {
     if (!isCurrent()) return;
     error.value = caught instanceof Error ? caught.message : "同步账号失败";
-    syncWarning.value = "如果这是 private Codeforces 数据，请先在 Manage 页面保存 API 凭据，并确认当前账号本身有访问权限。即使具备权限，返回的数据也可能仍然不完整。";
+    syncWarning.value = "Codeforces API 只能读取公开数据；非公开比赛或私有 Gym 的记录可能缺失。已有记录不会被清空。";
   } finally {
     if (isCurrent()) syncingHandleId.value = "";
   }
@@ -216,9 +218,14 @@ onUnmounted(() => {
             <p class="eyebrow">成员</p>
             <h2>{{ person?.displayName ?? "成员详情" }}</h2>
           </div>
-          <RouterLink to="/members" class="button button--ghost">
-            返回成员列表
-          </RouterLink>
+          <div class="actions" style="margin-top: 0">
+            <RouterLink v-if="person" :to="{ path: '/contests', query: { members: person.memberId } }" class="button" @click="selection.selectOnly([person.memberId])">
+              查看 TA 的比赛
+            </RouterLink>
+            <RouterLink to="/members" class="button button--ghost">
+              返回成员列表
+            </RouterLink>
+          </div>
         </div>
 
         <div v-if="loading" class="notice">正在加载成员...</div>
@@ -244,9 +251,14 @@ onUnmounted(() => {
 
           <section class="panel" style="box-shadow: none; margin-bottom: 18px">
             <div class="panel__body">
-              <div class="panel__title" style="margin-bottom: 14px">
-                <p class="eyebrow">账号</p>
-                <h3>账户与同步</h3>
+              <div class="panel__header" style="margin-bottom: 14px">
+                <div class="panel__title">
+                  <p class="eyebrow">账号</p>
+                  <h3>账户与同步</h3>
+                </div>
+                <RouterLink :to="{ path: '/members/new', query: { member: person.memberId } }" class="button button--ghost">
+                  添加账号
+                </RouterLink>
               </div>
               <div class="list-grid">
                 <div

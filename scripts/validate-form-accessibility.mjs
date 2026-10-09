@@ -71,7 +71,7 @@ assert.equal(nodes.filter(node=>attribute(node,'role')==='group' && /^Contest so
 const qojSync=vue.reactive({modeLoaded:true,busy:false,useUserscript:false,sync:async()=>{}});
 let cfImports=0,qojLinks=0,releaseImport;
 const {component:AddMember,descriptor}=compileComponent('web/src/views/AddMemberView.vue',{
-  'vue-router':{useRouter:()=>({replace:async()=>{}})},
+  'vue-router':{useRouter:()=>({replace:async()=>{}}),useRoute:()=>({query:{}})},
   '../lib/codeforces':{importCodeforcesMember:async()=>{cfImports++;await new Promise(resolve=>{releaseImport=resolve;});}},
   '../lib/member-events':{emitMemberMutated:()=>{}},
   '../lib/qoj':{linkQojMember:async()=>{qojLinks++;}},

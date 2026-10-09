@@ -1140,13 +1140,13 @@ h1 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
   min-width: 40px;
   height: 28px;
-  padding: 0;
+  padding: 0 8px;
   border-radius: 7px;
   color: #f8fafc;
   font-family: "Space Grotesk", sans-serif;
+  white-space: nowrap;
   font-size: 0.82rem;
   font-weight: 800;
   letter-spacing: 0.02em;
@@ -1297,8 +1297,8 @@ h1 {
 }
 
 .contest-problem-state--attempted {
-  background: #dc2626;
-  color: #fef2f2;
+  background: #efbb66;
+  color: #6a4204;
 }
 
 .contest-problem-state--solved {
@@ -1574,4 +1574,146 @@ h1 {
   .back-to-top { transition: none; }
   .back-to-top-enter-active,
   .back-to-top-leave-active { transition: none; }
+}
+
+.contest-detail-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.search-help {
+  margin: 2px 0 0;
+  line-height: 1.8;
+}
+
+.search-help code {
+  padding: 0 4px;
+  border-radius: 4px;
+  background: rgba(41, 55, 81, 0.07);
+  font-size: 0.85em;
+}
+
+.detail-section-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.detail-maintenance {
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.detail-maintenance > summary {
+  color: var(--ink-soft);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Heatmap: sticky member column, per-row totals and a merged team row */
+.coverage-heatmap th[scope="row"],
+.coverage-heatmap thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: rgba(253, 250, 244, 0.97);
+}
+
+.coverage-heatmap__total {
+  padding-left: 8px !important;
+  font-size: 12px;
+  line-height: 23px;
+  text-align: left !important;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.coverage-heatmap tfoot th,
+.coverage-heatmap tfoot td {
+  padding-top: 6px;
+  border-top: 1px dashed var(--line);
+}
+
+.coverage-heatmap tfoot th {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.coverage-heatmap span.coverage-cell-button {
+  display: grid;
+  place-items: center;
+  cursor: default;
+}
+
+@media (pointer: coarse) {
+  .coverage-heatmap .coverage-cell-button--active {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Grid children default to min-width:auto and grow to fit wide tables, which
+   defeats the inner horizontal scroll containers on narrow screens. */
+.view-stack > *,
+.panel,
+.panel__body {
+  min-width: 0;
+}
+
+.contest-detail-links .button {
+  white-space: normal;
+}
+
+@media (max-width: 640px) {
+  .nav-pill {
+    padding: 7px 12px;
+  }
+
+  .nav-pill--github {
+    display: none;
+  }
+
+  .shell__header-inner {
+    gap: 10px;
+  }
+}
+
+@media (max-width: 640px) {
+  .shell__brand {
+    font-size: 0.98rem;
+    gap: 8px;
+  }
+
+  .shell__brand img {
+    width: 26px;
+    height: 26px;
+  }
+
+  .shell__nav {
+    gap: 6px;
+  }
+
+  .nav-pill {
+    padding: 6px 10px;
+  }
+
+  .award-cutoff-card__header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .award-cutoff-card__progress {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: start;
+    min-height: 0;
+  }
+
+  .award-cutoff-card__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

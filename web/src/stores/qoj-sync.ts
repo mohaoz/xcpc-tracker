@@ -18,7 +18,7 @@ function cancellationError(signal?: AbortSignal) {
   const reason = signal?.reason;
   return new SyncError('CANCELLED', 0, reason === 'settings_disabled' || reason === 'user_cancelled' ? reason : undefined);
 }
-const labels: Record<string, string> = {
+export const qojIssueLabels: Record<string, string> = {
   BRIDGE_MISSING: '未连接脚本，请安装或启用脚本、允许用户脚本运行，然后重新检测。',
   AUTH_REQUIRED: '请先在 QOJ 登录，然后回到这里点击“重试”。已有做题记录不会被清空。',
   CHALLENGE_REQUIRED: 'QOJ 要求验证或拒绝访问，请前往 QOJ 完成验证后点击“重试”。已有做题记录不会被清空。',
@@ -84,7 +84,7 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
       if(claimed && !feedback.current && !useQojManualStore().open)feedback.show({
         tone:'info',title:'QOJ 支持油猴同步了',
         message:'现在可以用油猴脚本同步 QOJ 做题记录。默认仍为手动导入，可在管理页启用。',
-        actions:[{label:'使用帮助',run:showSetup}],
+        actions:[{label:'查看帮助',run:()=>openHelp()}],
       });
     } catch {introPending.value=false;}
     finally {introClaiming=false;}
@@ -137,14 +137,20 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
   }
   const issues = ref<Array<{code:string; handle:string; detail:string; retryAt:number; at:string}>>([]);
   const progress = ref({total:0,completed:0,succeeded:0,failed:0});
+  const userscriptUrl = `${import.meta.env.BASE_URL}userscripts/qoj-sync.user.js`;
+  function openHelp(section?: string) {
+    feedback.close();
+    useQojManualStore().open = false;
+    void router.push({name:'qoj-help', hash: section ? `#${section}` : undefined});
+  }
+  // Shown when a manual sync finds no script; full instructions live on the help page.
   function showSetup() {
-    feedback.show({tone:'info',title:'QOJ 自动同步帮助',
-      message:`${updateAvailable.value ? `脚本有更新：${installedVersion.value || '旧版'} → ${latestVersion.value}，更新后请刷新页面。\n\n` : ''}1. 安装 Tampermonkey，允许用户脚本运行。\n2. 安装 QOJ 同步脚本，刷新本站。\n3. 在管理页启用“使用 QOJ 油猴脚本”。\n4. 登录 QOJ，点击“同步 QOJ”。\n\n安装即授权本站读取 QOJ 做题记录。定时同步需在管理页开启，手动失败不会自动重试。`,
-      detail:installedVersion.value ? `当前脚本：${installedVersion.value}\n可用版本：${latestVersion.value || '尚未检查'}\n本站检测新版并提示，由你点击更新。` : undefined,
-      actions:[{label:'安装油猴',href:'https://www.tampermonkey.net/'},{label:updateAvailable.value ? '更新脚本':'安装同步脚本',href:`${import.meta.env.BASE_URL}userscripts/qoj-sync.user.js`},{label:'前往管理页启用',run:()=>{void router.push({name:'manage'});}}]});
+    feedback.show({tone:'info',title:'未连接 QOJ 同步脚本',
+      message:'请安装或启用 QOJ 同步脚本，并刷新本站后重试。也可以继续使用手动导入。',
+      actions:[{label:'安装同步脚本',href:userscriptUrl},{label:'查看帮助',run:()=>openHelp('userscript')}]});
   }
   function report(code: string, handle = '', retryAt = 0) {
-    const issue = {code,handle,detail:labels[code] || '同步未完成，请重试或反馈下方错误代码。',retryAt,at:new Date().toISOString()};
+    const issue = {code,handle,detail:qojIssueLabels[code] || '同步未完成，请重试或反馈下方错误代码。',retryAt,at:new Date().toISOString()};
     issues.value = [...issues.value.filter(i => i.handle !== handle), issue];
     message.value = `${handle ? handle + '：' : ''}${issue.detail}`;
     const key = `${handle}:${code}`;
@@ -171,10 +177,10 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
       const hello = await rpc('hello'); connected.value = hello?.version === 1;
       installedVersion.value = /^\d+\.\d+\.\d+$/.test(hello?.script_version || '') ? hello.script_version : '';
       if (connected.value) await checkUpdates();
-      connectionMessage.value = connected.value ? (hello.connected ? '脚本已连接' : '请更新 QOJ 同步脚本') : labels.BRIDGE_MISSING;
+      connectionMessage.value = connected.value ? (hello.connected ? '脚本已连接' : '请更新 QOJ 同步脚本') : qojIssueLabels.BRIDGE_MISSING;
       if (connected.value) issues.value = issues.value.filter(i => i.code !== 'BRIDGE_MISSING');
     }
-    catch { connected.value = false; connectionMessage.value = labels.BRIDGE_MISSING; }
+    catch { connected.value = false; connectionMessage.value = qojIssueLabels.BRIDGE_MISSING; }
     finally { checking.value = false; }
     if (interactive) {
       if (connected.value) feedback.show({tone:'success',title:'脚本连接正常',message:connectionMessage.value});
@@ -278,7 +284,7 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
           } catch (e) {
             error = e instanceof SyncError ? e : signal.aborted ? cancellationError(signal) : e && typeof e === 'object' && 'name' in e && e.name === 'AbortError' ? new SyncError('CANCELLED',0,'target_removed') : new SyncError(phase === 'save' ? 'STORAGE_ERROR' : 'NETWORK_ERROR'); failed++;
             if (explicitlyStopped && error.cancellationReason === 'settings_disabled') error.cancellationReason = 'user_cancelled';
-            message.value = `${target.handle}：${labels[error.code] || error.code}`;
+            message.value = `${target.handle}：${qojIssueLabels[error.code] || error.code}`;
           }
           // Turning a setting off pauses work; it is not an upstream failure or a
           // request to suppress this account after the setting is enabled again.
@@ -326,5 +332,5 @@ export const useQojSyncStore = defineStore('qoj-sync', () => {
     window.addEventListener('focus', returned);
     document.addEventListener('visibilitychange', returned);
   }
-  return {enabled,connected,busy,checking,message,connectionMessage,issues,progress,currentHandle,installedVersion,latestVersion,updateAvailable,updateRequired,useUserscript,modeLoaded,setUseUserscript,showSetup,check,setEnabled,sync,start,cancel:() => cancelCurrent?.()};
+  return {enabled,connected,busy,checking,message,connectionMessage,issues,progress,currentHandle,installedVersion,latestVersion,updateAvailable,updateRequired,useUserscript,modeLoaded,setUseUserscript,showSetup,openHelp,userscriptUrl,check,setEnabled,sync,start,cancel:() => cancelCurrent?.()};
 });

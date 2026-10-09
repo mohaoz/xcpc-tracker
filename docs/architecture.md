@@ -1,67 +1,104 @@
-# 架构与数据契约
+# Architecture and data contracts
 
-核心是整场 VP 选题。Vue/TypeScript 静态前端读取 Git 维护的目录以及浏览器本地成员状态；没有运行时后端、账户系统或云同步。
+XCPC Tracker is a static Vue/TypeScript frontend. It reads a Git-managed catalog plus member data stored in the browser (IndexedDB via Dexie). There is no runtime backend, account system or cloud sync.
 
-## 静态目录
+Product rules and source-priority rules live in [AGENTS.md](../AGENTS.md). Maintenance commands live in [scripts/README.md](../scripts/README.md). This file records current runtime and persistence contracts.
 
-`catalog/default-catalog.min.json` 是唯一正式目录。构建期生成轻量比赛索引、coverage basis 和逐场详情，浏览器按需读取，不能按版本变化触发全目录初始化。内部比赛／题目 ID、主标题和 CF/QOJ 映射保持稳定。
+## Static catalog
 
-RankLand 和 XCPC Rating 的抓取、匹配与审核只在构建期进行，步骤见[维护说明](../scripts/README.md)。浏览器不请求 SRK 或 Rating 上游；它读取已审核的来源、牌线及可选题目 `tags/rating`，不从这些数据生成成员状态。来源优先级与组别规则统一见 [AGENTS.md](../AGENTS.md#catalog-and-import-contracts)。
+- `catalog/default-catalog.min.json` is the only canonical catalog.
+- The build generates a contest index, a coverage basis (problem IDs per contest), a CF/QOJ problem lookup and per-contest detail files. The browser fetches them on demand. A catalog version change must never trigger a full in-browser catalog initialization.
+- Internal contest/problem IDs, primary titles and CF/QOJ mappings are stable.
+- IndexedDB `catalogContests` / `catalogProblems` hold only local manual edits. At runtime a local contest is used when the bundled catalog lacks it or when it has `generatedFrom: "manual"`; a local deletion marker hides the contest. Local edits are whole-contest snapshots and are not part of member backups.
 
-详情将成员覆盖与题目元数据分开渲染；热力图位于牌线上方，切换剧透不改变其位置。非剧透时不渲染题目表的标签／Rating 列。管理页的全部剧透开关批量写入当前目录每场比赛的手动设置，单场仍可在详情覆盖。
+## Standings and awards
 
-SRK 的 `contest.frozenDuration` 是赛程封榜时长，不是当前封榜状态；缺省按零处理。牌线计算要求比赛已结束、每行题目状态完整且不存在未揭晓／待判结果、通过总数一致。不能单凭非零封榜时长拒绝历史终榜。规范：https://srk.algoux.org/en/guide/contest-and-problems 。
+RankLand/SRK, XCPC Rating and onsite standings are fetched, matched and reviewed at build time only. The browser never requests SRK or Rating upstreams and never derives member status from standings or ratings.
 
-SRK 上游明确配置的 `rule.options.ratio` 属于官方奖项，不受“允许比例估算”开关影响。按上游累计比例及 rounding（缺省 ceil）取边界；当前仅支持 all 正式队分母，其他分母、组合规则或边界并列留待核验。兜底估算仍按各档 floor，不混用官方规则。CF Gym 的 CONTESTANT 不是原现场正式队证明，禁止据此估算；Board 没有明确正式队标记时禁止回退到全榜。
+- SRK `contest.frozenDuration` is the scheduled freeze length, not the current frozen state; missing means zero. A standing is usable only when the contest has ended, every row has complete problem statuses with no unrevealed/pending results, and solved totals agree. A non-zero freeze length alone does not reject a historical final standing. Spec: https://srk.algoux.org/en/guide/contest-and-problems
+- An SRK `rule.options.ratio` set by the upstream is an official award rule. It is not affected by the estimate setting. Boundaries use the upstream cumulative ratio and rounding (default `ceil`). Only the "all official teams" denominator is supported; other denominators, combined rules and boundary ties stay pending review.
+- Fallback estimates (`estimatedAwardCutoffs`) are built from complete, verified standings: gold/silver/bronze counts are each `floor(eligible × 10%/20%/30%)` (cumulative 10%/30%/60%). A tier with fewer than one team gets no cutoff. Highest-group and official-team filtering apply; incomplete standings or an unknown group produce no estimate.
+- CF Gym `CONTESTANT` rows do not prove onsite official status and must not be used for estimates. A Board without an explicit official-team marker must not fall back to the full board.
+- List and detail share one award selection: explicit awards first; estimates only when `allow_medal_estimates` is on.
 
-## 本地数据与剧透
+## Local storage
 
-CF/QOJ 同步保留有效成员名称及账号显示名称；现有数据没有可靠的名称来源标记，保守保留已有名称，不推断是否由用户修改，不新增字段或升级数据库。QOJ 各入口先校验整份载荷并完成题目映射，再将所有成员、状态、来源和同步记录放在同一事务内写入。导入准备阶段只读捕获身份，提交前再次核对；校验、归属冲突、写入失败或取消均不留下部分导入。缺少通过／尝试数组不能作为空记录接受。载荷中明确的抓取失败仅记录失败证据，保留该账号原有状态，不阻止同份载荷中有效结果的导入。
+Database `xcpc_tracker_local`, current Dexie version 7. Schema history that affects existing data:
 
-删除成员或解绑账号后，账号的软删除记录不再占用平台账号，允许重新绑定到新成员；有效绑定仍禁止跨成员转移。重新绑定不继承原成员的账号显示名称、创建时间或题目状态。沿用现有 `deletedAt`，无需升级 IndexedDB 或迁移旧数据。
+- v5 adds `contestPreferences` (key `contest_id`): `{ contest_id, spoiler_mode: "spoiler" | "non_spoiler" }`. Only manual overrides are stored.
+- v6 adds `appSettings` (key `key`) for boolean settings: `allow_medal_estimates` (default true), `auto_sync` (legacy `qoj_auto_sync` is read when missing), `qoj_use_userscript` (default false) and `qoj_script_intro_seen`.
+- v7 adds an optional `handleId` index to `memberProblemStatus`. Statuses are stored per member, problem and account, and merged per member for display (solved beats attempted). The upgrade only re-keys legacy rows whose account can be determined from `sourceRecordId` or import metadata; unattributable rows are kept as-is. Overlapping multi-account evidence already merged by older versions cannot be recovered; re-syncing the remaining accounts restores it.
 
-备份「覆盖」仍表示替换成员集合及题目状态，取消「包含题目状态」会清空状态；界面明确提示并在写入前确认当前与导入数量。「合并」且不包含状态保留已有状态。旧备份仍使用 schemaVersion 1；本次仅增加校验及交互说明，不改变 IndexedDB schema，也不迁移或清空已有数据。
+### Identity
 
-v6 新增 `appSettings`（主键 `key`）保存 `allow_medal_estimates`，默认 true，保留旧数据。牌线选择统一用于列表与详情：官方配置优先；比例估算仅开关开启时使用。估算在构建期由完整已核验榜单生成 `estimatedAwardCutoffs`，不在浏览器抓榜。10%／20%／30% 指金银铜各自人数（累计 10%／30%／60%，向下取整）；不足一支队的档位不生成牌线。保留最高组别与正式队过滤；榜单不完整或组别不明则不估算。
+- Members and accounts carry a local `identityRevision`. Deleting a member or unlinking an account soft-deletes it (`deletedAt`); a deleted account no longer claims the platform handle and may be re-linked to a new member. Re-linking does not inherit the old display name, creation time or problem statuses.
+- An active account binding is never transferred between members.
+- Every sync captures the member/account identity before queuing (batch syncs capture once per batch) and re-checks it inside the write transaction. A response for a deleted, recreated, unlinked or re-linked identity must not restore data. The QOJ manual dialog captures target identities when it generates the export script; waiting for paste, locks or catalog loading does not re-authorize them.
+- Manual marks on the detail heatmap carry the visible member's `identityRevision`; both read and write transactions verify it.
+- Existing member and account display names are preserved on sync; there is no reliable "edited by user" marker, so names are not overwritten.
 
-IndexedDB 使用 Dexie。v5 在 v4 基础上增加 `contestPreferences`，主键 `contest_id`，记录 `{ contest_id, spoiler_mode: "spoiler" | "non_spoiler" }`，不清空已有 stores。
+### Imports
 
-剧透设置只保存手动覆盖；默认状态由全部有效成员的尝试／通过记录计算，打开详情或切换成员筛选不改变默认。读取设置完成前隐藏剧透信息，跨页面／标签页同步。成员备份可包含 `contest_preferences` 和 `app_settings: {allow_medal_estimates: boolean}`；导入前检查设置取值与偏好重复键，在同一事务中恢复。旧备份缺少某设置字段时保留当前值。
+- CF and QOJ payloads are normalized, validated and mapped first, then members, accounts, statuses, sources and sync records are written in one transaction. Validation errors, ownership conflicts, write failures or cancellation leave no partial import.
+- Missing solved/attempted arrays are a parse error, never an empty record.
+- An explicit per-account fetch failure inside a payload records failure evidence and keeps that account's previous status; valid results in the same payload are still imported.
+- Unmatched records stay in import source metadata. Imports report results and failures in the import flow only; the contest list/detail import-gap banner stays removed.
 
-非剧透隐藏牌线、奖牌区间、奖牌卡片、相关缺失提示与题目标签，包括正反向奖牌搜索。题目覆盖和普通比赛信息不受影响。编辑器保留标签数据，不在手动题单 JSON 中暴露标签。
+## Backups
 
-## 账号状态证据与备份兼容性
+- Member backups use `schemaVersion: 1` ([schema](../schemas/local-runtime-snapshot.schema.json)). `handleId` is optional for compatibility; legacy statuses without it use the v7 attribution rule, and unknown ownership is never guessed.
+- Backups may include `contest_preferences` and `app_settings: { allow_medal_estimates }`. A backup missing either keeps the current value. `identityRevision` is never exported; restores generate new revisions (overwrite/re-link) or keep local ones for still-valid identities (merge).
+- Restores validate structure, enums, timestamps, unique keys and references before writing, then apply in one transaction.
+- **Overwrite** replaces members and statuses; with "include statuses" unchecked it clears statuses. The UI states this and confirms current vs. imported counts before writing. **Merge** never transfers an active account binding; without statuses it keeps existing statuses.
 
-v7 在 `memberProblemStatus` 增加可选 `handleId` 及索引。新 CF/QOJ 导入按成员、题目、账号分别保存证据，展示时仍按成员合并（通过优先）。升级不清空任何 store：仅对能从原 `sourceRecordId` 或导入元数据确定账号的旧行补全归属并迁移主键；无法归属的旧行原样保留。解绑只移除该账号的明确证据；同平台仍有账号时保留无法归属的旧证据，避免静默丢失记录。历史版本已经合并丢失的多账号重叠证据无法推断，需要重新同步剩余账号。
+## Coverage, list and spoilers
 
-成员备份仍使用 schemaVersion 1，`handleId` 为可选兼容字段。恢复前验证完整结构、枚举、唯一键和引用；合并在事务内检查现有账号归属，不转移仍有效的绑定。旧备份缺失账号归属时使用同一迁移规则；未知归属不猜测。成员与账号另存可选 `identityRevision`，升级补全，删除后重新绑定生成新值（不依赖时间戳精度）。该标记仅属于当前本地身份，导出不包含它，恢复时不信任备份里的旧值：覆盖或重新绑定生成新标记，合并保留仍有效身份的本地标记。CF/QOJ 更新在排队前捕获已有成员/账号身份（批量同步在整批开始时捕获），提交事务内再次校验，删除、重新创建、解绑或重新绑定后的旧响应不得恢复已删除数据。QOJ 手动导入弹窗在生成导出脚本时保存目标身份，等待用户粘贴、锁和目录加载均不重新授权目标；读取失败记录也检查原身份。添加成员仍可显式恢复已删除的 CF/QOJ 成员：QOJ 先绑定新身份再更新，CF 保留首次导入路径。显式原始 QOJ JSON 导入仍允许新增/恢复，但从导入开始保护当时已有的身份，不允许异步等待期间复活旧身份。复用 v7 的本地标记，无 schema 升级。
+- "未做" means no selected member has attempted or solved any problem in the contest.
+- The contest list batch-reads members, accounts and statuses once and computes coverage in memory; changing filters reuses that snapshot instead of reading the database per contest. Committed Dexie writes invalidate it; failed loads can be retried.
+- The list renders every matching contest (no pagination). Each card is memoized on its coverage summary, award range and spoiler state so filter changes only re-render affected cards. The list is kept alive across navigation. The URL stores the query, list mode and selected members.
+- Contest detail and member detail subscribe with Dexie `liveQuery` to committed changes from this and other tabs. Subscriptions are cancelled on route change/unmount; stale async results must not overwrite a newer page.
+- Contest detail renders the member-row/problem-column coverage heatmap above the award card, so toggling spoilers does not move it; nothing above the heatmap depends on spoiler state. Each member row ends with solved/attempted totals, and a "全队" row shows the merged status per problem, whose solved count drives placement. Cells are buttons only in mark mode. Whole-contest practice links sit under the title; standings stay on the award card. Aliases, all sources and edit/delete live in a collapsed "来源与维护" section. Problem tags and Rating are a separate table.
+- The contest list and contest detail share one member selection (`selectedMemberIds` in the contest-list store). Coverage, "未做", placement and the spoiler default are all computed from it. The store keeps an explicit "follow all members" intent, so members added later, or recreated after the pool was empty, are selected automatically; a deliberate subset only loses deleted members.
+- The selection is mirrored to a `members` URL parameter on both pages (omitted while following all members), and list links to detail carry it. URLs are read when a page first loads (a detail URL's own `members` wins there); while the app runs, the shared selection is authoritative, so browser back to the list keeps changes made on detail and the list rewrites its URL on re-activation. The list only writes its URL while it is the active page, because it stays alive behind detail. Member detail's "查看 TA 的比赛" sets the selection directly.
+- Detail subscribes to member data with `liveQuery` and derives coverage in memory from the selection, so changing members needs no new subscription. Placement requires the selected members to have touched the contest: attempts without solves place at Fe; no attempts (including an empty selection) means no placement.
+- Spoiler default: contests untouched by the selected members are non-spoiler; manual per-contest preferences win. Changing the selection can change the default; opening a detail page does not. Until preferences load, spoilers stay hidden. Preferences sync across pages and tabs.
+- Non-spoiler hides award cutoffs, award ranges, the award card, related gap notices, problem tags and Rating, and makes award search tokens not match. Coverage, practice links and general contest info stay visible. The editor keeps tag data but does not expose tags in the manual problem-list JSON.
+- The management page's bulk spoiler switch writes a manual preference for every current catalog contest; each contest can still be overridden from its detail page.
 
-## 覆盖与性能
+## CF and QOJ sync
 
-“未做”表示所选成员均无尝试也无通过。成员、账号和状态一次性批读并建立内存索引；切换筛选复用输入快照，不逐比赛重复读库。列表在返回时保留，相关写入使缓存失效；失败可重试。比赛详情覆盖与成员详情通过 Dexie `liveQuery` 响应本页和其他标签页已提交的成员、账号及状态变更，默认剧透状态随最新覆盖重新计算；路由切换和卸载取消旧订阅，过期异步结果不得覆盖新页面。手动标记携带所见成员的 `identityRevision`，读取和写入事务均验证该身份；删除或同名重新创建后旧单元格不得写入新成员。
+### Modes and settings
 
-CF 使用官方 API，QOJ 使用用户浏览器导出。保留未匹配记录及同步失败证据，失败不清空上次成功状态；导入流程反馈同步结果和失败，不在比赛列表／详情恢复已移除的导入缺口提示。不保证上游可见数据完整。
+- CF uses the official API from the browser.
+- QOJ defaults to **manual import**: one dialog to copy an export script, open QOJ, run it in the user's own console, then paste or upload the JSON. The script copies its result to the clipboard, or downloads a JSON file if clipboard access is denied.
+- `qoj_use_userscript` switches QOJ member creation and updates to the **userscript bridge** (`scripts/qoj-sync.user.js`); manual export remains available as a fallback. Switching modes never clears records.
+- `auto_sync` (default off) runs CF and QOJ periodically and also enables userscript mode, including for first imports. Turning auto sync off keeps userscript mode; turning userscript mode off also turns auto sync off. When legacy data has only auto sync enabled, it is read as userscript mode, and the next toggle writes both keys in one transaction. These settings are not part of backups.
+- A one-time startup dialog introduces the userscript without enabling, installing or opening anything. It is claimed transactionally across tabs and yields to other dialogs.
 
-## 自动同步与 QOJ 浏览器桥接
+### Scheduling and failures
 
-管理页“自动同步”统一控制 CF 与 QOJ，两个平台并行调度、各自串行处理账号，互不因失败阻塞。默认关闭；开启时同时启用 QOJ 油猴模式，首次添加成员也走脚本，未连接时提示安装而非转为手动导入。关闭自动同步保留脚本模式；显式关闭脚本模式则同时停止自动同步，避免相互矛盾的设置。`auto_sync` 复用 appSettings，无 schema 升级；缺失时读取旧 `qoj_auto_sync`。旧数据只开启自动同步时，读取阶段同样视为脚本模式，下次切换将一致的两个键写入同一事务，不清空状态、不纳入备份。CF 也使用 30 分钟新鲜度、跨标签页锁和失败保留；手动失败不被自动重试，自动失败至少等待 30 分钟。关闭时取消在途自动请求。QOJ 在 `syncRecords.summaryJson.cancellation_reason` 区分设置关闭（`settings_disabled`）、主动停止（`user_cancelled`）与目标移除（`target_removed`），无需 schema 升级。仅设置关闭中断的自动请求在重新开启后恢复，不累计失败退避；快速关闭再开启也须等待旧任务结束后再调度。手动失败、主动停止、目标移除，以及没有原因标记的旧取消记录仍不自动重试。
+- CF and QOJ are scheduled in parallel; each processes accounts serially and neither blocks the other on failure.
+- Automatic runs happen only while the page is visible, skip accounts synced successfully within 30 minutes, and re-check when the window regains focus.
+- Web Locks serialize sync across same-origin tabs, and sync records are re-read after acquiring the lock. Without Web Locks, automatic sync is refused rather than duplicating requests. Different origins (localhost vs. production) share neither locks nor databases.
+- Ordinary failures back off exponentially from 1 to 30 minutes; HTTP 429 waits at least 5 minutes and honors `Retry-After`. Login, challenge, permission and parse failures pause scheduled retries until the user acts. Manual syncs also respect rate limits.
+- A manual sync runs once. Its failure is marked `summaryJson.manual` and is never retried automatically, even with auto sync on; a later manual success restores normal scheduling.
+- Cancellation reasons are stored in `syncRecords.summaryJson.cancellation_reason`: `settings_disabled`, `user_cancelled` or `target_removed`. Only automatic runs interrupted by `settings_disabled` resume when auto sync is re-enabled (without counting as a backoff failure, and only after the old run finishes). Manual failures, user stops, removed targets and legacy cancellations without a reason are not resumed.
+- Failures never clear the last successful data. Sync times, errors and backoff state live in `syncRecords.summaryJson`; no extra store.
 
-管理页统一配置 `appSettings.qoj_use_userscript`（默认 false，复用现有布尔设置表，无 schema 升级，不纳入备份），与自动同步的联动规则见上段。关闭后，QOJ 更新和添加成员都走手动导入弹窗；开启后走桥接，手动导出仍可备用。添加 QOJ 成员先安全绑定账号（拒绝跨成员重复绑定、保留旧状态），再按全局方式同步。手动弹窗包含复制脚本、打开 QOJ、粘贴或上传 JSON 及导入；使用帮助提供“前往管理页启用”按钮，点击后关闭弹窗并在当前页面导航，兼容开发路由和 Pages hash 路由。切换方式不会清除已有状态。
+### Userscript bridge
 
-启动后用一次性介绍弹窗告知油猴功能，不自动启用、安装或打开外站。关闭或查看帮助后不再展示；布尔标记 `qoj_script_intro_seen` 复用 appSettings，不升级 schema、不纳入备份。多标签页通过事务领取提示，其他弹窗优先。
+- The frontend talks to the script with same-window, same-origin, versioned `xcpc-sync` messages: `hello`, `syncMember`, `cancel`. `hello` does not touch QOJ.
+- The script fetches only fixed QOJ profile URLs using the user's own browser session. It accepts no arbitrary URLs, headers or code, never exports cookies, and does not cache results. Requests are serial with timeouts, cancellation, throttling and strict parsing; a missing solved/attempted section is a parse error.
+- Production builds (including preview) and the repository script only allow `https://mohaoz.github.io/xcpc-tracker/`. Only the script served by the Vite dev server additionally allows `localhost`/`127.0.0.1:5173`. Installing the script is the authorization; no second confirmation is stored.
+- Updates are detected by the site, not by the userscript manager (`@downloadURL none`). The build emits the `.user.js` and a version manifest. With a connected script, the site checks the same-origin manifest at most every 6 hours (5 minutes after a failure). An outdated script triggers a "QOJ 脚本有更新" dialog once per version pair per page session; it never overrides another dialog and never appears when the script is not connected. Below the minimum protocol version, sync is blocked until the user updates. Every release of the script must bump `@version`.
 
-更新由网站检测，不依赖油猴定时更新；脚本设置 `@downloadURL none`。构建输出 `.user.js` 和版本清单。hello 返回脚本版本及协议版本，网站打开时检测已启用脚本并检查同源清单（最多每 6 小时，失败 5 分钟后可重查）。已连接且版本落后时自动弹出“QOJ 脚本有更新”，仅提供关闭及更新脚本；同一页面会话中同一版本组合只主动提示一次，不覆盖其他弹窗，未连接时不弹更新提示。低于最低支持版本时禁止同步并提示更新。用户点击后由油猴安装，再刷新页面。版本号从脚本头部统一生成，发布新版必须递增 `@version`。本地与正式站始终使用各自同源的清单及安装链接。
+### Feedback and help
 
-成员页在同一卡片内并列展示 CF/QOJ 同步按钮，脚本连接状态集成在 QOJ 按钮内，不提供独立检测按钮或常驻安装说明。QOJ 按钮组内的问号打开“QOJ 自动同步帮助”，涵盖安装、登录、授权及管理页设置。自动同步开关统一放在管理页。帮助仅在用户点击问号或手动同步时缺少脚本的情况下弹出，除一次性功能介绍外，打开页面、静默检测及后台检查均不主动弹出；不再使用旧的 `qoj_setup_seen` 标记。
+- The members page shows CF and QOJ sync buttons side by side in one card. The script connection state is shown inside the QOJ button; there is no separate "check connection" button or permanent install notice.
+- One shared feedback dialog reports manual successes, failures and connection checks. In the background, the same error for the same account is shown at most once per page session (cleared on success). Connection state is shown separately and does not replace the failure reason.
+- Help is a linkable page at `/help/qoj`, not a dialog. It covers both modes, live script status with install/update, auto-sync rules, troubleshooting per error code (using the same messages as the sync store) and permissions/privacy. Entry points: the "?" in the QOJ button group (shown in both modes), the manual dialog, the startup intro, the footer, and the short "未连接 QOJ 同步脚本" dialog shown when a manual sync finds no script. Opening pages, silent checks and background checks never open help on their own.
 
-用户安装 `scripts/qoj-sync.user.js` 仅授权主站 https://mohaoz.github.io/xcpc-tracker/读取 QOJ 主页做题状态，不再二次确认或保存脚本授权标记；安装说明明确访问范围。仅 Vite dev 提供的安装脚本额外允许 localhost/127.0.0.1 的 5173 端口；所有正式构建（包括 preview）和仓库原脚本均只允许主站。前端通过同窗口、同 origin 的版本化 `xcpc-sync` 消息调用 hello、syncMember、cancel；脚本只允许固定 QOJ profile URL，不接受任意 URL、请求头或代码。请求使用用户浏览器会话，不导出 Cookie。hello 不访问 QOJ。浏览器自身的脚本运行权限及 QOJ 登录/验证仍由用户完成，自动同步开关默认关闭。
+## Testing notes
 
-脚本不缓存结果，只串行请求并做超时、取消、节流及严格解析；缺失通过/尝试区不是空列表。前端复用现有导入器和 IndexedDB 状态，不新增数据库版本或 store。同步时间、错误和退避信息保存在现有 syncRecords 的 summaryJson，不清空旧数据。
-
-开启后，仅可见页面定期检查，成功数据 30 分钟内不重复请求；返回窗口会检查。Web Locks 在同源标签页间串行协调，每次持锁后重读同步记录。不同 origin（包括 localhost 与正式站）不共享锁或数据库。普通失败指数退避 1–30 分钟，429 至少 5 分钟并尊重 Retry-After；登录/验证/权限/解析失败暂停定时重试，返回窗口或手动同步可重新尝试登录/验证。手动同步也遵守限流。没有 Web Locks 时拒绝自动同步而不是悄悄重复抓取。
-
-跨域机制和登录态需真实油猴浏览器验收；模拟响应测试不能替代真实会话测试。自动同步不等于绕过 QOJ 验证，站点关闭时不运行。
-
-手动同步仅执行一次，失败后必须由用户点击重试，登录后返回也不重试。失败记录的 `summaryJson.manual` 标记阻止自动调度重试该手动失败目标，即使已开启自动同步；手动成功后恢复常规调度。不改变数据库结构。统一反馈弹窗用于手动操作的成功、失败和连接检测；后台同一账号同一错误在本页会话内只主动弹出一次，成功后解除去重。连接状态独立显示，不覆盖同步失败原因。
-
-开发时运行 `npm run dev --prefix web`，打开 `/members` 安装脚本。`npm run qoj:validate-bridge` 需要本地 5173 开发服务，使用独立浏览器存储和模拟 QOJ 传输测试脚本、导入器、调度、弹窗及跨标签页锁，不访问真实 QOJ，也不动使用者数据。
+- `npm run qoj:validate-bridge` needs the dev server on port 5173. It uses isolated browser storage and a mocked QOJ transport to test the script, importers, scheduling, dialogs and cross-tab locks; it never contacts QOJ or touches user data.
+- Cross-origin behavior, real login state and userscript-manager permissions must be checked in a real browser with the userscript installed; mocked responses do not replace that. Auto sync does not bypass QOJ challenges and does not run while the site is closed.

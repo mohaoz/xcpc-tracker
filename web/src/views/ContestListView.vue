@@ -15,6 +15,7 @@ import type { LocalMemberPerson } from "../lib/local-model";
 import { isContestTouched } from "../lib/spoiler-policy";
 import { useSpoilerStore } from "../stores/spoilers";
 import { contestListModes, isContestListMode, type ContestListMode, useContestListStore } from "../stores/contest-list";
+import MemberPicker from "../components/MemberPicker.vue";
 
 const contests = shallowRef<CatalogContestIndexItem[]>([]);
 const localContestMap = shallowRef(new Map<string, RuntimeCatalogContestListRecord>());
@@ -34,10 +35,6 @@ const spoilers = useSpoilerStore();
 const settings = useSettingsStore();
 const route = useRoute();
 const router = useRouter();
-const allMemberCoverage = computed(() => new Map(coverageInput.value
-  ? summarizeCatalogCoverage(coveragePayload.value, coverageInput.value).map(s => [s.contestId, s]) : []));
-const touched = (id: string) => isContestTouched(allMemberCoverage.value.get(id));
-const showSpoilers = (id: string) => spoilers.visible(id, touched(id));
 const coverageSummaryMap = computed(() => new Map(
   coverageInput.value
     ? summarizeCatalogCoverage(coveragePayload.value, coverageInput.value, {
@@ -45,6 +42,10 @@ const coverageSummaryMap = computed(() => new Map(
       }).map((summary) => [summary.contestId, summary])
     : [],
 ));
+
+// Spoiler defaults follow the selected members, like "未做" and placement.
+const touched = (id: string) => isContestTouched(coverageSummaryMap.value.get(id));
+const showSpoilers = (id: string) => spoilers.visible(id, touched(id));
 
 function normalizeContestListState() {
   if (!isContestListMode(contestListStore.selectedMode)) {
@@ -64,9 +65,9 @@ const listModeButtonLabels: Record<ContestListMode, string> = {
   DONE: "已做",
 };
 const listModeBadgeLabels: Record<ContestListMode, string> = {
-  ALL: "·",
-  UNSEEN: "-",
-  DONE: "✓",
+  ALL: "全部",
+  UNSEEN: "未做",
+  DONE: "已做",
 };
 const listModeTips: Record<ContestListMode, string> = {
   ALL: "全部比赛",
@@ -184,12 +185,6 @@ const queryTokens = computed(() =>
 const queryGroups = computed(() =>
   queryTokens.value.map(parseQueryGroup).filter((group) => group.length > 0),
 );
-const allMembersSelected = computed(() => {
-  if (!memberOptions.value.length) {
-    return true;
-  }
-  return contestListStore.selectedMemberIds.length === memberOptions.value.length;
-});
 function getSolvedCutoff(
   contest: RuntimeCatalogContestListRecord | undefined,
   medal: "gold" | "silver" | "bronze",
@@ -239,7 +234,7 @@ function getContestBadgeMode(contestId: string): ContestListMode | "NONE-MEDAL-D
 }
 
 function getContestBadgeLabel(contestId: string) {
-  return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA" ? "?" : listModeBadgeLabels[getContestListMode(contestId)];
+  return getContestBadgeMode(contestId) === "NONE-MEDAL-DATA" ? "无牌线" : listModeBadgeLabels[getContestListMode(contestId)];
 }
 
 function getContestBadgeTitle(contestId: string) {
@@ -340,6 +335,10 @@ const filteredContests = computed(() => {
     return contestListStore.selectedMode === "ALL" || contestListStore.selectedMode === getContestListMode(contest.id);
   });
 });
+const detailQuery = computed(() => {
+  const members = contestListStore.memberQuery();
+  return members ? { members } : {};
+});
 const totalCount = computed(() => filteredContests.value.length);
 
 const pageLabel = computed(() => {
@@ -382,18 +381,7 @@ async function loadContests() {
     if (requestId !== latestLoadRequestId) return;
     const localMembers = membersInput.members;
     memberOptions.value = localMembers;
-    const availableMemberIds = new Set(localMembers.map((member) => member.memberId));
-    const shouldInitializeSelection =
-      !contestListStore.memberSelectionInitialized && localMembers.length > 0;
-    if (shouldInitializeSelection) {
-      contestListStore.selectedMemberIds = localMembers.map((member) => member.memberId);
-      contestListStore.memberSelectionInitialized = true;
-    } else {
-      // Drop any stale IDs (deleted members) while preserving the user's current selection.
-      contestListStore.selectedMemberIds = contestListStore.selectedMemberIds.filter(
-        (id) => availableMemberIds.has(id),
-      );
-    }
+    contestListStore.syncAvailableMembers(localMembers.map((member) => member.memberId));
     coverageInput.value = membersInput;
     coveragePayload.value = nextCoveragePayload;
     const summaries = coverageSummaryMap.value;
@@ -429,22 +417,6 @@ async function loadContests() {
 function invalidateCoverageData() {
   needsReload = true;
   if (active) void loadContests();
-}
-
-function toggleMember(memberId: string) {
-  if (contestListStore.selectedMemberIds.includes(memberId)) {
-    contestListStore.selectedMemberIds = contestListStore.selectedMemberIds.filter((id) => id !== memberId);
-    return;
-  }
-  contestListStore.selectedMemberIds = [...contestListStore.selectedMemberIds, memberId];
-}
-
-function toggleAllMembers() {
-  if (allMembersSelected.value) {
-    contestListStore.selectedMemberIds = [];
-    return;
-  }
-  contestListStore.selectedMemberIds = memberOptions.value.map((member) => member.memberId);
 }
 
 function setListMode(mode: ContestListMode) {
@@ -493,26 +465,23 @@ function syncFromUrl() {
   const mode = route.query.mode;
   if (typeof mode === 'string' && isContestListMode(mode)) contestListStore.selectedMode = mode;
 
-  const members = route.query.members;
-  if (typeof members === 'string' && members) {
-    contestListStore.selectedMemberIds = members.split(',').filter(Boolean);
-  }
+  contestListStore.applyMemberQuery(route.query.members);
 }
 
 function syncToUrl() {
   const query: Record<string, string> = {};
   if (contestListStore.query) query.q = contestListStore.query;
   if (contestListStore.selectedMode !== 'ALL') query.mode = contestListStore.selectedMode;
-  if (contestListStore.selectedMemberIds.length && contestListStore.selectedMemberIds.length !== memberOptions.value.length) {
-    query.members = contestListStore.selectedMemberIds.join(',');
-  }
+  const members = contestListStore.memberQuery();
+  if (members) query.members = members;
 
   router.replace({ query }).catch(() => {});
 }
 
 let urlSyncScheduled = false;
 function scheduleUrlSync() {
-  if (urlSyncScheduled) return;
+  // The list stays alive while detail is open; never rewrite another page's URL.
+  if (!active || urlSyncScheduled) return;
   urlSyncScheduled = true;
   requestAnimationFrame(() => {
     urlSyncScheduled = false;
@@ -527,6 +496,10 @@ onMounted(() => {
 });
 onActivated(() => {
   active = true;
+  // While the app runs, the shared selection is the source of truth: the URL is
+  // read only on first mount, and re-activation (including browser back from
+  // detail) rewrites the list URL from the shared state.
+  scheduleUrlSync();
   void loadContests();
 });
 onDeactivated(() => {
@@ -545,11 +518,6 @@ watch(() => contestListStore.selectedMode, () => { scheduleUrlSync(); });
   <div class="view-stack">
     <section class="panel">
       <div class="panel__body">
-        <div class="panel__header">
-          <div></div>
-          <div></div>
-        </div>
-
         <div class="contest-toolbar">
           <div class="contest-toolbar__filters">
             <div class="filter-toggle-row">
@@ -589,43 +557,15 @@ watch(() => contestListStore.selectedMode, () => { scheduleUrlSync(); });
               <input
                 id="contest-query"
                 v-model="contestListStore.query"
-                placeholder="可搜索标签、标题、平台、奖牌；用-排除，用|表示或"
+                placeholder="标题、标签、年份、平台、奖牌"
+                aria-describedby="contest-query-help"
               />
+              <p id="contest-query-help" class="muted tiny search-help">
+                空格分隔多个条件（都要满足）· <code>-</code> 排除，如 <code>-省赛</code> · <code>|</code> 表示或，如 <code>南京|沈阳</code> · 奖牌区间 <code>fe</code> <code>cu</code> <code>ag</code> <code>au</code> · <code>?</code> 无牌线（奖牌条件仅在剧透下生效）
+              </p>
             </div>
 
-            <div class="field">
-              <label>成员筛选</label>
-              <div class="member-filter-picker">
-                <button
-                  type="button"
-                  class="member-filter-chip member-filter-chip--action"
-                  :class="{
-                    'member-filter-chip--action-active': allMembersSelected,
-                    'member-filter-chip--action-empty': !allMembersSelected,
-                  }"
-                  @click="toggleAllMembers"
-                >
-                  全选
-                </button>
-                <button
-                  v-for="member in memberOptions"
-                  :key="member.memberId"
-                  type="button"
-                  class="member-filter-chip"
-                  :class="{ 'member-filter-chip--selected': contestListStore.selectedMemberIds.includes(member.memberId) }"
-                  @click="toggleMember(member.memberId)"
-                  >
-                    {{ member.displayName }}
-                  </button>
-                  <RouterLink
-                    v-if="!memberOptions.length"
-                    to="/members/new"
-                    class="member-filter-chip member-filter-chip--hint"
-                  >
-                    去导入成员
-                  </RouterLink>
-              </div>
-            </div>
+            <MemberPicker :members="memberOptions" />
 
           </div>
         </div>
@@ -648,7 +588,7 @@ watch(() => contestListStore.selectedMode, () => { scheduleUrlSync(); });
             v-for="contest in filteredContests"
             :key="contest.id"
             v-memo="[contest.id, coverageSummaryMap.get(contest.id), contestAwardRangeMap.get(contest.id), showSpoilers(contest.id)]"
-            :to="`/contests/${contest.id}`"
+            :to="{ path: `/contests/${contest.id}`, query: detailQuery }"
             class="contest-card"
           >
             <div class="contest-card__top">
@@ -718,7 +658,7 @@ watch(() => contestListStore.selectedMode, () => { scheduleUrlSync(); });
                 </div>
                 <span v-else class="contest-card__empty-source">本地目录里还没有这场的题目数据</span>
               </div>
-              <span class="contest-card__link-mark" aria-hidden="true">查看 ↗</span>
+              <span class="contest-card__link-mark" aria-hidden="true">查看 →</span>
             </div>
 
             <div v-if="contest.tags.length" class="inline-tags" style="margin-top: 16px">

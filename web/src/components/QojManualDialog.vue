@@ -32,7 +32,7 @@ async function upload(event:Event) {
         <button class="button" :disabled="manual.busy || startingAuto || sync.busy" @click="startAutoImport">启动自动导入 →</button>
       </div>
       <div class="manual-divider"><span>手动导入</span></div>
-      <p class="muted">复制脚本，在 QOJ 控制台执行，再将结果粘贴到下方。</p>
+      <p class="muted">复制脚本，在 QOJ 控制台执行，再将结果粘贴到下方。<button type="button" class="help-link" @click="sync.openHelp('manual')">详细步骤</button></p>
       <div class="actions">
         <button class="button" :disabled="!manual.script" @click="manual.copy()">复制脚本</button>
         <a class="button button--ghost" :href="url" target="_blank" rel="noopener noreferrer">打开 QOJ ↗</a>
@@ -61,6 +61,7 @@ textarea:focus {outline:2px solid #146e7540;border-color:#146e75;}
 .qoj-manual-dialog .button {border-radius:10px;min-height:40px;padding:10px 16px;font-size:14px;}
 .auto-import-banner {display:flex;align-items:center;justify-content:space-between;gap:16px;margin:22px 0;padding:0;color:#657482;font-size:14px;}
 .auto-import-banner .button {flex-shrink:0;}
+.help-link {margin-left:6px;padding:0;border:0;background:none;color:#146e75;font:inherit;text-decoration:underline;text-underline-offset:3px;cursor:pointer;}
 .manual-divider {display:flex;align-items:center;gap:12px;color:#657482;font-size:12px;}
 .manual-divider::after {content:'';height:1px;background:#e2e7e2;flex:1;}
 .qoj-manual-dialog .actions {display:flex;align-items:center;gap:12px;}

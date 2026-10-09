@@ -6,6 +6,7 @@ import ContestIntakeView from "./views/ContestIntakeView.vue";
 import ContestListView from "./views/ContestListView.vue";
 import MemberDetailView from "./views/MemberDetailView.vue";
 import MemberListView from "./views/MemberListView.vue";
+import QojHelpView from "./views/QojHelpView.vue";
 
 export const router = createRouter({
   history: import.meta.env.MODE === "github-pages"
@@ -52,5 +53,15 @@ export const router = createRouter({
       name: "member-add",
       component: AddMemberView,
     },
+    {
+      path: "/help/qoj",
+      name: "qoj-help",
+      component: QojHelpView,
+    },
   ],
+  scrollBehavior(to, _from, saved) {
+    if (saved) return saved;
+    if (to.hash) return { el: to.hash, top: 80 };
+    return { top: 0 };
+  },
 });

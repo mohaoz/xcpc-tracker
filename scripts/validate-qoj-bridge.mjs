@@ -220,7 +220,7 @@ try {
   const qojBox=await card.getByRole('button',{name:/^同步 QOJ /}).boundingBox();
   assert.ok(cfBox && qojBox && Math.abs(cfBox.y-qojBox.y)<2,'CF and QOJ must be side by side in the same card');
   await missing.getByRole('button',{name:/^同步 QOJ /}).click();
-  await missing.getByRole('dialog',{name:'QOJ 自动同步帮助'}).waitFor();
+  await missing.getByRole('dialog',{name:'未连接 QOJ 同步脚本'}).waitFor();
   await missing.getByRole('button',{name:'关闭',exact:true}).click();
   assert.equal(await missing.getByRole('button',{name:'检测连接',exact:true}).count(),0);
   assert.equal(await missing.getByRole('switch',{name:'自动同步',exact:true}).count(),0);
@@ -228,10 +228,11 @@ try {
   await missing.reload();
   await missing.waitForFunction(async()=>{const {useQojSyncStore}=await import('/src/stores/qoj-sync.ts');return !useQojSyncStore().checking;});
   assert.equal(await missing.getByRole('dialog').count(),0);
-  assert.equal(await missing.locator('.qoj-sync-group').getByRole('button',{name:'QOJ 自动同步帮助'}).count(),1);
-  await missing.getByRole('button',{name:'QOJ 自动同步帮助'}).click();
-  await missing.getByRole('dialog',{name:'QOJ 自动同步帮助'}).waitFor();
-  await missing.getByRole('button',{name:'关闭',exact:true}).click();
+  assert.equal(await missing.locator('.qoj-sync-group').getByRole('button',{name:'QOJ 同步帮助'}).count(),1);
+  await missing.getByRole('button',{name:'QOJ 同步帮助'}).click();
+  await missing.waitForURL(url=>url.pathname.endsWith('/help/qoj')&&url.hash==='#userscript');
+  await missing.getByRole('heading',{name:'QOJ 做题记录同步'}).waitFor();
+  assert.equal(await missing.getByRole('dialog').count(),0,'help is a page, not a dialog');
   await missing.goto(base+'/manage');
   await missing.getByRole('switch',{name:'自动同步',exact:true}).waitFor();
   console.log('PASS compact UI: no unsolicited setup, click-only help, shared sync card, button status, management settings');

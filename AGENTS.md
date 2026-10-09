@@ -2,14 +2,43 @@
 
 ## Product invariants
 
-- Core value: select a **whole-contest VP**, supported by curated browsing, member coverage and CF/QOJ imports. Partial practice, new OJs, cloud sync, multi-user backends, push notifications, mobile apps and heavy analytics are outside the near-term scope unless explicitly requested.
-- “未做” means no selected member has attempted or solved any problem in the contest. An attempt counts even without acceptance.
-- Untouched contests default to non-spoiler; any active member's attempt/solve makes a contest touched. Opening details or changing selected members does not change this default. Explicit per-contest preferences win; bulk spoilers default off and medal estimates default on, preserving saved settings.
+### Purpose
+
+- Describe the product as an XCPC problem-solving tracker ("XCPC 做题情况追踪"), not as a VP selection tool. Whole-contest VP is one use case, not the product's identity.
+- It serves four uses, all anchored to the curated XCPC contest catalog:
+  1. **See what teammates have done**: per-member attempt/solve status, visible to the whole team.
+  2. **Find contests the team has not touched**, to pick the next whole-contest VP.
+  3. **Write catalog problems individually**, e.g. regional problems on one's own.
+  4. **Check how the team did**: where the team's solved count falls against a contest's medal lines.
+- Keep existing features when adding new ones; do not remove a feature unless explicitly requested.
+
+### Use-case constraints
+
+- "未做" means no selected member has attempted or solved any problem in the contest; an attempt counts even without acceptance. Once anyone has touched a contest it is no longer a clean VP, so individual practice (use 3) intentionally removes contests from the "未做" pool. This is expected, not a conflict.
+- Practice links and "未做" filtering operate on whole contests. Results (use 4) compare solved count only; there is no penalty data, so penalty-based placement is out of scope. Contests without verified or estimated medal lines show no placement.
+- Choosing problems by difficulty is served by XCPC Rating's problems page; do not reimplement problem-level difficulty browsing.
+- Data stays in each user's browser. Each teammate adds the whole team's CF/QOJ accounts in their own browser; there is no cloud or file-based team sharing. Team composition is the member selection (and the `members` URL parameter). The contest list and contest detail use the same selection, and it can be changed on either page; coverage, "未做", medal placement and spoiler defaults always reflect it. A saved team is only a named member selection. A contest with no solves but at least one attempt by the selected members is placed at Fe; with no attempts it has no placement.
+- Every catalog problem has a CF or QOJ source and is tracked automatically; problems written elsewhere are recorded with manual marks.
+- The catalog already covers all XCPC categories (regional, provincial, invitational, finals, online preliminaries, girls', vocational). It grows by filling missing contests and data, not by adding categories.
+- Out of near-term scope unless explicitly requested: new OJs, cloud sync, multi-user backends, push notifications, mobile apps and heavy analytics. Lightweight progress history (e.g. a solved-count trend) is in scope.
+
+### Spoilers
+
+- Untouched contests default to non-spoiler; an attempt or solve by any selected member makes a contest touched, so the default follows the member selection. Opening details does not change it. Explicit per-contest preferences win; bulk spoilers default off and medal estimates default on, preserving saved settings.
 - Non-spoiler hides medal cutoffs, medals, problem tags and ratings, including medal-based search. Coverage and whole-contest practice links remain available.
+
+### Data rules
+
 - For multiple eligible groups, use the verified highest group; invitational takes precedence over provincial. Record the group and never merge uncertain groups.
 - A full metadata refresh compares existing populated fields, not only gaps. Remove tags only with approved historical source ownership and current explicit classified replacement evidence; absent/null/unknown or numeric-only matches do not authorize deletion. Preserve manual/other-source values, keep old/new hashes and direct-source conflicts, and do not infer transitive ownership through shared problem IDs.
 - Problem ratings use verified XCPC Rating values and CF rank colors; missing values stay unset. Coverage is a compact member-row/problem-column heatmap above awards; tags/ratings belong in a separate table and bulk settings in management.
 - A numeric XCPC Rating row without a title may be used only when every problem in its contest has a one-to-one exact CF/QOJ ID match, the catalog already has the reviewed original-event RankLand path, and original start times agree. Keep the absent upstream title absent in provenance; do not infer numeric values or use ordinal-only/partial-list matching.
+
+## Upstreams and differentiation
+
+- The project builds on and re-curates two upstreams: [algoUX srk-collection](https://github.com/algoux/srk-collection) (standings, viewed on RankLand) and [XCPC Rating](https://github.com/Hei-MaoM/xcpcrating) by Hei-MaoM (problem tags, ratings, practice-link candidates). Credit both visibly in the site and README, and follow the licensing notes in `catalog/README.md`.
+- Do not rebuild what upstreams already provide. Full standings browsing belongs to RankLand/XCPCIO Board; individual player rating and problem difficulty browsing belong to XCPC Rating. Consume their reviewed results and link back.
+- Stay distinct from [OJ Insight](https://github.com/Whalica/OJ_Insight), a cross-OJ desktop app for individual training (dashboards, problem lists, journals, VP timers, LLM contest generation, plus a per-person ICPC/CCPC tracker). This project is a zero-install static website where the whole team sees each member's progress, centered on a curated, source-audited XCPC contest catalog (complete problem lists across CF/QOJ mirrors, verified medal lines, spoiler control). Do not add personal cross-OJ dashboards, training journals, timers or LLM-based contest generation unless explicitly requested; features stay anchored to catalog contests and problems.
 
 ## Architecture and ownership
 
@@ -40,7 +69,8 @@
 
 - Inspect relevant implementation and existing changes before editing. Preserve unrelated user work. Do not require a whole-repository audit or documentation update for every change.
 - Read `docs/architecture.md` for architecture, coverage, spoiler or persistence changes; `scripts/README.md` for catalog enrichment/import tooling; `README.md` and `.github/workflows/` for deployment. Read only references needed for the task.
-- Keep durable product constraints here, runtime/persistence details in `docs/architecture.md`, maintenance commands in `scripts/README.md`, and pending work in the contest checklist. Use links instead of copying workflows; historical changelog entries are not current instructions.
+- Keep durable product constraints here, runtime/persistence details in `docs/architecture.md`, maintenance commands in `scripts/README.md`, product direction in `docs/roadmap.md`, and pending contest work in the contest checklist. Use links instead of copying workflows; historical changelog entries are not current instructions.
+- Agent/maintainer docs (`AGENTS.md`, `docs/architecture.md`, `scripts/README.md`) are written in English. `README.md`, the contest checklist and UI copy stay Chinese. UI keeps standard competitive-programming terms in English (solved, attempted, fresh, Fe/Cu/Ag/Au, Rating).
 - Update product/architecture instructions when those decisions change. Document IndexedDB upgrade and migration intent before implementing schema changes. Ordinary style, copy and local UI edits do not require new design documents.
 - Complete requested implementation, relevant checks and fixes for regressions caused by the change. Resolve routine implementation choices locally. Ask when a missing fact changes product meaning, data accuracy, authority or a significant external action.
 - Diagnosis/review does not authorize implementation; a plan request ends with a plan. “Local preview, no commit” ends with a working preview and relevant checks. Git sync/deployment requires current authorization; persistence does not expand scope. Report remaining blockers honestly.

@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- The contest list and contest detail share one member selection, editable on both pages and kept in the `members` URL. Coverage, "未做", placement and spoiler defaults all follow the selected members; attempts without solves place at Fe, untouched contests have no placement.
+- Contest detail: whole-contest practice links under the title; heatmap with per-member totals and a merged "全队" row; mark mode next to the heatmap with an explanation; sources and edit/delete in a collapsed "来源与维护" section; no horizontal page overflow on phones.
+- Member detail links to that member's contests and can add another account to the member. Visible search syntax help, readable list badges, one color for "attempted", and stale or internal messages removed.
+- QOJ help is now a linkable page (`/help/qoj`) covering both sync modes, live script status, auto sync, error codes and privacy.
+- Docs: English agent/maintainer docs, product constraints and a roadmap. Removed the generated `.archify` report.
+
 ## 0.8.4
 
 - Add the verified 2025 Guizhou provincial contest with 13 problems, 13 XCPC Rating values, original date and explicit awards. Review the user's CF export without inferring anonymous Gym access.

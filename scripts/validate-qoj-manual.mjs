@@ -99,7 +99,7 @@ try {
   await page.goto(base+'/members');
   await page.getByRole('button',{name:/^同步 QOJ /}).click();
   await modal.getByRole('button',{name:'启动自动导入 →'}).click();
-  await page.getByRole('dialog',{name:'QOJ 自动同步帮助'}).waitFor();
+  await page.getByRole('dialog',{name:'未连接 QOJ 同步脚本'}).waitFor();
   await expect(modal).toHaveCount(0);
   const settings=await page.evaluate(async()=>{const s=(await import('/src/stores/qoj-sync.ts')).useQojSyncStore();return {mode:s.useUserscript,auto:s.enabled};});
   assert.deepEqual(settings,{mode:true,auto:false});

@@ -97,13 +97,14 @@ try {
   await first.locator('#add-member-platform').selectOption('qoj');
   await first.locator('#add-member-id').fill('First');await first.locator('#add-member-handle').fill('first');
   await first.getByRole('button',{name:'添加并同步 QOJ',exact:true}).click();
-  const help=first.getByRole('dialog',{name:'QOJ 自动同步帮助'});await help.waitFor();
+  const help=first.getByRole('dialog',{name:'未连接 QOJ 同步脚本'});await help.waitFor();
   await first.screenshot({path:'/tmp/xcpc-qoj-help-manage.png',fullPage:true});
   await expect(first.getByRole('dialog',{name:'QOJ 手动导入'})).toHaveCount(0);
-  await help.getByRole('button',{name:'前往管理页启用'}).click();
-  await expect(first).toHaveURL(base+'/manage');await expect(help).toHaveCount(0);
+  await help.getByRole('button',{name:'查看帮助'}).click();
+  await expect(first).toHaveURL(base+'/help/qoj#userscript');await expect(help).toHaveCount(0);
+  await expect(first.getByRole('heading',{name:'QOJ 做题记录同步'})).toBeVisible();
   await absent.close();
-  console.log('PASS saved auto-only settings: first QOJ import uses script; missing script opens help with working management action');
+  console.log('PASS saved auto-only settings: first QOJ import uses script; missing script opens help with working help-page link');
   await page.screenshot({path:'/tmp/xcpc-auto-sync-settings.png',fullPage:true});
   await page.evaluate(async()=>{await window.db.appSettings.put({key:'allow_medal_estimates',value:false});await window.db.contestPreferences.put({contest_id:'d505e000-4947-579c-8d9b-99e31160839f',spoiler_mode:'spoiler'});});
   await page.goto(base+'/contests/d505e000-4947-579c-8d9b-99e31160839f');

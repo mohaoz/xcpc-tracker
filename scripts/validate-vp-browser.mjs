@@ -57,7 +57,7 @@ try {
   const other=await context.newPage();await other.goto(`${base}/contests/${contest.contestId}`);await other.locator('.award-cutoff-card').waitFor();
   await toggle.click();await other.locator('.award-cutoff-card').waitFor({state:'detached'});
   await page.goto(`${base}/contests`);
-  const search=page.getByPlaceholder('可搜索标签、标题、平台、奖牌；用-排除，用|表示或');
+  const search=page.getByLabel('搜索',{exact:true});
   await search.fill('2026 深圳');
   const card=page.locator(`a.contest-card[href$="/contests/${contest.contestId}"]`);await card.waitFor();
   assert.equal(await card.getByRole('button',{name:/剧透/}).count(),0);
@@ -84,7 +84,7 @@ try {
   assert.equal(await page.locator('.coverage-cell-button--attempted').count(),1);
   assert.equal(await page.locator('.coverage-cell-button--attempted').evaluate(el => getComputedStyle(el).backgroundColor),'rgb(239, 187, 102)');
   assert.equal(await page.locator('.coverage-heatmap tbody tr').count(),1);
-  assert.equal(await page.locator('.coverage-heatmap tbody td').count(),contest.problemIds.length);
+  assert.equal(await page.locator('.coverage-heatmap tbody td:not(.coverage-heatmap__total)').count(),contest.problemIds.length);
   await page.goto(`${base}/manage`);await allSpoilers.click();
   await page.waitForFunction(() => document.querySelector('[aria-label="全部剧透"]')?.getAttribute('aria-checked') === 'false');
   await page.goto(`${base}/contests/${contest.contestId}`);await toggle.waitFor();

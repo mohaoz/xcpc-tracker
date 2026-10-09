@@ -2,7 +2,7 @@
 import { useSettingsStore } from '../stores/settings';
 import { selectAwardCutoffs } from '../lib/award-policy';
 import { ratingClass } from '../lib/rating-colors';
-import { computed, onUnmounted, ref, watch } from "vue";
+import { computed, onUnmounted, ref, shallowRef, watch } from "vue";
 import { liveQuery, type Subscription } from "dexie";
 import { useRoute } from "vue-router";
 import { useRouter } from "vue-router";
@@ -14,23 +14,35 @@ import {
   type CatalogContestDetail,
 } from "../lib/catalog";
 import { aggregateAliasesFromSources } from "../lib/catalog-sources";
+import { isSafeExternalUrl } from "../lib/standings-sources";
 import { useSpoilerStore } from "../stores/spoilers";
 import { getRuntimeCatalogContestDetail, listRuntimeCatalogContests } from "../lib/catalog-runtime";
 import { emitCatalogMutated } from "../lib/catalog-events";
 import { emitMemberMutated } from "../lib/member-events";
 import {
   deleteCatalogContestRecord,
-  getContestCoverageForCatalog,
+  readMemberCoverageInputFromDb,
   getManualMemberProblemStatusFromDb,
   replaceManualCatalogContest,
   upsertManualMemberProblemStatus,
 } from "../lib/local-db";
 import type { LocalCatalogContestRecord, LocalCatalogProblemRecord, LocalContestCoverage, LocalMemberPerson } from "../lib/local-model";
+import { buildContestCoverage, type MemberCoverageInput } from "../lib/local-coverage";
+import { useContestListStore } from "../stores/contest-list";
+import MemberPicker from "../components/MemberPicker.vue";
 
 const route = useRoute();
 const router = useRouter();
 const contest = ref<CatalogContestDetail | null>(null);
-const coverage = ref<LocalContestCoverage | null>(null);
+const selection = useContestListStore();
+// Raw member data from Dexie; coverage is derived from the shared member
+// selection so changing members never needs a new database subscription.
+const memberInput = shallowRef<MemberCoverageInput | null>(null);
+const runtimeRecord = shallowRef<{ contest: LocalCatalogContestRecord; problems: LocalCatalogProblemRecord[] } | null>(null);
+const coverage = computed(() => memberInput.value && runtimeRecord.value
+  ? buildContestCoverage(runtimeRecord.value, memberInput.value, { memberIds: selection.selectedMemberIds })
+  : null);
+const memberOptions = computed(() => memberInput.value?.members ?? []);
 const loading = ref(false);
 const error = ref("");
 const feedback = ref("");
@@ -60,16 +72,41 @@ const memberCoverageRows = computed(() => {
       new Map(p.members.map(m => [m.memberId, m.status])),
     ]),
   );
-  return trackedMembers.value.map(member => ({
-    ...member,
-    cells: problems.map(problem => ({
+  return trackedMembers.value.map(member => {
+    const cells = problems.map(problem => ({
       problemId: problem.problemId,
       ordinal: problem.ordinal,
       title: problem.title,
       status: statusByProblem.get(problem.problemId)?.get(member.memberId) ?? 'unseen',
-    })),
-  }));
+    }));
+    return {
+      ...member,
+      cells,
+      solved: cells.filter(cell => cell.status === 'solved').length,
+      attempted: cells.filter(cell => cell.status === 'attempted').length,
+    };
+  });
 });
+// Merged result of the selected members (solved beats attempted); placement is
+// computed from this row's solved count.
+const teamCoverageRow = computed(() => {
+  const cells = (coverage.value?.problems ?? []).map(problem => {
+    const statuses = problem.members.map(member => member.status);
+    const status = statuses.includes('solved') ? 'solved' as const : statuses.includes('attempted') ? 'attempted' as const : 'unseen' as const;
+    return { problemId: problem.problemId, ordinal: problem.ordinal, title: problem.title, status };
+  });
+  return {
+    cells,
+    solved: cells.filter(cell => cell.status === 'solved').length,
+    attempted: cells.filter(cell => cell.status === 'attempted').length,
+  };
+});
+function statusLabel(status: 'solved' | 'attempted' | 'unseen') {
+  return status === 'solved' ? '已通过' : status === 'attempted' ? '已尝试' : '未做';
+}
+function statusSymbol(status: 'solved' | 'attempted' | 'unseen') {
+  return status === 'solved' ? '✓' : status === 'attempted' ? '·' : '';
+}
 const awardCutoffRows = computed(() => {
   const cutoffs = awardCutoffs.value?.cutoffs;
   return [
@@ -100,7 +137,9 @@ const solvedProblemCount = computed(() =>
 );
 const awardPlacement = computed(() => {
   const cutoffs = awardCutoffs.value?.cutoffs;
-  if (!cutoffs) {
+  // Untouched by the selected members (including an empty selection) means no
+  // result to place; any attempt without a solve places the team at Fe.
+  if (!cutoffs || !touched.value) {
     return null;
   }
   const solved = solvedProblemCount.value;
@@ -157,6 +196,16 @@ const contestEyebrow = computed(() => {
   }
   return "CURATED CONTEST";
 });
+// Whole-contest practice entries (CF Gym / QOJ contest pages), surfaced next to
+// the title. Standings stay on the award card so toggling spoilers never shifts
+// the layout above the heatmap.
+const practiceLinks = computed(() => (contest.value?.sources ?? [])
+  .filter((source) => source.kind === "contest" && ["codeforces", "qoj"].includes(source.provider) && isSafeExternalUrl(source.url))
+  .map((source) => ({
+    key: `${source.provider}-${source.provider_contest_id ?? source.url}`,
+    url: source.url!,
+    label: `${source.provider === "codeforces" ? "Codeforces" : "QOJ"}${source.provider_contest_id ? ` ${source.provider_contest_id}` : ""}`,
+  })));
 const problemMetadata = computed(() => new Map((contest.value?.problems ?? []).map(p => [p.id, p])));
 
 const contestEditorInitialValue = computed(() => {
@@ -226,7 +275,8 @@ async function loadContestPage() {
   coverageSubscription?.unsubscribe();
   coverageSubscription = null;
   contest.value = null;
-  coverage.value = null;
+  memberInput.value = null;
+  runtimeRecord.value = null;
   markSavingCellKey.value = "";
   error.value = "";
   loading.value = !!id;
@@ -243,16 +293,19 @@ async function loadContestPage() {
     );
     // Dexie observes committed changes from this tab and other tabs. Keep this
     // subscription tied to the loaded contest, not to mutable route parameters.
-    coverageSubscription = liveQuery(() => getContestCoverageForCatalog(runtimeDetail.contest, runtimeDetail.problems)).subscribe({
-      next(nextCoverage) {
+    coverageSubscription = liveQuery(() => readMemberCoverageInputFromDb()).subscribe({
+      next(nextInput) {
         if (!isCurrent()) return;
-        coverage.value = nextCoverage;
+        selection.syncAvailableMembers(nextInput.members.map((member) => member.memberId));
+        memberInput.value = nextInput;
+        runtimeRecord.value = runtimeDetail;
         contest.value = mapLocalContestRecordToDetail(runtimeDetail.contest, runtimeDetail.problems);
         loading.value = false;
       },
       error(caught) {
         if (!isCurrent()) return;
-        coverage.value = null;
+        memberInput.value = null;
+        runtimeRecord.value = null;
         contest.value = null;
         error.value = caught instanceof Error ? caught.message : "加载做题情况失败";
         loading.value = false;
@@ -419,7 +472,7 @@ async function applyMarkToCell(
       note: null,
     });
     emitMemberMutated();
-    if (isCurrent()) feedback.value = `manual status set to ${nextStatus}`;
+    if (isCurrent()) feedback.value = `已将 ${trackedMembers.value.find((row) => row.memberId === memberId)?.displayName ?? memberId} 的这道题标记为${nextStatus === "solved" ? "通过" : nextStatus === "attempted" ? "尝试" : "未做"}`;
   } catch (caught) {
     if (!isCurrent()) return;
     error.value = caught && typeof caught === "object" && "name" in caught && caught.name === "AbortError"
@@ -429,6 +482,19 @@ async function applyMarkToCell(
     if (isCurrent()) markSavingCellKey.value = "";
   }
 }
+
+// The detail URL may carry its own `members`; it wins over the shared selection
+// so refreshed or shared links keep their members.
+watch(() => route.query.members, (value) => selection.applyMemberQuery(value), { immediate: true });
+// Mirror selection changes back into the detail URL (omitted when everyone is selected).
+watch(() => selection.selectedMemberIds, () => {
+  if (route.name !== "contest-detail") return;
+  const members = selection.memberQuery();
+  if ((route.query.members ?? undefined) === members) return;
+  const query = { ...route.query };
+  if (members) query.members = members; else delete query.members;
+  void router.replace({ query });
+}, { deep: true });
 
 watch(contestId, () => {
   saving.value = false;
@@ -461,6 +527,9 @@ onUnmounted(() => {
                 <span>{{ coverage?.freshProblemCount ?? 0 }} fresh</span>
                 <span v-if="contestDateLabel">{{ contestDateLabel }}</span>
               </div>
+              <div v-if="practiceLinks.length" class="contest-detail-links">
+                <a v-for="link in practiceLinks" :key="link.key" class="button" :href="link.url" target="_blank" rel="noreferrer">整场练习 · {{ link.label }} ↗</a>
+              </div>
             </div>
             <div class="contest-detail-controls">
               <button
@@ -488,45 +557,66 @@ onUnmounted(() => {
             </div>
           </div>
 
-          <div class="section-split">
-            <div class="panel" style="box-shadow: none">
-              <div class="panel__body">
-                <div class="panel__title" style="margin-bottom: 16px">
-                  <p class="eyebrow">目录</p>
-                  <h3>比赛元数据与题目列表</h3>
-                </div>
-
-                <div class="stat-grid" style="margin-bottom: 18px">
-                  <div class="stat-card">
-                    <p class="stat-card__label">题目数</p>
-                    <div class="stat-card__value">{{ coverage?.problemCount ?? contest.problems.length }}</div>
-                  </div>
-                  <div class="stat-card">
-                    <p class="stat-card__label">队伍未做</p>
-                    <div class="stat-card__value">{{ coverage?.freshProblemCount ?? 0 }}</div>
-                  </div>
-                </div>
-
                 <section class="coverage-heatmap-card" aria-label="做题情况">
-                <h3 class="detail-section-title">做题情况</h3>
+                <div class="detail-section-head">
+                  <h3 class="detail-section-title">做题情况</h3>
+                  <button
+                    type="button"
+                    :class="markMode ? 'button' : 'button button--ghost'"
+                    :disabled="!coverage?.trackedMembers.length || !coverage?.problemCount"
+                    @click="markMode = !markMode"
+                  >
+                    {{ markMode ? "退出标记模式" : "进入标记模式" }}
+                  </button>
+                </div>
+                <MemberPicker :members="memberOptions" />
+                <p v-if="markMode" class="notice tiny" role="status">标记模式：点击格子依次切换 未做 → 尝试 → 通过，再点一次清除手动标记；从 CF / QOJ 同步来的通过记录不受影响。用于补录在其他 OJ 上写过的题。</p>
                 <div class="coverage-heatmap-shell">
                   <table class="coverage-heatmap">
-                    <thead><tr><th>成员</th><th v-for="problem in coverage?.problems ?? []" :key="problem.problemId" :title="problem.title">{{ problem.ordinal }}</th></tr></thead>
+                    <thead>
+                      <tr>
+                        <th scope="col">成员</th>
+                        <th v-for="problem in coverage?.problems ?? []" :key="problem.problemId" scope="col" :title="problem.title">{{ problem.ordinal }}</th>
+                        <th scope="col" class="coverage-heatmap__total" title="通过 / 尝试">合计</th>
+                      </tr>
+                    </thead>
                     <tbody>
                       <tr v-for="member in memberCoverageRows" :key="member.memberId">
-                        <th :title="member.displayName">{{ member.displayName }}</th>
+                        <th scope="row" :title="member.displayName">{{ member.displayName }}</th>
                         <td v-for="cell in member.cells" :key="cell.problemId">
-                          <button type="button" class="coverage-cell-button"
+                          <component
+                            :is="markMode ? 'button' : 'span'"
+                            :type="markMode ? 'button' : undefined"
+                            :role="markMode ? undefined : 'img'"
+                            class="coverage-cell-button"
                             :class="[{ 'coverage-cell-button--active': markMode }, `coverage-cell-button--${cell.status}`]"
-                            :disabled="!markMode || !!markSavingCellKey"
-                            :title="`${member.displayName} · ${cell.ordinal} ${cell.title}：${cell.status === 'solved' ? '已通过' : cell.status === 'attempted' ? '已尝试' : '未做'}`"
-                            :aria-label="`${member.displayName} ${cell.ordinal}：${cell.status === 'solved' ? '已通过' : cell.status === 'attempted' ? '已尝试' : '未做'}`"
-                            @click="applyMarkToCell(cell.problemId, member, cell.status)">
-                            <span class="heatmap-cell-symbol">{{ markSavingCellKey === buildCellKey(cell.problemId, member.memberId) ? '…' : cell.status === 'solved' ? '✓' : cell.status === 'attempted' ? '·' : '' }}</span>
-                          </button>
+                            :disabled="markMode ? !!markSavingCellKey : undefined"
+                            :title="`${member.displayName} · ${cell.ordinal} ${cell.title}：${statusLabel(cell.status)}`"
+                            :aria-label="`${member.displayName} ${cell.ordinal}：${statusLabel(cell.status)}`"
+                            @click="markMode && applyMarkToCell(cell.problemId, member, cell.status)">
+                            <span class="heatmap-cell-symbol" aria-hidden="true">{{ markSavingCellKey === buildCellKey(cell.problemId, member.memberId) ? '…' : statusSymbol(cell.status) }}</span>
+                          </component>
+                        </td>
+                        <td class="coverage-heatmap__total">
+                          <strong>{{ member.solved }}</strong><span v-if="member.attempted" class="muted"> / {{ member.attempted }}</span>
                         </td>
                       </tr>
                     </tbody>
+                    <tfoot v-if="memberCoverageRows.length > 1">
+                      <tr>
+                        <th scope="row" title="所选成员合并后的结果，牌线按这一行计算">全队</th>
+                        <td v-for="cell in teamCoverageRow.cells" :key="cell.problemId">
+                          <span role="img" class="coverage-cell-button" :class="`coverage-cell-button--${cell.status}`"
+                            :title="`全队 · ${cell.ordinal} ${cell.title}：${statusLabel(cell.status)}`"
+                            :aria-label="`全队 ${cell.ordinal}：${statusLabel(cell.status)}`">
+                            <span class="heatmap-cell-symbol" aria-hidden="true">{{ statusSymbol(cell.status) }}</span>
+                          </span>
+                        </td>
+                        <td class="coverage-heatmap__total">
+                          <strong>{{ teamCoverageRow.solved }}</strong><span v-if="teamCoverageRow.attempted" class="muted"> / {{ teamCoverageRow.attempted }}</span>
+                        </td>
+                      </tr>
+                    </tfoot>
                   </table>
                   <p v-if="!memberCoverageRows.length" class="muted tiny">暂无成员</p>
                 </div>
@@ -600,8 +690,6 @@ onUnmounted(() => {
                   暂无预计算奖牌线。
                 </p>
 
-
-
                 <h3 class="detail-section-title">题目信息</h3>
                 <div class="table-shell">
                   <table class="coverage-table">
@@ -617,90 +705,58 @@ onUnmounted(() => {
                 </div>
                 <p v-if="feedback" class="notice" style="margin-top: 16px">{{ feedback }}</p>
                 <p v-if="!(coverage?.problemCount)" class="notice" style="margin-top: 16px">
-                  这场比赛还没有题目列表。可以在编辑器里手动补题，或者回到 Manage 页面导入补丁 JSON。
+                  这场比赛还没有题目列表，可以在下方“来源与维护”中编辑比赛信息手动补题。
                 </p>
-              </div>
-            </div>
-
-            <div class="panel" style="box-shadow: none">
-              <div class="panel__body">
-                <div class="panel__title" style="margin-bottom: 16px">
-                  <p class="eyebrow">来源</p>
-                  <h3>来源与整理说明</h3>
-                </div>
-
-                <div class="field">
-                  <label>别名</label>
-                  <div class="inline-tags" style="margin-top: 10px">
-                    <span
-                      v-for="alias in contest.aliases"
-                      :key="alias"
-                      class="tag"
-                    >
-                      {{ alias }}
-                    </span>
-                    <span v-if="!contest.aliases.length" class="muted tiny">暂无别名</span>
-                  </div>
-                </div>
-
-                <div class="field" style="margin-top: 14px">
-                  <label>来源链接</label>
-                  <div class="list-grid" style="margin-top: 12px">
-                    <component
-                      v-for="source in contest.sources"
-                      :key="`${source.provider}-${source.kind}-${source.provider_contest_id || source.provider_problem_id || source.url}`"
-                      :is="source.url ? 'a' : 'div'"
-                      class="contest-card"
-                      :href="source.url"
-                      :target="source.url ? '_blank' : undefined"
-                      :rel="source.url ? 'noreferrer' : undefined"
-                    >
-                      <div class="contest-card__top">
-                        <div>
-                          <p class="eyebrow">{{ source.provider }} / {{ source.kind }}</p>
-                          <h3>{{ source.label || source.url || "手动来源" }}</h3>
-                          <p v-if="source.source_title" class="muted tiny">{{ source.source_title }}</p>
-                        </div>
-                      </div>
-                    </component>
-                  </div>
-                </div>
-
                 <p v-if="visibleContestNotes" class="notice" style="margin-top: 16px">{{ visibleContestNotes }}</p>
-              </div>
-            </div>
-          </div>
         </template>
         <p v-if="error" class="error-box">{{ error }}</p>
-        <div v-if="contest && !loading" class="detail-bottom-actions">
-                <div class="actions" style="margin-top: 0; margin-bottom: 18px">
-                  <button
-                    :class="markMode ? 'button' : 'button button--ghost'"
-                    :disabled="!coverage?.trackedMembers.length || !coverage?.problemCount"
-                    @click="markMode = !markMode"
-                  >
-                    {{ markMode ? "退出标记模式" : "进入标记模式" }}
-                  </button>
-                  <button class="button button--ghost" :disabled="saving" @click="editing = !editing">
-                    {{ editing ? "关闭编辑器" : "编辑比赛信息" }}
-                  </button>
-                  <button class="button button--ghost" :disabled="deleting" @click="handleDeleteContest">
-                    {{ deleting ? "删除中..." : "删除比赛" }}
-                  </button>
-                </div>
-
-                <div v-if="editing" class="panel" style="box-shadow: none; margin-bottom: 18px">
-                  <div class="panel__body">
-                    <ContestCatalogEditor
-                      :initial-value="contestEditorInitialValue"
-                      :existing-tags="existingTags"
-                      :busy="saving"
-                      submit-label="保存比赛"
-                      @submit="saveContestMetadata"
-                    />
-                  </div>
-                </div>
-        </div>
+        <details v-if="contest && !loading" class="detail-maintenance" :open="editing">
+          <summary>来源与维护</summary>
+          <div class="field" style="margin-top: 14px">
+            <span class="field-label">别名</span>
+            <div class="inline-tags" style="margin-top: 10px">
+              <span v-for="alias in contest.aliases" :key="alias" class="tag">{{ alias }}</span>
+              <span v-if="!contest.aliases.length" class="muted tiny">暂无别名</span>
+            </div>
+          </div>
+          <div class="field" style="margin-top: 14px">
+            <span class="field-label">来源链接</span>
+            <div class="list-grid" style="margin-top: 12px">
+              <component
+                v-for="source in contest.sources"
+                :key="`${source.provider}-${source.kind}-${source.provider_contest_id || source.provider_problem_id || source.url}`"
+                :is="source.url ? 'a' : 'div'"
+                class="contest-source-card"
+                :href="source.url"
+                :target="source.url ? '_blank' : undefined"
+                :rel="source.url ? 'noreferrer' : undefined"
+              >
+                <p class="eyebrow">{{ source.provider }} / {{ source.kind }}</p>
+                <strong>{{ source.label || source.url || "手动来源" }}</strong>
+                <p v-if="source.source_title" class="muted tiny">{{ source.source_title }}</p>
+              </component>
+            </div>
+          </div>
+          <div class="actions">
+            <button class="button button--ghost" :disabled="saving" @click="editing = !editing">
+              {{ editing ? "关闭编辑器" : "编辑比赛信息" }}
+            </button>
+            <button class="button button--ghost" :disabled="deleting" @click="handleDeleteContest">
+              {{ deleting ? "删除中..." : "删除比赛" }}
+            </button>
+          </div>
+          <div v-if="editing" class="panel" style="box-shadow: none; margin-top: 18px">
+            <div class="panel__body">
+              <ContestCatalogEditor
+                :initial-value="contestEditorInitialValue"
+                :existing-tags="existingTags"
+                :busy="saving"
+                submit-label="保存比赛"
+                @submit="saveContestMetadata"
+              />
+            </div>
+          </div>
+        </details>
       </div>
     </section>
   </div>

@@ -170,7 +170,10 @@ const fakeDexie = {
 };
 const detail = id => ({ contest: { ...contest, contestId: id, title: id }, problems });
 const matrix = id => ({ contest: detail(id).contest, trackedMembers: [{ memberId: 'alice', identityRevision: 'displayed-revision', displayName: 'Alice', handles: [] }], problemCount: 1, freshProblemCount: 1, problems: [{ problemId: 'test:A', ordinal: 'A', title: 'A', freshForTeam: true, members: [{ memberId: 'alice', displayName: 'Alice', status: 'unseen' }] }] });
-const route = vue.reactive({ params: { contestId: 'first', memberId: 'alice' } });
+const route = vue.reactive({ name: 'contest-detail', params: { contestId: 'first', memberId: 'alice' }, query: {} });
+// Detail derives coverage from member data plus the shared member selection.
+const memberInput = { members: [{ memberId: 'alice', identityRevision: 'displayed-revision', displayName: 'Alice', handles: [] }], statusByMember: new Map() };
+const selection = vue.reactive({ selectedMemberIds: ['alice'], knownMemberIds: ['alice'], syncAvailableMembers() {}, applyMemberQuery() {}, memberQuery: () => undefined });
 let detailGate;
 let readGate;
 let readError;
@@ -178,14 +181,16 @@ let saveGate;
 const writes = [];
 const contestComponent = loadModule('web/src/views/ContestDetailView.vue', {
   dexie: fakeDexie,
-  'vue-router': { useRoute: () => route, useRouter: () => ({ push: async () => {} }) },
+  'vue-router': { useRoute: () => route, useRouter: () => ({ push: async () => {}, replace: async () => {} }) },
+  '../stores/contest-list': { useContestListStore: () => selection },
+  '../components/MemberPicker.vue': { default: { render: () => null } },
   '../stores/settings': { useSettingsStore: () => ({ allowMedalEstimates: true }) },
   '../stores/spoilers': { useSpoilerStore: () => ({ visible: () => false }) },
   '../lib/member-events': { emitMemberMutated() {} },
   '../lib/catalog-events': { emitCatalogMutated() {} },
   '../lib/local-db': {
     replaceManualCatalogContest: async () => saveGate?.promise,
-    getContestCoverageForCatalog: async record => matrix(record.contestId),
+    readMemberCoverageInputFromDb: async () => memberInput,
     getManualMemberProblemStatusFromDb: async (_id, _problem, revision) => {
       assert.equal(revision, 'displayed-revision');
       if (readError) throw readError;
@@ -201,7 +206,7 @@ const contestComponent = loadModule('web/src/views/ContestDetailView.vue', {
 const mountedContest = mount(contestComponent);
 await settle();
 let observation = subscriptions.at(-1);
-observation.observer.next(matrix('first'));
+observation.observer.next(memberInput);
 assert.equal(mountedContest.state.contest.id, 'first');
 mountedContest.state.markMode = true;
 await mountedContest.state.applyMarkToCell('test:A', matrix('first').trackedMembers[0], 'unseen');
@@ -222,10 +227,10 @@ readGate.resolve(null);
 await pendingMark;
 assert.equal(writes.length, 1, 'navigation while reading a cell cancels its pending write');
 readGate = null;
-observation.observer.next(matrix('first'));
+observation.observer.next(memberInput);
 assert.equal(mountedContest.state.coverage, null, 'old coverage cannot flash into the next route');
 observation = subscriptions.at(-1);
-observation.observer.next(matrix('second'));
+observation.observer.next(memberInput);
 assert.equal(mountedContest.state.contest.id, 'second');
 const slow = deferred();
 detailGate = slow;
@@ -235,7 +240,7 @@ detailGate = null;
 route.params.contestId = 'third';
 await settle();
 const currentObservation = subscriptions.at(-1);
-currentObservation.observer.next(matrix('third'));
+currentObservation.observer.next(memberInput);
 const subscriptionCount = subscriptions.length;
 slow.resolve(detail('slow'));
 await settle();
@@ -250,7 +255,7 @@ await pendingSave;
 assert.equal(subscriptions.length, subscriptionCount, 'late metadata save must not restart observation after unmount');
 assert.ok(currentObservation.closed);
 currentObservation.observer.error(new Error('late error'));
-currentObservation.observer.next(matrix('late'));
+currentObservation.observer.next(memberInput);
 assert.equal(mountedContest.state.contest.id, 'third', 'unmounted detail ignores late results');
 
 const memberComponent = loadModule('web/src/views/MemberDetailView.vue', {
