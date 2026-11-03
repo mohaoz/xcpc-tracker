@@ -123,6 +123,24 @@ describe("catalog discovery", () => {
     expect(() => normalizeSource("rating", [{ ...fixture.rating[0], problemRating: -1 }])).toThrow(/Invalid/);
   });
 
+  it("reads Board multilingual titles while retaining raw config and failure history", async () => {
+    const entry = Object.values(inputs.board).find((row: any) => row.board_link) as any;
+    entry.config.contest_name = {
+      fallback_lang: "en",
+      texts: { "zh-CN": "成都站 - 正式赛", en: "Chengdu Regional Contest" },
+    };
+    const first = await discover({ catalog, fetcher });
+    const observation = first.report.observations.find((row: any) => row.provider === "board");
+    expect(observation.entry.title).toBe("成都站 - 正式赛");
+    expect(observation.entry.config.contest_name).toStrictEqual(entry.config.contest_name);
+    delete entry.config.contest_name.texts["zh-CN"];
+    expect(normalizeSource("board", inputs.board)[0].title).toBe("Chengdu Regional Contest");
+    entry.config.contest_name.texts = {};
+    const failed = await discover({ catalog, fetcher, previous: first.state });
+    expect(failed.report.sources.find((row: any) => row.provider === "board").status).toBe("failed");
+    expect(failed.state.sources.board).toStrictEqual(first.state.sources.board);
+  });
+
   it("keeps hostile keys as plain own properties", () => {
     const hostile = compareSource("rating", [{ id: "__proto__", title: "Prototype key" }], undefined, "2026-09-21");
     expect(Object.hasOwn(hostile.history, "__proto__")).toBe(true);

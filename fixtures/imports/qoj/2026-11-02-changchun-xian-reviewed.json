@@ -1,0 +1,265 @@
+{
+  "provider": "qoj",
+  "source_type": "user_browser_same_origin_contest_pages",
+  "review": {
+    "status": "approved",
+    "reviewed_by": "Codex — complete user-browser export, exact QOJ IDs/titles, pinned SRK and current RankLand page identity review",
+    "reviewed_at": "2026-11-02T13:35:28.628Z",
+    "raw_filename": "2026-11-02-changchun-xian-browser-export.json",
+    "raw_sha256": "27559b77aa20f59cfe25634e85a64da69cf1ea1fa1f422401cc4a024f9702dd4",
+    "input_catalog_sha256": "a765f71f31196f663e8570ba73df6d36584405e222009c629ae492e3745ddf69",
+    "title_issue": "Both page source_title values are generic QOJ.ac; retain them. Curated titles and dates are verified against pinned SRK plus current RankLand collection/info and all 13 exact problem titles and URLs, not the requested export titles."
+  },
+  "contests": [
+    {
+      "title": "2026 年第十二届中国大学生程序设计竞赛 长春站 正式赛",
+      "url": "https://qoj.ac/contest/4582",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "又一道纸笔问题",
+          "url": "https://qoj.ac/contest/4582/problem/22910",
+          "provider_problem_id": "22910"
+        },
+        {
+          "ordinal": "B",
+          "title": "别样的选课大战",
+          "url": "https://qoj.ac/contest/4582/problem/22911",
+          "provider_problem_id": "22911"
+        },
+        {
+          "ordinal": "C",
+          "title": "无忧旋律",
+          "url": "https://qoj.ac/contest/4582/problem/22912",
+          "provider_problem_id": "22912"
+        },
+        {
+          "ordinal": "D",
+          "title": "平均",
+          "url": "https://qoj.ac/contest/4582/problem/22913",
+          "provider_problem_id": "22913"
+        },
+        {
+          "ordinal": "E",
+          "title": "遍历",
+          "url": "https://qoj.ac/contest/4582/problem/22914",
+          "provider_problem_id": "22914"
+        },
+        {
+          "ordinal": "F",
+          "title": "删除",
+          "url": "https://qoj.ac/contest/4582/problem/22915",
+          "provider_problem_id": "22915"
+        },
+        {
+          "ordinal": "G",
+          "title": "异或王国",
+          "url": "https://qoj.ac/contest/4582/problem/22916",
+          "provider_problem_id": "22916"
+        },
+        {
+          "ordinal": "H",
+          "title": "数学王国",
+          "url": "https://qoj.ac/contest/4582/problem/22917",
+          "provider_problem_id": "22917"
+        },
+        {
+          "ordinal": "I",
+          "title": "事不过三",
+          "url": "https://qoj.ac/contest/4582/problem/22918",
+          "provider_problem_id": "22918"
+        },
+        {
+          "ordinal": "J",
+          "title": "送给好友的惊喜",
+          "url": "https://qoj.ac/contest/4582/problem/22919",
+          "provider_problem_id": "22919"
+        },
+        {
+          "ordinal": "K",
+          "title": "纸带染色",
+          "url": "https://qoj.ac/contest/4582/problem/22920",
+          "provider_problem_id": "22920"
+        },
+        {
+          "ordinal": "L",
+          "title": "故事",
+          "url": "https://qoj.ac/contest/4582/problem/22921",
+          "provider_problem_id": "22921"
+        },
+        {
+          "ordinal": "M",
+          "title": "余镜",
+          "url": "https://qoj.ac/contest/4582/problem/22922",
+          "provider_problem_id": "22922"
+        }
+      ],
+      "fetched_url": "https://qoj.ac/contest/4582",
+      "source_title": "QOJ.ac",
+      "target_contest": {
+        "contest_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517",
+        "title": "2026 年第十二届中国大学生程序设计竞赛 长春站 正式赛",
+        "aliases": [],
+        "tags": [
+          "2026",
+          "ccpc",
+          "区域赛",
+          "长春"
+        ],
+        "start_at": "2026-10-18T01:00:00.000Z",
+        "notes": null,
+        "sources": [
+          {
+            "provider": "qoj",
+            "kind": "contest",
+            "url": "https://qoj.ac/contest/4582",
+            "provider_contest_id": "4582",
+            "source_title": "QOJ.ac",
+            "label": "QOJ"
+          },
+          {
+            "provider": "rankland",
+            "kind": "standings",
+            "url": "https://rl.algoux.cn/collection/official?rankId=ccpc2026changchun",
+            "provider_contest_id": "srk:official/ccpc/ccpc2026/ccpc2026changchun.srk.json",
+            "source_title": "2026 年第十二届中国大学生程序设计竞赛 长春站 正式赛",
+            "label": "RankLand",
+            "is_default": true
+          }
+        ]
+      },
+      "validation": {
+        "problem_count": 13,
+        "ordinals": "A-M",
+        "one_to_one_qoj_ids": true,
+        "full_title_url_match_with_srk_and_rating": true,
+        "original_start_time_match": true
+      }
+    },
+    {
+      "title": "第 51 届 ICPC 国际大学生程序设计竞赛区域赛西安站 - 正式赛",
+      "url": "https://qoj.ac/contest/4593",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "And Revive The Melody",
+          "url": "https://qoj.ac/contest/4593/problem/20051",
+          "provider_problem_id": "20051"
+        },
+        {
+          "ordinal": "B",
+          "title": "Break The Speakers",
+          "url": "https://qoj.ac/contest/4593/problem/20052",
+          "provider_problem_id": "20052"
+        },
+        {
+          "ordinal": "C",
+          "title": "Cryptarithm",
+          "url": "https://qoj.ac/contest/4593/problem/20053",
+          "provider_problem_id": "20053"
+        },
+        {
+          "ordinal": "D",
+          "title": "Don't Fight The Music",
+          "url": "https://qoj.ac/contest/4593/problem/20054",
+          "provider_problem_id": "20054"
+        },
+        {
+          "ordinal": "E",
+          "title": "Ether Strike",
+          "url": "https://qoj.ac/contest/4593/problem/20055",
+          "provider_problem_id": "20055"
+        },
+        {
+          "ordinal": "F",
+          "title": "False Amber",
+          "url": "https://qoj.ac/contest/4593/problem/20056",
+          "provider_problem_id": "20056"
+        },
+        {
+          "ordinal": "G",
+          "title": "Gungnir Fracture",
+          "url": "https://qoj.ac/contest/4593/problem/20057",
+          "provider_problem_id": "20057"
+        },
+        {
+          "ordinal": "H",
+          "title": "Hydra",
+          "url": "https://qoj.ac/contest/4593/problem/20058",
+          "provider_problem_id": "20058"
+        },
+        {
+          "ordinal": "I",
+          "title": "Incyde",
+          "url": "https://qoj.ac/contest/4593/problem/20059",
+          "provider_problem_id": "20059"
+        },
+        {
+          "ordinal": "J",
+          "title": "Journey",
+          "url": "https://qoj.ac/contest/4593/problem/20060",
+          "provider_problem_id": "20060"
+        },
+        {
+          "ordinal": "K",
+          "title": "Kikai No Tsubasa",
+          "url": "https://qoj.ac/contest/4593/problem/20061",
+          "provider_problem_id": "20061"
+        },
+        {
+          "ordinal": "L",
+          "title": "Lucid Traveler",
+          "url": "https://qoj.ac/contest/4593/problem/20062",
+          "provider_problem_id": "20062"
+        },
+        {
+          "ordinal": "M",
+          "title": "Melodiniq",
+          "url": "https://qoj.ac/contest/4593/problem/20063",
+          "provider_problem_id": "20063"
+        }
+      ],
+      "fetched_url": "https://qoj.ac/contest/4593",
+      "source_title": "QOJ.ac",
+      "target_contest": {
+        "contest_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f",
+        "title": "第 51 届 ICPC 国际大学生程序设计竞赛区域赛西安站 - 正式赛",
+        "aliases": [],
+        "tags": [
+          "2026",
+          "icpc",
+          "区域赛",
+          "西安"
+        ],
+        "start_at": "2026-10-18T01:00:00.000Z",
+        "notes": null,
+        "sources": [
+          {
+            "provider": "qoj",
+            "kind": "contest",
+            "url": "https://qoj.ac/contest/4593",
+            "provider_contest_id": "4593",
+            "source_title": "QOJ.ac",
+            "label": "QOJ"
+          },
+          {
+            "provider": "rankland",
+            "kind": "standings",
+            "url": "https://rl.algoux.cn/collection/official?rankId=icpc2026xi_an",
+            "provider_contest_id": "srk:official/icpc/icpc2026/icpc2026xi_an.srk.json",
+            "source_title": "第 51 届 ICPC 国际大学生程序设计竞赛区域赛西安站 - 正式赛",
+            "label": "RankLand",
+            "is_default": true
+          }
+        ]
+      },
+      "validation": {
+        "problem_count": 13,
+        "ordinals": "A-M",
+        "one_to_one_qoj_ids": true,
+        "full_title_url_match_with_srk_and_rating": true,
+        "original_start_time_match": true
+      }
+    }
+  ]
+}

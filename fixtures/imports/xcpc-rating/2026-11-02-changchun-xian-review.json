@@ -1,0 +1,322 @@
+{
+  "source_url": "https://hei-maom.github.io/xcpcrating/data/problems-index.json",
+  "source_sha256": "40a97dca1e5ddd8958b2cbbfd93aea6e65c7def713b66f0c73e4abe9e863096c",
+  "source_file": "2026-11-02-changchun-xian-rows.json",
+  "source_scope": "Exact rows for the two complete reviewed contests, extracted without field changes from the full current snapshot bound in the RankLand receipt.",
+  "catalog_sha256": "034888cc3eb8540f67f5fcdfca522e618f1f48f88793e8dce0a521a4dc10080d",
+  "input_count": 26,
+  "contest_mappings": [
+    {
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "contest_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517",
+      "evidence": {
+        "exact_problem_ids": 13,
+        "matching_titles": 13,
+        "problem_count": 13
+      }
+    },
+    {
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "contest_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f",
+      "evidence": {
+        "exact_problem_ids": 13,
+        "matching_titles": 13,
+        "problem_count": 13
+      }
+    }
+  ],
+  "matches": [
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:A",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "A",
+      "title": "又一道纸笔问题",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22910",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:B",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "B",
+      "title": "别样的选课大战",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22911",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:C",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "C",
+      "title": "无忧旋律",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22912",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:D",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "D",
+      "title": "平均",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22913",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:E",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "E",
+      "title": "遍历",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22914",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:F",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "F",
+      "title": "删除",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22915",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:G",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "G",
+      "title": "异或王国",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22916",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:H",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "H",
+      "title": "数学王国",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22917",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:I",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "I",
+      "title": "事不过三",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22918",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:J",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "J",
+      "title": "送给好友的惊喜",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22919",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:K",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "K",
+      "title": "纸带染色",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22920",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:L",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "L",
+      "title": "故事",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22921",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517:M",
+      "contest_slug": "ccpc__ccpc2026__ccpc2026changchun",
+      "ordinal": "M",
+      "title": "余镜",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4582/problem/22922",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:A",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "A",
+      "title": "And Revive The Melody",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20051",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:B",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "B",
+      "title": "Break The Speakers",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20052",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:C",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "C",
+      "title": "Cryptarithm",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20053",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:D",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "D",
+      "title": "Don't Fight The Music",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20054",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:E",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "E",
+      "title": "Ether Strike",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20055",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:F",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "F",
+      "title": "False Amber",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20056",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:G",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "G",
+      "title": "Gungnir Fracture",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20057",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:H",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "H",
+      "title": "Hydra",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20058",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:I",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "I",
+      "title": "Incyde",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20059",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:J",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "J",
+      "title": "Journey",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20060",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:K",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "K",
+      "title": "Kikai No Tsubasa",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20061",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:L",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "L",
+      "title": "Lucid Traveler",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20062",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    },
+    {
+      "problem_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f:M",
+      "contest_slug": "icpc__icpc2026__icpc2026xi_an",
+      "ordinal": "M",
+      "title": "Melodiniq",
+      "tags": [],
+      "problem_url": "https://qoj.ac/contest/4593/problem/20063",
+      "confidence": 0,
+      "status": "unknown",
+      "evidence": "provider_problem_id_and_title"
+    }
+  ],
+  "unresolved": [],
+  "review": {
+    "status": "approved",
+    "reviewed_by": "Codex — 26 exact QOJ problem IDs plus titles, complete contest lists and original start-time review",
+    "reviewed_at": "2026-11-02T13:35:55.111Z"
+  }
+}

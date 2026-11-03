@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.1
+
+- Add CCPC Changchun 2026 and ICPC Xi'an 2026 with 26 problems from the user's complete QOJ contest-page exports, 26 verified XCPC Rating values and audited original-event RankLand links. Preserve every existing contest and problem.
+- Add Changchun's explicit Au/Ag/Cu cutoffs of 7/6/4 after verifying that CCPC26 controls presentation and that minute-ranking precision leaves all three boundaries unchanged. Add Xi'an's explicit cutoffs of 4/4/3 with Shaoguan University (Team291) as the bronze cutoff, specifically confirmed by the user; retain the tied rows and review history without inventing a general tie-break rule.
+- Fix catalog discovery for XCPCIO multilingual contest titles while preserving failure snapshots.
+
 ## 0.9.0
 
 - The contest list and contest detail share one member selection, editable on both pages and kept in the `members` URL. Coverage, "未做", placement and spoiler defaults all follow the selected members; attempts without solves place at Fe, untouched contests have no placement.

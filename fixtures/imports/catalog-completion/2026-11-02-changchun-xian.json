@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-02T13:35:55.166Z",
+  "input_catalog_sha256": "a765f71f31196f663e8570ba73df6d36584405e222009c629ae492e3745ddf69",
+  "output_catalog_sha256": "438524979fb12ad0063b46fa0358cd355401b497a06cef2392ddb70bcecdc0f5",
+  "version": "0.9.1",
+  "existing_entities_unchanged": {
+    "contests": 259,
+    "problems": 3193
+  },
+  "added_contests": [
+    "f6f2348c-2cb5-5d86-a663-7d8a8303a517",
+    "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f"
+  ],
+  "added_problems": 26,
+  "added_ratings": 26,
+  "added_problem_tags": 0,
+  "added_awards": 2,
+  "problem_review": "../qoj/2026-11-02-changchun-xian-reviewed.json",
+  "source_review": "../rankland/2026-11-02-changchun-xian.json",
+  "rating_review": "../xcpc-rating/2026-11-02-changchun-xian-review.json",
+  "award_revision": {
+    "reviewed_at": "2026-11-02T13:49:41.910Z",
+    "input_catalog_sha256": "c2c98ec7343f5722a3dc188fe32054b06754ba05c6de5295e9008c0890b9601d",
+    "contest_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517",
+    "reason": "Withdraw the incorrect CCPC26 ranking-change blocker after presentation-source and minute-boundary review."
+  },
+  "xian_award_revision": {
+    "reviewed_at": "2026-11-02T13:55:22.682Z",
+    "input_catalog_sha256": "a6337879434e5d554f5a50e13a3558b3ee6dfe4e9f3880efe736d08836efdb0a",
+    "contest_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f",
+    "reason": "The user confirmed Shaoguan University (Team291) received the tied bronze-boundary award; approve only this specific resolution."
+  }
+}

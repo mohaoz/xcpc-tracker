@@ -1,0 +1,700 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-02T13:35:28.628Z",
+  "reviewed_by": "Codex",
+  "status": "approved_mapping_and_reviewed_awards",
+  "input_catalog_sha256": "a765f71f31196f663e8570ba73df6d36584405e222009c629ae492e3745ddf69",
+  "srk_commit_sha": "68ed4de12ca4667c5bf487157e290f9163c50e73",
+  "index_sha256": "5bb3f2034021766158bfef8aa4efcecdcd71dc30b46070b7fb6da35b8bd2aaad",
+  "collection_url": "https://rl.algoux.cn/api/v2/public/collections/official",
+  "collection_sha256": "1d4f87641659e83cc23af21a175f43a8419066b76f6ff22233a6ed67871c104c",
+  "rating_source_url": "https://hei-maom.github.io/xcpcrating/data/problems-index.json",
+  "rating_full_snapshot_sha256": "7545a0a33e4593e74c3eeaadc2de118bb0712c05b3aeed9f40464111e2a97346",
+  "rating_reviewed_subset_sha256": "40a97dca1e5ddd8958b2cbbfd93aea6e65c7def713b66f0c73e4abe9e863096c",
+  "attribution": "algoUX / srk-collection (AGPL-3.0); XCPCIO; Hei-MaoM / XCPC Rating",
+  "license_url": "https://github.com/algoux/srk-collection/blob/68ed4de12ca4667c5bf487157e290f9163c50e73/LICENSE",
+  "contests": [
+    {
+      "contest_id": "f6f2348c-2cb5-5d86-a663-7d8a8303a517",
+      "qoj_url": "https://qoj.ac/contest/4582",
+      "srk_path": "official/ccpc/ccpc2026/ccpc2026changchun.srk.json",
+      "srk_url": "https://github.com/algoux/srk-collection/blob/68ed4de12ca4667c5bf487157e290f9163c50e73/official/ccpc/ccpc2026/ccpc2026changchun.srk.json",
+      "srk_sha256": "0898a2856f6cf7029e882600c1286cb51c120849e2aaf9f12e878fab883903c9",
+      "page_url": "https://rl.algoux.cn/collection/official?rankId=ccpc2026changchun",
+      "page_info_url": "https://rl.algoux.cn/api/v2/public/contests/ccpc2026changchun",
+      "page_info_sha256": "5025b6253a314a56022a8c2e97363e3752ef63e359014dcc78c22fc2b946204a",
+      "page_verified": true,
+      "source_title": "2026 年第十二届中国大学生程序设计竞赛 长春站 正式赛",
+      "start_at": "2026-10-18T09:00:00+08:00",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "又一道纸笔问题",
+          "url": "https://qoj.ac/contest/4582/problem/22910"
+        },
+        {
+          "ordinal": "B",
+          "title": "别样的选课大战",
+          "url": "https://qoj.ac/contest/4582/problem/22911"
+        },
+        {
+          "ordinal": "C",
+          "title": "无忧旋律",
+          "url": "https://qoj.ac/contest/4582/problem/22912"
+        },
+        {
+          "ordinal": "D",
+          "title": "平均",
+          "url": "https://qoj.ac/contest/4582/problem/22913"
+        },
+        {
+          "ordinal": "E",
+          "title": "遍历",
+          "url": "https://qoj.ac/contest/4582/problem/22914"
+        },
+        {
+          "ordinal": "F",
+          "title": "删除",
+          "url": "https://qoj.ac/contest/4582/problem/22915"
+        },
+        {
+          "ordinal": "G",
+          "title": "异或王国",
+          "url": "https://qoj.ac/contest/4582/problem/22916"
+        },
+        {
+          "ordinal": "H",
+          "title": "数学王国",
+          "url": "https://qoj.ac/contest/4582/problem/22917"
+        },
+        {
+          "ordinal": "I",
+          "title": "事不过三",
+          "url": "https://qoj.ac/contest/4582/problem/22918"
+        },
+        {
+          "ordinal": "J",
+          "title": "送给好友的惊喜",
+          "url": "https://qoj.ac/contest/4582/problem/22919"
+        },
+        {
+          "ordinal": "K",
+          "title": "纸带染色",
+          "url": "https://qoj.ac/contest/4582/problem/22920"
+        },
+        {
+          "ordinal": "L",
+          "title": "故事",
+          "url": "https://qoj.ac/contest/4582/problem/22921"
+        },
+        {
+          "ordinal": "M",
+          "title": "余镜",
+          "url": "https://qoj.ac/contest/4582/problem/22922"
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {
+          "noPenaltyResults": [
+            "FB",
+            "AC",
+            "?",
+            "NOUT",
+            "CE",
+            "UKE",
+            null
+          ],
+          "penalty": [
+            20,
+            "min"
+          ],
+          "timePrecision": "s",
+          "rankingTimePrecision": "min",
+          "extendedAlgorithms": [
+            {
+              "algorithm": "CCPC26",
+              "config": {
+                "problemRevealAcceptedThreshold": {
+                  "count": 50,
+                  "ratio": 0.2
+                }
+              }
+            }
+          ]
+        }
+      },
+      "series": [
+        {
+          "title": "#",
+          "segments": [
+            {
+              "style": "gold",
+              "title": "Gold Award"
+            },
+            {
+              "style": "silver",
+              "title": "Silver Award"
+            },
+            {
+              "style": "bronze",
+              "title": "Bronze Award"
+            }
+          ],
+          "rule": {
+            "preset": "ICPC",
+            "options": {
+              "count": {
+                "value": [
+                  30,
+                  60,
+                  90
+                ]
+              }
+            }
+          }
+        },
+        {
+          "title": "R#",
+          "rule": {
+            "preset": "Normal"
+          }
+        },
+        {
+          "title": "S#",
+          "rule": {
+            "preset": "UniqByUserField",
+            "options": {
+              "field": "organization",
+              "includeOfficialOnly": true
+            }
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "female",
+          "label": "女队",
+          "style": "pink"
+        }
+      ],
+      "rows": 337,
+      "eligible_official_rows": 301,
+      "calculator_proposal": {
+        "status": "proposed",
+        "eligible_team_count": 301,
+        "cutoffs": {
+          "gold": {
+            "rank": 30,
+            "teamId": "B09",
+            "solved": 7,
+            "penalty": 775.2833333333334
+          },
+          "silver": {
+            "rank": 90,
+            "teamId": "C17",
+            "solved": 6,
+            "penalty": 1068.7
+          },
+          "bronze": {
+            "rank": 180,
+            "teamId": "F28",
+            "solved": 4,
+            "penalty": 590.8333333333334
+          }
+        },
+        "evidence": {
+          "group": "user.official === true",
+          "series_index": 0,
+          "medal_counts": [
+            30,
+            60,
+            90
+          ],
+          "penalty_unit": "minutes",
+          "source_penalty_units": [
+            "ms"
+          ],
+          "ties": "No tied medal boundary",
+          "final": "Contest ended; complete statuses and consistent scores; no pending results; frozenDuration is schedule metadata"
+        }
+      },
+      "award_decision": {
+        "status": "approved",
+        "reviewed_at": "2026-11-02T13:49:41.910Z",
+        "reason": "CCPC26 is problem-reveal presentation, not a different solved/penalty ranking. Under the configured minute-ranking precision all three official medal boundaries agree with the raw-score order and have no boundary ties.",
+        "superseded_decision": {
+          "status": "withheld",
+          "reason": "The existing calculator does not audit the CCPC26 extended sorter or rankingTimePrecision=min; its plain solved/time proposal is not approved."
+        },
+        "eligible_group": "All user.official === true; 301 eligible, 36 unofficial excluded; no separate higher/lower eligible group is declared.",
+        "evidence": {
+          "source_sha256": "0898a2856f6cf7029e882600c1286cb51c120849e2aaf9f12e878fab883903c9",
+          "medal_counts": [
+            30,
+            60,
+            90
+          ],
+          "ranking_time_precision": "min",
+          "ranking_time_rounding": "floor (SRK default)",
+          "stored_penalty": "Original score.time converted from milliseconds to minutes without rounding; floor is used only for ranking comparisons.",
+          "presentation_implementation": "https://github.com/algoux/standard-ranklist-renderer-component/blob/6dfa9698e0223f2ca8f1faee1f09a5783c2290a6/packages/core/src/ccpc26.ts",
+          "presentation_implementation_sha256": "2b107d72d23f2a84cdea1b9d2fb52768a68a395153c2f4cfffd08cebfbcea7ec",
+          "boundaries": [
+            {
+              "medal": "gold",
+              "rank": 30,
+              "solved": 7,
+              "team_id": "B09",
+              "raw_penalty_minutes": 775.2833333333334,
+              "ranking_penalty_minutes": 775,
+              "next_team_id": "B23",
+              "next_solved": 7,
+              "next_ranking_penalty_minutes": 827,
+              "boundary_tie": false
+            },
+            {
+              "medal": "silver",
+              "rank": 90,
+              "solved": 6,
+              "team_id": "C17",
+              "raw_penalty_minutes": 1068.7,
+              "ranking_penalty_minutes": 1068,
+              "next_team_id": "K09",
+              "next_solved": 6,
+              "next_ranking_penalty_minutes": 1089,
+              "boundary_tie": false
+            },
+            {
+              "medal": "bronze",
+              "rank": 180,
+              "solved": 4,
+              "team_id": "F28",
+              "raw_penalty_minutes": 590.8333333333334,
+              "ranking_penalty_minutes": 590,
+              "next_team_id": "K27",
+              "next_solved": 4,
+              "next_ranking_penalty_minutes": 591,
+              "boundary_tie": false
+            }
+          ]
+        },
+        "value": {
+          "source": "explicit",
+          "sourceProvider": "rankland",
+          "sourceLabel": "RankLand / algoUX · 官方奖项配置",
+          "sourceUrl": "https://rl.algoux.cn/collection/official?rankId=ccpc2026changchun",
+          "eligibleTeamCount": 301,
+          "cutoffs": {
+            "gold": {
+              "rank": 30,
+              "teamId": "B09",
+              "solved": 7,
+              "penalty": 775.2833333333334
+            },
+            "silver": {
+              "rank": 90,
+              "teamId": "C17",
+              "solved": 6,
+              "penalty": 1068.7
+            },
+            "bronze": {
+              "rank": 180,
+              "teamId": "F28",
+              "solved": 4,
+              "penalty": 590.8333333333334
+            }
+          }
+        }
+      }
+    },
+    {
+      "contest_id": "0ec0747e-44f6-5dbd-a828-2fc9efe4c33f",
+      "qoj_url": "https://qoj.ac/contest/4593",
+      "srk_path": "official/icpc/icpc2026/icpc2026xi_an.srk.json",
+      "srk_url": "https://github.com/algoux/srk-collection/blob/68ed4de12ca4667c5bf487157e290f9163c50e73/official/icpc/icpc2026/icpc2026xi_an.srk.json",
+      "srk_sha256": "6c08739cc0124768ae4d4823483b3dc679bb2daffd4a2e45300e83199c384123",
+      "page_url": "https://rl.algoux.cn/collection/official?rankId=icpc2026xi_an",
+      "page_info_url": "https://rl.algoux.cn/api/v2/public/contests/icpc2026xi_an",
+      "page_info_sha256": "1ef8caed901999b91f346c2730e747e83edb996afd764be92da2c47caf9da4b1",
+      "page_verified": true,
+      "source_title": "第 51 届 ICPC 国际大学生程序设计竞赛区域赛西安站 - 正式赛",
+      "start_at": "2026-10-18T09:00:00+08:00",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "And Revive The Melody",
+          "url": "https://qoj.ac/contest/4593/problem/20051"
+        },
+        {
+          "ordinal": "B",
+          "title": "Break The Speakers",
+          "url": "https://qoj.ac/contest/4593/problem/20052"
+        },
+        {
+          "ordinal": "C",
+          "title": "Cryptarithm",
+          "url": "https://qoj.ac/contest/4593/problem/20053"
+        },
+        {
+          "ordinal": "D",
+          "title": "Don't Fight The Music",
+          "url": "https://qoj.ac/contest/4593/problem/20054"
+        },
+        {
+          "ordinal": "E",
+          "title": "Ether Strike",
+          "url": "https://qoj.ac/contest/4593/problem/20055"
+        },
+        {
+          "ordinal": "F",
+          "title": "False Amber",
+          "url": "https://qoj.ac/contest/4593/problem/20056"
+        },
+        {
+          "ordinal": "G",
+          "title": "Gungnir Fracture",
+          "url": "https://qoj.ac/contest/4593/problem/20057"
+        },
+        {
+          "ordinal": "H",
+          "title": "Hydra",
+          "url": "https://qoj.ac/contest/4593/problem/20058"
+        },
+        {
+          "ordinal": "I",
+          "title": "Incyde",
+          "url": "https://qoj.ac/contest/4593/problem/20059"
+        },
+        {
+          "ordinal": "J",
+          "title": "Journey",
+          "url": "https://qoj.ac/contest/4593/problem/20060"
+        },
+        {
+          "ordinal": "K",
+          "title": "Kikai No Tsubasa",
+          "url": "https://qoj.ac/contest/4593/problem/20061"
+        },
+        {
+          "ordinal": "L",
+          "title": "Lucid Traveler",
+          "url": "https://qoj.ac/contest/4593/problem/20062"
+        },
+        {
+          "ordinal": "M",
+          "title": "Melodiniq",
+          "url": "https://qoj.ac/contest/4593/problem/20063"
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {
+          "noPenaltyResults": [
+            "FB",
+            "AC",
+            "?",
+            "CE",
+            "UKE",
+            null
+          ],
+          "penalty": [
+            20,
+            "min"
+          ],
+          "timePrecision": "min",
+          "timeRounding": "floor"
+        }
+      },
+      "series": [
+        {
+          "title": "#",
+          "segments": [
+            {
+              "title": "金奖",
+              "style": "gold"
+            },
+            {
+              "title": "银奖",
+              "style": "silver"
+            },
+            {
+              "title": "铜奖",
+              "style": "bronze"
+            }
+          ],
+          "rule": {
+            "preset": "ICPC",
+            "options": {
+              "count": {
+                "value": [
+                  41,
+                  82,
+                  123
+                ],
+                "noTied": true
+              }
+            }
+          }
+        },
+        {
+          "title": "R#",
+          "rule": {
+            "preset": "Normal"
+          }
+        },
+        {
+          "title": "S#",
+          "rule": {
+            "preset": "UniqByUserField",
+            "options": {
+              "field": "organization",
+              "includeOfficialOnly": true
+            }
+          }
+        }
+      ],
+      "markers": [
+        {
+          "id": "girl",
+          "label": "女队",
+          "style": "pink"
+        }
+      ],
+      "rows": 418,
+      "eligible_official_rows": 402,
+      "calculator_proposal": {
+        "status": "blocked",
+        "reason": "Tied medal boundary requires explicit review"
+      },
+      "award_decision": {
+        "status": "approved",
+        "reviewed_at": "2026-11-02T13:55:22.682Z",
+        "reason": "Apply the explicit SRK medal counts with the bronze cutoff team specifically confirmed by the user. Keep the actual solved/time tie and the generic calculator rejection as evidence; do not infer a general tie-break rule.",
+        "superseded_decision": {
+          "status": "withheld",
+          "reason": "Tied medal boundary requires explicit review; noTied/count configuration does not authorize choosing an arbitrary tied team."
+        },
+        "tie_resolution": {
+          "authority": "user_confirmation_in_conversation",
+          "statement": "实际上是韶关获奖",
+          "confirmed_at": "2026-11-02T13:55:22.682Z",
+          "medal": "bronze",
+          "boundary_rank": 246,
+          "awarded_team_id": "Team291",
+          "awarded_team_name": "可是雾月真的好可爱",
+          "awarded_organization": "韶关学院",
+          "tied_team_ids": [
+            "Team291",
+            "Team049"
+          ],
+          "solved": 3,
+          "penalty_minutes": 736,
+          "scope": "This contest and this medal boundary only; never use teamId as a general official tie-break."
+        },
+        "evidence": {
+          "source_sha256": "6c08739cc0124768ae4d4823483b3dc679bb2daffd4a2e45300e83199c384123",
+          "eligible_official_rows": 402,
+          "medal_counts": [
+            41,
+            82,
+            123
+          ],
+          "no_tied_segment_config": true
+        },
+        "value": {
+          "source": "explicit",
+          "sourceProvider": "rankland",
+          "sourceLabel": "RankLand / algoUX · 官方奖项配置（铜奖边界经用户确认）",
+          "sourceUrl": "https://rl.algoux.cn/collection/official?rankId=icpc2026xi_an",
+          "eligibleTeamCount": 402,
+          "cutoffs": {
+            "gold": {
+              "rank": 41,
+              "teamId": "Team196",
+              "solved": 4,
+              "penalty": 405
+            },
+            "silver": {
+              "rank": 123,
+              "teamId": "Team148",
+              "solved": 4,
+              "penalty": 709
+            },
+            "bronze": {
+              "rank": 246,
+              "teamId": "Team291",
+              "solved": 3,
+              "penalty": 736
+            }
+          }
+        }
+      },
+      "boundary_report": {
+        "contest": "xian",
+        "source_sha256": "6c08739cc0124768ae4d4823483b3dc679bb2daffd4a2e45300e83199c384123",
+        "page_url": "https://rl.algoux.cn/collection/official?rankId=icpc2026xi_an",
+        "eligible_official_teams": 402,
+        "award_config": {
+          "value": [
+            41,
+            82,
+            123
+          ],
+          "noTied": true
+        },
+        "boundaries": [
+          {
+            "medal": "gold",
+            "cumulative_quota": 41,
+            "cutoff": {
+              "source_row": 45,
+              "team_id": "Team196",
+              "team_name": "是啊吃什么",
+              "organization": "复旦大学",
+              "solved": 4,
+              "penalty_minutes": 405,
+              "source_penalty": [
+                24300,
+                "s"
+              ]
+            },
+            "next": {
+              "source_row": 46,
+              "team_id": "Team404",
+              "team_name": "HORTUS DE ESCAPISMO",
+              "organization": "南京大学",
+              "solved": 4,
+              "penalty_minutes": 408,
+              "source_penalty": [
+                24480,
+                "s"
+              ]
+            },
+            "tie_crosses_quota": false,
+            "exact_tie_rows_in_source_order": [
+              {
+                "position": 41,
+                "source_row": 45,
+                "team_id": "Team196",
+                "team_name": "是啊吃什么",
+                "organization": "复旦大学",
+                "solved": 4,
+                "penalty_minutes": 405,
+                "source_penalty": [
+                  24300,
+                  "s"
+                ]
+              }
+            ],
+            "minute_tie_count": 1
+          },
+          {
+            "medal": "silver",
+            "cumulative_quota": 123,
+            "cutoff": {
+              "source_row": 133,
+              "team_id": "Team148",
+              "team_name": "西安邀请铁能否在区域赛找回一切",
+              "organization": "广东东软学院",
+              "solved": 4,
+              "penalty_minutes": 709,
+              "source_penalty": [
+                42540,
+                "s"
+              ]
+            },
+            "next": {
+              "source_row": 134,
+              "team_id": "Team312",
+              "team_name": "Creative AC",
+              "organization": "上海大学",
+              "solved": 4,
+              "penalty_minutes": 710,
+              "source_penalty": [
+                42600,
+                "s"
+              ]
+            },
+            "tie_crosses_quota": false,
+            "exact_tie_rows_in_source_order": [
+              {
+                "position": 123,
+                "source_row": 133,
+                "team_id": "Team148",
+                "team_name": "西安邀请铁能否在区域赛找回一切",
+                "organization": "广东东软学院",
+                "solved": 4,
+                "penalty_minutes": 709,
+                "source_penalty": [
+                  42540,
+                  "s"
+                ]
+              }
+            ],
+            "minute_tie_count": 1
+          },
+          {
+            "medal": "bronze",
+            "cumulative_quota": 246,
+            "cutoff": {
+              "source_row": 260,
+              "team_id": "Team291",
+              "team_name": "可是雾月真的好可爱",
+              "organization": "韶关学院",
+              "solved": 3,
+              "penalty_minutes": 736,
+              "source_penalty": [
+                44160,
+                "s"
+              ]
+            },
+            "next": {
+              "source_row": 261,
+              "team_id": "Team049",
+              "team_name": "miao~",
+              "organization": "浙江育英职业技术学院",
+              "solved": 3,
+              "penalty_minutes": 736,
+              "source_penalty": [
+                44160,
+                "s"
+              ]
+            },
+            "tie_crosses_quota": true,
+            "exact_tie_rows_in_source_order": [
+              {
+                "position": 246,
+                "source_row": 260,
+                "team_id": "Team291",
+                "team_name": "可是雾月真的好可爱",
+                "organization": "韶关学院",
+                "solved": 3,
+                "penalty_minutes": 736,
+                "source_penalty": [
+                  44160,
+                  "s"
+                ]
+              },
+              {
+                "position": 247,
+                "source_row": 261,
+                "team_id": "Team049",
+                "team_name": "miao~",
+                "organization": "浙江育英职业技术学院",
+                "solved": 3,
+                "penalty_minutes": 736,
+                "source_penalty": [
+                  44160,
+                  "s"
+                ]
+              }
+            ],
+            "minute_tie_count": 2
+          }
+        ],
+        "conclusion": "Only the bronze quota crosses an exact solved/time tie. The user specifically confirmed that Shaoguan University (Team291) received the bronze award; the approved cutoff records that team. Both tied rows and the rejected team-ID ordering remain evidence, not a general tie-break rule."
+      }
+    }
+  ]
+}

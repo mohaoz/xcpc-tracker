@@ -23,6 +23,11 @@ function nonempty(value, label) {
   if (typeof value !== 'string' || !value.trim()) throw new Error(`Invalid ${label}`);
   return value;
 }
+function boardTitle(value) {
+  if (typeof value === 'string') return nonempty(value, 'contest_name');
+  const texts = value?.texts;
+  return nonempty(texts?.['zh-CN'] ?? texts?.[value?.fallback_lang] ?? texts?.en, 'contest_name');
+}
 function uniqueEntries(entries) {
   if (!entries.length) throw new Error('Empty source snapshot; previous observations retained');
   const keys = new Set();
@@ -64,7 +69,7 @@ export function normalizeSource(provider, raw) {
       if ('board_link' in node) {
         const path=nonempty(node.board_link,'board_link');
         if(!/^\/[a-zA-Z0-9_/-]+$/.test(path) || path.includes('//')) throw new Error('Unsafe Board path');
-        entries.push({id:path.replace(/\/$/,''),title:nonempty(node.config?.contest_name,'contest_name'),url:`https://board.xcpcio.com${path}`,config:node.config});
+        entries.push({id:path.replace(/\/$/,''),title:boardTitle(node.config?.contest_name),url:`https://board.xcpcio.com${path}`,config:node.config});
         return;
       }
       for(const child of Object.values(node))walk(child);
