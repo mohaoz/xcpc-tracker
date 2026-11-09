@@ -76,6 +76,8 @@ npm run catalog:rankland -- apply tmp/sources/srk tmp/sources/rating-review.json
 
 ## Full metadata refresh of existing values
 
+The 2026-11-09 additions (Chengdu, CCPC women's division and Hunan) use complete local Playwright browser exports authorized by the user, exact source/title matches and pinned SRK/page evidence. Reviews are in `fixtures/imports/qoj/2026-11-09-*`, `fixtures/imports/codeforces/2026-11-09-*`, `fixtures/imports/rankland/2026-11-09-additions.json` and the corresponding Rating fixtures. Both reviewed problem-list checks include this batch. The women's official `submitted` ratio denominator is unsupported; retain its award gap rather than substituting an estimate. This session's explicit cookie authorization does not change the default browser-only QOJ acquisition workflow.
+
 A "refresh" must compare populated fields; the older fill-gaps commands are not a full refresh. Coverage, authentication blockers and per-contest results of the 2026-10-01 full public-source pass are in `fixtures/imports/catalog-completion/2026-10-01-source-refresh.json` and `2026-10-01-source-coverage.json`: all 152 SRK and 143 Board contests got complete current data; for CF only the public catalog could be refreshed because the problem-list API requires authentication; a PTA page shell is not a final standing. QOJ accepts only exports from the user's own authorized browser; server-side scraping or borrowed login state is forbidden.
 
 Save the old raw Rating file first, then fetch a complete new one. The default fill-gaps tool never overwrites; an explicitly authorized full refresh uses:

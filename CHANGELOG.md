@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.2
+
+- 新增 2026 ICPC 成都站、CCPC 女生赛和第 22 届湖南省赛，共 36 题及 36 个核验 Rating；逐题核对完整 QOJ/CF 浏览器题单、固定 SRK 和原赛 RankLand 页面，保留成都 Universal Cup 镜像名称的来源记录。
+- 补入成都明确牌线 Au/Ag/Cu 6/5/3、湖南 5/3/1。女生赛的官方奖项分母规则尚未支持，保留牌线缺口；不以估算替代。
+
 ## 0.9.1
 
 - Add CCPC Changchun 2026 and ICPC Xi'an 2026 with 26 problems from the user's complete QOJ contest-page exports, 26 verified XCPC Rating values and audited original-event RankLand links. Preserve every existing contest and problem.

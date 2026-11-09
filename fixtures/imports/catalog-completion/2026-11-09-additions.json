@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-09T12:14:29.733Z",
+  "input_catalog_sha256": "438524979fb12ad0063b46fa0358cd355401b497a06cef2392ddb70bcecdc0f5",
+  "output_catalog_sha256": "0302931c2f5a0883edf59494f24974ec17a65d8ad737af5c294eb62b3d0c7df3",
+  "version": "0.9.2",
+  "existing_entities_unchanged": {
+    "contests": 261,
+    "problems": 3219
+  },
+  "existing_entities_sha256": "cab4cc72541a7fe585b8a28fe4ee3c4901c3c35f244d7051532ed3aaf986291c",
+  "added_contests": [
+    "60096f8b-c28a-5574-9102-cb63a5e763a1",
+    "4dccba8b-6873-5efe-bf87-c2c77c57f79a",
+    "54cb8f45-0b00-57ec-a2e3-f2499c35b348"
+  ],
+  "added_problems": 36,
+  "added_ratings": 36,
+  "added_problem_tags": 0,
+  "added_awards": 2,
+  "withheld_awards": [
+    {
+      "contest_id": "4dccba8b-6873-5efe-bf87-c2c77c57f79a",
+      "reason": "Unsupported official ratio denominator or tie policy"
+    }
+  ],
+  "problem_reviews": [
+    "../qoj/2026-11-09-chengdu-ladies-reviewed.json",
+    "../codeforces/2026-11-09-hunan-reviewed.json"
+  ],
+  "source_review": "../rankland/2026-11-09-additions.json",
+  "rating_review": "../xcpc-rating/2026-11-09-additions-review.json"
+}

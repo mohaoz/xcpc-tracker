@@ -1,0 +1,244 @@
+{
+  "provider": "qoj",
+  "source_type": "user_authorized_cookie_local_playwright_contest_pages",
+  "review": {
+    "status": "approved",
+    "reviewed_by": "Codex — complete browser lists, pinned SRK and current RankLand page identity, exact full title/provider IDs",
+    "raw_filename": "2026-11-09-chengdu-ladies-browser-export.json",
+    "raw_sha256": "f3800491e0c721df2239cbd6c2e79074380a9fa6ea1cb1be06b73ded94b856c8",
+    "input_catalog_sha256": "438524979fb12ad0063b46fa0358cd355401b497a06cef2392ddb70bcecdc0f5"
+  },
+  "contests": [
+    {
+      "title": "The 5th Universal Cup. Stage 5: Grand Prix of Chengdu",
+      "url": "https://qoj.ac/contest/4607",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "Average of Averages",
+          "url": "https://qoj.ac/contest/4607/problem/23592",
+          "provider_problem_id": "23592"
+        },
+        {
+          "ordinal": "B",
+          "title": "Bouncing Particles",
+          "url": "https://qoj.ac/contest/4607/problem/23593",
+          "provider_problem_id": "23593"
+        },
+        {
+          "ordinal": "C",
+          "title": "Counting Arrays",
+          "url": "https://qoj.ac/contest/4607/problem/23594",
+          "provider_problem_id": "23594"
+        },
+        {
+          "ordinal": "D",
+          "title": "Duel of Wrath",
+          "url": "https://qoj.ac/contest/4607/problem/23595",
+          "provider_problem_id": "23595"
+        },
+        {
+          "ordinal": "E",
+          "title": "Enclose the Point",
+          "url": "https://qoj.ac/contest/4607/problem/23596",
+          "provider_problem_id": "23596"
+        },
+        {
+          "ordinal": "F",
+          "title": "First Word",
+          "url": "https://qoj.ac/contest/4607/problem/23597",
+          "provider_problem_id": "23597"
+        },
+        {
+          "ordinal": "G",
+          "title": "Graph Reconstruction",
+          "url": "https://qoj.ac/contest/4607/problem/23598",
+          "provider_problem_id": "23598"
+        },
+        {
+          "ordinal": "H",
+          "title": "Hidden Order",
+          "url": "https://qoj.ac/contest/4607/problem/23599",
+          "provider_problem_id": "23599"
+        },
+        {
+          "ordinal": "I",
+          "title": "Invisible Edges",
+          "url": "https://qoj.ac/contest/4607/problem/23600",
+          "provider_problem_id": "23600"
+        },
+        {
+          "ordinal": "J",
+          "title": "Joint Relocation",
+          "url": "https://qoj.ac/contest/4607/problem/23601",
+          "provider_problem_id": "23601"
+        },
+        {
+          "ordinal": "K",
+          "title": "Keep Your Distance",
+          "url": "https://qoj.ac/contest/4607/problem/23602",
+          "provider_problem_id": "23602"
+        },
+        {
+          "ordinal": "L",
+          "title": "Long Slides",
+          "url": "https://qoj.ac/contest/4607/problem/23603",
+          "provider_problem_id": "23603"
+        },
+        {
+          "ordinal": "M",
+          "title": "Minimum Records",
+          "url": "https://qoj.ac/contest/4607/problem/23604",
+          "provider_problem_id": "23604"
+        }
+      ],
+      "source_title": "The 5th Universal Cup. Stage 5: Grand Prix of Chengdu",
+      "fetched_url": "https://qoj.ac/contest/4607",
+      "target_contest": {
+        "contest_id": "60096f8b-c28a-5574-9102-cb63a5e763a1",
+        "title": "「华为杯」第 51 届 ICPC 国际大学生程序设计竞赛区域赛成都站",
+        "aliases": [
+          "The 5th Universal Cup. Stage 5: Grand Prix of Chengdu"
+        ],
+        "tags": [
+          "2026",
+          "icpc",
+          "区域赛",
+          "成都"
+        ],
+        "start_at": "2026-10-25T01:10:00.000Z",
+        "sources": [
+          {
+            "provider": "qoj",
+            "kind": "contest",
+            "url": "https://qoj.ac/contest/4607",
+            "provider_contest_id": "4607",
+            "source_title": "The 5th Universal Cup. Stage 5: Grand Prix of Chengdu",
+            "label": "QOJ"
+          },
+          {
+            "provider": "rankland",
+            "kind": "standings",
+            "url": "https://rl.algoux.cn/collection/official?rankId=icpc2026chengdu",
+            "provider_contest_id": "srk:official/icpc/icpc2026/icpc2026chengdu.srk.json",
+            "source_title": "「华为杯」第 51 届 ICPC 国际大学生程序设计竞赛区域赛成都站",
+            "label": "RankLand",
+            "is_default": true
+          }
+        ]
+      }
+    },
+    {
+      "title": "第十二届中国大学生程序设计竞赛 女生专场（CCPC 2026 Women's Division）",
+      "url": "https://qoj.ac/contest/4613",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "又是环状线",
+          "url": "https://qoj.ac/contest/4613/problem/23631",
+          "provider_problem_id": "23631"
+        },
+        {
+          "ordinal": "B",
+          "title": "不平衡指数",
+          "url": "https://qoj.ac/contest/4613/problem/23632",
+          "provider_problem_id": "23632"
+        },
+        {
+          "ordinal": "C",
+          "title": "疫情防控",
+          "url": "https://qoj.ac/contest/4613/problem/23633",
+          "provider_problem_id": "23633"
+        },
+        {
+          "ordinal": "D",
+          "title": "三角形区间计数",
+          "url": "https://qoj.ac/contest/4613/problem/23634",
+          "provider_problem_id": "23634"
+        },
+        {
+          "ordinal": "E",
+          "title": "可带负权的背包问题",
+          "url": "https://qoj.ac/contest/4613/problem/23635",
+          "provider_problem_id": "23635"
+        },
+        {
+          "ordinal": "F",
+          "title": "区间测速",
+          "url": "https://qoj.ac/contest/4613/problem/23636",
+          "provider_problem_id": "23636"
+        },
+        {
+          "ordinal": "G",
+          "title": "潮汐",
+          "url": "https://qoj.ac/contest/4613/problem/23637",
+          "provider_problem_id": "23637"
+        },
+        {
+          "ordinal": "H",
+          "title": "赛事直播",
+          "url": "https://qoj.ac/contest/4613/problem/23638",
+          "provider_problem_id": "23638"
+        },
+        {
+          "ordinal": "I",
+          "title": "游园会",
+          "url": "https://qoj.ac/contest/4613/problem/23639",
+          "provider_problem_id": "23639"
+        },
+        {
+          "ordinal": "J",
+          "title": "奶茶骑士",
+          "url": "https://qoj.ac/contest/4613/problem/23640",
+          "provider_problem_id": "23640"
+        },
+        {
+          "ordinal": "K",
+          "title": "王国保卫战6：新启程",
+          "url": "https://qoj.ac/contest/4613/problem/23641",
+          "provider_problem_id": "23641"
+        },
+        {
+          "ordinal": "L",
+          "title": "CCPC 新赛制 2",
+          "url": "https://qoj.ac/contest/4613/problem/23642",
+          "provider_problem_id": "23642"
+        }
+      ],
+      "source_title": "第十二届中国大学生程序设计竞赛 女生专场（CCPC 2026 Women's Division）",
+      "fetched_url": "https://qoj.ac/contest/4613",
+      "target_contest": {
+        "contest_id": "4dccba8b-6873-5efe-bf87-c2c77c57f79a",
+        "title": "第十二届中国大学生程序设计竞赛国赛（女生专场）",
+        "aliases": [
+          "第十二届中国大学生程序设计竞赛 女生专场（CCPC 2026 Women's Division）"
+        ],
+        "tags": [
+          "2026",
+          "ccpc",
+          "女生赛"
+        ],
+        "start_at": "2026-11-01T01:00:00.000Z",
+        "sources": [
+          {
+            "provider": "qoj",
+            "kind": "contest",
+            "url": "https://qoj.ac/contest/4613",
+            "provider_contest_id": "4613",
+            "source_title": "第十二届中国大学生程序设计竞赛 女生专场（CCPC 2026 Women's Division）",
+            "label": "QOJ"
+          },
+          {
+            "provider": "rankland",
+            "kind": "standings",
+            "url": "https://rl.algoux.cn/collection/official?rankId=ccpc2026ladies",
+            "provider_contest_id": "srk:official/ccpc/ccpc2026/ccpc2026ladies.srk.json",
+            "source_title": "第十二届中国大学生程序设计竞赛国赛（女生专场）",
+            "label": "RankLand",
+            "is_default": true
+          }
+        ]
+      }
+    }
+  ]
+}

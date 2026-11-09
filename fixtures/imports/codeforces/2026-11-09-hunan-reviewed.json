@@ -1,0 +1,110 @@
+[
+  {
+    "title": "The 22nd Hunan Provincial Collegiate Programming Contest",
+    "url": "https://codeforces.com/gym/106783",
+    "problems": [
+      {
+        "ordinal": "A",
+        "title": "Good Times",
+        "url": "https://codeforces.com/gym/106783/problem/A",
+        "provider_problem_id": "106783:A"
+      },
+      {
+        "ordinal": "B",
+        "title": "Matchstick Iteration",
+        "url": "https://codeforces.com/gym/106783/problem/B",
+        "provider_problem_id": "106783:B"
+      },
+      {
+        "ordinal": "C",
+        "title": "Flipping Cells",
+        "url": "https://codeforces.com/gym/106783/problem/C",
+        "provider_problem_id": "106783:C"
+      },
+      {
+        "ordinal": "D",
+        "title": "Palindrome Game",
+        "url": "https://codeforces.com/gym/106783/problem/D",
+        "provider_problem_id": "106783:D"
+      },
+      {
+        "ordinal": "E",
+        "title": "Mine Evacuation",
+        "url": "https://codeforces.com/gym/106783/problem/E",
+        "provider_problem_id": "106783:E"
+      },
+      {
+        "ordinal": "F",
+        "title": "Fitting Rectangles",
+        "url": "https://codeforces.com/gym/106783/problem/F",
+        "provider_problem_id": "106783:F"
+      },
+      {
+        "ordinal": "G",
+        "title": "Crane Boom",
+        "url": "https://codeforces.com/gym/106783/problem/G",
+        "provider_problem_id": "106783:G"
+      },
+      {
+        "ordinal": "H",
+        "title": "Light Ring",
+        "url": "https://codeforces.com/gym/106783/problem/H",
+        "provider_problem_id": "106783:H"
+      },
+      {
+        "ordinal": "I",
+        "title": "Swaps",
+        "url": "https://codeforces.com/gym/106783/problem/I",
+        "provider_problem_id": "106783:I"
+      },
+      {
+        "ordinal": "J",
+        "title": "Random Tree",
+        "url": "https://codeforces.com/gym/106783/problem/J",
+        "provider_problem_id": "106783:J"
+      },
+      {
+        "ordinal": "K",
+        "title": "Random XOR",
+        "url": "https://codeforces.com/gym/106783/problem/K",
+        "provider_problem_id": "106783:K"
+      }
+    ],
+    "source_title": "The 22nd Hunan Provincial Collegiate Programming Contest",
+    "fetched_url": "https://codeforces.com/gym/106783",
+    "target_contests": [
+      {
+        "contest_id": "54cb8f45-0b00-57ec-a2e3-f2499c35b348",
+        "title": "第22届湖南省大学生程序设计竞赛",
+        "aliases": [
+          "The 22nd Hunan Provincial Collegiate Programming Contest"
+        ],
+        "tags": [
+          "2026",
+          "省赛",
+          "湖南"
+        ],
+        "start_at": "2026-10-25T01:00:00.000Z",
+        "sources": [
+          {
+            "provider": "codeforces",
+            "kind": "contest",
+            "url": "https://codeforces.com/gym/106783",
+            "provider_contest_id": "106783",
+            "source_title": "The 22nd Hunan Provincial Collegiate Programming Contest",
+            "label": "Codeforces"
+          },
+          {
+            "provider": "rankland",
+            "kind": "standings",
+            "url": "https://rl.algoux.cn/collection/official?rankId=hncpc22nd",
+            "provider_contest_id": "srk:official/provincial/hn/hncpc22nd.srk.json",
+            "source_title": "第22届湖南省大学生程序设计竞赛",
+            "label": "RankLand",
+            "is_default": true
+          }
+        ]
+      }
+    ]
+  }
+]

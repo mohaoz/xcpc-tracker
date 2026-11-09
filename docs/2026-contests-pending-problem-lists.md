@@ -15,8 +15,6 @@
 | 2026-05-24 | 第 17 届 ICPC 河南省大学生程序设计竞赛 - 正式赛 | [XCPCIO Board](https://board.xcpcio.com/provincial-contest/2026/henan-icpc) |
 | 2026-06-07 | 2026 CCPC 中国大学生程序设计竞赛全国邀请赛（贵州）暨贵州省赛 - 正式赛 | [XCPCIO Board](https://board.xcpcio.com/ccpc/12th/guizhou-invitational) |
 | 2026-10-17 | The 2026 ICPC Asia Shenyang Regional Contest | [XCPC Link](https://xcpc.link/) |
-| 2026-10-24 | 2026 CCPC 女生专场（成都） | [XCPC Link](https://xcpc.link/) |
-| 2026-10-24 | The 2026 ICPC Asia Chengdu Regional Contest | [XCPC Link](https://xcpc.link/) |
 | 2026-10-31 | The 2026 ICPC Asia Wuhan Regional Contest | [XCPC Link](https://xcpc.link/) |
 | 2026-11-07 | 2026 CCPC 荆州站 | [XCPC Link](https://xcpc.link/) |
 | 2026-11-07 | The 2026 ICPC Asia Nanjing Regional Contest | [XCPC Link](https://xcpc.link/) |

@@ -1,0 +1,446 @@
+{
+  "schema_version": 1,
+  "reviewed_at": "2026-11-09T12:13:59.789Z",
+  "reviewed_by": "Codex",
+  "status": "approved_mapping_and_reviewed_awards",
+  "input_catalog_sha256": "438524979fb12ad0063b46fa0358cd355401b497a06cef2392ddb70bcecdc0f5",
+  "srk_commit_sha": "0f24f2c7801e068d85caebbf51af305669fd5a84",
+  "index_sha256": "ff5ceefebf430148cda9eb2fdb00adc3be2c6b750d139b5ead1a99b92cf39b33",
+  "collection_sha256": "98ac7e3b70de6bbc763b4a1bd3893ce87c87904f0321d7bc985bce67e736b0c0",
+  "rating_reviewed_subset_sha256": "ac3ca14e31971584b71e50693a527f1c0c24c087be2a7a8a8cc33b498ac171dd",
+  "attribution": "algoUX / srk-collection (AGPL-3.0); Hei-MaoM / XCPC Rating",
+  "contests": [
+    {
+      "contest_id": "60096f8b-c28a-5574-9102-cb63a5e763a1",
+      "source_title": "「华为杯」第 51 届 ICPC 国际大学生程序设计竞赛区域赛成都站",
+      "srk_path": "official/icpc/icpc2026/icpc2026chengdu.srk.json",
+      "srk_url": "https://github.com/algoux/srk-collection/blob/0f24f2c7801e068d85caebbf51af305669fd5a84/official/icpc/icpc2026/icpc2026chengdu.srk.json",
+      "srk_sha256": "53758512e0076c7f3f31813e3e9f579190cc552e7eb97da09d2dad33a417d4a8",
+      "page_url": "https://rl.algoux.cn/collection/official?rankId=icpc2026chengdu",
+      "page_info_url": "https://rl.algoux.cn/api/v2/public/contests/icpc2026chengdu",
+      "page_info_sha256": "51178ee643c71fce75f34d61e759e16c36f324f9be08708cfe1524a34f5823b0",
+      "page_verified": true,
+      "start_at": "2026-10-25T09:10:00+08:00",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "Average of Averages",
+          "url": "https://qoj.ac/contest/4607/problem/23592",
+          "provider_problem_id": "23592"
+        },
+        {
+          "ordinal": "B",
+          "title": "Bouncing Particles",
+          "url": "https://qoj.ac/contest/4607/problem/23593",
+          "provider_problem_id": "23593"
+        },
+        {
+          "ordinal": "C",
+          "title": "Counting Arrays",
+          "url": "https://qoj.ac/contest/4607/problem/23594",
+          "provider_problem_id": "23594"
+        },
+        {
+          "ordinal": "D",
+          "title": "Duel of Wrath",
+          "url": "https://qoj.ac/contest/4607/problem/23595",
+          "provider_problem_id": "23595"
+        },
+        {
+          "ordinal": "E",
+          "title": "Enclose the Point",
+          "url": "https://qoj.ac/contest/4607/problem/23596",
+          "provider_problem_id": "23596"
+        },
+        {
+          "ordinal": "F",
+          "title": "First Word",
+          "url": "https://qoj.ac/contest/4607/problem/23597",
+          "provider_problem_id": "23597"
+        },
+        {
+          "ordinal": "G",
+          "title": "Graph Reconstruction",
+          "url": "https://qoj.ac/contest/4607/problem/23598",
+          "provider_problem_id": "23598"
+        },
+        {
+          "ordinal": "H",
+          "title": "Hidden Order",
+          "url": "https://qoj.ac/contest/4607/problem/23599",
+          "provider_problem_id": "23599"
+        },
+        {
+          "ordinal": "I",
+          "title": "Invisible Edges",
+          "url": "https://qoj.ac/contest/4607/problem/23600",
+          "provider_problem_id": "23600"
+        },
+        {
+          "ordinal": "J",
+          "title": "Joint Relocation",
+          "url": "https://qoj.ac/contest/4607/problem/23601",
+          "provider_problem_id": "23601"
+        },
+        {
+          "ordinal": "K",
+          "title": "Keep Your Distance",
+          "url": "https://qoj.ac/contest/4607/problem/23602",
+          "provider_problem_id": "23602"
+        },
+        {
+          "ordinal": "L",
+          "title": "Long Slides",
+          "url": "https://qoj.ac/contest/4607/problem/23603",
+          "provider_problem_id": "23603"
+        },
+        {
+          "ordinal": "M",
+          "title": "Minimum Records",
+          "url": "https://qoj.ac/contest/4607/problem/23604",
+          "provider_problem_id": "23604"
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {
+          "noPenaltyResults": [
+            "FB",
+            "AC",
+            "?",
+            "CE",
+            "UKE",
+            null
+          ],
+          "penalty": [
+            20,
+            "min"
+          ],
+          "timePrecision": "min",
+          "timeRounding": "floor"
+        }
+      },
+      "award_decision": {
+        "status": "approved",
+        "value": {
+          "source": "explicit",
+          "sourceProvider": "rankland",
+          "sourceLabel": "RankLand",
+          "sourceUrl": "https://rl.algoux.cn/collection/official?rankId=icpc2026chengdu",
+          "eligibleTeamCount": 319,
+          "cutoffs": {
+            "gold": {
+              "rank": 32,
+              "teamId": "C05",
+              "solved": 6,
+              "penalty": 833
+            },
+            "silver": {
+              "rank": 96,
+              "teamId": "C03",
+              "solved": 5,
+              "penalty": 782
+            },
+            "bronze": {
+              "rank": 192,
+              "teamId": "A37",
+              "solved": 3,
+              "penalty": 416
+            }
+          }
+        },
+        "evidence": {
+          "group": "user.official === true",
+          "series_index": 0,
+          "medal_counts": [
+            32,
+            64,
+            96
+          ],
+          "penalty_unit": "minutes",
+          "source_penalty_units": [
+            "s"
+          ],
+          "ties": "No tied medal boundary",
+          "final": "frozenDuration=0; complete statuses; no pending results"
+        }
+      }
+    },
+    {
+      "contest_id": "4dccba8b-6873-5efe-bf87-c2c77c57f79a",
+      "source_title": "第十二届中国大学生程序设计竞赛国赛（女生专场）",
+      "srk_path": "official/ccpc/ccpc2026/ccpc2026ladies.srk.json",
+      "srk_url": "https://github.com/algoux/srk-collection/blob/0f24f2c7801e068d85caebbf51af305669fd5a84/official/ccpc/ccpc2026/ccpc2026ladies.srk.json",
+      "srk_sha256": "5fa274379b5aa4d6ef9fb827e897d7ebe4d5da5ed081ce092a329b733069e77b",
+      "page_url": "https://rl.algoux.cn/collection/official?rankId=ccpc2026ladies",
+      "page_info_url": "https://rl.algoux.cn/api/v2/public/contests/ccpc2026ladies",
+      "page_info_sha256": "c2ab5fafb5c3bc8f7cb310291b3dcfa218c73382e5aa0a32e761e8c5c1dec8e6",
+      "page_verified": true,
+      "start_at": "2026-11-01T09:00:00+08:00",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "又是环状线",
+          "url": "https://qoj.ac/contest/4613/problem/23631",
+          "provider_problem_id": "23631"
+        },
+        {
+          "ordinal": "B",
+          "title": "不平衡指数",
+          "url": "https://qoj.ac/contest/4613/problem/23632",
+          "provider_problem_id": "23632"
+        },
+        {
+          "ordinal": "C",
+          "title": "疫情防控",
+          "url": "https://qoj.ac/contest/4613/problem/23633",
+          "provider_problem_id": "23633"
+        },
+        {
+          "ordinal": "D",
+          "title": "三角形区间计数",
+          "url": "https://qoj.ac/contest/4613/problem/23634",
+          "provider_problem_id": "23634"
+        },
+        {
+          "ordinal": "E",
+          "title": "可带负权的背包问题",
+          "url": "https://qoj.ac/contest/4613/problem/23635",
+          "provider_problem_id": "23635"
+        },
+        {
+          "ordinal": "F",
+          "title": "区间测速",
+          "url": "https://qoj.ac/contest/4613/problem/23636",
+          "provider_problem_id": "23636"
+        },
+        {
+          "ordinal": "G",
+          "title": "潮汐",
+          "url": "https://qoj.ac/contest/4613/problem/23637",
+          "provider_problem_id": "23637"
+        },
+        {
+          "ordinal": "H",
+          "title": "赛事直播",
+          "url": "https://qoj.ac/contest/4613/problem/23638",
+          "provider_problem_id": "23638"
+        },
+        {
+          "ordinal": "I",
+          "title": "游园会",
+          "url": "https://qoj.ac/contest/4613/problem/23639",
+          "provider_problem_id": "23639"
+        },
+        {
+          "ordinal": "J",
+          "title": "奶茶骑士",
+          "url": "https://qoj.ac/contest/4613/problem/23640",
+          "provider_problem_id": "23640"
+        },
+        {
+          "ordinal": "K",
+          "title": "王国保卫战6：新启程",
+          "url": "https://qoj.ac/contest/4613/problem/23641",
+          "provider_problem_id": "23641"
+        },
+        {
+          "ordinal": "L",
+          "title": "CCPC 新赛制 2",
+          "url": "https://qoj.ac/contest/4613/problem/23642",
+          "provider_problem_id": "23642"
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {
+          "noPenaltyResults": [
+            "FB",
+            "AC",
+            "?",
+            "NOUT",
+            "CE",
+            "UKE",
+            null
+          ],
+          "penalty": [
+            20,
+            "min"
+          ],
+          "timePrecision": "s",
+          "rankingTimePrecision": "min",
+          "extendedAlgorithms": [
+            {
+              "algorithm": "CCPC26",
+              "config": {
+                "problemRevealAcceptedThreshold": {
+                  "count": 50,
+                  "ratio": 0.2
+                }
+              }
+            }
+          ]
+        }
+      },
+      "award_decision": {
+        "status": "withheld",
+        "reason": "Unsupported official ratio denominator or tie policy",
+        "rule": {
+          "preset": "ICPC",
+          "options": {
+            "ratio": {
+              "value": [
+                0.1,
+                0.2,
+                0.3
+              ],
+              "denominator": "submitted"
+            }
+          }
+        },
+        "estimated_awards": "Not substituted for an unsupported official rule"
+      }
+    },
+    {
+      "contest_id": "54cb8f45-0b00-57ec-a2e3-f2499c35b348",
+      "source_title": "第22届湖南省大学生程序设计竞赛",
+      "srk_path": "official/provincial/hn/hncpc22nd.srk.json",
+      "srk_url": "https://github.com/algoux/srk-collection/blob/0f24f2c7801e068d85caebbf51af305669fd5a84/official/provincial/hn/hncpc22nd.srk.json",
+      "srk_sha256": "99e86b3b43151f5752e9acddd2cdb7db360f93ac524d4dd328eba60aacf5bde9",
+      "page_url": "https://rl.algoux.cn/collection/official?rankId=hncpc22nd",
+      "page_info_url": "https://rl.algoux.cn/api/v2/public/contests/hncpc22nd",
+      "page_info_sha256": "8a47ceab76a34d424bbdfdc44fa7228c353e06335dc5a3d41b763a62332db9e0",
+      "page_verified": true,
+      "start_at": "2026-10-25T09:00:00+08:00",
+      "problems": [
+        {
+          "ordinal": "A",
+          "title": "Good Times",
+          "url": "https://codeforces.com/gym/106783/problem/A",
+          "provider_problem_id": "106783:A"
+        },
+        {
+          "ordinal": "B",
+          "title": "Matchstick Iteration",
+          "url": "https://codeforces.com/gym/106783/problem/B",
+          "provider_problem_id": "106783:B"
+        },
+        {
+          "ordinal": "C",
+          "title": "Flipping Cells",
+          "url": "https://codeforces.com/gym/106783/problem/C",
+          "provider_problem_id": "106783:C"
+        },
+        {
+          "ordinal": "D",
+          "title": "Palindrome Game",
+          "url": "https://codeforces.com/gym/106783/problem/D",
+          "provider_problem_id": "106783:D"
+        },
+        {
+          "ordinal": "E",
+          "title": "Mine Evacuation",
+          "url": "https://codeforces.com/gym/106783/problem/E",
+          "provider_problem_id": "106783:E"
+        },
+        {
+          "ordinal": "F",
+          "title": "Fitting Rectangles",
+          "url": "https://codeforces.com/gym/106783/problem/F",
+          "provider_problem_id": "106783:F"
+        },
+        {
+          "ordinal": "G",
+          "title": "Crane Boom",
+          "url": "https://codeforces.com/gym/106783/problem/G",
+          "provider_problem_id": "106783:G"
+        },
+        {
+          "ordinal": "H",
+          "title": "Light Ring",
+          "url": "https://codeforces.com/gym/106783/problem/H",
+          "provider_problem_id": "106783:H"
+        },
+        {
+          "ordinal": "I",
+          "title": "Swaps",
+          "url": "https://codeforces.com/gym/106783/problem/I",
+          "provider_problem_id": "106783:I"
+        },
+        {
+          "ordinal": "J",
+          "title": "Random Tree",
+          "url": "https://codeforces.com/gym/106783/problem/J",
+          "provider_problem_id": "106783:J"
+        },
+        {
+          "ordinal": "K",
+          "title": "Random XOR",
+          "url": "https://codeforces.com/gym/106783/problem/K",
+          "provider_problem_id": "106783:K"
+        }
+      ],
+      "sorter": {
+        "algorithm": "ICPC",
+        "config": {
+          "penalty": [
+            20,
+            "min"
+          ],
+          "timePrecision": "s"
+        }
+      },
+      "award_decision": {
+        "status": "approved",
+        "value": {
+          "source": "explicit",
+          "sourceProvider": "rankland",
+          "sourceLabel": "RankLand",
+          "sourceUrl": "https://rl.algoux.cn/collection/official?rankId=hncpc22nd",
+          "eligibleTeamCount": 132,
+          "cutoffs": {
+            "gold": {
+              "rank": 13,
+              "teamId": "team27",
+              "solved": 5,
+              "penalty": 578.1166666666667
+            },
+            "silver": {
+              "rank": 39,
+              "teamId": "team94",
+              "solved": 3,
+              "penalty": 400.3833333333333
+            },
+            "bronze": {
+              "rank": 78,
+              "teamId": "team81",
+              "solved": 1,
+              "penalty": 20.316666666666666
+            }
+          }
+        },
+        "evidence": {
+          "group": "user.official === true",
+          "series_index": 0,
+          "medal_counts": [
+            13,
+            26,
+            39
+          ],
+          "penalty_unit": "minutes",
+          "source_penalty_units": [
+            "s"
+          ],
+          "ties": "No tied medal boundary",
+          "final": "Contest ended; complete statuses and consistent scores; no pending results; frozenDuration is schedule metadata"
+        }
+      },
+      "browser_export": {
+        "file": "../codeforces/2026-11-09-hunan-browser-export.json",
+        "sha256": "466f3fe4cf390bf193320037250ef453f1dffd6a3d14e2af1989ca7fd5b70d13",
+        "acquisition": "Local Playwright Chrome public Gym dashboard; no supplied QOJ cookies sent to Codeforces",
+        "api_attempt": "HTTP 400; public dashboard independently returned HTTP 200 and complete A-K list"
+      }
+    }
+  ]
+}
